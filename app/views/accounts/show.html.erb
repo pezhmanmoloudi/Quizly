@@ -45,9 +45,11 @@
                aria-label="Profile">
         <h2>Profile</h2>
 
-        <%# Avatar section lives outside the main form so button_to can render its own <form> %>
+        <%# Avatar upload — its own controller so button_to Remove sits at sibling level %>
         <div class="profile-avatar-section" data-controller="avatar-preview">
-          <% if Current.user.avatar.attached? %>
+
+          <%# Avatar display: photo (if visible) or initials circle %>
+          <% if Current.user.show_avatar? %>
             <%= image_tag Current.user.avatar.variant(resize_to_fill: [80, 80]),
                   class: "profile-avatar-img",
                   alt: "Profile photo",
@@ -65,7 +67,7 @@
           <% end %>
 
           <div class="profile-avatar-actions">
-            <%# Separate upload form for avatar only %>
+            <%# Upload form (auto-submits on file pick) %>
             <%= form_with url: account_path, method: :patch, multipart: true do |av| %>
               <%= av.hidden_field :section, value: "profile" %>
               <label for="avatar-file-input" class="btn btn--secondary btn--sm">
@@ -80,11 +82,24 @@
                       action: "change->avatar-preview#change"
                     } %>
             <% end %>
+
             <% if Current.user.avatar.attached? %>
               <%= button_to "Remove photo", avatar_account_path, method: :delete,
                     class: "btn btn--danger btn--sm",
                     form: { data: { turbo_confirm: "Remove your profile photo?" } } %>
             <% end %>
+
+            <%# Inline validation error from Stimulus %>
+            <p class="profile-avatar-error form-hint"
+               data-avatar-preview-target="error"
+               hidden></p>
+
+            <%# Photo rules hint %>
+            <p class="form-hint profile-avatar-rules">
+              <%= User::AVATAR_FORMAT_HINT %> &middot;
+              Max <%= User::AVATAR_MAX_MB %>MB &middot;
+              <%= User::AVATAR_MIN_PX %>&times;<%= User::AVATAR_MIN_PX %>px minimum
+            </p>
           </div>
         </div>
 
@@ -100,6 +115,18 @@
                   maxlength: 50 %>
             <small class="form-hint">Leave blank to use your email username (<%= Current.user.email_address.split("@").first %>)</small>
           </div>
+
+          <% if Current.user.avatar.attached? %>
+            <div class="form-group profile-toggle-row">
+              <%= f.label :show_avatar, class: "profile-toggle-label" do %>
+                <%= f.check_box :show_avatar,
+                      checked: Current.user.show_avatar,
+                      class: "profile-toggle-checkbox" %>
+                <span>Show profile photo</span>
+                <small class="form-hint">When off, your initials are shown instead</small>
+              <% end %>
+            </div>
+          <% end %>
 
           <div class="settings-profile-info">
             <div class="settings-profile-row">

@@ -32,6 +32,22 @@ RSpec.describe "Accounts#update", type: :request do
           expect(user.reload.avatar).to be_attached
           expect(response).to redirect_to(account_path)
         end
+
+        it "hides photo when show_avatar is unchecked" do
+          file = fixture_file_upload("spec/fixtures/files/test_avatar.png", "image/png")
+          user.avatar.attach(io: File.open(Rails.root.join("spec/fixtures/files/test_avatar.png")),
+                             filename: "test.png", content_type: "image/png")
+          patch account_path, params: { section: "profile", show_avatar: "0" }
+          expect(user.reload.show_avatar).to be false
+          expect(response).to redirect_to(account_path)
+        end
+
+        it "shows photo when show_avatar is checked" do
+          user.update!(show_avatar: false)
+          patch account_path, params: { section: "profile", show_avatar: "1" }
+          expect(user.reload.show_avatar).to be true
+          expect(response).to redirect_to(account_path)
+        end
       end
 
       context "updating email" do

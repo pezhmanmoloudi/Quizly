@@ -786,3 +786,45 @@ body {
   font-size: 0.9rem;
   flex-shrink: 0;
 }
+
+.profile-avatar-error {
+  color: var(--color-danger);
+  font-size: 0.8rem;
+  margin-top: 0.25rem;
+}
+
+.profile-avatar-rules {
+  color: var(--color-muted);
+  font-size: 0.75rem;
+  line-height: 1.4;
+  margin-top: 0.25rem;
+}
+
+.profile-toggle-row {
+  padding: 0.75rem 0;
+  border-top: 1px solid var(--color-border-light);
+  border-bottom: 1px solid var(--color-border-light);
+  margin-bottom: 1rem;
+}
+
+.profile-toggle-label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: var(--color-text);
+}
+
+.profile-toggle-checkbox {
+  accent-color: var(--color-primary);
+  width: 1rem;
+  height: 1rem;
+  margin-bottom: 0.125rem;
+}
+
+.profile-toggle-label .form-hint {
+  font-weight: 400;
+  margin-top: 0;
+}

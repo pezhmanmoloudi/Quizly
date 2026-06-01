@@ -1,4 +1,10 @@
 class User < ApplicationRecord
+  AVATAR_MAX_MB      = 5
+  AVATAR_MIN_PX      = 100
+  AVATAR_MAX_PX      = 4000
+  AVATAR_FORMATS     = %w[image/jpeg image/png image/gif image/webp].freeze
+  AVATAR_FORMAT_HINT = "JPG, PNG, GIF, WebP".freeze
+
   has_secure_password
   has_one_attached :avatar
   has_many :sessions, dependent: :destroy
@@ -19,14 +25,19 @@ class User < ApplicationRecord
     self[:display_name].presence || email_address&.split("@")&.first&.capitalize || ""
   end
 
+  def show_avatar?
+    show_avatar && avatar.attached?
+  end
+
   private
 
   def avatar_is_valid_image
-    unless avatar.content_type.in?(%w[image/jpeg image/png image/gif image/webp])
-      errors.add(:avatar, "must be a JPEG, PNG, GIF, or WebP image")
+    unless avatar.content_type.in?(AVATAR_FORMATS)
+      errors.add(:avatar, "must be #{AVATAR_FORMAT_HINT}")
+      return
     end
-    if avatar.blob.byte_size > 5.megabytes
-      errors.add(:avatar, "must be smaller than 5MB")
+    if avatar.blob.byte_size > AVATAR_MAX_MB.megabytes
+      errors.add(:avatar, "must be smaller than #{AVATAR_MAX_MB}MB")
     end
   end
 end

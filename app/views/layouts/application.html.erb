@@ -42,7 +42,7 @@
                     aria-expanded="false"
                     aria-label="<%= Current.user.email_address %> — account menu">
               <div class="user-avatar">
-                <% if Current.user.avatar.attached? %>
+                <% if Current.user.show_avatar? %>
                   <%= image_tag Current.user.avatar.variant(resize_to_fill: [32, 32]), alt: "" %>
                 <% else %>
                   <%= Current.user.display_name.first.upcase %>
@@ -57,7 +57,7 @@
 
               <div class="avatar-dropdown__header" role="presentation">
                 <div class="avatar-dropdown__header-inner">
-                  <% if Current.user.avatar.attached? %>
+                  <% if Current.user.show_avatar? %>
                     <%= image_tag Current.user.avatar.variant(resize_to_fill: [36, 36]),
                           class: "avatar-dropdown__avatar-img", alt: "" %>
                   <% else %>
