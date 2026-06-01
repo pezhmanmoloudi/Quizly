@@ -8,17 +8,34 @@ class AccountsController < ApplicationController
 
     if @active_section == "profile"
       if Current.user.update(profile_params)
-        redirect_to account_path, notice: "Profile updated."
+        flash[:section] = @active_section
+        redirect_to account_path(anchor: @active_section), notice: "Profile updated."
       else
         render :show, status: :unprocessable_entity
       end
-    else
+    elsif @active_section == "email"
       unless Current.user.authenticate(params[:current_password])
         flash.now[:alert] = "Current password is incorrect."
         return render :show, status: :unprocessable_entity
       end
-      if Current.user.update(email_password_params)
-        redirect_to account_path, notice: "Account updated."
+      if Current.user.update(email_params)
+        flash[:section] = @active_section
+        redirect_to account_path(anchor: @active_section), notice: "Email updated."
+      else
+        render :show, status: :unprocessable_entity
+      end
+    elsif @active_section == "password"
+      unless Current.user.authenticate(params[:current_password])
+        flash.now[:alert] = "Current password is incorrect."
+        return render :show, status: :unprocessable_entity
+      end
+      if params[:password].blank?
+        Current.user.errors.add(:password, :blank)
+        return render :show, status: :unprocessable_entity
+      end
+      if Current.user.update(password_params)
+        flash[:section] = @active_section
+        redirect_to account_path(anchor: @active_section), notice: "Password updated."
       else
         render :show, status: :unprocessable_entity
       end
@@ -27,7 +44,8 @@ class AccountsController < ApplicationController
 
   def destroy_avatar
     Current.user.avatar.purge
-    redirect_to account_path, notice: "Profile photo removed."
+    flash[:section] = "profile"
+    redirect_to account_path(anchor: "profile"), notice: "Profile photo removed."
   end
 
   private
@@ -38,8 +56,11 @@ class AccountsController < ApplicationController
     p
   end
 
-  def email_password_params
-    params.permit(:email_address, :password, :password_confirmation)
-          .reject { |_, v| v.blank? }
+  def email_params
+    params.permit(:email_address)
+  end
+
+  def password_params
+    params.permit(:password, :password_confirmation)
   end
 end

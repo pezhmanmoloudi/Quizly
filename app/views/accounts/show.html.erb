@@ -10,36 +10,36 @@
        data-settings-tabs-initial-tab-value="<%= @active_section %>">
 
     <nav class="settings-sidebar" role="tablist" aria-label="Settings navigation">
-      <button class="settings-tab"
+      <button class="settings-tab <%= 'settings-tab--active' if @active_section == 'profile' %>"
               role="tab"
               data-settings-tabs-target="tab"
               data-tab="profile"
               data-action="click->settings-tabs#switch keydown->settings-tabs#navigate"
-              aria-selected="false">
+              aria-selected="<%= @active_section == 'profile' %>">
         Profile
       </button>
-      <button class="settings-tab"
+      <button class="settings-tab <%= 'settings-tab--active' if @active_section == 'email' %>"
               role="tab"
               data-settings-tabs-target="tab"
               data-tab="email"
               data-action="click->settings-tabs#switch keydown->settings-tabs#navigate"
-              aria-selected="false">
+              aria-selected="<%= @active_section == 'email' %>">
         Email
       </button>
-      <button class="settings-tab"
+      <button class="settings-tab <%= 'settings-tab--active' if @active_section == 'password' %>"
               role="tab"
               data-settings-tabs-target="tab"
               data-tab="password"
               data-action="click->settings-tabs#switch keydown->settings-tabs#navigate"
-              aria-selected="false">
+              aria-selected="<%= @active_section == 'password' %>">
         Password
       </button>
     </nav>
 
     <div class="settings-content">
 
-      <%# Profile — visible by default (no hidden class) %>
-      <section class="settings-section"
+      <%# Profile %>
+      <section class="settings-section <%= 'settings-section--hidden' unless @active_section == 'profile' %>"
                data-settings-tabs-target="section"
                data-section="profile"
                aria-label="Profile">
@@ -149,14 +149,21 @@
         <% end %>
       </section>
 
-      <%# Email — hidden until tab activated %>
-      <section class="settings-section settings-section--hidden"
+      <%# Email %>
+      <section class="settings-section <%= 'settings-section--hidden' unless @active_section == 'email' %>"
                data-settings-tabs-target="section"
                data-section="email"
                aria-label="Email settings">
         <h2>Change Email</h2>
         <%= form_with url: account_path, method: :patch do |f| %>
           <%= f.hidden_field :section, value: "email" %>
+          <% if Current.user.errors.any? %>
+            <div class="form-errors">
+              <% Current.user.errors.full_messages.each do |msg| %>
+                <div><%= msg %></div>
+              <% end %>
+            </div>
+          <% end %>
           <div class="form-group">
             <%= f.label :email_address, "New email address" %>
             <%= f.email_field :email_address, value: Current.user.email_address,
@@ -171,30 +178,70 @@
         <% end %>
       </section>
 
-      <%# Password — hidden until tab activated %>
-      <section class="settings-section settings-section--hidden"
+      <%# Password %>
+      <section class="settings-section <%= 'settings-section--hidden' unless @active_section == 'password' %>"
                data-settings-tabs-target="section"
                data-section="password"
                aria-label="Password settings">
         <h2>Change Password</h2>
         <%= form_with url: account_path, method: :patch do |f| %>
           <%= f.hidden_field :section, value: "password" %>
-          <div class="form-group">
+          <% if Current.user.errors.any? %>
+            <div class="form-errors">
+              <% Current.user.errors.full_messages.each do |msg| %>
+                <div><%= msg %></div>
+              <% end %>
+            </div>
+          <% end %>
+          <div class="form-group" data-controller="password-toggle">
             <%= f.label :current_password, "Current password" %>
-            <%= f.password_field :current_password, required: true,
-                  autocomplete: "current-password", class: "form-control" %>
+            <div class="field-with-toggle">
+              <%= f.password_field :current_password, required: true,
+                    autocomplete: "current-password", class: "form-control",
+                    data: { password_toggle_target: "field" } %>
+              <button type="button" class="auth-input__toggle"
+                      data-action="password-toggle#toggle"
+                      aria-label="Toggle password visibility">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="currentColor">
+                  <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"/>
+                  <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"/>
+                </svg>
+              </button>
+            </div>
           </div>
-          <div class="form-group">
+          <div class="form-group" data-controller="password-toggle">
             <%= f.label :password, "New password" %>
-            <%= f.password_field :password, required: true,
-                  autocomplete: "new-password", minlength: 8, maxlength: 72,
-                  class: "form-control" %>
+            <div class="field-with-toggle">
+              <%= f.password_field :password, required: true,
+                    autocomplete: "new-password", minlength: 8, maxlength: 72,
+                    class: "form-control",
+                    data: { password_toggle_target: "field" } %>
+              <button type="button" class="auth-input__toggle"
+                      data-action="password-toggle#toggle"
+                      aria-label="Toggle password visibility">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="currentColor">
+                  <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"/>
+                  <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"/>
+                </svg>
+              </button>
+            </div>
             <small class="form-hint">Minimum 8 characters</small>
           </div>
-          <div class="form-group">
+          <div class="form-group" data-controller="password-toggle">
             <%= f.label :password_confirmation, "Confirm new password" %>
-            <%= f.password_field :password_confirmation, required: true,
-                  autocomplete: "new-password", maxlength: 72, class: "form-control" %>
+            <div class="field-with-toggle">
+              <%= f.password_field :password_confirmation, required: true,
+                    autocomplete: "new-password", maxlength: 72, class: "form-control",
+                    data: { password_toggle_target: "field" } %>
+              <button type="button" class="auth-input__toggle"
+                      data-action="password-toggle#toggle"
+                      aria-label="Toggle password visibility">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="currentColor">
+                  <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"/>
+                  <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"/>
+                </svg>
+              </button>
+            </div>
           </div>
           <%= f.submit "Update password", class: "btn btn--primary" %>
         <% end %>

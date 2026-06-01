@@ -19,12 +19,12 @@ RSpec.describe "Accounts#destroy_avatar", type: :request do
         attach_avatar
         delete avatar_account_path
         expect(user.reload.avatar).not_to be_attached
-        expect(response).to redirect_to(account_path)
+        expect(response).to redirect_to(account_path(anchor: "profile"))
       end
 
       it "succeeds even if no avatar is attached" do
         delete avatar_account_path
-        expect(response).to redirect_to(account_path)
+        expect(response).to redirect_to(account_path(anchor: "profile"))
       end
     end
 
