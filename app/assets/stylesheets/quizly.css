@@ -170,6 +170,30 @@ body {
 .study-empty__message { font-size: 1.75rem; font-weight: 700; margin-bottom: 0.5rem; }
 .study-empty__sub     { color: #6b7280; margin-bottom: 1.5rem; }
 
+/* Nav */
+.app-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1.5rem;
+  background: #fff;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.app-nav__brand a { font-weight: 700; font-size: 1.1rem; color: #4f46e5; text-decoration: none; }
+.app-nav__actions { display: flex; align-items: center; gap: 1rem; }
+.app-nav__link    { text-decoration: none; color: #374151; font-size: 0.875rem; }
+.app-nav__user    { font-size: 0.875rem; color: #6b7280; }
+
+/* Flash messages */
+.flash {
+  padding: 0.75rem 1rem;
+  text-align: center;
+  font-size: 0.875rem;
+}
+.flash--notice { background: #d1fae5; color: #065f46; }
+.flash--alert  { background: #fee2e2; color: #991b1b; }
+
 /* Auth forms */
 .auth-container {
   max-width: 400px;

@@ -23,8 +23,29 @@
   </head>
 
   <body>
+    <% if authenticated? %>
+      <nav class="app-nav">
+        <div class="app-nav__brand"><%= link_to "Quizly", root_path %></div>
+        <div class="app-nav__actions">
+          <span class="app-nav__user"><%= Current.user.email_address %></span>
+          <%= link_to "Settings", account_path, class: "app-nav__link" %>
+          <%= button_to "Sign Out", session_path, method: :delete, class: "btn btn--secondary btn--sm" %>
+        </div>
+      </nav>
+    <% else %>
+      <nav class="app-nav">
+        <div class="app-nav__brand"><%= link_to "Quizly", root_path %></div>
+        <div class="app-nav__actions">
+          <%= link_to "Sign In",  new_session_path,      class: "app-nav__link" %>
+          <%= link_to "Sign Up",  new_registration_path, class: "btn btn--primary btn--sm" %>
+        </div>
+      </nav>
+    <% end %>
     <% if flash[:notice] %>
-      <div style="background:#d1fae5;color:#065f46;padding:0.75rem 1rem;text-align:center;font-size:0.875rem;"><%= flash[:notice] %></div>
+      <div class="flash flash--notice"><%= flash[:notice] %></div>
+    <% end %>
+    <% if flash[:alert] %>
+      <div class="flash flash--alert"><%= flash[:alert] %></div>
     <% end %>
     <%= yield %>
   </body>

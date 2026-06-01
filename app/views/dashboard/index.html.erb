@@ -1,0 +1,21 @@
+<% content_for :title, "Dashboard" %>
+
+<div class="container">
+  <div class="page-header">
+    <h1>Welcome back!</h1>
+  </div>
+
+  <p style="color:#6b7280;margin-bottom:1.5rem;">
+    Signed in as <strong><%= Current.user.email_address %></strong>
+  </p>
+
+  <div class="deck-card" style="max-width:480px;">
+    <div class="deck-card__info">
+      <h2>Your Decks</h2>
+      <p class="deck-card__description">Review your flashcard decks and start studying.</p>
+    </div>
+    <div class="deck-card__actions">
+      <%= link_to "Go to Decks", decks_path, class: "btn btn--primary" %>
+    </div>
+  </div>
+</div>
