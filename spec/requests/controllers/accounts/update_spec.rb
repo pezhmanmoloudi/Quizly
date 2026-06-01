@@ -11,14 +11,14 @@ RSpec.describe "Accounts#update", type: :request do
         it "updates display name" do
           patch account_path, params: { section: "profile", display_name: "Alex" }
           expect(user.reload.display_name).to eq("Alex")
-          expect(response).to redirect_to(account_path)
+          expect(response).to redirect_to(account_path(anchor: "profile"))
         end
 
         it "clears display name when blank (falls back to email)" do
           user.update!(display_name: "Alex")
           patch account_path, params: { section: "profile", display_name: "" }
           expect(user.reload[:display_name]).to be_nil
-          expect(response).to redirect_to(account_path)
+          expect(response).to redirect_to(account_path(anchor: "profile"))
         end
 
         it "rejects display name longer than 50 characters" do
@@ -30,7 +30,7 @@ RSpec.describe "Accounts#update", type: :request do
           file = fixture_file_upload("spec/fixtures/files/test_avatar.png", "image/png")
           patch account_path, params: { section: "profile", avatar: file }
           expect(user.reload.avatar).to be_attached
-          expect(response).to redirect_to(account_path)
+          expect(response).to redirect_to(account_path(anchor: "profile"))
         end
 
         it "rejects a GIF upload" do
@@ -69,7 +69,7 @@ RSpec.describe "Accounts#update", type: :request do
         it "updates email with correct current password" do
           patch account_path, params: { section: "email", email_address: "new@example.com", current_password: "password123" }
           expect(user.reload.email_address).to eq("new@example.com")
-          expect(response).to redirect_to(account_path)
+          expect(response).to redirect_to(account_path(anchor: "email"))
         end
 
         it "rejects update with wrong current password" do
@@ -93,7 +93,7 @@ RSpec.describe "Accounts#update", type: :request do
             current_password: "password123"
           }
           expect(user.reload.authenticate("newpassword456")).to be_truthy
-          expect(response).to redirect_to(account_path)
+          expect(response).to redirect_to(account_path(anchor: "password"))
         end
 
         it "rejects update with wrong current password" do
@@ -126,6 +126,17 @@ RSpec.describe "Accounts#update", type: :request do
             current_password: "password123"
           }
           expect(response).to have_http_status(:unprocessable_entity)
+        end
+
+        it "rejects blank password without changing the existing password" do
+          patch account_path, params: {
+            section: "password",
+            password: "",
+            password_confirmation: "",
+            current_password: "password123"
+          }
+          expect(response).to have_http_status(:unprocessable_entity)
+          expect(user.reload.authenticate("password123")).to be_truthy
         end
       end
     end
