@@ -793,12 +793,6 @@ body {
   margin-top: 0.25rem;
 }
 
-.profile-avatar-rules {
-  color: var(--color-muted);
-  font-size: 0.75rem;
-  line-height: 1.4;
-  margin-top: 0.25rem;
-}
 
 .profile-toggle-row {
   padding: 0.75rem 0;

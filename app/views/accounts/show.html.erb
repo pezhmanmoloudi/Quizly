@@ -45,11 +45,11 @@
                aria-label="Profile">
         <h2>Profile</h2>
 
-        <%# Avatar upload — its own controller so button_to Remove sits at sibling level %>
+        <%# Avatar upload — own sibling-level div so button_to Remove has no nesting conflict %>
         <div class="profile-avatar-section" data-controller="avatar-preview">
 
-          <%# Avatar display: photo (if visible) or initials circle %>
-          <% if Current.user.show_avatar? %>
+          <%# Always show the actual photo in the management UI (regardless of show_avatar pref) %>
+          <% if Current.user.avatar.attached? %>
             <%= image_tag Current.user.avatar.variant(resize_to_fill: [80, 80]),
                   class: "profile-avatar-img",
                   alt: "Profile photo",
@@ -59,19 +59,28 @@
                  data-avatar-preview-target="placeholder">
               <%= Current.user.display_name.first.upcase %>
             </div>
+            <%# Hidden img used as preview target before upload %>
             <%= image_tag "data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=",
                   class: "profile-avatar-img",
-                  alt: "Profile photo",
+                  alt: "",
                   hidden: true,
                   data: { "avatar-preview-target": "image" } %>
           <% end %>
 
           <div class="profile-avatar-actions">
-            <%# Upload form (auto-submits on file pick) %>
+            <%# Upload form — explicit submit button, no auto-submit %>
             <%= form_with url: account_path, method: :patch, multipart: true do |av| %>
               <%= av.hidden_field :section, value: "profile" %>
+
+              <%# Server-side avatar error shown inside the upload box %>
+              <% if Current.user.errors[:avatar].any? %>
+                <p class="profile-avatar-error">
+                  <%= Current.user.errors[:avatar].to_sentence %>
+                </p>
+              <% end %>
+
               <label for="avatar-file-input" class="btn btn--secondary btn--sm">
-                <%= Current.user.avatar.attached? ? "Change photo" : "Add photo" %>
+                <%= Current.user.avatar.attached? ? "Change photo" : "Choose photo" %>
               </label>
               <%= av.file_field :avatar,
                     id: "avatar-file-input",
@@ -81,6 +90,12 @@
                       "avatar-preview-target": "input",
                       action: "change->avatar-preview#change"
                     } %>
+
+              <%# Upload button — hidden until a file is selected (Stimulus reveals it) %>
+              <%= av.submit "Upload photo",
+                    class: "btn btn--primary btn--sm",
+                    hidden: true,
+                    data: { "avatar-preview-target": "submit" } %>
             <% end %>
 
             <% if Current.user.avatar.attached? %>
@@ -88,18 +103,6 @@
                     class: "btn btn--danger btn--sm",
                     form: { data: { turbo_confirm: "Remove your profile photo?" } } %>
             <% end %>
-
-            <%# Inline validation error from Stimulus %>
-            <p class="profile-avatar-error form-hint"
-               data-avatar-preview-target="error"
-               hidden></p>
-
-            <%# Photo rules hint %>
-            <p class="form-hint profile-avatar-rules">
-              <%= User::AVATAR_FORMAT_HINT %> &middot;
-              Max <%= User::AVATAR_MAX_MB %>MB &middot;
-              <%= User::AVATAR_MIN_PX %>&times;<%= User::AVATAR_MIN_PX %>px minimum
-            </p>
           </div>
         </div>
 
