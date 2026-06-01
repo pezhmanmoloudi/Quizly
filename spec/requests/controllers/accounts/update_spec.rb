@@ -62,7 +62,6 @@ RSpec.describe "Accounts#update", type: :request do
             expect(user.reload.avatar).not_to be_attached
           end
         end
-
       end
 
       context "updating email" do
