@@ -317,6 +317,8 @@ body {
 .auth-input__toggle       { position: absolute; right: 0.75rem; top: 50%; transform: translateY(-50%);
                             background: none; border: none; cursor: pointer; color: var(--color-muted); padding: 0;
                             display: flex; align-items: center; }
+.field-with-toggle               { position: relative; }
+.field-with-toggle .form-control { padding-right: 2.5rem; }
 
 /* Auth form chrome */
 .auth-split__logo     { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 2.5rem;
