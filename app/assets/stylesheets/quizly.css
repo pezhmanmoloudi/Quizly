@@ -225,18 +225,43 @@ body {
   flex-shrink: 0;
 }
 
-/* Flash messages */
+/* Flash messages — floating toast */
 .flash {
-  padding: 0.75rem 1rem;
-  text-align: center;
+  position: fixed;
+  top: 1.25rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  min-width: 18rem;
+  max-width: 30rem;
+  padding: 0.875rem 1.25rem;
+  border-radius: 0.5rem;
   font-size: 0.875rem;
-  transition: opacity 0.4s ease, max-height 0.4s ease, padding 0.4s ease;
-  max-height: 4rem;
-  overflow: hidden;
+  font-weight: 500;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.18);
+  transition: opacity 0.4s ease, transform 0.4s ease;
 }
-.flash--notice { background: var(--color-success-bg); color: var(--color-success-text); }
-.flash--alert  { background: var(--color-danger-bg); color: var(--color-danger-text); }
-.flash--out    { opacity: 0; max-height: 0; padding: 0; }
+.flash--notice {
+  background: #3d9a5c;
+  color: #fff;
+}
+.flash--notice::before {
+  content: "✓";
+  font-size: 1.1rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.flash--alert {
+  background: var(--color-danger-bg);
+  color: var(--color-danger-text);
+}
+.flash--out {
+  opacity: 0;
+  transform: translateX(-50%) translateY(-0.5rem);
+}
 
 /* Auth forms (legacy — kept for account settings page) */
 .auth-container {
