@@ -17,7 +17,7 @@ flashcards_data = [
   { front_content: "What does `attr_accessor` generate?",
     back_content: "Both a getter and setter method for an instance variable." },
   { front_content: "What is a block in Ruby?",
-    back_content: "An anonymous chunk of code passed to a method using `do...end` or `{ }`." },
+    back_content: "An anonymous chunk of code passed to a method using `do...end` or `{ }`." }
 ]
 
 flashcards_data.each.with_index(1) do |attrs, i|
