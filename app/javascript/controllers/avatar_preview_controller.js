@@ -14,5 +14,8 @@ export default class extends Controller {
       if (this.hasPlaceholderTarget) this.placeholderTarget.hidden = true
     }
     reader.readAsDataURL(file)
+
+    // Auto-submit the avatar upload form immediately on file selection
+    this.inputTarget.form.requestSubmit()
   }
 }
