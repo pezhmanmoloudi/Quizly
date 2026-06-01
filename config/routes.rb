@@ -13,7 +13,9 @@ Rails.application.routes.draw do
   patch  "/reset-password/:token", to: "passwords#update"
   put    "/reset-password/:token", to: "passwords#update"
 
-  resource :account, only: [ :show, :update ]
+  resource :account, only: [ :show, :update ] do
+    delete :avatar, on: :member, action: :destroy_avatar
+  end
 
   get "dashboard", to: "dashboard#index", as: :dashboard
 

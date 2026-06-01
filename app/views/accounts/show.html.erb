@@ -44,18 +44,72 @@
                data-section="profile"
                aria-label="Profile">
         <h2>Profile</h2>
-        <div class="settings-profile-row">
-          <span class="settings-profile-label">Display name</span>
-          <span class="settings-profile-value"><%= Current.user.display_name %></span>
-        </div>
-        <div class="settings-profile-row">
-          <span class="settings-profile-label">Email address</span>
-          <span class="settings-profile-value"><%= Current.user.email_address %></span>
-        </div>
-        <div class="settings-profile-row">
-          <span class="settings-profile-label">Member since</span>
-          <span class="settings-profile-value"><%= Current.user.created_at.strftime("%B %Y") %></span>
-        </div>
+
+        <%= form_with url: account_path, method: :patch, multipart: true,
+              data: { controller: "avatar-preview" } do |f| %>
+          <%= f.hidden_field :section, value: "profile" %>
+
+          <div class="profile-avatar-section">
+            <% if Current.user.avatar.attached? %>
+              <%= image_tag Current.user.avatar.variant(resize_to_fill: [80, 80]),
+                    class: "profile-avatar-img",
+                    alt: "Profile photo",
+                    data: { "avatar-preview-target": "image" } %>
+            <% else %>
+              <div class="user-avatar profile-avatar-placeholder"
+                   data-avatar-preview-target="placeholder">
+                <%= Current.user.display_name.first.upcase %>
+              </div>
+              <%= image_tag "data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=",
+                    class: "profile-avatar-img",
+                    alt: "Profile photo",
+                    hidden: true,
+                    data: { "avatar-preview-target": "image" } %>
+            <% end %>
+
+            <div class="profile-avatar-actions">
+              <label for="avatar-file-input" class="btn btn--secondary btn--sm">
+                <%= Current.user.avatar.attached? ? "Change photo" : "Add photo" %>
+              </label>
+              <%= f.file_field :avatar,
+                    id: "avatar-file-input",
+                    accept: "image/jpeg,image/png,image/gif,image/webp",
+                    class: "profile-avatar-input",
+                    data: {
+                      "avatar-preview-target": "input",
+                      action: "change->avatar-preview#change"
+                    } %>
+              <% if Current.user.avatar.attached? %>
+                <%= button_to "Remove photo", avatar_account_path, method: :delete,
+                      class: "btn btn--danger btn--sm",
+                      form: { data: { turbo_confirm: "Remove your profile photo?" } } %>
+              <% end %>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :display_name, "Display name" %>
+            <%= f.text_field :display_name,
+                  value: Current.user[:display_name],
+                  placeholder: Current.user.display_name,
+                  class: "form-control",
+                  maxlength: 50 %>
+            <small class="form-hint">Leave blank to use your email username (<%= Current.user.email_address.split("@").first %>)</small>
+          </div>
+
+          <div class="settings-profile-info">
+            <div class="settings-profile-row">
+              <span class="settings-profile-label">Email address</span>
+              <span class="settings-profile-value"><%= Current.user.email_address %></span>
+            </div>
+            <div class="settings-profile-row">
+              <span class="settings-profile-label">Member since</span>
+              <span class="settings-profile-value"><%= Current.user.created_at.strftime("%B %Y") %></span>
+            </div>
+          </div>
+
+          <%= f.submit "Save changes", class: "btn btn--primary" %>
+        <% end %>
       </section>
 
       <%# Email — hidden until tab activated %>
@@ -65,6 +119,7 @@
                aria-label="Email settings">
         <h2>Change Email</h2>
         <%= form_with url: account_path, method: :patch do |f| %>
+          <%= f.hidden_field :section, value: "email" %>
           <div class="form-group">
             <%= f.label :email_address, "New email address" %>
             <%= f.email_field :email_address, value: Current.user.email_address,
@@ -86,6 +141,7 @@
                aria-label="Password settings">
         <h2>Change Password</h2>
         <%= form_with url: account_path, method: :patch do |f| %>
+          <%= f.hidden_field :section, value: "password" %>
           <div class="form-group">
             <%= f.label :current_password, "Current password" %>
             <%= f.password_field :current_password, required: true,

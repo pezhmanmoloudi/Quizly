@@ -711,3 +711,78 @@ body {
     background: none;
   }
 }
+
+/* ── Profile Avatar ── */
+.profile-avatar-section {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  padding-bottom: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.profile-avatar-img {
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+  border: 2px solid var(--color-border-light);
+}
+
+.profile-avatar-placeholder {
+  width: 5rem;
+  height: 5rem;
+  font-size: 1.75rem;
+  flex-shrink: 0;
+}
+
+.profile-avatar-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.profile-avatar-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.settings-profile-info {
+  margin-bottom: 1.25rem;
+}
+
+/* Navbar avatar photo */
+.user-avatar img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* Dropdown header with photo */
+.avatar-dropdown__header-inner {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+}
+
+.avatar-dropdown__avatar-img {
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.avatar-dropdown__avatar-placeholder {
+  width: 2.25rem;
+  height: 2.25rem;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
