@@ -1,0 +1,7 @@
+<% content_for :title, "Edit Card" %>
+
+<div class="container">
+  <h1>Edit Card</h1>
+  <%= render "form", flashcard: @flashcard %>
+  <div class="back-link"><%= link_to "← Back to Deck", @flashcard.deck %></div>
+</div>

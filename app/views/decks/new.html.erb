@@ -1,0 +1,7 @@
+<% content_for :title, "New Deck" %>
+
+<div class="container">
+  <h1>New Deck</h1>
+  <%= render "form", deck: @deck %>
+  <div class="back-link"><%= link_to "← Back", decks_path %></div>
+</div>

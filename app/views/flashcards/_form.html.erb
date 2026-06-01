@@ -1,0 +1,21 @@
+<%= form_with model: flashcard do |f| %>
+  <% if flashcard.errors.any? %>
+    <div class="form-errors">
+      <% flashcard.errors.full_messages.each do |msg| %>
+        <p><%= msg %></p>
+      <% end %>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :front_content, "Front" %>
+    <%= f.text_area :front_content, rows: 3, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :back_content, "Back" %>
+    <%= f.text_area :back_content, rows: 3, class: "form-control" %>
+  </div>
+
+  <%= f.submit class: "btn btn--primary" %>
+<% end %>

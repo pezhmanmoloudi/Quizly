@@ -1,0 +1,7 @@
+<% content_for :title, "Edit Deck" %>
+
+<div class="container">
+  <h1>Edit Deck</h1>
+  <%= render "form", deck: @deck %>
+  <div class="back-link"><%= link_to "← Back", @deck %></div>
+</div>
