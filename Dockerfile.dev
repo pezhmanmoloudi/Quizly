@@ -1,0 +1,43 @@
+# syntax=docker/dockerfile:1
+# Development Dockerfile — used by docker-compose.yml.
+# For production/Kamal deployment, see Dockerfile.
+
+ARG RUBY_VERSION=3.2.2
+FROM docker.io/library/ruby:${RUBY_VERSION}-slim
+
+WORKDIR /rails
+
+# System dependencies:
+#   build-essential, git, libyaml-dev, pkg-config — compile native gem extensions
+#   libpq-dev    — required to build the pg gem
+#   libsqlite3-dev — required to build the sqlite3 gem
+#   libvips      — image processing support
+#   curl         — health checks and tooling
+RUN apt-get update -qq && \
+    apt-get install --no-install-recommends -y \
+      build-essential \
+      curl \
+      git \
+      libpq-dev \
+      libsqlite3-dev \
+      libyaml-dev \
+      libvips \
+      pkg-config && \
+    rm -rf /var/lib/apt/lists /var/cache/apt/archives
+
+ENV RAILS_ENV="development" \
+    BUNDLE_PATH="/usr/local/bundle" \
+    BUNDLE_WITHOUT=""
+
+# Install gems first to leverage Docker layer caching.
+# In docker-compose the bundle path is a named volume, so gems persist across restarts.
+COPY Gemfile Gemfile.lock ./
+RUN bundle install
+
+# Copy application code.
+# In docker-compose this is overridden by a bind mount for live code reload.
+COPY . .
+
+EXPOSE 3000
+
+CMD ["bin/rails", "server", "-b", "0.0.0.0"]
