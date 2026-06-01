@@ -44,7 +44,7 @@ RSpec.describe "Decks", type: :request do
     context "when not authenticated" do
       it "redirects to login" do
         get study_deck_path(deck)
-        expect(response).to redirect_to(new_session_path)
+        expect(response).to redirect_to(login_path)
       end
     end
   end

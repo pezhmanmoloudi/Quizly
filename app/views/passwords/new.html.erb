@@ -1,20 +1,40 @@
 <% content_for :title, "Forgot Password" %>
 
-<div class="auth-container">
-  <h1>Forgot your password?</h1>
+<div class="auth-split">
+  <div class="auth-split__form">
+    <%= link_to login_path, class: "auth-split__logo" do %>
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="28" height="28" rx="7" fill="currentColor" opacity="0.15"/>
+        <text x="14" y="19" text-anchor="middle" font-size="14" font-weight="700" fill="currentColor">Q</text>
+      </svg>
+      Quizly
+    <% end %>
 
-  <%= form_with url: passwords_path do |f| %>
-    <div class="form-group">
-      <%= f.label :email_address, "Email" %>
-      <%= f.email_field :email_address, required: true, autofocus: true,
-            autocomplete: "username", class: "form-control",
-            value: params[:email_address] %>
-    </div>
+    <h1 class="auth-split__heading">Forgot your password?</h1>
+    <p class="auth-split__sub">Enter your email and we'll send you reset instructions.</p>
 
-    <%= f.submit "Send reset instructions", class: "btn btn--primary" %>
-  <% end %>
+    <%= form_with url: forgot_password_path do |f| %>
+      <div class="form-group">
+        <%= f.label :email_address, "Email" %>
+        <div class="auth-input">
+          <svg class="auth-input__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+            <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
+            <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
+          </svg>
+          <%= f.email_field :email_address, required: true, autofocus: true,
+                autocomplete: "username", class: "form-control",
+                placeholder: "Enter your email",
+                value: params[:email_address] %>
+        </div>
+      </div>
 
-  <p style="margin-top:1rem;font-size:0.875rem;">
-    <%= link_to "Back to sign in", new_session_path %>
-  </p>
+      <%= f.submit "Send reset instructions", class: "btn btn--primary btn--block" %>
+    <% end %>
+
+    <p class="auth-split__footer">
+      <%= link_to "← Back to sign in", login_path %>
+    </p>
+  </div>
+
+  <%= render "auth_panel" %>
 </div>

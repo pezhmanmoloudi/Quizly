@@ -29,15 +29,15 @@
         <div class="app-nav__actions">
           <span class="app-nav__user"><%= Current.user.email_address %></span>
           <%= link_to "Settings", account_path, class: "app-nav__link" %>
-          <%= button_to "Sign Out", session_path, method: :delete, class: "btn btn--secondary btn--sm" %>
+          <%= button_to "Sign Out", logout_path, method: :delete, class: "btn btn--secondary btn--sm" %>
         </div>
       </nav>
     <% else %>
       <nav class="app-nav">
         <div class="app-nav__brand"><%= link_to "Quizly", root_path %></div>
         <div class="app-nav__actions">
-          <%= link_to "Sign In",  new_session_path,      class: "app-nav__link" %>
-          <%= link_to "Sign Up",  new_registration_path, class: "btn btn--primary btn--sm" %>
+          <%= link_to "Sign In",  login_path,  class: "app-nav__link" %>
+          <%= link_to "Sign Up",  signup_path, class: "btn btn--primary btn--sm" %>
         </div>
       </nav>
     <% end %>

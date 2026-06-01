@@ -46,7 +46,7 @@ RSpec.describe "Card Reviews", type: :request do
           card_progress_id: card_progress.id,
           rating: "good"
         }
-        expect(response).to redirect_to(new_session_path)
+        expect(response).to redirect_to(login_path)
       end
     end
   end

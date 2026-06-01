@@ -1,10 +1,21 @@
 Rails.application.routes.draw do
-  resource  :session,      only: [ :new, :create, :destroy ]
-  resources :passwords,    param: :token, only: [ :new, :create, :edit, :update ]
-  resource  :registration, only: [ :new, :create ]
-  resource  :account,      only: [ :show, :update ]
+  # Auth — clean user-facing URLs
+  get    "/login",                 to: "sessions#new",       as: :login
+  post   "/login",                 to: "sessions#create"
+  delete "/logout",                to: "sessions#destroy",   as: :logout
 
-  get "dashboard", to: "dashboard#index"
+  get    "/signup",                to: "registrations#new",  as: :signup
+  post   "/signup",                to: "registrations#create"
+
+  get    "/forgot-password",       to: "passwords#new",      as: :forgot_password
+  post   "/forgot-password",       to: "passwords#create"
+  get    "/reset-password/:token", to: "passwords#edit",     as: :reset_password
+  patch  "/reset-password/:token", to: "passwords#update"
+  put    "/reset-password/:token", to: "passwords#update"
+
+  resource :account, only: [ :show, :update ]
+
+  get "dashboard", to: "dashboard#index", as: :dashboard
 
   get "up" => "rails/health#show", as: :rails_health_check
 

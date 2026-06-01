@@ -1,4 +1,4 @@
-<% content_for :title, "Sign In" %>
+<% content_for :title, "Sign Up" %>
 
 <div class="auth-split">
   <div class="auth-split__form">
@@ -10,14 +10,18 @@
       Quizly
     <% end %>
 
-    <% if flash[:alert] %>
-      <div class="form-errors"><%= flash[:alert] %></div>
+    <% if @user.errors.any? %>
+      <div class="form-errors">
+        <% @user.errors.full_messages.each do |msg| %>
+          <div><%= msg %></div>
+        <% end %>
+      </div>
     <% end %>
 
-    <h1 class="auth-split__heading">Welcome Back!</h1>
-    <p class="auth-split__sub">Sign in to access your dashboard and continue your learning.</p>
+    <h1 class="auth-split__heading">Create your account</h1>
+    <p class="auth-split__sub">Start building your decks and studying smarter.</p>
 
-    <%= form_with url: login_path do |f| %>
+    <%= form_with model: @user, url: signup_path do |f| %>
       <div class="form-group">
         <%= f.label :email_address, "Email" %>
         <div class="auth-input">
@@ -27,8 +31,7 @@
           </svg>
           <%= f.email_field :email_address, required: true, autofocus: true,
                 autocomplete: "username", class: "form-control",
-                placeholder: "Enter your email",
-                value: params[:email_address] %>
+                placeholder: "Enter your email" %>
         </div>
       </div>
 
@@ -39,8 +42,8 @@
             <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"/>
           </svg>
           <%= f.password_field :password, required: true,
-                autocomplete: "current-password", maxlength: 72,
-                class: "form-control", placeholder: "Enter your password",
+                autocomplete: "new-password", minlength: 8, maxlength: 72,
+                class: "form-control", placeholder: "Minimum 8 characters",
                 data: { password_toggle_target: "field" } %>
           <button type="button" class="auth-input__toggle"
                   data-action="password-toggle#toggle"
@@ -53,15 +56,23 @@
         </div>
       </div>
 
-      <div class="auth-split__forgot">
-        <%= link_to "Forgot Password?", forgot_password_path %>
+      <div class="form-group">
+        <%= f.label :password_confirmation, "Confirm password" %>
+        <div class="auth-input">
+          <svg class="auth-input__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"/>
+          </svg>
+          <%= f.password_field :password_confirmation, required: true,
+                autocomplete: "new-password", maxlength: 72,
+                class: "form-control", placeholder: "Repeat your password" %>
+        </div>
       </div>
 
-      <%= f.submit "Sign In", class: "btn btn--primary btn--block" %>
+      <%= f.submit "Create account", class: "btn btn--primary btn--block" %>
     <% end %>
 
     <p class="auth-split__footer">
-      Don't have an account? <%= link_to "Sign Up", signup_path %>
+      Already have an account? <%= link_to "Sign in", login_path %>
     </p>
   </div>
 
