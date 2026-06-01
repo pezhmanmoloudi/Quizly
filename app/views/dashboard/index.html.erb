@@ -1,21 +1,50 @@
 <% content_for :title, "Dashboard" %>
 
+<div class="dashboard-hero">
+  <div class="container">
+    <h1 class="dashboard-hero__heading">Welcome back, <%= Current.user.display_name %></h1>
+    <p class="dashboard-hero__sub">Keep the momentum going — your decks are waiting.</p>
+  </div>
+</div>
+
 <div class="container">
-  <div class="page-header">
-    <h1>Welcome back!</h1>
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-card__value"><%= @total_decks %></div>
+      <div class="stat-card__label">Total Decks</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-card__value"><%= @total_cards %></div>
+      <div class="stat-card__label">Total Cards</div>
+    </div>
   </div>
 
-  <p style="color:#6b7280;margin-bottom:1.5rem;">
-    Signed in as <strong><%= Current.user.email_address %></strong>
-  </p>
+  <div class="section-header" style="margin-top:2rem;">
+    <h2>Recent Decks</h2>
+    <%= link_to "View All", decks_path, class: "app-nav__link" %>
+  </div>
 
-  <div class="deck-card" style="max-width:480px;">
-    <div class="deck-card__info">
-      <h2>Your Decks</h2>
-      <p class="deck-card__description">Review your flashcard decks and start studying.</p>
-    </div>
-    <div class="deck-card__actions">
-      <%= link_to "Go to Decks", decks_path, class: "btn btn--primary" %>
-    </div>
+  <div class="deck-grid">
+    <% @recent_decks.each do |deck| %>
+      <div class="deck-tile">
+        <div class="deck-tile__body">
+          <h3 class="deck-tile__name"><%= link_to deck.name, deck %></h3>
+          <% if deck.description.present? %>
+            <p class="deck-tile__description"><%= deck.description %></p>
+          <% end %>
+          <p class="deck-tile__meta"><%= deck.flashcards.count %> cards</p>
+        </div>
+        <div class="deck-tile__actions">
+          <%= link_to "Edit",   edit_deck_path(deck), class: "btn btn--secondary btn--sm" %>
+          <%= button_to "Delete", deck, method: :delete, class: "btn btn--danger btn--sm",
+              data: { turbo_confirm: "Delete this deck?" } %>
+        </div>
+      </div>
+    <% end %>
+
+    <%= link_to new_deck_path, class: "deck-tile deck-tile--new" do %>
+      <span class="deck-tile--new__icon">+</span>
+      <span>New Deck</span>
+    <% end %>
   </div>
 </div>

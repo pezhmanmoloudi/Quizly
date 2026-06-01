@@ -1,5 +1,69 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe User, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe "associations" do
+    it "has many sessions with dependent destroy" do
+      assoc = described_class.reflect_on_association(:sessions)
+      expect(assoc.macro).to eq(:has_many)
+      expect(assoc.options[:dependent]).to eq(:destroy)
+    end
+
+    it "has many decks with dependent destroy" do
+      assoc = described_class.reflect_on_association(:decks)
+      expect(assoc.macro).to eq(:has_many)
+      expect(assoc.options[:dependent]).to eq(:destroy)
+    end
+
+    it "has many card_progresses with dependent destroy" do
+      assoc = described_class.reflect_on_association(:card_progresses)
+      expect(assoc.macro).to eq(:has_many)
+      expect(assoc.options[:dependent]).to eq(:destroy)
+    end
+  end
+
+  describe "validations" do
+    it "is invalid without an email address" do
+      user = build(:user, email_address: "")
+      expect(user).not_to be_valid
+      expect(user.errors[:email_address]).not_to be_empty
+    end
+
+    it "is invalid with a duplicate email address (case-insensitive)" do
+      create(:user, email_address: "test@example.com")
+      duplicate = build(:user, email_address: "TEST@EXAMPLE.COM")
+      expect(duplicate).not_to be_valid
+    end
+
+    it "is invalid with a malformed email" do
+      user = build(:user, email_address: "not-an-email")
+      expect(user).not_to be_valid
+    end
+
+    it "is invalid with a password shorter than 8 characters" do
+      user = build(:user, password: "short", password_confirmation: "short")
+      expect(user).not_to be_valid
+    end
+
+    it "normalizes email to lowercase and strips whitespace" do
+      user = create(:user, email_address: "  Test@EXAMPLE.COM  ")
+      expect(user.email_address).to eq("test@example.com")
+    end
+  end
+
+  describe "#display_name" do
+    it "returns the part of the email before @, capitalized" do
+      user = build(:user, email_address: "pejman@example.com")
+      expect(user.display_name).to eq("Pejman")
+    end
+
+    it "capitalizes a lowercase email prefix" do
+      user = build(:user, email_address: "alice@example.com")
+      expect(user.display_name).to eq("Alice")
+    end
+
+    it "handles an already-capitalized prefix" do
+      user = build(:user, email_address: "Bob@example.com")
+      expect(user.display_name).to eq("Bob")
+    end
+  end
 end

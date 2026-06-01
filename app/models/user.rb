@@ -10,4 +10,8 @@ class User < ApplicationRecord
                             uniqueness: { case_sensitive: false },
                             format: { with: URI::MailTo::EMAIL_REGEXP }
   validates :password, length: { minimum: 8 }, allow_nil: true
+
+  def display_name
+    email_address.split("@").first.capitalize
+  end
 end
