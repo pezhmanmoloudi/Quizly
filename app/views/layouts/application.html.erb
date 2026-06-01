@@ -23,6 +23,9 @@
   </head>
 
   <body>
+    <% if flash[:notice] %>
+      <div style="background:#d1fae5;color:#065f46;padding:0.75rem 1rem;text-align:center;font-size:0.875rem;"><%= flash[:notice] %></div>
+    <% end %>
     <%= yield %>
   </body>
 </html>

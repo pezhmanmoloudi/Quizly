@@ -1,0 +1,30 @@
+<% content_for :title, "My Decks" %>
+
+<div class="container">
+  <div class="page-header">
+    <h1>My Decks</h1>
+    <%= link_to "New Deck", new_deck_path, class: "btn btn--primary" %>
+  </div>
+
+  <% if @decks.empty? %>
+    <p class="empty-state">No decks yet. Create your first deck to get started.</p>
+  <% else %>
+    <div class="deck-list">
+      <% @decks.each do |deck| %>
+        <div class="deck-card">
+          <div class="deck-card__info">
+            <h2><%= link_to deck.title, deck %></h2>
+            <p class="deck-card__description"><%= deck.description %></p>
+            <small><%= deck.flashcards.count %> cards</small>
+          </div>
+          <div class="deck-card__actions">
+            <%= link_to "Study", study_deck_path(deck), class: "btn btn--primary" %>
+            <%= link_to "Edit", edit_deck_path(deck), class: "btn btn--secondary" %>
+            <%= button_to "Delete", deck, method: :delete, class: "btn btn--danger",
+                data: { turbo_confirm: "Delete this deck?" } %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>

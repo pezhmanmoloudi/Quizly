@@ -1,0 +1,51 @@
+<% content_for :title, "Study: #{@deck.title}" %>
+
+<div class="study-container">
+  <div class="study-header">
+    <h2><%= @deck.title %></h2>
+    <%= link_to "← Exit", @deck, class: "study-exit" %>
+  </div>
+
+  <%= turbo_frame_tag "study_card" do %>
+    <% if @card_progress.nil? %>
+      <div class="study-empty">
+        <p class="study-empty__message">All caught up!</p>
+        <p class="study-empty__sub">No cards are due for review right now.</p>
+        <%= link_to "Back to Deck", @deck, class: "btn btn--primary" %>
+      </div>
+    <% else %>
+      <div class="flashcard"
+           data-controller="flashcard"
+           data-flashcard-flipped-class="is-flipped">
+
+        <div class="flashcard__front">
+          <%= @card_progress.flashcard.front_content %>
+        </div>
+
+        <div class="flashcard__back" data-flashcard-target="back" hidden>
+          <%= @card_progress.flashcard.back_content %>
+        </div>
+
+        <div class="flashcard__actions">
+          <button class="btn btn--secondary"
+                  data-flashcard-target="showButton"
+                  data-action="click->flashcard#reveal">
+            Show Answer
+          </button>
+
+          <%= form_with url: card_reviews_path,
+                        data: { flashcard_target: "ratingForm" },
+                        style: "display:none" do |f| %>
+            <%= hidden_field_tag :card_progress_id, @card_progress.id %>
+            <div class="rating-buttons">
+              <%= f.submit "Again", name: :rating, value: "again", class: "btn btn--danger" %>
+              <%= f.submit "Hard",  name: :rating, value: "hard",  class: "btn btn--warning" %>
+              <%= f.submit "Good",  name: :rating, value: "good",  class: "btn btn--primary" %>
+              <%= f.submit "Easy",  name: :rating, value: "easy",  class: "btn btn--success" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</div>
