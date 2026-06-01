@@ -21,8 +21,7 @@ BEFORE STARTING
    - Acceptance criteria checklist
    - Implementation order
    - Risks and future phases
-5. Save plan to docs/plans/YYYY-MM-DD-{plan-name}.md
-6. If approval was requested: present plan and wait before proceeding
+5. If approval was requested: present plan and wait before proceeding
 
 ------------------------------------
 FEATURE DEVELOPMENT FLOW
@@ -58,35 +57,6 @@ CODE QUALITY CHECK
 - no duplication
 - proper naming
 - proper structure
-
-------------------------------------
-DOCUMENTATION (MANDATORY)
-------------------------------------
-
-A task is NOT complete until all documentation is written.
-Documentation is a first-class deliverable.
-
-After every completed task, generate all of the following:
-
-1. docs/features/YYYY-MM-DD-{name}.md
-   Include: routes, models, controllers, views, UI/UX, CSS,
-   Hotwire/Stimulus, authorization, validations, business rules,
-   tests, acceptance criteria, files created, files modified,
-   breaking changes, future improvements
-
-2. docs/architecture/YYYY-MM-DD-{name}-impact.md
-   Include: affected areas, dependencies, new couplings,
-   future features impacted, technical debt, refactoring
-   opportunities, risks, scalability notes
-
-3. docs/changelog/CHANGELOG.md
-   Prepend entry: date, feature name, type, summary, files changed
-
-4. docs/plans/YYYY-MM-DD-{name}.md
-   Already created before implementation — update status to "Executed"
-
-Run: /project:feature_documentation_system
-Templates: docs/templates/
 
 ------------------------------------
 IMPORTANT RULE

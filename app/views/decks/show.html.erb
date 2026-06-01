@@ -1,17 +1,23 @@
-<% content_for :title, @deck.title %>
+<% content_for :title, @deck.name %>
 
 <div class="container">
-  <div class="page-header">
-    <h1><%= @deck.title %></h1>
-    <div class="page-header__actions">
-      <%= link_to "Study", study_deck_path(@deck), class: "btn btn--primary" %>
-      <%= link_to "Edit Deck", edit_deck_path(@deck), class: "btn btn--secondary" %>
+  <div class="deck-detail-header">
+    <div class="deck-detail-header__top">
+      <h1 class="deck-detail-header__name"><%= @deck.name %></h1>
+      <div class="deck-detail-header__actions">
+        <%= link_to "Edit Deck", edit_deck_path(@deck), class: "btn btn--secondary" %>
+      </div>
     </div>
+    <div class="deck-detail-header__meta">
+      <% if @deck.language_code.present? %>
+        <span class="language-badge"><%= @deck.language_code.upcase %></span>
+      <% end %>
+      <span class="deck-detail-header__date">Created <%= @deck.created_at.strftime("%b %-d, %Y") %></span>
+    </div>
+    <% if @deck.description.present? %>
+      <p class="deck-detail-header__description"><%= @deck.description %></p>
+    <% end %>
   </div>
-
-  <% if @deck.description.present? %>
-    <p class="deck-description"><%= @deck.description %></p>
-  <% end %>
 
   <div class="section-header">
     <h2>Cards (<%= @deck.flashcards.count %>)</h2>
@@ -19,7 +25,7 @@
   </div>
 
   <% if @deck.flashcards.empty? %>
-    <p class="empty-state">No cards yet. Add your first card.</p>
+    <p class="empty-state">No flashcards yet.</p>
   <% else %>
     <div class="flashcard-list">
       <% @deck.flashcards.each do |card| %>

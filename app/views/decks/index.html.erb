@@ -9,18 +9,19 @@
   <% if @decks.empty? %>
     <p class="empty-state">No decks yet. Create your first deck to get started.</p>
   <% else %>
-    <div class="deck-list">
+    <div class="deck-grid">
       <% @decks.each do |deck| %>
-        <div class="deck-card">
-          <div class="deck-card__info">
-            <h2><%= link_to deck.title, deck %></h2>
-            <p class="deck-card__description"><%= deck.description %></p>
-            <small><%= deck.flashcards.count %> cards</small>
+        <div class="deck-tile">
+          <div class="deck-tile__body">
+            <h3 class="deck-tile__name"><%= link_to deck.name, deck %></h3>
+            <% if deck.description.present? %>
+              <p class="deck-tile__description"><%= deck.description %></p>
+            <% end %>
+            <p class="deck-tile__meta"><%= deck.flashcards.count %> cards</p>
           </div>
-          <div class="deck-card__actions">
-            <%= link_to "Study", study_deck_path(deck), class: "btn btn--primary" %>
-            <%= link_to "Edit", edit_deck_path(deck), class: "btn btn--secondary" %>
-            <%= button_to "Delete", deck, method: :delete, class: "btn btn--danger",
+          <div class="deck-tile__actions">
+            <%= link_to "Edit",   edit_deck_path(deck), class: "btn btn--secondary btn--sm" %>
+            <%= button_to "Delete", deck, method: :delete, class: "btn btn--danger btn--sm",
                 data: { turbo_confirm: "Delete this deck?" } %>
           </div>
         </div>

@@ -1,8 +1,8 @@
-<% content_for :title, "Study: #{@deck.title}" %>
+<% content_for :title, "Study: #{@deck.name}" %>
 
 <div class="study-container">
   <div class="study-header">
-    <h2><%= @deck.title %></h2>
+    <h2><%= @deck.name %></h2>
     <%= link_to "← Exit", @deck, class: "study-exit" %>
   </div>
 

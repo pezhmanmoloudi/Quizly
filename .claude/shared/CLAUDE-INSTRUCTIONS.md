@@ -49,16 +49,8 @@ You may suggest actions freely, but must not execute without approval.
 ### After Implementation
 
 8. Summarize changes
-9. Generate documentation — run /project:feature_documentation_system
-   - `docs/features/YYYY-MM-DD-{name}.md` — feature report (routes, models, controllers, views, UI/UX, CSS, tests, files created/modified, breaking changes, future improvements)
-   - `docs/architecture/YYYY-MM-DD-{name}-impact.md` — architecture impact report
-   - Prepend entry to `docs/changelog/CHANGELOG.md`
-   - `docs/plans/YYYY-MM-DD-{name}.md` — already created in step 3; update status to "Executed"
-   - NEVER skip this step
-10. Suggest commit message
-11. Wait for approval
-
-A task is NOT complete until steps 9 and 10 are done. Documentation is a first-class deliverable.
+9. Suggest commit message
+10. Wait for approval
 
 ------------------------------------
 
@@ -76,26 +68,6 @@ A task is NOT complete until steps 9 and 10 are done. Documentation is a first-c
 - Maintain consistent architecture
 - Avoid unnecessary complexity
 - Prefer Rails conventions
-
-------------------------------------
-
-## Documentation Rules
-
-Documentation is a first-class deliverable, not an optional step.
-
-### Before every task
-- Generate a detailed plan and save it to `docs/plans/YYYY-MM-DD-{name}.md`
-
-### After every completed task (feature, bugfix, refactor, UI update, migration, architecture change)
-- `docs/features/YYYY-MM-DD-{name}.md` — feature report including: routes, models, controllers, views, UI/UX, CSS, Hotwire/Stimulus, authorization, validations, business rules, tests, acceptance criteria, files created, files modified, breaking changes, future improvements
-- `docs/architecture/YYYY-MM-DD-{name}-impact.md` — architecture impact report
-- Prepend entry to `docs/changelog/CHANGELOG.md`
-- Update the plan doc status to "Executed"
-
-Templates: `docs/templates/`
-Full instructions: `.claude/commands/feature_documentation_system.md`
-
-A task is NOT considered complete until all documentation files are created and the changelog is updated.
 
 ------------------------------------
 

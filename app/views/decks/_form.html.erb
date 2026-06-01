@@ -8,13 +8,18 @@
   <% end %>
 
   <div class="form-group">
-    <%= f.label :title %>
-    <%= f.text_field :title, class: "form-control" %>
+    <%= f.label :name %>
+    <%= f.text_field :name, class: "form-control" %>
   </div>
 
   <div class="form-group">
     <%= f.label :description %>
     <%= f.text_area :description, rows: 3, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :language_code, "Language (optional)" %>
+    <%= f.text_field :language_code, class: "form-control", placeholder: "e.g. en, es, fr, de" %>
   </div>
 
   <%= f.submit class: "btn btn--primary" %>
