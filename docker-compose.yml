@@ -1,0 +1,62 @@
+name: quizly
+
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: quizly
+      POSTGRES_PASSWORD: quizly_dev_password
+      POSTGRES_DB: quizly_development
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U quizly -d quizly_development"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+
+  redis:
+    image: redis:7-alpine
+    command: redis-server --appendonly yes
+    volumes:
+      - redis_data:/data
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+      start_period: 5s
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    command: bin/rails server -b 0.0.0.0
+    ports:
+      - "3001:3000"
+    volumes:
+      - .:/rails
+      - bundle_cache:/usr/local/bundle
+    environment:
+      DATABASE_URL: postgresql://quizly:quizly_dev_password@db:5432/quizly_development
+      REDIS_URL: redis://redis:6379/0
+      RAILS_ENV: development
+      RAILS_MASTER_KEY: ${RAILS_MASTER_KEY}
+      SOLID_QUEUE_IN_PUMA: "true"
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    stdin_open: true
+    tty: true
+
+volumes:
+  postgres_data:
+  redis_data:
+  bundle_cache:

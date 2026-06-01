@@ -29,6 +29,15 @@ gem "rack-cors"
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[ windows jruby ]
 
+# PostgreSQL adapter — used when DATABASE_URL points to a postgres:// connection (e.g. Docker)
+gem "pg", "~> 1.1"
+
+# Redis client — available for cache, pub/sub, or Sidekiq
+gem "redis", ">= 4.0"
+
+# Sidekiq available for background processing (Solid Queue remains the default Active Job adapter)
+gem "sidekiq"
+
 # Use the database-backed adapters for Rails.cache, Active Job, and Action Cable
 gem "solid_cache"
 gem "solid_queue"
