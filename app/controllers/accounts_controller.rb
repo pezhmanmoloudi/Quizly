@@ -33,10 +33,8 @@ class AccountsController < ApplicationController
   private
 
   def profile_params
-    p = params.permit(:display_name, :avatar, :show_avatar)
+    p = params.permit(:display_name, :avatar)
     p.delete(:avatar) if p[:avatar].blank?
-    # Checkbox sends "1"/"0"; convert to boolean
-    p[:show_avatar] = p[:show_avatar] == "1" if p.key?(:show_avatar)
     p
   end
 

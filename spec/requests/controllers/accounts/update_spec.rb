@@ -33,21 +33,36 @@ RSpec.describe "Accounts#update", type: :request do
           expect(response).to redirect_to(account_path)
         end
 
-        it "hides photo when show_avatar is unchecked" do
-          file = fixture_file_upload("spec/fixtures/files/test_avatar.png", "image/png")
-          user.avatar.attach(io: File.open(Rails.root.join("spec/fixtures/files/test_avatar.png")),
-                             filename: "test.png", content_type: "image/png")
-          patch account_path, params: { section: "profile", show_avatar: "0" }
-          expect(user.reload.show_avatar).to be false
-          expect(response).to redirect_to(account_path)
+        it "rejects a GIF upload" do
+          file = fixture_file_upload("spec/fixtures/files/test_avatar.gif", "image/gif")
+          patch account_path, params: { section: "profile", avatar: file }
+          expect(response).to have_http_status(:unprocessable_entity)
+          expect(user.reload.avatar).not_to be_attached
         end
 
-        it "shows photo when show_avatar is checked" do
-          user.update!(show_avatar: false)
-          patch account_path, params: { section: "profile", show_avatar: "1" }
-          expect(user.reload.show_avatar).to be true
-          expect(response).to redirect_to(account_path)
+        it "rejects a PDF upload" do
+          file = fixture_file_upload("spec/fixtures/files/test_avatar.pdf", "application/pdf")
+          patch account_path, params: { section: "profile", avatar: file }
+          expect(response).to have_http_status(:unprocessable_entity)
+          expect(user.reload.avatar).not_to be_attached
         end
+
+        it "rejects an oversized JPEG" do
+          Tempfile.create([ "large_avatar", ".jpg" ]) do |f|
+            soi    = "\xFF\xD8".b
+            app0   = "\xFF\xE0\x00\x10JFIF\x00\x01\x01\x00\x00\x01\x00\x01\x00\x00".b
+            eoi    = "\xFF\xD9".b
+            filler = ("X" * (5.megabytes + 512)).b
+            f.binmode
+            f.write(soi + app0 + filler + eoi)
+            f.rewind
+            file = Rack::Test::UploadedFile.new(f.path, "image/jpeg")
+            patch account_path, params: { section: "profile", avatar: file }
+            expect(response).to have_http_status(:unprocessable_entity)
+            expect(user.reload.avatar).not_to be_attached
+          end
+        end
+
       end
 
       context "updating email" do

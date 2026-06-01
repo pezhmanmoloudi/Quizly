@@ -43,7 +43,7 @@
                     aria-label="<%= Current.user.email_address %> — account menu">
               <div class="user-avatar">
                 <% if Current.user.show_avatar? %>
-                  <%= image_tag Current.user.avatar.variant(resize_to_fill: [32, 32]), alt: "" %>
+                  <%= image_tag Current.user.avatar, alt: "" %>
                 <% else %>
                   <%= Current.user.display_name.first.upcase %>
                 <% end %>
@@ -58,7 +58,7 @@
               <div class="avatar-dropdown__header" role="presentation">
                 <div class="avatar-dropdown__header-inner">
                   <% if Current.user.show_avatar? %>
-                    <%= image_tag Current.user.avatar.variant(resize_to_fill: [36, 36]),
+                    <%= image_tag Current.user.avatar,
                           class: "avatar-dropdown__avatar-img", alt: "" %>
                   <% else %>
                     <div class="user-avatar avatar-dropdown__avatar-placeholder">
@@ -96,10 +96,10 @@
       </nav>
     <% end %>
     <% if flash[:notice] %>
-      <div class="flash flash--notice"><%= flash[:notice] %></div>
+      <div class="flash flash--notice" data-controller="flash"><%= flash[:notice] %></div>
     <% end %>
     <% if flash[:alert] %>
-      <div class="flash flash--alert"><%= flash[:alert] %></div>
+      <div class="flash flash--alert" data-controller="flash"><%= flash[:alert] %></div>
     <% end %>
     <%= yield %>
   </body>

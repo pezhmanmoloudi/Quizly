@@ -1,9 +1,8 @@
 class User < ApplicationRecord
-  AVATAR_MAX_MB      = 5
-  AVATAR_MIN_PX      = 100
-  AVATAR_MAX_PX      = 4000
-  AVATAR_FORMATS     = %w[image/jpeg image/png image/gif image/webp].freeze
-  AVATAR_FORMAT_HINT = "JPG, PNG, GIF, WebP".freeze
+  AVATAR_MAX_MB     = 5
+  AVATAR_FORMATS    = %w[image/jpeg image/png image/webp].freeze
+  AVATAR_ERR_FORMAT = "Invalid file format. Please upload JPG, PNG, or WEBP.".freeze
+  AVATAR_ERR_SIZE   = "Profile picture must be smaller than 5 MB.".freeze
 
   has_secure_password
   has_one_attached :avatar
@@ -26,18 +25,18 @@ class User < ApplicationRecord
   end
 
   def show_avatar?
-    show_avatar && avatar.attached?
+    avatar.attached? && avatar.blob.persisted?
   end
 
   private
 
   def avatar_is_valid_image
     unless avatar.content_type.in?(AVATAR_FORMATS)
-      errors.add(:avatar, "must be #{AVATAR_FORMAT_HINT}")
+      errors.add(:avatar, AVATAR_ERR_FORMAT)
       return
     end
     if avatar.blob.byte_size > AVATAR_MAX_MB.megabytes
-      errors.add(:avatar, "must be smaller than #{AVATAR_MAX_MB}MB")
+      errors.add(:avatar, AVATAR_ERR_SIZE)
     end
   end
 end

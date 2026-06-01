@@ -230,9 +230,13 @@ body {
   padding: 0.75rem 1rem;
   text-align: center;
   font-size: 0.875rem;
+  transition: opacity 0.4s ease, max-height 0.4s ease, padding 0.4s ease;
+  max-height: 4rem;
+  overflow: hidden;
 }
 .flash--notice { background: var(--color-success-bg); color: var(--color-success-text); }
 .flash--alert  { background: var(--color-danger-bg); color: var(--color-danger-text); }
+.flash--out    { opacity: 0; max-height: 0; padding: 0; }
 
 /* Auth forms (legacy — kept for account settings page) */
 .auth-container {
@@ -821,4 +825,22 @@ body {
 .profile-toggle-label .form-hint {
   font-weight: 400;
   margin-top: 0;
+}
+
+/* ── Avatar inline confirmation ── */
+.profile-avatar-confirm {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.profile-avatar-confirm-text {
+  font-size: 0.875rem;
+  color: var(--color-text-secondary, #555);
+  margin: 0;
+}
+
+.profile-avatar-confirm-actions {
+  display: flex;
+  gap: 0.5rem;
 }

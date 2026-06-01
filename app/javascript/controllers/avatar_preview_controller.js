@@ -1,22 +1,25 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["input", "image", "placeholder", "submit"]
+  static targets = ["input", "actions", "confirm", "deleteForm"]
 
   change() {
     const file = this.inputTarget.files[0]
     if (!file) return
+    this.inputTarget.closest("form").requestSubmit()
+  }
 
-    // Show a local preview so the user can see what they picked
-    const reader = new FileReader()
-    reader.onload = (e) => {
-      this.imageTarget.src = e.target.result
-      this.imageTarget.hidden = false
-      if (this.hasPlaceholderTarget) this.placeholderTarget.hidden = true
-    }
-    reader.readAsDataURL(file)
+  confirmRemove() {
+    this.actionsTarget.hidden = true
+    this.confirmTarget.hidden = false
+  }
 
-    // Reveal the Upload button (server handles all format/size validation)
-    if (this.hasSubmitTarget) this.submitTarget.hidden = false
+  cancelRemove() {
+    this.confirmTarget.hidden = true
+    this.actionsTarget.hidden = false
+  }
+
+  doRemove() {
+    this.deleteFormTarget.requestSubmit()
   }
 }

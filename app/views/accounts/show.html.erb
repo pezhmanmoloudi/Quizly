@@ -45,65 +45,80 @@
                aria-label="Profile">
         <h2>Profile</h2>
 
-        <%# Avatar upload — own sibling-level div so button_to Remove has no nesting conflict %>
+        <%# Avatar — no nested forms; upload form and delete form are siblings %>
         <div class="profile-avatar-section" data-controller="avatar-preview">
 
-          <%# Always show the actual photo in the management UI (regardless of show_avatar pref) %>
-          <% if Current.user.avatar.attached? %>
-            <%= image_tag Current.user.avatar.variant(resize_to_fill: [80, 80]),
-                  class: "profile-avatar-img",
-                  alt: "Profile photo",
-                  data: { "avatar-preview-target": "image" } %>
+          <%# Avatar display — blob.persisted? guards against rendering an unsaved attachment %>
+          <% if Current.user.avatar.attached? && Current.user.avatar.blob.persisted? %>
+            <%= image_tag Current.user.avatar, class: "profile-avatar-img", alt: "Profile photo" %>
           <% else %>
-            <div class="user-avatar profile-avatar-placeholder"
-                 data-avatar-preview-target="placeholder">
+            <div class="user-avatar profile-avatar-placeholder">
               <%= Current.user.display_name.first.upcase %>
             </div>
-            <%# Hidden img used as preview target before upload %>
-            <%= image_tag "data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=",
-                  class: "profile-avatar-img",
-                  alt: "",
-                  hidden: true,
-                  data: { "avatar-preview-target": "image" } %>
           <% end %>
 
-          <div class="profile-avatar-actions">
-            <%# Upload form — explicit submit button, no auto-submit %>
+          <%# Normal actions (default visible state) %>
+          <div class="profile-avatar-actions" data-avatar-preview-target="actions">
+
+            <% if Current.user.errors[:avatar].any? %>
+              <p class="profile-avatar-error">
+                <%= Current.user.errors[:avatar].to_sentence %>
+              </p>
+            <% end %>
+
+            <%# Upload form — auto-submits on file select, no visible submit button %>
             <%= form_with url: account_path, method: :patch, multipart: true do |av| %>
               <%= av.hidden_field :section, value: "profile" %>
-
-              <%# Server-side avatar error shown inside the upload box %>
-              <% if Current.user.errors[:avatar].any? %>
-                <p class="profile-avatar-error">
-                  <%= Current.user.errors[:avatar].to_sentence %>
-                </p>
-              <% end %>
-
               <label for="avatar-file-input" class="btn btn--secondary btn--sm">
-                <%= Current.user.avatar.attached? ? "Change photo" : "Choose photo" %>
+                <%= Current.user.avatar.attached? ? "Change Photo" : "Choose Photo" %>
               </label>
               <%= av.file_field :avatar,
                     id: "avatar-file-input",
-                    accept: "image/jpeg,image/png,image/gif,image/webp",
+                    accept: "image/jpeg,image/png,image/webp",
                     class: "profile-avatar-input",
                     data: {
                       "avatar-preview-target": "input",
                       action: "change->avatar-preview#change"
                     } %>
-
-              <%# Upload button — hidden until a file is selected (Stimulus reveals it) %>
-              <%= av.submit "Upload photo",
-                    class: "btn btn--primary btn--sm",
-                    hidden: true,
-                    data: { "avatar-preview-target": "submit" } %>
             <% end %>
 
-            <% if Current.user.avatar.attached? %>
-              <%= button_to "Remove photo", avatar_account_path, method: :delete,
-                    class: "btn btn--danger btn--sm",
-                    form: { data: { turbo_confirm: "Remove your profile photo?" } } %>
+            <% if Current.user.avatar.attached? && Current.user.avatar.blob.persisted? %>
+              <button type="button"
+                      class="btn btn--danger btn--sm"
+                      data-action="click->avatar-preview#confirmRemove">
+                Remove Photo
+              </button>
             <% end %>
           </div>
+
+          <%# Inline remove confirmation — hidden until "Remove Photo" is clicked %>
+          <% if Current.user.avatar.attached? && Current.user.avatar.blob.persisted? %>
+            <div class="profile-avatar-confirm"
+                 data-avatar-preview-target="confirm"
+                 hidden>
+              <p class="profile-avatar-confirm-text">
+                Are you sure you want to remove your profile picture?
+              </p>
+              <div class="profile-avatar-confirm-actions">
+                <button type="button"
+                        class="btn btn--secondary btn--sm"
+                        data-action="click->avatar-preview#cancelRemove">
+                  Cancel
+                </button>
+                <button type="button"
+                        class="btn btn--danger btn--sm"
+                        data-action="click->avatar-preview#doRemove">
+                  Remove
+                </button>
+              </div>
+            </div>
+
+            <%# Hidden delete form — submitted programmatically by doRemove() %>
+            <%= form_with url: avatar_account_path, method: :delete,
+                  data: { "avatar-preview-target": "deleteForm" } do %>
+            <% end %>
+          <% end %>
+
         </div>
 
         <%= form_with url: account_path, method: :patch do |f| %>
@@ -118,18 +133,6 @@
                   maxlength: 50 %>
             <small class="form-hint">Leave blank to use your email username (<%= Current.user.email_address.split("@").first %>)</small>
           </div>
-
-          <% if Current.user.avatar.attached? %>
-            <div class="form-group profile-toggle-row">
-              <%= f.label :show_avatar, class: "profile-toggle-label" do %>
-                <%= f.check_box :show_avatar,
-                      checked: Current.user.show_avatar,
-                      class: "profile-toggle-checkbox" %>
-                <span>Show profile photo</span>
-                <small class="form-hint">When off, your initials are shown instead</small>
-              <% end %>
-            </div>
-          <% end %>
 
           <div class="settings-profile-info">
             <div class="settings-profile-row">
