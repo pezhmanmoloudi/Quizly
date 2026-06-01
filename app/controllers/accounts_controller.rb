@@ -1,8 +1,11 @@
 class AccountsController < ApplicationController
   def show
+    @active_section = flash[:section] || "profile"
   end
 
   def update
+    @active_section = params[:email_address].present? ? "email" : "password"
+
     unless Current.user.authenticate(params[:current_password])
       flash.now[:alert] = "Current password is incorrect."
       return render :show, status: :unprocessable_entity
