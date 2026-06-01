@@ -31,10 +31,57 @@
           </div>
         </div>
         <div class="app-nav__right">
-          <div class="user-avatar" aria-label="<%= Current.user.email_address %>">
-            <%= Current.user.display_name.first.upcase %>
+          <div class="avatar-dropdown"
+               data-controller="avatar-dropdown"
+               data-action="click@document->avatar-dropdown#closeIfOutside keydown.esc@document->avatar-dropdown#close">
+
+            <button class="avatar-dropdown__trigger"
+                    data-avatar-dropdown-target="button"
+                    data-action="click->avatar-dropdown#toggle"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                    aria-label="<%= Current.user.email_address %> — account menu">
+              <div class="user-avatar">
+                <% if Current.user.show_avatar? %>
+                  <%= image_tag Current.user.avatar, alt: "" %>
+                <% else %>
+                  <%= Current.user.display_name.first.upcase %>
+                <% end %>
+              </div>
+            </button>
+
+            <div class="avatar-dropdown__menu"
+                 data-avatar-dropdown-target="menu"
+                 data-open="false"
+                 role="menu">
+
+              <div class="avatar-dropdown__header" role="presentation">
+                <div class="avatar-dropdown__header-inner">
+                  <% if Current.user.show_avatar? %>
+                    <%= image_tag Current.user.avatar,
+                          class: "avatar-dropdown__avatar-img", alt: "" %>
+                  <% else %>
+                    <div class="user-avatar avatar-dropdown__avatar-placeholder">
+                      <%= Current.user.display_name.first.upcase %>
+                    </div>
+                  <% end %>
+                  <div>
+                    <span class="avatar-dropdown__name"><%= Current.user.display_name %></span>
+                    <span class="avatar-dropdown__email"><%= Current.user.email_address %></span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="avatar-dropdown__items">
+                <%= link_to "Account Settings", account_path,
+                      class: "avatar-dropdown__item", role: "menuitem" %>
+                <hr class="avatar-dropdown__divider">
+                <%= button_to "Logout", logout_path, method: :delete,
+                      class: "avatar-dropdown__item avatar-dropdown__item--danger",
+                      role: "menuitem" %>
+              </div>
+            </div>
           </div>
-          <%= button_to "Logout", logout_path, method: :delete, class: "btn btn--secondary btn--sm" %>
         </div>
       </nav>
     <% else %>
@@ -49,10 +96,10 @@
       </nav>
     <% end %>
     <% if flash[:notice] %>
-      <div class="flash flash--notice"><%= flash[:notice] %></div>
+      <div class="flash flash--notice" data-controller="flash"><%= flash[:notice] %></div>
     <% end %>
     <% if flash[:alert] %>
-      <div class="flash flash--alert"><%= flash[:alert] %></div>
+      <div class="flash flash--alert" data-controller="flash"><%= flash[:alert] %></div>
     <% end %>
     <%= yield %>
   </body>
