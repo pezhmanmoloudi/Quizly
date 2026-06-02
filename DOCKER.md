@@ -18,25 +18,15 @@ cp .env.example .env
 
 Open `.env` and set `RAILS_MASTER_KEY` to the value from `config/master.key`.
 
-**2. Build the development image**
+**2. Build and start the application**
 
 ```bash
-docker compose build
-```
-
-**3. Set up the database**
-
-```bash
-docker compose run --rm web bin/rails db:prepare
-```
-
-**4. Start the application**
-
-```bash
-docker compose up
+docker compose up --build
 ```
 
 The app is available at **http://localhost:3001**
+
+The database is created and all migrations are applied automatically on startup — no manual database step required.
 
 Stop with `Ctrl+C`. To run in the background: `docker compose up -d`
 
@@ -99,7 +89,7 @@ Wipe all Docker state and start fresh:
 
 ```bash
 docker compose down -v          # remove containers and named volumes
-docker compose build --no-cache
-docker compose run --rm web bin/rails db:prepare
-docker compose up
+docker compose up --build
 ```
+
+The database is recreated and all migrations are applied automatically on the first startup.

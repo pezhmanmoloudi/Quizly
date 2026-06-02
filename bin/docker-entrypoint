@@ -6,8 +6,10 @@ if [ -z "${LD_PRELOAD+x}" ]; then
     export LD_PRELOAD
 fi
 
-# If running the rails server then create or migrate existing database
-if [ "${@: -2:1}" == "./bin/rails" ] && [ "${@: -1:1}" == "server" ]; then
+# If running the rails server then create or migrate existing database.
+# Match any invocation that contains "rails server" regardless of surrounding
+# flags (e.g. `bin/rails server -b 0.0.0.0` used in development).
+if echo "$*" | grep -q "rails server"; then
   ./bin/rails db:prepare
 fi
 
