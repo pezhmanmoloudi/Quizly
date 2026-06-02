@@ -3,7 +3,7 @@ user = User.find_or_create_by!(email_address: "demo@quizly.test") do |u|
   u.password_confirmation = "password123"
 end
 
-deck = user.decks.find_or_create_by!(title: "Ruby Basics") do |d|
+deck = user.decks.find_or_create_by!(name: "Ruby Basics") do |d|
   d.description = "Fundamental Ruby concepts"
 end
 
@@ -27,4 +27,4 @@ flashcards_data.each.with_index(1) do |attrs, i|
   end
 end
 
-puts "Seeded: #{user.email_address} / password123 — #{deck.title} with #{deck.flashcards.count} cards"
+puts "Seeded: #{user.email_address} / password123 — #{deck.name} with #{deck.flashcards.count} cards"
