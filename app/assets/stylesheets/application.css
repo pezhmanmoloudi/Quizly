@@ -37,6 +37,7 @@
 @import url("components/tooltip.css");
 @import url("components/visibility.css");
 @import url("components/study_mode_selector.css");
+@import url("components/carousel.css");
 
 /* ── 4. Pages ────────────────────────────────────────────── */
 @import url("pages/decks.css");
