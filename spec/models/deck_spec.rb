@@ -48,6 +48,48 @@ RSpec.describe Deck, type: :model do
     end
   end
 
+  describe "#tag_list" do
+    it "returns an empty array when subject_tags is nil" do
+      deck = build(:deck, subject_tags: nil)
+      expect(deck.tag_list).to eq([])
+    end
+
+    it "parses comma-separated tags into an array" do
+      deck = build(:deck, subject_tags: "biology, anatomy, exam2025")
+      expect(deck.tag_list).to eq(%w[biology anatomy exam2025])
+    end
+
+    it "ignores blank entries" do
+      deck = build(:deck, subject_tags: "biology,,  ")
+      expect(deck.tag_list).to eq(["biology"])
+    end
+  end
+
+  describe "#tag_list=" do
+    it "normalises and stores tags as a comma-separated string" do
+      deck = build(:deck)
+      deck.tag_list = "Biology,  anatomy , EXAM2025"
+      expect(deck.subject_tags).to eq("Biology, anatomy, EXAM2025")
+    end
+  end
+
+  describe "visibility" do
+    it "defaults to public" do
+      deck = Deck.new(name: "Test", user: build(:user))
+      expect(deck.visibility).to eq("public")
+    end
+
+    it "is invalid with an unsupported visibility value" do
+      deck = build(:deck, visibility: "secret")
+      expect(deck).not_to be_valid
+    end
+
+    it "recognises public? and private? helpers" do
+      expect(build(:deck, visibility: "public").public?).to be true
+      expect(build(:deck, visibility: "private").private?).to be true
+    end
+  end
+
   describe "dependent destruction" do
     it "destroys associated flashcards when the deck is deleted" do
       deck = create(:deck)

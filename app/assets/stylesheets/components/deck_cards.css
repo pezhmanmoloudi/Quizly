@@ -69,6 +69,58 @@
 
 .deck-tile__meta { font-size: 0.8rem; color: var(--color-muted); margin: 0; }
 
+/* Meta row: card count + language badge inline */
+.deck-tile__meta-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+/* Language badge on tile */
+.deck-tile__lang-badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: 0.1rem 0.4rem;
+  border-radius: 4px;
+  background: var(--color-border-light);
+  color: var(--color-muted);
+}
+
+/* Tag badges on tile */
+.deck-tile__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  margin-top: 0.25rem;
+}
+
+.tag-badge {
+  font-size: 0.7rem;
+  font-weight: 500;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--color-primary) 10%, transparent);
+  color: var(--color-primary);
+}
+
+/* Cards-due badge (top-right of tile header) */
+.due-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.5rem;
+  height: 1.5rem;
+  padding: 0 0.375rem;
+  border-radius: 999px;
+  background: #f59e0b;
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
 .deck-tile__date {
   font-size: 0.75rem;
   color: var(--color-muted);
