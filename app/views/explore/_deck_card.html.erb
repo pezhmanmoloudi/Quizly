@@ -23,7 +23,7 @@
 
   <div class="deck-tile__footer deck-tile__footer--public">
     <span class="deck-tile__author">by <%= deck.user.display_name %></span>
-    <% if deck.user != Current.user %>
+    <% if authenticated? && deck.user != Current.user %>
       <%= button_to fork_deck_path(deck), method: :post, class: "btn btn--primary btn--sm btn-with-icon" do %>
         <%= render "shared/icons/fork", css_class: "icon--sm" %> Fork
       <% end %>

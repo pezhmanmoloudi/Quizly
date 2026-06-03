@@ -1,5 +1,5 @@
 class DecksController < ApplicationController
-  before_action :require_authentication
+  allow_unauthenticated_access only: [:show, :flashcard, :match]
   before_action :set_deck, only: [:edit, :update, :destroy]
   before_action :set_accessible_deck, only: [:show, :study, :flashcard, :match, :fork]
 
@@ -64,8 +64,10 @@ class DecksController < ApplicationController
       session[session_key] ||= @cards_remaining
       @cards_total = session[session_key]
       @cards_done  = @cards_total - @cards_remaining
+      session[:"study_started_#{@deck.id}"] ||= Time.current.to_i
     else
       session.delete(:"study_total_#{@deck.id}")
+      session.delete(:"study_started_#{@deck.id}")
     end
   end
 

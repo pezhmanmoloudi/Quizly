@@ -1,0 +1,24 @@
+<% content_for :title, "Quizly — Learn Faster with Flashcards" %>
+
+<div class="hero">
+  <div class="hero__body">
+    <h1 class="hero__headline">Learn faster with flashcards</h1>
+    <p class="hero__sub">Create, study, and master vocabulary with spaced repetition.</p>
+    <div class="hero__ctas">
+      <%= link_to "Get Started",   signup_path,  class: "btn btn--primary btn--lg" %>
+      <%= link_to "Explore Decks", explore_path, class: "btn btn--outline btn--lg" %>
+    </div>
+  </div>
+</div>
+
+<% if @featured_decks.any? %>
+  <section class="featured-decks">
+    <div class="featured-decks__header">
+      <h2 class="featured-decks__title">Popular Decks</h2>
+      <%= link_to "See all →", explore_path, class: "featured-decks__more" %>
+    </div>
+    <div class="deck-grid">
+      <%= render partial: "explore/deck_card", collection: @featured_decks, as: :deck %>
+    </div>
+  </section>
+<% end %>
