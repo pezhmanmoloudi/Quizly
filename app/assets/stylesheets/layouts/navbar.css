@@ -1,27 +1,34 @@
 /* Top navigation bar */
 
 .app-nav {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  justify-content: space-between;
-  padding: 0.75rem 1.5rem;
+  padding: 0 1.5rem;
+  height: 60px;
   background: var(--color-surface);
   border-bottom: 1px solid var(--color-border-light);
 }
 
-.app-nav__left  { display: flex; align-items: center; gap: 1.5rem; }
-.app-nav__right { display: flex; align-items: center; gap: 1rem; }
+.app-nav__left   { display: flex; align-items: center; }
+.app-nav__center { display: flex; align-items: center; justify-content: center; gap: 1.5rem; }
+.app-nav__right  { display: flex; align-items: center; gap: 1rem; justify-content: flex-end; }
 
-.app-nav__brand a {
-  font-weight: 700;
-  font-size: 1.35rem;
-  color: var(--color-primary);
+.app-nav__brand {
+  display: inline-flex;
+  align-items: center;
   text-decoration: none;
-  letter-spacing: -0.01em;
+  font-size: 1.35rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--color-primary);
 }
 
+.app-nav__brand-mark { color: var(--color-primary); }
+.app-nav__brand-text { color: var(--color-text); }
+
 .app-nav__links { display: flex; align-items: center; gap: 1.25rem; }
-.app-nav__link  { text-decoration: none; color: var(--color-text-secondary); font-size: 0.875rem; }
+.app-nav__link  { text-decoration: none; color: var(--color-text-secondary); font-size: 0.875rem; font-weight: 500; }
 .app-nav__link:hover { color: var(--color-primary); }
 .app-nav__user  { font-size: 0.875rem; color: var(--color-muted); }
 
@@ -31,5 +38,11 @@
   height: 100%;
   border-radius: 50%;
   object-fit: cover;
+}
+
+@media (max-width: 540px) {
+  .app-nav { grid-template-columns: auto 1fr; }
+  .app-nav__center { display: none; }
+  .app-nav__right  { justify-content: flex-end; }
 }
 
