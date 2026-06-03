@@ -34,8 +34,13 @@
 @import url("components/statistics.css");
 @import url("components/tabs.css");
 @import url("components/tooltip.css");
+@import url("components/visibility.css");
+@import url("components/study_mode_selector.css");
 
 /* ── 4. Pages ────────────────────────────────────────────── */
 @import url("pages/decks.css");
 @import url("pages/home.css");
 @import url("pages/study.css");
+@import url("pages/explore.css");
+@import url("pages/flashcard_browse.css");
+@import url("pages/match.css");

@@ -5,54 +5,105 @@
     <div class="deck-detail-header__top">
       <h1 class="deck-detail-header__name"><%= @deck.name %></h1>
       <div class="deck-detail-header__actions">
-        <%= link_to edit_deck_path(@deck), class: "btn btn--secondary btn-with-icon" do %>
-          <%= render "shared/icons/pencil" %> Edit Deck
+        <% if @deck.user == Current.user %>
+          <%= link_to edit_deck_path(@deck), class: "btn btn--secondary btn-with-icon" do %>
+            <%= render "shared/icons/pencil" %> Edit Deck
+          <% end %>
+        <% else %>
+          <%= button_to fork_deck_path(@deck), method: :post, class: "btn btn--primary btn-with-icon" do %>
+            <%= render "shared/icons/fork" %> Fork to My Library
+          <% end %>
         <% end %>
       </div>
     </div>
     <div class="deck-detail-header__meta">
+      <% if @deck.public? %>
+        <span class="visibility-badge visibility-badge--public">
+          <%= render "shared/icons/globe", css_class: "icon--sm" %> Public
+        </span>
+      <% else %>
+        <span class="visibility-badge visibility-badge--private">
+          <%= render "shared/icons/lock", css_class: "icon--sm" %> Private
+        </span>
+      <% end %>
       <% if @deck.language_code.present? %>
         <span class="language-badge"><%= @deck.language_code.upcase %></span>
       <% end %>
       <span class="deck-detail-header__date">Created <%= @deck.created_at.strftime("%b %-d, %Y") %></span>
+      <% if @deck.forked_from.present? %>
+        <span class="deck-detail-header__forked-from">
+          Forked from <%= link_to @deck.forked_from.name, deck_path(@deck.forked_from) %>
+        </span>
+      <% end %>
     </div>
     <% if @deck.description.present? %>
       <p class="deck-detail-header__description"><%= @deck.description %></p>
     <% end %>
   </div>
 
-  <div class="section-header">
-    <h2>Cards (<%= @deck.flashcards.count %>)</h2>
-    <%= link_to new_deck_flashcard_path(@deck), class: "btn btn--secondary btn-with-icon" do %>
-      <%= render "shared/icons/plus" %> Add Card
+  <div class="study-mode-selector">
+    <%= link_to flashcard_deck_path(@deck), class: "study-mode-btn" do %>
+      <%= render "shared/icons/play" %>
+      <span>Flashcard</span>
+    <% end %>
+    <%= link_to study_deck_path(@deck), class: "study-mode-btn" do %>
+      <%= render "shared/icons/academic_cap" %>
+      <span>Learn</span>
+    <% end %>
+    <%= link_to match_deck_path(@deck), class: "study-mode-btn" do %>
+      <%= render "shared/icons/bolt" %>
+      <span>Match</span>
     <% end %>
   </div>
+
+  <% if @deck.user == Current.user %>
+    <div class="section-header">
+      <h2>Cards (<%= @deck.flashcards.count %>)</h2>
+      <%= link_to new_deck_flashcard_path(@deck), class: "btn btn--secondary btn-with-icon" do %>
+        <%= render "shared/icons/plus" %> Add Card
+      <% end %>
+    </div>
+  <% else %>
+    <div class="section-header">
+      <h2>Cards (<%= @deck.flashcards.count %>)</h2>
+    </div>
+  <% end %>
 
   <% if @deck.flashcards.empty? %>
     <p class="empty-state">No flashcards yet.</p>
   <% else %>
     <div class="flashcard-list">
       <% @deck.flashcards.each do |card| %>
-        <div class="flashcard-row" data-controller="inline-confirm">
-          <div class="flashcard-row__content">
-            <span class="flashcard-row__front"><%= card.front_content %></span>
-            <span class="flashcard-row__sep">→</span>
-            <span class="flashcard-row__back"><%= card.back_content %></span>
-          </div>
-          <div class="flashcard-row__actions" data-inline-confirm-target="actions">
-            <%= link_to edit_flashcard_path(card), class: "btn btn--sm btn--secondary btn-with-icon" do %>
-              <%= render "shared/icons/pencil" %> Edit
+        <% if @deck.user == Current.user %>
+          <div class="flashcard-row" data-controller="inline-confirm">
+            <div class="flashcard-row__content">
+              <span class="flashcard-row__front"><%= card.front_content %></span>
+              <span class="flashcard-row__sep">→</span>
+              <span class="flashcard-row__back"><%= card.back_content %></span>
+            </div>
+            <div class="flashcard-row__actions" data-inline-confirm-target="actions">
+              <%= link_to edit_flashcard_path(card), class: "btn btn--sm btn--secondary btn-with-icon" do %>
+                <%= render "shared/icons/pencil" %> Edit
+              <% end %>
+              <button type="button" class="btn btn--sm btn--danger btn-with-icon"
+                      data-action="click->inline-confirm#confirmRemove">
+                <%= render "shared/icons/trash" %> Delete
+              </button>
+            </div>
+            <%= render "shared/inline_confirm", message: "Are you sure you want to remove this card?" %>
+            <%= form_with url: flashcard_path(card), method: :delete,
+                  data: { "inline-confirm-target": "deleteForm" } do %>
             <% end %>
-            <button type="button" class="btn btn--sm btn--danger btn-with-icon"
-                    data-action="click->inline-confirm#confirmRemove">
-              <%= render "shared/icons/trash" %> Delete
-            </button>
           </div>
-          <%= render "shared/inline_confirm", message: "Are you sure you want to remove this card?" %>
-          <%= form_with url: flashcard_path(card), method: :delete,
-                data: { "inline-confirm-target": "deleteForm" } do %>
-          <% end %>
-        </div>
+        <% else %>
+          <div class="flashcard-row">
+            <div class="flashcard-row__content">
+              <span class="flashcard-row__front"><%= card.front_content %></span>
+              <span class="flashcard-row__sep">→</span>
+              <span class="flashcard-row__back"><%= card.back_content %></span>
+            </div>
+          </div>
+        <% end %>
       <% end %>
     </div>
   <% end %>

@@ -1,0 +1,54 @@
+require "rails_helper"
+
+RSpec.describe "Explore#index", type: :request do
+  let(:user) { create(:user) }
+  let(:other_user) { create(:user) }
+
+  describe "GET /explore" do
+    context "when authenticated" do
+      before { sign_in(user) }
+
+      it "returns 200" do
+        get explore_path
+        expect(response).to have_http_status(:ok)
+      end
+
+      it "lists public decks from other users" do
+        create(:deck, user: other_user, visibility: "public", name: "Public Deck A")
+        get explore_path
+        expect(response.body).to include("Public Deck A")
+      end
+
+      it "does not list private decks" do
+        create(:deck, user: other_user, visibility: "private", name: "Secret Deck")
+        get explore_path
+        expect(response.body).not_to include("Secret Deck")
+      end
+
+      it "filters decks by search query" do
+        create(:deck, user: other_user, visibility: "public", name: "Spanish Basics")
+        create(:deck, user: other_user, visibility: "public", name: "French Vocab")
+        get explore_path, params: { q: "Spanish" }
+        expect(response.body).to include("Spanish Basics")
+        expect(response.body).not_to include("French Vocab")
+      end
+
+      it "shows empty state when no public decks exist" do
+        get explore_path
+        expect(response.body).to include("No public decks yet")
+      end
+
+      it "shows empty search result message when query matches nothing" do
+        get explore_path, params: { q: "nonexistent deck xyz" }
+        expect(response.body).to include("No decks found for")
+      end
+    end
+
+    context "when not authenticated" do
+      it "redirects to login" do
+        get explore_path
+        expect(response).to redirect_to(login_path)
+      end
+    end
+  end
+end

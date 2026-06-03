@@ -21,8 +21,15 @@ Rails.application.routes.draw do
 
   get "up" => "rails/health#show", as: :rails_health_check
 
+  get "/explore", to: "explore#index", as: :explore
+
   resources :decks do
-    member { get :study }
+    member do
+      get  :study
+      get  :flashcard
+      get  :match
+      post :fork
+    end
     resources :flashcards, shallow: true
   end
 

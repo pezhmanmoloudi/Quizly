@@ -22,5 +22,34 @@
     <%= f.text_field :language_code, class: "form-control", placeholder: "e.g. en, es, fr, de" %>
   </div>
 
+  <div class="form-group">
+    <%= f.label :tag_list, "Tags (optional)" %>
+    <%= f.text_field :tag_list, value: deck.tag_list.join(", "),
+          class: "form-control",
+          placeholder: "e.g. biology, anatomy, exam2025" %>
+    <p class="form-hint">Separate tags with commas.</p>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :visibility, "Visibility" %>
+    <div class="visibility-toggle">
+      <label class="visibility-option">
+        <%= f.radio_button :visibility, "private", class: "visibility-radio" %>
+        <span class="visibility-label">
+          <%= render "shared/icons/lock", css_class: "icon--sm" %>
+          Private
+        </span>
+      </label>
+      <label class="visibility-option">
+        <%= f.radio_button :visibility, "public", class: "visibility-radio" %>
+        <span class="visibility-label">
+          <%= render "shared/icons/globe", css_class: "icon--sm" %>
+          Public
+        </span>
+      </label>
+    </div>
+    <p class="form-hint">Public decks can be discovered and forked by anyone.</p>
+  </div>
+
   <%= f.submit class: "btn btn--primary" %>
 <% end %>

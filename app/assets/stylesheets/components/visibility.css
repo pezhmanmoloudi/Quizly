@@ -1,0 +1,62 @@
+/* Visibility toggle — used in deck form */
+.visibility-toggle {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 0.25rem;
+}
+
+.visibility-option {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  cursor: pointer;
+  padding: 0.5rem 0.875rem;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: border-color 150ms ease, background 150ms ease;
+}
+
+.visibility-option:has(.visibility-radio:checked) {
+  border-color: var(--color-primary);
+  background: color-mix(in srgb, var(--color-primary) 8%, transparent);
+  color: var(--color-primary);
+}
+
+.visibility-radio { display: none; }
+
+.visibility-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+/* Visibility badges — shown on deck show page */
+.visibility-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+}
+
+.visibility-badge--public {
+  background: color-mix(in srgb, #10b981 12%, transparent);
+  color: #059669;
+}
+
+.visibility-badge--private {
+  background: color-mix(in srgb, var(--color-muted) 12%, transparent);
+  color: var(--color-muted);
+}
+
+/* Form hint text */
+.form-hint {
+  font-size: 0.8rem;
+  color: var(--color-muted);
+  margin-top: 0.4rem;
+  margin-bottom: 0;
+}
