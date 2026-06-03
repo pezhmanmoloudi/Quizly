@@ -1,0 +1,43 @@
+<% content_for :title, "Match: #{@deck.name}" %>
+
+<div class="study-container">
+  <div class="study-header">
+    <h2><%= @deck.name %></h2>
+    <%= link_to "← Exit", @deck, class: "study-exit" %>
+  </div>
+
+  <% if @cards.empty? %>
+    <div class="study-empty">
+      <p class="study-empty__message">No cards yet.</p>
+      <p class="study-empty__sub">Add some cards to this deck to play Match.</p>
+      <%= link_to "Back to Deck", @deck, class: "btn btn--primary" %>
+    </div>
+  <% else %>
+    <div class="match-game"
+         data-controller="match"
+         data-match-total-value="<%= @cards.size %>">
+
+      <div class="match-game__grid">
+        <%# Render fronts and backs shuffled together %>
+        <% tiles = @cards.flat_map { |c| [
+          { id: c.id, side: "front", text: c.front_content },
+          { id: c.id, side: "back",  text: c.back_content }
+        ] }.shuffle %>
+        <% tiles.each do |tile| %>
+          <button class="match-tile"
+                  data-action="click->match#select"
+                  data-match-id="<%= tile[:id] %>"
+                  data-match-side="<%= tile[:side] %>">
+            <%= tile[:text] %>
+          </button>
+        <% end %>
+      </div>
+
+      <div class="match-game__complete" hidden data-match-target="complete">
+        <p class="match-game__complete-msg">All matched!</p>
+        <%= link_to "Play Again", match_deck_path(@deck), class: "btn btn--primary btn--sm" %>
+        <%= link_to "Back to Deck", @deck, class: "btn btn--secondary btn--sm" %>
+      </div>
+    </div>
+  <% end %>
+</div>

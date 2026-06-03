@@ -6,6 +6,16 @@ export default class extends Controller {
   reveal() {
     this.backTarget.hidden = false
     this.showButtonTarget.hidden = true
-    this.ratingFormTarget.style.display = ""
+    if (this.hasRatingFormTarget) {
+      this.ratingFormTarget.style.display = ""
+    }
+  }
+
+  reset() {
+    this.backTarget.hidden = true
+    this.showButtonTarget.hidden = false
+    if (this.hasRatingFormTarget) {
+      this.ratingFormTarget.style.display = "none"
+    }
   }
 }
