@@ -36,6 +36,12 @@ RSpec.describe "Decks#study", type: :request do
         expect(response.body).to include("All caught up")
       end
 
+      it "sets session start time on first card" do
+        create(:card_progress, :due, user: user, flashcard: create(:flashcard, deck: deck))
+        get study_deck_path(deck)
+        expect(response).to have_http_status(:ok)
+      end
+
       it "returns 404 for a deck belonging to another user" do
         other_deck = create(:deck, user: create(:user))
         get study_deck_path(other_deck)

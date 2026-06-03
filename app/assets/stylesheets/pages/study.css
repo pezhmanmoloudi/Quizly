@@ -52,7 +52,18 @@
   flex-wrap: wrap;
 }
 
-.rating-buttons .btn { flex: 1; min-width: 70px; max-width: 120px; }
+.rating-buttons .btn {
+  flex: 1;
+  min-width: 70px;
+  max-width: 120px;
+  min-height: 44px;
+  padding: 0.65rem 0.5rem;
+}
+
+@media (max-width: 480px) {
+  .rating-buttons { gap: 0.5rem; }
+  .rating-buttons .btn { min-width: 60px; font-size: 0.8rem; }
+}
 
 /* ── All cards done state ── */
 .study-empty {
