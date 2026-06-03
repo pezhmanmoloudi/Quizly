@@ -24,6 +24,14 @@ export default class extends Controller {
     localStorage.setItem(this.COLLAPSE_KEY, JSON.stringify(nowCollapsed))
   }
 
+  expandIfCollapsed(event) {
+    if (!this.isCollapsed) return
+    event.preventDefault()
+    event.stopPropagation()
+    this.element.classList.remove("is-collapsed")
+    localStorage.setItem(this.COLLAPSE_KEY, "false")
+  }
+
   restoreCollapseState() {
     if (window.innerWidth <= this.MOBILE_BREAKPOINT) return
     try {

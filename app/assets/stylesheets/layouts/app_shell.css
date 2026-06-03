@@ -391,6 +391,7 @@
 
 .app-shell.is-collapsed .sidebar {
   width: 56px;
+  cursor: pointer;
 }
 
 .app-shell.is-collapsed .main-content {
