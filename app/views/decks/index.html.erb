@@ -20,10 +20,12 @@
             <p class="deck-tile__meta"><%= deck.flashcards.count %> cards</p>
           </div>
           <div class="deck-tile__footer" data-inline-confirm-target="actions">
-            <%= link_to "Edit", edit_deck_path(deck), class: "btn btn--secondary btn--sm" %>
-            <button type="button" class="btn btn--danger btn--sm"
+            <%= link_to edit_deck_path(deck), class: "btn btn--secondary btn--sm btn-with-icon" do %>
+              <%= render "shared/icons/pencil" %> Edit
+            <% end %>
+            <button type="button" class="btn btn--danger btn--sm btn-with-icon"
                     data-action="click->inline-confirm#confirmRemove">
-              Delete
+              <%= render "shared/icons/trash" %> Delete
             </button>
           </div>
           <%= render "shared/inline_confirm", message: "Are you sure you want to remove this deck?" %>

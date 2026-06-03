@@ -14,11 +14,15 @@
   </div>
 
   <div class="deck-tile__footer" data-inline-confirm-target="actions">
-    <%= link_to "Study", study_deck_path(deck), class: "btn btn--primary btn--sm" %>
-    <%= link_to "Edit",  edit_deck_path(deck),  class: "btn btn--secondary btn--sm" %>
-    <button type="button" class="btn btn--danger btn--sm"
+    <%= link_to study_deck_path(deck), class: "btn btn--primary btn--sm btn-with-icon" do %>
+      <%= render "shared/icons/play" %> Study
+    <% end %>
+    <%= link_to edit_deck_path(deck), class: "btn btn--secondary btn--sm btn-with-icon" do %>
+      <%= render "shared/icons/pencil" %> Edit
+    <% end %>
+    <button type="button" class="btn btn--danger btn--sm btn-with-icon"
             data-action="click->inline-confirm#confirmRemove">
-      Delete
+      <%= render "shared/icons/trash" %> Delete
     </button>
   </div>
 

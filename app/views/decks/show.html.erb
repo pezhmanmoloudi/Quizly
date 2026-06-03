@@ -5,7 +5,9 @@
     <div class="deck-detail-header__top">
       <h1 class="deck-detail-header__name"><%= @deck.name %></h1>
       <div class="deck-detail-header__actions">
-        <%= link_to "Edit Deck", edit_deck_path(@deck), class: "btn btn--secondary" %>
+        <%= link_to edit_deck_path(@deck), class: "btn btn--secondary btn-with-icon" do %>
+          <%= render "shared/icons/pencil" %> Edit Deck
+        <% end %>
       </div>
     </div>
     <div class="deck-detail-header__meta">
@@ -21,7 +23,9 @@
 
   <div class="section-header">
     <h2>Cards (<%= @deck.flashcards.count %>)</h2>
-    <%= link_to "Add Card", new_deck_flashcard_path(@deck), class: "btn btn--secondary" %>
+    <%= link_to new_deck_flashcard_path(@deck), class: "btn btn--secondary btn-with-icon" do %>
+      <%= render "shared/icons/plus" %> Add Card
+    <% end %>
   </div>
 
   <% if @deck.flashcards.empty? %>
@@ -36,10 +40,12 @@
             <span class="flashcard-row__back"><%= card.back_content %></span>
           </div>
           <div class="flashcard-row__actions" data-inline-confirm-target="actions">
-            <%= link_to "Edit", edit_flashcard_path(card), class: "btn btn--sm btn--secondary" %>
-            <button type="button" class="btn btn--sm btn--danger"
+            <%= link_to edit_flashcard_path(card), class: "btn btn--sm btn--secondary btn-with-icon" do %>
+              <%= render "shared/icons/pencil" %> Edit
+            <% end %>
+            <button type="button" class="btn btn--sm btn--danger btn-with-icon"
                     data-action="click->inline-confirm#confirmRemove">
-              Delete
+              <%= render "shared/icons/trash" %> Delete
             </button>
           </div>
           <%= render "shared/inline_confirm", message: "Are you sure you want to remove this card?" %>
