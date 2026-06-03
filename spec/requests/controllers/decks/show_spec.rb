@@ -38,9 +38,15 @@ RSpec.describe "Decks#show", type: :request do
     context "when authenticated as another user" do
       before { sign_in(create(:user)) }
 
-      it "returns 404" do
+      it "returns 404 for a private deck" do
         get deck_path(deck)
         expect(response).to have_http_status(:not_found)
+      end
+
+      it "returns 200 for a public deck" do
+        public_deck = create(:deck, :public, user: user)
+        get deck_path(public_deck)
+        expect(response).to have_http_status(:ok)
       end
     end
 

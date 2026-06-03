@@ -28,6 +28,9 @@
 
 .deck-detail-header__date        { font-size: 0.85rem; color: var(--color-muted); }
 .deck-detail-header__description { color: var(--color-text-secondary); margin: 0; }
+.deck-detail-header__forked-from { font-size: 0.85rem; color: var(--color-muted); }
+.deck-detail-header__forked-from a { color: var(--color-primary); text-decoration: none; }
+.deck-detail-header__forked-from a:hover { text-decoration: underline; }
 
 @media (max-width: 768px) {
   .deck-detail-header__top     { flex-direction: column; }

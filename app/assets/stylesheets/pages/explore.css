@@ -1,0 +1,43 @@
+/* Explore page */
+.explore-search {
+  margin-bottom: 1.5rem;
+}
+
+.explore-search__input {
+  max-width: 480px;
+}
+
+/* Public deck tile extensions */
+.deck-tile--public .deck-tile__forks {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.75rem;
+  color: var(--color-muted);
+  flex-shrink: 0;
+}
+
+.deck-tile__footer--public {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.deck-tile__author {
+  font-size: 0.8rem;
+  color: var(--color-muted);
+}
+
+.deck-tile__lang {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}
+
+/* Section header link (e.g. "See all" on dashboard) */
+.section-header__link {
+  font-size: 0.875rem;
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+.section-header__link:hover { text-decoration: underline; }

@@ -1,9 +1,16 @@
 class DecksController < ApplicationController
   before_action :require_authentication
-  before_action :set_deck, only: [:show, :edit, :update, :destroy, :study]
+  before_action :set_deck, only: [:edit, :update, :destroy]
+  before_action :set_accessible_deck, only: [:show, :study, :flashcard, :match, :fork]
 
   def index
-    @decks = Current.user.decks.order(created_at: :desc)
+    @decks = Current.user.decks.includes(:flashcards).order(created_at: :desc)
+    @due_counts = CardProgress.due
+                              .unscope(:order)
+                              .joins(:flashcard)
+                              .where(user: Current.user, flashcards: { deck_id: @decks.map(&:id) })
+                              .group("flashcards.deck_id")
+                              .count
   end
 
   def show
@@ -44,12 +51,57 @@ class DecksController < ApplicationController
 
   def study
     CardProgress.initialize_for_deck(@deck, Current.user)
-    @card_progress = Current.user.card_progresses
-                                  .due
-                                  .joins(:flashcard)
-                                  .where(flashcards: { deck_id: @deck.id })
-                                  .includes(:flashcard)
-                                  .first
+    due_scope = Current.user.card_progresses
+                            .due
+                            .joins(:flashcard)
+                            .where(flashcards: { deck_id: @deck.id })
+
+    @cards_remaining = due_scope.unscope(:order).count
+    @card_progress   = due_scope.includes(:flashcard).first
+
+    if @card_progress.present?
+      session_key = :"study_total_#{@deck.id}"
+      session[session_key] ||= @cards_remaining
+      @cards_total = session[session_key]
+      @cards_done  = @cards_total - @cards_remaining
+    else
+      session.delete(:"study_total_#{@deck.id}")
+    end
+  end
+
+  def flashcard
+    @flashcards = @deck.flashcards
+  end
+
+  def match
+    @cards = @deck.flashcards.limit(8).to_a.shuffle
+  end
+
+  def fork
+    raise ActiveRecord::RecordNotFound unless @deck.public?
+
+    ActiveRecord::Base.transaction do
+      copy = Deck.create!(
+        user: Current.user,
+        name: "#{@deck.name} (copy)",
+        description: @deck.description,
+        language_code: @deck.language_code,
+        visibility: "private",
+        forked_from: @deck
+      )
+      @deck.flashcards.each do |card|
+        copy.flashcards.create!(
+          front_content: card.front_content,
+          back_content: card.back_content,
+          position: card.position
+        )
+      end
+      @deck.increment!(:forks_count)
+    end
+
+    redirect_to decks_path, notice: "Deck added to your library."
+  rescue ActiveRecord::RecordNotFound
+    redirect_to explore_path, alert: "Deck not available."
   end
 
   private
@@ -58,7 +110,15 @@ class DecksController < ApplicationController
     @deck = Current.user.decks.find(params[:id])
   end
 
+  def set_accessible_deck
+    deck = Deck.find(params[:id])
+    unless deck.user == Current.user || deck.public?
+      raise ActiveRecord::RecordNotFound
+    end
+    @deck = deck
+  end
+
   def deck_params
-    params.require(:deck).permit(:name, :description, :language_code)
+    params.require(:deck).permit(:name, :description, :language_code, :visibility, :tag_list)
   end
 end

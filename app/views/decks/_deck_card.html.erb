@@ -3,14 +3,31 @@
     <h3 class="deck-tile__name">
       <%= link_to deck.name, deck_path(deck) %>
     </h3>
-    <span class="deck-tile__date"><%= deck.created_at.strftime("%b %-d, %Y") %></span>
+    <% due = local_assigns[:due_counts]&.fetch(deck.id, 0) || 0 %>
+    <% if due > 0 %>
+      <span class="due-badge" title="<%= due %> card<%= due == 1 ? "" : "s" %> due for review">
+        <%= due %>
+      </span>
+    <% end %>
   </div>
 
   <div class="deck-tile__body">
     <% if deck.description.present? %>
       <p class="deck-tile__description"><%= deck.description %></p>
     <% end %>
-    <p class="deck-tile__meta"><%= pluralize(deck.flashcards.size, "card") %></p>
+    <div class="deck-tile__meta-row">
+      <span class="deck-tile__meta"><%= pluralize(deck.flashcards.size, "card") %></span>
+      <% if deck.language_code.present? %>
+        <span class="deck-tile__lang-badge"><%= deck.language_code.upcase %></span>
+      <% end %>
+    </div>
+    <% if deck.tag_list.any? %>
+      <div class="deck-tile__tags">
+        <% deck.tag_list.first(3).each do |tag| %>
+          <span class="tag-badge"><%= tag %></span>
+        <% end %>
+      </div>
+    <% end %>
   </div>
 
   <div class="deck-tile__footer" data-inline-confirm-target="actions">

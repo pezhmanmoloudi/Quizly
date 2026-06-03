@@ -1,0 +1,14 @@
+/* Flashcard browse mode (stateless card-flip browse) */
+.flashcard-browse__progress {
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--color-muted);
+  margin-bottom: 0.5rem;
+}
+
+.flashcard-browse__nav {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1.25rem;
+}

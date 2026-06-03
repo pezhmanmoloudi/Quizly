@@ -1,0 +1,32 @@
+<div class="deck-tile deck-tile--public">
+  <div class="deck-tile__header">
+    <h3 class="deck-tile__name">
+      <%= link_to deck.name, deck_path(deck) %>
+    </h3>
+    <span class="deck-tile__forks">
+      <%= render "shared/icons/fork", css_class: "icon--sm" %>
+      <%= deck.forks_count %>
+    </span>
+  </div>
+
+  <div class="deck-tile__body">
+    <% if deck.description.present? %>
+      <p class="deck-tile__description"><%= deck.description %></p>
+    <% end %>
+    <p class="deck-tile__meta">
+      <%= pluralize(deck.flashcards.size, "card") %>
+      <% if deck.language_code.present? %>
+        · <span class="deck-tile__lang"><%= deck.language_code.upcase %></span>
+      <% end %>
+    </p>
+  </div>
+
+  <div class="deck-tile__footer deck-tile__footer--public">
+    <span class="deck-tile__author">by <%= deck.user.display_name %></span>
+    <% if deck.user != Current.user %>
+      <%= button_to fork_deck_path(deck), method: :post, class: "btn btn--primary btn--sm btn-with-icon" do %>
+        <%= render "shared/icons/fork", css_class: "icon--sm" %> Fork
+      <% end %>
+    <% end %>
+  </div>
+</div>

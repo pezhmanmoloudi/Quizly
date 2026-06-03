@@ -31,9 +31,19 @@
     <% else %>
       <div id="decks-grid" class="deck-grid">
         <% @decks.each do |deck| %>
-          <%= render "decks/deck_card", deck: deck %>
+          <%= render "decks/deck_card", deck: deck, due_counts: @due_counts %>
         <% end %>
       </div>
     <% end %>
   </div>
+
+  <% if @popular_decks.any? %>
+    <div class="section-header" style="margin-top: 2.5rem;">
+      <h2>Explore Popular Decks</h2>
+      <%= link_to "See all", explore_path, class: "section-header__link" %>
+    </div>
+    <div class="deck-grid">
+      <%= render partial: "explore/deck_card", collection: @popular_decks, as: :deck %>
+    </div>
+  <% end %>
 </div>
