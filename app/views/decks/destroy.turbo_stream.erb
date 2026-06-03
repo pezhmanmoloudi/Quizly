@@ -19,6 +19,8 @@
   <%= turbo_stream.remove dom_id(@deck) %>
 <% end %>
 
+<%= turbo_stream.remove "sidebar-deck-#{@deck.id}" %>
+
 <%= turbo_stream.update "flash-messages" do %>
   <div class="flash flash--notice" data-controller="flash"><%= flash[:notice] %></div>
 <% end %>

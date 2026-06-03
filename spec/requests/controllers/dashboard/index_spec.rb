@@ -45,9 +45,9 @@ RSpec.describe "Dashboard#index", type: :request do
         expect(response.body).to include("5")
       end
 
-      it "shows the Create Deck button" do
+      it "shows the New Deck link in the sidebar" do
         get dashboard_path
-        expect(response.body).to include("Create Deck")
+        expect(response.body).to include("New Deck")
       end
 
       context "when user has no decks" do

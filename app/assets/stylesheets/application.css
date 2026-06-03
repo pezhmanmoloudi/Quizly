@@ -17,6 +17,7 @@
 
 /* ── 2. Layouts ──────────────────────────────────────────── */
 @import url("layouts/containers.css");
+@import url("layouts/app_shell.css");
 @import url("layouts/navbar.css");
 @import url("layouts/dashboard.css");
 @import url("layouts/sidebar.css");

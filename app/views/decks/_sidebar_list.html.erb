@@ -1,0 +1,14 @@
+<% if decks.any? %>
+  <ul class="sidebar__deck-list">
+    <% decks.each do |deck| %>
+      <li id="sidebar-deck-<%= deck.id %>">
+        <%= link_to deck_path(deck),
+              class: "sidebar__deck-item #{"is-active" if request.path == deck_path(deck)}" do %>
+          <span class="sidebar__deck-name"><%= deck.name %></span>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p class="sidebar__deck-empty">No decks yet.</p>
+<% end %>
