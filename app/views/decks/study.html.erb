@@ -6,11 +6,44 @@
     <%= link_to "← Exit", @deck, class: "study-exit" %>
   </div>
 
+  <% if @card_progress.present? && @cards_total.to_i > 0 %>
+    <div class="study-progress">
+      <div class="study-progress__bar">
+        <div class="study-progress__fill"
+             style="width: <%= (@cards_done.to_f / @cards_total * 100).round %>%"></div>
+      </div>
+      <span class="study-progress__label">
+        <%= @cards_done %> / <%= @cards_total %>
+      </span>
+    </div>
+  <% end %>
+
   <%= turbo_frame_tag "study_card" do %>
     <% if @card_progress.nil? %>
       <div class="study-empty">
-        <p class="study-empty__message">All caught up!</p>
-        <p class="study-empty__sub">No cards are due for review right now.</p>
+        <% if flash[:study_summary].present? %>
+          <% summary = flash[:study_summary] %>
+          <div class="session-summary">
+            <div class="session-summary__icon">🎉</div>
+            <h3 class="session-summary__title">Session complete!</h3>
+            <div class="session-summary__stats">
+              <div class="session-summary__stat">
+                <span class="session-summary__value"><%= summary[:reviewed] || summary["reviewed"] %></span>
+                <span class="session-summary__label">Cards reviewed</span>
+              </div>
+              <div class="session-summary__stat">
+                <% reviewed = summary[:reviewed] || summary["reviewed"] || 1 %>
+                <% correct  = summary[:correct]  || summary["correct"]  || 0 %>
+                <span class="session-summary__value"><%= ((correct.to_f / reviewed) * 100).round %>%</span>
+                <span class="session-summary__label">Accuracy</span>
+              </div>
+            </div>
+            <p class="session-summary__sub">No more cards due right now — great work.</p>
+          </div>
+        <% else %>
+          <p class="study-empty__message">All caught up!</p>
+          <p class="study-empty__sub">No cards are due for review right now.</p>
+        <% end %>
         <%= link_to "Back to Deck", @deck, class: "btn btn--primary" %>
       </div>
     <% else %>

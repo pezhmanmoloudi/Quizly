@@ -27,6 +27,25 @@ RSpec.describe "Card Reviews", type: :request do
         expect(card_progress.reload.next_review_at).to be > original_next
       end
 
+      it "redirects with study_summary flash when it is the last due card" do
+        post card_reviews_path, params: {
+          card_progress_id: card_progress.id,
+          rating: "easy"
+        }
+        follow_redirect!
+        expect(response.body).to include("Session complete")
+      end
+
+      it "redirects without summary flash when more cards remain" do
+        card2 = create(:flashcard, deck: deck)
+        create(:card_progress, :due, user: user, flashcard: card2)
+        post card_reviews_path, params: {
+          card_progress_id: card_progress.id,
+          rating: "good"
+        }
+        expect(response).to redirect_to(study_deck_path(deck))
+      end
+
       it "returns 404 when accessing another user's card_progress" do
         other_user      = create(:user)
         other_flashcard = create(:flashcard, deck: create(:deck, user: other_user))
