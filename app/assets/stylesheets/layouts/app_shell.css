@@ -335,17 +335,27 @@
   transition: margin-left 250ms ease;
 }
 
-/* ── Mobile top bar (hidden on desktop) ── */
-.mobile-topbar {
+/* ── Topbar (always visible; left side mobile-only) ── */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border-light);
+  position: sticky;
+  top: 0;
+  z-index: 30;
+}
+
+/* Left: hamburger + brand — hidden on desktop */
+.topbar__left {
   display: none;
   align-items: center;
   gap: 0.75rem;
-  padding: 0.75rem 1rem;
-  background: var(--color-surface);
-  border-bottom: 1px solid var(--color-border-light);
 }
 
-.mobile-topbar__toggle {
+.topbar__menu-btn {
   background: none;
   border: none;
   cursor: pointer;
@@ -354,11 +364,18 @@
   padding: 0.25rem;
 }
 
-.mobile-topbar__brand {
+.topbar__brand {
   font-weight: 700;
   font-size: 1.15rem;
   color: var(--color-primary);
   text-decoration: none;
+}
+
+/* Right: avatar — always visible */
+.topbar__right {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
 }
 
 /* ── Overlay backdrop (mobile) ── */
@@ -494,7 +511,7 @@
     margin-left: 0 !important;
   }
 
-  .mobile-topbar {
+  .topbar__left {
     display: flex;
   }
 

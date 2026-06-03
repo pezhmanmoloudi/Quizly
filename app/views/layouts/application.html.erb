@@ -30,13 +30,70 @@
         <div class="sidebar__overlay" data-action="click->sidebar#closeMobile"></div>
 
         <main class="main-content">
-          <div class="mobile-topbar">
-            <button class="mobile-topbar__toggle"
-                    data-action="click->sidebar#openMobile"
-                    aria-label="Open navigation">
-              <%= render "shared/icons/menu" %>
-            </button>
-            <%= link_to "Quizly", root_path, class: "mobile-topbar__brand" %>
+          <div class="topbar">
+            <%# Left: hamburger + brand (mobile only) %>
+            <div class="topbar__left">
+              <button class="topbar__menu-btn"
+                      data-action="click->sidebar#openMobile"
+                      aria-label="Open navigation">
+                <%= render "shared/icons/menu" %>
+              </button>
+              <%= link_to "Quizly", root_path, class: "topbar__brand" %>
+            </div>
+
+            <%# Right: avatar dropdown (always visible) %>
+            <div class="topbar__right">
+              <div class="avatar-dropdown"
+                   data-controller="avatar-dropdown"
+                   data-action="click@document->avatar-dropdown#closeIfOutside keydown.esc@document->avatar-dropdown#close">
+
+                <button class="avatar-dropdown__trigger"
+                        data-avatar-dropdown-target="button"
+                        data-action="click->avatar-dropdown#toggle"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                        aria-label="<%= Current.user.email_address %> — account menu">
+                  <div class="user-avatar">
+                    <% if Current.user.show_avatar? %>
+                      <%= image_tag Current.user.avatar, alt: "" %>
+                    <% else %>
+                      <%= Current.user.display_name.first.upcase %>
+                    <% end %>
+                  </div>
+                </button>
+
+                <div class="avatar-dropdown__menu"
+                     data-avatar-dropdown-target="menu"
+                     data-open="false"
+                     role="menu">
+                  <div class="avatar-dropdown__header" role="presentation">
+                    <div class="avatar-dropdown__header-inner">
+                      <% if Current.user.show_avatar? %>
+                        <%= image_tag Current.user.avatar,
+                              class: "avatar-dropdown__avatar-img", alt: "" %>
+                      <% else %>
+                        <div class="user-avatar avatar-dropdown__avatar-placeholder">
+                          <%= Current.user.display_name.first.upcase %>
+                        </div>
+                      <% end %>
+                      <div>
+                        <span class="avatar-dropdown__name"><%= Current.user.display_name %></span>
+                        <span class="avatar-dropdown__email"><%= Current.user.email_address %></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="avatar-dropdown__items">
+                    <%= link_to "Account Settings", account_path,
+                          class: "avatar-dropdown__item", role: "menuitem" %>
+                    <hr class="avatar-dropdown__divider">
+                    <%= button_to "Logout", logout_path, method: :delete,
+                          class: "avatar-dropdown__item avatar-dropdown__item--danger",
+                          role: "menuitem" %>
+                  </div>
+                </div>
+
+              </div>
+            </div>
           </div>
 
           <div id="flash-messages">
