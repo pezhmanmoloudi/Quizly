@@ -20,6 +20,7 @@
 }
 
 .auth-split__form {
+  position: relative;
   flex: 1;
   padding: 2rem 1.5rem;
   background: var(--color-surface);
@@ -88,3 +89,27 @@
 .auth-panel__features { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
 .auth-panel__features li { display: flex; align-items: center; gap: 0.5rem; font-size: 0.95rem; opacity: .85; }
 .auth-panel__features li::before { content: "✓"; font-weight: 700; opacity: 1; }
+
+/* Close button — top-right corner of the form panel */
+.auth-close {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-muted);
+  background: transparent;
+  text-decoration: none;
+  transition: background var(--transition-base), color var(--transition-base);
+}
+
+.auth-close:hover {
+  background: var(--color-border-light);
+  color: var(--color-text);
+}
+
+.auth-close__icon { width: 1.25rem; height: 1.25rem; }
