@@ -1,13 +1,21 @@
 <aside class="sidebar" data-sidebar-target="sidebar"
        data-action="click->sidebar#expandIfCollapsed">
 
-  <%# Header: brand + mobile close %>
+  <%# Header: hamburger toggle (desktop) + brand + mobile close %>
   <div class="sidebar__header">
+    <button class="sidebar__hamburger"
+            data-action="click->sidebar#toggleCollapse"
+            aria-label="Toggle navigation">
+      <%= render "shared/icons/menu" %>
+    </button>
+
     <%= link_to root_path, class: "sidebar__brand" do %>
       <span class="sidebar__brand-mark">Q</span>
       <span class="sidebar__brand-text">uizly</span>
     <% end %>
-    <button class="sidebar__close" data-action="click->sidebar#closeMobile"
+
+    <button class="sidebar__close"
+            data-action="click->sidebar#closeMobile"
             aria-label="Close navigation">
       <%= render "shared/icons/x_mark" %>
     </button>
@@ -44,26 +52,24 @@
       <span class="sidebar__label">Dashboard</span>
     <% end %>
 
-    <%# Decks: collapsed → link to /decks; expanded → collapsible section %>
+    <%# My Library — collapsible in expanded, link in collapsed %>
     <div class="sidebar__section"
          data-sidebar-target="section"
-         data-section-key="decks">
+         data-section-key="library">
 
-      <%# Collapsed mode only: simple link to /decks %>
       <%= link_to decks_path,
             class: "sidebar__item sidebar__decks-link",
-            data: { tooltip: "Decks" },
-            aria: { label: "Decks" } do %>
+            data: { tooltip: "My Library" },
+            aria: { label: "My Library" } do %>
         <%= render "shared/icons/rectangle_stack" %>
       <% end %>
 
-      <%# Expanded mode only: collapsible trigger %>
       <button class="sidebar__section-trigger"
               data-action="click->sidebar#toggleSection"
               aria-expanded="true">
         <span class="sidebar__section-trigger-label">
           <%= render "shared/icons/rectangle_stack" %>
-          <span class="sidebar__label">Decks</span>
+          <span class="sidebar__label">My Library</span>
         </span>
         <span class="sidebar__chevron"><%= render "shared/icons/chevron_down" %></span>
       </button>
@@ -89,15 +95,13 @@
       <span class="sidebar__label">Explore</span>
     <% end %>
 
-  </nav>
+    <%= link_to account_path,
+          class: "sidebar__item #{"is-active" if request.path.start_with?(account_path)}",
+          data: { tooltip: "Account" } do %>
+      <%= render "shared/icons/cog" %>
+      <span class="sidebar__label">Account</span>
+    <% end %>
 
-  <%# Footer: collapse toggle only %>
-  <div class="sidebar__footer">
-    <button class="sidebar__collapse-btn"
-            data-action="click->sidebar#toggleCollapse"
-            aria-label="Toggle sidebar width">
-      <%= render "shared/icons/chevron_down", css_class: "sidebar__collapse-icon" %>
-    </button>
-  </div>
+  </nav>
 
 </aside>
