@@ -1,0 +1,12 @@
+/* Badge / pill label components */
+
+.language-badge {
+  display: inline-block;
+  padding: 0.15rem 0.55rem;
+  background: var(--color-primary);
+  color: var(--color-surface);
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}

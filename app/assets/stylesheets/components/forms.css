@@ -1,0 +1,89 @@
+/* Form controls, validation states, and inline confirmation */
+
+/* ── Base form controls ── */
+.form-group { margin-bottom: 1rem; }
+.form-group label { display: block; font-weight: 600; margin-bottom: 0.35rem; font-size: 0.875rem; }
+
+.form-control {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  font-size: 0.95rem;
+}
+
+.form-control:focus {
+  outline: 2px solid var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.form-errors {
+  background: var(--color-danger-bg);
+  color: var(--color-danger-text);
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+}
+
+.form-hint {
+  display: block;
+  margin-top: 0.25rem;
+  font-size: 0.8rem;
+  color: var(--color-muted);
+}
+
+/* ── Input with leading icon (auth forms) ── */
+.auth-input               { position: relative; }
+.auth-input__icon         {
+  position: absolute;
+  left: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--color-muted);
+  pointer-events: none;
+  width: 1rem;
+  height: 1rem;
+}
+.auth-input .form-control { padding-left: 2.5rem; }
+
+.auth-input__toggle {
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--color-muted);
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+
+.field-with-toggle               { position: relative; }
+.field-with-toggle .form-control { padding-right: 2.5rem; }
+
+/* ── Avatar / file upload error ── */
+.profile-avatar-error {
+  color: var(--color-danger);
+  font-size: 0.8rem;
+  margin-top: 0.25rem;
+}
+
+/* ── Inline delete confirmation (matches avatar-removal pattern) ── */
+.profile-avatar-confirm {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.profile-avatar-confirm-text {
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+.profile-avatar-confirm-actions {
+  display: flex;
+  gap: 0.5rem;
+}

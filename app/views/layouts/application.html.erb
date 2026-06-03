@@ -16,7 +16,7 @@
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.png">
 
-    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
@@ -31,6 +31,7 @@
           </div>
         </div>
         <div class="app-nav__right">
+          <%= link_to "+", new_deck_path, class: "btn btn--primary btn--sm", aria: { label: "New Deck" } %>
           <div class="avatar-dropdown"
                data-controller="avatar-dropdown"
                data-action="click@document->avatar-dropdown#closeIfOutside keydown.esc@document->avatar-dropdown#close">
@@ -95,12 +96,14 @@
         </div>
       </nav>
     <% end %>
-    <% if flash[:notice] %>
-      <div class="flash flash--notice" data-controller="flash"><%= flash[:notice] %></div>
-    <% end %>
-    <% if flash[:alert] %>
-      <div class="flash flash--alert" data-controller="flash"><%= flash[:alert] %></div>
-    <% end %>
+    <div id="flash-messages">
+      <% if flash[:notice] %>
+        <div class="flash flash--notice" data-controller="flash"><%= flash[:notice] %></div>
+      <% end %>
+      <% if flash[:alert] %>
+        <div class="flash flash--alert" data-controller="flash"><%= flash[:alert] %></div>
+      <% end %>
+    </div>
     <%= yield %>
   </body>
 </html>

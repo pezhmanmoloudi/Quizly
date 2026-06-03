@@ -22,6 +22,47 @@ RSpec.describe "Decks#destroy", type: :request do
           delete deck_path(deck)
         }.to change(Flashcard, :count).by(-1)
       end
+
+      context "turbo_stream format" do
+        it "destroys the deck and returns a turbo-stream response" do
+          deck_to_delete = create(:deck, user: user)
+          expect {
+            delete deck_path(deck_to_delete),
+                   headers: { "Accept" => "text/vnd.turbo-stream.html" }
+          }.to change(Deck, :count).by(-1)
+          expect(response.media_type).to eq "text/vnd.turbo-stream.html"
+          expect(response.body).to include("turbo-stream")
+        end
+
+        it "does not redirect" do
+          delete deck_path(deck), headers: { "Accept" => "text/vnd.turbo-stream.html" }
+          expect(response).not_to be_redirect
+        end
+
+        it "removes the tile when other decks still exist" do
+          deck_to_delete = deck
+          create(:deck, user: user)
+          expect {
+            delete deck_path(deck_to_delete), headers: { "Accept" => "text/vnd.turbo-stream.html" }
+          }.to change(Deck, :count).by(-1)
+          expect(response.body).to include("remove")
+          expect(response.body).to include("deck_#{deck_to_delete.id}")
+        end
+
+        it "shows the empty state when the last deck is deleted" do
+          deck_to_delete = deck
+          expect {
+            delete deck_path(deck_to_delete), headers: { "Accept" => "text/vnd.turbo-stream.html" }
+          }.to change(Deck, :count).by(-1)
+          expect(response.body).to include("decks-section")
+          expect(response.body).to include("Create your first deck")
+        end
+
+        it "updates the total-decks-count stat" do
+          delete deck_path(deck), headers: { "Accept" => "text/vnd.turbo-stream.html" }
+          expect(response.body).to include("total-decks-count")
+        end
+      end
     end
 
     context "when authenticated as another user" do

@@ -46,7 +46,7 @@
         <h2>Profile</h2>
 
         <%# Avatar — no nested forms; upload form and delete form are siblings %>
-        <div class="profile-avatar-section" data-controller="avatar-preview">
+        <div class="profile-avatar-section" data-controller="avatar-preview inline-confirm">
 
           <%# Avatar display — blob.persisted? guards against rendering an unsaved attachment %>
           <% if Current.user.avatar.attached? && Current.user.avatar.blob.persisted? %>
@@ -58,7 +58,7 @@
           <% end %>
 
           <%# Normal actions (default visible state) %>
-          <div class="profile-avatar-actions" data-avatar-preview-target="actions">
+          <div class="profile-avatar-actions" data-inline-confirm-target="actions">
 
             <% if Current.user.errors[:avatar].any? %>
               <p class="profile-avatar-error">
@@ -85,7 +85,7 @@
             <% if Current.user.avatar.attached? && Current.user.avatar.blob.persisted? %>
               <button type="button"
                       class="btn btn--danger btn--sm"
-                      data-action="click->avatar-preview#confirmRemove">
+                      data-action="click->inline-confirm#confirmRemove">
                 Remove Photo
               </button>
             <% end %>
@@ -93,29 +93,11 @@
 
           <%# Inline remove confirmation — hidden until "Remove Photo" is clicked %>
           <% if Current.user.avatar.attached? && Current.user.avatar.blob.persisted? %>
-            <div class="profile-avatar-confirm"
-                 data-avatar-preview-target="confirm"
-                 hidden>
-              <p class="profile-avatar-confirm-text">
-                Are you sure you want to remove your profile picture?
-              </p>
-              <div class="profile-avatar-confirm-actions">
-                <button type="button"
-                        class="btn btn--secondary btn--sm"
-                        data-action="click->avatar-preview#cancelRemove">
-                  Cancel
-                </button>
-                <button type="button"
-                        class="btn btn--danger btn--sm"
-                        data-action="click->avatar-preview#doRemove">
-                  Remove
-                </button>
-              </div>
-            </div>
+            <%= render "shared/inline_confirm", message: "Are you sure you want to remove your profile picture?" %>
 
             <%# Hidden delete form — submitted programmatically by doRemove() %>
             <%= form_with url: avatar_account_path, method: :delete,
-                  data: { "avatar-preview-target": "deleteForm" } do %>
+                  data: { "inline-confirm-target": "deleteForm" } do %>
             <% end %>
           <% end %>
 

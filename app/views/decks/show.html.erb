@@ -29,17 +29,23 @@
   <% else %>
     <div class="flashcard-list">
       <% @deck.flashcards.each do |card| %>
-        <div class="flashcard-row">
+        <div class="flashcard-row" data-controller="inline-confirm">
           <div class="flashcard-row__content">
             <span class="flashcard-row__front"><%= card.front_content %></span>
             <span class="flashcard-row__sep">→</span>
             <span class="flashcard-row__back"><%= card.back_content %></span>
           </div>
-          <div class="flashcard-row__actions">
+          <div class="flashcard-row__actions" data-inline-confirm-target="actions">
             <%= link_to "Edit", edit_flashcard_path(card), class: "btn btn--sm btn--secondary" %>
-            <%= button_to "Delete", flashcard_path(card), method: :delete, class: "btn btn--sm btn--danger",
-                data: { turbo_confirm: "Delete this card?" } %>
+            <button type="button" class="btn btn--sm btn--danger"
+                    data-action="click->inline-confirm#confirmRemove">
+              Delete
+            </button>
           </div>
+          <%= render "shared/inline_confirm", message: "Are you sure you want to remove this card?" %>
+          <%= form_with url: flashcard_path(card), method: :delete,
+                data: { "inline-confirm-target": "deleteForm" } do %>
+          <% end %>
         </div>
       <% end %>
     </div>

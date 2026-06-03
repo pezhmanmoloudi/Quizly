@@ -1,0 +1,19 @@
+/* Empty state components */
+
+/* Inline muted text (minimal, e.g. "No flashcards yet.") */
+.empty-state { color: var(--color-muted); font-style: italic; margin-top: 1rem; }
+
+/* Full centered empty state with icon, title, description, and CTA */
+.empty-state--centered {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 4rem 2rem;
+  gap: 1rem;
+}
+
+.empty-state__icon        { font-size: 3rem; line-height: 1; }
+.empty-state__title       { font-size: 1.25rem; font-weight: 700; color: var(--color-text); }
+.empty-state__description { color: var(--color-muted); max-width: 320px; margin: 0; }

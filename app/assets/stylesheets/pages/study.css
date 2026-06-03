@@ -1,0 +1,64 @@
+/* Study mode — flip card, rating buttons, and empty state */
+
+.study-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.study-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+
+.study-header h2 { font-size: 1.25rem; }
+.study-exit      { color: var(--color-muted); text-decoration: none; font-size: 0.875rem; }
+
+/* ── Flip card ── */
+.flashcard {
+  background: var(--color-surface);
+  border-radius: 14px;
+  padding: 2.5rem 2rem;
+  min-height: 220px;
+  box-shadow: 0 4px 16px rgba(0,0,0,.1);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.flashcard__front {
+  font-size: 1.5rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.flashcard__back {
+  font-size: 1.2rem;
+  text-align: center;
+  color: var(--color-text-secondary);
+  padding-top: 1rem;
+  border-top: 1px solid var(--color-border-light);
+}
+
+.flashcard__actions { text-align: center; }
+
+/* ── SM-2 rating buttons ── */
+.rating-buttons {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.rating-buttons .btn { flex: 1; min-width: 70px; max-width: 120px; }
+
+/* ── All cards done state ── */
+.study-empty {
+  text-align: center;
+  padding: 3rem 2rem;
+}
+
+.study-empty__message { font-size: 1.75rem; font-weight: 700; margin-bottom: 0.5rem; }
+.study-empty__sub     { color: var(--color-muted); margin-bottom: 1.5rem; }

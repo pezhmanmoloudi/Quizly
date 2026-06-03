@@ -1,0 +1,15 @@
+<div class="profile-avatar-confirm"
+     data-inline-confirm-target="confirm"
+     hidden>
+  <p class="profile-avatar-confirm-text"><%= message %></p>
+  <div class="profile-avatar-confirm-actions">
+    <button type="button" class="btn btn--secondary btn--sm"
+            data-action="click->inline-confirm#cancelRemove">
+      Cancel
+    </button>
+    <button type="button" class="btn btn--danger btn--sm"
+            data-action="click->inline-confirm#doRemove">
+      Delete
+    </button>
+  </div>
+</div>

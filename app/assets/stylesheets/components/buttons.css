@@ -1,0 +1,21 @@
+/* Button component — all variants and sizes */
+
+.btn {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+}
+
+.btn--primary   { background: var(--color-primary);      color: var(--color-surface); }
+.btn--secondary { background: var(--color-border-light); color: var(--color-text-secondary); }
+.btn--danger    { background: var(--color-danger);       color: var(--color-surface); }
+.btn--warning   { background: var(--color-warning);      color: var(--color-surface); }
+.btn--success   { background: var(--color-success);      color: var(--color-surface); }
+
+.btn--sm    { padding: 0.25rem 0.6rem; font-size: 0.75rem; }
+.btn--block { display: block; width: 100%; text-align: center; padding: 0.75rem 1rem; font-size: 1rem; border-radius: 8px; }

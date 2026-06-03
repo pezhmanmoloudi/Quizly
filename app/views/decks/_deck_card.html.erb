@@ -1,0 +1,30 @@
+<div id="<%= dom_id(deck) %>" class="deck-tile" data-controller="inline-confirm">
+  <div class="deck-tile__header">
+    <h3 class="deck-tile__name">
+      <%= link_to deck.name, deck_path(deck) %>
+    </h3>
+    <span class="deck-tile__date"><%= deck.created_at.strftime("%b %-d, %Y") %></span>
+  </div>
+
+  <div class="deck-tile__body">
+    <% if deck.description.present? %>
+      <p class="deck-tile__description"><%= deck.description %></p>
+    <% end %>
+    <p class="deck-tile__meta"><%= pluralize(deck.flashcards.size, "card") %></p>
+  </div>
+
+  <div class="deck-tile__footer" data-inline-confirm-target="actions">
+    <%= link_to "Study", study_deck_path(deck), class: "btn btn--primary btn--sm" %>
+    <%= link_to "Edit",  edit_deck_path(deck),  class: "btn btn--secondary btn--sm" %>
+    <button type="button" class="btn btn--danger btn--sm"
+            data-action="click->inline-confirm#confirmRemove">
+      Delete
+    </button>
+  </div>
+
+  <%= render "shared/inline_confirm", message: "Are you sure you want to remove this deck?" %>
+
+  <%= form_with url: deck_path(deck), method: :delete,
+        data: { "inline-confirm-target": "deleteForm" } do %>
+  <% end %>
+</div>

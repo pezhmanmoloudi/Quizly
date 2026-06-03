@@ -3,15 +3,15 @@
 <div class="container">
   <div class="page-header">
     <h1>My Decks</h1>
-    <%= link_to "New Deck", new_deck_path, class: "btn btn--primary" %>
   </div>
 
+  <div id="decks-index-section">
   <% if @decks.empty? %>
     <p class="empty-state">No decks yet. Create your first deck to get started.</p>
   <% else %>
     <div class="deck-grid">
       <% @decks.each do |deck| %>
-        <div class="deck-tile">
+        <div id="<%= dom_id(deck) %>" class="deck-tile" data-controller="inline-confirm">
           <div class="deck-tile__body">
             <h3 class="deck-tile__name"><%= link_to deck.name, deck %></h3>
             <% if deck.description.present? %>
@@ -19,13 +19,20 @@
             <% end %>
             <p class="deck-tile__meta"><%= deck.flashcards.count %> cards</p>
           </div>
-          <div class="deck-tile__actions">
-            <%= link_to "Edit",   edit_deck_path(deck), class: "btn btn--secondary btn--sm" %>
-            <%= button_to "Delete", deck, method: :delete, class: "btn btn--danger btn--sm",
-                data: { turbo_confirm: "Delete this deck?" } %>
+          <div class="deck-tile__footer" data-inline-confirm-target="actions">
+            <%= link_to "Edit", edit_deck_path(deck), class: "btn btn--secondary btn--sm" %>
+            <button type="button" class="btn btn--danger btn--sm"
+                    data-action="click->inline-confirm#confirmRemove">
+              Delete
+            </button>
           </div>
+          <%= render "shared/inline_confirm", message: "Are you sure you want to remove this deck?" %>
+          <%= form_with url: deck_path(deck), method: :delete,
+                data: { "inline-confirm-target": "deleteForm" } do %>
+          <% end %>
         </div>
       <% end %>
     </div>
   <% end %>
+  </div>
 </div>

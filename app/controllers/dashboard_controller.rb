@@ -1,7 +1,7 @@
 class DashboardController < ApplicationController
   def index
-    @recent_decks = Current.user.decks.order(created_at: :desc).limit(4)
-    @total_decks  = Current.user.decks.count
-    @total_cards  = Current.user.decks.joins(:flashcards).count
+    @decks       = Current.user.decks.includes(:flashcards).order(created_at: :desc)
+    @total_decks = Current.user.decks.count
+    @total_cards = Flashcard.joins(:deck).where(decks: { user_id: Current.user.id }).count
   end
 end
