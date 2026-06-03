@@ -22,9 +22,11 @@ class CardReviewsController < ApplicationController
     else
       reviewed = session.delete(:"study_reviewed_#{deck.id}") || 1
       correct  = session.delete(:"study_correct_#{deck.id}")  || 0
+      started  = session.delete(:"study_started_#{deck.id}")
+      elapsed  = started ? (Time.current.to_i - started) : nil
       session.delete(:"study_total_#{deck.id}")
       redirect_to study_deck_path(deck),
-        flash: { study_summary: { reviewed: reviewed, correct: correct } }
+        flash: { study_summary: { reviewed: reviewed, correct: correct, elapsed: elapsed } }
     end
   end
 

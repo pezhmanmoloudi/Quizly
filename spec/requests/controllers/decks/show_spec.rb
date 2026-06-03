@@ -51,9 +51,27 @@ RSpec.describe "Decks#show", type: :request do
     end
 
     context "when not authenticated" do
-      it "redirects to login" do
+      it "returns 404 for a private deck" do
         get deck_path(deck)
-        expect(response).to redirect_to(login_path)
+        expect(response).to have_http_status(:not_found)
+      end
+
+      it "returns 200 for a public deck" do
+        public_deck = create(:deck, :public, user: user)
+        get deck_path(public_deck)
+        expect(response).to have_http_status(:ok)
+      end
+
+      it "does not show Fork button on a public deck" do
+        public_deck = create(:deck, :public, user: user)
+        get deck_path(public_deck)
+        expect(response.body).not_to include("Fork")
+      end
+
+      it "shows Explore back link on a public deck" do
+        public_deck = create(:deck, :public, user: user)
+        get deck_path(public_deck)
+        expect(response.body).to include("Explore")
       end
     end
   end

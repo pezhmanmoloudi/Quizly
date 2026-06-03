@@ -37,6 +37,13 @@
                 <span class="session-summary__value"><%= ((correct.to_f / reviewed) * 100).round %>%</span>
                 <span class="session-summary__label">Accuracy</span>
               </div>
+              <% elapsed = summary[:elapsed] || summary["elapsed"] %>
+              <% if elapsed.present? %>
+                <div class="session-summary__stat">
+                  <span class="session-summary__value"><%= format_study_time(elapsed.to_i) %></span>
+                  <span class="session-summary__label">Time spent</span>
+                </div>
+              <% end %>
             </div>
             <p class="session-summary__sub">No more cards due right now — great work.</p>
           </div>

@@ -35,5 +35,5 @@ Rails.application.routes.draw do
 
   resources :card_reviews, only: [ :create ]
 
-  root "dashboard#index"
+  root "home#index"
 end

@@ -112,10 +112,15 @@
     <% else %>
       <nav class="app-nav">
         <div class="app-nav__left">
-          <div class="app-nav__brand"><%= link_to "Quizly", root_path %></div>
+          <%= link_to root_path, class: "app-nav__brand" do %>
+            <span class="app-nav__brand-mark">Q</span><span class="app-nav__brand-text">uizly</span>
+          <% end %>
+        </div>
+        <div class="app-nav__center">
+          <%= link_to "Explore", explore_path, class: "app-nav__link" %>
         </div>
         <div class="app-nav__right">
-          <%= link_to "Sign In", login_path,  class: "app-nav__link" %>
+          <%= link_to "Log In",  login_path,  class: "app-nav__link" %>
           <%= link_to "Sign Up", signup_path, class: "btn btn--primary btn--sm" %>
         </div>
       </nav>

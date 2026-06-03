@@ -1,5 +1,5 @@
 class ExploreController < ApplicationController
-  before_action :require_authentication
+  allow_unauthenticated_access only: [:index]
 
   def index
     @decks = Deck.public_decks.popular.includes(:user)

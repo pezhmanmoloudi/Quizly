@@ -1,4 +1,81 @@
-/* Flashcard list rows (deck show page) */
+/* ── 3D flip card (browse mode) ── */
+
+.flashcard-card {
+  perspective: 1200px;
+  cursor: pointer;
+  user-select: none;
+  margin-bottom: 1rem;
+}
+
+.flashcard-card__inner {
+  display: grid;
+  width: 100%;
+  transform-style: preserve-3d;
+  transition: transform 400ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.flashcard-card__inner.is-flipped {
+  transform: rotateY(180deg);
+}
+
+.flashcard-card__face {
+  grid-area: 1 / 1;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  background: var(--color-surface);
+  border-radius: 14px;
+  padding: 2.5rem 2rem;
+  min-height: 220px;
+  box-shadow: 0 4px 16px rgba(0,0,0,.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.flashcard-card__face--back {
+  transform: rotateY(180deg);
+  color: var(--color-text-secondary);
+}
+
+.flashcard-card__face--front {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+/* Hover lift */
+.flashcard-card:hover .flashcard-card__inner:not(.is-flipped) {
+  transform: translateY(-2px) rotateY(0deg);
+}
+
+/* ── Guest CTA banner ── */
+
+.guest-cta-banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.875rem;
+  margin-top: 2rem;
+  padding: 1rem 1.5rem;
+  background: rgba(79, 70, 229, 0.06);
+  border: 1px solid rgba(79, 70, 229, 0.15);
+  border-radius: 10px;
+  text-align: center;
+}
+
+.guest-cta-banner__text {
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+}
+
+.guest-cta-banner__actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+/* ── Flashcard list rows (deck show page) ── */
 
 .flashcard-list { display: flex; flex-direction: column; gap: 0.5rem; }
 

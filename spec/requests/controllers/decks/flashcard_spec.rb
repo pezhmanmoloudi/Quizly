@@ -48,9 +48,16 @@ RSpec.describe "Decks#flashcard", type: :request do
     end
 
     context "when not authenticated" do
-      it "redirects to login" do
+      it "returns 404 for a private deck" do
         get flashcard_deck_path(deck)
-        expect(response).to redirect_to(login_path)
+        expect(response).to have_http_status(:not_found)
+      end
+
+      it "returns 200 for a public deck" do
+        public_deck = create(:deck, :public, user: user)
+        create(:flashcard, deck: public_deck, front_content: "Public Front")
+        get flashcard_deck_path(public_deck)
+        expect(response).to have_http_status(:ok)
       end
     end
   end

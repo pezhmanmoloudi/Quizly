@@ -45,9 +45,21 @@ RSpec.describe "Explore#index", type: :request do
     end
 
     context "when not authenticated" do
-      it "redirects to login" do
+      it "returns 200" do
         get explore_path
-        expect(response).to redirect_to(login_path)
+        expect(response).to have_http_status(:ok)
+      end
+
+      it "lists public decks without logging in" do
+        create(:deck, user: create(:user), visibility: "public", name: "Guest Visible Deck")
+        get explore_path
+        expect(response.body).to include("Guest Visible Deck")
+      end
+
+      it "does not show Fork button" do
+        create(:deck, user: create(:user), visibility: "public", name: "Some Deck")
+        get explore_path
+        expect(response.body).not_to include("Fork")
       end
     end
   end

@@ -46,6 +46,27 @@ RSpec.describe "Card Reviews", type: :request do
         expect(response).to redirect_to(study_deck_path(deck))
       end
 
+      it "includes elapsed time in study_summary flash when session is complete" do
+        card_progress  # force creation before GET so the study page sees a due card
+        get study_deck_path(deck)
+        post card_reviews_path, params: {
+          card_progress_id: card_progress.id,
+          rating: "easy"
+        }
+        follow_redirect!
+        expect(response.body).to include("Time spent")
+      end
+
+      it "does not show time spent when start time is missing" do
+        post card_reviews_path, params: {
+          card_progress_id: card_progress.id,
+          rating: "easy"
+        }
+        follow_redirect!
+        expect(response.body).to include("Session complete")
+        expect(response.body).not_to include("Time spent")
+      end
+
       it "returns 404 when accessing another user's card_progress" do
         other_user      = create(:user)
         other_flashcard = create(:flashcard, deck: create(:deck, user: other_user))

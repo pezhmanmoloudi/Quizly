@@ -9,7 +9,7 @@
           <%= link_to edit_deck_path(@deck), class: "btn btn--secondary btn-with-icon" do %>
             <%= render "shared/icons/pencil" %> Edit Deck
           <% end %>
-        <% else %>
+        <% elsif authenticated? %>
           <%= button_to fork_deck_path(@deck), method: :post, class: "btn btn--primary btn-with-icon" do %>
             <%= render "shared/icons/fork" %> Fork to My Library
           <% end %>
@@ -109,6 +109,10 @@
   <% end %>
 
   <div class="back-link">
-    <%= link_to "← All Decks", decks_path %>
+    <% if authenticated? %>
+      <%= link_to "← All Decks", decks_path %>
+    <% else %>
+      <%= link_to "← Explore", explore_path %>
+    <% end %>
   </div>
 </div>

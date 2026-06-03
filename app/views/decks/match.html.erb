@@ -39,5 +39,15 @@
         <%= link_to "Back to Deck", @deck, class: "btn btn--secondary btn--sm" %>
       </div>
     </div>
+
+    <% unless authenticated? %>
+      <div class="guest-cta-banner">
+        <span class="guest-cta-banner__text">Sign in to save your scores and track improvement over time.</span>
+        <div class="guest-cta-banner__actions">
+          <%= link_to "Sign in", login_path, class: "btn btn--primary btn--sm" %>
+          <%= link_to "Sign up free", signup_path, class: "btn btn--secondary btn--sm" %>
+        </div>
+      </div>
+    <% end %>
   <% end %>
 </div>
