@@ -2,7 +2,11 @@
 
 <div class="auth-split">
   <div class="auth-split__form">
-    <%= link_to login_path, class: "auth-split__logo" do %>
+    <%= link_to root_path, class: "auth-close", aria: { label: "Back to home" } do %>
+      <%= render "shared/icons/x_mark", css_class: "auth-close__icon" %>
+    <% end %>
+
+    <%= link_to root_path, class: "auth-split__logo" do %>
       <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
         <rect width="28" height="28" rx="7" fill="currentColor" opacity="0.15"/>
         <text x="14" y="19" text-anchor="middle" font-size="14" font-weight="700" fill="currentColor">Q</text>
