@@ -15,6 +15,10 @@
       <div id="total-cards-count" class="stat-card__value"><%= @total_cards %></div>
       <div class="stat-card__label">Total Cards</div>
     </div>
+    <div class="stat-card">
+      <div id="cards-due-count" class="stat-card__value stat-card__value--due"><%= @total_due %></div>
+      <div class="stat-card__label">Cards Due</div>
+    </div>
   </div>
 
   <div class="section-header" style="margin-top: 2rem;">
@@ -27,6 +31,7 @@
         <div class="empty-state__icon">📚</div>
         <h3 class="empty-state__title">Create your first deck</h3>
         <p class="empty-state__description">Start building flashcards and track your learning progress.</p>
+        <%= link_to "Create a Deck", new_deck_path, class: "btn btn--primary" %>
       </div>
     <% else %>
       <div id="decks-grid" class="deck-grid">

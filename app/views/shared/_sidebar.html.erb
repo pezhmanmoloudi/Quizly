@@ -66,6 +66,13 @@
       <span class="sidebar__label">Explore</span>
     <% end %>
 
+    <%= link_to account_path,
+          class: "sidebar__item #{"is-active" if request.path.start_with?(account_path)}",
+          data: { tooltip: "Settings" } do %>
+      <%= render "shared/icons/cog" %>
+      <span class="sidebar__label">Settings</span>
+    <% end %>
+
     <hr class="sidebar__divider">
 
     <span class="sidebar__section-label">My Decks</span>

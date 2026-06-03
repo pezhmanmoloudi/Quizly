@@ -50,6 +50,19 @@ RSpec.describe "Dashboard#index", type: :request do
         expect(response.body).to include("New Deck")
       end
 
+      it "shows the Settings link in the sidebar" do
+        get dashboard_path
+        expect(response.body).to include("Settings")
+      end
+
+      it "shows Cards Due stat" do
+        deck = create(:deck, user: user)
+        flashcard = create(:flashcard, deck: deck)
+        create(:card_progress, :due, user: user, flashcard: flashcard)
+        get dashboard_path
+        expect(response.body).to include("Cards Due")
+      end
+
       context "when user has no decks" do
         it "shows the empty state" do
           get dashboard_path
@@ -59,6 +72,12 @@ RSpec.describe "Dashboard#index", type: :request do
         it "shows the empty state description" do
           get dashboard_path
           expect(response.body).to include("Start building flashcards")
+        end
+
+        it "shows a Create a Deck CTA button" do
+          get dashboard_path
+          expect(response.body).to include("Create a Deck")
+          expect(response.body).to include(new_deck_path)
         end
       end
 

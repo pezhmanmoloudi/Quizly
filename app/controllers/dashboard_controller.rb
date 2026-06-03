@@ -15,5 +15,6 @@ class DashboardController < ApplicationController
                               .where(user: Current.user, flashcards: { deck_id: deck_ids })
                               .group("flashcards.deck_id")
                               .count
+    @total_due = @due_counts.values.sum
   end
 end
