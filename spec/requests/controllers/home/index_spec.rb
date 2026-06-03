@@ -10,13 +10,26 @@ RSpec.describe "Home#index", type: :request do
 
       it "renders the hero headline" do
         get root_path
-        expect(response.body).to include("Learn anything")
+        expect(response.body).to include("How do you want to study?")
       end
 
-      it "shows Sign Up and Sign In links" do
+      it "renders all five mode selector tabs" do
+        get root_path
+        %w[Flashcards Learn Study Test Match].each do |mode|
+          expect(response.body).to include(mode)
+        end
+      end
+
+      it "renders the carousel structure" do
+        get root_path
+        expect(response.body).to include("hero-carousel")
+        expect(response.body).to include("mode-card")
+        expect(response.body).to include("carousel-dots")
+      end
+
+      it "shows Sign Up link" do
         get root_path
         expect(response.body).to include(signup_path)
-        expect(response.body).to include(login_path)
       end
 
       it "shows featured public decks when they exist" do
