@@ -15,33 +15,37 @@
       <%= link_to "Back to Deck", @deck, class: "btn btn--primary" %>
     </div>
   <% else %>
-    <div class="flashcard"
-         data-controller="flashcard"
-         data-flashcard-flipped-class="is-flipped">
-
-      <div class="flashcard-browse__progress">
-        <span data-flashcard-browse-target="current">1</span> / <%= @flashcards.size %>
+    <div class="flashcard-browse__progress-wrap">
+      <div class="flashcard-browse__bar">
+        <div class="flashcard-browse__fill"
+             data-flashcard-browse-target="progressFill"
+             style="width: <%= (1.0 / @flashcards.size * 100).round %>%"></div>
       </div>
+      <span class="flashcard-browse__label">
+        <span data-flashcard-browse-target="current">1</span> / <%= @flashcards.size %>
+      </span>
+    </div>
+
+    <div class="flashcard flashcard--flip"
+         data-controller="flashcard">
 
       <% @flashcards.each_with_index do |card, index| %>
         <div class="flashcard-browse__slide" data-index="<%= index %>"
              <%= index > 0 ? "hidden" : "" %>>
-          <div class="flashcard__front">
-            <%= card.front_content %>
-          </div>
-          <div class="flashcard__back" hidden>
-            <%= card.back_content %>
+          <div class="flashcard-card"
+               data-action="click->flashcard#reveal">
+            <div class="flashcard-card__inner">
+              <div class="flashcard-card__face flashcard-card__face--front">
+                <%= card.front_content %>
+              </div>
+              <div class="flashcard-card__face flashcard-card__face--back">
+                <%= card.back_content %>
+              </div>
+            </div>
           </div>
         </div>
       <% end %>
 
-      <div class="flashcard__actions">
-        <button class="btn btn--secondary"
-                data-action="click->flashcard#reveal"
-                data-flashcard-target="showButton">
-          Show Answer
-        </button>
-      </div>
     </div>
 
     <div class="flashcard-browse__nav">
@@ -54,5 +58,15 @@
         Next →
       </button>
     </div>
+
+    <% unless authenticated? %>
+      <div class="guest-cta-banner">
+        <span class="guest-cta-banner__text">Sign in to track your progress and save your study history.</span>
+        <div class="guest-cta-banner__actions">
+          <%= link_to "Sign in", login_path, class: "btn btn--primary btn--sm" %>
+          <%= link_to "Sign up free", signup_path, class: "btn btn--secondary btn--sm" %>
+        </div>
+      </div>
+    <% end %>
   <% end %>
 </div>
