@@ -3,11 +3,36 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = ["sidebar", "searchInput", "section", "sectionBody"]
 
-  STORAGE_KEY = "sidebar_sections"
+  STORAGE_KEY       = "sidebar_sections"
+  COLLAPSE_KEY      = "sidebar_collapsed"
+  MOBILE_BREAKPOINT = 768
 
   connect() {
+    this.restoreCollapseState()
     this.restoreState()
   }
+
+  // ── Collapse / expand ──────────────────────────────────────
+
+  get isCollapsed() {
+    return this.element.classList.contains("is-collapsed")
+  }
+
+  toggleCollapse() {
+    const nowCollapsed = !this.isCollapsed
+    this.element.classList.toggle("is-collapsed", nowCollapsed)
+    localStorage.setItem(this.COLLAPSE_KEY, JSON.stringify(nowCollapsed))
+  }
+
+  restoreCollapseState() {
+    if (window.innerWidth <= this.MOBILE_BREAKPOINT) return
+    try {
+      const collapsed = JSON.parse(localStorage.getItem(this.COLLAPSE_KEY) || "false")
+      this.element.classList.toggle("is-collapsed", collapsed)
+    } catch { /* ignore */ }
+  }
+
+  // ── Mobile drawer ──────────────────────────────────────────
 
   openMobile() {
     this.sidebarTarget.classList.add("is-open")
@@ -19,11 +44,30 @@ export default class extends Controller {
     document.body.classList.remove("sidebar-open")
   }
 
+  // ── Search ────────────────────────────────────────────────
+
   focusSearch(event) {
     event.preventDefault()
+    if (this.isCollapsed) {
+      this.element.classList.remove("is-collapsed")
+      localStorage.setItem(this.COLLAPSE_KEY, "false")
+      setTimeout(() => this.#doFocusSearch(), 260)
+    } else {
+      this.#doFocusSearch()
+    }
+  }
+
+  expandAndFocusSearch(event) {
+    event.preventDefault()
+    this.focusSearch(event)
+  }
+
+  #doFocusSearch() {
     this.searchInputTarget.focus()
     this.searchInputTarget.select()
   }
+
+  // ── Collapsible sections ──────────────────────────────────
 
   toggleSection(event) {
     const trigger  = event.currentTarget

@@ -13,13 +13,13 @@
   top: 0;
   left: 0;
   height: 100vh;
-  overflow-y: auto;
+  overflow: hidden;
   background: var(--color-surface);
   border-right: 1px solid var(--color-border-light);
   display: flex;
   flex-direction: column;
   z-index: 40;
-  transition: transform 200ms ease;
+  transition: width 250ms ease, transform 200ms ease;
 }
 
 .sidebar__header {
@@ -36,6 +36,17 @@
   color: var(--color-primary);
   text-decoration: none;
   letter-spacing: -0.01em;
+  display: flex;
+  align-items: baseline;
+  gap: 0;
+  white-space: nowrap;
+}
+
+.sidebar__brand-mark,
+.sidebar__brand-text {
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: var(--color-primary);
 }
 
 .sidebar__close {
@@ -45,6 +56,7 @@
 /* ── Search ── */
 .sidebar__search {
   padding: 0.5rem 0.75rem;
+  flex-shrink: 0;
 }
 
 .sidebar__search-wrap {
@@ -91,6 +103,30 @@
   white-space: nowrap;
 }
 
+/* Collapsed-mode search icon button */
+.sidebar__search-icon-btn {
+  display: none;
+  width: 100%;
+  padding: 0.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--color-muted);
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: color 150ms ease;
+}
+
+.sidebar__search-icon-btn:hover {
+  color: var(--color-text);
+}
+
+.sidebar__search-icon-btn .icon {
+  width: 1rem;
+  height: 1rem;
+}
+
 /* ── Nav items ── */
 .sidebar__nav {
   flex: 1;
@@ -99,6 +135,7 @@
   flex-direction: column;
   gap: 0.125rem;
   overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .sidebar__item {
@@ -110,6 +147,7 @@
   font-size: 0.875rem;
   color: var(--color-text-secondary);
   text-decoration: none;
+  white-space: nowrap;
   transition: background 150ms ease, color 150ms ease;
 }
 
@@ -144,6 +182,7 @@
   border: none;
   cursor: pointer;
   text-align: left;
+  white-space: nowrap;
   transition: background 150ms ease, color 150ms ease;
 }
 
@@ -201,6 +240,7 @@
   color: var(--color-primary);
   border-radius: 6px;
   text-decoration: none;
+  white-space: nowrap;
   transition: background 150ms ease;
 }
 
@@ -251,45 +291,39 @@
   margin: 0;
 }
 
-/* ── User footer ── */
+/* ── Footer ── */
 .sidebar__footer {
-  padding: 0.75rem;
+  padding: 0.5rem 0.75rem;
   border-top: 1px solid var(--color-border-light);
   flex-shrink: 0;
-  position: relative;
 }
 
-.sidebar__user-btn {
+/* ── Collapse toggle button ── */
+.sidebar__collapse-btn {
   display: flex;
   align-items: center;
-  gap: 0.625rem;
+  justify-content: center;
   width: 100%;
-  padding: 0.4rem 0.5rem;
-  border-radius: 7px;
+  padding: 0.45rem;
   background: none;
   border: none;
   cursor: pointer;
-  text-align: left;
-  transition: background 150ms ease;
+  color: var(--color-muted);
+  border-radius: 7px;
+  transition: background 150ms ease, color 150ms ease;
 }
 
-.sidebar__user-btn:hover {
+.sidebar__collapse-btn:hover {
   background: var(--color-bg);
-}
-
-.sidebar__user-name {
-  font-size: 0.8125rem;
-  font-weight: 500;
   color: var(--color-text);
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
 
-/* Dropdown opens upward from footer */
-.avatar-dropdown__menu--up {
-  bottom: calc(100% + 4px);
-  top: auto;
+/* Points left (← = collapse) in expanded mode */
+.sidebar__collapse-icon {
+  width: 1rem;
+  height: 1rem;
+  transform: rotate(-90deg);
+  transition: transform 250ms ease;
 }
 
 /* ── Main content ── */
@@ -298,6 +332,7 @@
   margin-left: 240px;
   min-height: 100vh;
   background: var(--color-bg);
+  transition: margin-left 250ms ease;
 }
 
 /* ── Mobile top bar (hidden on desktop) ── */
@@ -335,10 +370,112 @@
   z-index: 39;
 }
 
+/* ── Collapsed sidebar state ── */
+
+.app-shell.is-collapsed .sidebar {
+  width: 56px;
+}
+
+.app-shell.is-collapsed .main-content {
+  margin-left: 56px;
+}
+
+/* Center all interactive items when collapsed */
+.app-shell.is-collapsed .sidebar__item,
+.app-shell.is-collapsed .sidebar__section-trigger,
+.app-shell.is-collapsed .sidebar__search-icon-btn,
+.app-shell.is-collapsed .sidebar__collapse-btn {
+  justify-content: center;
+  padding: 0.5rem;
+  gap: 0;
+}
+
+/* Hide text labels */
+.app-shell.is-collapsed .sidebar__label {
+  display: none;
+}
+
+/* Brand: show only Q in collapsed mode */
+.app-shell.is-collapsed .sidebar__brand-text {
+  display: none;
+}
+
+.app-shell.is-collapsed .sidebar__header {
+  justify-content: center;
+  padding: 1rem 0.5rem 0.5rem;
+}
+
+/* Search: hide form, show icon button */
+.app-shell.is-collapsed .sidebar__search {
+  display: none;
+}
+
+.app-shell.is-collapsed .sidebar__search-icon-btn {
+  display: flex;
+}
+
+/* Decks: show link in collapsed, show trigger in expanded */
+.sidebar__decks-link {
+  display: none;
+}
+
+.app-shell.is-collapsed .sidebar__decks-link {
+  display: flex;
+}
+
+.app-shell.is-collapsed .sidebar__section-trigger {
+  display: none;
+}
+
+/* Force section body closed when sidebar is collapsed (preserve is-expanded state) */
+.app-shell.is-collapsed .sidebar__section-body {
+  grid-template-rows: 0fr !important;
+}
+
+/* Collapse icon: points right (→ = expand) when collapsed */
+.app-shell.is-collapsed .sidebar__collapse-icon {
+  transform: rotate(90deg);
+}
+
+/* ── Collapsed-mode tooltips (appear to the right) ── */
+
+.app-shell.is-collapsed .sidebar__nav [data-tooltip],
+.app-shell.is-collapsed .sidebar__search-icon-btn[data-tooltip] {
+  position: relative;
+}
+
+.app-shell.is-collapsed .sidebar__nav [data-tooltip]::after,
+.app-shell.is-collapsed .sidebar__search-icon-btn[data-tooltip]::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  left: calc(100% + 10px);
+  top: 50%;
+  transform: translateY(-50%);
+  background: #1e1f24;
+  color: rgba(255, 255, 255, 0.88);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.18);
+  border-radius: 6px;
+  padding: 0.3125rem 0.625rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 150ms ease;
+  z-index: 200;
+}
+
+.app-shell.is-collapsed .sidebar__nav [data-tooltip]:hover::after,
+.app-shell.is-collapsed .sidebar__search-icon-btn[data-tooltip]:hover::after {
+  opacity: 1;
+}
+
 /* ── Responsive: mobile ── */
 @media (max-width: 768px) {
   .sidebar {
     transform: translateX(-100%);
+    width: 240px !important; /* always full-width on mobile */
   }
 
   .sidebar.is-open {
@@ -349,8 +486,12 @@
     display: flex;
   }
 
+  .sidebar__collapse-btn {
+    display: none;
+  }
+
   .main-content {
-    margin-left: 0;
+    margin-left: 0 !important;
   }
 
   .mobile-topbar {
@@ -359,5 +500,46 @@
 
   body.sidebar-open .sidebar__overlay {
     display: block;
+  }
+
+  /* Reset collapsed overrides on mobile */
+  .app-shell.is-collapsed .sidebar__search {
+    display: block;
+  }
+
+  .app-shell.is-collapsed .sidebar__search-icon-btn {
+    display: none;
+  }
+
+  .app-shell.is-collapsed .sidebar__label {
+    display: inline;
+  }
+
+  .app-shell.is-collapsed .sidebar__brand-text {
+    display: inline;
+  }
+
+  .app-shell.is-collapsed .sidebar__header {
+    justify-content: space-between;
+    padding: 1rem 1rem 0.5rem;
+  }
+
+  .app-shell.is-collapsed .sidebar__item,
+  .app-shell.is-collapsed .sidebar__section-trigger {
+    justify-content: flex-start;
+    padding: 0.45rem 0.75rem;
+    gap: 0.625rem;
+  }
+
+  .app-shell.is-collapsed .sidebar__decks-link {
+    display: none;
+  }
+
+  .app-shell.is-collapsed .sidebar__section-trigger {
+    display: flex;
+  }
+
+  .app-shell.is-collapsed .sidebar__section-body {
+    grid-template-rows: inherit !important;
   }
 }
