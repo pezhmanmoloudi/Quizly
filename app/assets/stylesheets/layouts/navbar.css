@@ -14,9 +14,10 @@
 
 .app-nav__brand a {
   font-weight: 700;
-  font-size: 1.1rem;
+  font-size: 1.35rem;
   color: var(--color-primary);
   text-decoration: none;
+  letter-spacing: -0.01em;
 }
 
 .app-nav__links { display: flex; align-items: center; gap: 1.25rem; }
@@ -32,6 +33,3 @@
   object-fit: cover;
 }
 
-@media (max-width: 768px) {
-  .app-nav__links { display: none; }
-}
