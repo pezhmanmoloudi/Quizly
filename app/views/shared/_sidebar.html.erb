@@ -1,7 +1,7 @@
 <aside class="sidebar" data-sidebar-target="sidebar"
        data-action="click->sidebar#expandIfCollapsed">
 
-  <%# Header: hamburger toggle (desktop) + brand + mobile close %>
+  <%# Header %>
   <div class="sidebar__header">
     <button class="sidebar__hamburger"
             data-action="click->sidebar#toggleCollapse"
@@ -47,46 +47,17 @@
 
     <%= link_to dashboard_path,
           class: "sidebar__item #{"is-active" if request.path == dashboard_path}",
-          data: { tooltip: "Dashboard" } do %>
+          data: { tooltip: "Home" } do %>
       <%= render "shared/icons/home" %>
-      <span class="sidebar__label">Dashboard</span>
+      <span class="sidebar__label">Home</span>
     <% end %>
 
-    <%# My Library — collapsible in expanded, link in collapsed %>
-    <div class="sidebar__section"
-         data-sidebar-target="section"
-         data-section-key="library">
-
-      <%= link_to decks_path,
-            class: "sidebar__item sidebar__decks-link",
-            data: { tooltip: "My Library" },
-            aria: { label: "My Library" } do %>
-        <%= render "shared/icons/rectangle_stack" %>
-      <% end %>
-
-      <button class="sidebar__section-trigger"
-              data-action="click->sidebar#toggleSection"
-              aria-expanded="true">
-        <span class="sidebar__section-trigger-label">
-          <%= render "shared/icons/rectangle_stack" %>
-          <span class="sidebar__label">My Library</span>
-        </span>
-        <span class="sidebar__chevron"><%= render "shared/icons/chevron_down" %></span>
-      </button>
-
-      <div class="sidebar__section-body" data-sidebar-target="sectionBody">
-        <div>
-          <%= link_to new_deck_path, class: "sidebar__create-btn" do %>
-            <%= render "shared/icons/plus", css_class: "icon--sm" %>
-            <span class="sidebar__label">New Deck</span>
-          <% end %>
-
-          <%= turbo_frame_tag "sidebar-decks" do %>
-            <%= render "decks/sidebar_list", decks: @sidebar_decks %>
-          <% end %>
-        </div>
-      </div>
-    </div>
+    <%= link_to decks_path,
+          class: "sidebar__item #{"is-active" if request.path == decks_path}",
+          data: { tooltip: "My Library" } do %>
+      <%= render "shared/icons/rectangle_stack" %>
+      <span class="sidebar__label">My Library</span>
+    <% end %>
 
     <%= link_to explore_path,
           class: "sidebar__item #{"is-active" if request.path.start_with?(explore_path)}",
@@ -95,12 +66,22 @@
       <span class="sidebar__label">Explore</span>
     <% end %>
 
-    <%= link_to account_path,
-          class: "sidebar__item #{"is-active" if request.path.start_with?(account_path)}",
-          data: { tooltip: "Account" } do %>
-      <%= render "shared/icons/cog" %>
-      <span class="sidebar__label">Account</span>
+    <hr class="sidebar__divider">
+
+    <span class="sidebar__section-label">My Decks</span>
+
+    <%= link_to new_deck_path,
+          class: "sidebar__item #{"is-active" if request.path == new_deck_path}",
+          data: { tooltip: "New Deck" } do %>
+      <%= render "shared/icons/plus" %>
+      <span class="sidebar__label">New Deck</span>
     <% end %>
+
+    <div class="sidebar__deck-section">
+      <%= turbo_frame_tag "sidebar-decks" do %>
+        <%= render "decks/sidebar_list", decks: @sidebar_decks %>
+      <% end %>
+    </div>
 
   </nav>
 

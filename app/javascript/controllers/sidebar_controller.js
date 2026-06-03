@@ -18,7 +18,8 @@ export default class extends Controller {
     return this.element.classList.contains("is-collapsed")
   }
 
-  toggleCollapse() {
+  toggleCollapse(event) {
+    event.stopPropagation()
     const nowCollapsed = !this.isCollapsed
     this.element.classList.toggle("is-collapsed", nowCollapsed)
     localStorage.setItem(this.COLLAPSE_KEY, JSON.stringify(nowCollapsed))
