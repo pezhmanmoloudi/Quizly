@@ -35,7 +35,11 @@ class DecksController < ApplicationController
 
   def destroy
     @deck.destroy
-    redirect_to decks_path, notice: "Deck deleted."
+    flash.now[:notice] = "Deck deleted."
+    respond_to do |format|
+      format.turbo_stream
+      format.html { redirect_to decks_path, notice: "Deck deleted." }
+    end
   end
 
   def study

@@ -1,0 +1,45 @@
+/* Tab navigation component (used in settings sidebar) */
+
+.settings-tab {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 0.625rem 1rem;
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background var(--transition-base), color var(--transition-base);
+}
+
+.settings-tab:hover {
+  background: var(--color-bg);
+  color: var(--color-text);
+}
+
+.settings-tab--active {
+  color: var(--color-primary);
+  font-weight: 600;
+  background: var(--color-bg);
+}
+
+.settings-tab:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: -2px;
+}
+
+@media (max-width: 768px) {
+  .settings-tab {
+    flex-shrink: 0;
+    white-space: nowrap;
+    border-bottom: 2px solid transparent;
+    border-radius: 0;
+  }
+
+  .settings-tab--active {
+    border-bottom-color: var(--color-primary);
+    background: none;
+  }
+}

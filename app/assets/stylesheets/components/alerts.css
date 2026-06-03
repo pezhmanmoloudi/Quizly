@@ -1,0 +1,42 @@
+/* Flash notification toasts */
+
+.flash {
+  position: fixed;
+  top: 1.25rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  min-width: 18rem;
+  max-width: 30rem;
+  padding: 0.875rem 1.25rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.18);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.flash--notice {
+  background: #3d9a5c;
+  color: #fff;
+}
+
+.flash--notice::before {
+  content: "✓";
+  font-size: 1.1rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.flash--alert {
+  background: var(--color-danger-bg);
+  color: var(--color-danger-text);
+}
+
+.flash--out {
+  opacity: 0;
+  transform: translateX(-50%) translateY(-0.5rem);
+}

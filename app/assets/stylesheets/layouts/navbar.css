@@ -1,0 +1,37 @@
+/* Top navigation bar */
+
+.app-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1.5rem;
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.app-nav__left  { display: flex; align-items: center; gap: 1.5rem; }
+.app-nav__right { display: flex; align-items: center; gap: 1rem; }
+
+.app-nav__brand a {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+.app-nav__links { display: flex; align-items: center; gap: 1.25rem; }
+.app-nav__link  { text-decoration: none; color: var(--color-text-secondary); font-size: 0.875rem; }
+.app-nav__link:hover { color: var(--color-primary); }
+.app-nav__user  { font-size: 0.875rem; color: var(--color-muted); }
+
+/* Avatar image inside the nav circle */
+.user-avatar img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+@media (max-width: 768px) {
+  .app-nav__links { display: none; }
+}

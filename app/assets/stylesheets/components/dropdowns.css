@@ -1,0 +1,143 @@
+/* Avatar circle and dropdown menu */
+
+/* ── User avatar circle ── */
+.user-avatar {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: var(--color-primary);
+  color: var(--color-surface);
+  font-size: 0.8rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* ── Dropdown wrapper ── */
+.avatar-dropdown { position: relative; }
+
+.avatar-dropdown__trigger {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar-dropdown__trigger:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* ── Dropdown menu panel ── */
+.avatar-dropdown__menu {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  right: 0;
+  min-width: 220px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-light);
+  border-radius: 10px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  z-index: 100;
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: opacity var(--transition-base), transform var(--transition-base),
+    visibility 0s var(--transition-base);
+}
+
+.avatar-dropdown__menu[data-open="true"] {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity var(--transition-base), transform var(--transition-base),
+    visibility 0s 0s;
+}
+
+/* ── Menu header (name + email) ── */
+.avatar-dropdown__header {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.avatar-dropdown__header-inner {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+}
+
+.avatar-dropdown__avatar-img {
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.avatar-dropdown__avatar-placeholder {
+  width: 2.25rem;
+  height: 2.25rem;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+
+.avatar-dropdown__name {
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: var(--color-text);
+  display: block;
+}
+
+.avatar-dropdown__email {
+  font-size: 0.8rem;
+  color: var(--color-muted);
+  display: block;
+  margin-top: 0.15rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ── Menu items ── */
+.avatar-dropdown__items { padding: 0.35rem 0; }
+
+.avatar-dropdown__item {
+  display: block;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  transition: background var(--transition-base), color var(--transition-base);
+}
+
+.avatar-dropdown__item:hover {
+  background: var(--color-bg);
+  color: var(--color-text);
+}
+
+.avatar-dropdown__divider {
+  border: none;
+  border-top: 1px solid var(--color-border-light);
+  margin: 0.35rem 0;
+}
+
+.avatar-dropdown__item--danger { color: var(--color-danger); }
+.avatar-dropdown__item--danger:hover { background: #fef2f2; color: var(--color-danger); }
+
+/* button_to wraps logout in <form> — reset default form margins */
+.avatar-dropdown__items form { margin: 0; }
+
+.avatar-dropdown__items form .avatar-dropdown__item {
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+}

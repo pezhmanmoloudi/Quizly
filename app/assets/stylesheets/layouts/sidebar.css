@@ -1,0 +1,37 @@
+/* Two-column sidebar layout (used by account settings) */
+
+.settings-layout {
+  display: grid;
+  grid-template-columns: 190px 1fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.settings-sidebar {
+  display: flex;
+  flex-direction: column;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-light);
+  border-radius: 10px;
+  overflow: hidden;
+  padding: 0.35rem 0;
+}
+
+.settings-content {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-light);
+  border-radius: 10px;
+  padding: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .settings-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .settings-sidebar {
+    flex-direction: row;
+    overflow-x: auto;
+    padding: 0;
+  }
+}

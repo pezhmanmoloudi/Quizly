@@ -23,6 +23,13 @@ RSpec.describe "Dashboard#index", type: :request do
         expect(response.body).to include("3")
       end
 
+      it "shows all decks belonging to the current user" do
+        create_list(:deck, 6, user: user)
+        get dashboard_path
+        tile_count = response.body.scan("deck-tile__name").count
+        expect(tile_count).to eq(6)
+      end
+
       it "shows only decks belonging to the current user" do
         own_deck   = create(:deck, user: user, name: "My Deck")
         other_deck = create(:deck, user: create(:user), name: "Stranger's Deck")
@@ -31,17 +38,36 @@ RSpec.describe "Dashboard#index", type: :request do
         expect(response.body).not_to include("Stranger's Deck")
       end
 
-      it "shows at most 4 recent deck tiles" do
-        create_list(:deck, 6, user: user)
+      it "shows total card count across all user decks" do
+        deck = create(:deck, user: user)
+        create_list(:flashcard, 5, deck: deck)
         get dashboard_path
-        # Each deck tile renders exactly one deck-tile__name element
-        tile_count = response.body.scan("deck-tile__name").count
-        expect(tile_count).to eq(4)
+        expect(response.body).to include("5")
       end
 
-      it "shows the New Deck CTA tile" do
+      it "shows the Create Deck button" do
         get dashboard_path
-        expect(response.body).to include("New Deck")
+        expect(response.body).to include("Create Deck")
+      end
+
+      context "when user has no decks" do
+        it "shows the empty state" do
+          get dashboard_path
+          expect(response.body).to include("Create your first deck")
+        end
+
+        it "shows the empty state description" do
+          get dashboard_path
+          expect(response.body).to include("Start building flashcards")
+        end
+      end
+
+      context "when user has decks" do
+        it "does not show the empty state" do
+          create(:deck, user: user)
+          get dashboard_path
+          expect(response.body).not_to include("Create your first deck")
+        end
       end
     end
 

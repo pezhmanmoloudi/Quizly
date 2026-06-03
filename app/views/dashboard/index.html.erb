@@ -1,5 +1,3 @@
-<% content_for :title, "Dashboard" %>
-
 <div class="dashboard-hero">
   <div class="container">
     <h1 class="dashboard-hero__heading">Welcome back, <%= Current.user.display_name %></h1>
@@ -10,41 +8,32 @@
 <div class="container">
   <div class="stats-grid">
     <div class="stat-card">
-      <div class="stat-card__value"><%= @total_decks %></div>
+      <div id="total-decks-count" class="stat-card__value"><%= @total_decks %></div>
       <div class="stat-card__label">Total Decks</div>
     </div>
     <div class="stat-card">
-      <div class="stat-card__value"><%= @total_cards %></div>
+      <div id="total-cards-count" class="stat-card__value"><%= @total_cards %></div>
       <div class="stat-card__label">Total Cards</div>
     </div>
   </div>
 
-  <div class="section-header" style="margin-top:2rem;">
-    <h2>Recent Decks</h2>
-    <%= link_to "View All", decks_path, class: "app-nav__link" %>
+  <div class="section-header" style="margin-top: 2rem;">
+    <h2>My Library</h2>
   </div>
 
-  <div class="deck-grid">
-    <% @recent_decks.each do |deck| %>
-      <div class="deck-tile">
-        <div class="deck-tile__body">
-          <h3 class="deck-tile__name"><%= link_to deck.name, deck %></h3>
-          <% if deck.description.present? %>
-            <p class="deck-tile__description"><%= deck.description %></p>
-          <% end %>
-          <p class="deck-tile__meta"><%= deck.flashcards.count %> cards</p>
-        </div>
-        <div class="deck-tile__actions">
-          <%= link_to "Edit",   edit_deck_path(deck), class: "btn btn--secondary btn--sm" %>
-          <%= button_to "Delete", deck, method: :delete, class: "btn btn--danger btn--sm",
-              data: { turbo_confirm: "Delete this deck?" } %>
-        </div>
+  <div id="decks-section">
+    <% if @decks.empty? %>
+      <div class="empty-state--centered">
+        <div class="empty-state__icon">📚</div>
+        <h3 class="empty-state__title">Create your first deck</h3>
+        <p class="empty-state__description">Start building flashcards and track your learning progress.</p>
       </div>
-    <% end %>
-
-    <%= link_to new_deck_path, class: "deck-tile deck-tile--new" do %>
-      <span class="deck-tile--new__icon">+</span>
-      <span>New Deck</span>
+    <% else %>
+      <div id="decks-grid" class="deck-grid">
+        <% @decks.each do |deck| %>
+          <%= render "decks/deck_card", deck: deck %>
+        <% end %>
+      </div>
     <% end %>
   </div>
 </div>

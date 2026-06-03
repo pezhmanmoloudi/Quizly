@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for(:title) || "Quizly" %></title>
+    <title><%= [content_for(:title).presence, "Quizly"].compact.join(" · ") %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
@@ -12,11 +12,10 @@
 
     <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
 
-    <link rel="icon" href="/icon.png" type="image/png">
-    <link rel="icon" href="/icon.svg" type="image/svg+xml">
-    <link rel="apple-touch-icon" href="/icon.png">
+    <link rel="icon" href="/icon.svg?v=2" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/icon.svg?v=2">
 
-    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
@@ -31,6 +30,14 @@
           </div>
         </div>
         <div class="app-nav__right">
+          <span class="tooltip-wrap">
+            <%= link_to new_deck_path,
+                  class: "btn btn--circle",
+                  aria: { label: "Create Deck" } do %>
+              <%= render "shared/icons/plus" %>
+            <% end %>
+            <span class="tooltip" role="tooltip">Create Deck</span>
+          </span>
           <div class="avatar-dropdown"
                data-controller="avatar-dropdown"
                data-action="click@document->avatar-dropdown#closeIfOutside keydown.esc@document->avatar-dropdown#close">
@@ -95,12 +102,14 @@
         </div>
       </nav>
     <% end %>
-    <% if flash[:notice] %>
-      <div class="flash flash--notice" data-controller="flash"><%= flash[:notice] %></div>
-    <% end %>
-    <% if flash[:alert] %>
-      <div class="flash flash--alert" data-controller="flash"><%= flash[:alert] %></div>
-    <% end %>
+    <div id="flash-messages">
+      <% if flash[:notice] %>
+        <div class="flash flash--notice" data-controller="flash"><%= flash[:notice] %></div>
+      <% end %>
+      <% if flash[:alert] %>
+        <div class="flash flash--alert" data-controller="flash"><%= flash[:alert] %></div>
+      <% end %>
+    </div>
     <%= yield %>
   </body>
 </html>

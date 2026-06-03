@@ -1,0 +1,24 @@
+<% remaining_decks = Current.user.decks.count %>
+<% remaining_cards = Flashcard.joins(:deck).where(decks: { user_id: Current.user.id }).count %>
+
+<%= turbo_stream.update "total-decks-count", remaining_decks %>
+<%= turbo_stream.update "total-cards-count", remaining_cards %>
+
+<% if remaining_decks == 0 %>
+  <%= turbo_stream.update "decks-section" do %>
+    <div class="empty-state--centered">
+      <div class="empty-state__icon">📚</div>
+      <h3 class="empty-state__title">Create your first deck</h3>
+      <p class="empty-state__description">Start building flashcards and track your learning progress.</p>
+    </div>
+  <% end %>
+  <%= turbo_stream.update "decks-index-section" do %>
+    <p class="empty-state">No decks yet. Create your first deck to get started.</p>
+  <% end %>
+<% else %>
+  <%= turbo_stream.remove dom_id(@deck) %>
+<% end %>
+
+<%= turbo_stream.update "flash-messages" do %>
+  <div class="flash flash--notice" data-controller="flash"><%= flash[:notice] %></div>
+<% end %>

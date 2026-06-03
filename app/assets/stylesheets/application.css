@@ -1,10 +1,41 @@
 /*
- * This is a manifest file that'll be compiled into application.css.
+ * Quizly stylesheet manifest
  *
- * With Propshaft, assets are served efficiently without preprocessing steps. You can still include
- * application-wide styles in this file, but keep in mind that CSS precedence will follow the standard
- * cascading order, meaning styles declared later in the document or manifest will override earlier ones,
- * depending on specificity.
+ * Files load in cascade order: base → layouts → components → pages.
+ * Propshaft rewrites all url() references with content-fingerprinted paths.
  *
- * Consider organizing styles into separate files for maintainability.
+ * Adding a new component:
+ *   1. Create app/assets/stylesheets/components/my_component.css
+ *   2. Add @import url() below in the correct section.
  */
+
+/* ── 1. Base ─────────────────────────────────────────────── */
+@import url("base/variables.css");
+@import url("base/reset.css");
+@import url("base/typography.css");
+@import url("base/utilities.css");
+
+/* ── 2. Layouts ──────────────────────────────────────────── */
+@import url("layouts/containers.css");
+@import url("layouts/navbar.css");
+@import url("layouts/dashboard.css");
+@import url("layouts/sidebar.css");
+@import url("layouts/auth.css");
+
+/* ── 3. Components ───────────────────────────────────────── */
+@import url("components/buttons.css");
+@import url("components/alerts.css");
+@import url("components/badges.css");
+@import url("components/deck_cards.css");
+@import url("components/dropdowns.css");
+@import url("components/empty_states.css");
+@import url("components/flashcards.css");
+@import url("components/forms.css");
+@import url("components/statistics.css");
+@import url("components/tabs.css");
+@import url("components/tooltip.css");
+
+/* ── 4. Pages ────────────────────────────────────────────── */
+@import url("pages/decks.css");
+@import url("pages/home.css");
+@import url("pages/study.css");
