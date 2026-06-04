@@ -1,4 +1,3 @@
-# syntax=docker/dockerfile:1
 # Development Dockerfile — used by docker-compose.yml.
 # For production/Kamal deployment, see Dockerfile.
 
