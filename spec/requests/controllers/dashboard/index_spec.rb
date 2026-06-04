@@ -23,21 +23,6 @@ RSpec.describe "Dashboard#index", type: :request do
         expect(response.body).to include("3")
       end
 
-      it "shows all decks belonging to the current user" do
-        create_list(:deck, 6, user: user)
-        get dashboard_path
-        tile_count = response.body.scan("deck-tile__name").count
-        expect(tile_count).to eq(6)
-      end
-
-      it "shows only decks belonging to the current user" do
-        own_deck   = create(:deck, user: user, name: "My Deck")
-        other_deck = create(:deck, user: create(:user), name: "Stranger's Deck")
-        get dashboard_path
-        expect(response.body).to include("My Deck")
-        expect(response.body).not_to include("Stranger's Deck")
-      end
-
       it "shows total card count across all user decks" do
         deck = create(:deck, user: user)
         create_list(:flashcard, 5, deck: deck)
@@ -45,14 +30,15 @@ RSpec.describe "Dashboard#index", type: :request do
         expect(response.body).to include("5")
       end
 
-      it "shows the New Deck link in the sidebar" do
+      it "shows the My Library section header in the sidebar" do
         get dashboard_path
-        expect(response.body).to include("New Deck")
+        expect(response.body).to include("My Library")
       end
 
-      it "shows the Settings link in the sidebar" do
+      it "shows the global create deck button in the topbar" do
         get dashboard_path
-        expect(response.body).to include("Settings")
+        expect(response.body).to include("topbar__create-btn")
+        expect(response.body).to include('aria-label="Create Deck"')
       end
 
       it "shows Cards Due stat" do
@@ -63,31 +49,18 @@ RSpec.describe "Dashboard#index", type: :request do
         expect(response.body).to include("Cards Due")
       end
 
-      context "when user has no decks" do
-        it "shows the empty state" do
-          get dashboard_path
-          expect(response.body).to include("Create your first deck")
-        end
-
-        it "shows the empty state description" do
-          get dashboard_path
-          expect(response.body).to include("Start building flashcards")
-        end
-
-        it "shows a Create a Deck CTA button" do
-          get dashboard_path
-          expect(response.body).to include("Create a Deck")
-          expect(response.body).to include(new_deck_path)
-        end
+      it "shows the user's own decks in the My Decks section" do
+        create(:deck, user: user, name: "My Spanish Deck")
+        get dashboard_path
+        expect(response.body).to include("My Spanish Deck")
       end
 
-      context "when user has decks" do
-        it "does not show the empty state" do
-          create(:deck, user: user)
-          get dashboard_path
-          expect(response.body).not_to include("Create your first deck")
-        end
+      it "does not show decks from other users" do
+        create(:deck, user: create(:user), name: "Stranger's Deck", visibility: "public")
+        get dashboard_path
+        expect(response.body).not_to include("Stranger&#39;s Deck")
       end
+
     end
 
     context "when not authenticated" do

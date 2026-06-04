@@ -41,8 +41,17 @@
               <%= link_to "Quizly", root_path, class: "topbar__brand" %>
             </div>
 
-            <%# Right: avatar dropdown (always visible) %>
+            <%# Right: create action + avatar dropdown (always visible) %>
             <div class="topbar__right">
+              <div class="topbar__create">
+                <%= link_to new_deck_path,
+                      class: "topbar__create-btn",
+                      aria: { label: "Create Deck" },
+                      data: { tooltip: "New Deck" } do %>
+                  <%= render "shared/icons/plus", css_class: "topbar__create-icon" %>
+                <% end %>
+              </div>
+
               <div class="avatar-dropdown"
                    data-controller="avatar-dropdown"
                    data-action="click@document->avatar-dropdown#closeIfOutside keydown.esc@document->avatar-dropdown#close">
