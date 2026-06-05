@@ -2,6 +2,6 @@
 
 <div class="container">
   <h1>Add Card</h1>
-  <%= render "form", flashcard: @flashcard %>
+  <%= render "form", flashcard: @flashcard, url: deck_flashcards_path(@deck) %>
   <div class="back-link"><%= link_to "← Back to Deck", @deck %></div>
 </div>
