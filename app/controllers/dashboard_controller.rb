@@ -12,5 +12,22 @@ class DashboardController < ApplicationController
                               .group("flashcards.deck_id")
                               .count
     @total_due  = @due_counts.values.sum
+
+    if @due_counts.any?
+      deck_ids_with_due = @due_counts.keys
+      recent_activity = CardProgress
+        .joins(:flashcard)
+        .where(user: Current.user, flashcards: { deck_id: deck_ids_with_due })
+        .where.not(last_reviewed_at: nil)
+        .group("flashcards.deck_id")
+        .maximum(:last_reviewed_at)
+      best_id = if recent_activity.any?
+        recent_activity.max_by { |_, v| v }.first
+      else
+        @due_counts.max_by { |_, v| v }.first
+      end
+      @continue_deck = @decks.find { |d| d.id == best_id }
+      @continue_due  = @due_counts[best_id]
+    end
   end
 end
