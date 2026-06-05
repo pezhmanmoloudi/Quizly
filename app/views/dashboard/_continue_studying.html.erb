@@ -1,0 +1,15 @@
+<div class="continue-card" aria-label="Continue studying <%= deck.name %>">
+  <div class="continue-card__icon" aria-hidden="true">
+    <%= render "shared/icons/play" %>
+  </div>
+  <div class="continue-card__body">
+    <p class="continue-card__eyebrow">Continue Studying</p>
+    <h2 class="continue-card__title"><%= deck.name %></h2>
+    <p class="continue-card__meta"><%= due %> <%= "card".pluralize(due) %> due</p>
+  </div>
+  <div class="continue-card__action">
+    <%= link_to "Study Now →", study_deck_path(deck),
+          class: "btn btn--primary btn--lg",
+          aria: { label: "Study #{deck.name}" } %>
+  </div>
+</div>

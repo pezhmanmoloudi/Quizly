@@ -5,6 +5,12 @@
   </div>
 </div>
 
+<% if @continue_deck %>
+  <div class="container" style="padding-top: 1.5rem; padding-bottom: 0;">
+    <%= render "continue_studying", deck: @continue_deck, due: @continue_due %>
+  </div>
+<% end %>
+
 <div class="container">
   <div class="stats-grid">
     <div class="stat-card">

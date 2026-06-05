@@ -9,9 +9,15 @@ class FlashcardsController < ApplicationController
   def create
     @flashcard = @deck.flashcards.build(flashcard_params)
     if @flashcard.save
-      redirect_to @deck, notice: "Card added."
+      respond_to do |format|
+        format.html { redirect_to @deck, notice: "Card added." }
+        format.json { render json: { id: @flashcard.id }, status: :created }
+      end
     else
-      render :new, status: :unprocessable_entity
+      respond_to do |format|
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: { errors: @flashcard.errors.full_messages }, status: :unprocessable_entity }
+      end
     end
   end
 
@@ -20,9 +26,15 @@ class FlashcardsController < ApplicationController
 
   def update
     if @flashcard.update(flashcard_params)
-      redirect_to @flashcard.deck, notice: "Card updated."
+      respond_to do |format|
+        format.html { redirect_to @flashcard.deck, notice: "Card updated." }
+        format.json { render json: { id: @flashcard.id }, status: :ok }
+      end
     else
-      render :edit, status: :unprocessable_entity
+      respond_to do |format|
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: { errors: @flashcard.errors.full_messages }, status: :unprocessable_entity }
+      end
     end
   end
 

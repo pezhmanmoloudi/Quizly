@@ -59,8 +59,8 @@
   <% if @deck.user == Current.user %>
     <div class="section-header">
       <h2>Cards (<%= @deck.flashcards.count %>)</h2>
-      <%= link_to new_deck_flashcard_path(@deck), class: "btn btn--secondary btn-with-icon" do %>
-        <%= render "shared/icons/plus" %> Add Card
+      <%= link_to cards_deck_path(@deck), class: "btn btn--secondary btn-with-icon" do %>
+        <%= render "shared/icons/plus" %> Add Cards
       <% end %>
     </div>
   <% else %>
@@ -74,8 +74,8 @@
           icon: "plus",
           title: "No flashcards yet",
           description: "Add your first card to start studying this deck.",
-          cta_text: (@deck.user == Current.user ? "Add Card" : nil),
-          cta_path: (@deck.user == Current.user ? new_deck_flashcard_path(@deck) : nil),
+          cta_text: (@deck.user == Current.user ? "Add Cards" : nil),
+          cta_path: (@deck.user == Current.user ? cards_deck_path(@deck) : nil),
           variant: :centered %>
   <% else %>
     <div class="flashcard-list">

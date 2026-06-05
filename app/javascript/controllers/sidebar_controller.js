@@ -27,6 +27,7 @@ export default class extends Controller {
 
   expandIfCollapsed(event) {
     if (!this.isCollapsed) return
+    if (event.target.closest("a")) return
     event.preventDefault()
     event.stopPropagation()
     this.element.classList.remove("is-collapsed")

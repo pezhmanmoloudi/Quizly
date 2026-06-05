@@ -70,4 +70,77 @@ RSpec.describe "Dashboard#index", type: :request do
       end
     end
   end
+
+  describe "Continue Studying banner" do
+    before { sign_in(user) }
+
+    context "when the user has no due cards" do
+      it "does not render the banner" do
+        get dashboard_path
+        expect(response.body).not_to include("Continue Studying")
+      end
+    end
+
+    context "when the user has due cards" do
+      let!(:deck) { create(:deck, user: user, name: "Ruby Basics") }
+      let!(:card) { create(:flashcard, deck: deck) }
+      let!(:progress) do
+        create(:card_progress, :due, user: user, flashcard: card,
+               last_reviewed_at: 1.hour.ago)
+      end
+
+      it "renders the banner with the deck name" do
+        get dashboard_path
+        expect(response.body).to include("Continue Studying")
+        expect(response.body).to include("Ruby Basics")
+      end
+
+      it "links to the study path for that deck" do
+        get dashboard_path
+        expect(response.body).to include(study_deck_path(deck))
+      end
+    end
+
+    context "when multiple decks have due cards" do
+      let!(:old_deck)    { create(:deck, user: user, name: "Old Deck") }
+      let!(:recent_deck) { create(:deck, user: user, name: "Recent Deck") }
+
+      before do
+        old_card    = create(:flashcard, deck: old_deck)
+        recent_card = create(:flashcard, deck: recent_deck)
+        create(:card_progress, :due, user: user, flashcard: old_card,
+               last_reviewed_at: 2.days.ago)
+        create(:card_progress, :due, user: user, flashcard: recent_card,
+               last_reviewed_at: 1.hour.ago)
+      end
+
+      it "shows the most recently studied deck in the banner" do
+        get dashboard_path
+        expect(response.body).to include("Continue Studying")
+        expect(response.body).to include("Recent Deck")
+      end
+    end
+
+    context "when due cards exist but none have been studied yet" do
+      let!(:deck_a) { create(:deck, user: user, name: "Deck A") }
+      let!(:deck_b) { create(:deck, user: user, name: "Deck B") }
+
+      before do
+        create(:flashcard, deck: deck_a).tap do |c|
+          create(:card_progress, :due, user: user, flashcard: c)
+        end
+        2.times do
+          create(:flashcard, deck: deck_b).tap do |c|
+            create(:card_progress, :due, user: user, flashcard: c)
+          end
+        end
+      end
+
+      it "falls back to the deck with the most due cards" do
+        get dashboard_path
+        expect(response.body).to include("Continue Studying")
+        expect(response.body).to include("Deck B")
+      end
+    end
+  end
 end

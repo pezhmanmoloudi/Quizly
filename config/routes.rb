@@ -25,10 +25,12 @@ Rails.application.routes.draw do
 
   resources :decks do
     member do
-      get  :study
-      get  :flashcard
-      get  :match
-      post :fork
+      get   :study
+      get   :flashcard
+      get   :match
+      post  :fork
+      get   :cards
+      patch :update_cards
     end
     resources :flashcards, shallow: true
   end
