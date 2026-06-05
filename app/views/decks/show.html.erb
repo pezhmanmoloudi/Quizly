@@ -70,7 +70,13 @@
   <% end %>
 
   <% if @deck.flashcards.empty? %>
-    <p class="empty-state">No flashcards yet.</p>
+    <%= render "shared/empty_state",
+          icon: "plus",
+          title: "No flashcards yet",
+          description: "Add your first card to start studying this deck.",
+          cta_text: (@deck.user == Current.user ? "Add Card" : nil),
+          cta_path: (@deck.user == Current.user ? new_deck_flashcard_path(@deck) : nil),
+          variant: :centered %>
   <% else %>
     <div class="flashcard-list">
       <% @deck.flashcards.each do |card| %>

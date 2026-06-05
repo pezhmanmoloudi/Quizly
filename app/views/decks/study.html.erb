@@ -1,9 +1,13 @@
 <% content_for :title, "Study: #{@deck.name}" %>
 
-<div class="study-container">
+<div class="study-container"
+     data-controller="study-mode"
+     data-action="keydown->study-mode#handleKey"
+     tabindex="-1"
+     aria-label="Study session">
   <div class="study-header">
     <h2><%= @deck.name %></h2>
-    <%= link_to "← Exit", @deck, class: "study-exit" %>
+    <%= link_to "← Exit", @deck, class: "study-exit", data: { study_mode_target: "exitLink" } %>
   </div>
 
   <% if @card_progress.present? && @cards_total.to_i > 0 %>
@@ -20,9 +24,9 @@
 
   <%= turbo_frame_tag "study_card" do %>
     <% if @card_progress.nil? %>
-      <div class="study-empty">
-        <% if flash[:study_summary].present? %>
-          <% summary = flash[:study_summary] %>
+      <% if flash[:study_summary].present? %>
+        <% summary = flash[:study_summary] %>
+        <div class="study-empty">
           <div class="session-summary">
             <div class="session-summary__icon">🎉</div>
             <h3 class="session-summary__title">Session complete!</h3>
@@ -47,12 +51,17 @@
             </div>
             <p class="session-summary__sub">No more cards due right now — great work.</p>
           </div>
-        <% else %>
-          <p class="study-empty__message">All caught up!</p>
-          <p class="study-empty__sub">No cards are due for review right now.</p>
-        <% end %>
-        <%= link_to "Back to Deck", @deck, class: "btn btn--primary" %>
-      </div>
+          <%= link_to "Back to Deck", @deck, class: "btn btn--primary" %>
+        </div>
+      <% else %>
+        <%= render "shared/empty_state",
+              icon: "academic_cap",
+              title: "All caught up!",
+              description: "No cards are due for review right now.",
+              cta_text: "Back to Deck",
+              cta_path: @deck,
+              variant: :study %>
+      <% end %>
     <% else %>
       <div class="flashcard"
            data-controller="flashcard"
@@ -69,7 +78,9 @@
         <div class="flashcard__actions">
           <button class="btn btn--secondary"
                   data-flashcard-target="showButton"
-                  data-action="click->flashcard#reveal">
+                  data-study-mode-target="showButton"
+                  data-action="click->flashcard#reveal"
+                  aria-keyshortcuts="Space">
             Show Answer
           </button>
 
@@ -78,13 +89,19 @@
                         style: "display:none" do |f| %>
             <%= hidden_field_tag :card_progress_id, @card_progress.id %>
             <div class="rating-buttons">
-              <%= f.submit "Again", name: :rating, value: "again", class: "btn btn--danger" %>
-              <%= f.submit "Hard",  name: :rating, value: "hard",  class: "btn btn--warning" %>
-              <%= f.submit "Good",  name: :rating, value: "good",  class: "btn btn--primary" %>
-              <%= f.submit "Easy",  name: :rating, value: "easy",  class: "btn btn--success" %>
+              <%= f.submit "Again", name: :rating, value: "again", class: "btn btn--danger",
+                    data: { study_mode_target: "againBtn" }, aria: { keyshortcuts: "1" } %>
+              <%= f.submit "Hard",  name: :rating, value: "hard",  class: "btn btn--warning",
+                    data: { study_mode_target: "hardBtn" },  aria: { keyshortcuts: "2" } %>
+              <%= f.submit "Good",  name: :rating, value: "good",  class: "btn btn--primary",
+                    data: { study_mode_target: "goodBtn" },  aria: { keyshortcuts: "3" } %>
+              <%= f.submit "Easy",  name: :rating, value: "easy",  class: "btn btn--success",
+                    data: { study_mode_target: "easyBtn" },  aria: { keyshortcuts: "4" } %>
             </div>
           <% end %>
         </div>
+
+        <p class="keyboard-hint" aria-hidden="true">Space to reveal &middot; 1 Again &middot; 2 Hard &middot; 3 Good &middot; 4 Easy &middot; Esc to exit</p>
       </div>
     <% end %>
   <% end %>

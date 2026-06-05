@@ -2,18 +2,23 @@
 
 <div class="study-container"
      data-controller="flashcard-browse"
-     data-flashcard-browse-total-value="<%= @flashcards.size %>">
+     data-flashcard-browse-total-value="<%= @flashcards.size %>"
+     data-action="keydown->flashcard-browse#handleKey"
+     tabindex="-1"
+     aria-label="Flashcard browse area">
   <div class="study-header">
     <h2><%= @deck.name %></h2>
     <%= link_to "← Exit", @deck, class: "study-exit" %>
   </div>
 
   <% if @flashcards.empty? %>
-    <div class="study-empty">
-      <p class="study-empty__message">No cards yet.</p>
-      <p class="study-empty__sub">Add some cards to this deck to start browsing.</p>
-      <%= link_to "Back to Deck", @deck, class: "btn btn--primary" %>
-    </div>
+    <%= render "shared/empty_state",
+          icon: "rectangle_stack",
+          title: "No cards yet",
+          description: "Add some cards to this deck to start browsing.",
+          cta_text: "Back to Deck",
+          cta_path: @deck,
+          variant: :study %>
   <% else %>
     <div class="flashcard-browse__progress-wrap">
       <div class="flashcard-browse__bar">
@@ -58,6 +63,7 @@
         Next →
       </button>
     </div>
+    <p class="keyboard-hint" aria-hidden="true">← → to navigate &middot; Space to flip</p>
 
     <% unless authenticated? %>
       <div class="guest-cta-banner">

@@ -1,4 +1,4 @@
-<%= form_with model: flashcard do |f| %>
+<%= form_with model: flashcard, url: url do |f| %>
   <% if flashcard.errors.any? %>
     <div class="form-errors">
       <% flashcard.errors.full_messages.each do |msg| %>

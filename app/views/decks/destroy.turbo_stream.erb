@@ -6,7 +6,13 @@
 
 <% if remaining_decks == 0 %>
   <%= turbo_stream.update "decks-index-section" do %>
-    <p class="empty-state">No decks yet. Create your first deck to get started.</p>
+    <%= render "shared/empty_state",
+          icon: "rectangle_stack",
+          title: "No decks yet",
+          description: "Create your first deck to start studying.",
+          cta_text: "Create Deck",
+          cta_path: new_deck_path,
+          variant: :dashboard %>
   <% end %>
 <% else %>
   <%= turbo_stream.remove dom_id(@deck) %>

@@ -7,11 +7,13 @@
   </div>
 
   <% if @cards.empty? %>
-    <div class="study-empty">
-      <p class="study-empty__message">No cards yet.</p>
-      <p class="study-empty__sub">Add some cards to this deck to play Match.</p>
-      <%= link_to "Back to Deck", @deck, class: "btn btn--primary" %>
-    </div>
+    <%= render "shared/empty_state",
+          icon: "bolt",
+          title: "No cards yet",
+          description: "Add some cards to this deck to play Match.",
+          cta_text: "Back to Deck",
+          cta_path: @deck,
+          variant: :study %>
   <% else %>
     <div class="match-game"
          data-controller="match"
