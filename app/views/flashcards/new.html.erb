@@ -1,7 +1,15 @@
-<% content_for :title, "Add Card" %>
+<% content_for :title, "Add Card — #{@deck.name}" %>
 
-<div class="container">
-  <h1>Add Card</h1>
-  <%= render "form", flashcard: @flashcard, url: deck_flashcards_path(@deck) %>
-  <div class="back-link"><%= link_to "← Back to Deck", @deck %></div>
+<div class="card-editor-page">
+  <header class="card-editor-header">
+    <%= link_to deck_path(@deck), class: "card-editor-header__back",
+          aria: { label: "Back to #{@deck.name}" } do %>
+      ← <span class="card-editor-header__deck-name"><%= @deck.name %></span>
+    <% end %>
+    <%= submit_tag "Save Card →", form: "flashcard-form", class: "btn btn--primary" %>
+  </header>
+
+  <div class="card-editor-body">
+    <%= render "form", flashcard: @flashcard, url: deck_flashcards_path(@deck) %>
+  </div>
 </div>
