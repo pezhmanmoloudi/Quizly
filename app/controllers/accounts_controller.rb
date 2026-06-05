@@ -15,7 +15,7 @@ class AccountsController < ApplicationController
       end
     elsif @active_section == "email"
       unless Current.user.authenticate(params[:current_password])
-        flash.now[:alert] = "Current password is incorrect."
+        Current.user.errors.add(:current_password, "is incorrect")
         return render :show, status: :unprocessable_entity
       end
       if Current.user.update(email_params)
@@ -26,7 +26,7 @@ class AccountsController < ApplicationController
       end
     elsif @active_section == "password"
       unless Current.user.authenticate(params[:current_password])
-        flash.now[:alert] = "Current password is incorrect."
+        Current.user.errors.add(:current_password, "is incorrect")
         return render :show, status: :unprocessable_entity
       end
       if params[:password].blank?

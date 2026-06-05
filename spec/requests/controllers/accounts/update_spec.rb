@@ -77,6 +77,17 @@ RSpec.describe "Accounts#update", type: :request do
           expect(response).to have_http_status(:unprocessable_entity)
         end
 
+        it "renders inline error for wrong current password" do
+          patch account_path, params: { section: "email", email_address: "new@example.com", current_password: "wrong" }
+          expect(response.body).to include('class="field-error"')
+          expect(response.body).to include('data-server-error="true"')
+        end
+
+        it "does not render block-level form errors div on failure" do
+          patch account_path, params: { section: "email", email_address: "new@example.com", current_password: "wrong" }
+          expect(response.body).not_to include('class="form-errors"')
+        end
+
         it "rejects invalid email format" do
           patch account_path, params: { section: "email", email_address: "not-an-email", current_password: "password123" }
           expect(response).to have_http_status(:unprocessable_entity)
@@ -115,6 +126,27 @@ RSpec.describe "Accounts#update", type: :request do
           }
           expect(user.reload.authenticate("newpassword456")).to be_falsy
           expect(response).to have_http_status(:unprocessable_entity)
+        end
+
+        it "renders inline error for mismatched password confirmation" do
+          patch account_path, params: {
+            section: "password",
+            password: "newpassword456",
+            password_confirmation: "different789",
+            current_password: "password123"
+          }
+          expect(response.body).to include('class="field-error"')
+          expect(response.body).to include('data-server-error="true"')
+        end
+
+        it "does not render block-level form errors div on failure" do
+          patch account_path, params: {
+            section: "password",
+            password: "newpassword456",
+            password_confirmation: "different789",
+            current_password: "password123"
+          }
+          expect(response.body).not_to include('class="form-errors"')
         end
 
         it "rejects password shorter than 8 characters" do
