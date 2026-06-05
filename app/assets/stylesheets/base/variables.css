@@ -38,4 +38,72 @@
   --carousel-transition: 400ms cubic-bezier(0.4, 0, 0.2, 1);
   --carousel-card-w:     260px;
   --carousel-card-h:     400px;
+
+  /* ── Typography scale ── */
+  --text-xs:   0.75rem;    /* 12px — badges, hints, kbd */
+  --text-sm:   0.875rem;   /* 14px — body default, labels, nav */
+  --text-base: 1rem;       /* 16px — standard body */
+  --text-lg:   1.125rem;   /* 18px — card titles */
+  --text-xl:   1.25rem;    /* 20px — section headings */
+  --text-2xl:  1.5rem;     /* 24px — sub-page titles */
+  --text-3xl:  1.875rem;   /* 30px — hero sub-text */
+  --text-4xl:  2.25rem;    /* 36px — hero headline */
+
+  /* ── Font weight scale ── */
+  --font-normal:   400;
+  --font-medium:   500;
+  --font-semibold: 600;
+  --font-bold:     700;
+
+  /* ── Spacing scale ── */
+  --space-1:  0.25rem;   /* 4px  */
+  --space-2:  0.5rem;    /* 8px  */
+  --space-3:  0.75rem;   /* 12px */
+  --space-4:  1rem;      /* 16px */
+  --space-5:  1.25rem;   /* 20px */
+  --space-6:  1.5rem;    /* 24px */
+  --space-8:  2rem;      /* 32px */
+  --space-10: 2.5rem;    /* 40px */
+  --space-12: 3rem;      /* 48px */
+  --space-16: 4rem;      /* 64px */
+
+  /* ── Border-radius scale ── */
+  --radius-sm:   6px;     /* buttons, inputs */
+  --radius-md:   10px;    /* cards, tiles, panels */
+  --radius-lg:   14px;    /* flashcard faces */
+  --radius-xl:   20px;    /* study island, modals */
+  --radius-full: 9999px;  /* pills, badges, circles */
+
+  /* ── Shadow scale ── */
+  --shadow-xs:    0 1px 2px rgba(0,0,0,.06);
+  --shadow-sm:    0 1px 3px rgba(0,0,0,.08);
+  --shadow-md:    0 4px 12px rgba(0,0,0,.10);
+  --shadow-lg:    0 4px 16px rgba(0,0,0,.12);
+  --shadow-xl:    0 8px 32px rgba(0,0,0,.10), 0 1px 4px rgba(0,0,0,.06);
+  --shadow-toast: 0 4px 20px rgba(0,0,0,.18);
+  --shadow-focus: 0 0 0 3px rgba(79,70,229,.15);
+
+  /* ── Animation timing ── */
+  --duration-fast: 150ms;
+  --duration-base: 250ms;
+  --duration-slow: 400ms;
+  --ease-default:  ease;
+  --ease-smooth:   cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* ── Z-index scale ── */
+  --z-base:     1;
+  --z-raised:   10;
+  --z-overlay:  39;
+  --z-sidebar:  40;
+  --z-topbar:   50;
+  --z-dropdown: 100;
+  --z-tooltip:  200;
+  --z-toast:    9999;
+
+  /* ── Additional colour tokens ── */
+  --color-danger-hover:     #dc2626;  /* btn--danger:hover */
+  --color-btn-circle:       #4255ff;  /* btn--circle bg */
+  --color-btn-circle-hover: #423ed8;  /* btn--circle hover */
+  --color-separator:        #9ca3af;  /* flashcard row separator */
+  --color-success-solid:    #3d9a5c;  /* flash notice background */
 }

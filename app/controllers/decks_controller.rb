@@ -71,7 +71,8 @@ class DecksController < ApplicationController
 
     if @card_progress.present?
       session_key = :"study_total_#{@deck.id}"
-      session[session_key] ||= @cards_remaining
+      stored = session[session_key]
+      session[session_key] = @cards_remaining if stored.nil? || @cards_remaining > stored
       @cards_total = session[session_key]
       @cards_done  = @cards_total - @cards_remaining
       session[:"study_started_#{@deck.id}"] ||= Time.current.to_i

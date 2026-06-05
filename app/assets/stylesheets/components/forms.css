@@ -104,3 +104,22 @@
   display: flex;
   gap: 0.5rem;
 }
+
+/* ── Inline field-level error ── */
+.field-error {
+  display: block;
+  margin-top: var(--space-1);
+  font-size: var(--text-xs);
+  color: var(--color-danger);
+  line-height: 1.4;
+}
+
+.form-control[aria-invalid="true"] {
+  border-color: var(--color-danger);
+}
+
+.form-control[aria-invalid="true"]:focus {
+  outline: 2px solid var(--color-danger);
+  border-color: var(--color-danger);
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, .12);
+}

@@ -106,14 +106,18 @@
         <%= form_with url: account_path, method: :patch do |f| %>
           <%= f.hidden_field :section, value: "profile" %>
 
-          <div class="form-group">
+          <div class="form-group" data-controller="field-error">
             <%= f.label :display_name, "Display name" %>
             <%= f.text_field :display_name,
                   value: Current.user[:display_name],
                   placeholder: Current.user.display_name,
                   class: "form-control",
-                  maxlength: 50 %>
+                  maxlength: 50,
+                  data: { field_error_target: "input", action: "blur->field-error#validate input->field-error#clear" } %>
             <small class="form-hint">Leave blank to use your email username (<%= Current.user.email_address.split("@").first %>)</small>
+            <span class="field-error" data-field-error-target="message"
+                  <% if Current.user.errors[:display_name].any? %>data-server-error="true"<% else %>hidden<% end %>
+                  aria-live="polite"><%= Current.user.errors[:display_name].first %></span>
           </div>
 
           <div class="settings-profile-info">
@@ -139,22 +143,23 @@
         <h2>Change Email</h2>
         <%= form_with url: account_path, method: :patch do |f| %>
           <%= f.hidden_field :section, value: "email" %>
-          <% if Current.user.errors.any? %>
-            <div class="form-errors">
-              <% Current.user.errors.full_messages.each do |msg| %>
-                <div><%= msg %></div>
-              <% end %>
-            </div>
-          <% end %>
-          <div class="form-group">
+          <div class="form-group" data-controller="field-error">
             <%= f.label :email_address, "New email address" %>
             <%= f.email_field :email_address, value: Current.user.email_address,
-                  required: true, autocomplete: "username", class: "form-control" %>
+                  required: true, autocomplete: "username", class: "form-control",
+                  data: { field_error_target: "input", action: "blur->field-error#validate input->field-error#clear" } %>
+            <span class="field-error" data-field-error-target="message"
+                  <% if Current.user.errors[:email_address].any? %>data-server-error="true"<% else %>hidden<% end %>
+                  aria-live="polite"><%= Current.user.errors[:email_address].first %></span>
           </div>
-          <div class="form-group">
+          <div class="form-group" data-controller="field-error">
             <%= f.label :current_password, "Current password" %>
             <%= f.password_field :current_password, required: true,
-                  autocomplete: "current-password", class: "form-control" %>
+                  autocomplete: "current-password", class: "form-control",
+                  data: { field_error_target: "input", action: "blur->field-error#validate input->field-error#clear" } %>
+            <span class="field-error" data-field-error-target="message"
+                  <% if Current.user.errors[:current_password].any? %>data-server-error="true"<% else %>hidden<% end %>
+                  aria-live="polite"><%= Current.user.errors[:current_password].first %></span>
           </div>
           <%= f.submit "Update email", class: "btn btn--primary" %>
         <% end %>
@@ -168,19 +173,13 @@
         <h2>Change Password</h2>
         <%= form_with url: account_path, method: :patch do |f| %>
           <%= f.hidden_field :section, value: "password" %>
-          <% if Current.user.errors.any? %>
-            <div class="form-errors">
-              <% Current.user.errors.full_messages.each do |msg| %>
-                <div><%= msg %></div>
-              <% end %>
-            </div>
-          <% end %>
-          <div class="form-group" data-controller="password-toggle">
+          <div class="form-group" data-controller="password-toggle field-error">
             <%= f.label :current_password, "Current password" %>
             <div class="field-with-toggle">
               <%= f.password_field :current_password, required: true,
                     autocomplete: "current-password", class: "form-control",
-                    data: { password_toggle_target: "field" } %>
+                    data: { password_toggle_target: "field", field_error_target: "input",
+                            action: "blur->field-error#validate input->field-error#clear" } %>
               <button type="button" class="auth-input__toggle"
                       data-action="password-toggle#toggle"
                       aria-label="Toggle password visibility">
@@ -190,14 +189,18 @@
                 </svg>
               </button>
             </div>
+            <span class="field-error" data-field-error-target="message"
+                  <% if Current.user.errors[:current_password].any? %>data-server-error="true"<% else %>hidden<% end %>
+                  aria-live="polite"><%= Current.user.errors[:current_password].first %></span>
           </div>
-          <div class="form-group" data-controller="password-toggle">
+          <div class="form-group" data-controller="password-toggle field-error">
             <%= f.label :password, "New password" %>
             <div class="field-with-toggle">
               <%= f.password_field :password, required: true,
                     autocomplete: "new-password", minlength: 8, maxlength: 72,
                     class: "form-control",
-                    data: { password_toggle_target: "field" } %>
+                    data: { password_toggle_target: "field", field_error_target: "input",
+                            action: "blur->field-error#validate input->field-error#clear" } %>
               <button type="button" class="auth-input__toggle"
                       data-action="password-toggle#toggle"
                       aria-label="Toggle password visibility">
@@ -208,13 +211,17 @@
               </button>
             </div>
             <small class="form-hint">Minimum 8 characters</small>
+            <span class="field-error" data-field-error-target="message"
+                  <% if Current.user.errors[:password].any? %>data-server-error="true"<% else %>hidden<% end %>
+                  aria-live="polite"><%= Current.user.errors[:password].first %></span>
           </div>
-          <div class="form-group" data-controller="password-toggle">
+          <div class="form-group" data-controller="password-toggle field-error">
             <%= f.label :password_confirmation, "Confirm new password" %>
             <div class="field-with-toggle">
               <%= f.password_field :password_confirmation, required: true,
                     autocomplete: "new-password", maxlength: 72, class: "form-control",
-                    data: { password_toggle_target: "field" } %>
+                    data: { password_toggle_target: "field", field_error_target: "input",
+                            action: "blur->field-error#validate input->field-error#clear" } %>
               <button type="button" class="auth-input__toggle"
                       data-action="password-toggle#toggle"
                       aria-label="Toggle password visibility">
@@ -224,6 +231,9 @@
                 </svg>
               </button>
             </div>
+            <span class="field-error" data-field-error-target="message"
+                  <% if Current.user.errors[:password_confirmation].any? %>data-server-error="true"<% else %>hidden<% end %>
+                  aria-live="polite"><%= Current.user.errors[:password_confirmation].first %></span>
           </div>
           <%= f.submit "Update password", class: "btn btn--primary" %>
         <% end %>

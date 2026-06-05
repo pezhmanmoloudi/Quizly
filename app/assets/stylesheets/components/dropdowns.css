@@ -43,7 +43,7 @@
   background: var(--color-surface);
   border: 1px solid var(--color-border-light);
   border-radius: 10px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  box-shadow: var(--shadow-lg);
   z-index: 100;
   visibility: hidden;
   opacity: 0;
@@ -128,7 +128,7 @@
 }
 
 .avatar-dropdown__item--danger { color: var(--color-danger); }
-.avatar-dropdown__item--danger:hover { background: #fef2f2; color: var(--color-danger); }
+.avatar-dropdown__item--danger:hover { background: var(--color-danger-bg); color: var(--color-danger); }
 
 /* button_to wraps logout in <form> — reset default form margins */
 .avatar-dropdown__items form { margin: 0; }

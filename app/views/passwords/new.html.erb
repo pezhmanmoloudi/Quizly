@@ -14,7 +14,7 @@
     <p class="auth-split__sub">Enter your email and we'll send you reset instructions.</p>
 
     <%= form_with url: forgot_password_path do |f| %>
-      <div class="form-group">
+      <div class="form-group" data-controller="field-error">
         <%= f.label :email_address, "Email" %>
         <div class="auth-input">
           <svg class="auth-input__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
@@ -24,8 +24,10 @@
           <%= f.email_field :email_address, required: true, autofocus: true,
                 autocomplete: "username", class: "form-control",
                 placeholder: "Enter your email",
-                value: params[:email_address] %>
+                value: params[:email_address],
+                data: { field_error_target: "input", action: "blur->field-error#validate input->field-error#clear" } %>
         </div>
+        <span class="field-error" data-field-error-target="message" hidden aria-live="polite"></span>
       </div>
 
       <%= f.submit "Send reset instructions", class: "btn btn--primary btn--block" %>
