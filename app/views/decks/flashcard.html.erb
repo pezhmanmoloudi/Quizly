@@ -12,11 +12,13 @@
   </div>
 
   <% if @flashcards.empty? %>
-    <div class="study-empty">
-      <p class="study-empty__message">No cards yet.</p>
-      <p class="study-empty__sub">Add some cards to this deck to start browsing.</p>
-      <%= link_to "Back to Deck", @deck, class: "btn btn--primary" %>
-    </div>
+    <%= render "shared/empty_state",
+          icon: "rectangle_stack",
+          title: "No cards yet",
+          description: "Add some cards to this deck to start browsing.",
+          cta_text: "Back to Deck",
+          cta_path: @deck,
+          variant: :study %>
   <% else %>
     <div class="flashcard-browse__progress-wrap">
       <div class="flashcard-browse__bar">

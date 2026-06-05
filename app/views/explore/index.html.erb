@@ -21,13 +21,17 @@
         <%= render partial: "explore/deck_card", collection: @decks, as: :deck %>
       </div>
     <% elsif @query.present? %>
-      <div class="empty-state">
-        <p>No decks found for "<%= @query %>".</p>
-      </div>
+      <%= render "shared/empty_state",
+            icon: "magnifying_glass",
+            title: "No decks found for \"#{@query}\"",
+            description: "Try a different search term or browse all public decks.",
+            variant: :centered %>
     <% else %>
-      <div class="empty-state">
-        <p>No public decks yet. Be the first to share one.</p>
-      </div>
+      <%= render "shared/empty_state",
+            icon: "globe",
+            title: "No public decks yet",
+            description: "Be the first to share a deck with the community.",
+            variant: :centered %>
     <% end %>
   <% end %>
 </div>

@@ -65,14 +65,11 @@
   .rating-buttons .btn { min-width: 60px; font-size: 0.8rem; }
 }
 
-/* ── All cards done state ── */
+/* ── Session summary wrapper ── */
 .study-empty {
   text-align: center;
   padding: 3rem 2rem;
 }
-
-.study-empty__message { font-size: 1.75rem; font-weight: 700; margin-bottom: 0.5rem; }
-.study-empty__sub     { color: var(--color-muted); margin-bottom: 1.5rem; }
 
 /* ── Session progress bar ── */
 .study-progress {

@@ -30,5 +30,15 @@
       <%= render partial: "decks/deck_card", collection: @decks, as: :deck,
                  locals: { due_counts: @due_counts } %>
     </div>
+  <% else %>
+    <div style="margin-top: 2.5rem;">
+      <%= render "shared/empty_state",
+            icon: "rectangle_stack",
+            title: "No decks yet",
+            description: "Create your first deck to start studying.",
+            cta_text: "Create Deck",
+            cta_path: new_deck_path,
+            variant: :dashboard %>
+    </div>
   <% end %>
 </div>

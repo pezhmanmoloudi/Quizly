@@ -1,0 +1,35 @@
+<%
+  _variant  = local_assigns.fetch(:variant, :dashboard)
+  _icon     = local_assigns[:icon]
+  _title    = local_assigns[:title]
+  _desc     = local_assigns[:description]
+  _cta_text = local_assigns[:cta_text]
+  _cta_path = local_assigns[:cta_path]
+%>
+<div class="empty-state empty-state--<%= _variant %>">
+  <% if _icon %>
+    <% if _variant == :dashboard %>
+      <div class="empty-state__graphic">
+        <div class="empty-state__graphic-icon">
+          <%= render "shared/icons/#{_icon}" %>
+        </div>
+      </div>
+    <% else %>
+      <div class="empty-state__icon">
+        <%= render "shared/icons/#{_icon}" %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <h3 class="empty-state__title"><%= _title %></h3>
+
+  <% if _desc %>
+    <p class="empty-state__description"><%= _desc %></p>
+  <% end %>
+
+  <% if _cta_text && _cta_path %>
+    <div class="empty-state__actions">
+      <%= link_to _cta_text, _cta_path, class: "btn btn--primary" %>
+    </div>
+  <% end %>
+</div>
