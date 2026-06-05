@@ -1,24 +1,24 @@
 <% content_for :title, "Study: #{@deck.name}" %>
 
-<div class="study-container"
+<div class="study-island"
      data-controller="study-mode"
      data-action="keydown->study-mode#handleKey"
      tabindex="-1"
      aria-label="Study session">
-  <div class="study-header">
-    <h2><%= @deck.name %></h2>
-    <%= link_to "← Exit", @deck, class: "study-exit", data: { study_mode_target: "exitLink" } %>
+
+  <div class="study-island__header">
+    <h2 class="study-island__title"><%= @deck.name %></h2>
+    <% if @card_progress.present? && @cards_total.to_i > 0 %>
+      <span class="study-island__counter"><%= @cards_done %> / <%= @cards_total %></span>
+    <% end %>
+    <%= link_to "← Exit", @deck, class: "study-island__exit",
+          data: { study_mode_target: "exitLink" } %>
   </div>
 
   <% if @card_progress.present? && @cards_total.to_i > 0 %>
-    <div class="study-progress">
-      <div class="study-progress__bar">
-        <div class="study-progress__fill"
-             style="width: <%= (@cards_done.to_f / @cards_total * 100).round %>%"></div>
-      </div>
-      <span class="study-progress__label">
-        <%= @cards_done %> / <%= @cards_total %>
-      </span>
+    <div class="study-island__progress">
+      <div class="study-island__progress-fill"
+           style="width: <%= (@cards_done.to_f / @cards_total * 100).round %>%"></div>
     </div>
   <% end %>
 
@@ -63,25 +63,29 @@
               variant: :study %>
       <% end %>
     <% else %>
-      <div class="flashcard"
+      <div class="study-card"
            data-controller="flashcard"
            data-flashcard-flipped-class="is-flipped">
 
-        <div class="flashcard__front">
-          <%= @card_progress.flashcard.front_content %>
+        <div class="study-card__content">
+          <div class="study-card__front">
+            <%= @card_progress.flashcard.front_content %>
+          </div>
+
+          <div class="study-card__back" data-flashcard-target="back" hidden>
+            <div class="study-card__divider"></div>
+            <%= @card_progress.flashcard.back_content %>
+          </div>
         </div>
 
-        <div class="flashcard__back" data-flashcard-target="back" hidden>
-          <%= @card_progress.flashcard.back_content %>
-        </div>
-
-        <div class="flashcard__actions">
-          <button class="btn btn--secondary"
+        <div class="study-card__footer">
+          <button class="study-reveal-btn"
                   data-flashcard-target="showButton"
                   data-study-mode-target="showButton"
                   data-action="click->flashcard#reveal"
                   aria-keyshortcuts="Space">
             Show Answer
+            <kbd class="study-kbd">Space</kbd>
           </button>
 
           <%= form_with url: card_reviews_path,
@@ -89,19 +93,27 @@
                         style: "display:none" do |f| %>
             <%= hidden_field_tag :card_progress_id, @card_progress.id %>
             <div class="rating-buttons">
-              <%= f.submit "Again", name: :rating, value: "again", class: "btn btn--danger",
-                    data: { study_mode_target: "againBtn" }, aria: { keyshortcuts: "1" } %>
-              <%= f.submit "Hard",  name: :rating, value: "hard",  class: "btn btn--warning",
-                    data: { study_mode_target: "hardBtn" },  aria: { keyshortcuts: "2" } %>
-              <%= f.submit "Good",  name: :rating, value: "good",  class: "btn btn--primary",
-                    data: { study_mode_target: "goodBtn" },  aria: { keyshortcuts: "3" } %>
-              <%= f.submit "Easy",  name: :rating, value: "easy",  class: "btn btn--success",
-                    data: { study_mode_target: "easyBtn" },  aria: { keyshortcuts: "4" } %>
+              <%= f.submit "Again", name: :rating, value: "again",
+                    class: "rating-btn rating-btn--again",
+                    data: { study_mode_target: "againBtn" },
+                    aria: { keyshortcuts: "1" } %>
+              <%= f.submit "Hard",  name: :rating, value: "hard",
+                    class: "rating-btn rating-btn--hard",
+                    data: { study_mode_target: "hardBtn" },
+                    aria: { keyshortcuts: "2" } %>
+              <%= f.submit "Good",  name: :rating, value: "good",
+                    class: "rating-btn rating-btn--good",
+                    data: { study_mode_target: "goodBtn" },
+                    aria: { keyshortcuts: "3" } %>
+              <%= f.submit "Easy",  name: :rating, value: "easy",
+                    class: "rating-btn rating-btn--easy",
+                    data: { study_mode_target: "easyBtn" },
+                    aria: { keyshortcuts: "4" } %>
             </div>
           <% end %>
-        </div>
 
-        <p class="keyboard-hint" aria-hidden="true">Space to reveal &middot; 1 Again &middot; 2 Hard &middot; 3 Good &middot; 4 Easy &middot; Esc to exit</p>
+          <p class="keyboard-hint" aria-hidden="true">Space to reveal &middot; 1 Again &middot; 2 Hard &middot; 3 Good &middot; 4 Easy &middot; Esc to exit</p>
+        </div>
       </div>
     <% end %>
   <% end %>
