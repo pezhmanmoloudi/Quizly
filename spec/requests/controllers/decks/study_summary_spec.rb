@@ -11,14 +11,14 @@ RSpec.describe "Study session summary", type: :request do
       card = create(:flashcard, deck: deck)
       create(:card_progress, :due, user: user, flashcard: card)
       get study_deck_path(deck)
-      expect(response.body).to include("study-progress")
+      expect(response.body).to include("study-island__progress")
     end
 
     it "does not show progress bar on all-caught-up screen" do
       card = create(:flashcard, deck: deck)
       create(:card_progress, :future, user: user, flashcard: card)
       get study_deck_path(deck)
-      expect(response.body).not_to include("study-progress__bar")
+      expect(response.body).not_to include("study-island__progress")
     end
   end
 

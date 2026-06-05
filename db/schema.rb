@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_06_03_120159) do
+ActiveRecord::Schema[8.1].define(version: 2026_06_05_213404) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
@@ -52,6 +52,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_03_120159) do
     t.index ["flashcard_id"], name: "index_card_progresses_on_flashcard_id"
     t.index ["next_review_at"], name: "index_card_progresses_on_next_review_at"
     t.index ["user_id", "flashcard_id"], name: "index_card_progresses_on_user_id_and_flashcard_id", unique: true
+    t.index ["user_id", "next_review_at"], name: "index_card_progresses_on_user_id_and_next_review_at"
     t.index ["user_id"], name: "index_card_progresses_on_user_id"
   end
 
@@ -79,6 +80,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_03_120159) do
     t.integer "position", default: 0
     t.datetime "updated_at", null: false
     t.index ["deck_id"], name: "index_flashcards_on_deck_id"
+    t.index ["position"], name: "index_flashcards_on_position"
   end
 
   create_table "sessions", force: :cascade do |t|

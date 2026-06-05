@@ -7,9 +7,11 @@ export default class extends Controller {
   connect() {
     this.selected = null
     this.matched = 0
+    this.isProcessing = false
   }
 
   select(event) {
+    if (this.isProcessing) return
     const tile = event.currentTarget
     if (tile.classList.contains("is-matched") || tile.classList.contains("is-wrong")) return
 
@@ -44,10 +46,12 @@ export default class extends Controller {
       prev.classList.add("is-wrong")
       tile.classList.add("is-wrong")
       this.selected = null
+      this.isProcessing = true
 
       setTimeout(() => {
         prev.classList.remove("is-wrong")
         tile.classList.remove("is-wrong")
+        this.isProcessing = false
       }, 700)
     }
   }

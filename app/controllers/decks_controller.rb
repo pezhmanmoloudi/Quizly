@@ -4,13 +4,18 @@ class DecksController < ApplicationController
   before_action :set_accessible_deck, only: [:show, :study, :flashcard, :match, :fork]
 
   def index
-    @decks = Current.user.decks.includes(:flashcards).order(created_at: :desc)
+    @sort  = params[:sort].in?(%w[az most_due]) ? params[:sort] : "recent"
+    order  = @sort == "az" ? { name: :asc } : { created_at: :desc }
+    @decks = Current.user.decks.includes(:flashcards).order(order)
+
     @due_counts = CardProgress.due
                               .unscope(:order)
                               .joins(:flashcard)
                               .where(user: Current.user, flashcards: { deck_id: @decks.map(&:id) })
                               .group("flashcards.deck_id")
                               .count
+
+    @decks = @decks.sort_by { |d| -(@due_counts[d.id] || 0) } if @sort == "most_due"
   end
 
   ITEMS_PER_PAGE_OPTIONS = [5, 10, 15, 20, 30].freeze

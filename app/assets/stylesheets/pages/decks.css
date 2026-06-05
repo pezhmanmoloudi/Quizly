@@ -1,3 +1,10 @@
+/* ── Deck index toolbar (sort controls) ── */
+.deck-index__toolbar {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 1rem;
+}
+
 /* Deck detail page — header with name, meta, and description */
 
 .deck-detail-header {

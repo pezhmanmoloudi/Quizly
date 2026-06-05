@@ -78,4 +78,5 @@
 
 @media (max-width: 600px) {
   .match-game__grid { grid-template-columns: repeat(2, 1fr); }
+  .match-tile { min-height: 100px; }
 }

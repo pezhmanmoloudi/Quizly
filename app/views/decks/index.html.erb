@@ -5,6 +5,16 @@
     <h1>My Decks</h1>
   </div>
 
+  <div class="deck-index__toolbar">
+    <%= form_with url: decks_path, method: :get,
+                  data: { controller: "auto-submit" } do |f| %>
+      <%= f.select :sort,
+            [["Recent", "recent"], ["A–Z", "az"], ["Most Due", "most_due"]],
+            { selected: @sort },
+            { class: "form-select", data: { action: "change->auto-submit#submit" } } %>
+    <% end %>
+  </div>
+
   <div id="decks-index-section">
     <% if @decks.empty? %>
       <%= render "shared/empty_state",
