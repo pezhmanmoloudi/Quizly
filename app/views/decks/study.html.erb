@@ -1,9 +1,13 @@
 <% content_for :title, "Study: #{@deck.name}" %>
 
-<div class="study-container">
+<div class="study-container"
+     data-controller="study-mode"
+     data-action="keydown->study-mode#handleKey"
+     tabindex="-1"
+     aria-label="Study session">
   <div class="study-header">
     <h2><%= @deck.name %></h2>
-    <%= link_to "← Exit", @deck, class: "study-exit" %>
+    <%= link_to "← Exit", @deck, class: "study-exit", data: { study_mode_target: "exitLink" } %>
   </div>
 
   <% if @card_progress.present? && @cards_total.to_i > 0 %>
@@ -69,7 +73,9 @@
         <div class="flashcard__actions">
           <button class="btn btn--secondary"
                   data-flashcard-target="showButton"
-                  data-action="click->flashcard#reveal">
+                  data-study-mode-target="showButton"
+                  data-action="click->flashcard#reveal"
+                  aria-keyshortcuts="Space">
             Show Answer
           </button>
 
@@ -78,13 +84,19 @@
                         style: "display:none" do |f| %>
             <%= hidden_field_tag :card_progress_id, @card_progress.id %>
             <div class="rating-buttons">
-              <%= f.submit "Again", name: :rating, value: "again", class: "btn btn--danger" %>
-              <%= f.submit "Hard",  name: :rating, value: "hard",  class: "btn btn--warning" %>
-              <%= f.submit "Good",  name: :rating, value: "good",  class: "btn btn--primary" %>
-              <%= f.submit "Easy",  name: :rating, value: "easy",  class: "btn btn--success" %>
+              <%= f.submit "Again", name: :rating, value: "again", class: "btn btn--danger",
+                    data: { study_mode_target: "againBtn" }, aria: { keyshortcuts: "1" } %>
+              <%= f.submit "Hard",  name: :rating, value: "hard",  class: "btn btn--warning",
+                    data: { study_mode_target: "hardBtn" },  aria: { keyshortcuts: "2" } %>
+              <%= f.submit "Good",  name: :rating, value: "good",  class: "btn btn--primary",
+                    data: { study_mode_target: "goodBtn" },  aria: { keyshortcuts: "3" } %>
+              <%= f.submit "Easy",  name: :rating, value: "easy",  class: "btn btn--success",
+                    data: { study_mode_target: "easyBtn" },  aria: { keyshortcuts: "4" } %>
             </div>
           <% end %>
         </div>
+
+        <p class="keyboard-hint" aria-hidden="true">Space to reveal &middot; 1 Again &middot; 2 Hard &middot; 3 Good &middot; 4 Easy &middot; Esc to exit</p>
       </div>
     <% end %>
   <% end %>

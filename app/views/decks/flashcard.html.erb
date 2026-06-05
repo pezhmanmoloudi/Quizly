@@ -2,7 +2,10 @@
 
 <div class="study-container"
      data-controller="flashcard-browse"
-     data-flashcard-browse-total-value="<%= @flashcards.size %>">
+     data-flashcard-browse-total-value="<%= @flashcards.size %>"
+     data-action="keydown->flashcard-browse#handleKey"
+     tabindex="-1"
+     aria-label="Flashcard browse area">
   <div class="study-header">
     <h2><%= @deck.name %></h2>
     <%= link_to "← Exit", @deck, class: "study-exit" %>
@@ -58,6 +61,7 @@
         Next →
       </button>
     </div>
+    <p class="keyboard-hint" aria-hidden="true">← → to navigate &middot; Space to flip</p>
 
     <% unless authenticated? %>
       <div class="guest-cta-banner">
