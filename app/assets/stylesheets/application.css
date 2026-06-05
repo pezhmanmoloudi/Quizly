@@ -39,6 +39,7 @@
 @import url("components/study_mode_selector.css");
 @import url("components/carousel.css");
 @import url("components/continue_studying.css");
+@import url("components/pagination.css");
 
 /* ── 4. Pages ────────────────────────────────────────────── */
 @import url("pages/decks.css");

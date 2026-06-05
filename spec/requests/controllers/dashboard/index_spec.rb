@@ -60,7 +60,6 @@ RSpec.describe "Dashboard#index", type: :request do
         get dashboard_path
         expect(response.body).not_to include("Stranger&#39;s Deck")
       end
-
     end
 
     context "when not authenticated" do
