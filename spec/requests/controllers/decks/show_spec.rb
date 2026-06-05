@@ -100,12 +100,6 @@ RSpec.describe "Decks#show", type: :request do
         get deck_path(public_deck)
         expect(response.body).not_to include("Fork")
       end
-
-      it "shows Explore back link on a public deck" do
-        public_deck = create(:deck, :public, user: user)
-        get deck_path(public_deck)
-        expect(response.body).to include("Explore")
-      end
     end
   end
 end

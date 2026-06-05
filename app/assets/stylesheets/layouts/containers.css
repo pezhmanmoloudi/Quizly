@@ -24,9 +24,6 @@
   margin: 1.5rem 0 0.75rem;
 }
 
-.back-link { margin-top: 1.5rem; }
-.back-link a { color: var(--color-primary); text-decoration: none; font-size: 0.875rem; }
-
 /* ── Public/guest page container (explore, deck detail for guests) ── */
 
 .page-container {
