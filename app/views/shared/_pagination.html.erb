@@ -1,0 +1,36 @@
+<% if pagy.pages > 1 %>
+  <nav class="pagination" aria-label="Pagination">
+
+    <%# Previous arrow %>
+    <% if pagy.prev %>
+      <%= link_to pagy_url_for(pagy, pagy.prev),
+            class: "pagination__btn",
+            rel: "prev",
+            "aria-label": "Previous page" do %>&lsaquo;<% end %>
+    <% else %>
+      <span class="pagination__btn pagination__btn--disabled" aria-disabled="true">&lsaquo;</span>
+    <% end %>
+
+    <%# Page series: Integer = link, String = active, :gap = ellipsis %>
+    <% pagy.series.each do |item| %>
+      <% if item == :gap %>
+        <span class="pagination__gap">&hellip;</span>
+      <% elsif item.is_a?(String) %>
+        <span class="pagination__btn pagination__btn--active" aria-current="page"><%= item %></span>
+      <% else %>
+        <%= link_to item, pagy_url_for(pagy, item), class: "pagination__btn" %>
+      <% end %>
+    <% end %>
+
+    <%# Next arrow %>
+    <% if pagy.next %>
+      <%= link_to pagy_url_for(pagy, pagy.next),
+            class: "pagination__btn",
+            rel: "next",
+            "aria-label": "Next page" do %>&rsaquo;<% end %>
+    <% else %>
+      <span class="pagination__btn pagination__btn--disabled" aria-disabled="true">&rsaquo;</span>
+    <% end %>
+
+  </nav>
+<% end %>

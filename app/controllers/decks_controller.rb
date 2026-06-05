@@ -13,7 +13,12 @@ class DecksController < ApplicationController
                               .count
   end
 
+  ITEMS_PER_PAGE_OPTIONS = [5, 10, 15, 20, 30].freeze
+
   def show
+    items = ITEMS_PER_PAGE_OPTIONS.include?(params[:items].to_i) ? params[:items].to_i : 10
+    @pagy, @flashcards = pagy(@deck.flashcards.order(:position), limit: items)
+    @items_per_page = items
   end
 
   def new

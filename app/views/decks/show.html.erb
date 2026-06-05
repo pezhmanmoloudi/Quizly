@@ -56,63 +56,69 @@
     <% end %>
   </div>
 
-  <% if @deck.user == Current.user %>
-    <div class="section-header">
-      <h2>Cards (<%= @deck.flashcards.count %>)</h2>
-      <%= link_to cards_deck_path(@deck), class: "btn btn--secondary btn-with-icon" do %>
-        <%= render "shared/icons/plus" %> Add Cards
-      <% end %>
-    </div>
-  <% else %>
-    <div class="section-header">
-      <h2>Cards (<%= @deck.flashcards.count %>)</h2>
-    </div>
-  <% end %>
-
-  <% if @deck.flashcards.empty? %>
-    <%= render "shared/empty_state",
-          icon: "plus",
-          title: "No flashcards yet",
-          description: "Add your first card to start studying this deck.",
-          cta_text: (@deck.user == Current.user ? "Add Cards" : nil),
-          cta_path: (@deck.user == Current.user ? cards_deck_path(@deck) : nil),
-          variant: :centered %>
-  <% else %>
-    <div class="flashcard-list">
-      <% @deck.flashcards.each do |card| %>
+  <div class="cards-island">
+    <div class="cards-island__header">
+      <h2 class="cards-island__title">Cards (<%= @deck.flashcards.count %>)</h2>
+      <div class="cards-island__controls">
         <% if @deck.user == Current.user %>
-          <div class="flashcard-row" data-controller="inline-confirm">
-            <div class="flashcard-row__content">
-              <span class="flashcard-row__front"><%= card.front_content %></span>
-              <span class="flashcard-row__sep">→</span>
-              <span class="flashcard-row__back"><%= card.back_content %></span>
-            </div>
-            <div class="flashcard-row__actions" data-inline-confirm-target="actions">
-              <%= link_to edit_flashcard_path(card), class: "btn btn--sm btn--secondary btn-with-icon" do %>
-                <%= render "shared/icons/pencil" %> Edit
-              <% end %>
-              <button type="button" class="btn btn--sm btn--danger btn-with-icon"
-                      data-action="click->inline-confirm#confirmRemove">
-                <%= render "shared/icons/trash" %> Delete
-              </button>
-            </div>
-            <%= render "shared/inline_confirm", message: "Are you sure you want to remove this card?" %>
-            <%= form_with url: flashcard_path(card), method: :delete,
-                  data: { "inline-confirm-target": "deleteForm" } do %>
-            <% end %>
-          </div>
-        <% else %>
-          <div class="flashcard-row">
-            <div class="flashcard-row__content">
-              <span class="flashcard-row__front"><%= card.front_content %></span>
-              <span class="flashcard-row__sep">→</span>
-              <span class="flashcard-row__back"><%= card.back_content %></span>
-            </div>
-          </div>
+          <%= link_to cards_deck_path(@deck), class: "btn btn--secondary btn-with-icon btn--sm" do %>
+            <%= render "shared/icons/plus" %> Add Card
+          <% end %>
         <% end %>
+        <%= form_with url: deck_path(@deck), method: :get,
+              data: { turbo_action: "replace" }, class: "items-per-page-form" do |f| %>
+          <%= f.select :items,
+                options_for_select([[5, 5], [10, 10], [15, 15], [20, 20], [30, 30]], @items_per_page),
+                {},
+                { class: "items-per-page-select",
+                  onchange: "this.form.submit()",
+                  title: "Cards per page",
+                  "aria-label": "Cards per page" } %>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="cards-island__body">
+      <% if @flashcards.empty? %>
+        <%= render "shared/empty_state",
+              icon: "plus",
+              title: "No flashcards yet",
+              description: "Add your first card to start studying this deck.",
+              cta_text: (@deck.user == Current.user ? "Add Cards" : nil),
+              cta_path: (@deck.user == Current.user ? cards_deck_path(@deck) : nil),
+              variant: :centered %>
+      <% else %>
+        <div class="cards-grid">
+          <% @flashcards.each do |card| %>
+            <div class="cards-grid__item" data-controller="<%= @deck.user == Current.user ? 'inline-confirm' : '' %>">
+              <div class="cards-grid__front"><%= card.front_content %></div>
+              <span class="cards-grid__sep">→</span>
+              <div class="cards-grid__back"><%= card.back_content %></div>
+              <% if @deck.user == Current.user %>
+                <div class="cards-grid__actions" data-inline-confirm-target="actions">
+                  <%= link_to edit_flashcard_path(card), class: "btn btn--xs btn--secondary btn-with-icon" do %>
+                    <%= render "shared/icons/pencil" %> Edit
+                  <% end %>
+                  <button type="button" class="btn btn--xs btn--danger btn-with-icon"
+                          data-action="click->inline-confirm#confirmRemove">
+                    <%= render "shared/icons/trash" %> Delete
+                  </button>
+                </div>
+                <%= render "shared/inline_confirm", message: "Are you sure you want to remove this card?" %>
+                <%= form_with url: flashcard_path(card), method: :delete,
+                      data: { "inline-confirm-target": "deleteForm" } do %>
+                <% end %>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+
+        <div class="cards-island__pagination">
+          <%= render "shared/pagination", pagy: @pagy %>
+        </div>
       <% end %>
     </div>
-  <% end %>
+  </div>
 
   <div class="back-link">
     <% if authenticated? %>

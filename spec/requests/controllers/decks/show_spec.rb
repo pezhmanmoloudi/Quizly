@@ -33,6 +33,39 @@ RSpec.describe "Decks#show", type: :request do
         get deck_path(deck)
         expect(response.body).to include("Hola")
       end
+
+      it "renders the cards island container" do
+        get deck_path(deck)
+        expect(response.body).to include("cards-island")
+      end
+
+      it "renders the items-per-page selector" do
+        get deck_path(deck)
+        expect(response.body).to include("items-per-page-select")
+      end
+
+      it "defaults to 10 items per page" do
+        create_list(:flashcard, 12, deck: deck)
+        get deck_path(deck)
+        expect(response.body).to include("cards-grid")
+      end
+
+      it "respects a valid items param" do
+        create_list(:flashcard, 12, deck: deck)
+        get deck_path(deck), params: { items: 5 }
+        expect(response).to have_http_status(:ok)
+      end
+
+      it "ignores an invalid items param and defaults to 10" do
+        get deck_path(deck), params: { items: 999 }
+        expect(response).to have_http_status(:ok)
+      end
+
+      it "shows pagination when cards exceed the page size" do
+        create_list(:flashcard, 12, deck: deck)
+        get deck_path(deck), params: { items: 5 }
+        expect(response.body).to include("pagination__btn")
+      end
     end
 
     context "when authenticated as another user" do
