@@ -18,12 +18,6 @@ RSpec.describe "Decks#cards", type: :request do
         expect(response.body).to include(deck.name)
       end
 
-      it "shows existing cards as editable rows" do
-        card = create(:flashcard, deck: deck, front_content: "Hola")
-        get cards_deck_path(deck)
-        expect(response.body).to include("Hola")
-      end
-
       it "returns 404 for another user's deck" do
         other_deck = create(:deck, user: create(:user))
         get cards_deck_path(other_deck)

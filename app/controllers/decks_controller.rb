@@ -23,7 +23,7 @@ class DecksController < ApplicationController
   def create
     @deck = Current.user.decks.build(deck_params)
     if @deck.save
-      redirect_to @deck, notice: "Deck created."
+      redirect_to cards_deck_path(@deck), notice: "Deck created."
     else
       render :new, status: :unprocessable_entity
     end
@@ -80,8 +80,7 @@ class DecksController < ApplicationController
   end
 
   def cards
-    count = @deck.flashcards.empty? ? 3 : 1
-    count.times { @deck.flashcards.build }
+    @initial_rows = @deck.flashcards.exists? ? 1 : 2
   end
 
   def update_cards

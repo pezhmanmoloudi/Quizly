@@ -1,32 +1,30 @@
-<% content_for :title, "Edit Cards — #{@deck.name}" %>
+<% content_for :title, "Add Cards — #{@deck.name}" %>
 
-<div class="cards-editor-page" data-controller="card-editor">
+<div class="cards-editor-page"
+     data-controller="card-editor"
+     data-card-editor-create-url-value="<%= deck_flashcards_path(@deck) %>">
 
   <header class="card-editor-header">
     <%= link_to deck_path(@deck), class: "card-editor-header__back",
           aria: { label: "Back to #{@deck.name}" } do %>
       ← <span class="card-editor-header__deck-name"><%= @deck.name %></span>
     <% end %>
-    <%= submit_tag "Save Cards →", form: "cards-editor-form", class: "btn btn--primary" %>
   </header>
 
-  <%= form_with model: @deck, url: update_cards_deck_path(@deck), method: :patch,
-        id: "cards-editor-form" do |f| %>
-    <div class="cards-editor-body">
-      <div class="card-rows-list" data-card-editor-target="cardsList">
-        <%= f.fields_for :flashcards do |ff| %>
-          <%= render "card_row", ff: ff %>
-        <% end %>
-      </div>
-
-      <div class="cards-editor-add">
-        <button type="button" class="btn btn--outline btn-with-icon"
-                data-action="click->card-editor#addCard">
-          <%= render "shared/icons/plus" %> Add a card
-        </button>
-      </div>
+  <div class="cards-editor-body">
+    <div class="card-rows-list" data-card-editor-target="cardsList">
+      <% @initial_rows.times do %>
+        <%= render "card_row_template" %>
+      <% end %>
     </div>
-  <% end %>
+
+    <div class="cards-editor-add">
+      <button type="button" class="btn btn--outline btn-with-icon"
+              data-action="click->card-editor#addCard">
+        <%= render "shared/icons/plus" %> Add a card
+      </button>
+    </div>
+  </div>
 
   <template data-card-editor-target="template">
     <%= render "card_row_template" %>

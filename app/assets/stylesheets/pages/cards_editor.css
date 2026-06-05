@@ -34,6 +34,7 @@
 }
 
 .card-row[hidden] { display: none; }
+.card-row[data-saved="true"] { border-color: var(--color-success, #22c55e); }
 
 .card-row__header {
   display: flex;

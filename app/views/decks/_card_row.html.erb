@@ -20,7 +20,8 @@
       <%= ff.text_area :back_content,
             class: "card-editor-field",
             placeholder: "Enter definition",
-            rows: 3 %>
+            rows: 3,
+            data: { action: "keydown->card-editor#handleDefinitionKeydown" } %>
     </div>
   </div>
   <% if ff.object.persisted? %>
