@@ -1,6 +1,6 @@
 class DecksController < ApplicationController
   allow_unauthenticated_access only: [:show, :flashcard, :match]
-  before_action :set_deck, only: [:edit, :update, :destroy]
+  before_action :set_deck, only: [:edit, :update, :destroy, :cards, :update_cards]
   before_action :set_accessible_deck, only: [:show, :study, :flashcard, :match, :fork]
 
   def index
@@ -79,6 +79,19 @@ class DecksController < ApplicationController
     @cards = @deck.flashcards.limit(8).to_a.shuffle
   end
 
+  def cards
+    count = @deck.flashcards.empty? ? 3 : 1
+    count.times { @deck.flashcards.build }
+  end
+
+  def update_cards
+    if @deck.update(cards_params)
+      redirect_to @deck, notice: "Cards saved."
+    else
+      render :cards, status: :unprocessable_entity
+    end
+  end
+
   def fork
     raise ActiveRecord::RecordNotFound unless @deck.public?
 
@@ -122,5 +135,11 @@ class DecksController < ApplicationController
 
   def deck_params
     params.require(:deck).permit(:name, :description, :language_code, :visibility, :tag_list)
+  end
+
+  def cards_params
+    params.require(:deck).permit(
+      flashcards_attributes: [:id, :front_content, :back_content, :position, :_destroy]
+    )
   end
 end

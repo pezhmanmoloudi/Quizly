@@ -3,6 +3,9 @@ class Deck < ApplicationRecord
   belongs_to :forked_from, class_name: "Deck", optional: true
   has_many :forks, class_name: "Deck", foreign_key: :forked_from_id, dependent: :nullify
   has_many :flashcards, dependent: :destroy
+  accepts_nested_attributes_for :flashcards,
+    reject_if: :all_blank,
+    allow_destroy: true
 
   scope :public_decks, -> { where(visibility: "public") }
   scope :popular, -> { order(forks_count: :desc, created_at: :desc) }

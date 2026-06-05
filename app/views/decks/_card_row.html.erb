@@ -1,0 +1,30 @@
+<div class="card-row" data-card-editor-target="row">
+  <div class="card-row__header">
+    <span class="card-row__number">1</span>
+    <button type="button" class="card-row__delete"
+            data-action="click->card-editor#removeCard"
+            aria-label="Remove card">
+      <%= render "shared/icons/trash" %>
+    </button>
+  </div>
+  <div class="card-row__panels">
+    <div class="card-row__panel">
+      <span class="card-editor-panel__label">Term</span>
+      <%= ff.text_area :front_content,
+            class: "card-editor-field",
+            placeholder: "Enter term",
+            rows: 3 %>
+    </div>
+    <div class="card-row__panel">
+      <span class="card-editor-panel__label">Definition</span>
+      <%= ff.text_area :back_content,
+            class: "card-editor-field",
+            placeholder: "Enter definition",
+            rows: 3 %>
+    </div>
+  </div>
+  <% if ff.object.persisted? %>
+    <%= ff.hidden_field :id %>
+    <%= ff.hidden_field :_destroy, value: "0", class: "destroy-field" %>
+  <% end %>
+</div>
