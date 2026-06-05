@@ -27,9 +27,6 @@
     <% else %>
       <div class="empty-state">
         <p>No public decks yet. Be the first to share one.</p>
-        <% if authenticated? %>
-          <%= link_to "Create a Deck", new_deck_path, class: "btn btn--primary btn--sm" %>
-        <% end %>
       </div>
     <% end %>
   <% end %>

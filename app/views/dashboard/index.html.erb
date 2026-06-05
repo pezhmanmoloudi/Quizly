@@ -21,34 +21,14 @@
     </div>
   </div>
 
-  <div class="section-header" style="margin-top: 2rem;">
-    <h2>My Library</h2>
-  </div>
-
-  <div id="decks-section">
-    <% if @decks.empty? %>
-      <div class="empty-state--centered">
-        <div class="empty-state__icon">📚</div>
-        <h3 class="empty-state__title">Create your first deck</h3>
-        <p class="empty-state__description">Start building flashcards and track your learning progress.</p>
-        <%= link_to "Create a Deck", new_deck_path, class: "btn btn--primary" %>
-      </div>
-    <% else %>
-      <div id="decks-grid" class="deck-grid">
-        <% @decks.each do |deck| %>
-          <%= render "decks/deck_card", deck: deck, due_counts: @due_counts %>
-        <% end %>
-      </div>
-    <% end %>
-  </div>
-
-  <% if @popular_decks.any? %>
+  <% if @decks.any? %>
     <div class="section-header" style="margin-top: 2.5rem;">
-      <h2>Explore Popular Decks</h2>
-      <%= link_to "See all", explore_path, class: "section-header__link" %>
+      <h2>My Decks</h2>
+      <%= link_to "See all", decks_path, class: "section-header__link" %>
     </div>
     <div class="deck-grid">
-      <%= render partial: "explore/deck_card", collection: @popular_decks, as: :deck %>
+      <%= render partial: "decks/deck_card", collection: @decks, as: :deck,
+                 locals: { due_counts: @due_counts } %>
     </div>
   <% end %>
 </div>

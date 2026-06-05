@@ -54,8 +54,7 @@ RSpec.describe "Decks#destroy", type: :request do
           expect {
             delete deck_path(deck_to_delete), headers: { "Accept" => "text/vnd.turbo-stream.html" }
           }.to change(Deck, :count).by(-1)
-          expect(response.body).to include("decks-section")
-          expect(response.body).to include("Create your first deck")
+          expect(response.body).to include("decks-index-section")
         end
 
         it "updates the total-decks-count stat" do
