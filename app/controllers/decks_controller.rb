@@ -3,22 +3,29 @@ class DecksController < ApplicationController
   before_action :set_deck, only: [:edit, :update, :destroy, :cards, :update_cards]
   before_action :set_accessible_deck, only: [:show, :study, :flashcard, :match, :fork, :learn, :test]
 
+  DECK_INDEX_PER_PAGE   = 12
+  ITEMS_PER_PAGE_OPTIONS = [5, 10, 15, 20, 30].freeze
+
   def index
     @sort  = params[:sort].in?(%w[az most_due]) ? params[:sort] : "recent"
     order  = @sort == "az" ? { name: :asc } : { created_at: :desc }
-    @decks = Current.user.decks.includes(:flashcards).order(order)
+
+    decks_scope = Current.user.decks.includes(:flashcards).order(order)
 
     @due_counts = CardProgress.due
                               .unscope(:order)
                               .joins(:flashcard)
-                              .where(user: Current.user, flashcards: { deck_id: @decks.map(&:id) })
+                              .where(user: Current.user, flashcards: { deck_id: decks_scope.map(&:id) })
                               .group("flashcards.deck_id")
                               .count
 
-    @decks = @decks.sort_by { |d| -(@due_counts[d.id] || 0) } if @sort == "most_due"
+    if @sort == "most_due"
+      sorted = decks_scope.sort_by { |d| -(@due_counts[d.id] || 0) }
+      @pagy, @decks = pagy_array(sorted, limit: DECK_INDEX_PER_PAGE)
+    else
+      @pagy, @decks = pagy(decks_scope, limit: DECK_INDEX_PER_PAGE)
+    end
   end
-
-  ITEMS_PER_PAGE_OPTIONS = [5, 10, 15, 20, 30].freeze
 
   def show
     items = ITEMS_PER_PAGE_OPTIONS.include?(params[:items].to_i) ? params[:items].to_i : 10
@@ -51,11 +58,16 @@ class DecksController < ApplicationController
   end
 
   def destroy
+    from_page = [params[:from_page].to_i, 1].max
     @deck.destroy
-    flash.now[:notice] = "Deck deleted."
+
+    remaining = Current.user.decks.count
+    last_page = [(remaining.to_f / DECK_INDEX_PER_PAGE).ceil, 1].max
+    safe_page = [from_page, last_page].min
+
     respond_to do |format|
-      format.turbo_stream
-      format.html { redirect_to decks_path, notice: "Deck deleted." }
+      format.turbo_stream { redirect_to decks_path(page: safe_page), notice: "Deck deleted." }
+      format.html         { redirect_to decks_path(page: safe_page), notice: "Deck deleted." }
     end
   end
 
