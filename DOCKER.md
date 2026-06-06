@@ -6,7 +6,8 @@ Non-Docker local development continues to use SQLite unchanged.
 ## Prerequisites
 
 - Docker Desktop 4.x or Docker Engine 24+ with Compose v2
-- The `config/master.key` file (ask a teammate or check your secrets manager)
+
+`config/master.key` is **not required** for local development. A secret key is auto-generated in `tmp/development_secret.txt` on first boot.
 
 ## First-Time Setup
 
@@ -16,7 +17,7 @@ Non-Docker local development continues to use SQLite unchanged.
 cp .env.example .env
 ```
 
-Open `.env` and set `RAILS_MASTER_KEY` to the value from `config/master.key`.
+No changes to `.env` are needed for local development — the file is ready to use as-is.
 
 **2. Build and start the application**
 

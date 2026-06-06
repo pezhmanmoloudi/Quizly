@@ -3,6 +3,18 @@ require "active_support/core_ext/integer/time"
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
+  # ── Development credentials ───────────────────────────────────────────────────
+  # Rails credentials (config/credentials.yml.enc) are NOT required in development.
+  # A unique secret key is auto-generated on first boot and stored in tmp/
+  # (gitignored). No config/master.key or RAILS_MASTER_KEY env var is needed.
+  # Deleting tmp/development_secret.txt regenerates the key on next boot
+  # (existing sessions will be invalidated — just log in again).
+  config.require_master_key = false
+  _dev_secret_file = Rails.root.join("tmp/development_secret.txt")
+  _dev_secret_file.write(SecureRandom.hex(64)) unless _dev_secret_file.exist?
+  config.secret_key_base = _dev_secret_file.read.strip
+  # ─────────────────────────────────────────────────────────────────────────────
+
   # Make code changes take effect immediately without server restart.
   config.enable_reloading = true
 
