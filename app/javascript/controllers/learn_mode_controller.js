@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["answerInput", "submitBtn", "exitLink"]
+  static targets = ["answerInput", "submitBtn", "continueBtn", "exitLink"]
 
   #isSubmitting = false
 
@@ -13,6 +13,16 @@ export default class extends Controller {
     this.#isSubmitting = false
   }
 
+  // Focus the continue button as soon as feedback is rendered
+  continueBtnTargetConnected(target) {
+    target.focus()
+  }
+
+  // Reset submission gate when a fresh answer input appears (new card loaded)
+  answerInputTargetConnected() {
+    this.#isSubmitting = false
+  }
+
   handleKey(event) {
     if (event.ctrlKey || event.metaKey || event.altKey) return
 
@@ -20,7 +30,17 @@ export default class extends Controller {
       case "Enter":
         if (this.#activeTagAllowsEnter()) return
         event.preventDefault()
-        this.#submitAnswer()
+        if (this.hasContinueBtnTarget) {
+          this.continueBtnTarget.click()
+        } else {
+          this.#submitAnswer()
+        }
+        break
+      case " ":
+        if (this.hasContinueBtnTarget) {
+          event.preventDefault()
+          this.continueBtnTarget.click()
+        }
         break
       case "Escape":
         if (this.hasExitLinkTarget) this.exitLinkTarget.click()

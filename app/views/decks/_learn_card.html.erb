@@ -24,8 +24,9 @@
 
     <div class="learn-card__actions">
       <%= link_to learn_deck_path(item.flashcard.deck),
-            class: "btn btn--primary",
-            data: { turbo_frame: "learn_card" } do %>
+            class: "btn btn--primary learn-card__continue",
+            data: { turbo_frame: "learn_card",
+                    "learn-mode-target": "continueBtn" } do %>
         Continue →
       <% end %>
     </div>
@@ -36,7 +37,7 @@
                           "learn-mode-card-target": "form" } do |f| %>
       <%= hidden_field_tag :learn_session_item_id, item.id %>
 
-      <div class="learn-card__input-wrap">
+      <div class="learn-card__answer-row">
         <%= f.text_field :answer,
               placeholder: "Type your answer…",
               autocomplete: "off",
@@ -47,12 +48,12 @@
                       "learn-mode-card-target": "input" },
               autofocus: true,
               aria: { label: "Your answer" } %>
-      </div>
-
-      <div class="learn-card__footer">
         <%= f.submit "Submit",
               class: "btn btn--primary learn-card__submit",
               data: { "learn-mode-target": "submitBtn" } %>
+      </div>
+
+      <div class="learn-card__footer">
         <p class="keyboard-hint" aria-hidden="true">Enter to submit</p>
       </div>
     <% end %>

@@ -1,5 +1,5 @@
 class QuestionEngine
-  TYPES = %w[multiple_choice written true_false].freeze
+  TYPES = %w[multiple_choice written true_false matching].freeze
   MC_MIN_POOL = 4
 
   def self.generate(flashcards:, types: TYPES, count: nil)
@@ -11,6 +11,14 @@ class QuestionEngine
     case question["type"]
     when "written"
       normalize(user_answer) == normalize(correct)
+    when "matching"
+      begin
+        user_pairs    = JSON.parse(user_answer.to_s).transform_values { |v| v.to_s.strip }
+        correct_pairs = JSON.parse(correct).transform_values { |v| v.to_s.strip }
+        user_pairs == correct_pairs
+      rescue JSON::ParserError
+        false
+      end
     else
       user_answer.to_s.strip == correct.strip
     end
@@ -39,6 +47,8 @@ class QuestionEngine
   def usable_types_for(flashcard)
     types = @types.dup
     types.delete("multiple_choice") if @flashcards.size < MC_MIN_POOL
+    types.delete("matching")        if @flashcards.size < MC_MIN_POOL
+    types.delete("true_false")      if @flashcards.size < 2
     types.any? ? types : [ "written" ]
   end
 
@@ -61,6 +71,23 @@ class QuestionEngine
       "prompt"         => flashcard.front_content,
       "correct_answer" => flashcard.back_content,
       "options"        => []
+    }
+  end
+
+  def build_matching(flashcard)
+    others = (@flashcards - [ flashcard ]).sample(3)
+    pool   = ([ flashcard ] + others).first(4)
+    pairs  = pool.map { |c| { "id" => c.id.to_s, "term" => c.front_content, "definition" => c.back_content } }
+    correct = pairs.each_with_object({}) { |p, h| h[p["id"]] = p["definition"] }
+    {
+      "flashcard_id"   => flashcard.id,
+      "type"           => "matching",
+      "prompt"         => "Match each term to its definition",
+      "correct_answer" => correct.to_json,
+      "options"        => {
+        "terms"       => pairs.map { |p| { "id" => p["id"], "text" => p["term"] } },
+        "definitions" => pairs.map { |p| { "id" => p["id"], "text" => p["definition"] } }.shuffle
+      }
     }
   end
 

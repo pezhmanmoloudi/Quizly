@@ -1,10 +1,15 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["exitLink"]
+  static targets = ["continueBtn", "exitLink"]
 
   connect() {
     this.element.focus()
+  }
+
+  // Auto-focus the continue button the moment feedback is rendered
+  continueBtnTargetConnected(target) {
+    target.focus()
   }
 
   handleKey(event) {
@@ -14,8 +19,17 @@ export default class extends Controller {
       case "Escape":
         if (this.hasExitLinkTarget) this.exitLinkTarget.click()
         break
+      case "Enter":
+        if (this.hasContinueBtnTarget) {
+          event.preventDefault()
+          this.continueBtnTarget.click()
+        }
+        break
       case " ":
-        this.#triggerContinue(event)
+        if (this.hasContinueBtnTarget) {
+          event.preventDefault()
+          this.continueBtnTarget.click()
+        }
         break
       case "1":
       case "2":
@@ -24,13 +38,6 @@ export default class extends Controller {
         this.#selectOptionByIndex(parseInt(event.key, 10) - 1)
         break
     }
-  }
-
-  #triggerContinue(event) {
-    const btn = this.element.querySelector(".test-question__continue")
-    if (!btn) return
-    event.preventDefault()
-    btn.click()
   }
 
   #selectOptionByIndex(index) {

@@ -18,25 +18,43 @@
       <% else %>
         <span class="test-question__feedback-icon">✗</span>
         <span class="test-question__feedback-label">Incorrect</span>
-        <div class="test-question__correct-answer">
-          Correct answer: <strong><%= question['correct_answer'] %></strong>
-        </div>
+        <% if question['type'] == 'matching' %>
+          <div class="test-question__matching-answer">
+            <% JSON.parse(question['correct_answer']).each do |id, definition| %>
+              <% term = question['options']['terms'].find { |t| t['id'] == id } %>
+              <div class="test-question__matching-pair">
+                <span class="test-question__matching-term"><%= term&.dig('text') %></span>
+                <span class="test-question__matching-arrow">→</span>
+                <span class="test-question__matching-def"><%= definition %></span>
+              </div>
+            <% end %>
+          </div>
+        <% else %>
+          <div class="test-question__correct-answer">
+            Correct answer: <strong><%= question['correct_answer'] %></strong>
+          </div>
+        <% end %>
       <% end %>
     </div>
 
-    <% if local_assigns[:finished] %>
-      <%= link_to "See Results",
-            test_deck_path(test_session.deck),
-            class: "btn btn--primary test-question__continue",
-            autofocus: true,
-            data: { turbo_frame: "test_question", turbo_action: "replace" } %>
-    <% else %>
-      <%= link_to "Continue →",
-            test_deck_path(test_session.deck),
-            class: "btn btn--primary test-question__continue",
-            autofocus: true,
-            data: { turbo_frame: "test_question" } %>
-    <% end %>
+    <div class="test-question__continue-wrap">
+      <% if local_assigns[:finished] %>
+        <%= link_to test_deck_path(test_session.deck),
+              class: "btn btn--primary test-question__continue",
+              data: { turbo_frame: "test_question", turbo_action: "replace",
+                      "test-mode-target": "continueBtn" } do %>
+          See Results →
+        <% end %>
+      <% else %>
+        <%= link_to test_deck_path(test_session.deck),
+              class: "btn btn--primary test-question__continue",
+              data: { turbo_frame: "test_question",
+                      "test-mode-target": "continueBtn" } do %>
+          Continue →
+        <% end %>
+      <% end %>
+      <p class="keyboard-hint" aria-hidden="true">Space or Enter to continue</p>
+    </div>
 
   <% elsif question['type'] == 'multiple_choice' %>
     <%= form_with url: test_answers_path,
@@ -76,17 +94,60 @@
                           "test-mode-question-target": "form" } do |f| %>
       <div class="test-question__written">
         <label class="test-question__written-label">Your answer</label>
-        <%= f.text_field :answer,
-              placeholder: "Type your answer…",
-              autocomplete: "off",
-              autocorrect: "off",
-              spellcheck: "false",
-              class: "test-question__written-input",
-              autofocus: true,
-              aria: { label: "Your answer" } %>
-        <%= f.submit "Submit Answer",
-              class: "btn btn--primary test-question__continue" %>
+        <div class="test-question__written-row">
+          <%= f.text_field :answer,
+                placeholder: "Type your answer…",
+                autocomplete: "off",
+                autocorrect: "off",
+                spellcheck: "false",
+                class: "test-question__written-input",
+                autofocus: true,
+                aria: { label: "Your answer" } %>
+          <%= f.submit "Submit",
+                class: "btn btn--primary test-question__submit-btn" %>
+        </div>
+        <p class="keyboard-hint" aria-hidden="true">Press Enter to submit</p>
       </div>
     <% end %>
+
+  <% elsif question['type'] == 'matching' %>
+    <div class="test-matching"
+         data-controller="test-matching"
+         data-test-matching-total-value="<%= question['options']['terms'].size %>">
+      <div class="test-matching__grid">
+        <div class="test-matching__column test-matching__column--terms">
+          <% question['options']['terms'].each do |term| %>
+            <button type="button"
+                    class="test-matching__tile test-matching__tile--term"
+                    data-test-matching-target="term"
+                    data-id="<%= term['id'] %>"
+                    data-action="click->test-matching#selectTerm">
+              <%= term['text'] %>
+            </button>
+          <% end %>
+        </div>
+        <div class="test-matching__column test-matching__column--defs">
+          <% question['options']['definitions'].each do |defn| %>
+            <button type="button"
+                    class="test-matching__tile test-matching__tile--def"
+                    data-test-matching-target="definition"
+                    data-id="<%= defn['id'] %>"
+                    data-action="click->test-matching#selectDefinition">
+              <%= defn['text'] %>
+            </button>
+          <% end %>
+        </div>
+      </div>
+
+      <%= form_with url: test_answers_path,
+                    data: { turbo_frame: "test_question" } do |f| %>
+        <%= f.hidden_field :answer, value: "",
+              data: { "test-matching-target": "answerInput" } %>
+        <%= f.submit "Submit Matches",
+              class: "btn btn--primary test-question__continue",
+              disabled: true,
+              data: { "test-matching-target": "submit" } %>
+      <% end %>
+    </div>
   <% end %>
 </div>

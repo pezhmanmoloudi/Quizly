@@ -29,19 +29,20 @@
   margin: 0;
 }
 
-/* ── Answer input ── */
-.learn-card__input-wrap {
+/* ── Answer area (input + submit stacked) ── */
+.learn-card__answer-row {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  gap: var(--space-3);
 }
 
 .learn-card__input {
   width: 100%;
-  max-width: 480px;
   padding: var(--space-4) var(--space-5);
   border: 2px solid var(--color-border);
   border-radius: var(--radius-md);
   font-size: var(--text-base);
+  font-family: inherit;
   color: var(--color-text);
   background: var(--color-surface);
   transition: border-color var(--transition-base), box-shadow var(--transition-base);
@@ -53,7 +54,7 @@
   box-shadow: var(--shadow-focus);
 }
 
-/* ── Footer ── */
+/* ── Footer (keyboard hint) ── */
 .learn-card__footer {
   display: flex;
   flex-direction: column;
@@ -62,7 +63,11 @@
 }
 
 .learn-card__submit {
-  min-width: 140px;
+  width: 100%;
+  padding: var(--space-4) var(--space-5);
+  border-radius: var(--radius-md);
+  font-size: var(--text-base);
+  text-align: center;
 }
 
 /* ── Feedback states ── */
@@ -141,6 +146,5 @@
   }
 
   .learn-card__term { font-size: var(--text-xl); }
-  .learn-card__input { max-width: 100%; }
   .learn-summary__actions { flex-direction: column; }
 }
