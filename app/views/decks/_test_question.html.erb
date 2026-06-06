@@ -1,4 +1,4 @@
-<div class="test-question" data-controller="test-mode-question">
+<div class="test-question">
   <div class="test-question__meta">
     <span class="test-question__type-badge test-question__type-badge--<%= question['type'] %>">
       <%= question['type'].humanize %>
@@ -25,18 +25,17 @@
     </div>
 
     <% if local_assigns[:finished] %>
-      <%# Final question — show score summary %>
-      <%= link_to test_deck_path(test_session.deck),
-            class: "btn btn--primary test-question__next",
-            data: { turbo_frame: "test_question", turbo_action: "replace" } do %>
-        See Results
-      <% end %>
+      <%= link_to "See Results",
+            test_deck_path(test_session.deck),
+            class: "btn btn--primary test-question__continue",
+            autofocus: true,
+            data: { turbo_frame: "test_question", turbo_action: "replace" } %>
     <% else %>
-      <%= link_to test_deck_path(test_session.deck),
-            class: "btn btn--primary test-question__next",
-            data: { turbo_frame: "test_question" } do %>
-        Next Question →
-      <% end %>
+      <%= link_to "Continue →",
+            test_deck_path(test_session.deck),
+            class: "btn btn--primary test-question__continue",
+            autofocus: true,
+            data: { turbo_frame: "test_question" } %>
     <% end %>
 
   <% elsif question['type'] == 'multiple_choice' %>
@@ -47,9 +46,7 @@
           <button type="submit"
                   name="answer"
                   value="<%= option %>"
-                  class="test-option"
-                  data-test-mode-question-target="option"
-                  data-action="click->test-mode-question#select">
+                  class="test-option">
             <span class="test-option__letter"><%= ('A'.ord + i).chr %></span>
             <span class="test-option__text"><%= option %></span>
           </button>
@@ -62,15 +59,11 @@
                   data: { turbo_frame: "test_question" } do |f| %>
       <div class="test-question__tf-options">
         <button type="submit" name="answer" value="true"
-                class="test-tf-btn test-tf-btn--true"
-                data-test-mode-question-target="option"
-                data-action="click->test-mode-question#select">
+                class="test-tf-btn test-tf-btn--true">
           ✓ True
         </button>
         <button type="submit" name="answer" value="false"
-                class="test-tf-btn test-tf-btn--false"
-                data-test-mode-question-target="option"
-                data-action="click->test-mode-question#select">
+                class="test-tf-btn test-tf-btn--false">
           ✗ False
         </button>
       </div>
@@ -81,18 +74,18 @@
                   data: { turbo_frame: "test_question",
                           controller: "test-mode-question",
                           "test-mode-question-target": "form" } do |f| %>
-      <div class="learn-card__input-wrap">
+      <div class="test-question__written">
+        <label class="test-question__written-label">Your answer</label>
         <%= f.text_field :answer,
               placeholder: "Type your answer…",
               autocomplete: "off",
               autocorrect: "off",
               spellcheck: "false",
-              class: "learn-card__input",
+              class: "test-question__written-input",
               autofocus: true,
               aria: { label: "Your answer" } %>
-      </div>
-      <div class="learn-card__footer">
-        <%= f.submit "Submit Answer", class: "btn btn--primary" %>
+        <%= f.submit "Submit Answer",
+              class: "btn btn--primary test-question__continue" %>
       </div>
     <% end %>
   <% end %>

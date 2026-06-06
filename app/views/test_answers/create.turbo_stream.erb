@@ -1,5 +1,5 @@
 <% if @finished %>
-  <%= turbo_stream.replace "test_question" do %>
+  <%= turbo_stream.update "test_question" do %>
     <div class="test-summary">
       <div class="session-summary__icon"><%= @correct ? '🎉' : '📝' %></div>
       <h3 class="session-summary__title">Test complete!</h3>
@@ -38,7 +38,7 @@
     </div>
   <% end %>
 <% else %>
-  <%= turbo_stream.replace "test_question" do %>
+  <%= turbo_stream.update "test_question" do %>
     <%= render "decks/test_question",
           question: @question,
           test_session: @test_session,

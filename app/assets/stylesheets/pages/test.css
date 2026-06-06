@@ -129,6 +129,37 @@
 .test-tf-btn:hover  { filter: brightness(1.08); transform: translateY(-1px); }
 .test-tf-btn:disabled { opacity: 0.6; cursor: not-allowed; }
 
+/* ── Written question input ── */
+.test-question__written {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.test-question__written-label {
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+  color: var(--color-muted);
+  text-align: center;
+}
+
+.test-question__written-input {
+  width: 100%;
+  padding: var(--space-4) var(--space-5);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-size: var(--text-base);
+  color: var(--color-text);
+  background: var(--color-surface);
+  transition: border-color var(--transition-base), box-shadow var(--transition-base);
+}
+
+.test-question__written-input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-primary) 15%, transparent);
+}
+
 /* ── Feedback ── */
 .test-question__feedback {
   display: flex;
@@ -158,8 +189,11 @@
   font-size: var(--text-sm);
 }
 
-.test-question__next {
-  align-self: center;
+.test-question__continue {
+  width: 100%;
+  padding: var(--space-4) var(--space-5);
+  font-size: var(--text-base);
+  text-align: center;
 }
 
 /* ── Summary ── */

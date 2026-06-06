@@ -14,6 +14,9 @@ export default class extends Controller {
       case "Escape":
         if (this.hasExitLinkTarget) this.exitLinkTarget.click()
         break
+      case " ":
+        this.#triggerContinue(event)
+        break
       case "1":
       case "2":
       case "3":
@@ -21,6 +24,13 @@ export default class extends Controller {
         this.#selectOptionByIndex(parseInt(event.key, 10) - 1)
         break
     }
+  }
+
+  #triggerContinue(event) {
+    const btn = this.element.querySelector(".test-question__continue")
+    if (!btn) return
+    event.preventDefault()
+    btn.click()
   }
 
   #selectOptionByIndex(index) {

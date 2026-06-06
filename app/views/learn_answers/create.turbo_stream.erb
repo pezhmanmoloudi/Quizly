@@ -1,6 +1,6 @@
 <% if @next_item.nil? %>
   <%# All cards mastered — replace card area AND update progress bar %>
-  <%= turbo_stream.replace "learn_card" do %>
+  <%= turbo_stream.update "learn_card" do %>
     <div class="learn-summary">
       <div class="session-summary__icon">🎓</div>
       <h3 class="session-summary__title">All cards mastered!</h3>
@@ -27,7 +27,7 @@
   <% end %>
 <% else %>
   <%# Show feedback then allow Continue %>
-  <%= turbo_stream.replace "learn_card" do %>
+  <%= turbo_stream.update "learn_card" do %>
     <%= render "decks/learn_card",
           item: @item,
           learn_session: @learn_session,
