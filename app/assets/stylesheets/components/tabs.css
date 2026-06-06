@@ -1,28 +1,28 @@
-/* Tab navigation component (used in settings sidebar) */
+/* Tab navigation component (used in settings tab bar) */
 
 .settings-tab {
-  display: block;
-  width: 100%;
-  text-align: left;
-  padding: 0.625rem 1rem;
+  display: inline-block;
+  padding: 0.875rem 1rem;
   font-size: 0.875rem;
-  color: var(--color-text-secondary);
+  font-weight: 500;
+  font-family: inherit;
+  color: var(--color-muted);
   background: none;
   border: none;
+  border-bottom: 2px solid transparent;
   cursor: pointer;
-  font-family: inherit;
-  transition: background var(--transition-base), color var(--transition-base);
+  margin-bottom: -1px; /* overlap card border-bottom so active line sits flush */
+  transition: color var(--transition-base), border-color var(--transition-base);
 }
 
 .settings-tab:hover {
-  background: var(--color-bg);
   color: var(--color-text);
 }
 
 .settings-tab--active {
   color: var(--color-primary);
   font-weight: 600;
-  background: var(--color-bg);
+  border-bottom-color: var(--color-primary);
 }
 
 .settings-tab:focus-visible {
@@ -31,15 +31,12 @@
 }
 
 @media (max-width: 768px) {
-  .settings-tab {
-    flex-shrink: 0;
-    white-space: nowrap;
-    border-bottom: 2px solid transparent;
-    border-radius: 0;
+  .settings-tab-bar {
+    overflow-x: auto;
   }
 
-  .settings-tab--active {
-    border-bottom-color: var(--color-primary);
-    background: none;
+  .settings-tab {
+    white-space: nowrap;
+    flex-shrink: 0;
   }
 }

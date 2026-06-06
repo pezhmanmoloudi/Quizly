@@ -1,37 +1,57 @@
-/* Two-column sidebar layout (used by account settings) */
+/* Single-card settings layout */
 
-.settings-layout {
-  display: grid;
-  grid-template-columns: 190px 1fr;
-  gap: 1.5rem;
-  align-items: start;
-}
-
-.settings-sidebar {
-  display: flex;
-  flex-direction: column;
+.settings-card {
   background: var(--color-surface);
   border: 1px solid var(--color-border-light);
   border-radius: 10px;
   overflow: hidden;
-  padding: 0.35rem 0;
+}
+
+.settings-tab-bar {
+  display: flex;
+  border-bottom: 1px solid var(--color-border-light);
+  padding: 0 0.5rem;
 }
 
 .settings-content {
+  padding: 2rem;
+}
+
+/* Danger zone — inline row */
+
+.settings-danger-zone {
+  margin-top: 0.75rem;
   background: var(--color-surface);
   border: 1px solid var(--color-border-light);
   border-radius: 10px;
-  padding: 1.5rem;
+  padding: 1.25rem 1.5rem;
+}
+
+.settings-danger-zone__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.settings-danger-zone__text { flex: 1; }
+
+.settings-danger-zone__title {
+  font-size: var(--text-base);
+  font-weight: var(--font-semibold);
+  color: var(--color-danger-text);
+  margin: 0 0 0.25rem;
+}
+
+.settings-danger-zone__description {
+  font-size: var(--text-sm);
+  color: var(--color-muted);
+  margin: 0;
 }
 
 @media (max-width: 768px) {
-  .settings-layout {
-    grid-template-columns: 1fr;
-  }
-
-  .settings-sidebar {
-    flex-direction: row;
-    overflow-x: auto;
-    padding: 0;
+  .settings-danger-zone__row {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }
