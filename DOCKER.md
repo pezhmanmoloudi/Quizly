@@ -26,9 +26,22 @@ docker compose up --build
 
 The app is available at **http://localhost:3001**
 
-The database is created and all migrations are applied automatically on startup — no manual database step required.
+The database schema is created and migrated automatically on startup. Seed data requires one manual step (step 3 below).
 
 Stop with `Ctrl+C`. To run in the background: `docker compose up -d`
+
+**3. Load demo data (recommended for first-time setup)**
+
+```bash
+docker compose exec web bin/rails db:seed
+```
+
+This creates a demo account and sample decks so you can explore all study modes immediately.
+
+| Credential | Value |
+|------------|-------|
+| Email | `demo@quizly.test` |
+| Password | `password123` |
 
 ---
 
@@ -53,10 +66,9 @@ After modifying `Gemfile`:
 
 ```bash
 docker compose build
-docker compose run --rm web bundle install
 ```
 
-The `bundle_cache` named volume persists gems across container restarts — no reinstall needed on every `up`.
+The container entrypoint (`bin/docker-entrypoint`) runs `bundle check || bundle install` on each startup — a rebuild is sufficient. The `bundle_cache` named volume persists gems across container restarts.
 
 ---
 
