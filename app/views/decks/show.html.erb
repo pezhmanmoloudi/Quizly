@@ -99,13 +99,23 @@
               <div class="cards-grid__back"><%= card.back_content %></div>
               <% if @deck.user == Current.user %>
                 <div class="cards-grid__actions" data-inline-confirm-target="actions">
-                  <%= link_to edit_flashcard_path(card), class: "btn btn--xs btn--secondary btn-with-icon" do %>
-                    <%= render "shared/icons/pencil" %> Edit
-                  <% end %>
-                  <button type="button" class="btn btn--xs btn--danger btn-with-icon"
-                          data-action="click->inline-confirm#confirmRemove">
-                    <%= render "shared/icons/trash" %> Delete
-                  </button>
+                  <span class="tooltip-wrap">
+                    <%= link_to edit_flashcard_path(card),
+                          class: "card-action-btn card-action-btn--edit",
+                          aria: { label: "Edit card" } do %>
+                      <%= render "shared/icons/pencil" %>
+                    <% end %>
+                    <span class="tooltip">Edit</span>
+                  </span>
+                  <span class="tooltip-wrap">
+                    <button type="button"
+                            class="card-action-btn card-action-btn--delete"
+                            aria-label="Delete card"
+                            data-action="click->inline-confirm#confirmRemove">
+                      <%= render "shared/icons/trash" %>
+                    </button>
+                    <span class="tooltip">Delete</span>
+                  </span>
                 </div>
                 <%= render "shared/inline_confirm", message: "Are you sure you want to remove this card?" %>
                 <%= form_with url: flashcard_path(card), method: :delete,
