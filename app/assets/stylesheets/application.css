@@ -40,6 +40,7 @@
 @import url("components/carousel.css");
 @import url("components/continue_studying.css");
 @import url("components/pagination.css");
+@import url("components/star_btn.css");
 
 /* ── 4. Pages ────────────────────────────────────────────── */
 @import url("pages/decks.css");
@@ -50,3 +51,5 @@
 @import url("pages/match.css");
 @import url("pages/flashcard_editor.css");
 @import url("pages/cards_editor.css");
+@import url("pages/study_history.css");
+@import url("pages/import.css");

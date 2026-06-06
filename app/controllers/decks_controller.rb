@@ -61,29 +61,36 @@ class DecksController < ApplicationController
 
   def study
     CardProgress.initialize_for_deck(@deck, Current.user)
+
+    @study_mode = params[:mode] == "starred" ? "starred" : "all"
+
     due_scope = Current.user.card_progresses
                             .due
                             .joins(:flashcard)
                             .where(flashcards: { deck_id: @deck.id })
+    due_scope = due_scope.starred if @study_mode == "starred"
 
     @cards_remaining = due_scope.unscope(:order).count
     @card_progress   = due_scope.includes(:flashcard).first
 
     if @card_progress.present?
-      session_key = :"study_total_#{@deck.id}"
-      stored = session[session_key]
-      session[session_key] = @cards_remaining if stored.nil? || @cards_remaining > stored
-      @cards_total = session[session_key]
+      @study_session = find_or_create_study_session(@cards_remaining)
+      session[:study_session_id] = @study_session.id
+      @cards_total = @study_session.cards_total
       @cards_done  = @cards_total - @cards_remaining
-      session[:"study_started_#{@deck.id}"] ||= Time.current.to_i
     else
-      session.delete(:"study_total_#{@deck.id}")
-      session.delete(:"study_started_#{@deck.id}")
+      session.delete(:study_session_id)
     end
   end
 
   def flashcard
     @flashcards = @deck.flashcards
+    if authenticated? && @deck.user == Current.user
+      CardProgress.initialize_for_deck(@deck, Current.user)
+      @card_progresses = Current.user.card_progresses
+                                     .where(flashcard_id: @flashcards.map(&:id))
+                                     .index_by(&:flashcard_id)
+    end
   end
 
   def match
@@ -133,6 +140,18 @@ class DecksController < ApplicationController
 
   def set_deck
     @deck = Current.user.decks.find(params[:id])
+  end
+
+  def find_or_create_study_session(due_count)
+    sid = session[:study_session_id]
+    if sid
+      existing = Current.user.study_sessions.find_by(id: sid, finished_at: nil, deck: @deck)
+      if existing
+        existing.update_columns(cards_total: due_count) if due_count > existing.cards_total
+        return existing
+      end
+    end
+    Current.user.study_sessions.create!(deck: @deck, cards_total: due_count, started_at: Time.current)
   end
 
   def set_accessible_deck

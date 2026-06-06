@@ -7,7 +7,8 @@ class CardProgress < ApplicationRecord
   validates :repetitions, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
   validates :flashcard_id, uniqueness: { scope: :user_id }
 
-  scope :due, -> { where("next_review_at <= ?", Time.current).order(:next_review_at) }
+  scope :due,     -> { where("next_review_at <= ?", Time.current).order(:next_review_at) }
+  scope :starred, -> { where(starred: true) }
 
   def self.initialize_for_deck(deck, user)
     existing_ids = where(user: user, flashcard: deck.flashcards).pluck(:flashcard_id)

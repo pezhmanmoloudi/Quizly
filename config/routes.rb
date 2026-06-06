@@ -33,9 +33,18 @@ Rails.application.routes.draw do
       patch :update_cards
     end
     resources :flashcards, shallow: true
+    resource :import, only: [:new], controller: :imports do
+      post :text, on: :collection
+      post :csv,  on: :collection
+    end
   end
 
   resources :card_reviews, only: [ :create ]
+  resources :study_sessions, only: [ :index ]
+
+  resources :card_progresses, only: [] do
+    resource :starred_card, only: [ :create, :destroy ]
+  end
 
   root "home#index"
 end

@@ -27,6 +27,25 @@
     </div>
   </div>
 
+  <div class="section-header" style="margin-top: 2.5rem;">
+    <h2>Study History</h2>
+    <%= link_to "See all", study_sessions_path, class: "section-header__link" %>
+  </div>
+  <% recent_sessions = Current.user.study_sessions.completed.includes(:deck).recent.limit(3) %>
+  <% if recent_sessions.any? %>
+    <div class="study-history-mini">
+      <% recent_sessions.each do |s| %>
+        <div class="study-history-mini__item">
+          <span class="study-history-mini__deck"><%= s.deck.name %></span>
+          <span class="study-history-mini__stats"><%= s.cards_reviewed %> cards &middot; <%= s.accuracy %>% accuracy</span>
+          <span class="study-history-mini__date"><%= s.started_at.strftime("%-d %b") %></span>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <p class="study-history-mini__empty">Complete a study session to see your history here.</p>
+  <% end %>
+
   <% if @decks.any? %>
     <div class="section-header" style="margin-top: 2.5rem;">
       <h2>My Decks</h2>
