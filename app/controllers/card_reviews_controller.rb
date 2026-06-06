@@ -6,31 +6,47 @@ class CardReviewsController < ApplicationController
 
     deck = @card_progress.flashcard.deck
     correct = quality >= 4
+    study_mode = params[:study_mode].presence || "all"
 
-    session[:"study_reviewed_#{deck.id}"] = (session[:"study_reviewed_#{deck.id}"] || 0) + 1
-    session[:"study_correct_#{deck.id}"]  = (session[:"study_correct_#{deck.id}"]  || 0) + (correct ? 1 : 0)
+    study_session = load_study_session(deck)
+    if study_session
+      increments = { cards_reviewed: 1 }
+      increments[:cards_correct] = 1 if correct
+      StudySession.update_counters(study_session.id, **increments)
+      study_session.reload
+    end
 
     more_due = Current.user.card_progresses
                            .due
                            .unscope(:order)
                            .joins(:flashcard)
                            .where(flashcards: { deck_id: deck.id })
+                           .then { |s| study_mode == "starred" ? s.starred : s }
                            .exists?
 
     if more_due
-      redirect_to study_deck_path(deck)
+      redirect_to study_deck_path(deck, mode: (study_mode == "starred" ? "starred" : nil).presence)
     else
-      reviewed = session.delete(:"study_reviewed_#{deck.id}") || 1
-      correct  = session.delete(:"study_correct_#{deck.id}")  || 0
-      started  = session.delete(:"study_started_#{deck.id}")
-      elapsed  = started ? (Time.current.to_i - started) : nil
-      session.delete(:"study_total_#{deck.id}")
+      if study_session && !study_session.finished?
+        study_session.update!(finished_at: Time.current)
+      end
+      session.delete(:study_session_id)
       redirect_to study_deck_path(deck),
-        flash: { study_summary: { reviewed: reviewed, correct: correct, elapsed: elapsed } }
+        flash: { study_summary: {
+          reviewed: study_session&.cards_reviewed || 1,
+          correct:  study_session&.cards_correct  || 0,
+          elapsed:  study_session&.elapsed_seconds
+        } }
     end
   end
 
   private
+
+  def load_study_session(deck)
+    sid = session[:study_session_id]
+    return nil unless sid
+    Current.user.study_sessions.find_by(id: sid, finished_at: nil, deck: deck)
+  end
 
   def quality_from_button(rating)
     case rating

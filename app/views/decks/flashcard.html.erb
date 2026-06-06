@@ -48,6 +48,12 @@
               </div>
             </div>
           </div>
+
+          <% if @card_progresses&.key?(card.id) %>
+            <div class="flashcard-browse__star">
+              <%= render "starred_cards/toggle", card_progress: @card_progresses[card.id] %>
+            </div>
+          <% end %>
         </div>
       <% end %>
 

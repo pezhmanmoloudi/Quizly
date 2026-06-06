@@ -15,6 +15,13 @@
           data: { study_mode_target: "exitLink" } %>
   </div>
 
+  <div class="study-island__mode-bar">
+    <%= link_to "All cards", study_deck_path(@deck),
+          class: "study-mode-tab #{"study-mode-tab--active" if @study_mode == "all"}" %>
+    <%= link_to "⭐ Starred", study_deck_path(@deck, mode: "starred"),
+          class: "study-mode-tab #{"study-mode-tab--active" if @study_mode == "starred"}" %>
+  </div>
+
   <% if @card_progress.present? && @cards_total.to_i > 0 %>
     <% progress_pct = (@cards_done.to_f / @cards_total * 100).round %>
     <div class="study-island__progress-wrap">
@@ -53,6 +60,7 @@
               <% end %>
             </div>
             <p class="session-summary__sub">No more cards due right now — great work.</p>
+            <%= link_to "View History", study_sessions_path, class: "btn btn--secondary btn--sm", style: "margin-top: 1rem;" %>
           </div>
         </div>
       <% else %>
@@ -92,6 +100,7 @@
                         data: { flashcard_target: "ratingForm" },
                         style: "display:none" do |f| %>
             <%= hidden_field_tag :card_progress_id, @card_progress.id %>
+            <%= hidden_field_tag :study_mode, @study_mode %>
             <div class="rating-buttons">
               <%= f.submit "Again", name: :rating, value: "again",
                     class: "rating-btn rating-btn--again",
@@ -111,6 +120,10 @@
                     aria: { keyshortcuts: "4" } %>
             </div>
           <% end %>
+
+          <div class="study-card__star-row" data-flashcard-target="ratingForm" style="display:none">
+            <%= render "starred_cards/toggle", card_progress: @card_progress %>
+          </div>
 
           <p class="keyboard-hint" aria-hidden="true">Space to reveal &middot; 1 Again &middot; 2 Hard &middot; 3 Good &middot; 4 Easy &middot; Esc to exit</p>
         </div>

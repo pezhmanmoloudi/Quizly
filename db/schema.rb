@@ -10,7 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_06_05_213404) do
+ActiveRecord::Schema[8.1].define(version: 2026_06_06_074912) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "pg_catalog.plpgsql"
+
   create_table "active_storage_attachments", force: :cascade do |t|
     t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
@@ -47,12 +50,14 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_05_213404) do
     t.datetime "last_reviewed_at"
     t.datetime "next_review_at"
     t.integer "repetitions", default: 0, null: false
+    t.boolean "starred", default: false, null: false
     t.datetime "updated_at", null: false
     t.integer "user_id", null: false
     t.index ["flashcard_id"], name: "index_card_progresses_on_flashcard_id"
     t.index ["next_review_at"], name: "index_card_progresses_on_next_review_at"
     t.index ["user_id", "flashcard_id"], name: "index_card_progresses_on_user_id_and_flashcard_id", unique: true
     t.index ["user_id", "next_review_at"], name: "index_card_progresses_on_user_id_and_next_review_at"
+    t.index ["user_id", "starred"], name: "index_card_progresses_on_user_id_and_starred"
     t.index ["user_id"], name: "index_card_progresses_on_user_id"
   end
 
@@ -213,6 +218,22 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_05_213404) do
     t.index ["key"], name: "index_solid_queue_semaphores_on_key", unique: true
   end
 
+  create_table "study_sessions", force: :cascade do |t|
+    t.integer "cards_correct", default: 0, null: false
+    t.integer "cards_reviewed", default: 0, null: false
+    t.integer "cards_total", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.bigint "deck_id", null: false
+    t.datetime "finished_at"
+    t.datetime "started_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
+    t.index ["deck_id"], name: "index_study_sessions_on_deck_id"
+    t.index ["user_id", "deck_id"], name: "index_study_sessions_on_user_id_and_deck_id"
+    t.index ["user_id", "started_at"], name: "index_study_sessions_on_user_id_and_started_at"
+    t.index ["user_id"], name: "index_study_sessions_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.string "display_name"
@@ -237,4 +258,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_05_213404) do
   add_foreign_key "solid_queue_ready_executions", "solid_queue_jobs", column: "job_id", on_delete: :cascade
   add_foreign_key "solid_queue_recurring_executions", "solid_queue_jobs", column: "job_id", on_delete: :cascade
   add_foreign_key "solid_queue_scheduled_executions", "solid_queue_jobs", column: "job_id", on_delete: :cascade
+  add_foreign_key "study_sessions", "decks"
+  add_foreign_key "study_sessions", "users"
 end

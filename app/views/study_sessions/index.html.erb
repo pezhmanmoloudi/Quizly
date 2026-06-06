@@ -1,0 +1,51 @@
+<% content_for :title, "Study History" %>
+
+<div class="container" style="padding-top: 2rem; padding-bottom: 3rem;">
+  <div class="section-header">
+    <h1>Study History</h1>
+    <%= link_to "← Dashboard", dashboard_path, class: "section-header__link" %>
+  </div>
+
+  <% if @study_sessions.empty? %>
+    <%= render "shared/empty_state",
+          icon: "academic_cap",
+          title: "No sessions yet",
+          description: "Complete a study session and it will appear here.",
+          cta_text: "Go to Decks",
+          cta_path: decks_path,
+          variant: :dashboard %>
+  <% else %>
+    <div class="study-history-table-wrap">
+      <table class="study-history-table">
+        <thead>
+          <tr>
+            <th>Deck</th>
+            <th>Date</th>
+            <th>Reviewed</th>
+            <th>Accuracy</th>
+            <th>Time</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @study_sessions.each do |session| %>
+            <tr>
+              <td>
+                <%= link_to session.deck.name, session.deck, class: "study-history-table__deck-link" %>
+              </td>
+              <td class="study-history-table__date">
+                <%= session.started_at.strftime("%-d %b %Y") %>
+              </td>
+              <td><%= session.cards_reviewed %></td>
+              <td>
+                <span class="study-history-table__accuracy" data-accuracy="<%= session.accuracy %>">
+                  <%= session.accuracy %>%
+                </span>
+              </td>
+              <td><%= format_study_time(session.elapsed_seconds) %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% end %>
+</div>

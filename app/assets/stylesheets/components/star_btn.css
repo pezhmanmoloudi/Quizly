@@ -1,0 +1,45 @@
+/* Star / bookmark toggle button */
+
+.star-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-full);
+  width: 2.25rem;
+  height: 2.25rem;
+  font-size: 1.1rem;
+  color: var(--color-muted);
+  cursor: pointer;
+  transition: border-color var(--transition-base), color var(--transition-base),
+              background var(--transition-base);
+}
+
+.star-btn:hover {
+  border-color: var(--color-warning);
+  color: var(--color-warning);
+}
+
+.star-btn--active {
+  border-color: var(--color-warning);
+  background: #fef3c7;
+  color: var(--color-warning);
+}
+
+.star-btn--active:hover {
+  background: #fde68a;
+}
+
+/* Container inside study card footer */
+.study-card__star-row {
+  display: flex;
+  justify-content: center;
+}
+
+/* Container inside flashcard browse slide */
+.flashcard-browse__star {
+  display: flex;
+  justify-content: center;
+  margin-top: 0.75rem;
+}

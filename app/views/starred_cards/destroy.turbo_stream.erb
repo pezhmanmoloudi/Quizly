@@ -1,0 +1,3 @@
+<%= turbo_stream.replace "star_#{@card_progress.id}" do %>
+  <%= render "toggle", card_progress: @card_progress %>
+<% end %>

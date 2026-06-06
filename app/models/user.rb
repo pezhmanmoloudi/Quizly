@@ -9,6 +9,7 @@ class User < ApplicationRecord
   has_many :sessions, dependent: :destroy
   has_many :decks, dependent: :destroy
   has_many :card_progresses, dependent: :destroy
+  has_many :study_sessions, dependent: :destroy
 
   normalizes :email_address, with: ->(e) { e.strip.downcase }
   normalizes :display_name,  with: ->(n) { n.strip.presence }

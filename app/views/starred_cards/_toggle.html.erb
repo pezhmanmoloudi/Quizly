@@ -1,0 +1,17 @@
+<div id="star_<%= card_progress.id %>">
+  <% if card_progress.starred? %>
+    <%= button_to card_progress_starred_card_path(card_progress),
+          method: :delete,
+          class: "star-btn star-btn--active",
+          title: "Unstar this card" do %>
+      ★
+    <% end %>
+  <% else %>
+    <%= button_to card_progress_starred_card_path(card_progress),
+          method: :post,
+          class: "star-btn",
+          title: "Star this card" do %>
+      ☆
+    <% end %>
+  <% end %>
+</div>
