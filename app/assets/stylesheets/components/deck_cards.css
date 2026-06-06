@@ -35,12 +35,19 @@
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
-  transition: transform var(--transition-base), box-shadow var(--transition-base);
+  transition: transform var(--transition-base), box-shadow var(--transition-base),
+              border-top-color var(--transition-base), outline-color var(--transition-base);
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
 }
 
 .deck-tile:hover {
   transform: translateY(-2px);
   box-shadow: var(--shadow-md);
+  border-top-color: color-mix(in srgb, var(--color-primary) 70%, black);
+  outline: 2px solid color-mix(in srgb, var(--color-primary) 30%, transparent);
+  outline-offset: 0;
 }
 
 /* Header row: name (left) + date (right) */
@@ -141,9 +148,6 @@
 
 /* Kept for backward compatibility with inline deck-tile__actions usage */
 .deck-tile__actions { display: flex; gap: 0.5rem; flex-wrap: wrap; }
-
-/* button_to wraps Delete in a <form> — strip default form margin */
-.deck-tile__footer form { margin: 0; }
 
 /* New Deck CTA tile */
 .deck-tile--new {
