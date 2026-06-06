@@ -41,7 +41,14 @@ class FlashcardsController < ApplicationController
   def destroy
     deck = @flashcard.deck
     @flashcard.destroy
-    redirect_to deck, notice: "Card deleted."
+
+    items        = params[:items].to_i.positive? ? params[:items].to_i : 10
+    current_page = [params[:page].to_i, 1].max
+    total        = deck.flashcards.count
+    last_page    = [(total.to_f / items).ceil, 1].max
+    safe_page    = [current_page, last_page].min
+
+    redirect_to deck_path(deck, page: safe_page, items: items), notice: "Card deleted."
   end
 
   private
