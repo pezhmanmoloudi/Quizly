@@ -28,6 +28,8 @@ Rails.application.routes.draw do
       get   :study
       get   :flashcard
       get   :match
+      get   :learn
+      get   :test
       post  :fork
       get   :cards
       patch :update_cards
@@ -41,6 +43,8 @@ Rails.application.routes.draw do
 
   resources :card_reviews, only: [ :create ]
   resources :study_sessions, only: [ :index ]
+  resources :learn_answers, only: [ :create ]
+  resources :test_answers, only: [ :create ]
 
   resources :card_progresses, only: [] do
     resource :starred_card, only: [ :create, :destroy ]

@@ -4,6 +4,8 @@ class Deck < ApplicationRecord
   has_many :forks, class_name: "Deck", foreign_key: :forked_from_id, dependent: :nullify
   has_many :flashcards, dependent: :destroy
   has_many :study_sessions, dependent: :destroy
+  has_many :learn_sessions, dependent: :destroy
+  has_many :test_sessions, dependent: :destroy
   accepts_nested_attributes_for :flashcards,
     reject_if: :all_blank,
     allow_destroy: true

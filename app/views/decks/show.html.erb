@@ -48,7 +48,17 @@
     <% end %>
     <%= link_to study_deck_path(@deck), class: "study-mode-btn" do %>
       <%= render "shared/icons/academic_cap" %>
-      <span>Learn</span>
+      <span>Study</span>
+    <% end %>
+    <% if authenticated? %>
+      <%= link_to learn_deck_path(@deck), class: "study-mode-btn" do %>
+        <%= render "shared/icons/rectangle_stack" %>
+        <span>Learn</span>
+      <% end %>
+      <%= link_to test_deck_path(@deck), class: "study-mode-btn" do %>
+        <%= render "shared/icons/pencil" %>
+        <span>Test</span>
+      <% end %>
     <% end %>
     <%= link_to match_deck_path(@deck), class: "study-mode-btn" do %>
       <%= render "shared/icons/bolt" %>

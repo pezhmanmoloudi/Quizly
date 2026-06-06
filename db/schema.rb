@@ -10,10 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_06_06_074912) do
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "pg_catalog.plpgsql"
-
+ActiveRecord::Schema[8.1].define(version: 2026_06_07_000003) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
@@ -86,6 +83,37 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_06_074912) do
     t.datetime "updated_at", null: false
     t.index ["deck_id"], name: "index_flashcards_on_deck_id"
     t.index ["position"], name: "index_flashcards_on_position"
+  end
+
+  create_table "learn_session_items", force: :cascade do |t|
+    t.integer "attempts", default: 0, null: false
+    t.integer "correct_streak", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.integer "flashcard_id", null: false
+    t.integer "learn_session_id", null: false
+    t.integer "position", null: false
+    t.string "status", default: "unseen", null: false
+    t.datetime "updated_at", null: false
+    t.index ["flashcard_id"], name: "index_learn_session_items_on_flashcard_id"
+    t.index ["learn_session_id", "flashcard_id"], name: "index_learn_session_items_on_learn_session_id_and_flashcard_id", unique: true
+    t.index ["learn_session_id", "position"], name: "index_learn_session_items_on_learn_session_id_and_position"
+    t.index ["learn_session_id", "status"], name: "index_learn_session_items_on_learn_session_id_and_status"
+    t.index ["learn_session_id"], name: "index_learn_session_items_on_learn_session_id"
+  end
+
+  create_table "learn_sessions", force: :cascade do |t|
+    t.integer "cards_mastered", default: 0, null: false
+    t.integer "cards_total", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.integer "deck_id", null: false
+    t.datetime "finished_at"
+    t.datetime "started_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id", null: false
+    t.index ["deck_id"], name: "index_learn_sessions_on_deck_id"
+    t.index ["user_id", "deck_id"], name: "index_learn_sessions_on_user_id_and_deck_id"
+    t.index ["user_id", "started_at"], name: "index_learn_sessions_on_user_id_and_started_at"
+    t.index ["user_id"], name: "index_learn_sessions_on_user_id"
   end
 
   create_table "sessions", force: :cascade do |t|
@@ -223,15 +251,32 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_06_074912) do
     t.integer "cards_reviewed", default: 0, null: false
     t.integer "cards_total", default: 0, null: false
     t.datetime "created_at", null: false
-    t.bigint "deck_id", null: false
+    t.integer "deck_id", null: false
     t.datetime "finished_at"
     t.datetime "started_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_id", null: false
+    t.integer "user_id", null: false
     t.index ["deck_id"], name: "index_study_sessions_on_deck_id"
     t.index ["user_id", "deck_id"], name: "index_study_sessions_on_user_id_and_deck_id"
     t.index ["user_id", "started_at"], name: "index_study_sessions_on_user_id_and_started_at"
     t.index ["user_id"], name: "index_study_sessions_on_user_id"
+  end
+
+  create_table "test_sessions", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.integer "current_index", default: 0, null: false
+    t.integer "deck_id", null: false
+    t.datetime "finished_at"
+    t.text "questions_data", null: false
+    t.integer "questions_total", default: 0, null: false
+    t.integer "score", default: 0, null: false
+    t.datetime "started_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id", null: false
+    t.index ["deck_id"], name: "index_test_sessions_on_deck_id"
+    t.index ["user_id", "deck_id"], name: "index_test_sessions_on_user_id_and_deck_id"
+    t.index ["user_id", "started_at"], name: "index_test_sessions_on_user_id_and_started_at"
+    t.index ["user_id"], name: "index_test_sessions_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -251,6 +296,10 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_06_074912) do
   add_foreign_key "decks", "decks", column: "forked_from_id"
   add_foreign_key "decks", "users"
   add_foreign_key "flashcards", "decks"
+  add_foreign_key "learn_session_items", "flashcards"
+  add_foreign_key "learn_session_items", "learn_sessions"
+  add_foreign_key "learn_sessions", "decks"
+  add_foreign_key "learn_sessions", "users"
   add_foreign_key "sessions", "users"
   add_foreign_key "solid_queue_blocked_executions", "solid_queue_jobs", column: "job_id", on_delete: :cascade
   add_foreign_key "solid_queue_claimed_executions", "solid_queue_jobs", column: "job_id", on_delete: :cascade
@@ -260,4 +309,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_06_074912) do
   add_foreign_key "solid_queue_scheduled_executions", "solid_queue_jobs", column: "job_id", on_delete: :cascade
   add_foreign_key "study_sessions", "decks"
   add_foreign_key "study_sessions", "users"
+  add_foreign_key "test_sessions", "decks"
+  add_foreign_key "test_sessions", "users"
 end

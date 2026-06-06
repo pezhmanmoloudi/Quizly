@@ -1,0 +1,44 @@
+<% content_for :title, "Test: #{@deck.name}" %>
+
+<div class="study-island"
+     data-controller="test-mode"
+     data-action="keydown->test-mode#handleKey"
+     tabindex="-1"
+     aria-label="Test session">
+
+  <div class="study-island__header">
+    <h2 class="study-island__title"><%= @deck.name %></h2>
+    <% if @test_session.present? %>
+      <span class="study-island__counter" id="test_counter">
+        <%= @test_session.current_index + 1 %> / <%= @test_session.questions_total %>
+      </span>
+    <% end %>
+    <%= link_to "← Exit", @deck, class: "study-island__exit" %>
+  </div>
+
+  <% if @test_session.present? %>
+    <div id="test_progress" class="study-island__progress-wrap">
+      <% pct = (((@test_session.current_index).to_f / @test_session.questions_total) * 100).round %>
+      <div class="study-island__progress">
+        <div class="study-island__progress-fill" style="width: <%= pct %>%"></div>
+      </div>
+      <span class="study-island__progress-label"><%= pct %>%</span>
+    </div>
+  <% end %>
+
+  <%= turbo_frame_tag "test_question" do %>
+    <% if @test_session.nil? || @deck.flashcards.empty? %>
+      <%= render "shared/empty_state",
+            icon: "academic_cap",
+            title: "No cards yet",
+            description: "Add flashcards to this deck before taking a test.",
+            cta_text: "Back to Deck",
+            cta_path: @deck,
+            variant: :study %>
+    <% else %>
+      <%= render "test_question",
+            question: @test_session.current_question,
+            test_session: @test_session %>
+    <% end %>
+  <% end %>
+</div>
