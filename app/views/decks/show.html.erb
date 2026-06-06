@@ -129,8 +129,10 @@
                 </div>
                 <%= render "shared/inline_confirm", message: "Are you sure you want to remove this card?" %>
                 <%= form_with url: flashcard_path(card), method: :delete,
-                      data: { "inline-confirm-target": "deleteForm" } do %>
-                <% end %>
+                      data: { "inline-confirm-target": "deleteForm" } do |f| %>
+                <%= f.hidden_field :page,  value: @pagy.page %>
+                <%= f.hidden_field :items, value: @items_per_page %>
+              <% end %>
               <% end %>
             </div>
           <% end %>
