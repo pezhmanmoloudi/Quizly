@@ -42,6 +42,13 @@ class AccountsController < ApplicationController
     end
   end
 
+  def destroy
+    user = Current.user
+    terminate_session
+    user.destroy
+    redirect_to root_path, notice: "Your account has been deleted."
+  end
+
   def destroy_avatar
     Current.user.avatar.purge
     flash[:section] = "profile"

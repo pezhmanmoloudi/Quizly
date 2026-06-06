@@ -5,11 +5,11 @@
     <h1>Account Settings</h1>
   </div>
 
-  <div class="settings-layout"
+  <div class="settings-card"
        data-controller="settings-tabs"
        data-settings-tabs-initial-tab-value="<%= @active_section %>">
 
-    <nav class="settings-sidebar" role="tablist" aria-label="Settings navigation">
+    <nav class="settings-tab-bar" role="tablist" aria-label="Settings navigation">
       <button class="settings-tab <%= 'settings-tab--active' if @active_section == 'profile' %>"
               role="tab"
               data-settings-tabs-target="tab"
@@ -43,8 +43,6 @@
                data-settings-tabs-target="section"
                data-section="profile"
                aria-label="Profile">
-        <h2>Profile</h2>
-
         <%# Avatar — no nested forms; upload form and delete form are siblings %>
         <div class="profile-avatar-section" data-controller="avatar-preview inline-confirm">
 
@@ -240,6 +238,28 @@
       </section>
 
     </div>
+  </div>
+
+  <div class="settings-danger-zone" data-controller="inline-confirm">
+    <div class="settings-danger-zone__row">
+      <div class="settings-danger-zone__text">
+        <h2 class="settings-danger-zone__title">Delete Account</h2>
+        <p class="settings-danger-zone__description">Permanently delete your account and all associated data. This action cannot be undone.</p>
+      </div>
+      <div>
+        <div data-inline-confirm-target="actions">
+          <button type="button" class="btn btn--danger"
+                  data-action="click->inline-confirm#confirmRemove">
+            Delete Account
+          </button>
+        </div>
+        <%= render "shared/inline_confirm", message: "Are you sure you want to delete your account?" %>
+      </div>
+    </div>
+
+    <%= form_with url: account_path, method: :delete,
+          data: { "inline-confirm-target": "deleteForm" } do %>
+    <% end %>
   </div>
 
 </div>

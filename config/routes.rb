@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   patch  "/reset-password/:token", to: "passwords#update"
   put    "/reset-password/:token", to: "passwords#update"
 
-  resource :account, only: [ :show, :update ] do
+  resource :account, only: [ :show, :update, :destroy ] do
     delete :avatar, on: :member, action: :destroy_avatar
   end
 
