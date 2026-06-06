@@ -29,14 +29,13 @@
 .deck-tile {
   background: var(--color-surface);
   border-radius: 10px;
-  border-top: 3px solid var(--color-primary);
   box-shadow: var(--shadow-sm);
   padding: 1.25rem;
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
   transition: transform var(--transition-base), box-shadow var(--transition-base),
-              border-top-color var(--transition-base), outline-color var(--transition-base);
+              outline-color var(--transition-base);
   cursor: pointer;
   text-decoration: none;
   color: inherit;
@@ -45,7 +44,6 @@
 .deck-tile:hover {
   transform: translateY(-2px);
   box-shadow: var(--shadow-md);
-  border-top-color: color-mix(in srgb, var(--color-primary) 70%, black);
   outline: 2px solid color-mix(in srgb, var(--color-primary) 30%, transparent);
   outline-offset: 0;
 }
