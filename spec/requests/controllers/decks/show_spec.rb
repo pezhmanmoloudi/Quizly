@@ -66,6 +66,18 @@ RSpec.describe "Decks#show", type: :request do
         get deck_path(deck), params: { items: 5 }
         expect(response.body).to include("pagination__btn")
       end
+
+      it "renders a Delete Deck button for the owner" do
+        get deck_path(deck)
+        expect(response.body).to include("Delete Deck")
+        expect(response.body).to include("inline-confirm")
+      end
+
+      it "renders an Edit Deck button for the owner" do
+        get deck_path(deck)
+        expect(response.body).to include("Edit Deck")
+        expect(response.body).to include(edit_deck_path(deck))
+      end
     end
 
     context "when authenticated as another user" do
@@ -80,6 +92,12 @@ RSpec.describe "Decks#show", type: :request do
         public_deck = create(:deck, :public, user: user)
         get deck_path(public_deck)
         expect(response).to have_http_status(:ok)
+      end
+
+      it "does not render Delete Deck button for a non-owner viewing a public deck" do
+        public_deck = create(:deck, :public, user: user)
+        get deck_path(public_deck)
+        expect(response.body).not_to include("Delete Deck")
       end
     end
 

@@ -1,20 +1,31 @@
 <% content_for :title, @deck.name %>
 
 <div class="container">
-  <div class="deck-detail-header">
+  <div class="deck-detail-header" data-controller="inline-confirm">
     <div class="deck-detail-header__top">
       <h1 class="deck-detail-header__name"><%= @deck.name %></h1>
-      <div class="deck-detail-header__actions">
+      <div class="deck-detail-header__actions" data-inline-confirm-target="actions">
         <% if @deck.user == Current.user %>
           <%= link_to edit_deck_path(@deck), class: "btn btn--secondary btn-with-icon" do %>
             <%= render "shared/icons/pencil" %> Edit Deck
           <% end %>
+          <button type="button" class="btn btn--danger btn-with-icon"
+                  data-action="click->inline-confirm#confirmRemove">
+            <%= render "shared/icons/trash" %> Delete Deck
+          </button>
         <% elsif authenticated? %>
           <%= button_to fork_deck_path(@deck), method: :post, class: "btn btn--primary btn-with-icon" do %>
             <%= render "shared/icons/fork" %> Fork to My Library
           <% end %>
         <% end %>
       </div>
+      <% if @deck.user == Current.user %>
+        <%= render "shared/inline_confirm", message: "Are you sure you want to remove this deck?" %>
+        <%= form_with url: deck_path(@deck), method: :delete,
+              data: { "inline-confirm-target": "deleteForm" } do |f| %>
+          <%= f.hidden_field :from_page, value: params[:from_page] || 1 %>
+        <% end %>
+      <% end %>
     </div>
     <div class="deck-detail-header__meta">
       <% if @deck.public? %>
@@ -92,16 +103,7 @@
     </div>
 
     <div class="cards-island__body">
-      <% if @flashcards.empty? %>
-        <%= render "shared/empty_state",
-              icon: "plus",
-              title: "No flashcards yet",
-              description: "Add your first card to start studying this deck.",
-              cta_text: (@deck.user == Current.user ? "Add Cards" : nil),
-              cta_path: (@deck.user == Current.user ? cards_deck_path(@deck) : nil),
-              variant: :centered %>
-      <% else %>
-        <div class="cards-grid">
+      <div class="cards-grid">
           <% @flashcards.each do |card| %>
             <div class="cards-grid__item" data-controller="<%= @deck.user == Current.user ? 'inline-confirm' : '' %>">
               <div class="cards-grid__front"><%= card.front_content %></div>
@@ -141,7 +143,6 @@
         <div class="cards-island__pagination">
           <%= render "shared/pagination", pagy: @pagy %>
         </div>
-      <% end %>
     </div>
   </div>
 
