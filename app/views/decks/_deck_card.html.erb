@@ -1,7 +1,7 @@
-<div id="<%= dom_id(deck) %>" class="deck-tile" data-controller="inline-confirm">
+<a id="<%= dom_id(deck) %>" class="deck-tile" href="<%= deck_path(deck, from_page: local_assigns[:from_page] || 1) %>">
   <div class="deck-tile__header">
     <h3 class="deck-tile__name">
-      <%= link_to deck.name, deck_path(deck) %>
+      <%= deck.name %>
     </h3>
     <% due = local_assigns[:due_counts]&.fetch(deck.id, 0) || 0 %>
     <% if due > 0 %>
@@ -29,23 +29,4 @@
       </div>
     <% end %>
   </div>
-
-  <div class="deck-tile__footer" data-inline-confirm-target="actions">
-    <%= link_to study_deck_path(deck), class: "btn btn--primary btn--sm btn-with-icon" do %>
-      <%= render "shared/icons/play" %> Study
-    <% end %>
-    <%= link_to edit_deck_path(deck), class: "btn btn--secondary btn--sm btn-with-icon" do %>
-      <%= render "shared/icons/pencil" %> Edit
-    <% end %>
-    <button type="button" class="btn btn--danger btn--sm btn-with-icon"
-            data-action="click->inline-confirm#confirmRemove">
-      <%= render "shared/icons/trash" %> Delete
-    </button>
-  </div>
-
-  <%= render "shared/inline_confirm", message: "Are you sure you want to remove this deck?" %>
-
-  <%= form_with url: deck_path(deck), method: :delete,
-        data: { "inline-confirm-target": "deleteForm" } do %>
-  <% end %>
-</div>
+</a>

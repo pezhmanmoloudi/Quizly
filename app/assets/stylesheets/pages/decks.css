@@ -9,38 +9,82 @@
 
 .deck-detail-header {
   background: var(--color-surface);
-  border-radius: 10px;
-  padding: 1.5rem;
+  border-radius: 12px;
+  padding: 2rem 2rem 1.5rem;
   margin-bottom: 1.5rem;
-  box-shadow: 0 1px 3px rgba(0,0,0,.08);
+  box-shadow: 0 1px 4px rgba(0,0,0,.06), 0 6px 16px rgba(0,0,0,.04);
 }
 
 .deck-detail-header__top {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--color-border-light);
 }
 
-.deck-detail-header__name    { font-size: 1.75rem; font-weight: 700; margin: 0; }
-.deck-detail-header__actions { display: flex; gap: 0.5rem; flex-shrink: 0; }
+.deck-detail-header__name {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.deck-detail-header__actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-shrink: 0;
+  align-items: center;
+}
+
+/* Outlined Edit button in header context */
+.deck-detail-header__actions .btn--secondary {
+  background: transparent;
+  border: 1.5px solid var(--color-border);
+  color: var(--color-text-secondary);
+}
+.deck-detail-header__actions .btn--secondary:hover {
+  background: var(--color-border-light);
+  border-color: var(--color-border);
+  color: var(--color-text);
+}
+
+/* Outlined danger Delete button in header context */
+.deck-detail-header__actions .btn--danger {
+  background: transparent;
+  border: 1.5px solid var(--color-danger);
+  color: var(--color-danger);
+}
+.deck-detail-header__actions .btn--danger:hover {
+  background: var(--color-danger-bg);
+}
 
 .deck-detail-header__meta {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  margin-bottom: 0.75rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Soft tinted language badge in header context */
+.deck-detail-header .language-badge {
+  background: color-mix(in srgb, var(--color-primary) 10%, transparent);
+  color: var(--color-primary);
+  border: 1px solid color-mix(in srgb, var(--color-primary) 25%, transparent);
 }
 
 .deck-detail-header__date        { font-size: 0.85rem; color: var(--color-muted); }
-.deck-detail-header__description { color: var(--color-text-secondary); margin: 0; }
+.deck-detail-header__description { color: var(--color-text-secondary); margin: 0.25rem 0 0; font-size: 0.9375rem; line-height: 1.6; }
 .deck-detail-header__forked-from { font-size: 0.85rem; color: var(--color-muted); }
 .deck-detail-header__forked-from a { color: var(--color-primary); text-decoration: none; }
 .deck-detail-header__forked-from a:hover { text-decoration: underline; }
 
 @media (max-width: 768px) {
-  .deck-detail-header__top     { flex-direction: column; }
+  .deck-detail-header__top     { flex-direction: column; align-items: flex-start; }
   .deck-detail-header__actions { width: 100%; }
 }
 

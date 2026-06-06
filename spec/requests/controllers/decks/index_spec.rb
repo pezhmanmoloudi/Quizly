@@ -47,6 +47,39 @@ RSpec.describe "Decks#index", type: :request do
         get decks_path, params: { sort: "most_due" }
         expect(response).to have_http_status(:ok)
       end
+
+      it "does not render Study, Edit, or Delete buttons on deck tiles" do
+        create(:deck, user: user, name: "My Deck")
+        get decks_path
+        expect(response.body).not_to include("study_deck")
+        expect(response.body).not_to include("edit_deck")
+        expect(response.body).not_to include("inline-confirm")
+      end
+
+      it "renders deck tiles as clickable links to the deck show page" do
+        deck = create(:deck, user: user, name: "Clickable Deck")
+        get decks_path
+        expect(response.body).to include(deck_path(deck))
+        expect(response.body).to include("deck-tile")
+      end
+
+      it "paginates decks at 12 per page" do
+        create_list(:deck, DecksController::DECK_INDEX_PER_PAGE + 1, user: user)
+        get decks_path
+        expect(response.body).to include("pagination")
+      end
+
+      it "does not show pagination when decks fit on one page" do
+        create_list(:deck, 3, user: user)
+        get decks_path
+        expect(response.body).not_to include("pagination__btn")
+      end
+
+      it "includes from_page param in deck tile links" do
+        create(:deck, user: user)
+        get decks_path
+        expect(response.body).to include("from_page=1")
+      end
     end
 
     context "when not authenticated" do
