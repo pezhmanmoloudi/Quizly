@@ -1,0 +1,60 @@
+<div class="learn-card"
+     data-controller="learn-mode-card"
+     data-learn-mode-card-correct-value="<%= local_assigns[:correct] || '' %>">
+
+  <div class="learn-card__prompt">
+    <p class="learn-card__label">Define this term</p>
+    <h2 class="learn-card__term"><%= item.flashcard.front_content %></h2>
+  </div>
+
+  <% if local_assigns[:feedback] %>
+    <div class="learn-card__feedback learn-card__feedback--<%= correct ? 'correct' : 'incorrect' %>">
+      <% if correct %>
+        <span class="learn-card__feedback-icon">✓</span>
+        <span class="learn-card__feedback-text">Correct!</span>
+      <% else %>
+        <span class="learn-card__feedback-icon">✗</span>
+        <span class="learn-card__feedback-text">Incorrect</span>
+      <% end %>
+      <div class="learn-card__correct-answer">
+        <span class="learn-card__answer-label">Correct answer:</span>
+        <span class="learn-card__answer-value"><%= item.flashcard.back_content %></span>
+      </div>
+    </div>
+
+    <div class="learn-card__actions">
+      <%= link_to learn_deck_path(item.flashcard.deck),
+            class: "btn btn--primary",
+            data: { turbo_frame: "learn_card" } do %>
+        Continue →
+      <% end %>
+    </div>
+
+  <% else %>
+    <%= form_with url: learn_answers_path,
+                  data: { turbo_frame: "learn_card", controller: "learn-mode-card",
+                          "learn-mode-card-target": "form" } do |f| %>
+      <%= hidden_field_tag :learn_session_item_id, item.id %>
+
+      <div class="learn-card__input-wrap">
+        <%= f.text_field :answer,
+              placeholder: "Type your answer…",
+              autocomplete: "off",
+              autocorrect: "off",
+              spellcheck: "false",
+              class: "learn-card__input",
+              data: { "learn-mode-target": "answerInput",
+                      "learn-mode-card-target": "input" },
+              autofocus: true,
+              aria: { label: "Your answer" } %>
+      </div>
+
+      <div class="learn-card__footer">
+        <%= f.submit "Submit",
+              class: "btn btn--primary learn-card__submit",
+              data: { "learn-mode-target": "submitBtn" } %>
+        <p class="keyboard-hint" aria-hidden="true">Enter to submit</p>
+      </div>
+    <% end %>
+  <% end %>
+</div>

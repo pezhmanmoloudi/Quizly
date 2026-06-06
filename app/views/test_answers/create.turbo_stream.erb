@@ -1,0 +1,65 @@
+<% if @finished %>
+  <%= turbo_stream.update "test_question" do %>
+    <div class="test-summary">
+      <div class="session-summary__icon"><%= @correct ? '🎉' : '📝' %></div>
+      <h3 class="session-summary__title">Test complete!</h3>
+      <div class="session-summary__stats">
+        <div class="session-summary__stat">
+          <span class="session-summary__value">
+            <%= @test_session.score %> / <%= @test_session.questions_total %>
+          </span>
+          <span class="session-summary__label">Correct answers</span>
+        </div>
+        <div class="session-summary__stat">
+          <span class="session-summary__value"><%= @test_session.accuracy %>%</span>
+          <span class="session-summary__label">Score</span>
+        </div>
+        <div class="session-summary__stat">
+          <span class="session-summary__value">
+            <%= format_study_time(@test_session.elapsed_seconds) %>
+          </span>
+          <span class="session-summary__label">Time</span>
+        </div>
+      </div>
+      <div class="learn-summary__actions">
+        <%= link_to "Retake Test", test_deck_path(@test_session.deck),
+              class: "btn btn--primary btn--sm",
+              data: { turbo_action: "replace" } %>
+        <%= link_to "Back to Deck", @test_session.deck, class: "btn btn--secondary btn--sm" %>
+      </div>
+    </div>
+  <% end %>
+  <%= turbo_stream.replace "test_progress" do %>
+    <div id="test_progress" class="study-island__progress-wrap">
+      <div class="study-island__progress">
+        <div class="study-island__progress-fill" style="width: 100%"></div>
+      </div>
+      <span class="study-island__progress-label">100%</span>
+    </div>
+  <% end %>
+<% else %>
+  <%= turbo_stream.update "test_question" do %>
+    <%= render "decks/test_question",
+          question: @question,
+          test_session: @test_session,
+          feedback: true,
+          correct: @correct,
+          user_answer: @user_answer,
+          finished: false %>
+  <% end %>
+  <% idx = @test_session.current_index %>
+  <% pct = (idx.to_f / @test_session.questions_total * 100).round %>
+  <%= turbo_stream.replace "test_progress" do %>
+    <div id="test_progress" class="study-island__progress-wrap">
+      <div class="study-island__progress">
+        <div class="study-island__progress-fill" style="width: <%= pct %>%"></div>
+      </div>
+      <span class="study-island__progress-label"><%= pct %>%</span>
+    </div>
+  <% end %>
+  <%= turbo_stream.replace "test_counter" do %>
+    <span id="test_counter" class="study-island__counter">
+      <%= @test_session.current_index + 1 %> / <%= @test_session.questions_total %>
+    </span>
+  <% end %>
+<% end %>

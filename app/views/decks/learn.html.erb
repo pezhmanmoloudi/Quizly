@@ -1,0 +1,68 @@
+<% content_for :title, "Learn: #{@deck.name}" %>
+
+<div class="study-island"
+     data-controller="learn-mode"
+     data-action="keydown->learn-mode#handleKey"
+     tabindex="-1"
+     aria-label="Learn session">
+
+  <div class="study-island__header">
+    <h2 class="study-island__title"><%= @deck.name %></h2>
+    <% if @learn_session.present? %>
+      <span id="learn_counter" class="study-island__counter">
+        <%= @learn_session.cards_mastered %> / <%= @learn_session.cards_total %>
+      </span>
+    <% end %>
+    <%= link_to "← Exit", @deck, class: "study-island__exit" %>
+  </div>
+
+  <% if @learn_session.present? && @learn_session.cards_total > 0 %>
+    <div id="learn_progress" class="study-island__progress-wrap">
+      <div class="study-island__progress">
+        <div class="study-island__progress-fill"
+             style="width: <%= @learn_session.completion_pct %>%"></div>
+      </div>
+      <span class="study-island__progress-label"><%= @learn_session.completion_pct %>%</span>
+    </div>
+  <% end %>
+
+  <%= turbo_frame_tag "learn_card" do %>
+    <% if @learn_session.nil? || @deck.flashcards.empty? %>
+      <%= render "shared/empty_state",
+            icon: "academic_cap",
+            title: "No cards yet",
+            description: "Add some flashcards to this deck before studying.",
+            cta_text: "Back to Deck",
+            cta_path: @deck,
+            variant: :study %>
+
+    <% elsif @current_item.nil? %>
+      <%# Session just finished — show summary %>
+      <div class="learn-summary">
+        <div class="session-summary__icon">🎓</div>
+        <h3 class="session-summary__title">All cards mastered!</h3>
+        <div class="session-summary__stats">
+          <div class="session-summary__stat">
+            <span class="session-summary__value"><%= @learn_session.cards_total %></span>
+            <span class="session-summary__label">Cards studied</span>
+          </div>
+          <div class="session-summary__stat">
+            <span class="session-summary__value">
+              <%= format_study_time(@learn_session.elapsed_seconds) %>
+            </span>
+            <span class="session-summary__label">Time spent</span>
+          </div>
+        </div>
+        <p class="session-summary__sub">Great work — every card is mastered.</p>
+        <div class="learn-summary__actions">
+          <%= link_to "Study Again", learn_deck_path(@deck), class: "btn btn--primary btn--sm",
+                data: { turbo_action: "replace" } %>
+          <%= link_to "Back to Deck", @deck, class: "btn btn--secondary btn--sm" %>
+        </div>
+      </div>
+
+    <% else %>
+      <%= render "learn_card", item: @current_item, learn_session: @learn_session %>
+    <% end %>
+  <% end %>
+</div>

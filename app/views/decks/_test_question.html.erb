@@ -1,0 +1,92 @@
+<div class="test-question">
+  <div class="test-question__meta">
+    <span class="test-question__type-badge test-question__type-badge--<%= question['type'] %>">
+      <%= question['type'].humanize %>
+    </span>
+  </div>
+
+  <div class="test-question__prompt">
+    <p><%= question['prompt'] %></p>
+  </div>
+
+  <% if local_assigns[:feedback] %>
+    <%# Feedback state after answering %>
+    <div class="test-question__feedback test-question__feedback--<%= correct ? 'correct' : 'incorrect' %>">
+      <% if correct %>
+        <span class="test-question__feedback-icon">✓</span>
+        <span class="test-question__feedback-label">Correct!</span>
+      <% else %>
+        <span class="test-question__feedback-icon">✗</span>
+        <span class="test-question__feedback-label">Incorrect</span>
+        <div class="test-question__correct-answer">
+          Correct answer: <strong><%= question['correct_answer'] %></strong>
+        </div>
+      <% end %>
+    </div>
+
+    <% if local_assigns[:finished] %>
+      <%= link_to "See Results",
+            test_deck_path(test_session.deck),
+            class: "btn btn--primary test-question__continue",
+            autofocus: true,
+            data: { turbo_frame: "test_question", turbo_action: "replace" } %>
+    <% else %>
+      <%= link_to "Continue →",
+            test_deck_path(test_session.deck),
+            class: "btn btn--primary test-question__continue",
+            autofocus: true,
+            data: { turbo_frame: "test_question" } %>
+    <% end %>
+
+  <% elsif question['type'] == 'multiple_choice' %>
+    <%= form_with url: test_answers_path,
+                  data: { turbo_frame: "test_question" } do |f| %>
+      <div class="test-question__options">
+        <% question['options'].each_with_index do |option, i| %>
+          <button type="submit"
+                  name="answer"
+                  value="<%= option %>"
+                  class="test-option">
+            <span class="test-option__letter"><%= ('A'.ord + i).chr %></span>
+            <span class="test-option__text"><%= option %></span>
+          </button>
+        <% end %>
+      </div>
+    <% end %>
+
+  <% elsif question['type'] == 'true_false' %>
+    <%= form_with url: test_answers_path,
+                  data: { turbo_frame: "test_question" } do |f| %>
+      <div class="test-question__tf-options">
+        <button type="submit" name="answer" value="true"
+                class="test-tf-btn test-tf-btn--true">
+          ✓ True
+        </button>
+        <button type="submit" name="answer" value="false"
+                class="test-tf-btn test-tf-btn--false">
+          ✗ False
+        </button>
+      </div>
+    <% end %>
+
+  <% elsif question['type'] == 'written' %>
+    <%= form_with url: test_answers_path,
+                  data: { turbo_frame: "test_question",
+                          controller: "test-mode-question",
+                          "test-mode-question-target": "form" } do |f| %>
+      <div class="test-question__written">
+        <label class="test-question__written-label">Your answer</label>
+        <%= f.text_field :answer,
+              placeholder: "Type your answer…",
+              autocomplete: "off",
+              autocorrect: "off",
+              spellcheck: "false",
+              class: "test-question__written-input",
+              autofocus: true,
+              aria: { label: "Your answer" } %>
+        <%= f.submit "Submit Answer",
+              class: "btn btn--primary test-question__continue" %>
+      </div>
+    <% end %>
+  <% end %>
+</div>

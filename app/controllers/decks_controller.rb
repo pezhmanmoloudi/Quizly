@@ -1,7 +1,7 @@
 class DecksController < ApplicationController
   allow_unauthenticated_access only: [:show, :flashcard, :match]
   before_action :set_deck, only: [:edit, :update, :destroy, :cards, :update_cards]
-  before_action :set_accessible_deck, only: [:show, :study, :flashcard, :match, :fork]
+  before_action :set_accessible_deck, only: [:show, :study, :flashcard, :match, :fork, :learn, :test]
 
   def index
     @sort  = params[:sort].in?(%w[az most_due]) ? params[:sort] : "recent"
@@ -97,6 +97,48 @@ class DecksController < ApplicationController
     @cards = @deck.flashcards.limit(8).to_a.shuffle
   end
 
+  def learn
+    flashcards = @deck.flashcards.to_a
+    if flashcards.empty?
+      @learn_session = nil
+      @current_item  = nil
+      return
+    end
+
+    # turbo_action=replace means "restart" — clear any active session
+    if params[:turbo_action] == "replace" || params[:restart]
+      session.delete(:learn_session_id)
+    end
+
+    @learn_session = find_or_create_learn_session
+    session[:learn_session_id] = @learn_session.id
+    @current_item = @learn_session.next_item
+
+    if @current_item.nil? && !@learn_session.finished?
+      @learn_session.update!(finished_at: Time.current)
+    end
+  end
+
+  def test
+    flashcards = @deck.flashcards.to_a
+    if flashcards.empty?
+      @test_session = nil
+      return
+    end
+
+    # turbo_action=replace means "restart" — clear any active session
+    if params[:turbo_action] == "replace" || params[:restart]
+      session.delete(:test_session_id)
+    end
+
+    @test_session = find_or_create_test_session(flashcards)
+    session[:test_session_id] = @test_session.id
+
+    if @test_session.finished?
+      @test_session = nil
+    end
+  end
+
   def cards
     @initial_rows = @deck.flashcards.exists? ? 1 : 2
   end
@@ -140,6 +182,33 @@ class DecksController < ApplicationController
 
   def set_deck
     @deck = Current.user.decks.find(params[:id])
+  end
+
+  def find_or_create_learn_session
+    sid = session[:learn_session_id]
+    if sid
+      existing = Current.user.learn_sessions.find_by(id: sid, finished_at: nil, deck: @deck)
+      return existing if existing
+    end
+    ls = LearnSession.build_for(deck: @deck, user: Current.user)
+    ls.save!
+    ls
+  end
+
+  def find_or_create_test_session(flashcards)
+    sid = session[:test_session_id]
+    if sid
+      existing = Current.user.test_sessions.find_by(id: sid, finished_at: nil, deck: @deck)
+      return existing if existing
+    end
+    count = [ flashcards.size, 20 ].min
+    questions = QuestionEngine.generate(flashcards: flashcards, count: count)
+    Current.user.test_sessions.create!(
+      deck: @deck,
+      questions_data: questions.to_json,
+      questions_total: questions.size,
+      started_at: Time.current
+    )
   end
 
   def find_or_create_study_session(due_count)
