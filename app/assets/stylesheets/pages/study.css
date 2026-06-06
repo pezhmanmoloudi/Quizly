@@ -155,24 +155,25 @@
 
 /* ── "Show Answer" button ── */
 .study-reveal-btn {
-  display: inline-flex;
+  display: flex;
   align-items: center;
+  justify-content: center;
   gap: 0.5rem;
-  padding: 0.75rem 2rem;
-  background: var(--color-surface);
-  border: 2px solid var(--color-border);
-  border-radius: 10px;
-  font-size: 0.95rem;
+  width: 100%;
+  padding: 0.9rem 2.5rem;
+  background: var(--color-primary);
+  border: 2px solid var(--color-primary);
+  border-radius: 12px;
+  font-size: 1rem;
   font-weight: 600;
-  color: var(--color-text-secondary);
+  color: #fff;
   cursor: pointer;
-  transition: border-color var(--transition-base), color var(--transition-base), box-shadow var(--transition-base);
+  transition: filter var(--transition-base), box-shadow var(--transition-base);
 }
 
 .study-reveal-btn:hover {
-  border-color: var(--color-primary);
-  color: var(--color-primary);
-  box-shadow: 0 0 0 3px rgba(79,70,229,.10);
+  filter: brightness(1.1);
+  box-shadow: 0 0 0 3px rgba(79,70,229,.18);
 }
 
 .study-kbd {
@@ -224,8 +225,8 @@ form[data-flashcard-target="ratingForm"] {
 
 .rating-btn--again { background: #ef4444; }
 .rating-btn--hard  { background: #f59e0b; }
-.rating-btn--good  { background: #4f46e5; }
-.rating-btn--easy  { background: #10b981; }
+.rating-btn--good  { background: #22c55e; }
+.rating-btn--easy  { background: #06b6d4; }
 
 /* ── Keyboard hint ── */
 .keyboard-hint {
