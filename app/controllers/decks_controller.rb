@@ -152,7 +152,7 @@ class DecksController < ApplicationController
   end
 
   def cards
-    @initial_rows = @deck.flashcards.exists? ? 1 : 2
+    @initial_rows = 1
   end
 
   def update_cards

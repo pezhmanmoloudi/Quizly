@@ -1,11 +1,6 @@
 <div class="card-row" data-card-editor-target="row">
   <div class="card-row__header">
     <span class="card-row__number">N</span>
-    <button type="button" class="card-row__delete"
-            data-action="click->card-editor#removeCard"
-            aria-label="Remove card">
-      <%= render "shared/icons/trash" %>
-    </button>
   </div>
   <div class="card-row__panels">
     <div class="card-row__panel">
@@ -14,14 +9,19 @@
                 name="deck[flashcards_attributes][NEW_INDEX][front_content]"
                 placeholder="Enter term"
                 rows="3"></textarea>
+      <span class="card-row__field-error" hidden></span>
     </div>
     <div class="card-row__panel">
       <span class="card-editor-panel__label">Definition</span>
       <textarea class="card-editor-field"
                 name="deck[flashcards_attributes][NEW_INDEX][back_content]"
                 placeholder="Enter definition"
-                rows="3"
-                data-action="keydown->card-editor#handleDefinitionKeydown blur->card-editor#handleDefinitionBlur"></textarea>
+                rows="3"></textarea>
+      <span class="card-row__field-error" hidden></span>
     </div>
+  </div>
+  <div class="card-row__footer">
+    <button type="button" class="btn btn--primary"
+            data-action="click->card-editor#saveCard">Save Card</button>
   </div>
 </div>

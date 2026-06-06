@@ -25,34 +25,39 @@ export default class extends Controller {
     this.#renumber()
   }
 
-  async handleDefinitionKeydown(event) {
-    if (event.key !== "Tab" || event.shiftKey) return
-    const row = event.target.closest("[data-card-editor-target='row']")
+  async saveCard(event) {
+    const btn      = event.currentTarget
+    const row      = btn.closest("[data-card-editor-target='row']")
     if (!row) return
 
-    const visibleRows = this.rowTargets.filter(r => !r.hidden)
-    if (row !== visibleRows.at(-1)) return
+    const termArea = row.querySelector("[name*='front_content']")
+    const defArea  = row.querySelector("[name*='back_content']")
 
-    const term = row.querySelector("[name*='front_content']")
-    if (!term?.value.trim() || !event.target.value.trim()) return
+    if (!termArea?.value.trim()) {
+      this.#showFieldError(termArea, "Please enter a term.")
+      termArea.focus()
+      return
+    }
 
-    event.preventDefault()
-    await this.#saveRow(row, term.value.trim(), event.target.value.trim())
-    this.#appendNewRow()
-    this.#renumber()
-    this.cardsListTarget.lastElementChild?.querySelector("textarea")?.focus()
+    if (!defArea?.value.trim()) {
+      this.#showFieldError(defArea, "Please enter a definition.")
+      defArea.focus()
+      return
+    }
+
+    btn.disabled = true
+    const ok = await this.#postCard(termArea.value.trim(), defArea.value.trim())
+    btn.disabled = false
+
+    if (ok) {
+      termArea.value = ""
+      defArea.value  = ""
+      termArea.focus()
+      this.#showToast("Flashcard saved!")
+    }
   }
 
-  async handleDefinitionBlur(event) {
-    const row = event.target.closest("[data-card-editor-target='row']")
-    if (!row || row.dataset.saved) return
-    const term = row.querySelector("[name*='front_content']")
-    if (!term?.value.trim() || !event.target.value.trim()) return
-    await this.#saveRow(row, term.value.trim(), event.target.value.trim())
-  }
-
-  async #saveRow(row, frontContent, backContent) {
-    if (row.dataset.saved) return
+  async #postCard(frontContent, backContent) {
     try {
       const resp = await fetch(this.createUrlValue, {
         method: "POST",
@@ -63,8 +68,26 @@ export default class extends Controller {
         },
         body: JSON.stringify({ flashcard: { front_content: frontContent, back_content: backContent } })
       })
-      if (resp.ok) row.dataset.saved = "true"
-    } catch { /* silent — card stays editable */ }
+      return resp.ok
+    } catch { return false }
+  }
+
+  #showFieldError(textarea, message) {
+    const el = textarea.closest(".card-row__panel")?.querySelector(".card-row__field-error")
+    if (!el) return
+    el.textContent = message
+    el.hidden = false
+    setTimeout(() => { el.hidden = true }, 2500)
+  }
+
+  #showToast(message) {
+    const container = document.getElementById("flash-messages")
+    if (!container) return
+    const div = document.createElement("div")
+    div.className = "flash flash--notice"
+    div.dataset.controller = "flash"
+    div.textContent = message
+    container.appendChild(div)
   }
 
   #appendNewRow() {
