@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_06_07_000003) do
+ActiveRecord::Schema[8.1].define(version: 2026_06_07_112916) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -284,12 +284,19 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_07_000003) do
 
   create_table "users", force: :cascade do |t|
     t.datetime "created_at", null: false
+    t.integer "current_streak", default: 0, null: false
     t.string "display_name"
     t.string "email_address", null: false
-    t.string "password_digest", null: false
+    t.string "google_access_token"
+    t.string "google_uid"
+    t.date "last_studied_on"
+    t.string "locale", default: "en", null: false
+    t.integer "longest_streak", default: 0, null: false
+    t.string "password_digest"
     t.boolean "show_avatar", default: true, null: false
     t.datetime "updated_at", null: false
     t.index ["email_address"], name: "index_users_on_email_address", unique: true
+    t.index ["google_uid"], name: "index_users_on_google_uid", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
