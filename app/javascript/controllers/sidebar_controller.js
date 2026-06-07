@@ -58,18 +58,7 @@ export default class extends Controller {
 
   focusSearch(event) {
     event.preventDefault()
-    if (this.isCollapsed) {
-      this.element.classList.remove("is-collapsed")
-      localStorage.setItem(this.COLLAPSE_KEY, "false")
-      setTimeout(() => this.#doFocusSearch(), 260)
-    } else {
-      this.#doFocusSearch()
-    }
-  }
-
-  expandAndFocusSearch(event) {
-    event.preventDefault()
-    this.focusSearch(event)
+    this.#doFocusSearch()
   }
 
   #doFocusSearch() {
