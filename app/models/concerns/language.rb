@@ -9,7 +9,7 @@ module Language
     "fa"  => "Persian",
     "ckb" => "Kurdish (Sorani)",
     "tr"  => "Turkish",
-    "ru"  => "Russian",
+    "ru"  => "Russian"
   }.freeze
 
   RTL_LOCALES = %w[ar fa ckb].freeze
