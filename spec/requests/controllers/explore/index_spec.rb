@@ -44,6 +44,27 @@ RSpec.describe "Explore#index", type: :request do
       end
     end
 
+    context "locale persistence on unauthenticated-accessible page" do
+      before { sign_in(user) }
+
+      it "renders in the user's saved locale" do
+        user.update!(locale: "es")
+        get explore_path
+        expect(response.body).to include("Explorar")
+      end
+
+      it "renders in English for users with default locale" do
+        get explore_path
+        expect(response.body).to include("Discover and fork public decks")
+      end
+
+      it "keeps the topbar brand LTR in an RTL locale" do
+        user.update!(locale: "ar")
+        get explore_path
+        expect(response.body).to include('class="topbar__brand" dir="ltr"')
+      end
+    end
+
     context "when not authenticated" do
       it "returns 200" do
         get explore_path

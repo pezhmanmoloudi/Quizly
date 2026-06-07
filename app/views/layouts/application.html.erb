@@ -49,7 +49,7 @@
                       aria-label="Open navigation">
                 <%= render "shared/icons/menu" %>
               </button>
-              <%= link_to "Quizly", root_path, class: "topbar__brand" %>
+              <%= link_to "Quizly", root_path, class: "topbar__brand", dir: "ltr" %>
             </div>
 
             <%# Center: global search (hidden on mobile) %>
@@ -171,7 +171,7 @@
     <% else %>
       <nav class="app-nav">
         <div class="app-nav__left">
-          <%= link_to root_path, class: "app-nav__brand" do %>
+          <%= link_to root_path, class: "app-nav__brand", dir: "ltr" do %>
             <span class="app-nav__brand-mark">Q</span><span class="app-nav__brand-text">uizly</span>
           <% end %>
         </div>
