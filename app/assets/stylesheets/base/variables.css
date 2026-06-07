@@ -107,3 +107,31 @@
   --color-separator:        #9ca3af;  /* flashcard row separator */
   --color-success-solid:    #3d9a5c;  /* flash notice background */
 }
+
+/* ── Dark theme overrides ── */
+[data-theme="dark"] {
+  --color-primary:          #818cf8;
+  --color-primary-dark:     #6366f1;
+  --color-text:             #f1f5f9;
+  --color-text-secondary:   #cbd5e1;
+  --color-muted:            #94a3b8;
+  --color-border:           #334155;
+  --color-border-light:     #1e293b;
+  --color-bg:               #0f172a;
+  --color-surface:          #1e293b;
+  --color-danger:           #f87171;
+  --color-danger-bg:        #450a0a;
+  --color-danger-text:      #fca5a5;
+  --color-success:          #34d399;
+  --color-success-bg:       #064e3b;
+  --color-success-text:     #6ee7b7;
+  --color-warning:          #fbbf24;
+  --color-secondary:        #a78bfa;
+  --color-danger-hover:     #ef4444;
+  --color-btn-circle:       #6366f1;
+  --color-btn-circle-hover: #818cf8;
+  --color-separator:        #475569;
+  --color-success-solid:    #059669;
+  --shadow-lg: 0 4px 16px rgba(0,0,0,.45);
+  --shadow-xl: 0 8px 32px rgba(0,0,0,.50), 0 1px 4px rgba(0,0,0,.30);
+}

@@ -53,7 +53,10 @@
             <button type="button"
                     class="settings-avatar-option"
                     style="background-color: <%= av[:bg] %>;"
-                    aria-label="<%= t("accounts.select_avatar") %>">
+                    aria-label="<%= t("accounts.select_avatar") %>"
+                    data-action="click->avatar-preview#selectPreset"
+                    data-avatar-preview-emoji-param="<%= av[:emoji] %>"
+                    data-avatar-preview-bg-param="<%= av[:bg] %>">
               <%= av[:emoji] %>
             </button>
           <% end %>
