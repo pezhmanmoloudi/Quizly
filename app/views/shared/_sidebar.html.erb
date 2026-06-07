@@ -21,27 +21,6 @@
     </button>
   </div>
 
-  <%# Search: full input (expanded), icon button (collapsed) %>
-  <%= form_with url: explore_path, method: :get, class: "sidebar__search" do |f| %>
-    <div class="sidebar__search-wrap">
-      <%= render "shared/icons/magnifying_glass", css_class: "sidebar__search-icon" %>
-      <%= f.search_field :q,
-            placeholder: "Search decks…",
-            class: "sidebar__search-input",
-            data: { sidebar_target: "searchInput" },
-            aria: { label: "Search decks" },
-            autocomplete: "off" %>
-      <kbd class="sidebar__search-kbd">Ctrl K</kbd>
-    </div>
-  <% end %>
-
-  <button class="sidebar__search-icon-btn"
-          data-action="click->sidebar#expandAndFocusSearch"
-          aria-label="Search"
-          data-tooltip="Search (Ctrl K)">
-    <%= render "shared/icons/magnifying_glass" %>
-  </button>
-
   <%# Primary nav %>
   <nav class="sidebar__nav" aria-label="Main navigation">
 

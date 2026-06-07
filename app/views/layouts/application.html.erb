@@ -41,6 +41,22 @@
               <%= link_to "Quizly", root_path, class: "topbar__brand" %>
             </div>
 
+            <%# Center: global search (hidden on mobile) %>
+            <div class="topbar__center">
+              <%= form_with url: explore_path, method: :get, class: "topbar__search" do |f| %>
+                <div class="topbar__search-wrap">
+                  <%= render "shared/icons/magnifying_glass", css_class: "topbar__search-icon" %>
+                  <%= f.search_field :q,
+                        placeholder: "Search decks…",
+                        class: "topbar__search-input",
+                        data: { sidebar_target: "searchInput" },
+                        aria: { label: "Search decks" },
+                        autocomplete: "off" %>
+                  <kbd class="topbar__search-kbd">Ctrl K</kbd>
+                </div>
+              <% end %>
+            </div>
+
             <%# Right: create action + avatar dropdown (always visible) %>
             <div class="topbar__right">
               <div class="topbar__create">
