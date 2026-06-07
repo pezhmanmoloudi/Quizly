@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
   static targets = ["cardsList", "template", "row"]
-  static values  = { createUrl: String }
+  static values  = { createUrl: String, errorTerm: String, errorDefinition: String, saved: String }
 
   connect() { this.#renumber() }
 
@@ -34,13 +34,13 @@ export default class extends Controller {
     const defArea  = row.querySelector("[name*='back_content']")
 
     if (!termArea?.value.trim()) {
-      this.#showFieldError(termArea, "Please enter a term.")
+      this.#showFieldError(termArea, this.errorTermValue)
       termArea.focus()
       return
     }
 
     if (!defArea?.value.trim()) {
-      this.#showFieldError(defArea, "Please enter a definition.")
+      this.#showFieldError(defArea, this.errorDefinitionValue)
       defArea.focus()
       return
     }
@@ -53,7 +53,7 @@ export default class extends Controller {
       termArea.value = ""
       defArea.value  = ""
       termArea.focus()
-      this.#showToast("Flashcard saved!")
+      this.#showToast(this.savedValue)
     }
   }
 

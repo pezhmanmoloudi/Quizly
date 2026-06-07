@@ -7,20 +7,20 @@
       <div class="deck-detail-header__actions" data-inline-confirm-target="actions">
         <% if @deck.user == Current.user %>
           <%= link_to edit_deck_path(@deck), class: "btn btn--secondary btn-with-icon" do %>
-            <%= render "shared/icons/pencil" %> Edit Deck
+            <%= render "shared/icons/pencil" %> <%= t("decks.show.edit") %>
           <% end %>
           <button type="button" class="btn btn--danger btn-with-icon"
                   data-action="click->inline-confirm#confirmRemove">
-            <%= render "shared/icons/trash" %> Delete Deck
+            <%= render "shared/icons/trash" %> <%= t("decks.show.delete") %>
           </button>
         <% elsif authenticated? %>
           <%= button_to fork_deck_path(@deck), method: :post, class: "btn btn--primary btn-with-icon" do %>
-            <%= render "shared/icons/fork" %> Fork to My Library
+            <%= render "shared/icons/fork" %> <%= t("decks.show.fork") %>
           <% end %>
         <% end %>
       </div>
       <% if @deck.user == Current.user %>
-        <%= render "shared/inline_confirm", message: "Are you sure you want to remove this deck?" %>
+        <%= render "shared/inline_confirm", message: t("decks.show.delete_confirm") %>
         <%= form_with url: deck_path(@deck), method: :delete,
               data: { "inline-confirm-target": "deleteForm" } do |f| %>
           <%= f.hidden_field :from_page, value: params[:from_page] || 1 %>
@@ -30,20 +30,20 @@
     <div class="deck-detail-header__meta">
       <% if @deck.public? %>
         <span class="visibility-badge visibility-badge--public">
-          <%= render "shared/icons/globe", css_class: "icon--sm" %> Public
+          <%= render "shared/icons/globe", css_class: "icon--sm" %> <%= t("decks.show.public_badge") %>
         </span>
       <% else %>
         <span class="visibility-badge visibility-badge--private">
-          <%= render "shared/icons/lock", css_class: "icon--sm" %> Private
+          <%= render "shared/icons/lock", css_class: "icon--sm" %> <%= t("decks.show.private_badge") %>
         </span>
       <% end %>
       <% if @deck.language_code.present? %>
         <span class="language-badge"><%= @deck.language_code.upcase %></span>
       <% end %>
-      <span class="deck-detail-header__date">Created <%= @deck.created_at.strftime("%b %-d, %Y") %></span>
+      <span class="deck-detail-header__date"><%= t("decks.show.created") %> <%= @deck.created_at.strftime("%b %-d, %Y") %></span>
       <% if @deck.forked_from.present? %>
         <span class="deck-detail-header__forked-from">
-          Forked from <%= link_to @deck.forked_from.name, deck_path(@deck.forked_from) %>
+          <%= t("decks.show.forked_from") %> <%= link_to @deck.forked_from.name, deck_path(@deck.forked_from) %>
         </span>
       <% end %>
     </div>
@@ -55,38 +55,38 @@
   <div class="study-mode-selector">
     <%= link_to flashcard_deck_path(@deck), class: "study-mode-btn" do %>
       <%= render "shared/icons/play" %>
-      <span>Flashcard</span>
+      <span><%= t("decks.show.mode_flashcard") %></span>
     <% end %>
     <%= link_to study_deck_path(@deck), class: "study-mode-btn" do %>
       <%= render "shared/icons/academic_cap" %>
-      <span>Study</span>
+      <span><%= t("decks.show.mode_study") %></span>
     <% end %>
     <% if authenticated? %>
       <%= link_to learn_deck_path(@deck), class: "study-mode-btn" do %>
         <%= render "shared/icons/rectangle_stack" %>
-        <span>Learn</span>
+        <span><%= t("decks.show.mode_learn") %></span>
       <% end %>
       <%= link_to test_deck_path(@deck), class: "study-mode-btn" do %>
         <%= render "shared/icons/pencil" %>
-        <span>Test</span>
+        <span><%= t("decks.show.mode_test") %></span>
       <% end %>
     <% end %>
     <%= link_to match_deck_path(@deck), class: "study-mode-btn" do %>
       <%= render "shared/icons/bolt" %>
-      <span>Match</span>
+      <span><%= t("decks.show.mode_match") %></span>
     <% end %>
   </div>
 
   <div class="cards-island">
     <div class="cards-island__header">
-      <h2 class="cards-island__title">Cards (<%= @deck.flashcards.count %>)</h2>
+      <h2 class="cards-island__title"><%= t("decks.show.cards_section") %> (<%= @deck.flashcards.count %>)</h2>
       <div class="cards-island__controls">
         <% if @deck.user == Current.user %>
           <%= link_to cards_deck_path(@deck), class: "btn btn--secondary btn-with-icon btn--sm" do %>
-            <%= render "shared/icons/plus" %> Add Card
+            <%= render "shared/icons/plus" %> <%= t("decks.show.add_card") %>
           <% end %>
           <%= link_to new_deck_import_path(@deck), class: "btn btn--secondary btn-with-icon btn--sm" do %>
-            ↑ Import
+            <%= t("decks.show.import") %>
           <% end %>
         <% end %>
         <%= form_with url: deck_path(@deck), method: :get,
@@ -96,8 +96,8 @@
                 {},
                 { class: "items-per-page-select",
                   onchange: "this.form.submit()",
-                  title: "Cards per page",
-                  "aria-label": "Cards per page" } %>
+                  title: t("decks.show.cards_per_page"),
+                  "aria-label": t("decks.show.cards_per_page") } %>
         <% end %>
       </div>
     </div>
@@ -114,22 +114,22 @@
                   <span class="tooltip-wrap">
                     <%= link_to edit_flashcard_path(card),
                           class: "card-action-btn card-action-btn--edit",
-                          aria: { label: "Edit card" } do %>
+                          aria: { label: t("decks.show.edit_card") } do %>
                       <%= render "shared/icons/pencil" %>
                     <% end %>
-                    <span class="tooltip">Edit</span>
+                    <span class="tooltip"><%= t("shared.edit") %></span>
                   </span>
                   <span class="tooltip-wrap">
                     <button type="button"
                             class="card-action-btn card-action-btn--delete"
-                            aria-label="Delete card"
+                            aria-label="<%= t("decks.show.delete_card") %>"
                             data-action="click->inline-confirm#confirmRemove">
                       <%= render "shared/icons/trash" %>
                     </button>
-                    <span class="tooltip">Delete</span>
+                    <span class="tooltip"><%= t("shared.delete") %></span>
                   </span>
                 </div>
-                <%= render "shared/inline_confirm", message: "Are you sure you want to remove this card?" %>
+                <%= render "shared/inline_confirm", message: t("decks.show.delete_card_confirm") %>
                 <%= form_with url: flashcard_path(card), method: :delete,
                       data: { "inline-confirm-target": "deleteForm" } do |f| %>
                 <%= f.hidden_field :page,  value: @pagy.page %>

@@ -3,7 +3,7 @@
      data-learn-mode-card-correct-value="<%= local_assigns[:correct] || '' %>">
 
   <div class="learn-card__prompt">
-    <p class="learn-card__label">Define this term</p>
+    <p class="learn-card__label"><%= t("study_modes.learn_card.prompt") %></p>
     <h2 class="learn-card__term"><%= item.flashcard.front_content %></h2>
   </div>
 
@@ -11,13 +11,13 @@
     <div class="learn-card__feedback learn-card__feedback--<%= correct ? 'correct' : 'incorrect' %>">
       <% if correct %>
         <span class="learn-card__feedback-icon">✓</span>
-        <span class="learn-card__feedback-text">Correct!</span>
+        <span class="learn-card__feedback-text"><%= t("study_modes.learn_card.correct") %></span>
       <% else %>
         <span class="learn-card__feedback-icon">✗</span>
-        <span class="learn-card__feedback-text">Incorrect</span>
+        <span class="learn-card__feedback-text"><%= t("study_modes.learn_card.incorrect") %></span>
       <% end %>
       <div class="learn-card__correct-answer">
-        <span class="learn-card__answer-label">Correct answer:</span>
+        <span class="learn-card__answer-label"><%= t("study_modes.learn_card.correct_answer") %></span>
         <span class="learn-card__answer-value"><%= item.flashcard.back_content %></span>
       </div>
     </div>
@@ -27,7 +27,7 @@
             class: "btn btn--primary learn-card__continue",
             data: { turbo_frame: "learn_card",
                     "learn-mode-target": "continueBtn" } do %>
-        Continue →
+        <%= t("study_modes.learn_card.continue") %>
       <% end %>
     </div>
 
@@ -39,7 +39,7 @@
 
       <div class="learn-card__answer-row">
         <%= f.text_field :answer,
-              placeholder: "Type your answer…",
+              placeholder: t("study_modes.learn_card.type_answer"),
               autocomplete: "off",
               autocorrect: "off",
               spellcheck: "false",
@@ -47,14 +47,14 @@
               data: { "learn-mode-target": "answerInput",
                       "learn-mode-card-target": "input" },
               autofocus: true,
-              aria: { label: "Your answer" } %>
-        <%= f.submit "Submit",
+              aria: { label: t("study_modes.learn_card.your_answer") } %>
+        <%= f.submit t("study_modes.learn_card.submit"),
               class: "btn btn--primary learn-card__submit",
               data: { "learn-mode-target": "submitBtn" } %>
       </div>
 
       <div class="learn-card__footer">
-        <p class="keyboard-hint" aria-hidden="true">Enter to submit</p>
+        <p class="keyboard-hint" aria-hidden="true"><%= t("study_modes.learn_card.keyboard_hint") %></p>
       </div>
     <% end %>
   <% end %>

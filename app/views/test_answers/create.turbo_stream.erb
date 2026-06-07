@@ -2,30 +2,30 @@
   <%= turbo_stream.update "test_question" do %>
     <div class="test-summary">
       <div class="session-summary__icon"><%= @correct ? '🎉' : '📝' %></div>
-      <h3 class="session-summary__title">Test complete!</h3>
+      <h3 class="session-summary__title"><%= t("study_modes.test.summary_title") %></h3>
       <div class="session-summary__stats">
         <div class="session-summary__stat">
           <span class="session-summary__value">
             <%= @test_session.score %> / <%= @test_session.questions_total %>
           </span>
-          <span class="session-summary__label">Correct answers</span>
+          <span class="session-summary__label"><%= t("study_modes.test.correct_answers") %></span>
         </div>
         <div class="session-summary__stat">
           <span class="session-summary__value"><%= @test_session.accuracy %>%</span>
-          <span class="session-summary__label">Score</span>
+          <span class="session-summary__label"><%= t("study_modes.test.score") %></span>
         </div>
         <div class="session-summary__stat">
           <span class="session-summary__value">
             <%= format_study_time(@test_session.elapsed_seconds) %>
           </span>
-          <span class="session-summary__label">Time</span>
+          <span class="session-summary__label"><%= t("study_modes.test.time") %></span>
         </div>
       </div>
       <div class="learn-summary__actions">
-        <%= link_to "Retake Test", test_deck_path(@test_session.deck),
+        <%= link_to t("study_modes.test.retake"), test_deck_path(@test_session.deck),
               class: "btn btn--primary btn--sm",
               data: { turbo_action: "replace" } %>
-        <%= link_to "Back to Deck", @test_session.deck, class: "btn btn--secondary btn--sm" %>
+        <%= link_to t("study_modes.back_to_deck"), @test_session.deck, class: "btn btn--secondary btn--sm" %>
       </div>
     </div>
   <% end %>

@@ -1,8 +1,11 @@
-<% content_for :title, "Add Cards — #{@deck.name}" %>
+<% content_for :title, t("decks.cards.page_title", name: @deck.name) %>
 
 <div class="cards-editor-page"
      data-controller="card-editor"
-     data-card-editor-create-url-value="<%= deck_flashcards_path(@deck) %>">
+     data-card-editor-create-url-value="<%= deck_flashcards_path(@deck) %>"
+     data-card-editor-error-term-value="<%= t("card_editor.error_term") %>"
+     data-card-editor-error-definition-value="<%= t("card_editor.error_definition") %>"
+     data-card-editor-saved-value="<%= t("card_editor.saved") %>">
 
   <header class="card-editor-header">
     <%= link_to deck_path(@deck), class: "card-editor-header__back",
@@ -21,7 +24,7 @@
     <div class="cards-editor-add">
       <button type="button" class="btn btn--outline btn-with-icon"
               data-action="click->card-editor#addCard">
-        <%= render "shared/icons/plus" %> Add a card
+        <%= render "shared/icons/plus" %> <%= t("decks.cards.add_card") %>
       </button>
     </div>
   </div>

@@ -82,7 +82,7 @@ class QuestionEngine
     {
       "flashcard_id"   => flashcard.id,
       "type"           => "matching",
-      "prompt"         => "Match each term to its definition",
+      "prompt"         => I18n.t("question_engine.match_prompt"),
       "correct_answer" => correct.to_json,
       "options"        => {
         "terms"       => pairs.map { |p| { "id" => p["id"], "text" => p["term"] } },
@@ -98,7 +98,7 @@ class QuestionEngine
       answer = "true"
     else
       impostor = (@flashcards - [ flashcard ]).sample
-      wrong_back = impostor&.back_content || "N/A"
+      wrong_back = impostor&.back_content || I18n.t("shared.not_available")
       statement = "#{flashcard.front_content} → #{wrong_back}"
       answer = "false"
     end

@@ -16,7 +16,7 @@ class TextImporter
     pairs = lines.map { |l| l.split(@col_sep, 2) }.select { |p| p.size == 2 && p.all?(&:present?) }
     skipped = lines.size - pairs.size
 
-    return Result.new(imported: 0, skipped: lines.size, errors: ["No valid card pairs found. Make sure each line has a front and back separated by the chosen delimiter."]) if pairs.empty?
+    return Result.new(imported: 0, skipped: lines.size, errors: [I18n.t("imports.text_no_valid_pairs")]) if pairs.empty?
 
     next_pos = (@deck.flashcards.maximum(:position) || -1) + 1
     now = Time.current

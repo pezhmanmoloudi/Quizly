@@ -9,24 +9,31 @@ class AccountsController < ApplicationController
     if @active_section == "profile"
       if Current.user.update(profile_params)
         flash[:section] = @active_section
-        redirect_to account_path(anchor: @active_section), notice: "Profile updated."
+        redirect_to account_path(anchor: @active_section), notice: t("accounts.updated.profile")
       else
         render :show, status: :unprocessable_entity
       end
     elsif @active_section == "email"
       unless Current.user.authenticate(params[:current_password])
-        Current.user.errors.add(:current_password, "is incorrect")
+        Current.user.errors.add(:current_password, I18n.t("accounts.password_incorrect"))
         return render :show, status: :unprocessable_entity
       end
       if Current.user.update(email_params)
         flash[:section] = @active_section
-        redirect_to account_path(anchor: @active_section), notice: "Email updated."
+        redirect_to account_path(anchor: @active_section), notice: t("accounts.updated.email")
+      else
+        render :show, status: :unprocessable_entity
+      end
+    elsif @active_section == "language"
+      if Current.user.update(locale_params)
+        flash[:section] = @active_section
+        redirect_to account_path(anchor: @active_section), notice: t("settings.language_updated")
       else
         render :show, status: :unprocessable_entity
       end
     elsif @active_section == "password"
       unless Current.user.authenticate(params[:current_password])
-        Current.user.errors.add(:current_password, "is incorrect")
+        Current.user.errors.add(:current_password, I18n.t("accounts.password_incorrect"))
         return render :show, status: :unprocessable_entity
       end
       if params[:password].blank?
@@ -35,7 +42,7 @@ class AccountsController < ApplicationController
       end
       if Current.user.update(password_params)
         flash[:section] = @active_section
-        redirect_to account_path(anchor: @active_section), notice: "Password updated."
+        redirect_to account_path(anchor: @active_section), notice: t("accounts.updated.password")
       else
         render :show, status: :unprocessable_entity
       end
@@ -46,13 +53,13 @@ class AccountsController < ApplicationController
     user = Current.user
     terminate_session
     user.destroy
-    redirect_to root_path, notice: "Your account has been deleted."
+    redirect_to root_path, notice: t("accounts.deleted")
   end
 
   def destroy_avatar
     Current.user.avatar.purge
     flash[:section] = "profile"
-    redirect_to account_path(anchor: "profile"), notice: "Profile photo removed."
+    redirect_to account_path(anchor: "profile"), notice: t("accounts.avatar_removed")
   end
 
   private
@@ -61,6 +68,10 @@ class AccountsController < ApplicationController
     p = params.permit(:display_name, :avatar)
     p.delete(:avatar) if p[:avatar].blank?
     p
+  end
+
+  def locale_params
+    params.permit(:locale)
   end
 
   def email_params

@@ -4,24 +4,24 @@
   </div>
   <div class="card-row__panels">
     <div class="card-row__panel">
-      <span class="card-editor-panel__label">Term</span>
+      <span class="card-editor-panel__label"><%= t("decks.card_row.term_label") %></span>
       <textarea class="card-editor-field"
                 name="deck[flashcards_attributes][NEW_INDEX][front_content]"
-                placeholder="Enter term"
+                placeholder="<%= t("decks.card_row.term_placeholder") %>"
                 rows="3"></textarea>
       <span class="card-row__field-error" hidden></span>
     </div>
     <div class="card-row__panel">
-      <span class="card-editor-panel__label">Definition</span>
+      <span class="card-editor-panel__label"><%= t("decks.card_row.definition_label") %></span>
       <textarea class="card-editor-field"
                 name="deck[flashcards_attributes][NEW_INDEX][back_content]"
-                placeholder="Enter definition"
+                placeholder="<%= t("decks.card_row.definition_placeholder") %>"
                 rows="3"></textarea>
       <span class="card-row__field-error" hidden></span>
     </div>
   </div>
   <div class="card-row__footer">
     <button type="button" class="btn btn--primary"
-            data-action="click->card-editor#saveCard">Save Card</button>
+            data-action="click->card-editor#saveCard"><%= t("card_editor.save_card") %></button>
   </div>
 </div>

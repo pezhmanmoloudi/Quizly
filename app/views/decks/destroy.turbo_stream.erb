@@ -8,8 +8,8 @@
   <%= turbo_stream.update "decks-index-section" do %>
     <%= render "shared/empty_state",
           icon: "rectangle_stack",
-          title: "No decks yet",
-          description: "Create your first deck to start studying.",
+          title: t("decks.index.empty_title"),
+          description: t("decks.index.empty_description"),
           variant: :dashboard %>
   <% end %>
 <% else %>

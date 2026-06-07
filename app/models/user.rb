@@ -1,8 +1,8 @@
 class User < ApplicationRecord
-  AVATAR_MAX_MB     = 5
-  AVATAR_FORMATS    = %w[image/jpeg image/png image/webp].freeze
-  AVATAR_ERR_FORMAT = "Invalid file format. Please upload JPG, PNG, or WEBP.".freeze
-  AVATAR_ERR_SIZE   = "Profile picture must be smaller than 5 MB.".freeze
+  include Language
+
+  AVATAR_MAX_MB  = 5
+  AVATAR_FORMATS = %w[image/jpeg image/png image/webp].freeze
 
   has_secure_password
   has_one_attached :avatar
@@ -21,6 +21,7 @@ class User < ApplicationRecord
                             format: { with: URI::MailTo::EMAIL_REGEXP }
   validates :password,      length: { minimum: 8 }, allow_nil: true
   validates :display_name,  length: { maximum: 50 }, allow_blank: true
+  validates :locale,        inclusion: { in: LANGUAGES.keys }
   validate  :avatar_is_valid_image, if: -> { avatar.attached? && avatar.changed? }
 
   def display_name
@@ -35,11 +36,11 @@ class User < ApplicationRecord
 
   def avatar_is_valid_image
     unless avatar.content_type.in?(AVATAR_FORMATS)
-      errors.add(:avatar, AVATAR_ERR_FORMAT)
+      errors.add(:avatar, I18n.t("accounts.avatar_format_error"))
       return
     end
     if avatar.blob.byte_size > AVATAR_MAX_MB.megabytes
-      errors.add(:avatar, AVATAR_ERR_SIZE)
+      errors.add(:avatar, I18n.t("accounts.avatar_size_error"))
     end
   end
 end
