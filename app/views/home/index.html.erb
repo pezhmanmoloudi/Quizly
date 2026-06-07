@@ -1,4 +1,4 @@
-<% content_for :title, "Quizly — Learn Faster with Flashcards" %>
+<% content_for :title, t("home.page_title") %>
 
 <section class="hero-section"
          data-controller="carousel"
@@ -7,10 +7,10 @@
   <%# ── Hero text ── %>
   <div class="hero">
     <div class="hero__body">
-      <h1 class="hero__headline">How do you want to study?</h1>
-      <p class="hero__sub">Master whatever you're learning with Quizly's interactive flashcards, practice tests and study activities.</p>
+      <h1 class="hero__headline"><%= t("home.hero_heading") %></h1>
+      <p class="hero__sub"><%= t("home.hero_subtitle") %></p>
       <div class="hero__ctas">
-        <%= link_to "Sign up for free", signup_path, class: "btn btn--primary btn--lg" %>
+        <%= link_to t("home.sign_up"), signup_path, class: "btn btn--primary btn--lg" %>
       </div>
     </div>
   </div>
@@ -25,7 +25,7 @@
         <rect x="2" y="4" width="16" height="12" rx="2"/>
         <line x1="10" y1="4" x2="10" y2="16"/>
       </svg>
-      Flashcards
+      <%= t("home.modes.flashcards") %>
     </button>
     <button class="mode-selector__tab"
             data-carousel-target="tab"
@@ -35,7 +35,7 @@
         <circle cx="10" cy="10" r="7"/>
         <path d="M10 6v4l2.5 2.5"/>
       </svg>
-      Learn
+      <%= t("home.modes.learn") %>
     </button>
     <button class="mode-selector__tab"
             data-carousel-target="tab"
@@ -44,7 +44,7 @@
       <svg class="mode-selector__icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.75">
         <path d="M4 5h12M4 10h8M4 15h10"/>
       </svg>
-      Study
+      <%= t("home.modes.study") %>
     </button>
     <button class="mode-selector__tab"
             data-carousel-target="tab"
@@ -54,7 +54,7 @@
         <rect x="3" y="3" width="14" height="14" rx="2"/>
         <path d="M7 7h6M7 10h6M7 13h3"/>
       </svg>
-      Test
+      <%= t("home.modes.test") %>
     </button>
     <button class="mode-selector__tab"
             data-carousel-target="tab"
@@ -66,7 +66,7 @@
         <rect x="2" y="11" width="7" height="7" rx="1.5"/>
         <rect x="11" y="11" width="7" height="7" rx="1.5"/>
       </svg>
-      Match
+      <%= t("home.modes.match") %>
     </button>
   </div>
 
@@ -74,7 +74,7 @@
   <div class="hero-carousel">
     <button class="hero-carousel__nav hero-carousel__nav--prev"
             data-action="click->carousel#prev"
-            aria-label="Previous slide">&#8249;</button>
+            aria-label="<%= t("home.carousel.previous_slide") %>">&#8249;</button>
 
     <%# Slide 0 — Flashcards: Spanish Vocabulary (white, active) %>
     <div class="hero-carousel__slide is-active" data-carousel-target="slide">
@@ -85,10 +85,10 @@
             Spanish Vocabulary
           </span>
           <div class="mode-card__header-actions">
-            <button class="mode-card__icon-btn" aria-label="Favourite">
+            <button class="mode-card__icon-btn" aria-label="<%= t("home.carousel.favourite") %>">
               <svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M10 17l-1.4-1.3C4 11.6 1 9 1 5.9 1 3.7 2.7 2 4.9 2c1.2 0 2.4.6 3.2 1.5L10 5.1l1.9-1.6C12.7 2.6 13.9 2 15.1 2 17.3 2 19 3.7 19 5.9c0 3.1-3 5.7-7.6 9.8L10 17z"/></svg>
             </button>
-            <button class="mode-card__icon-btn" aria-label="Audio">
+            <button class="mode-card__icon-btn" aria-label="<%= t("home.carousel.audio") %>">
               <svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M3 7.5h3l4-4v13l-4-4H3V7.5z"/><path d="M14 6.5c1.5 1 2.5 2.2 2.5 3.5s-1 2.5-2.5 3.5"/></svg>
             </button>
           </div>
@@ -98,15 +98,15 @@
           <p class="mode-card__definition">happy</p>
         </div>
         <div class="mode-card__footer">
-          <button class="mode-card__icon-btn" aria-label="Shuffle">
+          <button class="mode-card__icon-btn" aria-label="<%= t("home.carousel.shuffle") %>">
             <svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M3 6h11M3 14h11M10 3l4 3-4 3M10 11l4 3-4 3"/></svg>
           </button>
           <div class="mode-card__nav">
-            <button class="mode-card__icon-btn" aria-label="Previous card">&#8249;</button>
+            <button class="mode-card__icon-btn" aria-label="<%= t("home.carousel.previous_card") %>">&#8249;</button>
             <span>1 / 32</span>
-            <button class="mode-card__icon-btn" aria-label="Next card">&#8250;</button>
+            <button class="mode-card__icon-btn" aria-label="<%= t("home.carousel.next_card") %>">&#8250;</button>
           </div>
-          <button class="mode-card__icon-btn" aria-label="Fullscreen">
+          <button class="mode-card__icon-btn" aria-label="<%= t("home.carousel.fullscreen") %>">
             <svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M3 8V3h5M12 3h5v5M17 12v5h-5M8 17H3v-5"/></svg>
           </button>
         </div>
@@ -218,7 +218,7 @@
 
     <button class="hero-carousel__nav hero-carousel__nav--next"
             data-action="click->carousel#next"
-            aria-label="Next slide">&#8250;</button>
+            aria-label="<%= t("home.carousel.next_slide") %>">&#8250;</button>
   </div>
 
   <%# ── Dot indicators ── %>
@@ -228,7 +228,7 @@
               data-carousel-target="dot"
               data-action="click->carousel#goTo"
               data-index="<%= i %>"
-              aria-label="Go to slide <%= i + 1 %>"></button>
+              aria-label="<%= t("home.carousel.go_to_slide", n: i + 1) %>"></button>
     <% end %>
   </div>
 
@@ -237,8 +237,8 @@
 <% if @featured_decks.any? %>
   <section class="featured-decks">
     <div class="featured-decks__header">
-      <h2 class="featured-decks__title">Popular Decks</h2>
-      <%= link_to "See all →", explore_path, class: "featured-decks__more" %>
+      <h2 class="featured-decks__title"><%= t("home.popular_decks") %></h2>
+      <%= link_to t("home.see_all"), explore_path, class: "featured-decks__more" %>
     </div>
     <div class="deck-grid">
       <%= render partial: "explore/deck_card", collection: @featured_decks, as: :deck %>

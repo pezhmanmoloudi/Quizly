@@ -6,7 +6,7 @@
       <%= link_to pagy_url_for(pagy, pagy.prev),
             class: "pagination__btn",
             rel: "prev",
-            "aria-label": "Previous page" do %>&lsaquo;<% end %>
+            "aria-label": t("shared.previous_page") do %>&lsaquo;<% end %>
     <% else %>
       <span class="pagination__btn pagination__btn--disabled" aria-disabled="true">&lsaquo;</span>
     <% end %>
@@ -27,7 +27,7 @@
       <%= link_to pagy_url_for(pagy, pagy.next),
             class: "pagination__btn",
             rel: "next",
-            "aria-label": "Next page" do %>&rsaquo;<% end %>
+            "aria-label": t("shared.next_page") do %>&rsaquo;<% end %>
     <% else %>
       <span class="pagination__btn pagination__btn--disabled" aria-disabled="true">&rsaquo;</span>
     <% end %>

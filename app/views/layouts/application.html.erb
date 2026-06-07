@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html dir="<%= Language::RTL_LOCALES.include?(I18n.locale.to_s) ? "rtl" : "ltr" %>">
   <head>
     <title><%= [content_for(:title).presence, "Quizly"].compact.join(" · ") %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -15,11 +15,22 @@
     <link rel="icon" href="/icon.svg?v=2" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.svg?v=2">
 
+    <script>
+      (function() {
+        var t = localStorage.getItem("color-theme");
+        if (t === "dark" || t === "light") {
+          document.documentElement.dataset.theme = t;
+        } else {
+          document.documentElement.dataset.theme =
+            window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        }
+      })();
+    </script>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
+  <body data-controller="theme">
     <% if authenticated? %>
       <div class="app-shell"
            data-controller="sidebar"
@@ -38,7 +49,7 @@
                       aria-label="Open navigation">
                 <%= render "shared/icons/menu" %>
               </button>
-              <%= link_to "Quizly", root_path, class: "topbar__brand" %>
+              <%= link_to "Quizly", root_path, class: "topbar__brand", dir: "ltr" %>
             </div>
 
             <%# Center: global search (hidden on mobile) %>
@@ -47,10 +58,10 @@
                 <div class="topbar__search-wrap">
                   <%= render "shared/icons/magnifying_glass", css_class: "topbar__search-icon" %>
                   <%= f.search_field :q,
-                        placeholder: "Search decks…",
+                        placeholder: t("topbar.search_placeholder"),
                         class: "topbar__search-input",
                         data: { sidebar_target: "searchInput" },
-                        aria: { label: "Search decks" },
+                        aria: { label: t("topbar.search_aria") },
                         autocomplete: "off" %>
                   <kbd class="topbar__search-kbd">Ctrl K</kbd>
                 </div>
@@ -62,8 +73,8 @@
               <div class="topbar__create">
                 <%= link_to new_deck_path,
                       class: "topbar__create-btn",
-                      aria: { label: "Create Deck" },
-                      data: { tooltip: "New Deck" } do %>
+                      aria: { label: t("topbar.create_deck_aria") },
+                      data: { tooltip: t("topbar.create_deck_tooltip") } do %>
                   <%= render "shared/icons/plus", css_class: "topbar__create-icon" %>
                 <% end %>
               </div>
@@ -108,12 +119,35 @@
                     </div>
                   </div>
                   <div class="avatar-dropdown__items">
-                    <%= link_to "Account Settings", account_path,
-                          class: "avatar-dropdown__item", role: "menuitem" %>
+                    <%= link_to account_path,
+                          class: "avatar-dropdown__item", role: "menuitem" do %>
+                      <%= render "shared/icons/cog", css_class: "avatar-dropdown__item-icon" %>
+                      <span><%= t("menu.settings") %></span>
+                    <% end %>
+
+                    <%= link_to account_path(anchor: "language"),
+                          class: "avatar-dropdown__item", role: "menuitem" do %>
+                      <%= render "shared/icons/globe", css_class: "avatar-dropdown__item-icon" %>
+                      <span><%= t("menu.language") %> · <%= Language::LANGUAGES[Current.user.locale] %></span>
+                    <% end %>
+
+                    <button class="avatar-dropdown__item" role="menuitem"
+                            data-action="click->theme#toggle">
+                      <%= render "shared/icons/moon", css_class: "avatar-dropdown__item-icon" %>
+                      <span data-theme-target="label"
+                            data-dark-label="<%= t("menu.dark_mode") %>"
+                            data-light-label="<%= t("menu.light_mode") %>"><%= t("menu.dark_mode") %></span>
+                    </button>
+
                     <hr class="avatar-dropdown__divider">
-                    <%= button_to "Logout", logout_path, method: :delete,
+
+                    <%= button_to logout_path, method: :delete,
                           class: "avatar-dropdown__item avatar-dropdown__item--danger",
-                          role: "menuitem" %>
+                          role: "menuitem" do %>
+                      <%= render "shared/icons/arrow_right_on_rectangle",
+                            css_class: "avatar-dropdown__item-icon" %>
+                      <span><%= t("menu.log_out") %></span>
+                    <% end %>
                   </div>
                 </div>
 
@@ -137,15 +171,15 @@
     <% else %>
       <nav class="app-nav">
         <div class="app-nav__left">
-          <%= link_to root_path, class: "app-nav__brand" do %>
+          <%= link_to root_path, class: "app-nav__brand", dir: "ltr" do %>
             <span class="app-nav__brand-mark">Q</span><span class="app-nav__brand-text">uizly</span>
           <% end %>
         </div>
         <div class="app-nav__center">
-          <%= link_to "Explore", explore_path, class: "app-nav__link" %>
+          <%= link_to t("nav.explore"), explore_path, class: "app-nav__link" %>
         </div>
         <div class="app-nav__right">
-          <%= link_to "Log In",  login_path,  class: "app-nav__link" %>
+          <%= link_to t("home.log_in"), login_path, class: "app-nav__link" %>
         </div>
       </nav>
       <div id="flash-messages">

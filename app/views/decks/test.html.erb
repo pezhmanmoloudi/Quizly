@@ -13,7 +13,7 @@
         <%= @test_session.current_index + 1 %> / <%= @test_session.questions_total %>
       </span>
     <% end %>
-    <%= link_to "← Exit", @deck, class: "study-island__exit" %>
+    <%= link_to t("study_modes.exit"), @deck, class: "study-island__exit" %>
   </div>
 
   <% if @test_session.present? %>
@@ -30,9 +30,9 @@
     <% if @test_session.nil? || @deck.flashcards.empty? %>
       <%= render "shared/empty_state",
             icon: "academic_cap",
-            title: "No cards yet",
-            description: "Add flashcards to this deck before taking a test.",
-            cta_text: "Back to Deck",
+            title: t("study_modes.no_cards_title"),
+            description: t("study_modes.test.empty_description"),
+            cta_text: t("study_modes.back_to_deck"),
             cta_path: @deck,
             variant: :study %>
     <% else %>

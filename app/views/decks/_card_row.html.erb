@@ -3,23 +3,23 @@
     <span class="card-row__number">1</span>
     <button type="button" class="card-row__delete"
             data-action="click->card-editor#removeCard"
-            aria-label="Remove card">
+            aria-label="<%= t("decks.card_row.remove") %>">
       <%= render "shared/icons/trash" %>
     </button>
   </div>
   <div class="card-row__panels">
     <div class="card-row__panel">
-      <span class="card-editor-panel__label">Term</span>
+      <span class="card-editor-panel__label"><%= t("decks.card_row.term_label") %></span>
       <%= ff.text_area :front_content,
             class: "card-editor-field",
-            placeholder: "Enter term",
+            placeholder: t("decks.card_row.term_placeholder"),
             rows: 3 %>
     </div>
     <div class="card-row__panel">
-      <span class="card-editor-panel__label">Definition</span>
+      <span class="card-editor-panel__label"><%= t("decks.card_row.definition_label") %></span>
       <%= ff.text_area :back_content,
             class: "card-editor-field",
-            placeholder: "Enter definition",
+            placeholder: t("decks.card_row.definition_placeholder"),
             rows: 3,
             data: { action: "keydown->card-editor#handleDefinitionKeydown" } %>
     </div>

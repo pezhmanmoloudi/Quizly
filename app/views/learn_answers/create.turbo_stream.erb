@@ -3,25 +3,25 @@
   <%= turbo_stream.update "learn_card" do %>
     <div class="learn-summary">
       <div class="session-summary__icon">🎓</div>
-      <h3 class="session-summary__title">All cards mastered!</h3>
+      <h3 class="session-summary__title"><%= t("study_modes.learn.summary_title") %></h3>
       <div class="session-summary__stats">
         <div class="session-summary__stat">
           <span class="session-summary__value"><%= @learn_session.cards_total %></span>
-          <span class="session-summary__label">Cards studied</span>
+          <span class="session-summary__label"><%= t("study_modes.learn.studied") %></span>
         </div>
         <div class="session-summary__stat">
           <span class="session-summary__value">
             <%= format_study_time(@learn_session.elapsed_seconds) %>
           </span>
-          <span class="session-summary__label">Time spent</span>
+          <span class="session-summary__label"><%= t("study_modes.learn.time_spent") %></span>
         </div>
       </div>
-      <p class="session-summary__sub">Great work — every card is mastered.</p>
+      <p class="session-summary__sub"><%= t("study_modes.learn.summary_sub") %></p>
       <div class="learn-summary__actions">
-        <%= link_to "Study Again", learn_deck_path(@learn_session.deck),
+        <%= link_to t("study_modes.learn.study_again"), learn_deck_path(@learn_session.deck),
               class: "btn btn--primary btn--sm",
               data: { turbo_action: "replace" } %>
-        <%= link_to "Back to Deck", @learn_session.deck, class: "btn btn--secondary btn--sm" %>
+        <%= link_to t("study_modes.back_to_deck"), @learn_session.deck, class: "btn btn--secondary btn--sm" %>
       </div>
     </div>
   <% end %>

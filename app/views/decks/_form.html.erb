@@ -8,47 +8,47 @@
   <% end %>
 
   <div class="form-group">
-    <%= f.label :name %>
+    <%= f.label :name, t("decks.form.name_label") %>
     <%= f.text_field :name, class: "form-control" %>
   </div>
 
   <div class="form-group">
-    <%= f.label :description %>
+    <%= f.label :description, t("decks.form.description_label") %>
     <%= f.text_area :description, rows: 3, class: "form-control" %>
   </div>
 
   <div class="form-group">
-    <%= f.label :language_code, "Language (optional)" %>
-    <%= f.text_field :language_code, class: "form-control", placeholder: "e.g. en, es, fr, de" %>
+    <%= f.label :language_code, t("decks.form.language_label") %>
+    <%= f.text_field :language_code, class: "form-control", placeholder: t("decks.form.language_placeholder") %>
   </div>
 
   <div class="form-group">
-    <%= f.label :tag_list, "Tags (optional)" %>
+    <%= f.label :tag_list, t("decks.form.tags_label") %>
     <%= f.text_field :tag_list, value: deck.tag_list.join(", "),
           class: "form-control",
-          placeholder: "e.g. biology, anatomy, exam2025" %>
-    <p class="form-hint">Separate tags with commas.</p>
+          placeholder: t("decks.form.tags_placeholder") %>
+    <p class="form-hint"><%= t("decks.form.tags_hint") %></p>
   </div>
 
   <div class="form-group">
-    <%= f.label :visibility, "Visibility" %>
+    <%= f.label :visibility, t("decks.form.visibility_label") %>
     <div class="visibility-toggle">
       <label class="visibility-option">
         <%= f.radio_button :visibility, "private", class: "visibility-radio" %>
         <span class="visibility-label">
           <%= render "shared/icons/lock", css_class: "icon--sm" %>
-          Private
+          <%= t("decks.form.visibility_private") %>
         </span>
       </label>
       <label class="visibility-option">
         <%= f.radio_button :visibility, "public", class: "visibility-radio" %>
         <span class="visibility-label">
           <%= render "shared/icons/globe", css_class: "icon--sm" %>
-          Public
+          <%= t("decks.form.visibility_public") %>
         </span>
       </label>
     </div>
-    <p class="form-hint">Public decks can be discovered and forked by anyone.</p>
+    <p class="form-hint"><%= t("decks.form.visibility_hint") %></p>
   </div>
 
   <%= f.submit class: "btn btn--primary" %>

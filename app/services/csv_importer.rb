@@ -18,7 +18,7 @@ class CsvImporter
   def call
     table = CSV.read(@file.path, headers: true, encoding: "bom|utf-8", liberal_parsing: true)
 
-    raise "CSV must have at least 2 columns." if table.headers.size < 2
+    raise I18n.t("imports.csv_too_few_columns") if table.headers.size < 2
 
     front_col, back_col = detect_columns(table.headers)
     next_pos = (@deck.flashcards.maximum(:position) || -1) + 1
@@ -38,12 +38,12 @@ class CsvImporter
       end
     end
 
-    return Result.new(imported: 0, skipped: skipped, errors: ["No valid rows found in the CSV."]) if records.empty?
+    return Result.new(imported: 0, skipped: skipped, errors: [I18n.t("imports.csv_no_valid_rows")]) if records.empty?
 
     Flashcard.insert_all(records)
     Result.new(imported: records.size, skipped: skipped, errors: [])
   rescue CSV::MalformedCSVError => e
-    Result.new(imported: 0, skipped: 0, errors: ["Invalid CSV format: #{e.message}"])
+    Result.new(imported: 0, skipped: 0, errors: [I18n.t("imports.csv_invalid_format", message: e.message)])
   rescue => e
     Result.new(imported: 0, skipped: 0, errors: [e.message])
   end

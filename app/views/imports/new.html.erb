@@ -1,9 +1,9 @@
-<% content_for :title, "Import Cards — #{@deck.name}" %>
+<% content_for :title, t("imports.title", name: @deck.name) %>
 
 <div class="container" style="padding-top: 2rem; padding-bottom: 3rem; max-width: 680px;">
   <div class="section-header">
-    <h1>Import Cards</h1>
-    <%= link_to "← #{@deck.name}", @deck, class: "section-header__link" %>
+    <h1><%= t("imports.title", name: @deck.name) %></h1>
+    <%= link_to t("imports.back", name: @deck.name), @deck, class: "section-header__link" %>
   </div>
 
   <% if flash[:alert] %>
@@ -12,7 +12,9 @@
 
   <div class="import-tabs"
        data-controller="import"
-       data-import-active-tab-value="<%= @tab %>">
+       data-import-active-tab-value="<%= @tab %>"
+       data-import-detected-one-value="<%= t("imports.cards_detected", count: 1) %>"
+       data-import-detected-other-value="<%= t("imports.cards_detected.other") %>">
 
     <div class="import-tabs__nav" role="tablist">
       <button class="import-tab-btn"
@@ -21,7 +23,7 @@
               data-tab="text"
               data-action="click->import#switchTab"
               aria-selected="<%= @tab == "text" %>">
-        Text
+        <%= t("imports.text_tab") %>
       </button>
       <button class="import-tab-btn"
               role="tab"
@@ -29,7 +31,7 @@
               data-tab="csv"
               data-action="click->import#switchTab"
               aria-selected="<%= @tab == "csv" %>">
-        CSV file
+        <%= t("imports.csv_tab") %>
       </button>
     </div>
 
@@ -40,13 +42,13 @@
          <%= "hidden" if @tab != "text" %>>
 
       <p class="import-panel__hint">
-        Paste one card per line. Separate front and back with the delimiter you choose below.
-        <strong>Default format (Quizlet-compatible):</strong> <code>front[TAB]back</code>
+        <%= t("imports.text_hint") %>
+        <strong><%= t("imports.text_default_format") %></strong> <code><%= t("imports.text_format_example") %></code>
       </p>
 
       <%= form_with url: text_deck_import_path(@deck), method: :post do |f| %>
         <div class="form-group">
-          <label class="form-label" for="text_import_textarea">Cards text</label>
+          <label class="form-label" for="text_import_textarea"><%= t("imports.text_label") %></label>
           <%= text_area_tag :text, params[:text],
                 id: "text_import_textarea",
                 class: "form-control import-textarea",
@@ -60,21 +62,21 @@
         </div>
 
         <div class="form-group">
-          <label class="form-label" for="col_sep_select">Column separator</label>
+          <label class="form-label" for="col_sep_select"><%= t("imports.separator_label") %></label>
           <%= select_tag :col_sep,
                 options_for_select([
-                  ["Tab (default)", "\t"],
-                  ["Comma", ","],
-                  ["Semicolon", ";"],
-                  ["Pipe |", "|"]
+                  [t("imports.tab_separator"), "\t"],
+                  [t("imports.comma_separator"), ","],
+                  [t("imports.semicolon_separator"), ";"],
+                  [t("imports.pipe_separator"), "|"]
                 ], params[:col_sep] || "\t"),
                 id: "col_sep_select",
                 class: "form-control form-control--select" %>
         </div>
 
         <div class="form-actions">
-          <%= f.submit "Import Cards", class: "btn btn--primary" %>
-          <%= link_to "Cancel", @deck, class: "btn btn--secondary" %>
+          <%= f.submit t("imports.submit"), class: "btn btn--primary" %>
+          <%= link_to t("shared.cancel"), @deck, class: "btn btn--secondary" %>
         </div>
       <% end %>
     </div>
@@ -85,16 +87,11 @@
          data-tab="csv"
          <%= "hidden" if @tab != "csv" %>>
 
-      <p class="import-panel__hint">
-        Upload a <code>.csv</code> file with two columns. The first column is the front (term),
-        the second is the back (definition). A header row is detected automatically —
-        supported names: <code>front</code>/<code>back</code>, <code>term</code>/<code>definition</code>,
-        <code>question</code>/<code>answer</code>.
-      </p>
+      <p class="import-panel__hint"><%= t("imports.csv_hint_html").html_safe %></p>
 
       <%= form_with url: csv_deck_import_path(@deck), method: :post do |f| %>
         <div class="form-group">
-          <label class="form-label" for="csv_file_input">CSV file</label>
+          <label class="form-label" for="csv_file_input"><%= t("imports.csv_label") %></label>
           <%= file_field_tag :file,
                 id: "csv_file_input",
                 accept: ".csv,text/csv",
@@ -102,8 +99,8 @@
         </div>
 
         <div class="form-actions">
-          <%= f.submit "Import CSV", class: "btn btn--primary" %>
-          <%= link_to "Cancel", @deck, class: "btn btn--secondary" %>
+          <%= f.submit t("imports.csv_submit"), class: "btn btn--primary" %>
+          <%= link_to t("shared.cancel"), @deck, class: "btn btn--secondary" %>
         </div>
       <% end %>
     </div>

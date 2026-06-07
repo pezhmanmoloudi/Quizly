@@ -3,14 +3,14 @@
     <%= button_to card_progress_starred_card_path(card_progress),
           method: :delete,
           class: "star-btn star-btn--active",
-          title: "Unstar this card" do %>
+          title: t("starred_cards.unstar") do %>
       ★
     <% end %>
   <% else %>
     <%= button_to card_progress_starred_card_path(card_progress),
           method: :post,
           class: "star-btn",
-          title: "Star this card" do %>
+          title: t("starred_cards.star") do %>
       ☆
     <% end %>
   <% end %>

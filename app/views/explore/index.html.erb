@@ -1,18 +1,18 @@
-<% content_for :title, "Explore" %>
+<% content_for :title, t("explore.title") %>
 
 <div class="page-container">
   <div class="page-header">
-    <h1 class="page-title">Explore</h1>
-    <p class="page-subtitle">Discover and fork public decks shared by the community.</p>
+    <h1 class="page-title"><%= t("explore.title") %></h1>
+    <p class="page-subtitle"><%= t("explore.subtitle") %></p>
   </div>
 
   <%= form_with url: explore_path, method: :get,
         data: { turbo_frame: "explore-results" },
         class: "explore-search" do |f| %>
     <%= f.search_field :q, value: @query,
-          placeholder: "Search decks…",
+          placeholder: t("explore.search_placeholder"),
           class: "form-control explore-search__input",
-          aria: { label: "Search public decks" } %>
+          aria: { label: t("explore.search_aria") } %>
   <% end %>
 
   <%= turbo_frame_tag "explore-results" do %>
@@ -23,14 +23,14 @@
     <% elsif @query.present? %>
       <%= render "shared/empty_state",
             icon: "magnifying_glass",
-            title: "No decks found for \"#{@query}\"",
-            description: "Try a different search term or browse all public decks.",
+            title: t("explore.empty_search_title", query: @query),
+            description: t("explore.empty_search_description"),
             variant: :centered %>
     <% else %>
       <%= render "shared/empty_state",
             icon: "globe",
-            title: "No public decks yet",
-            description: "Be the first to share a deck with the community.",
+            title: t("explore.empty_title"),
+            description: t("explore.empty_description"),
             variant: :centered %>
     <% end %>
   <% end %>

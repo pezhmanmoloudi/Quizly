@@ -2,20 +2,20 @@
   <div class="card-editor-card">
     <div class="card-editor-panels">
       <div class="card-editor-panel">
-        <span class="card-editor-panel__label">Term</span>
+        <span class="card-editor-panel__label"><%= t("flashcards.form.term_label") %></span>
         <%= f.text_area :front_content,
-              placeholder: "Enter term",
+              placeholder: t("flashcards.form.term_placeholder"),
               class: "card-editor-field",
               rows: 7,
-              aria: { label: "Term" } %>
+              aria: { label: t("flashcards.form.term_label") } %>
       </div>
       <div class="card-editor-panel">
-        <span class="card-editor-panel__label">Definition</span>
+        <span class="card-editor-panel__label"><%= t("flashcards.form.definition_label") %></span>
         <%= f.text_area :back_content,
-              placeholder: "Enter definition",
+              placeholder: t("flashcards.form.definition_placeholder"),
               class: "card-editor-field",
               rows: 7,
-              aria: { label: "Definition" } %>
+              aria: { label: t("flashcards.form.definition_label") } %>
       </div>
     </div>
 
@@ -27,7 +27,7 @@
           <% end %>
         </div>
       <% end %>
-      <%= f.submit "Save Card →", class: "btn btn--primary btn--lg" %>
+      <%= f.submit t("flashcards.form.save"), class: "btn btn--primary btn--lg" %>
     </div>
   </div>
 <% end %>

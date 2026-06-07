@@ -5,7 +5,7 @@
     </h3>
     <% due = local_assigns[:due_counts]&.fetch(deck.id, 0) || 0 %>
     <% if due > 0 %>
-      <span class="due-badge" title="<%= due %> card<%= due == 1 ? "" : "s" %> due for review">
+      <span class="due-badge" title="<%= t("decks.deck_card.due", count: due) %>">
         <%= due %>
       </span>
     <% end %>
@@ -16,7 +16,7 @@
       <p class="deck-tile__description"><%= deck.description %></p>
     <% end %>
     <div class="deck-tile__meta-row">
-      <span class="deck-tile__meta"><%= pluralize(deck.flashcards.size, "card") %></span>
+      <span class="deck-tile__meta"><%= t("decks.deck_card.count", count: deck.flashcards.size) %></span>
       <% if deck.language_code.present? %>
         <span class="deck-tile__lang-badge"><%= deck.language_code.upcase %></span>
       <% end %>

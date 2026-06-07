@@ -38,5 +38,9 @@ module Quizly
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+
+    config.i18n.default_locale = :en
+    config.i18n.available_locales = %w[en es fr de pt ar fa ckb tr ru]
+    config.i18n.fallbacks = [ :en ]
   end
 end

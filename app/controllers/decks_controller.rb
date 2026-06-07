@@ -40,7 +40,7 @@ class DecksController < ApplicationController
   def create
     @deck = Current.user.decks.build(deck_params)
     if @deck.save
-      redirect_to cards_deck_path(@deck), notice: "Deck created."
+      redirect_to cards_deck_path(@deck), notice: t("decks.created")
     else
       render :new, status: :unprocessable_entity
     end
@@ -51,7 +51,7 @@ class DecksController < ApplicationController
 
   def update
     if @deck.update(deck_params)
-      redirect_to @deck, notice: "Deck updated."
+      redirect_to @deck, notice: t("decks.updated")
     else
       render :edit, status: :unprocessable_entity
     end
@@ -66,8 +66,8 @@ class DecksController < ApplicationController
     safe_page = [from_page, last_page].min
 
     respond_to do |format|
-      format.turbo_stream { redirect_to decks_path(page: safe_page), notice: "Deck deleted." }
-      format.html         { redirect_to decks_path(page: safe_page), notice: "Deck deleted." }
+      format.turbo_stream { redirect_to decks_path(page: safe_page), notice: t("decks.deleted") }
+      format.html         { redirect_to decks_path(page: safe_page), notice: t("decks.deleted") }
     end
   end
 
@@ -157,7 +157,7 @@ class DecksController < ApplicationController
 
   def update_cards
     if @deck.update(cards_params)
-      redirect_to @deck, notice: "Cards saved."
+      redirect_to @deck, notice: t("decks.cards_saved")
     else
       render :cards, status: :unprocessable_entity
     end
@@ -185,9 +185,9 @@ class DecksController < ApplicationController
       @deck.increment!(:forks_count)
     end
 
-    redirect_to decks_path, notice: "Deck added to your library."
+    redirect_to decks_path, notice: t("decks.forked")
   rescue ActiveRecord::RecordNotFound
-    redirect_to explore_path, alert: "Deck not available."
+    redirect_to explore_path, alert: t("decks.not_available")
   end
 
   private

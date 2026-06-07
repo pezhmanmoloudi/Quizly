@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
   static targets = ["tabBtn", "panel", "textarea", "preview"]
-  static values  = { activeTab: String }
+  static values  = { activeTab: String, detectedOne: String, detectedOther: String }
 
   connect() {
     this.#showTab(this.activeTabValue || "text")
@@ -22,7 +22,7 @@ export default class extends Controller {
       .filter(l => l.length > 0)
     const count = lines.length
     this.previewTarget.textContent = count > 0
-      ? `${count} card${count === 1 ? "" : "s"} detected`
+      ? (count === 1 ? this.detectedOneValue : this.detectedOtherValue.replace("%{count}", count))
       : ""
   }
 

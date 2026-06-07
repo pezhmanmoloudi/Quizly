@@ -1,15 +1,15 @@
-<% content_for :title, "My Decks" %>
+<% content_for :title, t("decks.index.title") %>
 
 <div class="container">
   <div class="page-header">
-    <h1>My Decks</h1>
+    <h1><%= t("decks.index.title") %></h1>
   </div>
 
   <div class="deck-index__toolbar">
     <%= form_with url: decks_path, method: :get,
                   data: { controller: "auto-submit" } do |f| %>
       <%= f.select :sort,
-            [["Recent", "recent"], ["A–Z", "az"], ["Most Due", "most_due"]],
+            [[t("decks.index.sort_recent"), "recent"], [t("decks.index.sort_az"), "az"], [t("decks.index.sort_most_due"), "most_due"]],
             { selected: @sort },
             { class: "form-select", data: { action: "change->auto-submit#submit" } } %>
     <% end %>
@@ -19,8 +19,8 @@
     <% if @pagy.count == 0 %>
       <%= render "shared/empty_state",
             icon: "rectangle_stack",
-            title: "No decks yet",
-            description: "Create your first deck to start studying.",
+            title: t("decks.index.empty_title"),
+            description: t("decks.index.empty_description"),
             variant: :dashboard %>
     <% else %>
       <div class="deck-grid">

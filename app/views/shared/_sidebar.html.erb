@@ -9,7 +9,7 @@
       <%= render "shared/icons/menu" %>
     </button>
 
-    <%= link_to root_path, class: "sidebar__brand" do %>
+    <%= link_to root_path, class: "sidebar__brand", dir: "ltr" do %>
       <span class="sidebar__brand-mark">Q</span>
       <span class="sidebar__brand-text">uizly</span>
     <% end %>
@@ -26,16 +26,16 @@
 
     <%= link_to dashboard_path,
           class: "sidebar__item #{"is-active" if request.path == dashboard_path}",
-          data: { tooltip: "Home" } do %>
+          data: { tooltip: t("nav.home") } do %>
       <%= render "shared/icons/home" %>
-      <span class="sidebar__label">Home</span>
+      <span class="sidebar__label"><%= t("nav.home") %></span>
     <% end %>
 
     <%= link_to explore_path,
           class: "sidebar__item #{"is-active" if request.path.start_with?(explore_path)}",
-          data: { tooltip: "Explore" } do %>
+          data: { tooltip: t("nav.explore") } do %>
       <%= render "shared/icons/globe" %>
-      <span class="sidebar__label">Explore</span>
+      <span class="sidebar__label"><%= t("nav.explore") %></span>
     <% end %>
 
     <hr class="sidebar__divider">
@@ -43,9 +43,9 @@
     <div class="sidebar__section-header">
       <%= link_to decks_path,
             class: "sidebar__section-title #{"is-active" if request.path.start_with?(decks_path)}",
-            data: { tooltip: "My Library" } do %>
+            data: { tooltip: t("nav.my_library") } do %>
         <%= render "shared/icons/rectangle_stack", css_class: "icon--sm" %>
-        <span>My Library</span>
+        <span><%= t("nav.my_library") %></span>
       <% end %>
     </div>
 

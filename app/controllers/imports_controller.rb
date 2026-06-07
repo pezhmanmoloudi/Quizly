@@ -8,7 +8,7 @@ class ImportsController < ApplicationController
   def text
     text = params[:text].to_s.strip
     if text.blank?
-      flash.now[:alert] = "Please paste some text to import."
+      flash.now[:alert] = t("imports.no_text")
       @tab = "text"
       return render :new, status: :unprocessable_entity
     end
@@ -20,8 +20,8 @@ class ImportsController < ApplicationController
     )
 
     if result.errors.empty?
-      msg = "Imported #{result.imported} card#{"s" unless result.imported == 1}."
-      msg += " #{result.skipped} line#{"s" unless result.skipped == 1} skipped." if result.skipped > 0
+      msg = t("imports.imported", count: result.imported)
+      msg += " #{t("imports.skipped", count: result.skipped)}" if result.skipped > 0
       redirect_to @deck, notice: msg
     else
       flash.now[:alert] = result.errors.first
@@ -33,7 +33,7 @@ class ImportsController < ApplicationController
   def csv
     file = params[:file]
     if file.blank?
-      flash.now[:alert] = "Please select a CSV file."
+      flash.now[:alert] = t("imports.no_file")
       @tab = "csv"
       return render :new, status: :unprocessable_entity
     end
@@ -41,8 +41,8 @@ class ImportsController < ApplicationController
     result = CsvImporter.call(deck: @deck, file: file)
 
     if result.errors.empty?
-      msg = "Imported #{result.imported} card#{"s" unless result.imported == 1}."
-      msg += " #{result.skipped} row#{"s" unless result.skipped == 1} skipped." if result.skipped > 0
+      msg = t("imports.imported", count: result.imported)
+      msg += " #{t("imports.skipped", count: result.skipped)}" if result.skipped > 0
       redirect_to @deck, notice: msg
     else
       flash.now[:alert] = result.errors.first
