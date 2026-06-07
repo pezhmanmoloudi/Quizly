@@ -1,8 +1,8 @@
-<% content_for :title, "Forgot Password" %>
+<% content_for :title, t("passwords.new.title") %>
 
 <div class="auth-split">
   <div class="auth-split__form">
-    <%= link_to login_path, class: "auth-split__logo" do %>
+    <%= link_to login_path, class: "auth-split__logo", dir: "ltr" do %>
       <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
         <rect width="28" height="28" rx="7" fill="currentColor" opacity="0.15"/>
         <text x="14" y="19" text-anchor="middle" font-size="14" font-weight="700" fill="currentColor">Q</text>
@@ -10,12 +10,12 @@
       Quizly
     <% end %>
 
-    <h1 class="auth-split__heading">Forgot your password?</h1>
-    <p class="auth-split__sub">Enter your email and we'll send you reset instructions.</p>
+    <h1 class="auth-split__heading"><%= t("passwords.new.heading") %></h1>
+    <p class="auth-split__sub"><%= t("passwords.new.subheading") %></p>
 
     <%= form_with url: forgot_password_path do |f| %>
       <div class="form-group" data-controller="field-error">
-        <%= f.label :email_address, "Email" %>
+        <%= f.label :email_address, t("passwords.new.email_label") %>
         <div class="auth-input">
           <svg class="auth-input__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
             <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
@@ -23,18 +23,18 @@
           </svg>
           <%= f.email_field :email_address, required: true, autofocus: true,
                 autocomplete: "username", class: "form-control",
-                placeholder: "Enter your email",
+                placeholder: t("passwords.new.email_placeholder"),
                 value: params[:email_address],
                 data: { field_error_target: "input", action: "blur->field-error#validate input->field-error#clear" } %>
         </div>
         <span class="field-error" data-field-error-target="message" hidden aria-live="polite"></span>
       </div>
 
-      <%= f.submit "Send reset instructions", class: "btn btn--primary btn--block" %>
+      <%= f.submit t("passwords.new.submit"), class: "btn btn--primary btn--block" %>
     <% end %>
 
     <p class="auth-split__footer">
-      <%= link_to "← Back to sign in", login_path %>
+      <%= link_to t("passwords.new.back"), login_path %>
     </p>
   </div>
 

@@ -1,17 +1,17 @@
-<% content_for :title, "Study History" %>
+<% content_for :title, t("study_sessions.title") %>
 
 <div class="container" style="padding-top: 2rem; padding-bottom: 3rem;">
   <div class="section-header">
-    <h1>Study History</h1>
-    <%= link_to "← Dashboard", dashboard_path, class: "section-header__link" %>
+    <h1><%= t("study_sessions.title") %></h1>
+    <%= link_to t("study_sessions.back"), dashboard_path, class: "section-header__link" %>
   </div>
 
   <% if @study_sessions.empty? %>
     <%= render "shared/empty_state",
           icon: "academic_cap",
-          title: "No sessions yet",
-          description: "Complete a study session and it will appear here.",
-          cta_text: "Go to Decks",
+          title: t("study_sessions.empty_title"),
+          description: t("study_sessions.empty_description"),
+          cta_text: t("study_sessions.go_to_decks"),
           cta_path: decks_path,
           variant: :dashboard %>
   <% else %>
@@ -19,11 +19,11 @@
       <table class="study-history-table">
         <thead>
           <tr>
-            <th>Deck</th>
-            <th>Date</th>
-            <th>Reviewed</th>
-            <th>Accuracy</th>
-            <th>Time</th>
+            <th><%= t("study_sessions.deck_header") %></th>
+            <th><%= t("study_sessions.date_header") %></th>
+            <th><%= t("study_sessions.reviewed_header") %></th>
+            <th><%= t("study_sessions.accuracy_header") %></th>
+            <th><%= t("study_sessions.time_header") %></th>
           </tr>
         </thead>
         <tbody>

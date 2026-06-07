@@ -10,7 +10,7 @@ class FlashcardsController < ApplicationController
     @flashcard = @deck.flashcards.build(flashcard_params)
     if @flashcard.save
       respond_to do |format|
-        format.html { redirect_to @deck, notice: "Card added." }
+        format.html { redirect_to @deck, notice: t("flashcards.created") }
         format.json { render json: { id: @flashcard.id }, status: :created }
       end
     else
@@ -27,7 +27,7 @@ class FlashcardsController < ApplicationController
   def update
     if @flashcard.update(flashcard_params)
       respond_to do |format|
-        format.html { redirect_to @flashcard.deck, notice: "Card updated." }
+        format.html { redirect_to @flashcard.deck, notice: t("flashcards.updated") }
         format.json { render json: { id: @flashcard.id }, status: :ok }
       end
     else
@@ -48,7 +48,7 @@ class FlashcardsController < ApplicationController
     last_page    = [(total.to_f / items).ceil, 1].max
     safe_page    = [current_page, last_page].min
 
-    redirect_to deck_path(deck, page: safe_page, items: items), notice: "Card deleted."
+    redirect_to deck_path(deck, page: safe_page, items: items), notice: t("flashcards.deleted")
   end
 
   private

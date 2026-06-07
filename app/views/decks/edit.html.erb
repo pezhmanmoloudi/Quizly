@@ -1,7 +1,7 @@
-<% content_for :title, "Edit Deck" %>
+<% content_for :title, t("decks.edit.title") %>
 
 <div class="container">
-  <h1>Edit Deck</h1>
+  <h1><%= t("decks.edit.title") %></h1>
   <%= render "form", deck: @deck %>
-  <div class="back-link"><%= link_to "← Back", @deck %></div>
+  <div class="back-link"><%= link_to t("decks.edit.back"), @deck %></div>
 </div>

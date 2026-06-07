@@ -11,14 +11,14 @@
     <% if @card_progress.present? && @cards_total.to_i > 0 %>
       <span class="study-island__counter"><%= @cards_done %> / <%= @cards_total %></span>
     <% end %>
-    <%= link_to "← Exit", @deck, class: "study-island__exit",
+    <%= link_to t("study_modes.exit"), @deck, class: "study-island__exit",
           data: { study_mode_target: "exitLink" } %>
   </div>
 
   <div class="study-island__mode-bar">
-    <%= link_to "All cards", study_deck_path(@deck),
+    <%= link_to t("study_modes.study.all_cards_tab"), study_deck_path(@deck),
           class: "study-mode-tab #{"study-mode-tab--active" if @study_mode == "all"}" %>
-    <%= link_to "⭐ Starred", study_deck_path(@deck, mode: "starred"),
+    <%= link_to t("study_modes.study.starred_tab"), study_deck_path(@deck, mode: "starred"),
           class: "study-mode-tab #{"study-mode-tab--active" if @study_mode == "starred"}" %>
   </div>
 
@@ -39,34 +39,34 @@
         <div class="study-empty">
           <div class="session-summary">
             <div class="session-summary__icon">🎉</div>
-            <h3 class="session-summary__title">Session complete!</h3>
+            <h3 class="session-summary__title"><%= t("study_modes.study.summary_title") %></h3>
             <div class="session-summary__stats">
               <div class="session-summary__stat">
                 <span class="session-summary__value"><%= summary[:reviewed] || summary["reviewed"] %></span>
-                <span class="session-summary__label">Cards reviewed</span>
+                <span class="session-summary__label"><%= t("study_modes.study.reviewed") %></span>
               </div>
               <div class="session-summary__stat">
                 <% reviewed = summary[:reviewed] || summary["reviewed"] || 1 %>
                 <% correct  = summary[:correct]  || summary["correct"]  || 0 %>
                 <span class="session-summary__value"><%= ((correct.to_f / reviewed) * 100).round %>%</span>
-                <span class="session-summary__label">Accuracy</span>
+                <span class="session-summary__label"><%= t("study_modes.study.accuracy") %></span>
               </div>
               <% elapsed = summary[:elapsed] || summary["elapsed"] %>
               <% if elapsed.present? %>
                 <div class="session-summary__stat">
                   <span class="session-summary__value"><%= format_study_time(elapsed.to_i) %></span>
-                  <span class="session-summary__label">Time spent</span>
+                  <span class="session-summary__label"><%= t("study_modes.study.time_spent") %></span>
                 </div>
               <% end %>
             </div>
-            <p class="session-summary__sub">No more cards due right now — great work.</p>
+            <p class="session-summary__sub"><%= t("study_modes.study.summary_sub") %></p>
           </div>
         </div>
       <% else %>
         <%= render "shared/empty_state",
               icon: "academic_cap",
-              title: "All caught up!",
-              description: "No cards are due for review right now.",
+              title: t("study_modes.study.empty_title"),
+              description: t("study_modes.study.empty_description"),
               variant: :study %>
       <% end %>
     <% else %>
@@ -91,7 +91,7 @@
                   data-study-mode-target="showButton"
                   data-action="click->flashcard#reveal"
                   aria-keyshortcuts="Space">
-            Show Answer
+            <%= t("study_modes.study.show_answer") %>
             <kbd class="study-kbd">Space</kbd>
           </button>
 
@@ -101,19 +101,19 @@
             <%= hidden_field_tag :card_progress_id, @card_progress.id %>
             <%= hidden_field_tag :study_mode, @study_mode %>
             <div class="rating-buttons">
-              <%= f.submit "Again", name: :rating, value: "again",
+              <%= f.submit t("study_modes.study.again"), name: :rating, value: "again",
                     class: "rating-btn rating-btn--again",
                     data: { study_mode_target: "againBtn" },
                     aria: { keyshortcuts: "1" } %>
-              <%= f.submit "Hard",  name: :rating, value: "hard",
+              <%= f.submit t("study_modes.study.hard"),  name: :rating, value: "hard",
                     class: "rating-btn rating-btn--hard",
                     data: { study_mode_target: "hardBtn" },
                     aria: { keyshortcuts: "2" } %>
-              <%= f.submit "Good",  name: :rating, value: "good",
+              <%= f.submit t("study_modes.study.good"),  name: :rating, value: "good",
                     class: "rating-btn rating-btn--good",
                     data: { study_mode_target: "goodBtn" },
                     aria: { keyshortcuts: "3" } %>
-              <%= f.submit "Easy",  name: :rating, value: "easy",
+              <%= f.submit t("study_modes.study.easy"),  name: :rating, value: "easy",
                     class: "rating-btn rating-btn--easy",
                     data: { study_mode_target: "easyBtn" },
                     aria: { keyshortcuts: "4" } %>
@@ -124,7 +124,7 @@
             <%= render "starred_cards/toggle", card_progress: @card_progress %>
           </div>
 
-          <p class="keyboard-hint" aria-hidden="true">Space to reveal &middot; 1 Again &middot; 2 Hard &middot; 3 Good &middot; 4 Easy &middot; Esc to exit</p>
+          <p class="keyboard-hint" aria-hidden="true"><%= t("study_modes.study.keyboard_hint") %></p>
         </div>
       </div>
     <% end %>

@@ -8,15 +8,15 @@
      aria-label="Flashcard browse area">
   <div class="study-header">
     <h2><%= @deck.name %></h2>
-    <%= link_to "← Exit", @deck, class: "study-exit" %>
+    <%= link_to t("study_modes.exit"), @deck, class: "study-exit" %>
   </div>
 
   <% if @flashcards.empty? %>
     <%= render "shared/empty_state",
           icon: "rectangle_stack",
-          title: "No cards yet",
-          description: "Add some cards to this deck to start browsing.",
-          cta_text: "Back to Deck",
+          title: t("study_modes.no_cards_title"),
+          description: t("study_modes.flashcard.empty_description"),
+          cta_text: t("study_modes.back_to_deck"),
           cta_path: @deck,
           variant: :study %>
   <% else %>
@@ -62,21 +62,21 @@
     <div class="flashcard-browse__nav">
       <button class="btn btn--secondary btn-with-icon"
               data-action="click->flashcard-browse#previous">
-        ← Previous
+        <%= t("study_modes.flashcard.previous") %>
       </button>
       <button class="btn btn--primary btn-with-icon"
               data-action="click->flashcard-browse#next">
-        Next →
+        <%= t("study_modes.flashcard.next") %>
       </button>
     </div>
-    <p class="keyboard-hint" aria-hidden="true">← → to navigate &middot; Space to flip</p>
+    <p class="keyboard-hint" aria-hidden="true"><%= t("study_modes.flashcard.keyboard_hint") %></p>
 
     <% unless authenticated? %>
       <div class="guest-cta-banner">
-        <span class="guest-cta-banner__text">Sign in to track your progress and save your study history.</span>
+        <span class="guest-cta-banner__text"><%= t("study_modes.flashcard.guest_cta") %></span>
         <div class="guest-cta-banner__actions">
-          <%= link_to "Sign in", login_path, class: "btn btn--primary btn--sm" %>
-          <%= link_to "Sign up free", signup_path, class: "btn btn--secondary btn--sm" %>
+          <%= link_to t("shared.sign_in"), login_path, class: "btn btn--primary btn--sm" %>
+          <%= link_to t("shared.sign_up_free"), signup_path, class: "btn btn--secondary btn--sm" %>
         </div>
       </div>
     <% end %>
