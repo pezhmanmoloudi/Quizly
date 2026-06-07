@@ -241,7 +241,7 @@
   gap: 0.3125rem;
   padding: 0.3125rem 0.625rem;
   background: var(--color-bg);
-  border: 1px solid var(--color-border-light);
+  border: 1px solid var(--color-border);
   border-radius: 20px;
   font-size: 0.8125rem;
   font-weight: 500;
@@ -254,6 +254,11 @@
 .theme-dropdown__trigger:hover {
   background: var(--color-border-light);
   color: var(--color-text);
+}
+
+.theme-dropdown__trigger:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 1px;
 }
 
 .theme-dropdown__chevron {
@@ -316,6 +321,7 @@
 }
 
 .theme-dropdown__item.is-active {
+  background: var(--color-border);
   color: var(--color-primary);
   font-weight: 500;
 }

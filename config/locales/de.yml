@@ -100,6 +100,7 @@ de:
     account_type_label: "Kontotyp"
     password_min_hint: "Mindestens 8 Zeichen"
     account_type_student: "Student"
+    account_type_teacher: "Lehrer"
     change_password: "Passwort ändern"
     current_password_placeholder: "Aktuelles Passwort"
     new_password_label: "Neues Passwort"

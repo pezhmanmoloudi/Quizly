@@ -100,6 +100,7 @@ ru:
     account_type_label: "Тип аккаунта"
     password_min_hint: "Не менее 8 символов"
     account_type_student: "Студент"
+    account_type_teacher: "Преподаватель"
     change_password: "Изменить пароль"
     current_password_placeholder: "Текущий пароль"
     new_password_label: "Новый пароль"

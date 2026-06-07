@@ -100,6 +100,7 @@ ar:
     account_type_label: "نوع الحساب"
     password_min_hint: "8 أحرف على الأقل"
     account_type_student: "طالب"
+    account_type_teacher: "معلم"
     change_password: "تغيير كلمة المرور"
     current_password_placeholder: "كلمة المرور الحالية"
     new_password_label: "كلمة المرور الجديدة"

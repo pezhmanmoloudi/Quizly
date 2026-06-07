@@ -100,6 +100,7 @@ fa:
     account_type_label: "نوع حساب"
     password_min_hint: "حداقل ۸ کاراکتر"
     account_type_student: "دانشجو"
+    account_type_teacher: "معلم"
     change_password: "تغییر رمز عبور"
     current_password_placeholder: "رمز عبور فعلی"
     new_password_label: "رمز عبور جدید"

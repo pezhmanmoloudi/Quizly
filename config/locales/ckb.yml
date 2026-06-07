@@ -100,6 +100,7 @@ ckb:
     account_type_label: "جۆری هەژمار"
     password_min_hint: "کەمترین ٨ پیت"
     account_type_student: "خوێندکار"
+    account_type_teacher: "مامۆستا"
     change_password: "گۆڕینی وشەی نهێنی"
     current_password_placeholder: "وشەی نهێنیی ئێستا"
     new_password_label: "وشەی نهێنیی نوێ"

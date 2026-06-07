@@ -132,6 +132,7 @@
   --color-btn-circle-hover: #818cf8;
   --color-separator:        #475569;
   --color-success-solid:    #059669;
-  --shadow-lg: 0 4px 16px rgba(0,0,0,.45);
-  --shadow-xl: 0 8px 32px rgba(0,0,0,.50), 0 1px 4px rgba(0,0,0,.30);
+  --shadow-lg:    0 4px 16px rgba(0,0,0,.45);
+  --shadow-xl:    0 8px 32px rgba(0,0,0,.50), 0 1px 4px rgba(0,0,0,.30);
+  --shadow-focus: 0 0 0 3px rgba(129, 140, 248, 0.20);
 }

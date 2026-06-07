@@ -100,6 +100,7 @@ tr:
     account_type_label: "Hesap türü"
     password_min_hint: "En az 8 karakter"
     account_type_student: "Öğrenci"
+    account_type_teacher: "Öğretmen"
     change_password: "Şifreyi değiştir"
     current_password_placeholder: "Mevcut şifre"
     new_password_label: "Yeni şifre"
