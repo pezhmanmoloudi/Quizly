@@ -63,15 +63,15 @@
         <span class="language-badge"><%= @deck.language_code.upcase %></span>
       <% end %>
       <span class="deck-detail-header__date"><%= t("decks.show.created") %> <%= @deck.created_at.strftime("%b %-d, %Y") %></span>
-      <% if @deck.forked_from.present? %>
-        <span class="deck-detail-header__forked-from">
-          <%= t("decks.show.forked_from") %> <%= link_to @deck.forked_from.name, deck_path(@deck.forked_from) %>
-        </span>
-      <% end %>
       <% @deck.tag_list.each do |tag| %>
         <span class="tag-badge"><%= tag %></span>
       <% end %>
     </div>
+    <% if @deck.forked_from.present? %>
+      <p class="deck-detail-header__forked-from">
+        <%= t("decks.show.forked_from") %> <%= link_to @deck.forked_from.name, deck_path(@deck.forked_from) %>
+      </p>
+    <% end %>
   </div>
 
   <%# ── Embedded flashcard player (replaces study-mode-selector) ── %>
