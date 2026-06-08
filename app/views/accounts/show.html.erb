@@ -193,9 +193,24 @@
     <div class="settings-info-row">
       <div class="settings-info-row__label"><%= t("accounts.account_type_label") %></div>
       <div class="settings-info-row__right">
-        <select class="settings-select-control" disabled>
-          <option><%= t("accounts.account_type_student") %></option>
-        </select>
+        <div class="theme-dropdown"
+             data-controller="account-type"
+             data-action="click@document->account-type#closeIfOutside keydown.esc@document->account-type#close">
+          <button class="theme-dropdown__trigger" type="button"
+                  data-action="click->account-type#toggle"
+                  aria-haspopup="true">
+            <span><%= t("accounts.account_type_student") %></span>
+            <%= render "shared/icons/chevron_down", css_class: "theme-dropdown__chevron" %>
+          </button>
+          <div class="theme-dropdown__menu" data-account-type-target="menu" data-open="false" role="menu">
+            <button class="theme-dropdown__item is-active" type="button" role="menuitem" tabindex="-1">
+              <%= t("accounts.account_type_student") %>
+            </button>
+            <button class="theme-dropdown__item" type="button" role="menuitem" tabindex="-1">
+              <%= t("accounts.account_type_teacher") %>
+            </button>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -287,7 +302,7 @@
 
   <%# Appearance %>
   <p class="settings-section-label"><%= t("accounts.appearance_section") %></p>
-  <div class="settings-info-card" style="overflow: visible;">
+  <div class="settings-info-card">
 
     <div class="settings-info-row">
       <div class="settings-info-row__label"><%= t("accounts.theme_label") %></div>
@@ -371,6 +386,28 @@
     </div>
 
   </div>
+
+  <%# Achievements %>
+  <p class="settings-section-label"><%= t("accounts.achievements_section") %></p>
+  <% if @all_badges.any? %>
+    <div class="badges-grid">
+      <% @all_badges.each do |badge| %>
+        <% earned = @earned_badge_ids.include?(badge.id) %>
+        <div class="badge-card <%= earned ? "badge-card--earned" : "badge-card--locked" %>">
+          <div class="badge-card__icon"><%= badge.icon %></div>
+          <div class="badge-card__name"><%= badge.name %></div>
+          <div class="badge-card__desc"><%= badge.description %></div>
+          <% if earned %>
+            <div class="badge-card__earned">
+              <%= t("accounts.badge_earned_on", date: @user_badges_by_badge_id[badge.id].earned_at.strftime("%-d %b %Y")) %>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <p class="badges-empty"><%= t("accounts.no_badges") %></p>
+  <% end %>
 
   <%# Danger zone %>
   <div class="settings-danger-zone" data-controller="inline-confirm">

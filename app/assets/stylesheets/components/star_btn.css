@@ -23,12 +23,12 @@
 
 .star-btn--active {
   border-color: var(--color-warning);
-  background: #fef3c7;
+  background: var(--color-star-bg);
   color: var(--color-warning);
 }
 
 .star-btn--active:hover {
-  background: #fde68a;
+  background: var(--color-star-bg-hover);
 }
 
 /* Container inside study card footer */

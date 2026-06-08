@@ -1,5 +1,7 @@
 /* Design tokens — single source of truth for all values */
 :root {
+  color-scheme: light;
+
   /* Colors */
   --color-primary:        #4f46e5;
   --color-primary-dark:   #3730a3;
@@ -106,10 +108,20 @@
   --color-btn-circle-hover: #423ed8;  /* btn--circle hover */
   --color-separator:        #9ca3af;  /* flashcard row separator */
   --color-success-solid:    #3d9a5c;  /* flash notice background */
+
+  /* ── Scrollbar tokens ── */
+  --scrollbar-thumb: rgba(0, 0, 0, 0.18);
+  --scrollbar-track: transparent;
+
+  /* ── Star/bookmark active state ── */
+  --color-star-bg:       #fef3c7;
+  --color-star-bg-hover: #fde68a;
 }
 
 /* ── Dark theme overrides ── */
 [data-theme="dark"] {
+  color-scheme: dark;
+
   --color-primary:          #818cf8;
   --color-primary-dark:     #6366f1;
   --color-text:             #f1f5f9;
@@ -132,6 +144,15 @@
   --color-btn-circle-hover: #818cf8;
   --color-separator:        #475569;
   --color-success-solid:    #059669;
-  --shadow-lg: 0 4px 16px rgba(0,0,0,.45);
-  --shadow-xl: 0 8px 32px rgba(0,0,0,.50), 0 1px 4px rgba(0,0,0,.30);
+  --shadow-lg:    0 4px 16px rgba(0,0,0,.45);
+  --shadow-xl:    0 8px 32px rgba(0,0,0,.50), 0 1px 4px rgba(0,0,0,.30);
+  --shadow-focus: 0 0 0 3px rgba(129, 140, 248, 0.20);
+
+  /* ── Scrollbar tokens ── */
+  --scrollbar-thumb: rgba(255, 255, 255, 0.14);
+  --scrollbar-track: transparent;
+
+  /* ── Star/bookmark active state ── */
+  --color-star-bg:       rgba(245, 158, 11, 0.15);
+  --color-star-bg-hover: rgba(245, 158, 11, 0.25);
 }

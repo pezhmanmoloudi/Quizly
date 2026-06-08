@@ -18,6 +18,8 @@ class LearnAnswersController < ApplicationController
 
     if @next_item.nil? && !@learn_session.finished?
       @learn_session.update!(finished_at: Time.current)
+      StreakUpdater.call(Current.user)
+      BadgeAwarder.call(Current.user)
       session.delete(:learn_session_id)
     end
 

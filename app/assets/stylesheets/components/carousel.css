@@ -4,7 +4,7 @@
   background:
     radial-gradient(ellipse at 0% 0%,   rgba(199, 210, 254, 0.75) 0%, transparent 55%),
     radial-gradient(ellipse at 100% 0%, rgba(253, 186, 116, 0.55) 0%, transparent 55%),
-    #ffffff;
+    var(--color-surface);
   padding-bottom: 3rem;
 }
 
@@ -37,7 +37,7 @@
 }
 
 .mode-selector__tab:hover {
-  background: rgba(255, 255, 255, 0.7);
+  background: var(--color-surface);
   color: var(--color-text);
 }
 

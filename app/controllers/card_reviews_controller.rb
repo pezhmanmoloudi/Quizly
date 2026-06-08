@@ -29,6 +29,8 @@ class CardReviewsController < ApplicationController
     else
       if study_session && !study_session.finished?
         study_session.update!(finished_at: Time.current)
+        StreakUpdater.call(Current.user)
+        BadgeAwarder.call(Current.user)
       end
       session.delete(:study_session_id)
       redirect_to study_deck_path(deck),
