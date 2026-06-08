@@ -139,8 +139,8 @@
   align-items: center;
   gap: 0.75rem;
   flex-wrap: wrap;
-  margin-top: 1rem;
-  margin-bottom: 0.5rem;
+  margin-top: 0.875rem;
+  margin-bottom: 0;
 }
 
 /* Soft tinted language badge in header context */
@@ -151,7 +151,7 @@
 }
 
 .deck-detail-header__date        { font-size: 0.85rem; color: var(--color-muted); }
-.deck-detail-header__description { color: var(--color-text-secondary); margin: 0.25rem 0 0; font-size: 0.9375rem; line-height: 1.6; }
+.deck-detail-header__description { color: var(--color-text-secondary); margin: 0.625rem 0 0; font-size: 0.9375rem; line-height: 1.6; }
 .deck-detail-header__forked-from { font-size: 0.85rem; color: var(--color-muted); }
 .deck-detail-header__forked-from a { color: var(--color-primary); text-decoration: none; }
 .deck-detail-header__forked-from a:hover { text-decoration: underline; }

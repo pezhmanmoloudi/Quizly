@@ -46,6 +46,9 @@
         <% end %>
       <% end %>
     </div>
+    <% if @deck.description.present? %>
+      <p class="deck-detail-header__description"><%= @deck.description %></p>
+    <% end %>
     <div class="deck-detail-header__meta">
       <% if @deck.public? %>
         <span class="visibility-badge visibility-badge--public">
@@ -66,9 +69,6 @@
         </span>
       <% end %>
     </div>
-    <% if @deck.description.present? %>
-      <p class="deck-detail-header__description"><%= @deck.description %></p>
-    <% end %>
   </div>
 
   <div class="study-mode-selector">
