@@ -178,6 +178,8 @@ fa:
       mode_test: "آزمون"
       mode_match: "تطبیق"
       no_cards: "هنوز کارتی وجود ندارد"
+      empty_cta_description: "کارت‌هایی به این دسته اضافه کن تا شروع به مطالعه کنی."
+      preview_aria: "پیش‌نمایش کارت‌ها"
       cards_per_page: "کارت در هر صفحه"
     new:
       title: "دسته جدید"

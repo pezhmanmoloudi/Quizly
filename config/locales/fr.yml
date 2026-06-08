@@ -178,6 +178,8 @@ fr:
       mode_test: "Test"
       mode_match: "Associer"
       no_cards: "Pas encore de cartes"
+      empty_cta_description: "Ajoutez des cartes à ce paquet pour commencer à étudier."
+      preview_aria: "Aperçu des cartes"
       cards_per_page: "Cartes par page"
     new:
       title: "Nouveau paquet"

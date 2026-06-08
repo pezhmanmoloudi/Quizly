@@ -178,6 +178,8 @@ ckb:
       mode_test: "تاقیکردنەوە"
       mode_match: "دۆشاندن"
       no_cards: "هێشتا کارتێک نییە"
+      empty_cta_description: "کارت زیاد بکە بۆ ئەم دەستەیە بۆ دەستپێکردن بە خوێندنەوە."
+      preview_aria: "پێشبینینی کارتی فێربوون"
       cards_per_page: "کارت لە هەر پەڕەیەک"
     new:
       title: "دەستەی نوێ"

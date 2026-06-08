@@ -2,12 +2,12 @@ import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
   static targets = ["current", "progressFill"]
-  static values = { total: Number }
+  static values = { total: Number, autoFocus: { type: Boolean, default: true } }
 
   connect() {
     this.index = 0
     this.slides = this.element.querySelectorAll(".flashcard-browse__slide")
-    this.element.focus()
+    if (this.autoFocusValue) this.element.focus()
   }
 
   disconnect() {

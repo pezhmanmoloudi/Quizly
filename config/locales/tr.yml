@@ -178,6 +178,8 @@ tr:
       mode_test: "Test"
       mode_match: "Eşleştir"
       no_cards: "Henüz kart yok"
+      empty_cta_description: "Çalışmaya başlamak için bu desteye kart ekle."
+      preview_aria: "Kart önizleme"
       cards_per_page: "Sayfa başına kart"
     new:
       title: "Yeni Deste"
