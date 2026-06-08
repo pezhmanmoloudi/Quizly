@@ -161,6 +161,7 @@ es:
       edit: "Editar mazo"
       delete: "Eliminar mazo"
       fork: "Añadir a mi biblioteca"
+      more_actions: "Más acciones"
       delete_confirm: "¿Estás seguro de que quieres eliminar este mazo?"
       public_badge: "Público"
       private_badge: "Privado"

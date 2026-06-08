@@ -43,21 +43,14 @@
     </div>
 
     <div class="deck-form-meta__footer">
-      <div class="visibility-toggle">
-        <label class="visibility-option">
-          <%= f.radio_button :visibility, "private", class: "visibility-radio" %>
-          <span class="visibility-label">
-            <%= render "shared/icons/lock", css_class: "icon--sm" %>
-            <%= t("decks.form.visibility_private") %>
-          </span>
-        </label>
-        <label class="visibility-option">
-          <%= f.radio_button :visibility, "public", class: "visibility-radio" %>
-          <span class="visibility-label">
-            <%= render "shared/icons/globe", css_class: "icon--sm" %>
-            <%= t("decks.form.visibility_public") %>
-          </span>
-        </label>
+      <div class="deck-visibility-select">
+        <%= f.label :visibility, t("decks.form.visibility_label"),
+              class: "deck-visibility-select__label" %>
+        <%= f.select :visibility,
+              [[t("decks.form.visibility_private"), "private"],
+               [t("decks.form.visibility_public"), "public"]],
+              {},
+              { class: "deck-visibility-select__control" } %>
       </div>
 
       <% if deck.persisted? %>

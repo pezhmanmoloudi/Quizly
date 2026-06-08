@@ -161,6 +161,7 @@ tr:
       edit: "Desteyi düzenle"
       delete: "Desteyi sil"
       fork: "Kütüphaneme ekle"
+      more_actions: "Daha fazla eylem"
       delete_confirm: "Bu desteyi kaldırmak istediğinden emin misin?"
       public_badge: "Herkese açık"
       private_badge: "Özel"

@@ -161,6 +161,7 @@ de:
       edit: "Deck bearbeiten"
       delete: "Deck löschen"
       fork: "In meine Bibliothek kopieren"
+      more_actions: "Weitere Aktionen"
       delete_confirm: "Möchtest du dieses Deck wirklich löschen?"
       public_badge: "Öffentlich"
       private_badge: "Privat"
