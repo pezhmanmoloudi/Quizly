@@ -1,10 +1,12 @@
 <%
-  _variant  = local_assigns.fetch(:variant, :dashboard)
-  _icon     = local_assigns[:icon]
-  _title    = local_assigns[:title]
-  _desc     = local_assigns[:description]
-  _cta_text = local_assigns[:cta_text]
-  _cta_path = local_assigns[:cta_path]
+  _variant           = local_assigns.fetch(:variant, :dashboard)
+  _icon              = local_assigns[:icon]
+  _title             = local_assigns[:title]
+  _desc              = local_assigns[:description]
+  _cta_text          = local_assigns[:cta_text]
+  _cta_path          = local_assigns[:cta_path]
+  _secondary_cta_text = local_assigns[:secondary_cta_text]
+  _secondary_cta_path = local_assigns[:secondary_cta_path]
 %>
 <div class="empty-state empty-state--<%= _variant %>">
   <% if _icon %>
@@ -30,6 +32,9 @@
   <% if _cta_text && _cta_path %>
     <div class="empty-state__actions">
       <%= link_to _cta_text, _cta_path, class: "btn btn--primary" %>
+      <% if _secondary_cta_text && _secondary_cta_path %>
+        <%= link_to _secondary_cta_text, _secondary_cta_path, class: "btn btn--secondary" %>
+      <% end %>
     </div>
   <% end %>
 </div>

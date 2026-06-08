@@ -120,6 +120,8 @@
             description: t("decks.show.empty_cta_description"),
             cta_text: t("decks.show.add_card"),
             cta_path: cards_deck_path(@deck),
+            secondary_cta_text: t("decks.show.import"),
+            secondary_cta_path: new_deck_import_path(@deck),
             variant: :study %>
     </div>
   <% end %>
