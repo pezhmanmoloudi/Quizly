@@ -161,6 +161,7 @@ ckb:
       edit: "دەستکاریی دەستە"
       delete: "سڕینەوەی دەستە"
       fork: "کۆپیکردن بۆ کتێبخانەکەم"
+      more_actions: "زیاتر کارەکان"
       delete_confirm: "دڵنیایی لە لابردنی ئەم دەستەیە؟"
       public_badge: "گشتی"
       private_badge: "تایبەت"

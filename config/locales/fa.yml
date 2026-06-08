@@ -161,6 +161,7 @@ fa:
       edit: "ویرایش دسته"
       delete: "حذف دسته"
       fork: "کپی به کتابخانه‌ام"
+      more_actions: "اقدامات بیشتر"
       delete_confirm: "آیا مطمئنی که می‌خواهی این دسته را حذف کنی؟"
       public_badge: "عمومی"
       private_badge: "خصوصی"

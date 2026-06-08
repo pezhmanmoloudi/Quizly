@@ -6,13 +6,32 @@
       <h1 class="deck-detail-header__name"><%= @deck.name %></h1>
       <div class="deck-detail-header__actions" data-inline-confirm-target="actions">
         <% if @deck.user == Current.user %>
-          <%= link_to edit_deck_path(@deck), class: "btn btn--secondary btn-with-icon" do %>
-            <%= render "shared/icons/pencil" %> <%= t("decks.show.edit") %>
-          <% end %>
-          <button type="button" class="btn btn--danger btn-with-icon"
-                  data-action="click->inline-confirm#confirmRemove">
-            <%= render "shared/icons/trash" %> <%= t("decks.show.delete") %>
-          </button>
+          <div class="deck-actions-menu"
+               data-controller="dropdown"
+               data-action="click@window->dropdown#closeIfOutside keydown.esc@window->dropdown#close">
+            <button type="button"
+                    class="deck-actions-menu__trigger"
+                    data-dropdown-target="button"
+                    data-action="click->dropdown#toggle"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                    aria-label="<%= t('decks.show.more_actions') %>">
+              <%= render "shared/icons/ellipsis_horizontal", css_class: "icon" %>
+            </button>
+            <div class="deck-actions-menu__dropdown" data-dropdown-target="menu" data-open="false" role="menu">
+              <%= link_to edit_deck_path(@deck), class: "deck-actions-menu__item", role: "menuitem" do %>
+                <%= render "shared/icons/pencil", css_class: "deck-actions-menu__item-icon" %>
+                <span><%= t("decks.show.edit") %></span>
+              <% end %>
+              <button type="button"
+                      class="deck-actions-menu__item deck-actions-menu__item--danger"
+                      role="menuitem"
+                      data-action="click->inline-confirm#confirmRemove click->dropdown#close">
+                <%= render "shared/icons/trash", css_class: "deck-actions-menu__item-icon" %>
+                <span><%= t("decks.show.delete") %></span>
+              </button>
+            </div>
+          </div>
         <% elsif authenticated? %>
           <%= button_to fork_deck_path(@deck), method: :post, class: "btn btn--primary btn-with-icon" do %>
             <%= render "shared/icons/fork" %> <%= t("decks.show.fork") %>

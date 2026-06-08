@@ -161,6 +161,7 @@ ar:
       edit: "تعديل المجموعة"
       delete: "حذف المجموعة"
       fork: "نسخ إلى مكتبتي"
+      more_actions: "المزيد من الإجراءات"
       delete_confirm: "هل أنت متأكد من رغبتك في إزالة هذه المجموعة؟"
       public_badge: "عامة"
       private_badge: "خاصة"

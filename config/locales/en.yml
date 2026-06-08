@@ -161,6 +161,7 @@ en:
       edit: "Edit Deck"
       delete: "Delete Deck"
       fork: "Fork to My Library"
+      more_actions: "More actions"
       delete_confirm: "Are you sure you want to remove this deck?"
       public_badge: "Public"
       private_badge: "Private"

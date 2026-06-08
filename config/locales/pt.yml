@@ -161,6 +161,7 @@ pt:
       edit: "Editar baralho"
       delete: "Excluir baralho"
       fork: "Copiar para minha biblioteca"
+      more_actions: "Mais ações"
       delete_confirm: "Tem certeza de que deseja remover este baralho?"
       public_badge: "Público"
       private_badge: "Privado"

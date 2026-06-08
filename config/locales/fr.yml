@@ -161,6 +161,7 @@ fr:
       edit: "Modifier le paquet"
       delete: "Supprimer le paquet"
       fork: "Ajouter à ma bibliothèque"
+      more_actions: "Plus d'actions"
       delete_confirm: "Êtes-vous sûr de vouloir supprimer ce paquet ?"
       public_badge: "Public"
       private_badge: "Privé"
