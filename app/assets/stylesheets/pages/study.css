@@ -53,7 +53,7 @@
 }
 
 .study-island__exit {
-  text-align: right;
+  text-align: end;
   color: var(--color-muted);
   font-size: 0.85rem;
   text-decoration: none;
@@ -90,7 +90,7 @@
   font-variant-numeric: tabular-nums;
   color: var(--color-muted);
   min-width: 2.5rem;
-  text-align: right;
+  text-align: end;
 }
 
 /* ── Card content area ── */

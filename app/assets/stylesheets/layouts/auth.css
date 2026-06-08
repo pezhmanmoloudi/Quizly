@@ -61,7 +61,7 @@
 .auth-split__heading  { font-size: 1.75rem; font-weight: 700; margin-bottom: 0.5rem; }
 .auth-split__sub      { color: var(--color-muted); font-size: 0.9rem; margin-bottom: 1.75rem; }
 
-.auth-split__forgot   { text-align: right; margin-bottom: 1.25rem; font-size: 0.875rem; }
+.auth-split__forgot   { text-align: end; margin-bottom: 1.25rem; font-size: 0.875rem; }
 .auth-split__forgot a { color: var(--color-primary); text-decoration: none; }
 
 .auth-split__footer   { margin-top: 1.5rem; text-align: center; font-size: 0.875rem; color: var(--color-muted); }
@@ -94,7 +94,7 @@
 .auth-close {
   position: absolute;
   top: 1.25rem;
-  right: 1.25rem;
+  inset-inline-end: 1.25rem;
   width: 2.25rem;
   height: 2.25rem;
   border-radius: 50%;

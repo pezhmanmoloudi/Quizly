@@ -93,4 +93,4 @@
 .flashcard-row__front   { font-weight: 600; }
 .flashcard-row__sep     { color: var(--color-separator); }
 .flashcard-row__back    { color: var(--color-text-secondary); }
-.flashcard-row__actions { display: flex; gap: 0.4rem; margin-left: 1rem; }
+.flashcard-row__actions { display: flex; gap: 0.4rem; margin-inline-start: 1rem; }
