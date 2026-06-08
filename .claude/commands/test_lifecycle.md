@@ -146,6 +146,8 @@ A feature is ONLY done when:
 * no orphan tests exist
 * no outdated logic remains
 * all related files are synchronized
+* all user-facing text uses `t()` — no hardcoded strings
+* every new `en.yml` key exists in all 10 locale files
 
 ---
 

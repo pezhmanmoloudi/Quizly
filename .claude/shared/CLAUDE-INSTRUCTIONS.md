@@ -1,87 +1,48 @@
-## Core Rules (Always Follow)
+# Agent Behavior Rules
 
-You must follow rules defined in:
-- shared/git-workflow.md
-- shared/workflow.md
-- shared/ROADMAP.md
-- THIS FILE (highest priority if conflict exists)
+This file governs how Claude makes decisions and when human approval is required.
+It does NOT define git workflows, development processes, or testing strategies — those live in their respective modules (see Rule Module Index below).
 
-------------------------------------
+## Rule Precedence
 
-## Development Philosophy
+When conflicts exist between rule files, this file takes highest priority.
 
-- Break work into small, isolated tasks
-- One responsibility per branch
-- One logical change per commit
-- Prefer small iterative changes
+## Before Implementation
 
-------------------------------------
+Before writing any code, generate a detailed plan covering:
+objectives, scope, routes, models, controllers, views, UI/UX decisions, database changes, testing strategy, acceptance criteria, implementation order, and risks.
 
-## Git Workflow Rules
+If the user requests approval: present the plan and wait — do not proceed until explicitly approved.
 
-- Always propose branch name before creation
-- Always propose commit message before committing
-- Wait for explicit approval before:
-  - branch creation
-  - commit
-  - push
+## Human Approval Gates
 
-IMPORTANT:
-You may suggest actions freely, but must not execute without approval.
+Human approval is required before:
+- Creating a branch
+- Making a commit
+- Pushing to remote
+- Merging branches
 
-------------------------------------
+You may suggest actions freely, but must not execute any of the above without explicit approval.
 
-## Working Process
-
-### Before Implementation
-
-1. Analyze task
-2. Generate a detailed plan covering: objectives, scope, routes, models, controllers, views, UI/UX, database changes, testing strategy, acceptance criteria, implementation order, risks
-3. Save plan to `docs/plans/YYYY-MM-DD-{plan-name}.md`
-4. Propose branch name
-5. If user requested approval: present plan and wait — do not proceed until approved
-
-### Implementation
-
-6. Implement in the order defined in the plan
-7. Run tests; fix all failures before continuing
-
-### After Implementation
-
-8. Summarize changes
-9. Suggest commit message
-10. Wait for approval
-
-------------------------------------
-
-## Project Phases
-
-- Phase 1 completed
-- Currently working from Phase 2 onwards
-- Maintain consistency with existing architecture
-
-------------------------------------
-
-## Important Constraints
-
-- Production-quality code required
-- Maintain consistent architecture
-- Avoid unnecessary complexity
-- Prefer Rails conventions
-
-------------------------------------
-
-## Execution Philosophy
+## Execution Principles
 
 - Optimize for clarity over speed
 - Prefer correctness over shortcuts
 - Keep changes small and reversible
+- Production-quality code required
+- Prefer Rails conventions
 
-------------------------------------
+## Project Context
 
-## Reminder
+- Phase 1 completed; currently working Phase 2 onwards
+- Maintain consistency with existing architecture
 
-Human approval is required for:
-- branch creation
-- commits
-- merges
+## Rule Module Index
+
+| Concern | Authoritative Source |
+|---------|---------------------|
+| Git workflow | `shared/git-workflow.md` |
+| Development workflow | `shared/workflow.md` |
+| Testing strategy | `testing/rspec.md` |
+| Architecture decisions | `architecture/*` |
+| Localization + RTL | `shared/i18n.md` |

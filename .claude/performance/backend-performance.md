@@ -28,9 +28,10 @@ CACHING:
 ------------------------------------
 
 BACKGROUND JOBS:
-- move heavy computations to Sidekiq
+- move heavy computations to Active Job (Solid Queue by default)
 - avoid blocking requests
 - keep jobs lightweight and focused
+- background job adapter is configurable in production — see architecture/background-jobs.md
 
 ------------------------------------
 
