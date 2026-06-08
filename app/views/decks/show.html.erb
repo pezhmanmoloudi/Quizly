@@ -86,6 +86,9 @@
             keyboard_hint: false %>
 
       <div class="deck-preview-island__modes">
+        <span class="deck-preview-island__count">
+          <%= t("decks.deck_card.count", count: @all_flashcards.size) %>
+        </span>
         <%= link_to study_deck_path(@deck), class: "deck-preview-mode-btn" do %>
           <%= render "shared/icons/academic_cap" %>
           <span><%= t("decks.show.mode_study") %></span>
