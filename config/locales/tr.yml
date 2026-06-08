@@ -6,8 +6,14 @@ tr:
   topbar:
     search_placeholder: "Desteler ara…"
     search_aria: "Desteler ara"
-    create_deck_aria: "Deste oluştur"
-    create_deck_tooltip: "Yeni Deste"
+    create_menu_aria: "Oluşturma menüsü"
+    create_menu_tooltip: "Oluştur"
+    create:
+      flashcard_set: "Kart seti"
+      study_guide: "Çalışma rehberi"
+      practice_test: "Pratik sınav"
+      folder: "Klasör"
+      study_group: "Çalışma grubu"
     open_navigation: "Gezintiyi aç"
   menu:
     settings: "Ayarlar"

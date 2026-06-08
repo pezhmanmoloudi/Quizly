@@ -347,6 +347,7 @@
 
 /* ── Global create action ── */
 .topbar__create {
+  position: relative;
   display: flex;
   align-items: center;
 }
@@ -358,15 +359,17 @@
   justify-content: center;
   width: 2rem;
   height: 2rem;
-  border-radius: 8px;
-  color: var(--color-text-secondary);
-  text-decoration: none;
-  transition: background 150ms ease, color 150ms ease;
+  border-radius: 50%;
+  background: var(--color-primary);
+  color: var(--color-surface);
+  border: none;
+  cursor: pointer;
+  transition: background 150ms ease;
 }
 
 .topbar__create-btn:hover {
-  background: rgba(79, 70, 229, 0.08);
-  color: var(--color-primary);
+  background: var(--color-primary-dark);
+  color: var(--color-surface);
 }
 
 .topbar__create-btn:focus-visible {
@@ -397,11 +400,70 @@
   opacity: 0;
   pointer-events: none;
   transition: opacity 150ms ease;
-  z-index: 200;
+  z-index: var(--z-tooltip);
 }
 
 .topbar__create-btn[data-tooltip]:hover::after {
   opacity: 1;
+}
+
+/* ── Create menu dropdown ── */
+.create-menu__dropdown {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  inset-inline-end: 0;
+  min-width: 220px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-xl);
+  z-index: var(--z-dropdown);
+  padding: var(--space-2) 0;
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: opacity var(--duration-fast) var(--ease-smooth),
+              transform var(--duration-fast) var(--ease-smooth),
+              visibility 0s var(--duration-fast);
+}
+
+.create-menu__dropdown[data-open="true"] {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity var(--duration-fast) var(--ease-smooth),
+              transform var(--duration-fast) var(--ease-smooth),
+              visibility 0s 0s;
+}
+
+.create-menu__item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.625rem 1rem;
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+  color: var(--color-text);
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 100ms ease;
+}
+
+.create-menu__item:hover {
+  background: var(--color-bg);
+}
+
+.create-menu__item--disabled {
+  color: var(--color-muted);
+  cursor: default;
+  pointer-events: none;
+}
+
+.create-menu__item-icon {
+  width: 1.125rem;
+  height: 1.125rem;
+  flex-shrink: 0;
+  color: var(--color-muted);
 }
 
 /* ── Overlay backdrop (mobile) ── */

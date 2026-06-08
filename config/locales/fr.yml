@@ -6,8 +6,14 @@ fr:
   topbar:
     search_placeholder: "Rechercher des paquets…"
     search_aria: "Rechercher des paquets"
-    create_deck_aria: "Créer un paquet"
-    create_deck_tooltip: "Nouveau paquet"
+    create_menu_aria: "Menu de création"
+    create_menu_tooltip: "Créer"
+    create:
+      flashcard_set: "Jeu de cartes"
+      study_guide: "Guide d'étude"
+      practice_test: "Test d'entraînement"
+      folder: "Dossier"
+      study_group: "Groupe d'étude"
     open_navigation: "Ouvrir la navigation"
   menu:
     settings: "Paramètres"
