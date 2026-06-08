@@ -68,6 +68,9 @@
           <%= t("decks.show.forked_from") %> <%= link_to @deck.forked_from.name, deck_path(@deck.forked_from) %>
         </span>
       <% end %>
+      <% @deck.tag_list.each do |tag| %>
+        <span class="tag-badge"><%= tag %></span>
+      <% end %>
     </div>
   </div>
 
