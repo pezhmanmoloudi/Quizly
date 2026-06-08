@@ -4,7 +4,7 @@
   gap: 1.25rem;
   background: var(--color-surface);
   border-radius: 12px;
-  border-left: 4px solid var(--color-primary);
+  border-inline-start: 4px solid var(--color-primary);
   padding: 1.25rem 1.5rem;
   box-shadow: 0 2px 12px rgba(79, 70, 229, .10);
   margin-bottom: 1.5rem;

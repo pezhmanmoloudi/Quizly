@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html dir="<%= Language::RTL_LOCALES.include?(I18n.locale.to_s) ? "rtl" : "ltr" %>">
   <head>
     <title><%= [content_for(:title).presence, "Quizly"].compact.join(" · ") %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">

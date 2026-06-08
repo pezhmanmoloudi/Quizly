@@ -82,7 +82,7 @@
 }
 
 .card-row__panel + .card-row__panel {
-  border-left: 1px solid var(--color-border-light);
+  border-inline-start: 1px solid var(--color-border-light);
 }
 
 /* ── "Add a card" button ── */
@@ -120,7 +120,7 @@
   .card-row__panels { grid-template-columns: 1fr; }
 
   .card-row__panel + .card-row__panel {
-    border-left: none;
+    border-inline-start: none;
     border-top: 1px solid var(--color-border-light);
   }
 

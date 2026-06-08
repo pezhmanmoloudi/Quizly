@@ -46,7 +46,7 @@
             <div class="topbar__left">
               <button class="topbar__menu-btn"
                       data-action="click->sidebar#openMobile"
-                      aria-label="Open navigation">
+                      aria-label="<%= t("topbar.open_navigation") %>">
                 <%= render "shared/icons/menu" %>
               </button>
               <%= link_to "Quizly", root_path, class: "topbar__brand", dir: "ltr" %>

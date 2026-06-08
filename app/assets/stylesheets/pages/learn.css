@@ -111,7 +111,7 @@
 
 .learn-card__answer-label {
   color: var(--color-muted);
-  margin-right: var(--space-2);
+  margin-inline-end: var(--space-2);
 }
 
 .learn-card__answer-value {

@@ -216,11 +216,6 @@
 
   </div>
 
-  <%# Change password link %>
-  <a href="#" class="settings-password-link"
-     data-controller="settings-row-edit"
-     style="display:none">Change password</a>
-
   <%# Password change — accessible via a subtle card below %>
   <details class="settings-info-card" style="margin-top: 0.5rem; overflow: hidden;">
     <summary style="padding: 1rem 1.5rem; font-size: 0.875rem; font-weight: 600; color: var(--color-muted); cursor: pointer; list-style: none; display: flex; align-items: center; justify-content: space-between;">
@@ -299,6 +294,81 @@
       <% end %>
     </div>
   </details>
+
+  <%# Notifications %>
+  <p class="settings-section-label"><%= t("accounts.notifications_section") %></p>
+  <div class="settings-info-card">
+
+    <%# Collapsible "Personalised study updates" %>
+    <details class="notif-accordion" open>
+      <summary class="notif-accordion__summary">
+        <%= t("accounts.notif_personalised_updates") %>
+        <%= render "shared/icons/chevron_down", css_class: "notif-accordion__chevron" %>
+      </summary>
+      <div class="notif-accordion__body">
+
+        <%# Streaks and badges %>
+        <div class="settings-info-row">
+          <div class="settings-info-row__label" style="font-weight: 400; color: var(--color-text-secondary);">
+            <%= t("accounts.notif_streaks_badges") %>
+          </div>
+          <div class="settings-info-row__right">
+            <button type="button" class="notif-channel-btn notif-channel-btn--active"
+                    aria-label="<%= t("accounts.notif_email_label") %>">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" width="14" height="14" aria-hidden="true">
+                <path d="M3 4a2 2 0 00-2 2v1.161l8.441 4.221a1.25 1.25 0 001.118 0L19 7.162V6a2 2 0 00-2-2H3z"/>
+                <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 01-2.46 0L1 8.839V14a2 2 0 002 2h14a2 2 0 002-2V8.839z"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <%# Study reminders %>
+        <div class="settings-info-row">
+          <div class="settings-info-row__label" style="font-weight: 400; color: var(--color-text-secondary);">
+            <%= t("accounts.notif_study_reminders") %>
+          </div>
+          <div class="settings-info-row__right">
+            <button type="button" class="notif-channel-btn notif-channel-btn--active"
+                    aria-label="<%= t("accounts.notif_email_label") %>">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" width="14" height="14" aria-hidden="true">
+                <path d="M3 4a2 2 0 00-2 2v1.161l8.441 4.221a1.25 1.25 0 001.118 0L19 7.162V6a2 2 0 00-2-2H3z"/>
+                <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 01-2.46 0L1 8.839V14a2 2 0 002 2h14a2 2 0 002-2V8.839z"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <%# Choose reminder time — static visual only %>
+        <div class="settings-info-row">
+          <div class="settings-info-row__label" style="font-weight: 400; color: var(--color-text-secondary);">
+            <%= t("accounts.notif_choose_reminder_time") %>
+          </div>
+          <div class="settings-info-row__right">
+            <button type="button" class="theme-dropdown__trigger" disabled>
+              <span><%= l(Time.zone.local(2000, 1, 1, 8, 0, 0), format: :short) %></span>
+              <%= render "shared/icons/chevron_down", css_class: "theme-dropdown__chevron" %>
+            </button>
+          </div>
+        </div>
+
+        <%# Time zone — static visual only %>
+        <div class="settings-info-row">
+          <div class="settings-info-row__label" style="font-weight: 400; color: var(--color-text-secondary);">
+            <%= t("accounts.notif_time_zone") %>
+          </div>
+          <div class="settings-info-row__right">
+            <button type="button" class="theme-dropdown__trigger" disabled>
+              <span><%= ActiveSupport::TimeZone["Helsinki"] %></span>
+              <%= render "shared/icons/chevron_down", css_class: "theme-dropdown__chevron" %>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </details>
+
+  </div>
 
   <%# Appearance %>
   <p class="settings-section-label"><%= t("accounts.appearance_section") %></p>

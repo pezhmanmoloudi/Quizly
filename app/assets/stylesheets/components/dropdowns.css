@@ -38,7 +38,7 @@
 .avatar-dropdown__menu {
   position: absolute;
   top: calc(100% + 0.5rem);
-  right: 0;
+  inset-inline-end: 0;
   min-width: 260px;
   background: var(--color-surface);
   border: 1px solid var(--color-border-light);
@@ -122,7 +122,7 @@
   text-decoration: none;
   transition: background var(--transition-base), color var(--transition-base);
   width: 100%;
-  text-align: left;
+  text-align: start;
   background: none;
   border: none;
   cursor: pointer;
@@ -174,7 +174,7 @@
 
 .avatar-dropdown__items form .avatar-dropdown__item {
   width: 100%;
-  text-align: left;
+  text-align: start;
   background: none;
   border: none;
   cursor: pointer;
