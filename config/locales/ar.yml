@@ -177,6 +177,7 @@ ar:
       mode_learn: "التعلّم"
       mode_test: "الاختبار"
       mode_match: "المطابقة"
+      no_cards: "لا توجد بطاقات بعد"
       cards_per_page: "بطاقات في الصفحة"
     new:
       title: "مجموعة جديدة"
@@ -196,6 +197,9 @@ ar:
       visibility_private: "خاصة"
       visibility_public: "عامة"
       visibility_hint: "يمكن لأي شخص اكتشاف المجموعات العامة ونسخها."
+      save: "حفظ"
+      save_and_study: "حفظ ودراسة"
+      add_card: "إضافة بطاقة"
     cards:
       page_title: "إضافة بطاقات — %{name}"
       add_card: "إضافة بطاقة"
@@ -210,6 +214,7 @@ ar:
     deleted: "تم حذف المجموعة."
     cards_saved: "تم حفظ البطاقات."
     forked: "تمّت إضافة المجموعة إلى مكتبتك."
+    fork_name: "%{name} (نسخة)"
     not_available: "المجموعة غير متاحة."
     sidebar_no_decks: "لا توجد مجموعات بعد."
     deck_card:
@@ -408,6 +413,13 @@ ar:
   starred_cards:
     unstar: "إزالة التمييز"
     star: "تمييز هذه البطاقة"
+  activerecord:
+    errors:
+      models:
+        deck:
+          attributes:
+            base:
+              minimum_cards: "تحتاج إلى بطاقتين على الأقل لحفظ المجموعة."
   card_editor:
     save_card: "حفظ البطاقة"
     error_term: "الرجاء إدخال مصطلح."

@@ -115,6 +115,10 @@
   margin-top: 0.25rem;
 }
 
+.card-editor-field--error {
+  border-color: var(--color-danger) !important;
+}
+
 /* ── Responsive ── */
 @media (max-width: 640px) {
   .card-row__panels { grid-template-columns: 1fr; }
@@ -126,4 +130,137 @@
 
   .cards-editor-body  { padding: 1rem 0.75rem 2rem; }
   .card-row__panel    { padding: 1rem 1rem 1.25rem; }
+}
+
+/* ─────────────────────────────────────────────
+   Unified Deck Create / Edit Form
+   ───────────────────────────────────────────── */
+
+/* Top bar: sticky header with title + dual CTAs */
+.deck-form-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 2rem;
+  background: var(--color-bg);
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.deck-form-topbar__title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.deck-form-topbar__actions {
+  display: flex;
+  gap: 0.625rem;
+  flex-shrink: 0;
+}
+
+/* Metadata section */
+.deck-form-meta {
+  max-width: 860px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 2rem 1.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.deck-form-meta__title-field {
+  font-size: 1.25rem;
+  font-weight: 600;
+  padding: 0.875rem 1rem;
+}
+
+.deck-form-meta__desc-field {
+  resize: none;
+}
+
+.deck-form-meta__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* Error banner */
+.deck-form-errors {
+  max-width: 860px;
+  margin: 0 auto 0;
+  width: 100%;
+  padding: 0 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.deck-form-errors p {
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--color-danger);
+  font-weight: 500;
+}
+
+/* Inline field-level error */
+.form-group--error .form-control { border-color: var(--color-danger); }
+.form-field-error {
+  display: block;
+  font-size: 0.8125rem;
+  color: var(--color-danger);
+  margin-top: 0.25rem;
+}
+
+/* Card rows area */
+.deck-form-meta ~ .card-rows-list,
+.deck-form-errors ~ .card-rows-list {
+  max-width: 860px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 0 1.5rem;
+}
+
+/* "Add a card" button row */
+.deck-form-add {
+  max-width: 860px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 0.75rem 1.5rem;
+  display: flex;
+  justify-content: center;
+}
+
+.deck-form-add .btn { min-width: 180px; }
+
+/* Bottom CTA footer */
+.deck-form-footer {
+  max-width: 860px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 1.5rem 1.5rem 3rem;
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.625rem;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .deck-form-topbar { padding: 0.75rem 1rem; }
+  .deck-form-topbar__title { font-size: 1rem; }
+  .deck-form-meta { padding: 1.25rem 0.75rem 0.75rem; }
+  .deck-form-meta ~ .card-rows-list,
+  .deck-form-errors ~ .card-rows-list { padding: 0 0.75rem; }
+  .deck-form-add  { padding: 0.5rem 0.75rem; }
+  .deck-form-footer { padding: 1rem 0.75rem 2rem; }
+  .deck-form-topbar__actions { gap: 0.375rem; }
 }

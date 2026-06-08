@@ -90,6 +90,27 @@ RSpec.describe Deck, type: :model do
     end
   end
 
+  describe "minimum card validation" do
+    it "skips validation when validate_card_count is not set" do
+      deck = build(:deck)
+      expect(deck).to be_valid
+    end
+
+    it "is invalid when validate_card_count is set and fewer than 2 cards" do
+      deck = build(:deck)
+      deck.validate_card_count = true
+      deck.flashcards.build(front_content: "Q", back_content: "A", position: 1)
+      expect(deck).not_to be_valid
+      expect(deck.errors[:base]).to include("You need at least 2 cards to save a deck.")
+    end
+
+    it "is valid when validate_card_count is set and 2+ cards provided" do
+      deck = build(:deck, :with_cards)
+      deck.validate_card_count = true
+      expect(deck).to be_valid
+    end
+  end
+
   describe "dependent destruction" do
     it "destroys associated flashcards when the deck is deleted" do
       deck = create(:deck)

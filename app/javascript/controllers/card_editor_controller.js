@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
   static targets = ["cardsList", "template", "row"]
-  static values  = { createUrl: String, errorTerm: String, errorDefinition: String, saved: String }
+  static values  = { errorTerm: String, errorDefinition: String }
 
   connect() { this.#renumber() }
 
@@ -23,71 +23,6 @@ export default class extends Controller {
       row.remove()
     }
     this.#renumber()
-  }
-
-  async saveCard(event) {
-    const btn      = event.currentTarget
-    const row      = btn.closest("[data-card-editor-target='row']")
-    if (!row) return
-
-    const termArea = row.querySelector("[name*='front_content']")
-    const defArea  = row.querySelector("[name*='back_content']")
-
-    if (!termArea?.value.trim()) {
-      this.#showFieldError(termArea, this.errorTermValue)
-      termArea.focus()
-      return
-    }
-
-    if (!defArea?.value.trim()) {
-      this.#showFieldError(defArea, this.errorDefinitionValue)
-      defArea.focus()
-      return
-    }
-
-    btn.disabled = true
-    const ok = await this.#postCard(termArea.value.trim(), defArea.value.trim())
-    btn.disabled = false
-
-    if (ok) {
-      termArea.value = ""
-      defArea.value  = ""
-      termArea.focus()
-      this.#showToast(this.savedValue)
-    }
-  }
-
-  async #postCard(frontContent, backContent) {
-    try {
-      const resp = await fetch(this.createUrlValue, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json",
-          "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]')?.content
-        },
-        body: JSON.stringify({ flashcard: { front_content: frontContent, back_content: backContent } })
-      })
-      return resp.ok
-    } catch { return false }
-  }
-
-  #showFieldError(textarea, message) {
-    const el = textarea.closest(".card-row__panel")?.querySelector(".card-row__field-error")
-    if (!el) return
-    el.textContent = message
-    el.hidden = false
-    setTimeout(() => { el.hidden = true }, 2500)
-  }
-
-  #showToast(message) {
-    const container = document.getElementById("flash-messages")
-    if (!container) return
-    const div = document.createElement("div")
-    div.className = "flash flash--notice"
-    div.dataset.controller = "flash"
-    div.textContent = message
-    container.appendChild(div)
   }
 
   #appendNewRow() {

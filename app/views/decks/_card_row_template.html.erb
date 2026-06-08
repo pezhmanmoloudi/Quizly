@@ -1,6 +1,11 @@
 <div class="card-row" data-card-editor-target="row">
   <div class="card-row__header">
     <span class="card-row__number">N</span>
+    <button type="button" class="card-row__delete"
+            data-action="click->card-editor#removeCard"
+            aria-label="<%= t("decks.card_row.remove") %>">
+      <%= render "shared/icons/trash" %>
+    </button>
   </div>
   <div class="card-row__panels">
     <div class="card-row__panel">
@@ -19,9 +24,5 @@
                 rows="3"></textarea>
       <span class="card-row__field-error" hidden></span>
     </div>
-  </div>
-  <div class="card-row__footer">
-    <button type="button" class="btn btn--primary"
-            data-action="click->card-editor#saveCard"><%= t("card_editor.save_card") %></button>
   </div>
 </div>

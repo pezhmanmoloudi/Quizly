@@ -177,6 +177,7 @@ ckb:
       mode_learn: "فێربوون"
       mode_test: "تاقیکردنەوە"
       mode_match: "دۆشاندن"
+      no_cards: "هێشتا کارتێک نییە"
       cards_per_page: "کارت لە هەر پەڕەیەک"
     new:
       title: "دەستەی نوێ"
@@ -196,6 +197,9 @@ ckb:
       visibility_private: "تایبەت"
       visibility_public: "گشتی"
       visibility_hint: "دەستەی گشتی دەکرێت لە لایەن هەر کەسێکەوە دۆزراوەوە و کۆپیبکرێت."
+      save: "پاشەکەوتکردن"
+      save_and_study: "پاشەکەوتکردن و خوێندن"
+      add_card: "زیادکردنی کارت"
     cards:
       page_title: "زیادکردنی کارت — %{name}"
       add_card: "زیادکردنی کارت"
@@ -210,6 +214,7 @@ ckb:
     deleted: "دەستە سڕایەوە."
     cards_saved: "کارتەکان پاشەکەوتکران."
     forked: "دەستە زیادکرا بۆ کتێبخانەکەت."
+    fork_name: "%{name} (کۆپی)"
     not_available: "دەستە بەردەست نییە."
     sidebar_no_decks: "هێشتا دەستەیەک نییە."
     deck_card:
@@ -408,6 +413,13 @@ ckb:
   starred_cards:
     unstar: "لابردنی ئەستێرە"
     star: "ئەستێرەکردنی ئەم کارتە"
+  activerecord:
+    errors:
+      models:
+        deck:
+          attributes:
+            base:
+              minimum_cards: "پێویستت بە لانیکەم ٢ کارتە بۆ پاشەکەوتکردنی دەستەیەک."
   card_editor:
     save_card: "پاشەکەوتکردنی کارت"
     error_term: "تکایە تەرمینۆلۆجیایەک بنووسە."

@@ -152,9 +152,25 @@
   background: var(--color-bg);
 }
 
-.cards-grid__front { font-weight: 600; font-size: 0.8125rem; line-height: 1.3; }
+.cards-grid__front {
+  font-weight: 600;
+  font-size: 0.8125rem;
+  line-height: 1.3;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+}
 .cards-grid__sep   { font-size: 0.6875rem; color: #9ca3af; }
-.cards-grid__back  { font-size: 0.8125rem; color: var(--color-text-secondary); line-height: 1.3; }
+.cards-grid__back  {
+  font-size: 0.8125rem;
+  color: var(--color-text-secondary);
+  line-height: 1.3;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+}
 
 .cards-grid__actions {
   display: flex;

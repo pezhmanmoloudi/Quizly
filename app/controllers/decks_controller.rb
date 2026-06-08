@@ -21,7 +21,7 @@ class DecksController < ApplicationController
 
     if @sort == "most_due"
       sorted = decks_scope.sort_by { |d| -(@due_counts[d.id] || 0) }
-      @pagy, @decks = pagy_array(sorted, limit: DECK_INDEX_PER_PAGE)
+      @pagy, @decks = pagy(sorted, limit: DECK_INDEX_PER_PAGE)
     else
       @pagy, @decks = pagy(decks_scope, limit: DECK_INDEX_PER_PAGE)
     end
@@ -35,12 +35,18 @@ class DecksController < ApplicationController
 
   def new
     @deck = Current.user.decks.build
+    2.times { @deck.flashcards.build }
   end
 
   def create
     @deck = Current.user.decks.build(deck_params)
+    @deck.validate_card_count = params[:deck][:flashcards_attributes].present? if params[:deck]
     if @deck.save
-      redirect_to cards_deck_path(@deck), notice: t("decks.created")
+      if params[:save_and_study].present?
+        redirect_to flashcard_deck_path(@deck), notice: t("decks.created")
+      else
+        redirect_to @deck, notice: t("decks.created")
+      end
     else
       render :new, status: :unprocessable_entity
     end
@@ -50,8 +56,13 @@ class DecksController < ApplicationController
   end
 
   def update
+    @deck.validate_card_count = params[:deck][:flashcards_attributes].present? if params[:deck]
     if @deck.update(deck_params)
-      redirect_to @deck, notice: t("decks.updated")
+      if params[:save_and_study].present?
+        redirect_to flashcard_deck_path(@deck), notice: t("decks.updated")
+      else
+        redirect_to @deck, notice: t("decks.updated")
+      end
     else
       render :edit, status: :unprocessable_entity
     end
@@ -169,7 +180,7 @@ class DecksController < ApplicationController
     ActiveRecord::Base.transaction do
       copy = Deck.create!(
         user: Current.user,
-        name: "#{@deck.name} (copy)",
+        name: t("decks.fork_name", name: @deck.name),
         description: @deck.description,
         language_code: @deck.language_code,
         visibility: "private",
@@ -244,7 +255,10 @@ class DecksController < ApplicationController
   end
 
   def deck_params
-    params.require(:deck).permit(:name, :description, :language_code, :visibility, :tag_list)
+    params.require(:deck).permit(
+      :name, :description, :language_code, :visibility, :tag_list,
+      flashcards_attributes: [ :id, :front_content, :back_content, :position, :_destroy ]
+    )
   end
 
   def cards_params

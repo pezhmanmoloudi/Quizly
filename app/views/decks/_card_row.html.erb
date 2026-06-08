@@ -11,21 +11,23 @@
     <div class="card-row__panel">
       <span class="card-editor-panel__label"><%= t("decks.card_row.term_label") %></span>
       <%= ff.text_area :front_content,
-            class: "card-editor-field",
+            class: "card-editor-field #{'card-editor-field--error' if ff.object.errors[:front_content].any?}".strip,
             placeholder: t("decks.card_row.term_placeholder"),
             rows: 3 %>
+      <span class="card-row__field-error"<%= " hidden" unless ff.object.errors[:front_content].any? %>><%= ff.object.errors[:front_content].first %></span>
     </div>
     <div class="card-row__panel">
       <span class="card-editor-panel__label"><%= t("decks.card_row.definition_label") %></span>
       <%= ff.text_area :back_content,
-            class: "card-editor-field",
+            class: "card-editor-field #{'card-editor-field--error' if ff.object.errors[:back_content].any?}".strip,
             placeholder: t("decks.card_row.definition_placeholder"),
-            rows: 3,
-            data: { action: "keydown->card-editor#handleDefinitionKeydown" } %>
+            rows: 3 %>
+      <span class="card-row__field-error"<%= " hidden" unless ff.object.errors[:back_content].any? %>><%= ff.object.errors[:back_content].first %></span>
     </div>
   </div>
   <% if ff.object.persisted? %>
     <%= ff.hidden_field :id %>
     <%= ff.hidden_field :_destroy, value: "0", class: "destroy-field" %>
+    <%= ff.hidden_field :position if ff.object.position.present? %>
   <% end %>
 </div>

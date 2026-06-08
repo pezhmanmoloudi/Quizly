@@ -53,13 +53,9 @@
   </div>
 
   <div class="study-mode-selector">
-    <%= link_to flashcard_deck_path(@deck), class: "study-mode-btn" do %>
+    <%= link_to flashcard_deck_path(@deck), class: "study-mode-btn study-mode-btn--primary" do %>
       <%= render "shared/icons/play" %>
       <span><%= t("decks.show.mode_flashcard") %></span>
-    <% end %>
-    <%= link_to study_deck_path(@deck), class: "study-mode-btn" do %>
-      <%= render "shared/icons/academic_cap" %>
-      <span><%= t("decks.show.mode_study") %></span>
     <% end %>
     <% if authenticated? %>
       <%= link_to learn_deck_path(@deck), class: "study-mode-btn" do %>
@@ -70,6 +66,10 @@
         <%= render "shared/icons/pencil" %>
         <span><%= t("decks.show.mode_test") %></span>
       <% end %>
+    <% end %>
+    <%= link_to study_deck_path(@deck), class: "study-mode-btn" do %>
+      <%= render "shared/icons/academic_cap" %>
+      <span><%= t("decks.show.mode_study") %></span>
     <% end %>
     <%= link_to match_deck_path(@deck), class: "study-mode-btn" do %>
       <%= render "shared/icons/bolt" %>
@@ -103,6 +103,9 @@
     </div>
 
     <div class="cards-island__body">
+      <% if @flashcards.empty? %>
+        <p class="cards-island__empty"><%= t("decks.show.no_cards") %></p>
+      <% end %>
       <div class="cards-grid">
           <% @flashcards.each do |card| %>
             <div class="cards-grid__item" data-controller="<%= @deck.user == Current.user ? 'inline-confirm' : '' %>">

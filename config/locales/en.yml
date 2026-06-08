@@ -177,6 +177,7 @@ en:
       mode_learn: "Learn"
       mode_test: "Test"
       mode_match: "Match"
+      no_cards: "No flashcards yet"
       cards_per_page: "Cards per page"
     new:
       title: "New Deck"
@@ -196,6 +197,9 @@ en:
       visibility_private: "Private"
       visibility_public: "Public"
       visibility_hint: "Public decks can be discovered and forked by anyone."
+      save: "Save"
+      save_and_study: "Save & Study"
+      add_card: "Add a card"
     cards:
       page_title: "Add Cards — %{name}"
       add_card: "Add a card"
@@ -210,6 +214,7 @@ en:
     deleted: "Deck deleted."
     cards_saved: "Cards saved."
     forked: "Deck added to your library."
+    fork_name: "%{name} (copy)"
     not_available: "Deck not available."
     sidebar_no_decks: "No decks yet."
     deck_card:
@@ -408,6 +413,13 @@ en:
   starred_cards:
     unstar: "Unstar this card"
     star: "Star this card"
+  activerecord:
+    errors:
+      models:
+        deck:
+          attributes:
+            base:
+              minimum_cards: "You need at least 2 cards to save a deck."
   card_editor:
     save_card: "Save Card"
     error_term: "Please enter a term."

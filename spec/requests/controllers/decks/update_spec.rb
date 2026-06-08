@@ -14,6 +14,14 @@ RSpec.describe "Decks#update", type: :request do
         expect(response).to redirect_to(deck_path(deck))
       end
 
+      it "redirects to flashcard mode when save_and_study is submitted" do
+        patch deck_path(deck), params: {
+          deck: { name: deck.name },
+          save_and_study: "Save & Study"
+        }
+        expect(response).to redirect_to(flashcard_deck_path(deck))
+      end
+
       it "updates the language_code" do
         patch deck_path(deck), params: { deck: { language_code: "fr" } }
         expect(deck.reload.language_code).to eq("fr")

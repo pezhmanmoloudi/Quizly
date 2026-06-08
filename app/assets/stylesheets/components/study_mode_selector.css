@@ -30,6 +30,17 @@
   transform: translateY(-1px);
 }
 
+.study-mode-btn--primary {
+  border-color: var(--color-primary);
+  background: color-mix(in srgb, var(--color-primary) 8%, var(--color-surface));
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+.study-mode-btn--primary:hover {
+  background: color-mix(in srgb, var(--color-primary) 14%, var(--color-surface));
+}
+
 .study-mode-btn .icon {
   width: 1.5rem;
   height: 1.5rem;
