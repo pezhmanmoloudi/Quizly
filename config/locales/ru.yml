@@ -178,6 +178,8 @@ ru:
       mode_test: "Тест"
       mode_match: "Совпадения"
       no_cards: "Карточек пока нет"
+      empty_cta_description: "Добавьте карточки в эту колоду, чтобы начать изучение."
+      preview_aria: "Предпросмотр карточек"
       cards_per_page: "Карточек на страницу"
     new:
       title: "Новая колода"

@@ -20,56 +20,9 @@
           cta_path: @deck,
           variant: :study %>
   <% else %>
-    <div class="flashcard-browse__progress-wrap">
-      <div class="flashcard-browse__bar">
-        <div class="flashcard-browse__fill"
-             data-flashcard-browse-target="progressFill"
-             style="width: <%= (1.0 / @flashcards.size * 100).round %>%"></div>
-      </div>
-      <span class="flashcard-browse__label">
-        <span data-flashcard-browse-target="current">1</span> / <%= @flashcards.size %>
-      </span>
-    </div>
-
-    <div class="flashcard flashcard--flip"
-         data-controller="flashcard">
-
-      <% @flashcards.each_with_index do |card, index| %>
-        <div class="flashcard-browse__slide" data-index="<%= index %>"
-             <%= index > 0 ? "hidden" : "" %>>
-          <div class="flashcard-card"
-               data-action="click->flashcard#reveal">
-            <div class="flashcard-card__inner">
-              <div class="flashcard-card__face flashcard-card__face--front">
-                <%= card.front_content %>
-              </div>
-              <div class="flashcard-card__face flashcard-card__face--back">
-                <%= card.back_content %>
-              </div>
-            </div>
-          </div>
-
-          <% if @card_progresses&.key?(card.id) %>
-            <div class="flashcard-browse__star">
-              <%= render "starred_cards/toggle", card_progress: @card_progresses[card.id] %>
-            </div>
-          <% end %>
-        </div>
-      <% end %>
-
-    </div>
-
-    <div class="flashcard-browse__nav">
-      <button class="btn btn--secondary btn-with-icon"
-              data-action="click->flashcard-browse#previous">
-        <%= t("study_modes.flashcard.previous") %>
-      </button>
-      <button class="btn btn--primary btn-with-icon"
-              data-action="click->flashcard-browse#next">
-        <%= t("study_modes.flashcard.next") %>
-      </button>
-    </div>
-    <p class="keyboard-hint" aria-hidden="true"><%= t("study_modes.flashcard.keyboard_hint") %></p>
+    <%= render "flashcard_player",
+          flashcards: @flashcards,
+          card_progresses: @card_progresses %>
 
     <% unless authenticated? %>
       <div class="guest-cta-banner">

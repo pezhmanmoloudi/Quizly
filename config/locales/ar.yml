@@ -178,6 +178,8 @@ ar:
       mode_test: "الاختبار"
       mode_match: "المطابقة"
       no_cards: "لا توجد بطاقات بعد"
+      empty_cta_description: "أضف بطاقات إلى هذه المجموعة لبدء الدراسة."
+      preview_aria: "معاينة البطاقات التعليمية"
       cards_per_page: "بطاقات في الصفحة"
     new:
       title: "مجموعة جديدة"

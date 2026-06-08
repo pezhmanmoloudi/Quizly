@@ -173,6 +173,8 @@ es:
       edit_card: "Editar tarjeta"
       delete_card: "Eliminar tarjeta"
       no_cards: "Aún no hay tarjetas"
+      empty_cta_description: "Añade tarjetas a este mazo para empezar a estudiar."
+      preview_aria: "Vista previa de tarjetas"
       cards_per_page: "Tarjetas por página"
       mode_flashcard: "Tarjeta"
       mode_study: "Estudiar"

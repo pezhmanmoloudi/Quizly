@@ -178,6 +178,8 @@ en:
       mode_test: "Test"
       mode_match: "Match"
       no_cards: "No flashcards yet"
+      empty_cta_description: "Add cards to this deck to start studying."
+      preview_aria: "Flashcard preview"
       cards_per_page: "Cards per page"
     new:
       title: "New Deck"

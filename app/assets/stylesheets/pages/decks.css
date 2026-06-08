@@ -88,6 +88,78 @@
   .deck-detail-header__actions { width: 100%; }
 }
 
+/* ── Embedded flashcard preview island ── */
+
+.deck-preview-island {
+  background: var(--color-surface);
+  border-radius: 12px;
+  box-shadow: 0 1px 4px rgba(0,0,0,.06), 0 6px 16px rgba(0,0,0,.04);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.deck-preview-island .flashcard-card {
+  min-height: 220px;
+  cursor: pointer;
+}
+
+.deck-preview-island .flashcard-browse__progress-wrap {
+  margin-bottom: 1rem;
+}
+
+.deck-preview-island .flashcard-browse__nav {
+  margin-top: 1rem;
+}
+
+.deck-preview-island__modes {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  padding-top: 1rem;
+  margin-top: 1rem;
+  border-top: 1px solid var(--color-border-light);
+}
+
+.deck-preview-mode-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.375rem 0.875rem;
+  border-radius: 8px;
+  border: 1.5px solid var(--color-border);
+  background: transparent;
+  color: var(--color-text-secondary);
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background var(--transition-base), border-color var(--transition-base),
+              color var(--transition-base);
+}
+
+.deck-preview-mode-btn:hover {
+  background: var(--color-border-light);
+  border-color: var(--color-border);
+  color: var(--color-text);
+}
+
+.deck-preview-mode-btn .icon {
+  width: 1rem;
+  height: 1rem;
+}
+
+.deck-preview-island--empty {
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 640px) {
+  .deck-preview-island { padding: 1rem; }
+  .deck-preview-island .flashcard-card { min-height: 160px; }
+}
+
 /* ── Cards island ── */
 
 .cards-island {

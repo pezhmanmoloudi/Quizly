@@ -52,30 +52,52 @@
     <% end %>
   </div>
 
-  <div class="study-mode-selector">
-    <%= link_to flashcard_deck_path(@deck), class: "study-mode-btn study-mode-btn--primary" do %>
-      <%= render "shared/icons/play" %>
-      <span><%= t("decks.show.mode_flashcard") %></span>
-    <% end %>
-    <% if authenticated? %>
-      <%= link_to learn_deck_path(@deck), class: "study-mode-btn" do %>
-        <%= render "shared/icons/rectangle_stack" %>
-        <span><%= t("decks.show.mode_learn") %></span>
-      <% end %>
-      <%= link_to test_deck_path(@deck), class: "study-mode-btn" do %>
-        <%= render "shared/icons/pencil" %>
-        <span><%= t("decks.show.mode_test") %></span>
-      <% end %>
-    <% end %>
-    <%= link_to study_deck_path(@deck), class: "study-mode-btn" do %>
-      <%= render "shared/icons/academic_cap" %>
-      <span><%= t("decks.show.mode_study") %></span>
-    <% end %>
-    <%= link_to match_deck_path(@deck), class: "study-mode-btn" do %>
-      <%= render "shared/icons/bolt" %>
-      <span><%= t("decks.show.mode_match") %></span>
-    <% end %>
-  </div>
+  <%# ── Embedded flashcard player (replaces study-mode-selector) ── %>
+  <% if @all_flashcards.any? %>
+    <div class="deck-preview-island"
+         data-controller="flashcard-browse"
+         data-flashcard-browse-total-value="<%= @all_flashcards.size %>"
+         data-flashcard-browse-auto-focus-value="false"
+         data-action="keydown->flashcard-browse#handleKey"
+         tabindex="-1"
+         aria-label="<%= t('decks.show.preview_aria') %>">
+
+      <%= render "flashcard_player",
+            flashcards: @all_flashcards,
+            keyboard_hint: false %>
+
+      <div class="deck-preview-island__modes">
+        <%= link_to study_deck_path(@deck), class: "deck-preview-mode-btn" do %>
+          <%= render "shared/icons/academic_cap" %>
+          <span><%= t("decks.show.mode_study") %></span>
+        <% end %>
+        <% if authenticated? %>
+          <%= link_to learn_deck_path(@deck), class: "deck-preview-mode-btn" do %>
+            <%= render "shared/icons/rectangle_stack" %>
+            <span><%= t("decks.show.mode_learn") %></span>
+          <% end %>
+          <%= link_to test_deck_path(@deck), class: "deck-preview-mode-btn" do %>
+            <%= render "shared/icons/pencil" %>
+            <span><%= t("decks.show.mode_test") %></span>
+          <% end %>
+        <% end %>
+        <%= link_to match_deck_path(@deck), class: "deck-preview-mode-btn" do %>
+          <%= render "shared/icons/bolt" %>
+          <span><%= t("decks.show.mode_match") %></span>
+        <% end %>
+      </div>
+    </div>
+  <% elsif @deck.user == Current.user %>
+    <div class="deck-preview-island deck-preview-island--empty">
+      <%= render "shared/empty_state",
+            icon: "rectangle_stack",
+            title: t("decks.show.no_cards"),
+            description: t("decks.show.empty_cta_description"),
+            cta_text: t("decks.show.add_card"),
+            cta_path: cards_deck_path(@deck),
+            variant: :study %>
+    </div>
+  <% end %>
 
   <div class="cards-island">
     <div class="cards-island__header">
@@ -103,49 +125,49 @@
     </div>
 
     <div class="cards-island__body">
-      <% if @flashcards.empty? %>
+      <% if @flashcards.empty? && @all_flashcards.any? %>
         <p class="cards-island__empty"><%= t("decks.show.no_cards") %></p>
       <% end %>
       <div class="cards-grid">
-          <% @flashcards.each do |card| %>
-            <div class="cards-grid__item" data-controller="<%= @deck.user == Current.user ? 'inline-confirm' : '' %>">
-              <div class="cards-grid__front"><%= card.front_content %></div>
-              <span class="cards-grid__sep">→</span>
-              <div class="cards-grid__back"><%= card.back_content %></div>
-              <% if @deck.user == Current.user %>
-                <div class="cards-grid__actions" data-inline-confirm-target="actions">
-                  <span class="tooltip-wrap">
-                    <%= link_to edit_flashcard_path(card),
-                          class: "card-action-btn card-action-btn--edit",
-                          aria: { label: t("decks.show.edit_card") } do %>
-                      <%= render "shared/icons/pencil" %>
-                    <% end %>
-                    <span class="tooltip"><%= t("shared.edit") %></span>
-                  </span>
-                  <span class="tooltip-wrap">
-                    <button type="button"
-                            class="card-action-btn card-action-btn--delete"
-                            aria-label="<%= t("decks.show.delete_card") %>"
-                            data-action="click->inline-confirm#confirmRemove">
-                      <%= render "shared/icons/trash" %>
-                    </button>
-                    <span class="tooltip"><%= t("shared.delete") %></span>
-                  </span>
-                </div>
-                <%= render "shared/inline_confirm", message: t("decks.show.delete_card_confirm") %>
-                <%= form_with url: flashcard_path(card), method: :delete,
-                      data: { "inline-confirm-target": "deleteForm" } do |f| %>
-                <%= f.hidden_field :page,  value: @pagy.page %>
-                <%= f.hidden_field :items, value: @items_per_page %>
-              <% end %>
-              <% end %>
-            </div>
-          <% end %>
-        </div>
+        <% @flashcards.each do |card| %>
+          <div class="cards-grid__item" data-controller="<%= @deck.user == Current.user ? 'inline-confirm' : '' %>">
+            <div class="cards-grid__front"><%= card.front_content %></div>
+            <span class="cards-grid__sep">→</span>
+            <div class="cards-grid__back"><%= card.back_content %></div>
+            <% if @deck.user == Current.user %>
+              <div class="cards-grid__actions" data-inline-confirm-target="actions">
+                <span class="tooltip-wrap">
+                  <%= link_to edit_flashcard_path(card),
+                        class: "card-action-btn card-action-btn--edit",
+                        aria: { label: t("decks.show.edit_card") } do %>
+                    <%= render "shared/icons/pencil" %>
+                  <% end %>
+                  <span class="tooltip"><%= t("shared.edit") %></span>
+                </span>
+                <span class="tooltip-wrap">
+                  <button type="button"
+                          class="card-action-btn card-action-btn--delete"
+                          aria-label="<%= t("decks.show.delete_card") %>"
+                          data-action="click->inline-confirm#confirmRemove">
+                    <%= render "shared/icons/trash" %>
+                  </button>
+                  <span class="tooltip"><%= t("shared.delete") %></span>
+                </span>
+              </div>
+              <%= render "shared/inline_confirm", message: t("decks.show.delete_card_confirm") %>
+              <%= form_with url: flashcard_path(card), method: :delete,
+                    data: { "inline-confirm-target": "deleteForm" } do |f| %>
+              <%= f.hidden_field :page,  value: @pagy.page %>
+              <%= f.hidden_field :items, value: @items_per_page %>
+            <% end %>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
 
-        <div class="cards-island__pagination">
-          <%= render "shared/pagination", pagy: @pagy %>
-        </div>
+      <div class="cards-island__pagination">
+        <%= render "shared/pagination", pagy: @pagy %>
+      </div>
     </div>
   </div>
 

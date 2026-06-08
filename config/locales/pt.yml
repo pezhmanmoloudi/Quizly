@@ -178,6 +178,8 @@ pt:
       mode_test: "Teste"
       mode_match: "Combinar"
       no_cards: "Ainda sem cartões"
+      empty_cta_description: "Adicione cartões a este baralho para começar a estudar."
+      preview_aria: "Pré-visualização de cartões"
       cards_per_page: "Cartões por página"
     new:
       title: "Novo baralho"
