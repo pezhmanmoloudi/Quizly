@@ -6,8 +6,14 @@ ckb:
   topbar:
     search_placeholder: "گەڕان بەدوای دەستەکاندا…"
     search_aria: "گەڕان بەدوای دەستەکاندا"
-    create_deck_aria: "دروستکردنی دەستە"
-    create_deck_tooltip: "دەستەی نوێ"
+    create_menu_aria: "مێنوی دروستکردن"
+    create_menu_tooltip: "دروستکردن"
+    create:
+      flashcard_set: "کۆمەڵەی کارتی فلاش"
+      study_guide: "ڕێنمای خوێندن"
+      practice_test: "تاقیکردنەوەی پراکتیک"
+      folder: "فۆڵدەر"
+      study_group: "گروپی خوێندن"
     open_navigation: "کردنەوەی ناڤیگەیشن"
   menu:
     settings: "ڕێکخستنەکان"

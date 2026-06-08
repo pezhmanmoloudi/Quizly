@@ -6,8 +6,14 @@ es:
   topbar:
     search_placeholder: "Buscar mazos…"
     search_aria: "Buscar mazos"
-    create_deck_aria: "Crear mazo"
-    create_deck_tooltip: "Nuevo mazo"
+    create_menu_aria: "Menú de creación"
+    create_menu_tooltip: "Crear"
+    create:
+      flashcard_set: "Conjunto de tarjetas"
+      study_guide: "Guía de estudio"
+      practice_test: "Prueba de práctica"
+      folder: "Carpeta"
+      study_group: "Grupo de estudio"
     open_navigation: "Abrir navegación"
   menu:
     settings: "Configuración"

@@ -6,8 +6,14 @@ pt:
   topbar:
     search_placeholder: "Pesquisar baralhos…"
     search_aria: "Pesquisar baralhos"
-    create_deck_aria: "Criar baralho"
-    create_deck_tooltip: "Novo baralho"
+    create_menu_aria: "Menu de criação"
+    create_menu_tooltip: "Criar"
+    create:
+      flashcard_set: "Conjunto de flashcards"
+      study_guide: "Guia de estudo"
+      practice_test: "Teste prático"
+      folder: "Pasta"
+      study_group: "Grupo de estudo"
     open_navigation: "Abrir navegação"
   menu:
     settings: "Configurações"

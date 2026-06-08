@@ -70,13 +70,53 @@
 
             <%# Right: create action + avatar dropdown (always visible) %>
             <div class="topbar__right">
-              <div class="topbar__create">
-                <%= link_to new_deck_path,
-                      class: "topbar__create-btn",
-                      aria: { label: t("topbar.create_deck_aria") },
-                      data: { tooltip: t("topbar.create_deck_tooltip") } do %>
+              <div class="topbar__create"
+                   data-controller="create-menu"
+                   data-action="click@document->create-menu#closeIfOutside keydown.esc@document->create-menu#close">
+
+                <button class="topbar__create-btn"
+                        data-create-menu-target="button"
+                        data-action="click->create-menu#toggle"
+                        data-tooltip="<%= t('topbar.create_menu_tooltip') %>"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                        aria-label="<%= t('topbar.create_menu_aria') %>">
                   <%= render "shared/icons/plus", css_class: "topbar__create-icon" %>
-                <% end %>
+                </button>
+
+                <div class="create-menu__dropdown"
+                     data-create-menu-target="menu"
+                     data-open="false"
+                     role="menu">
+
+                  <%= link_to new_deck_path,
+                        class: "create-menu__item",
+                        role: "menuitem" do %>
+                    <%= render "shared/icons/rectangle_stack", css_class: "create-menu__item-icon" %>
+                    <span><%= t("topbar.create.flashcard_set") %></span>
+                  <% end %>
+
+                  <span class="create-menu__item create-menu__item--disabled" role="menuitem" aria-disabled="true">
+                    <%= render "shared/icons/book_open", css_class: "create-menu__item-icon" %>
+                    <span><%= t("topbar.create.study_guide") %></span>
+                  </span>
+
+                  <span class="create-menu__item create-menu__item--disabled" role="menuitem" aria-disabled="true">
+                    <%= render "shared/icons/clipboard_check", css_class: "create-menu__item-icon" %>
+                    <span><%= t("topbar.create.practice_test") %></span>
+                  </span>
+
+                  <span class="create-menu__item create-menu__item--disabled" role="menuitem" aria-disabled="true">
+                    <%= render "shared/icons/folder", css_class: "create-menu__item-icon" %>
+                    <span><%= t("topbar.create.folder") %></span>
+                  </span>
+
+                  <span class="create-menu__item create-menu__item--disabled" role="menuitem" aria-disabled="true">
+                    <%= render "shared/icons/user_group", css_class: "create-menu__item-icon" %>
+                    <span><%= t("topbar.create.study_group") %></span>
+                  </span>
+
+                </div>
               </div>
 
               <div class="avatar-dropdown"

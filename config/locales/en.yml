@@ -6,8 +6,14 @@ en:
   topbar:
     search_placeholder: "Search decks…"
     search_aria: "Search decks"
-    create_deck_aria: "Create Deck"
-    create_deck_tooltip: "New Deck"
+    create_menu_aria: "Create menu"
+    create_menu_tooltip: "Create"
+    create:
+      flashcard_set: "Flashcard set"
+      study_guide: "Study guide"
+      practice_test: "Practice test"
+      folder: "Folder"
+      study_group: "Study group"
     open_navigation: "Open navigation"
   menu:
     settings: "Settings"
