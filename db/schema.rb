@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_06_07_112916) do
+ActiveRecord::Schema[8.1].define(version: 2026_06_08_000002) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -40,6 +40,17 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_07_112916) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "badges", force: :cascade do |t|
+    t.string "category", null: false
+    t.datetime "created_at", null: false
+    t.string "description", null: false
+    t.string "icon", null: false
+    t.string "key", null: false
+    t.string "name", null: false
+    t.datetime "updated_at", null: false
+    t.index ["key"], name: "index_badges_on_key", unique: true
   end
 
   create_table "card_progresses", force: :cascade do |t|
@@ -282,6 +293,16 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_07_112916) do
     t.index ["user_id"], name: "index_test_sessions_on_user_id"
   end
 
+  create_table "user_badges", force: :cascade do |t|
+    t.bigint "badge_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "earned_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
+    t.index ["badge_id"], name: "index_user_badges_on_badge_id"
+    t.index ["user_id", "badge_id"], name: "index_user_badges_on_user_id_and_badge_id", unique: true
+  end
+
   create_table "users", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.integer "current_streak", default: 0, null: false
@@ -321,4 +342,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_07_112916) do
   add_foreign_key "study_sessions", "users"
   add_foreign_key "test_sessions", "decks"
   add_foreign_key "test_sessions", "users"
+  add_foreign_key "user_badges", "badges"
+  add_foreign_key "user_badges", "users"
 end

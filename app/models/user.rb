@@ -12,6 +12,8 @@ class User < ApplicationRecord
   has_many :study_sessions, dependent: :destroy
   has_many :learn_sessions, dependent: :destroy
   has_many :test_sessions, dependent: :destroy
+  has_many :user_badges, dependent: :destroy
+  has_many :badges, through: :user_badges
 
   normalizes :email_address, with: ->(e) { e.strip.downcase }
   normalizes :display_name,  with: ->(n) { n.strip.presence }

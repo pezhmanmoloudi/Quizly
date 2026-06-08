@@ -13,3 +13,15 @@
     scroll-behavior: auto !important;
   }
 }
+
+/* Themed scrollbars — standard (Firefox + Chrome 121+) */
+* {
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+  scrollbar-width: thin;
+}
+
+/* Themed scrollbars — WebKit (Chrome/Safari) */
+::-webkit-scrollbar             { width: 6px; height: 6px; }
+::-webkit-scrollbar-track       { background: var(--scrollbar-track); }
+::-webkit-scrollbar-thumb       { background: var(--scrollbar-thumb); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { filter: brightness(1.3); }

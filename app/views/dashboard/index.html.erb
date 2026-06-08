@@ -25,6 +25,14 @@
       <div id="cards-due-count" class="stat-card__value stat-card__value--due"><%= @total_due %></div>
       <div class="stat-card__label"><%= t("dashboard.cards_due") %></div>
     </div>
+    <div class="stat-card">
+      <div class="stat-card__value stat-card__value--streak">🔥 <%= Current.user.current_streak %></div>
+      <div class="stat-card__label"><%= t("dashboard.current_streak") %></div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-card__value stat-card__value--streak"><%= Current.user.longest_streak %></div>
+      <div class="stat-card__label"><%= t("dashboard.longest_streak") %></div>
+    </div>
   </div>
 
   <div class="section-header" style="margin-top: 2.5rem;">

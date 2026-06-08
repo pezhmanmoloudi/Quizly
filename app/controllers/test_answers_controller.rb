@@ -11,6 +11,8 @@ class TestAnswersController < ApplicationController
 
     if @test_session.last_question?
       @test_session.update!(finished_at: Time.current, current_index: @test_session.current_index + 1)
+      StreakUpdater.call(Current.user)
+      BadgeAwarder.call(Current.user)
       session.delete(:test_session_id)
       @finished = true
     else
