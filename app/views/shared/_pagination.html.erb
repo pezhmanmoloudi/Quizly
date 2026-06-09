@@ -2,8 +2,8 @@
   <nav class="pagination" aria-label="Pagination">
 
     <%# Previous arrow %>
-    <% if pagy.prev %>
-      <%= link_to pagy_url_for(pagy, pagy.prev),
+    <% if pagy.previous %>
+      <%= link_to pagy.page_url(pagy.previous),
             class: "pagination__btn",
             rel: "prev",
             "aria-label": t("shared.previous_page") do %>&lsaquo;<% end %>
@@ -18,13 +18,13 @@
       <% elsif item.is_a?(String) %>
         <span class="pagination__btn pagination__btn--active" aria-current="page"><%= item %></span>
       <% else %>
-        <%= link_to item, pagy_url_for(pagy, item), class: "pagination__btn" %>
+        <%= link_to item, pagy.page_url(item), class: "pagination__btn" %>
       <% end %>
     <% end %>
 
     <%# Next arrow %>
     <% if pagy.next %>
-      <%= link_to pagy_url_for(pagy, pagy.next),
+      <%= link_to pagy.page_url(pagy.next),
             class: "pagination__btn",
             rel: "next",
             "aria-label": t("shared.next_page") do %>&rsaquo;<% end %>

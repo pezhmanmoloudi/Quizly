@@ -21,7 +21,7 @@ class DecksController < ApplicationController
 
     if @sort == "most_due"
       sorted = decks_scope.sort_by { |d| -(@due_counts[d.id] || 0) }
-      @pagy, @decks = pagy_array(sorted, limit: DECK_INDEX_PER_PAGE)
+      @pagy, @decks = pagy(sorted, limit: DECK_INDEX_PER_PAGE)
     else
       @pagy, @decks = pagy(decks_scope, limit: DECK_INDEX_PER_PAGE)
     end

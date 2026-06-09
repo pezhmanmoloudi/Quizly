@@ -1,4 +1,2 @@
-require "pagy/extras/array"
-
-Pagy::DEFAULT[:limit] = 10
-Pagy::DEFAULT[:size]  = 5
+Pagy::OPTIONS[:limit] = 10
+Pagy::OPTIONS[:slots] = 5
