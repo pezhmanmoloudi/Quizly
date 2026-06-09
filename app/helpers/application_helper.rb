@@ -1,5 +1,5 @@
 module ApplicationHelper
-  include Pagy::Frontend
+  include Pagy::Method
   def format_study_time(seconds)
     return I18n.t("time.none") unless seconds.is_a?(Integer) && seconds > 0
     if seconds < 60
