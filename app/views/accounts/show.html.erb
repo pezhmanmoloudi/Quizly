@@ -437,7 +437,6 @@
                      autocomplete="off">
             </div>
             <div class="lang-dropdown__list">
-              <div class="lang-dropdown__section-header" data-language-target="yourSection"><%= t("accounts.your_languages") %></div>
               <% Language::LANGUAGES.each do |code, name| %>
                 <button class="lang-dropdown__item <%= "is-active" if code == Current.user.locale %>"
                         type="button"
