@@ -15,6 +15,7 @@ fa:
       folder: "پوشه"
       study_group: "گروه مطالعاتی"
     open_navigation: "باز کردن منوی ناوبری"
+    close_navigation: "بستن منوی ناوبری"
   menu:
     settings: "تنظیمات"
     dark_mode: "حالت تاریک"

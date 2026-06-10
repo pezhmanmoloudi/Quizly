@@ -15,6 +15,7 @@ ckb:
       folder: "فۆڵدەر"
       study_group: "گروپی خوێندن"
     open_navigation: "کردنەوەی ناڤیگەیشن"
+    close_navigation: "داخستنی ناڤیگەیشن"
   menu:
     settings: "ڕێکخستنەکان"
     dark_mode: "دۆخی تاریک"

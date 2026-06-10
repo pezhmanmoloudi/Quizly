@@ -15,6 +15,7 @@ ar:
       folder: "مجلد"
       study_group: "مجموعة دراسية"
     open_navigation: "فتح قائمة التنقل"
+    close_navigation: "إغلاق قائمة التنقل"
   menu:
     settings: "الإعدادات"
     dark_mode: "الوضع الداكن"

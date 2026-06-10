@@ -15,6 +15,7 @@ es:
       folder: "Carpeta"
       study_group: "Grupo de estudio"
     open_navigation: "Abrir navegación"
+    close_navigation: "Cerrar navegación"
   menu:
     settings: "Configuración"
     dark_mode: "Modo oscuro"

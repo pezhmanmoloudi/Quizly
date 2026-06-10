@@ -1,24 +1,16 @@
-<aside class="sidebar" data-sidebar-target="sidebar"
-       data-action="click->sidebar#expandIfCollapsed">
+<aside class="sidebar">
 
   <%# Header %>
   <div class="sidebar__header">
-    <button class="sidebar__hamburger"
-            data-action="click->sidebar#toggleCollapse"
-            aria-label="Toggle navigation">
-      <%= render "shared/icons/menu" %>
-    </button>
-
     <%= link_to root_path, class: "sidebar__brand", dir: "ltr" do %>
       <span class="sidebar__brand-mark">Q</span>
       <span class="sidebar__brand-text">uizly</span>
     <% end %>
 
-    <button class="sidebar__close"
-            data-action="click->sidebar#closeMobile"
-            aria-label="Close navigation">
+    <label for="app-drawer" class="sidebar__close"
+           aria-label="<%= t("topbar.close_navigation") %>">
       <%= render "shared/icons/x_mark" %>
-    </button>
+    </label>
   </div>
 
   <%# Primary nav %>
