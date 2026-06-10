@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_06_09_170000) do
+ActiveRecord::Schema[8.1].define(version: 2026_06_10_000001) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
@@ -75,6 +75,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_09_170000) do
     t.string "definition_language_code"
     t.text "description"
     t.string "edit_permission", default: "owner_only", null: false
+    t.integer "flashcards_count", default: 0, null: false
     t.integer "forked_from_id"
     t.integer "forks_count", default: 0, null: false
     t.string "language_code"

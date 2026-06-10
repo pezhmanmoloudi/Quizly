@@ -74,6 +74,19 @@ RSpec.describe "Flashcards#destroy", type: :request do
         expect(response.media_type).to eq("text/vnd.turbo-stream.html")
         expect(response.body).to include("deck_#{deck.id}_card_count")
       end
+
+      it "reflects the correct count after multiple sequential deletes" do
+        card_a = create(:flashcard, deck: deck)
+        card_b = create(:flashcard, deck: deck)
+
+        delete flashcard_path(card_a), headers: { "Accept" => "text/vnd.turbo-stream.html" }
+        expect(response.body).to include(">#{deck.reload.flashcards_count}<")
+
+        delete flashcard_path(card_b), headers: { "Accept" => "text/vnd.turbo-stream.html" }
+        expect(response.body).to include(">#{deck.reload.flashcards_count}<")
+
+        expect(deck.reload.flashcards_count).to eq(0)
+      end
     end
 
     context "when authenticated as another user" do
