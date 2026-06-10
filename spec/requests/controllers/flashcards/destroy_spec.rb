@@ -61,6 +61,21 @@ RSpec.describe "Flashcards#destroy", type: :request do
       end
     end
 
+    context "when requested with turbo stream format" do
+      before { sign_in(user) }
+
+      it "removes the flashcard and renders turbo stream" do
+        flashcard
+        expect {
+          delete flashcard_path(flashcard),
+            headers: { "Accept" => "text/vnd.turbo-stream.html" }
+        }.to change(Flashcard, :count).by(-1)
+        expect(response).to have_http_status(:ok)
+        expect(response.media_type).to eq("text/vnd.turbo-stream.html")
+        expect(response.body).to include("deck_#{deck.id}_card_count")
+      end
+    end
+
     context "when authenticated as another user" do
       let(:other_user) { create(:user) }
       before { sign_in(other_user) }

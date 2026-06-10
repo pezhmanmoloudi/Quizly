@@ -240,7 +240,7 @@ ckb:
       save: "پاشەکەوتکردنی کارت →"
     created: "کارت زیادکرا."
     updated: "کارت نوێکرایەوە."
-    deleted: "کارت سڕایەوە."
+    deleted: "فلاشکارت سڕایەوە."
   study_modes:
     exit: "→ دەرچوون"
     no_cards_title: "هێشتا کارتێک نییە"

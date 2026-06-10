@@ -240,7 +240,7 @@ pt:
       save: "Salvar cartão →"
     created: "Cartão adicionado."
     updated: "Cartão atualizado."
-    deleted: "Cartão excluído."
+    deleted: "Flashcard removido."
   study_modes:
     exit: "← Sair"
     no_cards_title: "Nenhum cartão ainda"

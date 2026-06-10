@@ -240,7 +240,7 @@ fa:
       save: "ذخیره کارت →"
     created: "کارت اضافه شد."
     updated: "کارت به‌روزرسانی شد."
-    deleted: "کارت حذف شد."
+    deleted: "فلش‌کارت حذف شد."
   study_modes:
     exit: "→ خروج"
     no_cards_title: "هنوز کارتی نداری"

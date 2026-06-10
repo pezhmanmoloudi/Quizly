@@ -240,7 +240,7 @@ fr:
       save: "Enregistrer la carte →"
     created: "Carte ajoutée."
     updated: "Carte mise à jour."
-    deleted: "Carte supprimée."
+    deleted: "Flashcard supprimée."
   study_modes:
     exit: "← Quitter"
     no_cards_title: "Pas encore de cartes"

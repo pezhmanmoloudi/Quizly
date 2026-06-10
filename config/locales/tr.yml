@@ -240,7 +240,7 @@ tr:
       save: "Kartı Kaydet →"
     created: "Kart eklendi."
     updated: "Kart güncellendi."
-    deleted: "Kart silindi."
+    deleted: "Flashcard kaldırıldı."
   study_modes:
     exit: "← Çık"
     no_cards_title: "Henüz kart yok"

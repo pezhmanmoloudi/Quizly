@@ -38,16 +38,23 @@ class FlashcardsController < ApplicationController
   end
 
   def destroy
-    deck = @flashcard.deck
+    @deck = @flashcard.deck
     @flashcard.destroy
 
-    items        = params[:items].to_i.positive? ? params[:items].to_i : 10
-    current_page = [params[:page].to_i, 1].max
-    total        = deck.flashcards.count
-    last_page    = [(total.to_f / items).ceil, 1].max
-    safe_page    = [current_page, last_page].min
-
-    redirect_to deck_path(deck, page: safe_page, items: items), notice: t("flashcards.deleted")
+    respond_to do |format|
+      format.turbo_stream do
+        flash.now[:notice] = t("flashcards.deleted")
+        render :destroy
+      end
+      format.html do
+        items        = params[:items].to_i.positive? ? params[:items].to_i : 10
+        current_page = [params[:page].to_i, 1].max
+        total        = @deck.flashcards.count
+        last_page    = [(total.to_f / items).ceil, 1].max
+        safe_page    = [current_page, last_page].min
+        redirect_to deck_path(@deck, page: safe_page, items: items), notice: t("flashcards.deleted")
+      end
+    end
   end
 
   private

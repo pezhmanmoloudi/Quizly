@@ -240,7 +240,7 @@ de:
       save: "Karte speichern →"
     created: "Karte hinzugefügt."
     updated: "Karte aktualisiert."
-    deleted: "Karte gelöscht."
+    deleted: "Lernkarte entfernt."
   study_modes:
     exit: "← Beenden"
     no_cards_title: "Noch keine Karten"

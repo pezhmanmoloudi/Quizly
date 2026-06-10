@@ -240,7 +240,7 @@ es:
       save: "Guardar tarjeta →"
     created: "Tarjeta añadida."
     updated: "Tarjeta actualizada."
-    deleted: "Tarjeta eliminada."
+    deleted: "Tarjeta flash eliminada."
   study_modes:
     exit: "← Salir"
     no_cards_title: "Sin tarjetas aún"

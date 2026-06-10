@@ -240,7 +240,7 @@ en:
       save: "Save Card →"
     created: "Card added."
     updated: "Card updated."
-    deleted: "Card deleted."
+    deleted: "Flashcard removed."
   study_modes:
     exit: "← Exit"
     no_cards_title: "No cards yet"

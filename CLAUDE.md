@@ -27,4 +27,4 @@ A feature is only complete when all of the following are true:
 - Tests are fully synchronized with the implementation (no orphan tests, no outdated logic)
 
 ---
-Detailed rules: `.claude/shared/i18n.md` · `.claude/architecture/*` · `.claude/testing/*`
+Detailed rules: `.claude/shared/i18n.md` · `.claude/shared/deletion-ux.md` · `.claude/architecture/*` · `.claude/testing/*`

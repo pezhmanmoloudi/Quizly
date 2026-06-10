@@ -1,0 +1,7 @@
+<%= turbo_stream.remove dom_id(@flashcard) %>
+<%= turbo_stream.update "deck_#{@deck.id}_card_count", @deck.flashcards.count %>
+<%= turbo_stream.update "total-cards-count",
+      Flashcard.joins(:deck).where(decks: { user_id: Current.user.id }).count %>
+<%= turbo_stream.update "flash-messages" do %>
+  <div class="flash flash--notice" data-controller="flash"><%= flash[:notice] %></div>
+<% end %>
