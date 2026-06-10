@@ -1,33 +1,75 @@
-<%= form_with model: flashcard, url: url, id: "flashcard-form" do |f| %>
-  <div class="card-editor-card">
-    <div class="card-editor-panels">
-      <div class="card-editor-panel">
-        <span class="card-editor-panel__label"><%= t("flashcards.form.term_label") %></span>
-        <%= f.text_area :front_content,
-              placeholder: t("flashcards.form.term_placeholder"),
-              class: "card-editor-field",
-              rows: 7,
-              aria: { label: t("flashcards.form.term_label") } %>
-      </div>
-      <div class="card-editor-panel">
-        <span class="card-editor-panel__label"><%= t("flashcards.form.definition_label") %></span>
-        <%= f.text_area :back_content,
-              placeholder: t("flashcards.form.definition_placeholder"),
-              class: "card-editor-field",
-              rows: 7,
-              aria: { label: t("flashcards.form.definition_label") } %>
-      </div>
-    </div>
+<%= form_with model: flashcard, url: url, id: "flashcard-form", multipart: true do |f| %>
 
-    <div class="card-editor-footer">
-      <% if flashcard.errors.any? %>
-        <div class="form-errors" role="alert">
-          <% flashcard.errors.full_messages.each do |msg| %>
-            <p><%= msg %></p>
-          <% end %>
+  <div class="cards-editor-body">
+    <div class="card-rows-list">
+      <div class="card-row">
+
+        <div class="card-row__header">
+          <span class="card-row__number">1</span>
         </div>
-      <% end %>
-      <%= f.submit t("flashcards.form.save"), class: "btn btn--primary btn--lg" %>
+
+        <div class="card-row__panels">
+
+          <%# ── Term panel ── %>
+          <div class="card-row__panel">
+            <span class="card-editor-panel__label"><%= t("flashcards.form.term_label") %></span>
+            <%= f.text_area :front_content,
+                  placeholder: t("flashcards.form.term_placeholder"),
+                  class: "card-editor-field",
+                  rows: 3,
+                  aria: { label: t("flashcards.form.term_label") } %>
+            <%= f.select :front_language,
+                  Language::ALL_LANGUAGES.map { |code, name| [name, code] },
+                  { include_blank: t("decks.card_row.select_language") },
+                  { class: "card-row__language" } %>
+          </div>
+
+          <%# ── Definition panel ── %>
+          <div class="card-row__panel">
+            <span class="card-editor-panel__label"><%= t("flashcards.form.definition_label") %></span>
+            <%= f.text_area :back_content,
+                  placeholder: t("flashcards.form.definition_placeholder"),
+                  class: "card-editor-field",
+                  rows: 3,
+                  aria: { label: t("flashcards.form.definition_label") } %>
+            <%= f.select :back_language,
+                  Language::ALL_LANGUAGES.map { |code, name| [name, code] },
+                  { include_blank: t("decks.card_row.select_language") },
+                  { class: "card-row__language" } %>
+          </div>
+
+          <%# ── Image panel ── %>
+          <div class="card-row__panel card-row__image-panel">
+            <% has_image = flashcard.image&.attached? %>
+            <img class="card-row__image-preview"
+                 src="<%= has_image ? rails_blob_path(flashcard.image, disposition: "inline") : "" %>"
+                 alt=""
+                 <%= "hidden" unless has_image %>>
+            <label class="card-row__image-btn"
+                   aria-label="<%= t("decks.card_row.image") %>">
+              <%= t("decks.card_row.image") %>
+              <%= f.file_field :image, accept: "image/*",
+                    class: "card-row__image-input", hidden: true %>
+            </label>
+          </div>
+
+        </div><%# card-row__panels %>
+      </div><%# card-row %>
+    </div><%# card-rows-list %>
+  </div><%# cards-editor-body %>
+
+  <% if flashcard.errors.any? %>
+    <div class="cards-editor-footer">
+      <div class="form-errors" role="alert">
+        <% flashcard.errors.full_messages.each do |msg| %>
+          <p><%= msg %></p>
+        <% end %>
+      </div>
     </div>
+  <% end %>
+
+  <div class="cards-editor-footer">
+    <%= f.submit t("flashcards.form.save"), class: "btn btn--primary" %>
   </div>
+
 <% end %>

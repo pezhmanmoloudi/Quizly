@@ -199,11 +199,21 @@ en:
     cards:
       page_title: "Add Cards — %{name}"
       add_card: "Add a card"
+      save: "Save"
+      error_term: "Card %{row}: term is required."
+      error_definition: "Card %{row}: definition is required."
+      error_language: "Card %{row}: language is required for %{side}."
+      error_no_cards: "Add at least one card before saving."
+      back_label: "Back to %{name}"
     card_row:
       term_label: "Term"
       term_placeholder: "Enter term"
       definition_label: "Definition"
       definition_placeholder: "Enter definition"
+      front_label: "front"
+      back_label: "back"
+      select_language: "Select language"
+      image: "Image"
       remove: "Remove card"
     created: "Deck created."
     updated: "Deck updated."
@@ -408,11 +418,6 @@ en:
   starred_cards:
     unstar: "Unstar this card"
     star: "Star this card"
-  card_editor:
-    save_card: "Save Card"
-    error_term: "Please enter a term."
-    error_definition: "Please enter a definition."
-    saved: "Flashcard saved!"
   passwords_mailer:
     reset_subject: "Reset your password"
     reset_body: "You can reset your password within the next 15 minutes on"

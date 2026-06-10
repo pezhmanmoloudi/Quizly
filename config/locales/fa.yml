@@ -199,11 +199,21 @@ fa:
     cards:
       page_title: "افزودن کارت — %{name}"
       add_card: "افزودن کارت"
+      save: "ذخیره"
+      error_term: "کارت %{row}: اصطلاح الزامی است."
+      error_definition: "کارت %{row}: تعریف الزامی است."
+      error_language: "کارت %{row}: زبان برای %{side} الزامی است."
+      error_no_cards: "قبل از ذخیره حداقل یک کارت اضافه کنید."
+      back_label: "بازگشت به %{name}"
     card_row:
       term_label: "اصطلاح"
       term_placeholder: "اصطلاح را وارد کن"
       definition_label: "تعریف"
       definition_placeholder: "تعریف را وارد کن"
+      front_label: "جلو"
+      back_label: "پشت"
+      select_language: "انتخاب زبان"
+      image: "تصویر"
       remove: "حذف کارت"
     created: "دسته ایجاد شد."
     updated: "دسته به‌روزرسانی شد."
@@ -408,11 +418,6 @@ fa:
   starred_cards:
     unstar: "حذف ستاره"
     star: "ستاره‌دار کردن این کارت"
-  card_editor:
-    save_card: "ذخیره کارت"
-    error_term: "لطفاً یک اصطلاح وارد کن."
-    error_definition: "لطفاً یک تعریف وارد کن."
-    saved: "فلش‌کارت ذخیره شد!"
   passwords_mailer:
     reset_subject: "بازنشانی رمز عبور"
     reset_body: "می‌توانی رمز عبورت را در ۱۵ دقیقه آینده از طریق"

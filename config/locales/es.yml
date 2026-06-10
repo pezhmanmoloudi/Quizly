@@ -199,11 +199,21 @@ es:
     cards:
       page_title: "Añadir tarjetas — %{name}"
       add_card: "Añadir tarjeta"
+      save: "Guardar"
+      error_term: "Tarjeta %{row}: el término es obligatorio."
+      error_definition: "Tarjeta %{row}: la definición es obligatoria."
+      error_language: "Tarjeta %{row}: el idioma es obligatorio para %{side}."
+      error_no_cards: "Agrega al menos una tarjeta antes de guardar."
+      back_label: "Volver a %{name}"
     card_row:
       term_label: "Término"
       term_placeholder: "Introduce el término"
       definition_label: "Definición"
       definition_placeholder: "Introduce la definición"
+      front_label: "frente"
+      back_label: "reverso"
+      select_language: "Seleccionar idioma"
+      image: "Imagen"
       remove: "Eliminar tarjeta"
     created: "Mazo creado."
     updated: "Mazo actualizado."
@@ -408,11 +418,6 @@ es:
   starred_cards:
     unstar: "Quitar destacado"
     star: "Destacar esta tarjeta"
-  card_editor:
-    save_card: "Guardar tarjeta"
-    error_term: "Por favor, introduce un término."
-    error_definition: "Por favor, introduce una definición."
-    saved: "¡Tarjeta guardada!"
   passwords_mailer:
     reset_subject: "Restablece tu contraseña"
     reset_body: "Puedes restablecer tu contraseña en los próximos 15 minutos en"

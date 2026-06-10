@@ -27,6 +27,8 @@
 .btn--warning   { background: var(--color-warning);      color: var(--color-surface); }
 .btn--success   { background: var(--color-success);      color: var(--color-surface); }
 
+.btn:disabled { opacity: 0.45; cursor: not-allowed; }
+
 .btn--primary:hover   { background: var(--color-primary-dark); }
 .btn--secondary:hover { background: var(--color-border); color: var(--color-text); }
 .btn--danger:hover    { background: var(--color-danger-hover); }

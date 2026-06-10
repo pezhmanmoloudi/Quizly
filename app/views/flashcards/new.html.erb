@@ -1,15 +1,34 @@
-<% content_for :title, "Add Card — #{@deck.name}" %>
+<% content_for :title, t("decks.cards.page_title", name: @deck.name) %>
 
-<div class="card-editor-page">
+<%= form_with url: update_cards_deck_path(@deck), method: :patch,
+      multipart: true,
+      class: "cards-editor-page",
+      data: {
+        controller: "card-editor",
+        action: "submit->card-editor#handleSubmit",
+        card_editor_error_term_value:       t("decks.cards.error_term", row: ""),
+        card_editor_error_definition_value: t("decks.cards.error_definition", row: ""),
+        card_editor_error_language_value:   t("decks.cards.error_language", row: "", side: "")
+      } do %>
+
+  <%= hidden_field_tag :requires_language, false %>
+
   <header class="card-editor-header">
     <%= link_to deck_path(@deck), class: "card-editor-header__back",
-          aria: { label: t("flashcards.new.back", name: @deck.name) } do %>
+          aria: { label: t("decks.cards.back_label", name: @deck.name) } do %>
       ← <span class="card-editor-header__deck-name"><%= @deck.name %></span>
     <% end %>
-    <%= submit_tag t("flashcards.form.save"), form: "flashcard-form", class: "btn btn--primary" %>
   </header>
 
-  <div class="card-editor-body">
-    <%= render "form", flashcard: @flashcard, url: deck_flashcards_path(@deck) %>
+  <div class="cards-editor-body">
+    <div class="card-rows-list" data-card-editor-target="cardsList">
+      <%= render "decks/card_row_template", card: nil, imported: false, index: "0" %>
+    </div>
   </div>
-</div>
+
+  <div class="cards-editor-footer">
+    <button type="submit" class="btn btn--primary">
+      <%= t("decks.cards.save") %>
+    </button>
+  </div>
+<% end %>

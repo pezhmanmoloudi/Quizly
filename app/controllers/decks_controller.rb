@@ -40,7 +40,7 @@ class DecksController < ApplicationController
   def create
     @deck = Current.user.decks.build(deck_params)
     if @deck.save
-      redirect_to cards_deck_path(@deck), notice: t("decks.created")
+      redirect_to new_deck_flashcard_path(@deck), notice: t("decks.created")
     else
       render :new, status: :unprocessable_entity
     end
@@ -152,13 +152,43 @@ class DecksController < ApplicationController
   end
 
   def cards
-    @initial_rows = 1
+    @existing   = @deck.flashcards.to_a
+    @draft_rows = []
+    @imported   = false
   end
 
   def update_cards
+    row_data = (params.dig(:deck, :flashcards_attributes) || {}).values
+                 .reject { |r| r[:front_content].blank? && r[:back_content].blank? && r[:_destroy] != "1" }
+                 .map { |r| r.permit(:front_content, :back_content, :front_language, :back_language).to_h.symbolize_keys }
+
+    form = CardEditorForm.new(
+      rows:              row_data,
+      requires_language: params[:requires_language] == "true"
+    )
+
+    unless form.valid?
+      flash.now[:alert] = form.errors.full_messages.first
+      @existing   = @deck.flashcards.to_a
+      @draft_rows = []
+      @imported   = params[:requires_language] != "true"
+      return render :cards, status: :unprocessable_entity
+    end
+
+    if row_data.empty? && @deck.flashcards.none?
+      flash.now[:alert] = t("decks.cards.error_no_cards")
+      @existing   = @deck.flashcards.to_a
+      @draft_rows = []
+      @imported   = params[:requires_language] != "true"
+      return render :cards, status: :unprocessable_entity
+    end
+
     if @deck.update(cards_params)
       redirect_to @deck, notice: t("decks.cards_saved")
     else
+      @existing   = @deck.flashcards.to_a
+      @draft_rows = []
+      @imported   = params[:requires_language] != "true"
       render :cards, status: :unprocessable_entity
     end
   end
@@ -249,7 +279,8 @@ class DecksController < ApplicationController
 
   def cards_params
     params.require(:deck).permit(
-      flashcards_attributes: [:id, :front_content, :back_content, :position, :_destroy]
+      flashcards_attributes: [:id, :front_content, :back_content, :position,
+                               :front_language, :back_language, :image, :_destroy]
     )
   end
 end

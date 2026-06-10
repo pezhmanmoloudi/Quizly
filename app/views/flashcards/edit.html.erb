@@ -1,39 +1,13 @@
 <% content_for :title, "Edit Card — #{@flashcard.deck.name}" %>
 
-<div class="cards-editor-page"
-     data-controller="card-edit"
-     data-card-edit-update-url-value="<%= flashcard_path(@flashcard) %>">
-
+<div class="cards-editor-page">
   <header class="card-editor-header">
-    <%= link_to deck_path(@flashcard.deck), class: "card-editor-header__back",
+    <%= link_to deck_path(@flashcard.deck),
+          class: "card-editor-header__back",
           aria: { label: t("flashcards.new.back", name: @flashcard.deck.name) } do %>
       ← <span class="card-editor-header__deck-name"><%= @flashcard.deck.name %></span>
     <% end %>
   </header>
 
-  <div class="cards-editor-body">
-    <div class="card-rows-list">
-      <div class="card-row" data-card-edit-target="row">
-        <div class="card-row__header">
-          <span class="card-row__number">1</span>
-        </div>
-        <div class="card-row__panels">
-          <div class="card-row__panel">
-            <span class="card-editor-panel__label"><%= t("flashcards.form.term_label") %></span>
-            <textarea class="card-editor-field"
-                      data-card-edit-target="term"
-                      data-action="blur->card-edit#handleBlur"
-                      rows="3"><%= @flashcard.front_content %></textarea>
-          </div>
-          <div class="card-row__panel">
-            <span class="card-editor-panel__label"><%= t("flashcards.form.definition_label") %></span>
-            <textarea class="card-editor-field"
-                      data-card-edit-target="definition"
-                      data-action="blur->card-edit#handleBlur"
-                      rows="3"><%= @flashcard.back_content %></textarea>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  <%= render "form", flashcard: @flashcard, url: flashcard_path(@flashcard) %>
 </div>

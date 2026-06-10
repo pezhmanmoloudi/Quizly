@@ -13,21 +13,18 @@ class ImportsController < ApplicationController
       return render :new, status: :unprocessable_entity
     end
 
-    result = TextImporter.call(
-      deck: @deck,
-      text: text,
-      col_sep: params[:col_sep].presence || "\t"
-    )
+    rows = TextImporter.parse(text: text, col_sep: params[:col_sep].presence || "\t")
 
-    if result.errors.empty?
-      msg = t("imports.imported", count: result.imported)
-      msg += " #{t("imports.skipped", count: result.skipped)}" if result.skipped > 0
-      redirect_to @deck, notice: msg
-    else
-      flash.now[:alert] = result.errors.first
+    if rows.empty?
+      flash.now[:alert] = t("imports.text_no_valid_pairs")
       @tab = "text"
-      render :new, status: :unprocessable_entity
+      return render :new, status: :unprocessable_entity
     end
+
+    @draft_rows = rows
+    @imported   = true
+    @existing   = @deck.flashcards.to_a
+    render "decks/cards"
   end
 
   def csv
@@ -38,17 +35,18 @@ class ImportsController < ApplicationController
       return render :new, status: :unprocessable_entity
     end
 
-    result = CsvImporter.call(deck: @deck, file: file)
+    rows = CsvImporter.parse(file: file)
 
-    if result.errors.empty?
-      msg = t("imports.imported", count: result.imported)
-      msg += " #{t("imports.skipped", count: result.skipped)}" if result.skipped > 0
-      redirect_to @deck, notice: msg
-    else
-      flash.now[:alert] = result.errors.first
+    if rows.empty?
+      flash.now[:alert] = t("imports.csv_no_valid_rows")
       @tab = "csv"
-      render :new, status: :unprocessable_entity
+      return render :new, status: :unprocessable_entity
     end
+
+    @draft_rows = rows
+    @imported   = true
+    @existing   = @deck.flashcards.to_a
+    render "decks/cards"
   end
 
   private

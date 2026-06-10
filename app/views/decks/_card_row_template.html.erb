@@ -1,27 +1,102 @@
+<% card          ||= nil
+   imported      ||= false
+   index         ||= "NEW_INDEX"
+   front_content ||= card&.front_content.to_s
+   back_content  ||= card&.back_content.to_s
+   front_lang    = card&.front_language.to_s
+   back_lang     = card&.back_language.to_s
+   field_prefix  = "deck[flashcards_attributes][#{index}]"
+%>
 <div class="card-row" data-card-editor-target="row">
   <div class="card-row__header">
     <span class="card-row__number">N</span>
+    <button type="button" class="card-row__delete"
+            data-action="click->card-editor#removeCard"
+            aria-label="<%= t("decks.card_row.remove") %>">
+      <%= render "shared/icons/trash" %>
+    </button>
   </div>
+
+  <% if card&.id %>
+    <input type="hidden" name="<%= field_prefix %>[id]" value="<%= card.id %>">
+    <input type="hidden" class="destroy-field"
+           name="<%= field_prefix %>[_destroy]" value="0">
+  <% end %>
+
   <div class="card-row__panels">
-    <div class="card-row__panel">
+    <%# ── Term panel ── %>
+    <div class="card-row__panel"
+         data-controller="term-suggest"
+         data-term-suggest-url-value="<%= suggestions_path %>"
+         data-action="click@document->term-suggest#closeIfOutside">
       <span class="card-editor-panel__label"><%= t("decks.card_row.term_label") %></span>
       <textarea class="card-editor-field"
-                name="deck[flashcards_attributes][NEW_INDEX][front_content]"
+                name="<%= field_prefix %>[front_content]"
                 placeholder="<%= t("decks.card_row.term_placeholder") %>"
-                rows="3"></textarea>
+                data-term-suggest-target="input"
+                data-action="input->card-editor#clearFieldError
+                             input->term-suggest#handleInput
+                             keydown->term-suggest#handleKeydown"
+                rows="3"><%= front_content %></textarea>
+      <% unless imported %>
+        <select class="card-row__language"
+                name="<%= field_prefix %>[front_language]"
+                data-term-suggest-target="languageSelect"
+                data-action="change->card-editor#clearFieldError">
+          <option value=""><%= t("decks.card_row.select_language") %></option>
+          <% Language::ALL_LANGUAGES.each do |code, name| %>
+            <option value="<%= code %>" <%= "selected" if code == front_lang %>><%= name %></option>
+          <% end %>
+        </select>
+      <% end %>
+      <div class="term-suggest__dropdown" data-term-suggest-target="dropdown" hidden
+           role="listbox">
+        <ul class="term-suggest__list" data-term-suggest-target="list"
+            data-action="click->term-suggest#selectSuggestion"></ul>
+      </div>
       <span class="card-row__field-error" hidden></span>
     </div>
+
+    <%# ── Definition panel ── %>
     <div class="card-row__panel">
       <span class="card-editor-panel__label"><%= t("decks.card_row.definition_label") %></span>
       <textarea class="card-editor-field"
-                name="deck[flashcards_attributes][NEW_INDEX][back_content]"
+                name="<%= field_prefix %>[back_content]"
                 placeholder="<%= t("decks.card_row.definition_placeholder") %>"
-                rows="3"></textarea>
+                data-action="input->card-editor#clearFieldError"
+                rows="3"><%= back_content %></textarea>
+      <% unless imported %>
+        <select class="card-row__language"
+                name="<%= field_prefix %>[back_language]"
+                data-action="change->card-editor#clearFieldError">
+          <option value=""><%= t("decks.card_row.select_language") %></option>
+          <% Language::ALL_LANGUAGES.each do |code, name| %>
+            <option value="<%= code %>" <%= "selected" if code == back_lang %>><%= name %></option>
+          <% end %>
+        </select>
+      <% end %>
       <span class="card-row__field-error" hidden></span>
     </div>
-  </div>
-  <div class="card-row__footer">
-    <button type="button" class="btn btn--primary"
-            data-action="click->card-editor#saveCard"><%= t("card_editor.save_card") %></button>
+
+    <%# ── Image panel ── %>
+    <div class="card-row__panel card-row__image-panel">
+      <input type="file"
+             name="<%= field_prefix %>[image]"
+             accept="image/*"
+             class="card-row__image-input"
+             data-action="change->card-editor#previewImage"
+             hidden>
+      <% has_image = card&.image&.attached? %>
+      <img class="card-row__image-preview"
+           src="<%= has_image ? rails_blob_path(card.image, disposition: "inline") : "" %>"
+           alt=""
+           <%= "hidden" unless has_image %>>
+      <button type="button" class="card-row__image-btn"
+              data-action="click->card-editor#triggerImageUpload"
+              aria-label="<%= t("decks.card_row.image") %>"
+              <%= "hidden" if has_image %>>
+        <%= t("decks.card_row.image") %>
+      </button>
+    </div>
   </div>
 </div>

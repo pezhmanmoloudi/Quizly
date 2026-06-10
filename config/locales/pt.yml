@@ -199,11 +199,21 @@ pt:
     cards:
       page_title: "Adicionar cartões — %{name}"
       add_card: "Adicionar cartão"
+      save: "Salvar"
+      error_term: "Cartão %{row}: o termo é obrigatório."
+      error_definition: "Cartão %{row}: a definição é obrigatória."
+      error_language: "Cartão %{row}: o idioma é obrigatório para %{side}."
+      error_no_cards: "Adicione pelo menos um cartão antes de salvar."
+      back_label: "Voltar a %{name}"
     card_row:
       term_label: "Termo"
       term_placeholder: "Digite o termo"
       definition_label: "Definição"
       definition_placeholder: "Digite a definição"
+      front_label: "frente"
+      back_label: "verso"
+      select_language: "Selecionar idioma"
+      image: "Imagem"
       remove: "Remover cartão"
     created: "Baralho criado."
     updated: "Baralho atualizado."
@@ -408,11 +418,6 @@ pt:
   starred_cards:
     unstar: "Remover dos favoritos"
     star: "Adicionar aos favoritos"
-  card_editor:
-    save_card: "Salvar cartão"
-    error_term: "Por favor, insira um termo."
-    error_definition: "Por favor, insira uma definição."
-    saved: "Flashcard salvo!"
   passwords_mailer:
     reset_subject: "Redefina sua senha"
     reset_body: "Você pode redefinir sua senha nos próximos 15 minutos em"

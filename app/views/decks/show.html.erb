@@ -82,7 +82,7 @@
       <h2 class="cards-island__title"><%= t("decks.show.cards_section") %> (<%= @deck.flashcards.count %>)</h2>
       <div class="cards-island__controls">
         <% if @deck.user == Current.user %>
-          <%= link_to cards_deck_path(@deck), class: "btn btn--secondary btn-with-icon btn--sm" do %>
+          <%= link_to new_deck_flashcard_path(@deck), class: "btn btn--secondary btn-with-icon btn--sm" do %>
             <%= render "shared/icons/plus" %> <%= t("decks.show.add_card") %>
           <% end %>
           <%= link_to new_deck_import_path(@deck), class: "btn btn--secondary btn-with-icon btn--sm" do %>

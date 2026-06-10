@@ -1,20 +1,34 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["cardsList", "template", "row"]
-  static values  = { createUrl: String, errorTerm: String, errorDefinition: String, saved: String }
+  static targets = ["cardsList", "template", "row", "saveButton"]
+  static values  = {
+    errorTerm:        String,
+    errorDefinition:  String,
+    errorLanguage:    String,
+    requiresLanguage: Boolean
+  }
 
-  connect() { this.#renumber() }
+  connect() { this.#updateUI() }
+
+  // ── Form submission ──────────────────────────────────────────────────────
+
+  handleSubmit(event) {
+    if (!this.#validateRows()) event.preventDefault()
+  }
+
+  // ── Card management ──────────────────────────────────────────────────────
 
   addCard() {
     this.#appendNewRow()
-    this.#renumber()
+    this.#updateUI()
     this.cardsListTarget.lastElementChild?.querySelector("textarea")?.focus()
   }
 
   removeCard(event) {
     const row = event.target.closest("[data-card-editor-target='row']")
     if (!row) return
+
     const destroyField = row.querySelector(".destroy-field")
     if (destroyField) {
       destroyField.value = "1"
@@ -22,72 +36,54 @@ export default class extends Controller {
     } else {
       row.remove()
     }
-    this.#renumber()
+    this.#updateUI()
   }
 
-  async saveCard(event) {
-    const btn      = event.currentTarget
-    const row      = btn.closest("[data-card-editor-target='row']")
-    if (!row) return
+  // ── Field error clearing ─────────────────────────────────────────────────
 
-    const termArea = row.querySelector("[name*='front_content']")
-    const defArea  = row.querySelector("[name*='back_content']")
+  clearFieldError(event) {
+    const panel = event.target.closest(".card-row__panel")
+    if (!panel) return
+    const err = panel.querySelector(".card-row__field-error")
+    if (err) { err.textContent = ""; err.hidden = true }
+  }
 
-    if (!termArea?.value.trim()) {
-      this.#showFieldError(termArea, this.errorTermValue)
-      termArea.focus()
-      return
+  // ── Image handling ───────────────────────────────────────────────────────
+
+  triggerImageUpload(event) {
+    const panel = event.currentTarget.closest(".card-row__image-panel")
+    panel?.querySelector(".card-row__image-input")?.click()
+  }
+
+  previewImage(event) {
+    const input = event.currentTarget
+    const panel = input.closest(".card-row__image-panel")
+    if (!panel || !input.files?.[0]) return
+
+    const preview = panel.querySelector(".card-row__image-preview")
+    const btn     = panel.querySelector(".card-row__image-btn")
+    preview.src    = URL.createObjectURL(input.files[0])
+    preview.hidden = false
+    if (btn) btn.hidden = true
+  }
+
+  // ── Private ──────────────────────────────────────────────────────────────
+
+  #visibleRows() {
+    return this.rowTargets.filter(r => !r.hidden)
+  }
+
+  #updateUI() {
+    const visible = this.#visibleRows()
+    visible.forEach((row, i) => {
+      const num = row.querySelector(".card-row__number")
+      if (num) num.textContent = i + 1
+      const btn = row.querySelector(".card-row__delete")
+      if (btn) btn.hidden = false
+    })
+    if (this.hasSaveButtonTarget) {
+      this.saveButtonTarget.disabled = visible.length === 0
     }
-
-    if (!defArea?.value.trim()) {
-      this.#showFieldError(defArea, this.errorDefinitionValue)
-      defArea.focus()
-      return
-    }
-
-    btn.disabled = true
-    const ok = await this.#postCard(termArea.value.trim(), defArea.value.trim())
-    btn.disabled = false
-
-    if (ok) {
-      termArea.value = ""
-      defArea.value  = ""
-      termArea.focus()
-      this.#showToast(this.savedValue)
-    }
-  }
-
-  async #postCard(frontContent, backContent) {
-    try {
-      const resp = await fetch(this.createUrlValue, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json",
-          "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]')?.content
-        },
-        body: JSON.stringify({ flashcard: { front_content: frontContent, back_content: backContent } })
-      })
-      return resp.ok
-    } catch { return false }
-  }
-
-  #showFieldError(textarea, message) {
-    const el = textarea.closest(".card-row__panel")?.querySelector(".card-row__field-error")
-    if (!el) return
-    el.textContent = message
-    el.hidden = false
-    setTimeout(() => { el.hidden = true }, 2500)
-  }
-
-  #showToast(message) {
-    const container = document.getElementById("flash-messages")
-    if (!container) return
-    const div = document.createElement("div")
-    div.className = "flash flash--notice"
-    div.dataset.controller = "flash"
-    div.textContent = message
-    container.appendChild(div)
   }
 
   #appendNewRow() {
@@ -95,11 +91,49 @@ export default class extends Controller {
     this.cardsListTarget.insertAdjacentHTML("beforeend", html)
   }
 
-  #renumber() {
-    const visible = this.rowTargets.filter(r => !r.hidden)
-    visible.forEach((row, i) => {
-      const num = row.querySelector(".card-row__number")
-      if (num) num.textContent = i + 1
+  #validateRows() {
+    let firstInvalid = null
+
+    this.#visibleRows().forEach(row => {
+      const termArea = row.querySelector("textarea[name*='front_content']")
+      const defArea  = row.querySelector("textarea[name*='back_content']")
+      const frontSel = row.querySelector("select[name*='front_language']")
+      const backSel  = row.querySelector("select[name*='back_language']")
+
+      if (termArea && !termArea.value.trim()) {
+        this.#showFieldError(termArea, this.errorTermValue)
+        firstInvalid ||= termArea
+      }
+      if (defArea && !defArea.value.trim()) {
+        this.#showFieldError(defArea, this.errorDefinitionValue)
+        firstInvalid ||= defArea
+      }
+      if (this.requiresLanguageValue) {
+        if (frontSel && !frontSel.value) {
+          this.#showFieldError(frontSel, this.errorLanguageValue)
+          firstInvalid ||= frontSel
+        }
+        if (backSel && !backSel.value) {
+          this.#showFieldError(backSel, this.errorLanguageValue)
+          firstInvalid ||= backSel
+        }
+      }
     })
+
+    if (firstInvalid) {
+      firstInvalid.scrollIntoView({ behavior: "smooth", block: "center" })
+      firstInvalid.focus()
+      return false
+    }
+    return true
+  }
+
+  #showFieldError(field, message) {
+    const panel = field.closest(".card-row__panel")
+    if (!panel) return
+    const err = panel.querySelector(".card-row__field-error")
+    if (!err) return
+    err.textContent = message
+    err.hidden = false
   }
 }
