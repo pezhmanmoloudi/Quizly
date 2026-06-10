@@ -24,11 +24,23 @@
     <div class="card-rows-list" data-card-editor-target="cardsList">
       <%= render "decks/card_row_template", card: nil, imported: false, index: "0" %>
     </div>
+
+    <div class="cards-editor-add">
+      <button type="button" class="btn btn--outline btn-with-icon"
+              data-action="click->card-editor#addCard">
+        <%= render "shared/icons/plus" %> <%= t("decks.cards.add_card") %>
+      </button>
+    </div>
   </div>
 
   <div class="cards-editor-footer">
-    <button type="submit" class="btn btn--primary">
+    <button type="submit" class="btn btn--primary"
+            data-card-editor-target="saveButton">
       <%= t("decks.cards.save") %>
     </button>
   </div>
+
+  <template data-card-editor-target="template">
+    <%= render "decks/card_row_template", card: nil, imported: false, index: "NEW_INDEX" %>
+  </template>
 <% end %>
