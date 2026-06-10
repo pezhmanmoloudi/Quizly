@@ -30,7 +30,6 @@ RSpec.describe "Decks#cards", type: :request do
         expect(response.body).to include("Hello")
         expect(response.body).to include("Hola")
       end
-
     end
 
     context "when not authenticated" do
@@ -224,5 +223,4 @@ RSpec.describe "Decks#cards", type: :request do
       end
     end
   end
-
 end
