@@ -25,6 +25,9 @@ de:
     cancel: "Abbrechen"
     delete: "Löschen"
     edit: "Bearbeiten"
+    undo: "Rückgängig"
+    modal:
+      type_to_confirm: "%{word} eingeben zur Bestätigung"
     save: "Speichern"
     back: "← Zurück"
     sign_in: "Anmelden"
@@ -125,6 +128,9 @@ de:
     delete_description: "Lösche dein Konto und alle zugehörigen Daten dauerhaft. Diese Aktion kann nicht rückgängig gemacht werden."
     delete_button: "Konto löschen"
     delete_confirm: "Möchtest du dein Konto wirklich löschen?"
+    delete_confirmation_failed: "Bitte tippe DELETE ein, um die Kontolöschung zu bestätigen."
+    delete_modal_warning: "Dein Konto und alle zugehörigen Daten werden dauerhaft gelöscht — Decks, Lernkarten und Lernverlauf. Diese Aktion kann nicht rückgängig gemacht werden."
+    delete_modal_confirm: "Konto löschen"
     updated:
       profile: "Profil aktualisiert."
       email: "E-Mail aktualisiert."
@@ -162,6 +168,12 @@ de:
       delete: "Deck löschen"
       fork: "In meine Bibliothek kopieren"
       delete_confirm: "Möchtest du dieses Deck wirklich löschen?"
+      delete_modal_title: "Dieses Deck löschen?"
+      delete_modal_card_count:
+        one: "Dieses Deck enthält 1 Lernkarte."
+        other: "Dieses Deck enthält %{count} Lernkarten."
+      delete_modal_warning: "Alle Lernkarten werden dauerhaft gelöscht. Diese Aktion kann nicht rückgängig gemacht werden."
+      delete_modal_confirm: "Deck löschen"
       public_badge: "Öffentlich"
       private_badge: "Privat"
       created: "Erstellt"
@@ -240,7 +252,8 @@ de:
       save: "Karte speichern →"
     created: "Karte hinzugefügt."
     updated: "Karte aktualisiert."
-    deleted: "Karte gelöscht."
+    deleted: "Lernkarte entfernt."
+    restored: "Lernkarte wiederhergestellt."
   study_modes:
     exit: "← Beenden"
     no_cards_title: "Noch keine Karten"

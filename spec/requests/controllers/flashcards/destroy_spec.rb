@@ -17,14 +17,21 @@ RSpec.describe "Flashcards#destroy", type: :request do
         expect(response).to redirect_to(deck_path(deck, page: 1, items: 10))
       end
 
-      it "destroys the flashcard along with its learn_session_items" do
+      it "soft-deletes the flashcard immediately and defers item cleanup to the hard-delete job" do
         learn_session = create(:learn_session, user: user, deck: deck)
-        create(:learn_session_item, learn_session: learn_session, flashcard: flashcard)
+        item = create(:learn_session_item, learn_session: learn_session, flashcard: flashcard)
 
         expect {
           delete flashcard_path(flashcard)
         }.to change(Flashcard, :count).by(-1)
-          .and change(LearnSessionItem, :count).by(-1)
+
+        # learn_session_item is NOT removed until the hard-delete job runs
+        expect(LearnSessionItem.exists?(item.id)).to be true
+
+        # simulating the hard-delete job cascades dependent: :destroy
+        expect {
+          Flashcard.unscoped.find(flashcard.id).destroy
+        }.to change(LearnSessionItem, :count).by(-1)
       end
 
       it "stays on the same page when cards remain on that page" do
@@ -58,6 +65,34 @@ RSpec.describe "Flashcards#destroy", type: :request do
 
         # 11 cards remain, last_page = ceil(11/5) = 3, safe_page = min(2,3) = 2
         expect(response).to redirect_to(deck_path(deck, page: 2, items: 5))
+      end
+    end
+
+    context "when requested with turbo stream format" do
+      before { sign_in(user) }
+
+      it "removes the flashcard and renders turbo stream" do
+        flashcard
+        expect {
+          delete flashcard_path(flashcard),
+            headers: { "Accept" => "text/vnd.turbo-stream.html" }
+        }.to change(Flashcard, :count).by(-1)
+        expect(response).to have_http_status(:ok)
+        expect(response.media_type).to eq("text/vnd.turbo-stream.html")
+        expect(response.body).to include("deck_#{deck.id}_card_count")
+      end
+
+      it "reflects the correct count after multiple sequential deletes" do
+        card_a = create(:flashcard, deck: deck)
+        card_b = create(:flashcard, deck: deck)
+
+        delete flashcard_path(card_a), headers: { "Accept" => "text/vnd.turbo-stream.html" }
+        expect(response.body).to include(">#{deck.reload.flashcards_count}<")
+
+        delete flashcard_path(card_b), headers: { "Accept" => "text/vnd.turbo-stream.html" }
+        expect(response.body).to include(">#{deck.reload.flashcards_count}<")
+
+        expect(deck.reload.flashcards_count).to eq(0)
       end
     end
 

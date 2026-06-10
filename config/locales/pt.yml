@@ -25,6 +25,9 @@ pt:
     cancel: "Cancelar"
     delete: "Excluir"
     edit: "Editar"
+    undo: "Desfazer"
+    modal:
+      type_to_confirm: "Digite %{word} para confirmar"
     save: "Salvar"
     back: "← Voltar"
     sign_in: "Entrar"
@@ -125,6 +128,9 @@ pt:
     delete_description: "Exclua permanentemente sua conta e todos os dados associados. Esta ação não pode ser desfeita."
     delete_button: "Excluir conta"
     delete_confirm: "Tem certeza de que deseja excluir sua conta?"
+    delete_confirmation_failed: "Por favor digite DELETE para confirmar a exclusão da conta."
+    delete_modal_warning: "Isso excluirá permanentemente sua conta e todos os dados associados — baralhos, flashcards e histórico de estudo. Esta ação não pode ser desfeita."
+    delete_modal_confirm: "Excluir conta"
     updated:
       profile: "Perfil atualizado."
       email: "E-mail atualizado."
@@ -162,6 +168,12 @@ pt:
       delete: "Excluir baralho"
       fork: "Copiar para minha biblioteca"
       delete_confirm: "Tem certeza de que deseja remover este baralho?"
+      delete_modal_title: "Excluir este baralho?"
+      delete_modal_card_count:
+        one: "Este baralho contém 1 flashcard."
+        other: "Este baralho contém %{count} flashcards."
+      delete_modal_warning: "Todos os flashcards serão excluídos permanentemente. Esta ação não pode ser desfeita."
+      delete_modal_confirm: "Excluir baralho"
       public_badge: "Público"
       private_badge: "Privado"
       created: "Criado"
@@ -240,7 +252,8 @@ pt:
       save: "Salvar cartão →"
     created: "Cartão adicionado."
     updated: "Cartão atualizado."
-    deleted: "Cartão excluído."
+    deleted: "Flashcard removido."
+    restored: "Flashcard restaurado."
   study_modes:
     exit: "← Sair"
     no_cards_title: "Nenhum cartão ainda"

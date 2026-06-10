@@ -1,0 +1,70 @@
+<%#
+  Renders the hidden modal dialog only. The caller is responsible for:
+    1. Placing data-controller="modal" on a parent element that also contains the trigger button.
+    2. Adding data-action="click->modal#open" to the trigger button.
+
+  Locals:
+    modal_id              - DOM id for the dialog element
+    title                 - Modal heading text
+    body_html             - Pre-rendered HTML for the modal body (use capture in calling view)
+    confirm_label         - Text for the destructive confirm button
+    form_url              - URL for the delete form action
+    form_method           - HTTP method (default: :delete)
+    hidden_fields         - Hash of { name => value } for hidden form inputs (optional)
+    require_confirmation  - String the user must type to unlock submit (optional, CRITICAL risk)
+%>
+<div id="<%= modal_id %>"
+     data-modal-target="dialog"
+     class="modal-wrapper"
+     role="dialog"
+     aria-modal="true"
+     aria-labelledby="<%= modal_id %>-title"
+     hidden>
+
+  <div class="modal-overlay" data-action="click->modal#closeOnBackdrop">
+    <div class="modal-dialog">
+      <h2 id="<%= modal_id %>-title" class="modal-title"><%= title %></h2>
+
+      <div class="modal-body"><%= body_html %></div>
+
+      <%= form_with url: form_url, method: local_assigns.fetch(:form_method, :delete) do |f| %>
+        <% (local_assigns[:hidden_fields] || {}).each do |name, value| %>
+          <%= f.hidden_field name, value: value %>
+        <% end %>
+
+        <% if local_assigns[:require_confirmation] %>
+          <div class="modal-confirm-input">
+            <label class="modal-confirm-label" for="<%= modal_id %>-confirm-field">
+              <%= t("shared.modal.type_to_confirm", word: require_confirmation) %>
+            </label>
+            <%= f.text_field :confirmation,
+                  id: "#{modal_id}-confirm-field",
+                  class: "modal-confirm-text",
+                  data: {
+                    modal_target: "confirmInput",
+                    required_value: require_confirmation,
+                    action: "input->modal#validateConfirmation"
+                  },
+                  autocomplete: "off",
+                  value: nil %>
+          </div>
+        <% end %>
+
+        <div class="modal-actions">
+          <button type="button" class="btn btn--secondary"
+                  data-action="click->modal#close">
+            <%= t("shared.cancel") %>
+          </button>
+          <button type="submit"
+                  class="btn btn--danger"
+                  <% if local_assigns[:require_confirmation] %>
+                    disabled
+                    data-modal-target="submitButton"
+                  <% end %>>
+            <%= confirm_label %>
+          </button>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

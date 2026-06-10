@@ -42,6 +42,7 @@
 @import url("components/continue_studying.css");
 @import url("components/pagination.css");
 @import url("components/star_btn.css");
+@import url("components/modals.css");
 
 /* ── 4. Pages ────────────────────────────────────────────── */
 @import url("pages/decks.css");

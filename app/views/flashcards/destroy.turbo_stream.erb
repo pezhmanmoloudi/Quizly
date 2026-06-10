@@ -1,0 +1,16 @@
+<%= turbo_stream.remove dom_id(@flashcard) %>
+<%= turbo_stream.update "deck_#{@deck.id}_card_count", @deck.flashcards_count %>
+<%= turbo_stream.update "total-cards-count",
+      Flashcard.joins(:deck).where(decks: { user_id: Current.user.id }).count %>
+<%= turbo_stream.update "flash-messages" do %>
+  <div class="flash flash--notice"
+       data-controller="flash"
+       data-flash-timeout-value="6000">
+    <%= t("flashcards.deleted") %>
+    <%= button_to t("shared.undo"),
+          restore_flashcard_path(@flashcard),
+          method: :patch,
+          form_class: "flash-undo-form",
+          class: "flash-undo-btn" %>
+  </div>
+<% end %>

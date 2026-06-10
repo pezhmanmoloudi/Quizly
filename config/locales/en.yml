@@ -25,6 +25,9 @@ en:
     cancel: "Cancel"
     delete: "Delete"
     edit: "Edit"
+    undo: "Undo"
+    modal:
+      type_to_confirm: "Type %{word} to confirm"
     save: "Save"
     back: "← Back"
     sign_in: "Sign in"
@@ -125,6 +128,9 @@ en:
     delete_description: "Permanently delete your account and all associated data. This action cannot be undone."
     delete_button: "Delete Account"
     delete_confirm: "Are you sure you want to delete your account?"
+    delete_confirmation_failed: "Please type DELETE to confirm account deletion."
+    delete_modal_warning: "This will permanently delete your account and all associated data — decks, flashcards, and study history. This action cannot be undone."
+    delete_modal_confirm: "Delete Account"
     updated:
       profile: "Profile updated."
       email: "Email updated."
@@ -162,6 +168,12 @@ en:
       delete: "Delete Deck"
       fork: "Fork to My Library"
       delete_confirm: "Are you sure you want to remove this deck?"
+      delete_modal_title: "Delete this deck?"
+      delete_modal_card_count:
+        one: "This deck contains 1 flashcard."
+        other: "This deck contains %{count} flashcards."
+      delete_modal_warning: "All flashcards will be permanently deleted. This action cannot be undone."
+      delete_modal_confirm: "Delete Deck"
       public_badge: "Public"
       private_badge: "Private"
       created: "Created"
@@ -240,7 +252,8 @@ en:
       save: "Save Card →"
     created: "Card added."
     updated: "Card updated."
-    deleted: "Card deleted."
+    deleted: "Flashcard removed."
+    restored: "Flashcard restored."
   study_modes:
     exit: "← Exit"
     no_cards_title: "No cards yet"

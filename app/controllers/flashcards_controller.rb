@@ -1,6 +1,7 @@
 class FlashcardsController < ApplicationController
   before_action :set_deck, only: [:new, :create]
   before_action :set_flashcard, only: [:edit, :update, :destroy]
+  before_action :set_soft_deleted_flashcard, only: [:restore]
 
   def new
   end
@@ -38,16 +39,34 @@ class FlashcardsController < ApplicationController
   end
 
   def destroy
-    deck = @flashcard.deck
-    @flashcard.destroy
+    @deck = @flashcard.deck
+    @flashcard.soft_delete!
+    HardDeleteFlashcardJob.set(wait: 30.seconds).perform_later(@flashcard.id)
 
-    items        = params[:items].to_i.positive? ? params[:items].to_i : 10
-    current_page = [params[:page].to_i, 1].max
-    total        = deck.flashcards.count
-    last_page    = [(total.to_f / items).ceil, 1].max
-    safe_page    = [current_page, last_page].min
+    respond_to do |format|
+      format.turbo_stream { render :destroy }
+      format.html do
+        items        = params[:items].to_i.positive? ? params[:items].to_i : 10
+        current_page = [params[:page].to_i, 1].max
+        total        = @deck.flashcards.count
+        last_page    = [(total.to_f / items).ceil, 1].max
+        safe_page    = [current_page, last_page].min
+        redirect_to deck_path(@deck, page: safe_page, items: items), notice: t("flashcards.deleted")
+      end
+    end
+  end
 
-    redirect_to deck_path(deck, page: safe_page, items: items), notice: t("flashcards.deleted")
+  def restore
+    @deck = @flashcard.deck
+    @flashcard.restore!
+
+    respond_to do |format|
+      format.turbo_stream do
+        flash[:notice] = t("flashcards.restored")
+        render turbo_stream: turbo_stream.refresh
+      end
+      format.html { redirect_to deck_path(@deck), notice: t("flashcards.restored") }
+    end
   end
 
   private
@@ -58,6 +77,14 @@ class FlashcardsController < ApplicationController
 
   def set_flashcard
     @flashcard = Flashcard.joins(:deck).where(decks: { user: Current.user }).find(params[:id])
+  end
+
+  def set_soft_deleted_flashcard
+    @flashcard = Flashcard.unscoped
+      .joins(:deck)
+      .where(decks: { user: Current.user })
+      .where.not(deleted_at: nil)
+      .find(params[:id])
   end
 
   def flashcard_params
