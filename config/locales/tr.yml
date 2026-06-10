@@ -15,6 +15,7 @@ tr:
       folder: "Klasör"
       study_group: "Çalışma grubu"
     open_navigation: "Gezintiyi aç"
+    close_navigation: "Gezintiyi kapat"
   menu:
     settings: "Ayarlar"
     dark_mode: "Karanlık mod"

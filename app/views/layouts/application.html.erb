@@ -32,23 +32,22 @@
 
   <body data-controller="theme">
     <% if authenticated? %>
-      <div class="app-shell"
+      <div class="drawer"
            data-controller="sidebar"
            data-action="keydown.ctrl+k@window->sidebar#focusSearch keydown.meta+k@window->sidebar#focusSearch">
 
-        <%= render "shared/sidebar" %>
+        <input id="app-drawer" type="checkbox" class="drawer-toggle"
+               data-sidebar-target="toggle" />
 
-        <div class="sidebar__overlay" data-action="click->sidebar#closeMobile"></div>
-
+        <div class="drawer-content">
         <main class="main-content">
           <div class="topbar">
-            <%# Left: hamburger + brand (mobile only) %>
+            <%# Left: hamburger + brand %>
             <div class="topbar__left">
-              <button class="topbar__menu-btn"
-                      data-action="click->sidebar#openMobile"
-                      aria-label="<%= t("topbar.open_navigation") %>">
+              <label for="app-drawer" class="topbar__menu-btn"
+                     aria-label="<%= t("topbar.open_navigation") %>">
                 <%= render "shared/icons/menu" %>
-              </button>
+              </label>
               <%= link_to "Quizly", root_path, class: "topbar__brand", dir: "ltr" %>
             </div>
 
@@ -206,6 +205,14 @@
 
           <%= yield %>
         </main>
+        </div>
+
+        <div class="drawer-side">
+          <label for="app-drawer" class="drawer-overlay"
+                 aria-label="<%= t("topbar.close_navigation") %>"></label>
+          <%= render "shared/sidebar" %>
+        </div>
+
       </div>
 
     <% else %>

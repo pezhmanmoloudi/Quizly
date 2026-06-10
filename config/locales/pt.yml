@@ -15,6 +15,7 @@ pt:
       folder: "Pasta"
       study_group: "Grupo de estudo"
     open_navigation: "Abrir navegação"
+    close_navigation: "Fechar navegação"
   menu:
     settings: "Configurações"
     dark_mode: "Modo escuro"

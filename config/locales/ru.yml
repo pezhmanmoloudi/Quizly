@@ -15,6 +15,7 @@ ru:
       folder: "Папка"
       study_group: "Учебная группа"
     open_navigation: "Открыть навигацию"
+    close_navigation: "Закрыть навигацию"
   menu:
     settings: "Настройки"
     dark_mode: "Тёмный режим"

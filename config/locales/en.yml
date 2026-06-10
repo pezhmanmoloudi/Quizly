@@ -15,6 +15,7 @@ en:
       folder: "Folder"
       study_group: "Study group"
     open_navigation: "Open navigation"
+    close_navigation: "Close navigation"
   menu:
     settings: "Settings"
     dark_mode: "Dark mode"

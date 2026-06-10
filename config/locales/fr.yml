@@ -15,6 +15,7 @@ fr:
       folder: "Dossier"
       study_group: "Groupe d'étude"
     open_navigation: "Ouvrir la navigation"
+    close_navigation: "Fermer la navigation"
   menu:
     settings: "Paramètres"
     dark_mode: "Mode sombre"

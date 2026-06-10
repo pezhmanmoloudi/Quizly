@@ -15,6 +15,7 @@ de:
       folder: "Ordner"
       study_group: "Lerngruppe"
     open_navigation: "Navigation öffnen"
+    close_navigation: "Navigation schließen"
   menu:
     settings: "Einstellungen"
     dark_mode: "Dunkler Modus"
