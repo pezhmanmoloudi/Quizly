@@ -1,14 +1,20 @@
 <% content_for :title, "Flashcard: #{@deck.name}" %>
 
-<div class="study-container"
+<div class="fb"
      data-controller="flashcard-browse"
      data-flashcard-browse-total-value="<%= @flashcards.size %>"
      data-action="keydown->flashcard-browse#handleKey"
      tabindex="-1"
      aria-label="Flashcard browse area">
-  <div class="study-header">
-    <h2><%= @deck.name %></h2>
-    <%= link_to t("study_modes.exit"), @deck, class: "study-exit" %>
+
+  <div class="fb__top">
+    <div class="fb__counter">
+      <span data-flashcard-browse-target="currentDisplay">1</span>
+      <span class="fb__counter-sep">/</span>
+      <span data-flashcard-browse-target="totalDisplay"><%= @flashcards.size %></span>
+    </div>
+    <h1 class="fb__deck-name"><%= @deck.name %></h1>
+    <%= link_to t("study_modes.exit"), @deck, class: "fb__exit" %>
   </div>
 
   <% if @flashcards.empty? %>
@@ -20,55 +26,99 @@
           cta_path: @deck,
           variant: :study %>
   <% else %>
-    <div class="flashcard-browse__progress-wrap">
-      <div class="flashcard-browse__bar">
-        <div class="flashcard-browse__fill"
-             data-flashcard-browse-target="progressFill"
-             style="width: <%= (1.0 / @flashcards.size * 100).round %>%"></div>
-      </div>
-      <span class="flashcard-browse__label">
-        <span data-flashcard-browse-target="current">1</span> / <%= @flashcards.size %>
-      </span>
+    <div class="fb__progress-track"
+         data-flashcard-browse-target="progressTrack">
+      <div class="fb__progress-fill"
+           data-flashcard-browse-target="progressFill"
+           style="width: <%= (1.0 / @flashcards.size * 100).round %>%"></div>
     </div>
 
-    <div class="flashcard flashcard--flip"
-         data-controller="flashcard">
-
+    <div class="fb__stage" data-controller="flashcard">
       <% @flashcards.each_with_index do |card, index| %>
-        <div class="flashcard-browse__slide" data-index="<%= index %>"
-             <%= index > 0 ? "hidden" : "" %>>
-          <div class="flashcard-card"
-               data-action="click->flashcard#reveal">
-            <div class="flashcard-card__inner">
-              <div class="flashcard-card__face flashcard-card__face--front">
-                <%= card.front_content %>
-              </div>
-              <div class="flashcard-card__face flashcard-card__face--back">
-                <%= card.back_content %>
-              </div>
+        <div class="flashcard-browse__slide"
+             data-index="<%= index %>"
+             <%= index > 0 ? "hidden" : "" %>
+             <% if @card_progresses&.key?(card.id) %>
+               data-starred="<%= @card_progresses[card.id].starred? %>"
+             <% end %>>
+
+          <div class="fb__card-bar">
+            <button class="fb__icon-btn"
+                    data-action="click->flashcard-browse#openOptions"
+                    aria-label="<%= t("study_modes.flashcard.options") %>">
+              <%= render "shared/icons/cog" %>
+            </button>
+            <div class="fb__card-bar-right">
+              <button class="fb__icon-btn"
+                      data-action="click->flashcard-browse#speak"
+                      aria-label="Play audio">
+                <%= render "shared/icons/speaker_wave" %>
+              </button>
+              <% if @card_progresses&.key?(card.id) %>
+                <%= render "starred_cards/toggle", card_progress: @card_progresses[card.id] %>
+              <% end %>
             </div>
           </div>
 
-          <% if @card_progresses&.key?(card.id) %>
-            <div class="flashcard-browse__star">
-              <%= render "starred_cards/toggle", card_progress: @card_progresses[card.id] %>
+          <div class="fb__card-wrap">
+            <div class="flashcard-card"
+                 data-action="click->flashcard#reveal">
+              <div class="flashcard-card__inner">
+                <div class="flashcard-card__face flashcard-card__face--front <%= 'flashcard-card__face--has-image' if card.image.attached? %>">
+                  <% if card.image.attached? %>
+                    <div class="flashcard-card__img-wrap">
+                      <%= image_tag rails_blob_path(card.image, disposition: "inline"),
+                            class: "flashcard-card__img", alt: "" %>
+                    </div>
+                    <div class="flashcard-card__text"><%= card.front_content %></div>
+                  <% else %>
+                    <%= card.front_content %>
+                  <% end %>
+                </div>
+                <div class="flashcard-card__face flashcard-card__face--back">
+                  <%= card.back_content %>
+                </div>
+              </div>
             </div>
-          <% end %>
+            <button class="fb__flip-bar"
+                    data-action="click->flashcard#reveal">
+              <%= t("study_modes.flashcard.click_to_flip") %>
+            </button>
+          </div>
+
         </div>
       <% end %>
-
     </div>
 
-    <div class="flashcard-browse__nav">
-      <button class="btn btn--secondary btn-with-icon"
+    <div class="fb__nav">
+      <button class="fb__nav-btn fb__nav-btn--prev"
               data-action="click->flashcard-browse#previous">
         <%= t("study_modes.flashcard.previous") %>
       </button>
-      <button class="btn btn--primary btn-with-icon"
+      <div class="fb__nav-center">
+        <button class="fb__icon-btn fb__icon-btn--circle"
+                data-action="click->flashcard-browse#togglePlay"
+                data-flashcard-browse-target="playBtn"
+                aria-label="Play / Pause auto-advance">
+          <span data-flashcard-browse-target="playIcon">
+            <%= render "shared/icons/play" %>
+          </span>
+          <span data-flashcard-browse-target="pauseIcon" hidden>
+            <%= render "shared/icons/pause" %>
+          </span>
+        </button>
+        <button class="fb__icon-btn fb__icon-btn--circle"
+                data-action="click->flashcard-browse#shuffle"
+                aria-label="Shuffle cards">
+          <%= render "shared/icons/arrows_right_left" %>
+        </button>
+      </div>
+      <button class="fb__nav-btn fb__nav-btn--next"
               data-action="click->flashcard-browse#next">
         <%= t("study_modes.flashcard.next") %>
       </button>
     </div>
+
     <p class="keyboard-hint" aria-hidden="true"><%= t("study_modes.flashcard.keyboard_hint") %></p>
 
     <% unless authenticated? %>
@@ -81,4 +131,95 @@
       </div>
     <% end %>
   <% end %>
+
+  <div class="fb-options"
+       data-flashcard-browse-target="optionsPanel"
+       aria-hidden="true">
+    <div class="fb-options__header">
+      <h3 class="fb-options__title"><%= t("study_modes.flashcard.options") %></h3>
+      <button class="fb-options__close"
+              data-action="click->flashcard-browse#closeOptions"
+              aria-label="Close">
+        <%= render "shared/icons/x_mark" %>
+      </button>
+    </div>
+    <div class="fb-options__body">
+      <p class="fb-options__section-label">Study</p>
+
+      <label class="fb-option-row">
+        <div class="fb-option-row__info">
+          <span class="fb-option-row__label"><%= t("study_modes.flashcard.track_progress") %></span>
+          <span class="fb-option-row__desc"><%= t("study_modes.flashcard.track_progress_desc") %></span>
+        </div>
+        <input type="checkbox"
+               class="fb-toggle"
+               data-action="change->flashcard-browse#toggleTrackProgress"
+               data-flashcard-browse-target="trackProgressToggle"
+               checked>
+      </label>
+
+      <% if @card_progresses.present? %>
+        <label class="fb-option-row">
+          <div class="fb-option-row__info">
+            <span class="fb-option-row__label"><%= t("study_modes.flashcard.starred_only") %></span>
+            <span class="fb-option-row__desc"><%= t("study_modes.flashcard.starred_only_desc") %></span>
+          </div>
+          <input type="checkbox"
+                 class="fb-toggle"
+                 data-action="change->flashcard-browse#toggleStarredOnly">
+        </label>
+      <% end %>
+
+      <label class="fb-option-row">
+        <div class="fb-option-row__info">
+          <span class="fb-option-row__label"><%= t("study_modes.flashcard.show_both_sides") %></span>
+          <span class="fb-option-row__desc"><%= t("study_modes.flashcard.show_both_sides_desc") %></span>
+        </div>
+        <input type="checkbox"
+               class="fb-toggle"
+               data-action="change->flashcard-browse#toggleBothSides">
+      </label>
+
+      <hr class="fb-options__divider">
+
+      <div class="fb-shortcut-section-header">
+        <p class="fb-options__section-label"><%= t("study_modes.flashcard.keyboard_shortcuts") %></p>
+        <button class="fb-options__toggle-link"
+                data-action="click->flashcard-browse#toggleShortcuts"
+                data-flashcard-browse-target="shortcutsToggleBtn">
+          <%= t("study_modes.flashcard.hide") %>
+        </button>
+      </div>
+      <div data-flashcard-browse-target="shortcutsPanel">
+        <div class="fb-shortcut-row">
+          <span><%= t("study_modes.flashcard.key_previous") %></span>
+          <kbd>←</kbd>
+        </div>
+        <div class="fb-shortcut-row">
+          <span><%= t("study_modes.flashcard.key_next") %></span>
+          <kbd>→</kbd>
+        </div>
+        <div class="fb-shortcut-row">
+          <span><%= t("study_modes.flashcard.key_flip") %></span>
+          <kbd>Space</kbd>
+        </div>
+        <div class="fb-shortcut-row">
+          <span><%= t("study_modes.flashcard.key_star") %></span>
+          <kbd>S</kbd>
+        </div>
+      </div>
+
+      <hr class="fb-options__divider">
+
+      <%= link_to t("study_modes.flashcard.restart"),
+            flashcard_deck_path(@deck),
+            class: "fb-options__restart-link" %>
+    </div>
+  </div>
+
+  <div class="fb-options__overlay"
+       data-flashcard-browse-target="optionsOverlay"
+       data-action="click->flashcard-browse#closeOptions"
+       hidden></div>
+
 </div>

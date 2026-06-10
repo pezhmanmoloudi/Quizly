@@ -20,6 +20,17 @@ RSpec.describe "Decks#flashcard", type: :request do
         expect(response.body).to include("Front A", "Front B")
       end
 
+      it "renders the image when a card has one attached" do
+        card = create(:flashcard, deck: deck)
+        card.image.attach(
+          io: Rails.root.join("spec/fixtures/files/test_avatar.png").open,
+          filename: "test_avatar.png",
+          content_type: "image/png"
+        )
+        get flashcard_deck_path(deck)
+        expect(response.body).to include("flashcard-card__img")
+      end
+
       it "shows empty state when deck has no cards" do
         get flashcard_deck_path(deck)
         expect(response.body).to include("No cards yet")

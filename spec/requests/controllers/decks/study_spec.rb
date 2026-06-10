@@ -29,6 +29,18 @@ RSpec.describe "Decks#study", type: :request do
         expect(response.body).to include(older_card.front_content)
       end
 
+      it "renders the image when the due card has one attached" do
+        card = create(:flashcard, deck: deck)
+        card.image.attach(
+          io: Rails.root.join("spec/fixtures/files/test_avatar.png").open,
+          filename: "test_avatar.png",
+          content_type: "image/png"
+        )
+        create(:card_progress, :due, user: user, flashcard: card)
+        get study_deck_path(deck)
+        expect(response.body).to include("study-card__img")
+      end
+
       it "shows 'All caught up' when no cards are due" do
         flashcard = create(:flashcard, deck: deck)
         create(:card_progress, :future, user: user, flashcard: flashcard)

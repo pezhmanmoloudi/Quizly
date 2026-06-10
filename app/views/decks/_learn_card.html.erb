@@ -4,6 +4,12 @@
 
   <div class="learn-card__prompt">
     <p class="learn-card__label"><%= t("study_modes.learn_card.prompt") %></p>
+    <% if item.flashcard.image.attached? %>
+      <div class="learn-card__img-wrap">
+        <%= image_tag rails_blob_path(item.flashcard.image, disposition: "inline"),
+              class: "learn-card__img", alt: "" %>
+      </div>
+    <% end %>
     <h2 class="learn-card__term"><%= item.flashcard.front_content %></h2>
   </div>
 

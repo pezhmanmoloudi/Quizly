@@ -76,7 +76,14 @@
 
         <div class="study-card__content">
           <div class="study-card__front">
-            <%= @card_progress.flashcard.front_content %>
+            <% flashcard = @card_progress.flashcard %>
+            <% if flashcard.image.attached? %>
+              <div class="study-card__img-wrap">
+                <%= image_tag rails_blob_path(flashcard.image, disposition: "inline"),
+                      class: "study-card__img", alt: "" %>
+              </div>
+            <% end %>
+            <span class="<%= 'study-card__term' if flashcard.image.attached? %>"><%= flashcard.front_content %></span>
           </div>
 
           <div class="study-card__back" data-flashcard-target="back" hidden>
