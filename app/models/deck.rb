@@ -10,6 +10,8 @@ class Deck < ApplicationRecord
     reject_if: :all_blank,
     allow_destroy: true
 
+  attribute :visibility, :string, default: "public"
+
   scope :public_decks, -> { where(visibility: "public") }
   scope :popular, -> { order(forks_count: :desc, created_at: :desc) }
 
