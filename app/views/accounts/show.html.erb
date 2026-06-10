@@ -447,25 +447,31 @@
   <% end %>
 
   <%# Danger zone %>
-  <div class="settings-danger-zone" data-controller="inline-confirm">
+  <div class="settings-danger-zone" data-controller="modal">
     <div class="settings-danger-zone__row">
       <div class="settings-danger-zone__text">
         <h2 class="settings-danger-zone__title"><%= t("accounts.delete_title") %></h2>
         <p class="settings-danger-zone__description"><%= t("accounts.delete_description") %></p>
       </div>
       <div>
-        <div data-inline-confirm-target="actions">
-          <button type="button" class="btn btn--danger"
-                  data-action="click->inline-confirm#confirmRemove">
-            <%= t("accounts.delete_button") %>
-          </button>
-        </div>
-        <%= render "shared/inline_confirm", message: t("accounts.delete_confirm") %>
+        <button type="button" class="btn btn--danger"
+                data-action="click->modal#open">
+          <%= t("accounts.delete_button") %>
+        </button>
       </div>
     </div>
-    <%= form_with url: account_path, method: :delete,
-          data: { "inline-confirm-target": "deleteForm" } do %>
+
+    <% account_modal_body = capture do %>
+      <p><%= t("accounts.delete_modal_warning") %></p>
     <% end %>
+    <%= render "shared/destructive_modal",
+          modal_id: "delete-account-modal",
+          title: t("accounts.delete_title"),
+          body_html: account_modal_body,
+          confirm_label: t("accounts.delete_modal_confirm"),
+          form_url: account_path,
+          form_method: :delete,
+          require_confirmation: "DELETE" %>
   </div>
 
 </div>

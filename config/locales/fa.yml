@@ -25,6 +25,9 @@ fa:
     cancel: "لغو"
     delete: "حذف"
     edit: "ویرایش"
+    undo: "واگرد"
+    modal:
+      type_to_confirm: "برای تأیید %{word} را بنویسید"
     save: "ذخیره"
     back: "→ بازگشت"
     sign_in: "ورود"
@@ -125,6 +128,9 @@ fa:
     delete_description: "حساب و تمام داده‌های مرتبط با آن را برای همیشه حذف کن. این عمل قابل بازگشت نیست."
     delete_button: "حذف حساب"
     delete_confirm: "آیا مطمئنی که می‌خواهی حسابت را حذف کنی؟"
+    delete_confirmation_failed: "لطفاً DELETE را برای تأیید حذف حساب بنویسید."
+    delete_modal_warning: "این عمل حساب و تمام داده‌های مرتبط شما را برای همیشه حذف خواهد کرد — دسته‌ها، فلش‌کارت‌ها و تاریخچه مطالعه. این عمل قابل برگشت نیست."
+    delete_modal_confirm: "حذف حساب"
     updated:
       profile: "پروفایل به‌روزرسانی شد."
       email: "ایمیل به‌روزرسانی شد."
@@ -162,6 +168,12 @@ fa:
       delete: "حذف دسته"
       fork: "کپی به کتابخانه‌ام"
       delete_confirm: "آیا مطمئنی که می‌خواهی این دسته را حذف کنی؟"
+      delete_modal_title: "این دسته حذف شود؟"
+      delete_modal_card_count:
+        one: "این دسته شامل ۱ فلش‌کارت است."
+        other: "این دسته شامل %{count} فلش‌کارت است."
+      delete_modal_warning: "تمام فلش‌کارت‌ها برای همیشه حذف خواهند شد. این عمل قابل برگشت نیست."
+      delete_modal_confirm: "حذف دسته"
       public_badge: "عمومی"
       private_badge: "خصوصی"
       created: "ایجاد شده"
@@ -241,6 +253,7 @@ fa:
     created: "کارت اضافه شد."
     updated: "کارت به‌روزرسانی شد."
     deleted: "فلش‌کارت حذف شد."
+    restored: "فلش‌کارت بازیابی شد."
   study_modes:
     exit: "→ خروج"
     no_cards_title: "هنوز کارتی نداری"

@@ -25,6 +25,9 @@ tr:
     cancel: "İptal"
     delete: "Sil"
     edit: "Düzenle"
+    undo: "Geri Al"
+    modal:
+      type_to_confirm: "Onaylamak için %{word} yazın"
     save: "Kaydet"
     back: "← Geri"
     sign_in: "Giriş yap"
@@ -125,6 +128,9 @@ tr:
     delete_description: "Hesabını ve ilgili tüm verileri kalıcı olarak sil. Bu işlem geri alınamaz."
     delete_button: "Hesabı Sil"
     delete_confirm: "Hesabını silmek istediğinden emin misin?"
+    delete_confirmation_failed: "Hesap silmeyi onaylamak için lütfen DELETE yazın."
+    delete_modal_warning: "Bu, hesabınızı ve tüm ilgili verileri — desteler, flashcardlar ve çalışma geçmişi — kalıcı olarak silecek. Bu işlem geri alınamaz."
+    delete_modal_confirm: "Hesabı sil"
     updated:
       profile: "Profil güncellendi."
       email: "E-posta güncellendi."
@@ -162,6 +168,12 @@ tr:
       delete: "Desteyi sil"
       fork: "Kütüphaneme ekle"
       delete_confirm: "Bu desteyi kaldırmak istediğinden emin misin?"
+      delete_modal_title: "Bu desteyi sil?"
+      delete_modal_card_count:
+        one: "Bu deste 1 flashcard içeriyor."
+        other: "Bu deste %{count} flashcard içeriyor."
+      delete_modal_warning: "Tüm flashcardlar kalıcı olarak silinecek. Bu işlem geri alınamaz."
+      delete_modal_confirm: "Desteyi sil"
       public_badge: "Herkese açık"
       private_badge: "Özel"
       created: "Oluşturulma"
@@ -241,6 +253,7 @@ tr:
     created: "Kart eklendi."
     updated: "Kart güncellendi."
     deleted: "Flashcard kaldırıldı."
+    restored: "Flashcard geri yüklendi."
   study_modes:
     exit: "← Çık"
     no_cards_title: "Henüz kart yok"

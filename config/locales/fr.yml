@@ -25,6 +25,9 @@ fr:
     cancel: "Annuler"
     delete: "Supprimer"
     edit: "Modifier"
+    undo: "Annuler l'action"
+    modal:
+      type_to_confirm: "Tapez %{word} pour confirmer"
     save: "Enregistrer"
     back: "← Retour"
     sign_in: "Se connecter"
@@ -125,6 +128,9 @@ fr:
     delete_description: "Supprimez définitivement votre compte. Cette action ne peut pas être annulée."
     delete_button: "Supprimer le compte"
     delete_confirm: "Êtes-vous sûr de vouloir supprimer votre compte ?"
+    delete_confirmation_failed: "Veuillez taper DELETE pour confirmer la suppression du compte."
+    delete_modal_warning: "Cela supprimera définitivement votre compte et toutes les données associées — paquets, flashcards et historique d'étude. Cette action est irréversible."
+    delete_modal_confirm: "Supprimer le compte"
     updated:
       profile: "Profil mis à jour."
       email: "E-mail mis à jour."
@@ -162,6 +168,12 @@ fr:
       delete: "Supprimer le paquet"
       fork: "Ajouter à ma bibliothèque"
       delete_confirm: "Êtes-vous sûr de vouloir supprimer ce paquet ?"
+      delete_modal_title: "Supprimer ce paquet ?"
+      delete_modal_card_count:
+        one: "Ce paquet contient 1 flashcard."
+        other: "Ce paquet contient %{count} flashcards."
+      delete_modal_warning: "Toutes les flashcards seront supprimées définitivement. Cette action est irréversible."
+      delete_modal_confirm: "Supprimer le paquet"
       public_badge: "Public"
       private_badge: "Privé"
       created: "Créé"
@@ -241,6 +253,7 @@ fr:
     created: "Carte ajoutée."
     updated: "Carte mise à jour."
     deleted: "Flashcard supprimée."
+    restored: "Flashcard restaurée."
   study_modes:
     exit: "← Quitter"
     no_cards_title: "Pas encore de cartes"

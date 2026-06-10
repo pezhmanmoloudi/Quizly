@@ -25,6 +25,9 @@ es:
     cancel: "Cancelar"
     delete: "Eliminar"
     edit: "Editar"
+    undo: "Deshacer"
+    modal:
+      type_to_confirm: "Escribe %{word} para confirmar"
     save: "Guardar"
     back: "← Atrás"
     sign_in: "Iniciar sesión"
@@ -125,6 +128,9 @@ es:
     delete_description: "Elimina permanentemente tu cuenta y todos los datos asociados. Esta acción no se puede deshacer."
     delete_button: "Eliminar cuenta"
     delete_confirm: "¿Estás seguro de que quieres eliminar tu cuenta?"
+    delete_confirmation_failed: "Por favor escribe DELETE para confirmar la eliminación de la cuenta."
+    delete_modal_warning: "Esto eliminará permanentemente tu cuenta y todos los datos asociados — mazos, tarjetas flash e historial de estudio. Esta acción no se puede deshacer."
+    delete_modal_confirm: "Eliminar cuenta"
     updated:
       profile: "Perfil actualizado."
       email: "Correo actualizado."
@@ -162,6 +168,12 @@ es:
       delete: "Eliminar mazo"
       fork: "Añadir a mi biblioteca"
       delete_confirm: "¿Estás seguro de que quieres eliminar este mazo?"
+      delete_modal_title: "¿Eliminar este mazo?"
+      delete_modal_card_count:
+        one: "Este mazo contiene 1 tarjeta flash."
+        other: "Este mazo contiene %{count} tarjetas flash."
+      delete_modal_warning: "Todas las tarjetas flash se eliminarán permanentemente. Esta acción no se puede deshacer."
+      delete_modal_confirm: "Eliminar mazo"
       public_badge: "Público"
       private_badge: "Privado"
       created: "Creado"
@@ -241,6 +253,7 @@ es:
     created: "Tarjeta añadida."
     updated: "Tarjeta actualizada."
     deleted: "Tarjeta flash eliminada."
+    restored: "Tarjeta flash restaurada."
   study_modes:
     exit: "← Salir"
     no_cards_title: "Sin tarjetas aún"

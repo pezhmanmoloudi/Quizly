@@ -1,16 +1,16 @@
 <% content_for :title, @deck.name %>
 
 <div class="container">
-  <div class="deck-detail-header" data-controller="inline-confirm">
+  <div class="deck-detail-header" <% if @deck.user == Current.user %>data-controller="modal"<% end %>>
     <div class="deck-detail-header__top">
       <h1 class="deck-detail-header__name"><%= @deck.name %></h1>
-      <div class="deck-detail-header__actions" data-inline-confirm-target="actions">
+      <div class="deck-detail-header__actions">
         <% if @deck.user == Current.user %>
           <%= link_to edit_deck_path(@deck), class: "btn btn--secondary btn-with-icon" do %>
             <%= render "shared/icons/pencil" %> <%= t("decks.show.edit") %>
           <% end %>
           <button type="button" class="btn btn--danger btn-with-icon"
-                  data-action="click->inline-confirm#confirmRemove">
+                  data-action="click->modal#open">
             <%= render "shared/icons/trash" %> <%= t("decks.show.delete") %>
           </button>
         <% elsif authenticated? %>
@@ -19,13 +19,6 @@
           <% end %>
         <% end %>
       </div>
-      <% if @deck.user == Current.user %>
-        <%= render "shared/inline_confirm", message: t("decks.show.delete_confirm") %>
-        <%= form_with url: deck_path(@deck), method: :delete,
-              data: { "inline-confirm-target": "deleteForm" } do |f| %>
-          <%= f.hidden_field :from_page, value: params[:from_page] || 1 %>
-        <% end %>
-      <% end %>
     </div>
     <div class="deck-detail-header__meta">
       <% if @deck.public? %>
@@ -49,6 +42,22 @@
     </div>
     <% if @deck.description.present? %>
       <p class="deck-detail-header__description"><%= @deck.description %></p>
+    <% end %>
+
+    <% if @deck.user == Current.user %>
+      <% deck_modal_body = capture do %>
+        <p><strong><%= @deck.name %></strong></p>
+        <p><%= t("decks.show.delete_modal_card_count", count: @deck.flashcards_count) %></p>
+        <p class="modal-warning"><%= t("decks.show.delete_modal_warning") %></p>
+      <% end %>
+      <%= render "shared/destructive_modal",
+            modal_id: "delete-deck-modal",
+            title: t("decks.show.delete_modal_title"),
+            body_html: deck_modal_body,
+            confirm_label: t("decks.show.delete_modal_confirm"),
+            form_url: deck_path(@deck),
+            form_method: :delete,
+            hidden_fields: { from_page: params[:from_page] || 1 } %>
     <% end %>
   </div>
 

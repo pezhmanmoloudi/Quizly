@@ -52,6 +52,11 @@ class AccountsController < ApplicationController
   end
 
   def destroy
+    unless params[:confirmation] == "DELETE"
+      redirect_to account_path, alert: t("accounts.delete_confirmation_failed")
+      return
+    end
+
     user = Current.user
     terminate_session
     user.destroy

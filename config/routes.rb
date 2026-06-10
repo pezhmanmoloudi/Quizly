@@ -34,7 +34,11 @@ Rails.application.routes.draw do
       get   :cards
       patch :update_cards
     end
-    resources :flashcards, shallow: true
+    resources :flashcards, shallow: true do
+      member do
+        patch :restore
+      end
+    end
     resource :import, only: [:new], controller: :imports do
       post :text, on: :collection
       post :csv,  on: :collection

@@ -25,7 +25,7 @@ RSpec.describe "Decks#show", type: :request do
 
       it "shows card count as zero when deck has no flashcards" do
         get deck_path(deck)
-        expect(response.body).to include("Cards (0)")
+        expect(response.body).to match(/Cards\s*\(<span[^>]*>0<\/span>\)/)
       end
 
       it "shows flashcards when they exist" do
@@ -70,7 +70,7 @@ RSpec.describe "Decks#show", type: :request do
       it "renders a Delete Deck button for the owner" do
         get deck_path(deck)
         expect(response.body).to include("Delete Deck")
-        expect(response.body).to include("inline-confirm")
+        expect(response.body).to include("delete-deck-modal")
       end
 
       it "renders an Edit Deck button for the owner" do

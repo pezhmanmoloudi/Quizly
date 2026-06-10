@@ -17,14 +17,21 @@ RSpec.describe "Flashcards#destroy", type: :request do
         expect(response).to redirect_to(deck_path(deck, page: 1, items: 10))
       end
 
-      it "destroys the flashcard along with its learn_session_items" do
+      it "soft-deletes the flashcard immediately and defers item cleanup to the hard-delete job" do
         learn_session = create(:learn_session, user: user, deck: deck)
-        create(:learn_session_item, learn_session: learn_session, flashcard: flashcard)
+        item = create(:learn_session_item, learn_session: learn_session, flashcard: flashcard)
 
         expect {
           delete flashcard_path(flashcard)
         }.to change(Flashcard, :count).by(-1)
-          .and change(LearnSessionItem, :count).by(-1)
+
+        # learn_session_item is NOT removed until the hard-delete job runs
+        expect(LearnSessionItem.exists?(item.id)).to be true
+
+        # simulating the hard-delete job cascades dependent: :destroy
+        expect {
+          Flashcard.unscoped.find(flashcard.id).destroy
+        }.to change(LearnSessionItem, :count).by(-1)
       end
 
       it "stays on the same page when cards remain on that page" do
