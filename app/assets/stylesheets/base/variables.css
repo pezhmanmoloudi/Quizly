@@ -3,14 +3,14 @@
   color-scheme: light;
 
   /* Colors */
-  --color-primary:        #4f46e5;
-  --color-primary-dark:   #3730a3;
+  --color-primary:        #5448e8;
+  --color-primary-dark:   #4338d6;
   --color-text:           #1a1a1a;
   --color-text-secondary: #374151;
   --color-muted:          #6b7280;
-  --color-border:         #d1d5db;
-  --color-border-light:   #e5e7eb;
-  --color-bg:             #f5f5f5;
+  --color-border:         #d0d5df;
+  --color-border-light:   #e8ebf1;
+  --color-bg:             #f4f5f8;
   --color-surface:        #ffffff;
   --color-danger:         #ef4444;
   --color-danger-bg:      #fee2e2;
@@ -70,20 +70,20 @@
   --space-16: 4rem;      /* 64px */
 
   /* ── Border-radius scale ── */
-  --radius-sm:   6px;     /* buttons, inputs */
-  --radius-md:   10px;    /* cards, tiles, panels */
+  --radius-sm:   8px;     /* buttons, inputs */
+  --radius-md:   12px;    /* cards, tiles, panels */
   --radius-lg:   14px;    /* flashcard faces */
   --radius-xl:   20px;    /* study island, modals */
   --radius-full: 9999px;  /* pills, badges, circles */
 
   /* ── Shadow scale ── */
   --shadow-xs:    0 1px 2px rgba(0,0,0,.06);
-  --shadow-sm:    0 1px 3px rgba(0,0,0,.08);
-  --shadow-md:    0 4px 12px rgba(0,0,0,.10);
-  --shadow-lg:    0 4px 16px rgba(0,0,0,.12);
-  --shadow-xl:    0 8px 32px rgba(0,0,0,.10), 0 1px 4px rgba(0,0,0,.06);
+  --shadow-sm:    0 1px 4px rgba(0,0,0,.07);
+  --shadow-md:    0 4px 16px rgba(0,0,0,.09);
+  --shadow-lg:    0 6px 24px rgba(0,0,0,.11);
+  --shadow-xl:    0 10px 40px rgba(0,0,0,.10), 0 2px 6px rgba(0,0,0,.06);
   --shadow-toast: 0 4px 20px rgba(0,0,0,.18);
-  --shadow-focus: 0 0 0 3px rgba(79,70,229,.15);
+  --shadow-focus: 0 0 0 3px rgba(84,72,232,.22);
 
   /* ── Animation timing ── */
   --duration-fast: 150ms;
@@ -104,10 +104,10 @@
 
   /* ── Additional colour tokens ── */
   --color-danger-hover:     #dc2626;  /* btn--danger:hover */
-  --color-btn-circle:       #4255ff;  /* btn--circle bg */
-  --color-btn-circle-hover: #423ed8;  /* btn--circle hover */
+  --color-btn-circle:       #5448e8;  /* btn--circle bg */
+  --color-btn-circle-hover: #4338d6;  /* btn--circle hover */
   --color-separator:        #9ca3af;  /* flashcard row separator */
-  --color-success-solid:    #3d9a5c;  /* flash notice background */
+  --color-success-solid:    #18a058;  /* flash notice background */
 
   /* ── Scrollbar tokens ── */
   --scrollbar-thumb: rgba(0, 0, 0, 0.18);
