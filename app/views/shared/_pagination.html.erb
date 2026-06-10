@@ -12,7 +12,7 @@
     <% end %>
 
     <%# Page series: Integer = link, String = active, :gap = ellipsis %>
-    <% pagy.series.each do |item| %>
+    <% pagy_series(pagy).each do |item| %>
       <% if item == :gap %>
         <span class="pagination__gap">&hellip;</span>
       <% elsif item.is_a?(String) %>
