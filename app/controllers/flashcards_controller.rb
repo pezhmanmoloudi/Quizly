@@ -3,10 +3,6 @@ class FlashcardsController < ApplicationController
   before_action :set_flashcard, only: [:edit, :update, :destroy]
 
   def new
-    @existing   = @deck.flashcards.order(:position)
-    @draft_rows = []
-    @imported   = false
-    render "decks/cards"
   end
 
   def create
