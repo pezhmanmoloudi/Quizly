@@ -12,6 +12,10 @@ RSpec.describe Flashcard, type: :model do
       expect(assoc.macro).to eq(:has_many)
       expect(assoc.options[:dependent]).to eq(:destroy)
     end
+
+    it "has one attached image" do
+      expect(described_class.reflect_on_all_attachments.map(&:name)).to include(:image)
+    end
   end
 
   describe "validations" do
