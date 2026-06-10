@@ -50,5 +50,7 @@ Rails.application.routes.draw do
     resource :starred_card, only: [ :create, :destroy ]
   end
 
+  get "suggestions", to: "suggestions#index"
+
   root "home#index"
 end
