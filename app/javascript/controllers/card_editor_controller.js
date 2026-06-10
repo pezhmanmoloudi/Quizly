@@ -97,8 +97,8 @@ export default class extends Controller {
     this.#visibleRows().forEach(row => {
       const termArea = row.querySelector("textarea[name*='front_content']")
       const defArea  = row.querySelector("textarea[name*='back_content']")
-      const frontSel = row.querySelector("select[name*='front_language']")
-      const backSel  = row.querySelector("select[name*='back_language']")
+      const frontSel = row.querySelector("input[name*='front_language']")
+      const backSel  = row.querySelector("input[name*='back_language']")
 
       if (termArea && !termArea.value.trim()) {
         this.#showFieldError(termArea, this.errorTermValue)

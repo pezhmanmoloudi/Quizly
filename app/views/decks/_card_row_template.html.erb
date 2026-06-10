@@ -39,15 +39,17 @@
                              keydown->term-suggest#handleKeydown"
                 rows="3"><%= front_content %></textarea>
       <% unless imported %>
-        <select class="card-row__language"
-                name="<%= field_prefix %>[front_language]"
-                data-term-suggest-target="languageSelect"
-                data-action="change->card-editor#clearFieldError">
-          <option value=""><%= t("decks.card_row.select_language") %></option>
-          <% Language::ALL_LANGUAGES.each do |code, name| %>
-            <option value="<%= code %>" <%= "selected" if code == front_lang %>><%= name %></option>
-          <% end %>
-        </select>
+        <%= render "shared/language_selector",
+              languages:     Language::ALL_LANGUAGES,
+              selected:      front_lang,
+              input_name:    "#{field_prefix}[front_language]",
+              placeholder:   t("decks.card_row.select_language"),
+              autosubmit:    false,
+              wrapper_class: "lang-dropdown--compact",
+              input_data:    {
+                "term-suggest-target": "languageSelect",
+                action: "change->card-editor#clearFieldError"
+              } %>
       <% end %>
       <div class="term-suggest__dropdown" data-term-suggest-target="dropdown" hidden
            role="listbox">
@@ -66,14 +68,14 @@
                 data-action="input->card-editor#clearFieldError"
                 rows="3"><%= back_content %></textarea>
       <% unless imported %>
-        <select class="card-row__language"
-                name="<%= field_prefix %>[back_language]"
-                data-action="change->card-editor#clearFieldError">
-          <option value=""><%= t("decks.card_row.select_language") %></option>
-          <% Language::ALL_LANGUAGES.each do |code, name| %>
-            <option value="<%= code %>" <%= "selected" if code == back_lang %>><%= name %></option>
-          <% end %>
-        </select>
+        <%= render "shared/language_selector",
+              languages:     Language::ALL_LANGUAGES,
+              selected:      back_lang,
+              input_name:    "#{field_prefix}[back_language]",
+              placeholder:   t("decks.card_row.select_language"),
+              autosubmit:    false,
+              wrapper_class: "lang-dropdown--compact",
+              input_data:    { action: "change->card-editor#clearFieldError" } %>
       <% end %>
       <span class="card-row__field-error" hidden></span>
     </div>
