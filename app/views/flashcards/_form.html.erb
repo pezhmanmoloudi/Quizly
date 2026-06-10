@@ -18,10 +18,13 @@
                   class: "card-editor-field",
                   rows: 3,
                   aria: { label: t("flashcards.form.term_label") } %>
-            <%= f.select :front_language,
-                  Language::ALL_LANGUAGES.map { |code, name| [name, code] },
-                  { include_blank: t("decks.card_row.select_language") },
-                  { class: "card-row__language" } %>
+            <%= render "shared/language_selector",
+                  languages:     Language::ALL_LANGUAGES,
+                  selected:      flashcard.front_language.to_s,
+                  input_name:    "flashcard[front_language]",
+                  placeholder:   t("decks.card_row.select_language"),
+                  autosubmit:    false,
+                  wrapper_class: "lang-dropdown--compact" %>
           </div>
 
           <%# ── Definition panel ── %>
@@ -32,10 +35,13 @@
                   class: "card-editor-field",
                   rows: 3,
                   aria: { label: t("flashcards.form.definition_label") } %>
-            <%= f.select :back_language,
-                  Language::ALL_LANGUAGES.map { |code, name| [name, code] },
-                  { include_blank: t("decks.card_row.select_language") },
-                  { class: "card-row__language" } %>
+            <%= render "shared/language_selector",
+                  languages:     Language::ALL_LANGUAGES,
+                  selected:      flashcard.back_language.to_s,
+                  input_name:    "flashcard[back_language]",
+                  placeholder:   t("decks.card_row.select_language"),
+                  autosubmit:    false,
+                  wrapper_class: "lang-dropdown--compact" %>
           </div>
 
           <%# ── Image panel ── %>

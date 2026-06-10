@@ -410,47 +410,15 @@
     <div class="settings-info-row" id="language">
       <div class="settings-info-row__label"><%= t("accounts.language_label") %></div>
       <div class="settings-info-row__right">
-        <div class="lang-dropdown"
-             data-controller="language"
-             data-language-current-value="<%= Current.user.locale %>"
-             data-action="click@document->language#closeIfOutside keydown.esc@document->language#close">
-          <%= form_with url: account_path, method: :patch,
-                data: { language_target: "form" } do %>
-            <%= hidden_field_tag :section, "language" %>
-            <%= hidden_field_tag :locale, Current.user.locale,
-                  data: { language_target: "input" } %>
-          <% end %>
-          <button class="theme-dropdown__trigger" type="button"
-                  data-action="click->language#toggle"
-                  aria-haspopup="true">
-            <span data-language-target="triggerLabel">
-              <%= Language::LANGUAGES[Current.user.locale] %>
-            </span>
-            <%= render "shared/icons/chevron_down", css_class: "theme-dropdown__chevron" %>
-          </button>
-          <div class="lang-dropdown__menu" data-language-target="menu" data-open="false" role="listbox">
-            <div class="lang-dropdown__search-wrap">
-              <input type="text" class="lang-dropdown__search"
-                     placeholder="<%= t("accounts.search_languages") %>"
-                     data-language-target="search"
-                     data-action="input->language#filter"
-                     autocomplete="off">
-            </div>
-            <div class="lang-dropdown__list">
-              <% Language::LANGUAGES.each do |code, name| %>
-                <button class="lang-dropdown__item <%= "is-active" if code == Current.user.locale %>"
-                        type="button"
-                        role="option"
-                        data-language-target="option"
-                        data-code="<%= code %>"
-                        data-name="<%= name.downcase %>"
-                        data-action="click->language#select">
-                  <%= name %>
-                </button>
-              <% end %>
-            </div>
-          </div>
-        </div>
+        <%= render "shared/language_selector",
+              languages:   Language::LANGUAGES,
+              selected:    Current.user.locale,
+              input_name:  "locale",
+              placeholder: Language::LANGUAGES[Current.user.locale],
+              autosubmit:  true,
+              form_url:    account_path,
+              form_method: :patch,
+              form_extras: { section: "language" } %>
       </div>
     </div>
 
