@@ -1,0 +1,132 @@
+<div id="import-modal"
+     data-modal-target="dialog"
+     class="modal-wrapper"
+     role="dialog"
+     aria-modal="true"
+     aria-labelledby="import-modal-title"
+     hidden>
+  <div class="modal-overlay" data-action="click->modal#closeOnBackdrop">
+    <div class="modal-dialog modal-dialog--wide"
+         data-controller="import"
+         data-import-term-label-value="<%= t("imports.term_label") %>"
+         data-import-definition-label-value="<%= t("imports.definition_label") %>"
+         data-import-preview-one-value="<%= t("imports.preview_count", count: 1) %>"
+         data-import-preview-other-value="<%= t("imports.preview_count.other") %>">
+
+      <div class="import-modal-header">
+        <div>
+          <h2 id="import-modal-title" class="import-heading"><%= t("imports.heading") %></h2>
+          <p class="import-subheading"><%= t("imports.subheading") %></p>
+        </div>
+        <button type="button"
+                class="import-close-btn"
+                data-action="click->modal#close"
+                aria-label="<%= t("shared.cancel") %>">
+          <%= render "shared/icons/x_mark" %>
+        </button>
+      </div>
+
+      <%= form_with url: text_deck_import_path(deck), method: :post do |f| %>
+        <%= hidden_field_tag :col_sep, "\t", data: { import_target: "colSepField" } %>
+        <%= hidden_field_tag :row_sep, "\n",  data: { import_target: "rowSepField" } %>
+
+        <div class="form-group" style="margin-bottom: 1rem;">
+          <%= text_area_tag :text, nil,
+                id: "import_modal_textarea",
+                class: "form-control import-textarea",
+                rows: 7,
+                placeholder: "Hello\tHola\nGoodbye\tAdiós",
+                data: {
+                  import_target: "textarea",
+                  action: "input->import#updatePreview"
+                } %>
+        </div>
+
+        <div class="import-sep-grid">
+          <div class="import-sep-group">
+            <p class="import-sep-group__title"><%= t("imports.col_sep_label") %></p>
+            <label class="import-sep-option">
+              <%= radio_button_tag :col_sep_choice, "tab", true,
+                    data: { import_target: "sepRadio", sep_group: "col",
+                            action: "change->import#separatorChanged" } %>
+              <%= t("imports.sep_tab") %>
+            </label>
+            <label class="import-sep-option">
+              <%= radio_button_tag :col_sep_choice, "comma", false,
+                    data: { import_target: "sepRadio", sep_group: "col",
+                            action: "change->import#separatorChanged" } %>
+              <%= t("imports.sep_comma") %>
+            </label>
+            <label class="import-sep-option">
+              <%= radio_button_tag :col_sep_choice, "custom_col", false,
+                    data: { import_target: "sepRadio", sep_group: "col",
+                            action: "change->import#separatorChanged" } %>
+              <%= t("imports.sep_custom") %>
+              <input type="text"
+                     class="import-sep-custom"
+                     hidden
+                     data-import-target="colCustom"
+                     data-action="input->import#separatorChanged"
+                     data-sep-group="col"
+                     placeholder="|"
+                     maxlength="5">
+            </label>
+          </div>
+
+          <div class="import-sep-group">
+            <p class="import-sep-group__title"><%= t("imports.row_sep_label") %></p>
+            <label class="import-sep-option">
+              <%= radio_button_tag :row_sep_choice, "newline", true,
+                    data: { import_target: "sepRadio", sep_group: "row",
+                            action: "change->import#separatorChanged" } %>
+              <%= t("imports.sep_newline") %>
+            </label>
+            <label class="import-sep-option">
+              <%= radio_button_tag :row_sep_choice, "semicolon", false,
+                    data: { import_target: "sepRadio", sep_group: "row",
+                            action: "change->import#separatorChanged" } %>
+              <%= t("imports.sep_semicolon") %>
+            </label>
+            <label class="import-sep-option">
+              <%= radio_button_tag :row_sep_choice, "custom_row", false,
+                    data: { import_target: "sepRadio", sep_group: "row",
+                            action: "change->import#separatorChanged" } %>
+              <%= t("imports.sep_custom") %>
+              <input type="text"
+                     class="import-sep-custom"
+                     hidden
+                     data-import-target="rowCustom"
+                     data-action="input->import#separatorChanged"
+                     data-sep-group="row"
+                     placeholder="/"
+                     maxlength="5">
+            </label>
+          </div>
+        </div>
+
+        <div class="import-preview">
+          <div class="import-preview__header">
+            <span class="import-preview__label"><%= t("imports.preview_heading") %></span>
+            <span class="import-preview__count" data-import-target="previewCount"></span>
+          </div>
+          <p class="import-preview__empty" data-import-target="emptyState">
+            <%= t("imports.preview_empty") %>
+          </p>
+          <div class="import-preview-rows" data-import-target="previewRows" hidden></div>
+        </div>
+
+        <div class="import-modal-actions">
+          <button type="button" class="btn btn--secondary"
+                  data-action="click->modal#close">
+            <%= t("imports.cancel_import") %>
+          </button>
+          <%= f.submit t("imports.submit"),
+                class: "btn btn--primary",
+                disabled: true,
+                data: { import_target: "submitBtn" } %>
+        </div>
+      <% end %>
+
+    </div>
+  </div>
+</div>

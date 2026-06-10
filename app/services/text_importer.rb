@@ -1,14 +1,14 @@
 class TextImporter
   Result = Data.define(:imported, :skipped, :errors)
 
-  def self.call(deck:, text:, col_sep: "\t")
-    new(deck: deck, text: text, col_sep: col_sep).call
+  def self.call(deck:, text:, col_sep: "\t", row_sep: "\n")
+    new(deck: deck, text: text, col_sep: col_sep, row_sep: row_sep).call
   end
 
-  def self.parse(text:, col_sep: "\t")
+  def self.parse(text:, col_sep: "\t", row_sep: "\n")
     return [] if text.blank?
 
-    lines = text.split("\n").map(&:strip).reject(&:blank?)
+    lines = text.split(row_sep).map(&:strip).reject(&:blank?)
     lines.map { |l| l.split(col_sep, 2) }
          .select { |p| p.size == 2 && p.all?(&:present?) }
          .map { |front, back| { front_content: front.strip, back_content: back.strip } }
@@ -16,15 +16,16 @@ class TextImporter
     []
   end
 
-  def initialize(deck:, text:, col_sep: "\t")
+  def initialize(deck:, text:, col_sep: "\t", row_sep: "\n")
     @deck    = deck
     @text    = text
     @col_sep = col_sep
+    @row_sep = row_sep
   end
 
   def call
-    rows = self.class.parse(text: @text, col_sep: @col_sep)
-    skipped = @text.split("\n").map(&:strip).reject(&:blank?).size - rows.size
+    rows = self.class.parse(text: @text, col_sep: @col_sep, row_sep: @row_sep)
+    skipped = @text.split(@row_sep).map(&:strip).reject(&:blank?).size - rows.size
 
     return Result.new(imported: 0, skipped: skipped, errors: [I18n.t("imports.text_no_valid_pairs")]) if rows.empty?
 

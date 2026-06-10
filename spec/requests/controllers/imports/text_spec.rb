@@ -9,17 +9,15 @@ RSpec.describe "Imports#text", type: :request do
   describe "POST /decks/:deck_id/import/text" do
     let(:valid_text) { "Hello\tHola\nGoodbye\tAdiós" }
 
-    it "does NOT create any Flashcard records" do
+    it "creates flashcard records directly" do
       expect {
-        post text_deck_import_path(deck), params: { text: valid_text }
-      }.not_to change(Flashcard, :count)
+        post text_deck_import_path(deck), params: { text: valid_text, col_sep: "\t", row_sep: "\n" }
+      }.to change(Flashcard, :count).by(2)
     end
 
-    it "renders the card editor (200) with parsed rows pre-filled" do
+    it "redirects to the deck after successful import" do
       post text_deck_import_path(deck), params: { text: valid_text }
-      expect(response).to have_http_status(:ok)
-      expect(response.body).to include("Hello")
-      expect(response.body).to include("Hola")
+      expect(response).to redirect_to(deck_path(deck))
     end
 
     it "does not store anything in the session" do
@@ -28,20 +26,30 @@ RSpec.describe "Imports#text", type: :request do
       expect(session[:card_editor_imported]).to be_nil
     end
 
-    it "renders error for blank text" do
+    it "redirects to deck with alert for blank text" do
       post text_deck_import_path(deck), params: { text: "" }
-      expect(response).to have_http_status(:unprocessable_entity)
+      expect(response).to redirect_to(deck_path(deck))
+      follow_redirect!
+      expect(response.body).to include(I18n.t("imports.no_text"))
     end
 
-    it "renders error when no valid pairs found" do
+    it "redirects to deck with alert when no valid pairs found" do
       post text_deck_import_path(deck), params: { text: "no separator here" }
-      expect(response).to have_http_status(:unprocessable_entity)
+      expect(response).to redirect_to(deck_path(deck))
+      follow_redirect!
+      expect(response.body).to include(I18n.t("imports.text_no_valid_pairs"))
     end
 
     it "returns 404 for another user's deck" do
       other_deck = create(:deck, user: create(:user))
       post text_deck_import_path(other_deck), params: { text: valid_text }
       expect(response).to have_http_status(:not_found)
+    end
+
+    it "creates cards using a custom row separator" do
+      expect {
+        post text_deck_import_path(deck), params: { text: "A\tB;C\tD", col_sep: "\t", row_sep: ";" }
+      }.to change(Flashcard, :count).by(2)
     end
   end
 end
