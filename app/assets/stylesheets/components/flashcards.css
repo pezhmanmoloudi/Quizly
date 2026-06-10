@@ -48,6 +48,36 @@
   transform: translateY(-2px) rotateY(0deg);
 }
 
+/* Image layout for browse-mode card face */
+.flashcard-card__face--has-image {
+  flex-direction: column;
+  align-items: stretch;
+  padding: 0;
+  min-height: 360px;
+  overflow: hidden;
+}
+
+.flashcard-card__img-wrap {
+  flex: 1 1 60%;
+  overflow: hidden;
+  min-height: 0;
+  border-radius: 14px 14px 0 0;
+}
+
+.flashcard-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.flashcard-card__face--has-image .flashcard-card__text {
+  padding: 1.25rem 2rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  text-align: center;
+}
+
 /* ── Guest CTA banner ── */
 
 .guest-cta-banner {
