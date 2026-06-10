@@ -38,7 +38,7 @@ RSpec.describe "Dashboard#index", type: :request do
       it "shows the global create deck button in the topbar" do
         get dashboard_path
         expect(response.body).to include("topbar__create-btn")
-        expect(response.body).to include('aria-label="Create Deck"')
+        expect(response.body).to include('aria-label="Create menu"')
       end
 
       it "shows Cards Due stat" do

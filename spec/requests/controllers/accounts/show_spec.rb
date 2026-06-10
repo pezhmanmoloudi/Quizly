@@ -12,11 +12,11 @@ RSpec.describe "Accounts#show", type: :request do
         expect(response).to have_http_status(:ok)
       end
 
-      it "renders the three settings tabs" do
+      it "renders the three settings sections" do
         get account_path
-        expect(response.body).to include('data-tab="profile"')
-        expect(response.body).to include('data-tab="email"')
-        expect(response.body).to include('data-tab="password"')
+        expect(response.body).to include('value="profile"')
+        expect(response.body).to include('value="email"')
+        expect(response.body).to include('value="password"')
       end
 
       it "renders the profile section with user info" do

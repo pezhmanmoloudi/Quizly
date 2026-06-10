@@ -23,9 +23,9 @@ RSpec.describe "Decks#show", type: :request do
         expect(response.body).to include("ES")
       end
 
-      it "shows empty state when deck has no flashcards" do
+      it "shows card count as zero when deck has no flashcards" do
         get deck_path(deck)
-        expect(response.body).to include("No flashcards yet")
+        expect(response.body).to include("Cards (0)")
       end
 
       it "shows flashcards when they exist" do
