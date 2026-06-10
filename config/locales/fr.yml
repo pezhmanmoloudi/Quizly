@@ -199,11 +199,21 @@ fr:
     cards:
       page_title: "Ajouter des cartes — %{name}"
       add_card: "Ajouter une carte"
+      save: "Enregistrer"
+      error_term: "Carte %{row} : le terme est obligatoire."
+      error_definition: "Carte %{row} : la définition est obligatoire."
+      error_language: "Carte %{row} : la langue est obligatoire pour %{side}."
+      error_no_cards: "Ajoutez au moins une carte avant de sauvegarder."
+      back_label: "Retour à %{name}"
     card_row:
       term_label: "Terme"
       term_placeholder: "Entrez le terme"
       definition_label: "Définition"
       definition_placeholder: "Entrez la définition"
+      front_label: "recto"
+      back_label: "verso"
+      select_language: "Choisir la langue"
+      image: "Image"
       remove: "Supprimer la carte"
     created: "Paquet créé."
     updated: "Paquet mis à jour."
@@ -408,11 +418,6 @@ fr:
   starred_cards:
     unstar: "Retirer des favoris"
     star: "Ajouter aux favoris"
-  card_editor:
-    save_card: "Enregistrer la carte"
-    error_term: "Veuillez saisir un terme."
-    error_definition: "Veuillez saisir une définition."
-    saved: "Flashcard enregistrée !"
   passwords_mailer:
     reset_subject: "Réinitialisez votre mot de passe"
     reset_body: "Vous pouvez réinitialiser votre mot de passe dans les 15 prochaines minutes sur"

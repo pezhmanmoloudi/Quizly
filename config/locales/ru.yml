@@ -199,11 +199,21 @@ ru:
     cards:
       page_title: "Добавить карточки — %{name}"
       add_card: "Добавить карточку"
+      save: "Сохранить"
+      error_term: "Карточка %{row}: термин обязателен."
+      error_definition: "Карточка %{row}: определение обязательно."
+      error_language: "Карточка %{row}: язык обязателен для %{side}."
+      error_no_cards: "Добавьте хотя бы одну карточку перед сохранением."
+      back_label: "Назад к %{name}"
     card_row:
       term_label: "Термин"
       term_placeholder: "Введите термин"
       definition_label: "Определение"
       definition_placeholder: "Введите определение"
+      front_label: "лицевая"
+      back_label: "оборотная"
+      select_language: "Выбрать язык"
+      image: "Изображение"
       remove: "Удалить карточку"
     created: "Колода создана."
     updated: "Колода обновлена."
@@ -420,11 +430,6 @@ ru:
   starred_cards:
     unstar: "Убрать из избранного"
     star: "Добавить в избранное"
-  card_editor:
-    save_card: "Сохранить карточку"
-    error_term: "Пожалуйста, введите термин."
-    error_definition: "Пожалуйста, введите определение."
-    saved: "Карточка сохранена!"
   passwords_mailer:
     reset_subject: "Сброс пароля"
     reset_body: "Вы можете сбросить пароль в течение следующих 15 минут на"
