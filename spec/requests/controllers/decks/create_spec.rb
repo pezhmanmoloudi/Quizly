@@ -12,7 +12,7 @@ RSpec.describe "Decks#create", type: :request do
           post decks_path, params: { deck: { name: "Spanish Vocab", description: "Basic words",
                                              language_code: "es", visibility: "private" } }
         }.to change(Deck, :count).by(1)
-        expect(response).to redirect_to(new_deck_flashcard_path(Deck.last))
+        expect(response).to redirect_to(cards_deck_path(Deck.last))
       end
 
       it "assigns the deck to the current user" do

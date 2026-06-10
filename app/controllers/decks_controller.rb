@@ -40,7 +40,7 @@ class DecksController < ApplicationController
   def create
     @deck = Current.user.decks.build(deck_params)
     if @deck.save
-      redirect_to new_deck_flashcard_path(@deck), notice: t("decks.created")
+      redirect_to cards_deck_path(@deck), notice: t("decks.created")
     else
       render :new, status: :unprocessable_entity
     end
