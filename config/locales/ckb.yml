@@ -351,8 +351,6 @@ ckb:
     by: "لەلایەن"
     fork: "کۆپیکردن"
   dashboard:
-    greeting: "بەخێرهاتیتەوە، %{name}"
-    subtitle: "بەردەوام بە — دەستەکانت چاوەڕێتن."
     total_decks: "کۆی دەستەکان"
     total_cards: "کۆی کارتەکان"
     cards_due: "کارتە سەرکەوتووەکان"

@@ -351,8 +351,6 @@ tr:
     by: "tarafından"
     fork: "Kopyala"
   dashboard:
-    greeting: "Tekrar hoş geldin, %{name}"
-    subtitle: "İvmeyi koru — desteler seni bekliyor."
     total_decks: "Toplam Deste"
     total_cards: "Toplam Kart"
     cards_due: "Bekleyen Kartlar"

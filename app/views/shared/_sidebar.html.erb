@@ -36,7 +36,7 @@
       <%= link_to decks_path,
             class: "sidebar__section-title #{"is-active" if request.path.start_with?(decks_path)}",
             data: { tooltip: t("nav.my_library") } do %>
-        <%= render "shared/icons/rectangle_stack", css_class: "icon--sm" %>
+        <%= render "shared/icons/book_open", css_class: "icon--sm" %>
         <span><%= t("nav.my_library") %></span>
       <% end %>
     </div>

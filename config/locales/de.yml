@@ -351,8 +351,6 @@ de:
     by: "von"
     fork: "Kopieren"
   dashboard:
-    greeting: "Willkommen zurück, %{name}"
-    subtitle: "Bleib dabei — deine Decks warten auf dich."
     total_decks: "Decks gesamt"
     total_cards: "Karten gesamt"
     cards_due: "Fällige Karten"

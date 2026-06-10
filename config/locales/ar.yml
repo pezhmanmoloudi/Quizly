@@ -351,8 +351,6 @@ ar:
     by: "بواسطة"
     fork: "نسخ"
   dashboard:
-    greeting: "مرحباً بعودتك، %{name}"
-    subtitle: "واصل الزخم — مجموعاتك بانتظارك."
     total_decks: "إجمالي المجموعات"
     total_cards: "إجمالي البطاقات"
     cards_due: "البطاقات المستحقة"

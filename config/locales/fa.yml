@@ -351,8 +351,6 @@ fa:
     by: "توسط"
     fork: "کپی"
   dashboard:
-    greeting: "خوش آمدی، %{name}"
-    subtitle: "شتاب را حفظ کن — دسته‌هایت منتظرند."
     total_decks: "مجموع دسته‌ها"
     total_cards: "مجموع کارت‌ها"
     cards_due: "کارت‌های سررسیده"

@@ -96,9 +96,9 @@
           <% end %>
           <div data-controller="modal">
             <button type="button"
-                    class="btn btn--secondary btn--sm"
+                    class="btn btn--secondary btn-with-icon btn--sm"
                     data-action="click->modal#open">
-              <%= t("decks.show.import") %>
+              <%= render "shared/icons/clipboard_check" %> <%= t("decks.show.import") %>
             </button>
             <%= render "imports/modal", deck: @deck %>
           </div>

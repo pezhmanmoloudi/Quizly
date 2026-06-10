@@ -351,8 +351,6 @@ es:
     by: "por"
     fork: "Copiar"
   dashboard:
-    greeting: "Bienvenido de nuevo, %{name}"
-    subtitle: "Mantén el impulso — tus mazos te esperan."
     total_decks: "Total de mazos"
     total_cards: "Total de tarjetas"
     cards_due: "Tarjetas pendientes"

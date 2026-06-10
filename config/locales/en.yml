@@ -351,8 +351,6 @@ en:
     by: "by"
     fork: "Fork"
   dashboard:
-    greeting: "Welcome back, %{name}"
-    subtitle: "Keep the momentum going — your decks are waiting."
     total_decks: "Total Decks"
     total_cards: "Total Cards"
     cards_due: "Cards Due"

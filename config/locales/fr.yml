@@ -351,8 +351,6 @@ fr:
     by: "par"
     fork: "Copier"
   dashboard:
-    greeting: "Bon retour, %{name}"
-    subtitle: "Gardez l'élan — vos paquets vous attendent."
     total_decks: "Total des paquets"
     total_cards: "Total des cartes"
     cards_due: "Cartes dues"
