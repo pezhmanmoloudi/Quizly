@@ -1,9 +1,10 @@
 <% content_for :title, "Match: #{@deck.name}" %>
 
-<div class="study-container">
-  <div class="study-header">
-    <h2><%= @deck.name %></h2>
-    <%= link_to t("study_modes.exit"), @deck, class: "study-exit" %>
+<div class="study-island">
+  <div class="study-island__header">
+    <h2 class="study-island__title"><%= @deck.name %></h2>
+    <span></span>
+    <%= link_to t("study_modes.exit"), @deck, class: "study-island__exit" %>
   </div>
 
   <% if @cards.empty? %>
@@ -11,7 +12,7 @@
           icon: "bolt",
           title: t("study_modes.no_cards_title"),
           description: t("study_modes.match.empty_description"),
-          variant: :study %>
+          variant: :default %>
   <% else %>
     <div class="match-game"
          data-controller="match"

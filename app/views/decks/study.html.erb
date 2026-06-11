@@ -10,6 +10,8 @@
     <h2 class="study-island__title"><%= @deck.name %></h2>
     <% if @card_progress.present? && @cards_total.to_i > 0 %>
       <span class="study-island__counter"><%= @cards_done %> / <%= @cards_total %></span>
+    <% else %>
+      <span></span>
     <% end %>
     <%= link_to t("study_modes.exit"), @deck, class: "study-island__exit",
           data: { study_mode_target: "exitLink" } %>
@@ -67,7 +69,7 @@
               icon: "academic_cap",
               title: t("study_modes.study.empty_title"),
               description: t("study_modes.study.empty_description"),
-              variant: :study %>
+              variant: :default %>
       <% end %>
     <% else %>
       <div class="study-card"

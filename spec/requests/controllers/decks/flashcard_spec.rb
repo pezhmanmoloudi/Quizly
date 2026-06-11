@@ -35,6 +35,7 @@ RSpec.describe "Decks#flashcard", type: :request do
         get flashcard_deck_path(deck)
         expect(response.body).to include("No cards yet")
       end
+
     end
 
     context "when authenticated and deck is public" do
@@ -70,6 +71,7 @@ RSpec.describe "Decks#flashcard", type: :request do
         get flashcard_deck_path(public_deck)
         expect(response).to have_http_status(:ok)
       end
+
     end
   end
 end

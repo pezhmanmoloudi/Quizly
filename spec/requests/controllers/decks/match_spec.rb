@@ -23,6 +23,11 @@ RSpec.describe "Decks#match", type: :request do
         get match_deck_path(deck)
         expect(response.body).to include("No cards yet")
       end
+
+      it "renders inside the study-island container" do
+        get match_deck_path(deck)
+        expect(response.body).to include("study-island")
+      end
     end
 
     context "when authenticated and deck is public" do

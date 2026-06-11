@@ -12,6 +12,8 @@
       <span id="learn_counter" class="study-island__counter">
         <%= @learn_session.cards_mastered %> / <%= @learn_session.cards_total %>
       </span>
+    <% else %>
+      <span></span>
     <% end %>
     <%= link_to t("study_modes.exit"), @deck, class: "study-island__exit" %>
   </div>
@@ -32,7 +34,7 @@
             icon: "academic_cap",
             title: t("study_modes.no_cards_title"),
             description: t("study_modes.learn.empty_description"),
-            variant: :study %>
+            variant: :default %>
 
     <% elsif @current_item.nil? %>
       <div class="learn-summary">
