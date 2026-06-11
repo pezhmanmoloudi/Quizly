@@ -175,6 +175,8 @@ ru:
         other: "Эта колода содержит %{count} карточек."
       delete_modal_warning: "Все карточки будут удалены безвозвратно. Это действие нельзя отменить."
       delete_modal_confirm: "Удалить колоду"
+      everyone_badge: "Публичная"
+      password_protected_badge: "Пароль"
       public_badge: "Публичная"
       private_badge: "Приватная"
       created: "Создана"
@@ -206,9 +208,18 @@ ru:
       tags_hint: "Разделяйте теги запятыми."
       tags_placeholder: "напр. биология, анатомия, экзамен2025"
       visibility_label: "Видимость"
-      visibility_private: "Приватная"
+      visibility_section_label: "Кто может видеть эту колоду?"
+      visibility_everyone: "Все"
+      visibility_password_protected: "Защищено паролем"
+      visibility_private: "Только я"
       visibility_public: "Публичная"
       visibility_hint: "Публичные колоды могут найти и скопировать все желающие."
+      edit_permission_label: "Кто может редактировать эту колоду?"
+      edit_permission_owner_only: "Только я"
+      edit_permission_password_users: "Все с паролем"
+      access_password_label: "Пароль колоды"
+      access_password_placeholder: "Мин. 8 символов"
+      access_password_hint: "Требуется для разблокировки доступа или редактирования"
     cards:
       page_title: "Добавить карточки — %{name}"
       add_card: "Добавить карточку"
@@ -234,6 +245,13 @@ ru:
     cards_saved: "Карточки сохранены."
     forked: "Колода добавлена в вашу библиотеку."
     not_available: "Колода недоступна."
+    unlock:
+      title: "Требуется пароль"
+      description: "Эта колода защищена. Введите пароль, чтобы продолжить."
+      password_label: "Пароль"
+      submit: "Разблокировать колоду"
+      invalid_password: "Неверный пароль. Пожалуйста, попробуйте снова."
+      success: "Доступ предоставлен."
     sidebar_no_decks: "Колод пока нет."
     deck_card:
       due:
@@ -490,3 +508,21 @@ ru:
     minutes_seconds: "%{m}мин %{s}с"
     hours: "%{h}ч"
     hours_minutes: "%{h}ч %{m}мин"
+  activerecord:
+    errors:
+      models:
+        deck:
+          attributes:
+            edit_permission:
+              invalid_for_private_deck: "Приватные колоды могут редактировать только их владельцы."
+            access_password:
+              too_short:
+                one: "слишком короткий (минимум %{count} символ)"
+                few: "слишком короткий (минимум %{count} символа)"
+                many: "слишком короткий (минимум %{count} символов)"
+                other: "слишком короткий (минимум %{count} символа)"
+              too_long:
+                one: "слишком длинный (максимум %{count} символ)"
+                few: "слишком длинный (максимум %{count} символа)"
+                many: "слишком длинный (максимум %{count} символов)"
+                other: "слишком длинный (максимум %{count} символа)"

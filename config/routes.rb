@@ -25,6 +25,8 @@ Rails.application.routes.draw do
 
   resources :decks do
     member do
+      get  :unlock
+      post :authenticate
       get   :study
       get   :flashcard
       get   :match

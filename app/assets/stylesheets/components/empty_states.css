@@ -68,7 +68,7 @@
 }
 
 /* Study/browse/match in-session empty state */
-.empty-state--study {
+.empty-state--default {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -77,13 +77,35 @@
   gap: 0.75rem;
 }
 
-.empty-state--study .empty-state__icon svg {
+.empty-state--default .empty-state__icon svg {
   width: 1.75rem;
   height: 1.75rem;
 }
 
-.empty-state--study .empty-state__title {
+.empty-state--default .empty-state__title {
   font-size: 1.25rem;
+}
+
+/* Flashcard page: ghost card hint */
+.empty-state--card_hint {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 3rem 2rem;
+  gap: 1rem;
+  max-width: 680px;
+  aspect-ratio: 3 / 2;
+  margin: 2rem auto;
+  background: var(--color-surface);
+  border: 2px dashed var(--color-border);
+  border-radius: 16px;
+}
+
+.empty-state--card_hint .empty-state__icon svg {
+  width: 2rem;
+  height: 2rem;
 }
 
 /* Responsive dashboard empty state */

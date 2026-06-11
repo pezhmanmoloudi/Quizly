@@ -1,23 +1,5 @@
 /* Study mode — unified island layout */
 
-/* ── Shared page shell (used by flashcard browse + match pages) ── */
-.study-container {
-  max-width: 700px;
-  margin: 0 auto;
-  padding: 2rem 1rem;
-}
-
-.study-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 2rem;
-}
-
-.study-header h2 { font-size: 1.25rem; margin: 0; }
-.study-exit { color: var(--color-muted); text-decoration: none; font-size: 0.875rem; }
-.study-exit:hover { color: var(--color-text); }
-
 /* ── Island container ── */
 .study-island {
   max-width: 720px;

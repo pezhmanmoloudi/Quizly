@@ -1,7 +1,10 @@
 <% content_for :title, t("decks.new.title") %>
 
 <div class="container">
-  <h1><%= t("decks.new.title") %></h1>
-  <%= render "form", deck: @deck %>
-  <div class="back-link"><%= link_to t("decks.new.back"), decks_path %></div>
+  <div class="nd-split">
+    <div class="nd-split__header">
+      <h1 class="nd-split__title"><%= t("decks.new.title") %></h1>
+    </div>
+    <%= render "form", deck: @deck %>
+  </div>
 </div>

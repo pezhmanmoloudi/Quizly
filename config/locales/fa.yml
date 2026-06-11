@@ -175,6 +175,8 @@ fa:
         other: "این دسته شامل %{count} فلش‌کارت است."
       delete_modal_warning: "تمام فلش‌کارت‌ها برای همیشه حذف خواهند شد. این عمل قابل برگشت نیست."
       delete_modal_confirm: "حذف دسته"
+      everyone_badge: "عمومی"
+      password_protected_badge: "رمز"
       public_badge: "عمومی"
       private_badge: "خصوصی"
       created: "ایجاد شده"
@@ -206,9 +208,18 @@ fa:
       tags_hint: "برچسب‌ها را با کاما جدا کن."
       tags_placeholder: "مثال: زیست‌شناسی، تشریح، امتحان۱۴۰۴"
       visibility_label: "دسترسی"
-      visibility_private: "خصوصی"
+      visibility_section_label: "چه کسی می‌تواند این دسته را ببیند؟"
+      visibility_everyone: "همه"
+      visibility_password_protected: "محافظت‌شده با رمز"
+      visibility_private: "فقط من"
       visibility_public: "عمومی"
       visibility_hint: "دسته‌های عمومی توسط همه قابل کشف و کپی هستند."
+      edit_permission_label: "چه کسی می‌تواند این دسته را ویرایش کند؟"
+      edit_permission_owner_only: "فقط من"
+      edit_permission_password_users: "هر کس با رمز"
+      access_password_label: "رمز دسته"
+      access_password_placeholder: "حداقل ۸ کاراکتر"
+      access_password_hint: "برای باز کردن دسترسی یا ویرایش لازم است"
     cards:
       page_title: "افزودن کارت — %{name}"
       add_card: "افزودن کارت"
@@ -234,6 +245,13 @@ fa:
     cards_saved: "کارت‌ها ذخیره شدند."
     forked: "دسته به کتابخانه‌ات اضافه شد."
     not_available: "دسته در دسترس نیست."
+    unlock:
+      title: "رمز لازم است"
+      description: "این دسته محافظت‌شده است. رمز را وارد کن تا ادامه دهی."
+      password_label: "رمز عبور"
+      submit: "باز کردن دسته"
+      invalid_password: "رمز اشتباه است. لطفاً دوباره امتحان کن."
+      success: "دسترسی داده شد."
     sidebar_no_decks: "هنوز دسته‌ای نداری."
     deck_card:
       due:
@@ -476,3 +494,17 @@ fa:
     minutes_seconds: "%{m}د %{s}ث"
     hours: "%{h}س"
     hours_minutes: "%{h}س %{m}د"
+  activerecord:
+    errors:
+      models:
+        deck:
+          attributes:
+            edit_permission:
+              invalid_for_private_deck: "دسته‌های خصوصی فقط توسط مالک قابل ویرایش هستند."
+            access_password:
+              too_short:
+                one: "خیلی کوتاه است (حداقل %{count} کاراکتر)"
+                other: "خیلی کوتاه است (حداقل %{count} کاراکتر)"
+              too_long:
+                one: "خیلی بلند است (حداکثر %{count} کاراکتر)"
+                other: "خیلی بلند است (حداکثر %{count} کاراکتر)"

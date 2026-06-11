@@ -175,6 +175,8 @@ pt:
         other: "Este baralho contém %{count} flashcards."
       delete_modal_warning: "Todos os flashcards serão excluídos permanentemente. Esta ação não pode ser desfeita."
       delete_modal_confirm: "Excluir baralho"
+      everyone_badge: "Público"
+      password_protected_badge: "Senha"
       public_badge: "Público"
       private_badge: "Privado"
       created: "Criado"
@@ -206,9 +208,18 @@ pt:
       tags_hint: "Separe as tags com vírgulas."
       tags_placeholder: "ex.: biologia, anatomia, prova2025"
       visibility_label: "Visibilidade"
-      visibility_private: "Privado"
+      visibility_section_label: "Quem pode ver este baralho?"
+      visibility_everyone: "Todos"
+      visibility_password_protected: "Protegido por senha"
+      visibility_private: "Somente eu"
       visibility_public: "Público"
       visibility_hint: "Baralhos públicos podem ser descobertos e copiados por qualquer pessoa."
+      edit_permission_label: "Quem pode editar este baralho?"
+      edit_permission_owner_only: "Somente eu"
+      edit_permission_password_users: "Qualquer pessoa com senha"
+      access_password_label: "Senha do baralho"
+      access_password_placeholder: "Mín. 8 caracteres"
+      access_password_hint: "Necessária para desbloquear acesso ou edição"
     cards:
       page_title: "Adicionar cartões — %{name}"
       add_card: "Adicionar cartão"
@@ -234,6 +245,13 @@ pt:
     cards_saved: "Cartões salvos."
     forked: "Baralho adicionado à sua biblioteca."
     not_available: "Baralho não disponível."
+    unlock:
+      title: "Senha obrigatória"
+      description: "Este baralho está protegido. Digite a senha para continuar."
+      password_label: "Senha"
+      submit: "Desbloquear baralho"
+      invalid_password: "Senha incorreta. Por favor, tente novamente."
+      success: "Acesso concedido."
     sidebar_no_decks: "Nenhum baralho ainda."
     deck_card:
       due:
@@ -476,3 +494,17 @@ pt:
     minutes_seconds: "%{m}min %{s}s"
     hours: "%{h}h"
     hours_minutes: "%{h}h %{m}min"
+  activerecord:
+    errors:
+      models:
+        deck:
+          attributes:
+            edit_permission:
+              invalid_for_private_deck: "Baralhos privados só podem ser editados pelo proprietário."
+            access_password:
+              too_short:
+                one: "é muito curta (mínimo %{count} caractere)"
+                other: "é muito curta (mínimo %{count} caracteres)"
+              too_long:
+                one: "é muito longa (máximo %{count} caractere)"
+                other: "é muito longa (máximo %{count} caracteres)"

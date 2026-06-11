@@ -1,19 +1,23 @@
 <% content_for :title, @deck.name %>
 
 <div class="container">
-  <div class="deck-detail-header" <% if @deck.user == Current.user %>data-controller="modal"<% end %>>
+  <% can_edit = @deck.can_edit?(Current.user, session_auth: session["deck_auth_#{@deck.id}"] == true) %>
+  <% can_delete = @deck.can_delete?(Current.user) %>
+  <div class="deck-detail-header" <% if can_delete %>data-controller="modal"<% end %>>
     <div class="deck-detail-header__top">
       <h1 class="deck-detail-header__name"><%= @deck.name %></h1>
       <div class="deck-detail-header__actions">
-        <% if @deck.user == Current.user %>
+        <% if can_edit %>
           <%= link_to edit_deck_path(@deck), class: "btn btn--secondary btn-with-icon" do %>
             <%= render "shared/icons/pencil" %> <%= t("decks.show.edit") %>
           <% end %>
+        <% end %>
+        <% if can_delete %>
           <button type="button" class="btn btn--danger btn-with-icon"
                   data-action="click->modal#open">
             <%= render "shared/icons/trash" %> <%= t("decks.show.delete") %>
           </button>
-        <% elsif authenticated? %>
+        <% elsif authenticated? && @deck.everyone? %>
           <%= button_to fork_deck_path(@deck), method: :post, class: "btn btn--primary btn-with-icon" do %>
             <%= render "shared/icons/fork" %> <%= t("decks.show.fork") %>
           <% end %>
@@ -21,9 +25,13 @@
       </div>
     </div>
     <div class="deck-detail-header__meta">
-      <% if @deck.public? %>
+      <% if @deck.everyone? %>
         <span class="visibility-badge visibility-badge--public">
-          <%= render "shared/icons/globe", css_class: "icon--sm" %> <%= t("decks.show.public_badge") %>
+          <%= render "shared/icons/globe", css_class: "icon--sm" %> <%= t("decks.show.everyone_badge") %>
+        </span>
+      <% elsif @deck.password_protected? %>
+        <span class="visibility-badge visibility-badge--password">
+          <%= render "shared/icons/lock", css_class: "icon--sm" %> <%= t("decks.show.password_protected_badge") %>
         </span>
       <% else %>
         <span class="visibility-badge visibility-badge--private">
@@ -44,7 +52,7 @@
       <p class="deck-detail-header__description"><%= @deck.description %></p>
     <% end %>
 
-    <% if @deck.user == Current.user %>
+    <% if can_delete %>
       <% deck_modal_body = capture do %>
         <p><strong><%= @deck.name %></strong></p>
         <p><%= t("decks.show.delete_modal_card_count", count: @deck.flashcards_count) %></p>
@@ -93,7 +101,7 @@
         <span class="cards-island__count" id="deck_<%= @deck.id %>_card_count"><%= @deck.flashcards.count %></span>
       </h2>
       <div class="cards-island__controls">
-        <% if @deck.user == Current.user %>
+        <% if can_edit %>
           <%= link_to new_deck_flashcard_path(@deck), class: "btn btn--primary btn-with-icon btn--sm" do %>
             <%= render "shared/icons/plus" %> <%= t("decks.show.add_card") %>
           <% end %>
@@ -126,7 +134,7 @@
               <div class="cards-grid__front"><%= card.front_content %></div>
               <span class="cards-grid__sep">→</span>
               <div class="cards-grid__back"><%= card.back_content %></div>
-              <% if @deck.user == Current.user %>
+              <% if can_edit %>
                 <div class="cards-grid__actions">
                   <span class="tooltip-wrap">
                     <%= link_to edit_flashcard_path(card),

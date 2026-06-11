@@ -175,6 +175,8 @@ de:
         other: "Dieses Deck enthält %{count} Lernkarten."
       delete_modal_warning: "Alle Lernkarten werden dauerhaft gelöscht. Diese Aktion kann nicht rückgängig gemacht werden."
       delete_modal_confirm: "Deck löschen"
+      everyone_badge: "Öffentlich"
+      password_protected_badge: "Passwort"
       public_badge: "Öffentlich"
       private_badge: "Privat"
       created: "Erstellt"
@@ -206,9 +208,18 @@ de:
       tags_hint: "Tags mit Kommas trennen."
       tags_placeholder: "z. B. Biologie, Anatomie, Prüfung2025"
       visibility_label: "Sichtbarkeit"
-      visibility_private: "Privat"
+      visibility_section_label: "Wer kann dieses Deck sehen?"
+      visibility_everyone: "Alle"
+      visibility_password_protected: "Passwortgeschützt"
+      visibility_private: "Nur ich"
       visibility_public: "Öffentlich"
       visibility_hint: "Öffentliche Decks können von allen entdeckt und kopiert werden."
+      edit_permission_label: "Wer kann dieses Deck bearbeiten?"
+      edit_permission_owner_only: "Nur ich"
+      edit_permission_password_users: "Alle mit Passwort"
+      access_password_label: "Deck-Passwort"
+      access_password_placeholder: "Mind. 8 Zeichen"
+      access_password_hint: "Erforderlich zum Entsperren des Zugriffs oder der Bearbeitung"
     cards:
       page_title: "Karten hinzufügen — %{name}"
       add_card: "Karte hinzufügen"
@@ -234,6 +245,13 @@ de:
     cards_saved: "Karten gespeichert."
     forked: "Deck zu deiner Bibliothek hinzugefügt."
     not_available: "Deck nicht verfügbar."
+    unlock:
+      title: "Passwort erforderlich"
+      description: "Dieses Deck ist geschützt. Gib das Passwort ein, um fortzufahren."
+      password_label: "Passwort"
+      submit: "Deck entsperren"
+      invalid_password: "Falsches Passwort. Bitte versuche es erneut."
+      success: "Zugang gewährt."
     sidebar_no_decks: "Noch keine Decks."
     deck_card:
       due:
@@ -476,3 +494,17 @@ de:
     minutes_seconds: "%{m}min %{s}s"
     hours: "%{h}h"
     hours_minutes: "%{h}h %{m}min"
+  activerecord:
+    errors:
+      models:
+        deck:
+          attributes:
+            edit_permission:
+              invalid_for_private_deck: "Private Decks können nur vom Besitzer bearbeitet werden."
+            access_password:
+              too_short:
+                one: "ist zu kurz (Minimum ist %{count} Zeichen)"
+                other: "ist zu kurz (Minimum ist %{count} Zeichen)"
+              too_long:
+                one: "ist zu lang (Maximum ist %{count} Zeichen)"
+                other: "ist zu lang (Maximum ist %{count} Zeichen)"

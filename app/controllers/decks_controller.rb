@@ -1,9 +1,9 @@
 class DecksController < ApplicationController
-  allow_unauthenticated_access only: [:show, :flashcard, :match]
-  before_action :set_deck, only: [:edit, :update, :destroy, :cards, :update_cards]
+  allow_unauthenticated_access only: [:show, :flashcard, :match, :unlock, :authenticate]
+  before_action :set_deck,            only: [:edit, :update, :destroy, :cards, :update_cards]
   before_action :set_accessible_deck, only: [:show, :study, :flashcard, :match, :fork, :learn, :test]
 
-  DECK_INDEX_PER_PAGE   = 12
+  DECK_INDEX_PER_PAGE    = 12
   ITEMS_PER_PAGE_OPTIONS = [5, 10, 15, 20, 30].freeze
 
   def index
@@ -58,6 +58,8 @@ class DecksController < ApplicationController
   end
 
   def destroy
+    raise ActiveRecord::RecordNotFound unless @deck.can_delete?(Current.user)
+
     from_page = [params[:from_page].to_i, 1].max
     @deck.destroy
 
@@ -117,7 +119,6 @@ class DecksController < ApplicationController
       return
     end
 
-    # turbo_action=replace means "restart" — clear any active session
     if params[:turbo_action] == "replace" || params[:restart]
       session.delete(:learn_session_id)
     end
@@ -138,7 +139,6 @@ class DecksController < ApplicationController
       return
     end
 
-    # turbo_action=replace means "restart" — clear any active session
     if params[:turbo_action] == "replace" || params[:restart]
       session.delete(:test_session_id)
     end
@@ -194,7 +194,7 @@ class DecksController < ApplicationController
   end
 
   def fork
-    raise ActiveRecord::RecordNotFound unless @deck.public?
+    raise ActiveRecord::RecordNotFound unless @deck.everyone?
 
     ActiveRecord::Base.transaction do
       copy = Deck.create!(
@@ -220,10 +220,46 @@ class DecksController < ApplicationController
     redirect_to explore_path, alert: t("decks.not_available")
   end
 
+  def unlock
+    @deck = Deck.find(params[:id])
+    if @deck.can_view?(Current.user, session_auth: deck_session_auth(@deck))
+      redirect_to @deck
+    end
+  end
+
+  def authenticate
+    @deck = Deck.find(params[:id])
+    if @deck.authenticate_access_password(params[:access_password].to_s)
+      session["deck_auth_#{@deck.id}"] = true
+      redirect_to @deck, notice: t("decks.unlock.success")
+    else
+      flash.now[:alert] = t("decks.unlock.invalid_password")
+      render :unlock, status: :unprocessable_entity
+    end
+  end
+
   private
 
   def set_deck
-    @deck = Current.user.decks.find(params[:id])
+    deck = Deck.find(params[:id])
+    raise ActiveRecord::RecordNotFound unless deck.can_edit?(Current.user, session_auth: deck_session_auth(deck))
+    @deck = deck
+  end
+
+  def set_accessible_deck
+    deck = Deck.find(params[:id])
+    unless deck.can_view?(Current.user, session_auth: deck_session_auth(deck))
+      if deck.password_protected?
+        redirect_to unlock_deck_path(deck) and return
+      else
+        raise ActiveRecord::RecordNotFound
+      end
+    end
+    @deck = deck
+  end
+
+  def deck_session_auth(deck)
+    session["deck_auth_#{deck.id}"] == true
   end
 
   def find_or_create_learn_session
@@ -265,16 +301,11 @@ class DecksController < ApplicationController
     Current.user.study_sessions.create!(deck: @deck, cards_total: due_count, started_at: Time.current)
   end
 
-  def set_accessible_deck
-    deck = Deck.find(params[:id])
-    unless deck.user == Current.user || deck.public?
-      raise ActiveRecord::RecordNotFound
-    end
-    @deck = deck
-  end
-
   def deck_params
-    params.require(:deck).permit(:name, :description, :language_code, :visibility, :tag_list)
+    params.require(:deck).permit(
+      :name, :description, :language_code, :visibility, :tag_list,
+      :edit_permission, :access_password, :access_password_confirmation
+    )
   end
 
   def cards_params

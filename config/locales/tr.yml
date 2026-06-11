@@ -175,6 +175,8 @@ tr:
         other: "Bu deste %{count} flashcard içeriyor."
       delete_modal_warning: "Tüm flashcardlar kalıcı olarak silinecek. Bu işlem geri alınamaz."
       delete_modal_confirm: "Desteyi sil"
+      everyone_badge: "Herkese açık"
+      password_protected_badge: "Şifre"
       public_badge: "Herkese açık"
       private_badge: "Özel"
       created: "Oluşturulma"
@@ -206,9 +208,18 @@ tr:
       tags_hint: "Etiketleri virgülle ayır."
       tags_placeholder: "örn. biyoloji, anatomi, sınav2025"
       visibility_label: "Görünürlük"
-      visibility_private: "Özel"
+      visibility_section_label: "Bu desteyi kim görebilir?"
+      visibility_everyone: "Herkes"
+      visibility_password_protected: "Şifre korumalı"
+      visibility_private: "Sadece ben"
       visibility_public: "Herkese açık"
       visibility_hint: "Herkese açık desteler herkes tarafından keşfedilebilir ve kopyalanabilir."
+      edit_permission_label: "Bu desteyi kim düzenleyebilir?"
+      edit_permission_owner_only: "Sadece ben"
+      edit_permission_password_users: "Şifresi olan herkes"
+      access_password_label: "Deste şifresi"
+      access_password_placeholder: "En az 8 karakter"
+      access_password_hint: "Erişim veya düzenlemeyi açmak için gerekli"
     cards:
       page_title: "Kart Ekle — %{name}"
       add_card: "Kart ekle"
@@ -234,6 +245,13 @@ tr:
     cards_saved: "Kartlar kaydedildi."
     forked: "Deste kütüphanene eklendi."
     not_available: "Deste mevcut değil."
+    unlock:
+      title: "Şifre gerekli"
+      description: "Bu deste korumalıdır. Devam etmek için şifreyi girin."
+      password_label: "Şifre"
+      submit: "Desteyi aç"
+      invalid_password: "Yanlış şifre. Lütfen tekrar deneyin."
+      success: "Erişim sağlandı."
     sidebar_no_decks: "Henüz deste yok."
     deck_card:
       due:
@@ -476,3 +494,17 @@ tr:
     minutes_seconds: "%{m}dk %{s}sn"
     hours: "%{h}sa"
     hours_minutes: "%{h}sa %{m}dk"
+  activerecord:
+    errors:
+      models:
+        deck:
+          attributes:
+            edit_permission:
+              invalid_for_private_deck: "Özel desteler yalnızca sahibi tarafından düzenlenebilir."
+            access_password:
+              too_short:
+                one: "çok kısa (minimum %{count} karakter)"
+                other: "çok kısa (minimum %{count} karakter)"
+              too_long:
+                one: "çok uzun (maksimum %{count} karakter)"
+                other: "çok uzun (maksimum %{count} karakter)"

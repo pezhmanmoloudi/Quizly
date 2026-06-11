@@ -14,7 +14,7 @@ RSpec.describe "Explore#index", type: :request do
       end
 
       it "lists public decks from other users" do
-        create(:deck, user: other_user, visibility: "public", name: "Public Deck A")
+        create(:deck, user: other_user, visibility: "everyone", name: "Public Deck A")
         get explore_path
         expect(response.body).to include("Public Deck A")
       end
@@ -26,8 +26,8 @@ RSpec.describe "Explore#index", type: :request do
       end
 
       it "filters decks by search query" do
-        create(:deck, user: other_user, visibility: "public", name: "Spanish Basics")
-        create(:deck, user: other_user, visibility: "public", name: "French Vocab")
+        create(:deck, user: other_user, visibility: "everyone", name: "Spanish Basics")
+        create(:deck, user: other_user, visibility: "everyone", name: "French Vocab")
         get explore_path, params: { q: "Spanish" }
         expect(response.body).to include("Spanish Basics")
         expect(response.body).not_to include("French Vocab")
@@ -72,13 +72,13 @@ RSpec.describe "Explore#index", type: :request do
       end
 
       it "lists public decks without logging in" do
-        create(:deck, user: create(:user), visibility: "public", name: "Guest Visible Deck")
+        create(:deck, user: create(:user), visibility: "everyone", name: "Guest Visible Deck")
         get explore_path
         expect(response.body).to include("Guest Visible Deck")
       end
 
       it "does not show Fork button" do
-        create(:deck, user: create(:user), visibility: "public", name: "Some Deck")
+        create(:deck, user: create(:user), visibility: "everyone", name: "Some Deck")
         get explore_path
         expect(response.body).not_to include("Fork")
       end

@@ -12,6 +12,8 @@
       <span class="study-island__counter" id="test_counter">
         <%= @test_session.current_index + 1 %> / <%= @test_session.questions_total %>
       </span>
+    <% else %>
+      <span></span>
     <% end %>
     <%= link_to t("study_modes.exit"), @deck, class: "study-island__exit" %>
   </div>
@@ -32,9 +34,7 @@
             icon: "academic_cap",
             title: t("study_modes.no_cards_title"),
             description: t("study_modes.test.empty_description"),
-            cta_text: t("study_modes.back_to_deck"),
-            cta_path: @deck,
-            variant: :study %>
+            variant: :default %>
     <% else %>
       <%= render "test_question",
             question: @test_session.current_question,

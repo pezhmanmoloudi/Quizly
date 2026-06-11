@@ -18,10 +18,23 @@ RSpec.describe "Decks#cards", type: :request do
         expect(response.body).to include(deck.name)
       end
 
-      it "returns 404 for another user's deck" do
+      it "returns 404 for another user's owner_only deck" do
         other_deck = create(:deck, user: create(:user))
         get cards_deck_path(other_deck)
         expect(response).to have_http_status(:not_found)
+      end
+
+      it "returns 404 for a password_users deck without session auth" do
+        pw_deck = create(:deck, :editable_by_password, user: create(:user))
+        get cards_deck_path(pw_deck)
+        expect(response).to have_http_status(:not_found)
+      end
+
+      it "returns 200 for a password_users deck with session auth" do
+        pw_deck = create(:deck, :editable_by_password, user: create(:user))
+        post authenticate_deck_path(pw_deck), params: { access_password: "secret123" }
+        get cards_deck_path(pw_deck)
+        expect(response).to have_http_status(:ok)
       end
 
       it "pre-fills existing flashcards" do
