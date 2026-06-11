@@ -1,33 +1,29 @@
-/* Study mode selector — three equal buttons on deck show page */
+/* Study mode selector — colored mode tiles on deck show page */
 .study-mode-selector {
   display: flex;
-  gap: 0.75rem;
+  gap: 0.625rem;
   margin: 1.5rem 0;
   flex-wrap: wrap;
 }
 
 .study-mode-btn {
+  flex: 1;
+  min-width: 100px;
   display: inline-flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.4rem;
-  padding: 1rem 1.5rem;
-  border: 1px solid var(--color-border);
-  border-radius: 10px;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1.125rem 1rem;
+  border-radius: var(--radius-md);
+  border: 1.5px solid transparent;
   background: var(--color-surface);
-  color: var(--color-text);
   text-decoration: none;
   font-size: 0.875rem;
-  font-weight: 500;
-  min-width: 100px;
-  transition: border-color 150ms ease, background 150ms ease, transform 150ms ease;
-}
-
-.study-mode-btn:hover {
-  border-color: var(--color-primary);
-  color: var(--color-primary);
-  background: color-mix(in srgb, var(--color-primary) 5%, var(--color-surface));
-  transform: translateY(-1px);
+  font-weight: 600;
+  box-shadow: var(--shadow-sm);
+  transition: transform 150ms ease, box-shadow 150ms ease,
+              border-color 150ms ease, background 150ms ease;
 }
 
 .study-mode-btn .icon {
@@ -35,7 +31,68 @@
   height: 1.5rem;
 }
 
-@media (max-width: 480px) {
+.study-mode-btn span { color: var(--color-text); }
+
+.study-mode-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+/* ── Flashcard mode — violet ── */
+.study-mode-btn--flashcards {
+  background: var(--mode-flashcards-bg);
+  border-color: color-mix(in srgb, var(--mode-flashcards-bar) 20%, transparent);
+}
+.study-mode-btn--flashcards .icon { color: var(--mode-flashcards-bar); }
+.study-mode-btn--flashcards:hover {
+  border-color: color-mix(in srgb, var(--mode-flashcards-bar) 45%, transparent);
+}
+
+/* ── Study mode — amber ── */
+.study-mode-btn--study {
+  background: var(--mode-study-bg);
+  border-color: color-mix(in srgb, var(--mode-study-bar) 20%, transparent);
+}
+.study-mode-btn--study .icon { color: var(--mode-study-bar); }
+.study-mode-btn--study:hover {
+  border-color: color-mix(in srgb, var(--mode-study-bar) 45%, transparent);
+}
+
+/* ── Learn mode — cyan ── */
+.study-mode-btn--learn {
+  background: var(--mode-learn-bg);
+  border-color: color-mix(in srgb, var(--mode-learn-bar) 20%, transparent);
+}
+.study-mode-btn--learn .icon { color: var(--mode-learn-bar); }
+.study-mode-btn--learn:hover {
+  border-color: color-mix(in srgb, var(--mode-learn-bar) 45%, transparent);
+}
+
+/* ── Test mode — teal ── */
+.study-mode-btn--test {
+  background: var(--mode-test-bg);
+  border-color: color-mix(in srgb, var(--mode-test-bar) 20%, transparent);
+}
+.study-mode-btn--test .icon { color: var(--mode-test-bar); }
+.study-mode-btn--test:hover {
+  border-color: color-mix(in srgb, var(--mode-test-bar) 45%, transparent);
+}
+
+/* ── Match mode — green ── */
+.study-mode-btn--match {
+  background: var(--mode-match-bg);
+  border-color: color-mix(in srgb, var(--mode-match-bar) 20%, transparent);
+}
+.study-mode-btn--match .icon { color: var(--mode-match-bar); }
+.study-mode-btn--match:hover {
+  border-color: color-mix(in srgb, var(--mode-match-bar) 45%, transparent);
+}
+
+@media (max-width: 540px) {
   .study-mode-selector { gap: 0.5rem; }
-  .study-mode-btn { padding: 0.75rem 1rem; min-width: 80px; }
+  .study-mode-btn {
+    flex: none;
+    width: calc(50% - 0.25rem);
+    min-width: 0;
+  }
 }

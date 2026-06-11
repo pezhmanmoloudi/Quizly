@@ -5,6 +5,7 @@
         <%= link_to deck_path(deck),
               class: "sidebar__deck-item #{"is-active" if request.path == deck_path(deck)}",
               data: { turbo_frame: "_top" } do %>
+          <%= render "shared/icons/cards", css_class: "icon sidebar__deck-icon" %>
           <span class="sidebar__deck-name"><%= deck.name %></span>
         <% end %>
       </li>

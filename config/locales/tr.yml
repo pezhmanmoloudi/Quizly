@@ -181,7 +181,7 @@ tr:
       forked_from: "Kopyalandı"
       cards_section: "Kartlar"
       add_card: "Kart ekle"
-      import: "↑ İçe aktar"
+      import: "İçe aktar"
       delete_card_confirm: "Bu kartı kaldırmak istediğinden emin misin?"
       edit_card: "Kartı düzenle"
       delete_card: "Kartı sil"
@@ -351,8 +351,6 @@ tr:
     by: "tarafından"
     fork: "Kopyala"
   dashboard:
-    greeting: "Tekrar hoş geldin, %{name}"
-    subtitle: "İvmeyi koru — desteler seni bekliyor."
     total_decks: "Toplam Deste"
     total_cards: "Toplam Kart"
     cards_due: "Bekleyen Kartlar"

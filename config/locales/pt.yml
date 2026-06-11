@@ -181,7 +181,7 @@ pt:
       forked_from: "Copiado de"
       cards_section: "Cartões"
       add_card: "Adicionar cartão"
-      import: "↑ Importar"
+      import: "Importar"
       delete_card_confirm: "Tem certeza de que deseja remover este cartão?"
       edit_card: "Editar cartão"
       delete_card: "Excluir cartão"
@@ -351,8 +351,6 @@ pt:
     by: "por"
     fork: "Copiar"
   dashboard:
-    greeting: "Bem-vindo de volta, %{name}"
-    subtitle: "Mantenha o ritmo — seus baralhos estão esperando."
     total_decks: "Total de baralhos"
     total_cards: "Total de cartões"
     cards_due: "Cartões pendentes"

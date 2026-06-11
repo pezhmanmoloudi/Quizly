@@ -181,7 +181,7 @@ fa:
       forked_from: "کپی‌شده از"
       cards_section: "کارت‌ها"
       add_card: "افزودن کارت"
-      import: "↑ وارد کردن"
+      import: "وارد کردن"
       delete_card_confirm: "آیا مطمئنی که می‌خواهی این کارت را حذف کنی؟"
       edit_card: "ویرایش کارت"
       delete_card: "حذف کارت"
@@ -351,8 +351,6 @@ fa:
     by: "توسط"
     fork: "کپی"
   dashboard:
-    greeting: "خوش آمدی، %{name}"
-    subtitle: "شتاب را حفظ کن — دسته‌هایت منتظرند."
     total_decks: "مجموع دسته‌ها"
     total_cards: "مجموع کارت‌ها"
     cards_due: "کارت‌های سررسیده"

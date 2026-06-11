@@ -181,7 +181,7 @@ de:
       forked_from: "Kopiert von"
       cards_section: "Karten"
       add_card: "Karte hinzufügen"
-      import: "↑ Importieren"
+      import: "Importieren"
       delete_card_confirm: "Möchtest du diese Karte wirklich löschen?"
       edit_card: "Karte bearbeiten"
       delete_card: "Karte löschen"
@@ -351,8 +351,6 @@ de:
     by: "von"
     fork: "Kopieren"
   dashboard:
-    greeting: "Willkommen zurück, %{name}"
-    subtitle: "Bleib dabei — deine Decks warten auf dich."
     total_decks: "Decks gesamt"
     total_cards: "Karten gesamt"
     cards_due: "Fällige Karten"

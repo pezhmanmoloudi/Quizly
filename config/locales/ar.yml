@@ -181,7 +181,7 @@ ar:
       forked_from: "منسوخة من"
       cards_section: "البطاقات"
       add_card: "إضافة بطاقة"
-      import: "↑ استيراد"
+      import: "استيراد"
       delete_card_confirm: "هل أنت متأكد من رغبتك في إزالة هذه البطاقة؟"
       edit_card: "تعديل البطاقة"
       delete_card: "حذف البطاقة"
@@ -351,8 +351,6 @@ ar:
     by: "بواسطة"
     fork: "نسخ"
   dashboard:
-    greeting: "مرحباً بعودتك، %{name}"
-    subtitle: "واصل الزخم — مجموعاتك بانتظارك."
     total_decks: "إجمالي المجموعات"
     total_cards: "إجمالي البطاقات"
     cards_due: "البطاقات المستحقة"

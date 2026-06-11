@@ -181,7 +181,7 @@ en:
       forked_from: "Forked from"
       cards_section: "Cards"
       add_card: "Add Card"
-      import: "↑ Import"
+      import: "Import"
       delete_card_confirm: "Are you sure you want to remove this card?"
       edit_card: "Edit card"
       delete_card: "Delete card"
@@ -351,8 +351,6 @@ en:
     by: "by"
     fork: "Fork"
   dashboard:
-    greeting: "Welcome back, %{name}"
-    subtitle: "Keep the momentum going — your decks are waiting."
     total_decks: "Total Decks"
     total_cards: "Total Cards"
     cards_due: "Cards Due"
