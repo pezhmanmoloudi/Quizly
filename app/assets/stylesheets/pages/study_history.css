@@ -91,7 +91,7 @@
 .study-island__mode-bar {
   display: flex;
   gap: 0.25rem;
-  padding: 0.75rem 1.75rem 0;
+  padding: 0.875rem 1.75rem 0;
 }
 
 .study-mode-tab {
@@ -114,6 +114,6 @@
 
 .study-mode-tab--active {
   color: var(--color-primary);
-  background: #ede9fe;
-  border-color: #c4b5fd;
+  background: var(--mode-flashcards-bg);
+  border-color: color-mix(in srgb, var(--color-primary) 30%, transparent);
 }
