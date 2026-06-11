@@ -39,7 +39,7 @@ RSpec.describe "Decks#flashcard", type: :request do
 
     context "when authenticated and deck is public" do
       let(:other_user) { create(:user) }
-      let(:public_deck) { create(:deck, user: user, visibility: "public") }
+      let(:public_deck) { create(:deck, user: user, visibility: "everyone") }
 
       before { sign_in(other_user) }
 

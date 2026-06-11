@@ -25,7 +25,7 @@ RSpec.describe "Decks#show", type: :request do
 
       it "shows card count as zero when deck has no flashcards" do
         get deck_path(deck)
-        expect(response.body).to match(/Cards\s*\(<span[^>]*>0<\/span>\)/)
+        expect(response.body).to match(/cards-island__count[^>]*>0<\/span>/)
       end
 
       it "shows flashcards when they exist" do
@@ -88,16 +88,30 @@ RSpec.describe "Decks#show", type: :request do
         expect(response).to have_http_status(:not_found)
       end
 
-      it "returns 200 for a public deck" do
-        public_deck = create(:deck, :public, user: user)
-        get deck_path(public_deck)
+      it "returns 200 for an everyone deck" do
+        everyone_deck = create(:deck, :everyone, user: user)
+        get deck_path(everyone_deck)
         expect(response).to have_http_status(:ok)
       end
 
-      it "does not render Delete Deck button for a non-owner viewing a public deck" do
-        public_deck = create(:deck, :public, user: user)
-        get deck_path(public_deck)
+      it "does not render Delete Deck button for a non-owner viewing an everyone deck" do
+        everyone_deck = create(:deck, :everyone, user: user)
+        get deck_path(everyone_deck)
         expect(response.body).not_to include("Delete Deck")
+      end
+
+      it "redirects to unlock for a password_protected deck" do
+        pw_deck = create(:deck, :password_protected, user: user)
+        get deck_path(pw_deck)
+        expect(response).to redirect_to(unlock_deck_path(pw_deck))
+      end
+
+      it "returns 200 for a password_protected deck when session is authorized" do
+        pw_deck = create(:deck, :password_protected, user: user)
+        # Simulate session auth via the authenticate action
+        post authenticate_deck_path(pw_deck), params: { access_password: "secret123" }
+        get deck_path(pw_deck)
+        expect(response).to have_http_status(:ok)
       end
     end
 
@@ -107,15 +121,21 @@ RSpec.describe "Decks#show", type: :request do
         expect(response).to have_http_status(:not_found)
       end
 
-      it "returns 200 for a public deck" do
-        public_deck = create(:deck, :public, user: user)
-        get deck_path(public_deck)
+      it "returns 200 for an everyone deck" do
+        everyone_deck = create(:deck, :everyone, user: user)
+        get deck_path(everyone_deck)
         expect(response).to have_http_status(:ok)
       end
 
-      it "does not show Fork button on a public deck" do
-        public_deck = create(:deck, :public, user: user)
-        get deck_path(public_deck)
+      it "redirects to unlock for a password_protected deck" do
+        pw_deck = create(:deck, :password_protected, user: user)
+        get deck_path(pw_deck)
+        expect(response).to redirect_to(unlock_deck_path(pw_deck))
+      end
+
+      it "does not show Fork button on an everyone deck" do
+        everyone_deck = create(:deck, :everyone, user: user)
+        get deck_path(everyone_deck)
         expect(response.body).not_to include("Fork")
       end
     end

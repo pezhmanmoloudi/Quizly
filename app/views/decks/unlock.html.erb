@@ -1,0 +1,29 @@
+<% content_for :title, t("decks.unlock.title") %>
+
+<div class="container">
+  <div class="auth-card">
+    <div class="auth-card__header">
+      <%= render "shared/icons/lock", css_class: "icon--lg" %>
+      <h1 class="auth-card__heading"><%= t("decks.unlock.title") %></h1>
+      <p class="auth-card__subheading"><%= @deck.name %></p>
+      <p class="auth-card__description"><%= t("decks.unlock.description") %></p>
+    </div>
+
+    <% if flash[:alert] %>
+      <div class="form-errors">
+        <p><%= flash[:alert] %></p>
+      </div>
+    <% end %>
+
+    <%= form_with url: authenticate_deck_path(@deck), method: :post do |f| %>
+      <div class="form-group">
+        <%= f.label :access_password, t("decks.unlock.password_label") %>
+        <%= f.password_field :access_password,
+              class: "form-control",
+              autofocus: true,
+              autocomplete: "current-password" %>
+      </div>
+      <%= f.submit t("decks.unlock.submit"), class: "btn btn--primary btn--full-width" %>
+    <% end %>
+  </div>
+</div>

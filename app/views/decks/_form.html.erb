@@ -1,4 +1,4 @@
-<%= form_with model: deck do |f| %>
+<%= form_with model: deck, data: { controller: "deck-form" } do |f| %>
   <% if deck.errors.any? %>
     <div class="form-errors">
       <% deck.errors.full_messages.each do |msg| %>
@@ -30,25 +30,65 @@
     <p class="form-hint"><%= t("decks.form.tags_hint") %></p>
   </div>
 
-  <div class="form-group">
-    <%= f.label :visibility, t("decks.form.visibility_label") %>
+  <%# Section 1 — Visibility %>
+  <div class="form-group" data-deck-form-target="visibilityGroup">
+    <span class="form-label"><%= t("decks.form.visibility_section_label") %></span>
     <div class="visibility-toggle">
       <label class="visibility-option">
-        <%= f.radio_button :visibility, "private", class: "visibility-radio" %>
+        <%= f.radio_button :visibility, "everyone", class: "visibility-radio",
+              data: { action: "change->deck-form#onVisibilityChange" } %>
+        <span class="visibility-label">
+          <%= render "shared/icons/globe", css_class: "icon--sm" %>
+          <%= t("decks.form.visibility_everyone") %>
+        </span>
+      </label>
+      <label class="visibility-option">
+        <%= f.radio_button :visibility, "password_protected", class: "visibility-radio",
+              data: { action: "change->deck-form#onVisibilityChange" } %>
+        <span class="visibility-label">
+          <%= render "shared/icons/lock", css_class: "icon--sm" %>
+          <%= t("decks.form.visibility_password_protected") %>
+        </span>
+      </label>
+      <label class="visibility-option">
+        <%= f.radio_button :visibility, "private", class: "visibility-radio",
+              data: { action: "change->deck-form#onVisibilityChange" } %>
         <span class="visibility-label">
           <%= render "shared/icons/lock", css_class: "icon--sm" %>
           <%= t("decks.form.visibility_private") %>
         </span>
       </label>
+    </div>
+  </div>
+
+  <%# Section 2 — Edit Permission %>
+  <div class="form-group" data-deck-form-target="editGroup">
+    <span class="form-label"><%= t("decks.form.edit_permission_label") %></span>
+    <div class="visibility-toggle">
       <label class="visibility-option">
-        <%= f.radio_button :visibility, "public", class: "visibility-radio" %>
-        <span class="visibility-label">
-          <%= render "shared/icons/globe", css_class: "icon--sm" %>
-          <%= t("decks.form.visibility_public") %>
-        </span>
+        <%= f.radio_button :edit_permission, "owner_only", class: "visibility-radio",
+              data: { action: "change->deck-form#onEditPermissionChange",
+                      "deck-form-target": "editPermissionRadio" } %>
+        <span class="visibility-label"><%= t("decks.form.edit_permission_owner_only") %></span>
+      </label>
+      <label class="visibility-option">
+        <%= f.radio_button :edit_permission, "password_users", class: "visibility-radio",
+              data: { action: "change->deck-form#onEditPermissionChange",
+                      "deck-form-target": "editPermissionRadio" } %>
+        <span class="visibility-label"><%= t("decks.form.edit_permission_password_users") %></span>
       </label>
     </div>
-    <p class="form-hint"><%= t("decks.form.visibility_hint") %></p>
+  </div>
+
+  <%# Section 3 — Password (shown conditionally) %>
+  <div class="form-group" data-deck-form-target="passwordSection" style="display:none">
+    <%= f.label :access_password, t("decks.form.access_password_label") %>
+    <%= f.password_field :access_password,
+          class: "form-control",
+          placeholder: t("decks.form.access_password_placeholder"),
+          autocomplete: "new-password",
+          data: { "deck-form-target": "passwordInput" } %>
+    <p class="form-hint"><%= t("decks.form.access_password_hint") %></p>
   </div>
 
   <%= f.submit class: "btn btn--primary" %>

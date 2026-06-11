@@ -175,6 +175,8 @@ ckb:
         other: "ئەم دەستەیە %{count} فلاشکارتی تێدایە."
       delete_modal_warning: "هەموو فلاشکارتەکان بە تەواوی دەسڕێنەوە. ئەم کارە ناتوانرێت گەڕاندرێتەوە."
       delete_modal_confirm: "دەستە بسڕەوە"
+      everyone_badge: "گشتی"
+      password_protected_badge: "پاسۆرد"
       public_badge: "گشتی"
       private_badge: "تایبەت"
       created: "دروستکرا"
@@ -206,9 +208,18 @@ ckb:
       tags_hint: "تاگەکان بە کۆمای جیابکەرەوە."
       tags_placeholder: "بۆ نموونە: بایۆلۆجی، ئەناتۆمی، تاقیکردنەوە٢٠٢٥"
       visibility_label: "بینراوی"
-      visibility_private: "تایبەت"
+      visibility_section_label: "کێ دەتوانێت ئەم دەستەیە ببینێت؟"
+      visibility_everyone: "هەمووکەس"
+      visibility_password_protected: "پاراستراوە بە پاسۆرد"
+      visibility_private: "تەنها من"
       visibility_public: "گشتی"
       visibility_hint: "دەستەی گشتی دەکرێت لە لایەن هەر کەسێکەوە دۆزراوەوە و کۆپیبکرێت."
+      edit_permission_label: "کێ دەتوانێت ئەم دەستەیە دەستکاری بکات؟"
+      edit_permission_owner_only: "تەنها من"
+      edit_permission_password_users: "هەر کەسێک بە پاسۆرد"
+      access_password_label: "پاسۆردی دەستە"
+      access_password_placeholder: "لانیکەم ٨ پیت"
+      access_password_hint: "پێویستە بۆ کردنەوەی دەستپێشی یان دەستکاری"
     cards:
       page_title: "زیادکردنی کارت — %{name}"
       add_card: "زیادکردنی کارت"
@@ -234,6 +245,13 @@ ckb:
     cards_saved: "کارتەکان پاشەکەوتکران."
     forked: "دەستە زیادکرا بۆ کتێبخانەکەت."
     not_available: "دەستە بەردەست نییە."
+    unlock:
+      title: "پاسۆرد پێویستە"
+      description: "ئەم دەستەیە پاراستراوە. پاسۆردەکە بنووسە بۆ بەردەوامبوون."
+      password_label: "پاسۆرد"
+      submit: "کردنەوەی دەستە"
+      invalid_password: "پاسۆردەکە هەڵەیە. تکایە دووبارە هەوڵبدەرەوە."
+      success: "مۆڵەت درا."
     sidebar_no_decks: "هێشتا دەستەیەک نییە."
     deck_card:
       due:
@@ -476,3 +494,17 @@ ckb:
     minutes_seconds: "%{m}خ %{s}چ"
     hours: "%{h}س"
     hours_minutes: "%{h}س %{m}خ"
+  activerecord:
+    errors:
+      models:
+        deck:
+          attributes:
+            edit_permission:
+              invalid_for_private_deck: "دەستەی تایبەت تەنها دەکرێت لە لایەن خاوەنەکەوە دەستکاریبکرێت."
+            access_password:
+              too_short:
+                one: "زۆر کورتە (لانیکەم %{count} پیت)"
+                other: "زۆر کورتە (لانیکەم %{count} پیت)"
+              too_long:
+                one: "زۆر درێژە (زۆرترین %{count} پیت)"
+                other: "زۆر درێژە (زۆرترین %{count} پیت)"

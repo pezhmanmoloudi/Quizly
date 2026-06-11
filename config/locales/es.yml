@@ -175,6 +175,8 @@ es:
         other: "Este mazo contiene %{count} tarjetas flash."
       delete_modal_warning: "Todas las tarjetas flash se eliminarán permanentemente. Esta acción no se puede deshacer."
       delete_modal_confirm: "Eliminar mazo"
+      everyone_badge: "Público"
+      password_protected_badge: "Contraseña"
       public_badge: "Público"
       private_badge: "Privado"
       created: "Creado"
@@ -206,9 +208,18 @@ es:
       tags_hint: "Separa las etiquetas con comas."
       tags_placeholder: "p. ej. biología, anatomía, examen2025"
       visibility_label: "Visibilidad"
-      visibility_private: "Privado"
+      visibility_section_label: "¿Quién puede ver este mazo?"
+      visibility_everyone: "Todos"
+      visibility_password_protected: "Protegido con contraseña"
+      visibility_private: "Solo yo"
       visibility_public: "Público"
       visibility_hint: "Los mazos públicos pueden ser descubiertos y copiados por cualquiera."
+      edit_permission_label: "¿Quién puede editar este mazo?"
+      edit_permission_owner_only: "Solo yo"
+      edit_permission_password_users: "Cualquiera con contraseña"
+      access_password_label: "Contraseña del mazo"
+      access_password_placeholder: "Mín. 8 caracteres"
+      access_password_hint: "Requerida para desbloquear el acceso o la edición"
     cards:
       page_title: "Añadir tarjetas — %{name}"
       add_card: "Añadir tarjeta"
@@ -234,6 +245,13 @@ es:
     cards_saved: "Tarjetas guardadas."
     forked: "Mazo añadido a tu biblioteca."
     not_available: "Mazo no disponible."
+    unlock:
+      title: "Contraseña requerida"
+      description: "Este mazo está protegido. Introduce la contraseña para continuar."
+      password_label: "Contraseña"
+      submit: "Desbloquear mazo"
+      invalid_password: "Contraseña incorrecta. Por favor, inténtalo de nuevo."
+      success: "Acceso concedido."
     sidebar_no_decks: "Todavía no hay mazos."
     deck_card:
       due:
@@ -476,3 +494,17 @@ es:
     minutes_seconds: "%{m}m %{s}s"
     hours: "%{h}h"
     hours_minutes: "%{h}h %{m}m"
+  activerecord:
+    errors:
+      models:
+        deck:
+          attributes:
+            edit_permission:
+              invalid_for_private_deck: "Los mazos privados solo pueden ser editados por el propietario."
+            access_password:
+              too_short:
+                one: "es demasiado corta (mínimo %{count} carácter)"
+                other: "es demasiado corta (mínimo %{count} caracteres)"
+              too_long:
+                one: "es demasiado larga (máximo %{count} carácter)"
+                other: "es demasiado larga (máximo %{count} caracteres)"

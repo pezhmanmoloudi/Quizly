@@ -175,6 +175,8 @@ fr:
         other: "Ce paquet contient %{count} flashcards."
       delete_modal_warning: "Toutes les flashcards seront supprimées définitivement. Cette action est irréversible."
       delete_modal_confirm: "Supprimer le paquet"
+      everyone_badge: "Public"
+      password_protected_badge: "Mot de passe"
       public_badge: "Public"
       private_badge: "Privé"
       created: "Créé"
@@ -206,9 +208,18 @@ fr:
       tags_hint: "Séparez les étiquettes par des virgules."
       tags_placeholder: "ex. biologie, anatomie, examen2025"
       visibility_label: "Visibilité"
-      visibility_private: "Privé"
+      visibility_section_label: "Qui peut voir ce paquet ?"
+      visibility_everyone: "Tout le monde"
+      visibility_password_protected: "Protégé par mot de passe"
+      visibility_private: "Moi seulement"
       visibility_public: "Public"
       visibility_hint: "Les paquets publics peuvent être découverts et copiés par n'importe qui."
+      edit_permission_label: "Qui peut modifier ce paquet ?"
+      edit_permission_owner_only: "Moi seulement"
+      edit_permission_password_users: "Toute personne avec le mot de passe"
+      access_password_label: "Mot de passe du paquet"
+      access_password_placeholder: "Min. 8 caractères"
+      access_password_hint: "Requis pour déverrouiller l'accès ou la modification"
     cards:
       page_title: "Ajouter des cartes — %{name}"
       add_card: "Ajouter une carte"
@@ -234,6 +245,13 @@ fr:
     cards_saved: "Cartes enregistrées."
     forked: "Paquet ajouté à votre bibliothèque."
     not_available: "Paquet non disponible."
+    unlock:
+      title: "Mot de passe requis"
+      description: "Ce paquet est protégé. Entrez le mot de passe pour continuer."
+      password_label: "Mot de passe"
+      submit: "Déverrouiller le paquet"
+      invalid_password: "Mot de passe incorrect. Veuillez réessayer."
+      success: "Accès accordé."
     sidebar_no_decks: "Pas encore de paquets."
     deck_card:
       due:
@@ -476,3 +494,17 @@ fr:
     minutes_seconds: "%{m}min %{s}s"
     hours: "%{h}h"
     hours_minutes: "%{h}h %{m}min"
+  activerecord:
+    errors:
+      models:
+        deck:
+          attributes:
+            edit_permission:
+              invalid_for_private_deck: "Les paquets privés ne peuvent être modifiés que par le propriétaire."
+            access_password:
+              too_short:
+                one: "est trop court (minimum %{count} caractère)"
+                other: "est trop court (minimum %{count} caractères)"
+              too_long:
+                one: "est trop long (maximum %{count} caractère)"
+                other: "est trop long (maximum %{count} caractères)"
