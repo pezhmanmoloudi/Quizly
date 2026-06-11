@@ -62,25 +62,25 @@
   </div>
 
   <div class="study-mode-selector">
-    <%= link_to flashcard_deck_path(@deck), class: "study-mode-btn" do %>
+    <%= link_to flashcard_deck_path(@deck), class: "study-mode-btn study-mode-btn--flashcards" do %>
       <%= render "shared/icons/play" %>
       <span><%= t("decks.show.mode_flashcard") %></span>
     <% end %>
-    <%= link_to study_deck_path(@deck), class: "study-mode-btn" do %>
+    <%= link_to study_deck_path(@deck), class: "study-mode-btn study-mode-btn--study" do %>
       <%= render "shared/icons/academic_cap" %>
       <span><%= t("decks.show.mode_study") %></span>
     <% end %>
     <% if authenticated? %>
-      <%= link_to learn_deck_path(@deck), class: "study-mode-btn" do %>
+      <%= link_to learn_deck_path(@deck), class: "study-mode-btn study-mode-btn--learn" do %>
         <%= render "shared/icons/rectangle_stack" %>
         <span><%= t("decks.show.mode_learn") %></span>
       <% end %>
-      <%= link_to test_deck_path(@deck), class: "study-mode-btn" do %>
+      <%= link_to test_deck_path(@deck), class: "study-mode-btn study-mode-btn--test" do %>
         <%= render "shared/icons/pencil" %>
         <span><%= t("decks.show.mode_test") %></span>
       <% end %>
     <% end %>
-    <%= link_to match_deck_path(@deck), class: "study-mode-btn" do %>
+    <%= link_to match_deck_path(@deck), class: "study-mode-btn study-mode-btn--match" do %>
       <%= render "shared/icons/bolt" %>
       <span><%= t("decks.show.mode_match") %></span>
     <% end %>
@@ -88,17 +88,20 @@
 
   <div class="cards-island">
     <div class="cards-island__header">
-      <h2 class="cards-island__title"><%= t("decks.show.cards_section") %> (<span id="deck_<%= @deck.id %>_card_count"><%= @deck.flashcards.count %></span>)</h2>
+      <h2 class="cards-island__title">
+        <%= t("decks.show.cards_section") %>
+        <span class="cards-island__count" id="deck_<%= @deck.id %>_card_count"><%= @deck.flashcards.count %></span>
+      </h2>
       <div class="cards-island__controls">
         <% if @deck.user == Current.user %>
-          <%= link_to new_deck_flashcard_path(@deck), class: "btn btn--secondary btn-with-icon btn--sm" do %>
+          <%= link_to new_deck_flashcard_path(@deck), class: "btn btn--primary btn-with-icon btn--sm" do %>
             <%= render "shared/icons/plus" %> <%= t("decks.show.add_card") %>
           <% end %>
           <div data-controller="modal">
             <button type="button"
-                    class="btn btn--secondary btn-with-icon btn--sm"
+                    class="btn btn--outline btn-with-icon btn--sm"
                     data-action="click->modal#open">
-              <%= render "shared/icons/clipboard_check" %> <%= t("decks.show.import") %>
+              <%= render "shared/icons/arrow_down_tray" %> <%= t("decks.show.import") %>
             </button>
             <%= render "imports/modal", deck: @deck %>
           </div>
