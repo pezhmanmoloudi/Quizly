@@ -181,7 +181,7 @@ ru:
       forked_from: "Скопирована из"
       cards_section: "Карточки"
       add_card: "Добавить карточку"
-      import: "↑ Импорт"
+      import: "Импорт"
       delete_card_confirm: "Вы уверены, что хотите удалить эту карточку?"
       edit_card: "Редактировать карточку"
       delete_card: "Удалить карточку"

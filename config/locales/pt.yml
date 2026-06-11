@@ -181,7 +181,7 @@ pt:
       forked_from: "Copiado de"
       cards_section: "Cartões"
       add_card: "Adicionar cartão"
-      import: "↑ Importar"
+      import: "Importar"
       delete_card_confirm: "Tem certeza de que deseja remover este cartão?"
       edit_card: "Editar cartão"
       delete_card: "Excluir cartão"

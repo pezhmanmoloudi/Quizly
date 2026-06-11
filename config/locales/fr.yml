@@ -181,7 +181,7 @@ fr:
       forked_from: "Bifurqué de"
       cards_section: "Cartes"
       add_card: "Ajouter une carte"
-      import: "↑ Importer"
+      import: "Importer"
       delete_card_confirm: "Êtes-vous sûr de vouloir supprimer cette carte ?"
       edit_card: "Modifier la carte"
       delete_card: "Supprimer la carte"

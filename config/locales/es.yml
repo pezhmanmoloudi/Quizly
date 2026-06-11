@@ -181,7 +181,7 @@ es:
       forked_from: "Bifurcado de"
       cards_section: "Tarjetas"
       add_card: "Añadir tarjeta"
-      import: "↑ Importar"
+      import: "Importar"
       delete_card_confirm: "¿Estás seguro de que quieres eliminar esta tarjeta?"
       edit_card: "Editar tarjeta"
       delete_card: "Eliminar tarjeta"
