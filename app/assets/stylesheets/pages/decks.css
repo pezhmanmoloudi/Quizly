@@ -305,3 +305,70 @@
 @media (max-width: 360px) {
   .cards-grid { grid-template-columns: 1fr; }
 }
+
+/* ── Design 1: Split Panel ── */
+.nd-split {
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border-light);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+}
+
+.nd-split__header {
+  padding: 1.25rem 2rem;
+  border-bottom: 1px solid var(--color-border-light);
+  background: var(--color-bg);
+}
+
+.nd-split__title {
+  margin: 0;
+  font-size: var(--text-xl);
+  font-weight: var(--font-bold);
+  color: var(--color-text);
+}
+
+.nd-split__errors {
+  margin: 1.25rem 2rem 0;
+}
+
+.nd-split__body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.nd-split__left {
+  padding: 1.75rem 2rem;
+  border-right: 1px solid var(--color-border-light);
+}
+
+.nd-split__right {
+  padding: 1.75rem 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.nd-split__section-label {
+  font-size: var(--text-xs);
+  font-weight: var(--font-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-muted);
+  margin: 0 0 1.25rem;
+}
+
+.nd-split__actions {
+  margin-top: auto;
+  padding-top: 1.25rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.nd-split__right .visibility-toggle {
+  flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+  .nd-split__body { grid-template-columns: 1fr; }
+  .nd-split__left { border-right: none; border-bottom: 1px solid var(--color-border-light); }
+}
