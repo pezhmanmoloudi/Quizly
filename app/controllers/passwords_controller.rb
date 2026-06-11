@@ -19,6 +19,7 @@ class PasswordsController < ApplicationController
 
   def update
     if @user.update(params.permit(:password, :password_confirmation))
+      @user.sessions.destroy_all
       redirect_to login_path, notice: t("passwords.reset")
     else
       redirect_to reset_password_path(params[:token]), alert: t("passwords.mismatch")
