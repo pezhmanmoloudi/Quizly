@@ -1,0 +1,20 @@
+<div class="notif-dropdown__header">
+  <span class="notif-dropdown__title"><%= t("notifications.title") %></span>
+  <% if notifications.any? { |n| !n.read? } %>
+    <%= button_to mark_all_read_notifications_path, method: :patch,
+          class: "notif-dropdown__mark-all",
+          form: { data: { turbo_stream: true } } do %>
+      <%= t("notifications.mark_all_read") %>
+    <% end %>
+  <% end %>
+</div>
+
+<div class="notif-dropdown__list" role="list">
+  <% if notifications.any? %>
+    <% notifications.each do |notification| %>
+      <%= render "notification", notification: notification %>
+    <% end %>
+  <% else %>
+    <p class="notif-dropdown__empty"><%= t("notifications.empty") %></p>
+  <% end %>
+</div>

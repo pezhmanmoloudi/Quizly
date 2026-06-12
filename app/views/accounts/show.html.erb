@@ -217,14 +217,15 @@
   </div>
 
   <%# Password change — accessible via a subtle card below %>
-  <details class="settings-info-card" style="margin-top: 0.5rem; overflow: hidden;">
-    <summary style="padding: 1rem 1.5rem; font-size: 0.875rem; font-weight: 600; color: var(--color-muted); cursor: pointer; list-style: none; display: flex; align-items: center; justify-content: space-between;">
+  <p class="settings-section-label"><%= t("accounts.change_password") %></p>
+  <details class="settings-info-card">
+    <summary class="settings-card__summary">
       <%= t("accounts.change_password") %>
       <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 20 20" fill="currentColor">
         <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/>
       </svg>
     </summary>
-    <div style="padding: 0 1.5rem 1.5rem; border-top: 1px solid var(--color-border-light);">
+    <div class="settings-card__body">
       <%= form_with url: account_path, method: :patch do |f| %>
         <%= f.hidden_field :section, value: "password" %>
         <div style="margin-top: 1rem; display: flex; flex-direction: column; gap: 0.75rem;">
@@ -377,12 +378,12 @@
             </div>
           </div>
 
+          <div class="settings-card__footer">
+            <%= f.submit t("shared.save"), class: "btn btn--primary btn--sm" %>
+          </div>
+
         </div>
       </details>
-
-      <div style="padding: 0.75rem 1rem;">
-        <%= f.submit t("shared.save"), class: "btn btn--primary btn--sm" %>
-      </div>
 
     <% end %>
   </div>

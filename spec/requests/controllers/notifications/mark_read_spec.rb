@@ -26,6 +26,14 @@ RSpec.describe "Notifications#mark_read", type: :request do
       patch mark_read_notification_path(other_notification)
       expect(response).to have_http_status(:not_found)
     end
+
+    it "turbo stream response replaces the notification element and updates the badge" do
+      notification = create(:notification, recipient: user, read: false)
+      patch mark_read_notification_path(notification),
+            headers: { "Accept" => "text/vnd.turbo-stream.html" }
+      expect(response.body).to include("notification-#{notification.id}")
+      expect(response.body).to include('target="notification-badge"')
+    end
   end
 
   context "when unauthenticated" do

@@ -2,7 +2,7 @@ class NotificationsController < ApplicationController
   before_action :set_notification, only: [ :mark_read ]
 
   def index
-    @notifications = Current.user.notifications.recent
+    @notifications = Current.user.notifications.recent.includes(:actor)
   end
 
   def badge
@@ -21,6 +21,7 @@ class NotificationsController < ApplicationController
   def mark_all_read
     Current.user.notifications.unread.update_all(read: true, read_at: Time.current)
     @unread_count = 0
+    @notifications = Current.user.notifications.recent.includes(:actor)
     respond_to do |format|
       format.turbo_stream
       format.html { redirect_to notifications_path }

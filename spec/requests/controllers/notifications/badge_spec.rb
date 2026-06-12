@@ -19,6 +19,13 @@ RSpec.describe "Notifications#badge", type: :request do
       expect(response).to have_http_status(:ok)
       expect(response.body).not_to include("notif-badge")
     end
+
+    it "shows 99+ when unread count exceeds 99" do
+      create_list(:notification, 100, recipient: user, read: false)
+      get badge_notifications_path
+      expect(response.body).to include("99+")
+      expect(response.body).not_to include(">100<")
+    end
   end
 
   context "when unauthenticated" do

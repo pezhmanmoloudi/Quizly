@@ -27,6 +27,23 @@ RSpec.describe "Notifications#mark_all_read", type: :request do
             headers: { "Accept" => "text/vnd.turbo-stream.html" }
       expect(other_user_notification.reload.read).to be false
     end
+
+    it "responds successfully when there are no unread notifications" do
+      create(:notification, :read, recipient: user)
+      patch mark_all_read_notifications_path,
+            headers: { "Accept" => "text/vnd.turbo-stream.html" }
+      expect(response).to have_http_status(:ok)
+      expect(response.media_type).to eq("text/vnd.turbo-stream.html")
+    end
+
+    it "turbo stream response includes the dropdown header and correct targets" do
+      create(:notification, recipient: user, read: false)
+      patch mark_all_read_notifications_path,
+            headers: { "Accept" => "text/vnd.turbo-stream.html" }
+      expect(response.body).to include(I18n.t("notifications.title"))
+      expect(response.body).to include('target="notification-list"')
+      expect(response.body).to include('target="notification-badge"')
+    end
   end
 
   context "when unauthenticated" do
