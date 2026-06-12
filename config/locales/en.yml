@@ -365,6 +365,12 @@ en:
       completed: "All matched!"
       play_again: "Play Again"
       guest_cta: "Sign in to save your scores and track improvement over time."
+      subtitle: "Match the words with their meanings"
+      time: "Time"
+      pairs_left: "Pairs Left"
+      streak: "Streak"
+      progress_label: "%{pct}% Progress"
+      matched_counter: "Matched: %{matched} / %{total}"
   explore:
     title: "Explore"
     subtitle: "Discover and fork public decks shared by the community."

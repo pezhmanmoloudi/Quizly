@@ -365,6 +365,12 @@ tr:
       completed: "Hepsi eşleşti!"
       play_again: "Tekrar Oyna"
       guest_cta: "Puanlarını kaydetmek ve gelişimini takip etmek için giriş yap."
+      subtitle: "Kelimeleri anlamlarıyla eşleştir"
+      time: "Süre"
+      pairs_left: "Kalan çift"
+      streak: "Seri"
+      progress_label: "%{pct}% ilerleme"
+      matched_counter: "Eşleşti: %{matched} / %{total}"
   explore:
     title: "Keşfet"
     subtitle: "Topluluk tarafından paylaşılan herkese açık desteleri keşfet ve kopyala."

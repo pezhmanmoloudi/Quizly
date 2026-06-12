@@ -365,6 +365,12 @@ de:
       completed: "Alles zugeordnet!"
       play_again: "Erneut spielen"
       guest_cta: "Melde dich an, um deine Ergebnisse zu speichern."
+      subtitle: "Ordne die Wörter den Bedeutungen zu"
+      time: "Zeit"
+      pairs_left: "Verbleibende Paare"
+      streak: "Serie"
+      progress_label: "%{pct}% Fortschritt"
+      matched_counter: "Zugeordnet: %{matched} / %{total}"
   explore:
     title: "Entdecken"
     subtitle: "Entdecke und kopiere öffentliche Decks aus der Community."

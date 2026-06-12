@@ -1,10 +1,48 @@
 <% content_for :title, "Match: #{@deck.name}" %>
 
-<div class="study-island">
-  <div class="study-island__header">
-    <h2 class="study-island__title"><%= @deck.name %></h2>
-    <span></span>
-    <%= link_to t("study_modes.exit"), @deck, class: "study-island__exit" %>
+<div class="match-island"
+     data-controller="match"
+     data-match-total-value="<%= @cards.size %>">
+
+  <div class="match-island__header">
+    <%= link_to t("study_modes.exit"), @deck, class: "match-island__exit" %>
+
+    <div class="match-island__title-block">
+      <h2 class="match-island__title"><%= @deck.name %></h2>
+      <p class="match-island__subtitle"><%= t("study_modes.match.subtitle") %></p>
+    </div>
+
+    <div class="match-island__stats">
+      <div class="match-stat match-stat--timer">
+        <div class="match-stat__badge">
+          <svg class="match-stat__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" width="14" height="14" aria-hidden="true">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm.75-13a.75.75 0 0 0-1.5 0v5c0 .414.336.75.75.75h4a.75.75 0 0 0 0-1.5h-3.25V5Z" clip-rule="evenodd"/>
+          </svg>
+          <span class="match-stat__value" data-match-target="timer">00:00</span>
+        </div>
+        <span class="match-stat__label"><%= t("study_modes.match.time") %></span>
+      </div>
+
+      <div class="match-stat match-stat--pairs">
+        <div class="match-stat__badge">
+          <svg class="match-stat__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" width="14" height="14" aria-hidden="true">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm0-2a6 6 0 1 0 0-12 6 6 0 0 0 0 12Zm0-3a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" clip-rule="evenodd"/>
+          </svg>
+          <span class="match-stat__value" data-match-target="pairsLeft"><%= @cards.size %></span>
+        </div>
+        <span class="match-stat__label"><%= t("study_modes.match.pairs_left") %></span>
+      </div>
+
+      <div class="match-stat match-stat--streak">
+        <div class="match-stat__badge">
+          <svg class="match-stat__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" width="14" height="14" aria-hidden="true">
+            <path d="M12.395 2.553a1 1 0 0 0-1.45-.385c-.345.23-.614.558-.822.88-.214.33-.403.713-.57 1.116-.334.804-.614 1.768-.84 2.734a31.365 31.365 0 0 0-.613 3.58 2.64 2.64 0 0 1-.945-1.067c-.328-.68-.398-1.534-.398-2.654A1 1 0 0 0 5.05 6.05 6.981 6.981 0 0 0 3 11a7 7 0 1 0 11.95-4.95c-.592-.591-.98-.985-1.348-1.467-.363-.476-.724-1.063-1.207-2.03ZM12.12 15.12A3 3 0 0 1 7 13s.879.5 2.5.5c0-1 .5-4 1.25-4.5.5 1 .786 1.293 1.371 1.879A2.99 2.99 0 0 1 13 13a2.99 2.99 0 0 1-.879 2.121Z"/>
+          </svg>
+          <span class="match-stat__value" data-match-target="streak">0</span>
+        </div>
+        <span class="match-stat__label"><%= t("study_modes.match.streak") %></span>
+      </div>
+    </div>
   </div>
 
   <% if @cards.empty? %>
@@ -14,40 +52,59 @@
           description: t("study_modes.match.empty_description"),
           variant: :default %>
   <% else %>
-    <div class="match-game"
-         data-controller="match"
-         data-match-total-value="<%= @cards.size %>">
-
-      <div class="match-game__grid">
-        <% tiles = @cards.flat_map { |c| [
-          { id: c.id, side: "front", text: c.front_content },
-          { id: c.id, side: "back",  text: c.back_content }
-        ] }.shuffle %>
-        <% tiles.each do |tile| %>
-          <button class="match-tile"
-                  data-action="click->match#select"
-                  data-match-id="<%= tile[:id] %>"
-                  data-match-side="<%= tile[:side] %>">
-            <%= tile[:text] %>
-          </button>
-        <% end %>
+    <div class="match-island__progress-wrap">
+      <div class="match-island__progress">
+        <div class="match-island__progress-fill"
+             data-match-target="progressFill"
+             style="width: 0%"></div>
       </div>
+      <span class="match-island__progress-label"
+            data-match-target="progressLabel"
+            data-template="<%= t("study_modes.match.progress_label", pct: "__PCT__") %>">
+        <%= t("study_modes.match.progress_label", pct: 0) %>
+      </span>
+    </div>
 
-      <div class="match-game__complete" hidden data-match-target="complete">
-        <p class="match-game__complete-msg"><%= t("study_modes.match.completed") %></p>
-        <%= link_to t("study_modes.match.play_again"), match_deck_path(@deck), class: "btn btn--primary btn--sm" %>
-        <%= link_to t("study_modes.back_to_deck"), @deck, class: "btn btn--secondary btn--sm" %>
+    <div class="match-island__grid">
+      <% tiles = @cards.flat_map { |c| [
+        { id: c.id, side: "front", text: c.front_content },
+        { id: c.id, side: "back",  text: c.back_content }
+      ] }.shuffle %>
+      <% tiles.each do |tile| %>
+        <button class="match-tile"
+                data-action="click->match#select"
+                data-match-id="<%= tile[:id] %>"
+                data-match-side="<%= tile[:side] %>">
+          <%= tile[:text] %>
+        </button>
+      <% end %>
+    </div>
+
+    <div class="match-island__bottom">
+      <div class="match-island__matched-counter">
+        <svg class="match-island__check-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" width="16" height="16" aria-hidden="true">
+          <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd"/>
+        </svg>
+        <span data-match-target="matchedCounter"
+              data-template="<%= t("study_modes.match.matched_counter", matched: "__MATCHED__", total: @cards.size) %>">
+          <%= t("study_modes.match.matched_counter", matched: 0, total: @cards.size) %>
+        </span>
       </div>
     </div>
 
-    <% unless authenticated? %>
-      <div class="guest-cta-banner">
-        <span class="guest-cta-banner__text"><%= t("study_modes.match.guest_cta") %></span>
-        <div class="guest-cta-banner__actions">
-          <%= link_to t("shared.sign_in"), login_path, class: "btn btn--primary btn--sm" %>
-          <%= link_to t("shared.sign_up_free"), signup_path, class: "btn btn--secondary btn--sm" %>
-        </div>
-      </div>
-    <% end %>
+    <div class="match-game__complete" hidden data-match-target="complete">
+      <p class="match-game__complete-msg"><%= t("study_modes.match.completed") %></p>
+      <%= link_to t("study_modes.match.play_again"), match_deck_path(@deck), class: "btn btn--primary btn--sm" %>
+    </div>
   <% end %>
 </div>
+
+<% unless authenticated? %>
+  <div class="guest-cta-banner">
+    <span class="guest-cta-banner__text"><%= t("study_modes.match.guest_cta") %></span>
+    <div class="guest-cta-banner__actions">
+      <%= link_to t("shared.sign_in"), login_path, class: "btn btn--primary btn--sm" %>
+      <%= link_to t("shared.sign_up_free"), signup_path, class: "btn btn--secondary btn--sm" %>
+    </div>
+  </div>
+<% end %>
