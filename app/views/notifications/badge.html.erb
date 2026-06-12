@@ -1,0 +1,5 @@
+<%= turbo_frame_tag "notification-badge" do %>
+  <% if @unread_count > 0 %>
+    <span class="notif-badge"><%= @unread_count > 99 ? "99+" : @unread_count %></span>
+  <% end %>
+<% end %>

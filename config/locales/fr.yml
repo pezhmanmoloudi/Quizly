@@ -141,6 +141,7 @@ fr:
       email: "E-mail mis à jour."
       password: "Mot de passe mis à jour."
       language: "Langue mise à jour."
+      notifications: "Préférences de notification enregistrées."
     avatar_removed: "Photo de profil supprimée."
     deleted: "Votre compte a été supprimé."
     profile_photo_alt: "Photo de profil"
@@ -498,6 +499,18 @@ fr:
     minutes_seconds: "%{m}min %{s}s"
     hours: "%{h}h"
     hours_minutes: "%{h}h %{m}min"
+  notifications:
+    bell_aria: "Notifications"
+    title: "Notifications"
+    empty: "Aucune notification pour l'instant"
+    mark_all_read: "Tout marquer comme lu"
+    mark_read: "Marquer comme lu"
+    time_ago: "il y a"
+    events:
+      badge_earned: "Vous avez gagné un nouveau badge"
+      followed: "%{actor} a commencé à vous suivre"
+      deck_commented: "%{actor} a commenté votre jeu"
+      deck_reacted: "%{actor} a réagi à votre jeu"
   activerecord:
     errors:
       models:

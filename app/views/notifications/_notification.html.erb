@@ -1,0 +1,38 @@
+<div id="notification-<%= notification.id %>"
+     class="notif-item <%= "notif-item--unread" unless notification.read? %>">
+
+  <div class="notif-item__avatar">
+    <% if notification.actor %>
+      <% if notification.actor.show_avatar? %>
+        <%= image_tag notification.actor.avatar, class: "notif-item__avatar-img", alt: "" %>
+      <% else %>
+        <div class="user-avatar user-avatar--sm">
+          <%= notification.actor.display_name.first.upcase %>
+        </div>
+      <% end %>
+    <% else %>
+      <div class="notif-item__system-icon">&#128276;</div>
+    <% end %>
+  </div>
+
+  <div class="notif-item__body">
+    <p class="notif-item__text">
+      <%= t("notifications.events.#{notification.event_type}",
+            actor: notification.actor&.display_name,
+            default: notification.event_type.humanize) %>
+    </p>
+    <span class="notif-item__time">
+      <%= time_ago_in_words(notification.created_at) %> <%= t("notifications.time_ago") %>
+    </span>
+  </div>
+
+  <% unless notification.read? %>
+    <span class="notif-item__unread-dot" aria-hidden="true"></span>
+    <%= button_to mark_read_notification_path(notification), method: :patch,
+          class: "notif-item__read-btn",
+          aria: { label: t("notifications.mark_read") },
+          form: { data: { turbo_stream: true } } do %>
+      &times;
+    <% end %>
+  <% end %>
+</div>

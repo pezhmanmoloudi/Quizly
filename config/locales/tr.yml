@@ -141,6 +141,7 @@ tr:
       email: "E-posta güncellendi."
       password: "Şifre güncellendi."
       language: "Dil güncellendi."
+      notifications: "Bildirim tercihleri kaydedildi."
     avatar_removed: "Profil fotoğrafı kaldırıldı."
     deleted: "Hesabın silindi."
     profile_photo_alt: "Profil fotoğrafı"
@@ -498,6 +499,18 @@ tr:
     minutes_seconds: "%{m}dk %{s}sn"
     hours: "%{h}sa"
     hours_minutes: "%{h}sa %{m}dk"
+  notifications:
+    bell_aria: "Bildirimler"
+    title: "Bildirimler"
+    empty: "Henüz bildirim yok"
+    mark_all_read: "Tümünü okundu olarak işaretle"
+    mark_read: "Okundu olarak işaretle"
+    time_ago: "önce"
+    events:
+      badge_earned: "Yeni bir rozet kazandınız"
+      followed: "%{actor} sizi takip etmeye başladı"
+      deck_commented: "%{actor} demetinizi yorumladı"
+      deck_reacted: "%{actor} demetinize tepki verdi"
   activerecord:
     errors:
       models:

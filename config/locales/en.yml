@@ -141,6 +141,7 @@ en:
       email: "Email updated."
       password: "Password updated."
       language: "Language updated."
+      notifications: "Notification preferences saved."
     avatar_removed: "Profile photo removed."
     deleted: "Your account has been deleted."
     profile_photo_alt: "Profile photo"
@@ -498,6 +499,18 @@ en:
     minutes_seconds: "%{m}m %{s}s"
     hours: "%{h}h"
     hours_minutes: "%{h}h %{m}m"
+  notifications:
+    bell_aria: "Notifications"
+    title: "Notifications"
+    empty: "No notifications yet"
+    mark_all_read: "Mark all as read"
+    mark_read: "Mark as read"
+    time_ago: "ago"
+    events:
+      badge_earned: "You earned a new badge"
+      followed: "%{actor} started following you"
+      deck_commented: "%{actor} commented on your deck"
+      deck_reacted: "%{actor} reacted to your deck"
   activerecord:
     errors:
       models:

@@ -47,6 +47,16 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :notifications, only: [ :index ] do
+    collection do
+      get  :badge
+      patch :mark_all_read
+    end
+    member do
+      patch :mark_read
+    end
+  end
+
   resources :card_reviews, only: [ :create ]
   resources :study_sessions, only: [ :index ]
   resources :learn_answers, only: [ :create ]

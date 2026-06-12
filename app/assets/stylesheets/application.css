@@ -43,6 +43,7 @@
 @import url("components/pagination.css");
 @import url("components/star_btn.css");
 @import url("components/modals.css");
+@import url("components/notification_center.css");
 
 /* ── 4. Pages ────────────────────────────────────────────── */
 @import url("pages/decks.css");

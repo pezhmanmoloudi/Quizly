@@ -80,5 +80,12 @@ RSpec.describe BadgeAwarder, type: :service do
     it "returns an empty array when no new badges are earned" do
       expect(BadgeAwarder.call(user)).to eq([])
     end
+
+    it "creates a badge_earned notification for each newly awarded badge" do
+      seed_badge("streak_3")
+      user.update_columns(current_streak: 3)
+      expect { BadgeAwarder.call(user) }
+        .to change { user.notifications.where(event_type: "badge_earned").count }.by(1)
+    end
   end
 end

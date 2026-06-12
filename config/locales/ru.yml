@@ -141,6 +141,7 @@ ru:
       email: "Email обновлён."
       password: "Пароль обновлён."
       language: "Язык обновлён."
+      notifications: "Настройки уведомлений сохранены."
     avatar_removed: "Фото профиля удалено."
     deleted: "Ваш аккаунт удалён."
     profile_photo_alt: "Фото профиля"
@@ -512,6 +513,18 @@ ru:
     minutes_seconds: "%{m}мин %{s}с"
     hours: "%{h}ч"
     hours_minutes: "%{h}ч %{m}мин"
+  notifications:
+    bell_aria: "Уведомления"
+    title: "Уведомления"
+    empty: "Уведомлений пока нет"
+    mark_all_read: "Отметить все как прочитанные"
+    mark_read: "Отметить как прочитанное"
+    time_ago: "назад"
+    events:
+      badge_earned: "Вы получили новый значок"
+      followed: "%{actor} начал(а) подписываться на вас"
+      deck_commented: "%{actor} прокомментировал(а) вашу колоду"
+      deck_reacted: "%{actor} отреагировал(а) на вашу колоду"
   activerecord:
     errors:
       models:

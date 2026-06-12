@@ -141,6 +141,7 @@ pt:
       email: "E-mail atualizado."
       password: "Senha atualizada."
       language: "Idioma atualizado."
+      notifications: "Preferências de notificação salvas."
     avatar_removed: "Foto de perfil removida."
     deleted: "Sua conta foi excluída."
     profile_photo_alt: "Foto de perfil"
@@ -498,6 +499,18 @@ pt:
     minutes_seconds: "%{m}min %{s}s"
     hours: "%{h}h"
     hours_minutes: "%{h}h %{m}min"
+  notifications:
+    bell_aria: "Notificações"
+    title: "Notificações"
+    empty: "Nenhuma notificação ainda"
+    mark_all_read: "Marcar todas como lidas"
+    mark_read: "Marcar como lida"
+    time_ago: "atrás"
+    events:
+      badge_earned: "Você ganhou um novo emblema"
+      followed: "%{actor} começou a te seguir"
+      deck_commented: "%{actor} comentou no seu baralho"
+      deck_reacted: "%{actor} reagiu ao seu baralho"
   activerecord:
     errors:
       models:

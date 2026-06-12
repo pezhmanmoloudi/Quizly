@@ -48,6 +48,13 @@ class AccountsController < ApplicationController
       else
         render :show, status: :unprocessable_entity
       end
+    elsif @active_section == "notifications"
+      if Current.user.notification_preference.update(notification_preference_params)
+        flash[:section] = @active_section
+        redirect_to account_path(anchor: @active_section), notice: t("accounts.updated.notifications")
+      else
+        render :show, status: :unprocessable_entity
+      end
     end
   end
 
@@ -94,5 +101,14 @@ class AccountsController < ApplicationController
 
   def password_params
     params.permit(:password, :password_confirmation)
+  end
+
+  def notification_preference_params
+    params.require(:notification_preference).permit(
+      :email_streaks_badges,
+      :email_study_reminders,
+      :reminder_time,
+      :time_zone
+    )
   end
 end
