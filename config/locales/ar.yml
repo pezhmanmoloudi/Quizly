@@ -75,6 +75,8 @@ ar:
     have_account: "لديك حساب بالفعل؟"
     sign_in_link: "تسجيل الدخول"
     created: "مرحباً بك في Quizly!"
+    errors:
+      rate_limited: "حاول مجدداً لاحقاً."
   passwords:
     new:
       title: "نسيت كلمة المرور"
@@ -99,6 +101,8 @@ ar:
     reset: "تمّت إعادة تعيين كلمة المرور."
     mismatch: "كلمتا المرور غير متطابقتين."
     invalid: "رابط إعادة التعيين غير صالح أو منتهي الصلاحية."
+    errors:
+      rate_limited: "حاول مجدداً لاحقاً."
   accounts:
     title: "الإعدادات"
     personal_info: "المعلومات الشخصية"

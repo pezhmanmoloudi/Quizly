@@ -75,6 +75,8 @@ tr:
     have_account: "Zaten hesabın var mı?"
     sign_in_link: "Giriş yap"
     created: "Quizly'ye hoş geldin!"
+    errors:
+      rate_limited: "Daha sonra tekrar dene."
   passwords:
     new:
       title: "Şifremi Unuttum"
@@ -99,6 +101,8 @@ tr:
     reset: "Şifre sıfırlandı."
     mismatch: "Şifreler eşleşmedi."
     invalid: "Şifre sıfırlama bağlantısı geçersiz veya süresi dolmuş."
+    errors:
+      rate_limited: "Daha sonra tekrar dene."
   accounts:
     title: "Ayarlar"
     personal_info: "Kişisel bilgiler"

@@ -2,6 +2,7 @@ class PasswordsController < ApplicationController
   layout "auth"
   allow_unauthenticated_access
   before_action :set_user_by_token, only: %i[ edit update ]
+  rate_limit to: 5, within: 10.minutes, only: :create, with: -> { redirect_to forgot_password_url, alert: I18n.t("passwords.errors.rate_limited") }
 
   def new
   end
@@ -19,6 +20,7 @@ class PasswordsController < ApplicationController
 
   def update
     if @user.update(params.permit(:password, :password_confirmation))
+      @user.sessions.destroy_all
       redirect_to login_path, notice: t("passwords.reset")
     else
       redirect_to reset_password_path(params[:token]), alert: t("passwords.mismatch")
