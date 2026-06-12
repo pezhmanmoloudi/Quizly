@@ -26,6 +26,18 @@ RSpec.describe "Accounts#destroy_avatar", type: :request do
         delete avatar_account_path
         expect(response).to redirect_to(account_path(anchor: "profile"))
       end
+
+      context "with turbo_stream format" do
+        it "removes the avatar and returns a turbo stream response" do
+          attach_avatar
+          delete avatar_account_path, headers: { "Accept" => "text/vnd.turbo-stream.html" }
+          expect(user.reload.avatar).not_to be_attached
+          expect(response.media_type).to eq("text/vnd.turbo-stream.html")
+          expect(response.body).to include("avatar-current-display")
+          expect(response.body).to include("avatar-remove-controls")
+          expect(response.body).to include("flash-messages")
+        end
+      end
     end
 
     context "when not authenticated" do

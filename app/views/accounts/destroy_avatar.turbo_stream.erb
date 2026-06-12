@@ -1,0 +1,11 @@
+<%= turbo_stream.update "avatar-current-display" do %>
+  <div class="user-avatar profile-avatar-placeholder">
+    <%= Current.user.display_name.first.upcase %>
+  </div>
+<% end %>
+
+<%= turbo_stream.remove "avatar-remove-controls" %>
+
+<%= turbo_stream.update "flash-messages" do %>
+  <div class="flash flash--notice" data-controller="flash"><%= flash[:notice] %></div>
+<% end %>
