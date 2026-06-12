@@ -15,7 +15,7 @@
     <link rel="icon" href="/icon.svg?v=2" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.svg?v=2">
 
-    <script>
+    <script nonce="<%= content_security_policy_nonce %>">
       (function() {
         var t = localStorage.getItem("color-theme");
         if (t === "dark" || t === "light") {

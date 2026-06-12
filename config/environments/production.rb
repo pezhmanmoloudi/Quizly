@@ -18,6 +18,14 @@ Rails.application.configure do
   # Cache assets for far-future expiry since they are all digest stamped.
   config.public_file_server.headers = { "cache-control" => "public, max-age=#{1.year.to_i}" }
 
+  # Security headers — X-Frame-Options and X-Content-Type-Options are Rails defaults,
+  # listed explicitly here so they are visible and not accidentally overridden.
+  config.action_dispatch.default_headers = {
+    "X-Frame-Options"        => "SAMEORIGIN",
+    "X-Content-Type-Options" => "nosniff",
+    "Referrer-Policy"        => "strict-origin-when-cross-origin"
+  }
+
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
   # config.asset_host = "http://assets.example.com"
 
@@ -53,8 +61,9 @@ Rails.application.configure do
   config.active_job.queue_adapter = :solid_queue
   config.solid_queue.connects_to = { database: { writing: :queue } }
 
-  # Ignore bad email addresses and do not raise email delivery errors.
-  config.action_mailer.raise_delivery_errors = false
+  # Raise delivery errors so failed jobs are recorded in solid_queue_failed_executions
+  # and retried by ApplicationJob#retry_on rather than silently discarded.
+  config.action_mailer.raise_delivery_errors = true
 
   # Set host to be used by links generated in mailer templates.
   # Raises KeyError at boot if unset — prevents silent misconfiguration.
@@ -81,10 +90,11 @@ Rails.application.configure do
   # Only use :id for inspections in production.
   config.active_record.attributes_for_inspect = [ :id ]
 
-  # Enable DNS rebinding protection and other `Host` header attacks.
+  # REQUIRED before launch: uncomment and set your production domain to prevent
+  # DNS rebinding attacks and Host-header injection.
   # config.hosts = [
-  #   "example.com",     # Allow requests from example.com
-  #   /.*\.example\.com/ # Allow requests from subdomains like `www.example.com`
+  #   ENV.fetch("APP_HOST"),
+  #   /.*\.#{Regexp.escape(ENV.fetch("APP_HOST", ""))}$/
   # ]
   #
   # Skip DNS rebinding protection for the default health check endpoint.
