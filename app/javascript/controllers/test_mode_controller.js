@@ -1,10 +1,16 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["continueBtn", "exitLink"]
+  static targets = ["continueBtn", "exitLink", "timer"]
 
   connect() {
     this.element.focus()
+    this.seconds = 0
+    this.timerInterval = setInterval(() => this.#tickTimer(), 1000)
+  }
+
+  disconnect() {
+    clearInterval(this.timerInterval)
   }
 
   // Auto-focus the continue button the moment feedback is rendered
@@ -43,5 +49,13 @@ export default class extends Controller {
   #selectOptionByIndex(index) {
     const options = this.element.querySelectorAll(".test-option:not([disabled])")
     if (options[index]) options[index].click()
+  }
+
+  #tickTimer() {
+    this.seconds++
+    if (!this.hasTimerTarget) return
+    const m = String(Math.floor(this.seconds / 60)).padStart(2, "0")
+    const s = String(this.seconds % 60).padStart(2, "0")
+    this.timerTarget.textContent = `${m}:${s}`
   }
 }

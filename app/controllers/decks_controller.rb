@@ -92,8 +92,10 @@ class DecksController < ApplicationController
       session[:study_session_id] = @study_session.id
       @cards_total = @study_session.cards_total
       @cards_done  = @cards_total - @cards_remaining
+      @streak      = session[:study_streak].to_i
     else
       session.delete(:study_session_id)
+      session.delete(:study_streak)
     end
   end
 

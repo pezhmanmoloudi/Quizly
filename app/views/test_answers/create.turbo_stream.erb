@@ -58,8 +58,13 @@
     </div>
   <% end %>
   <%= turbo_stream.replace "test_counter" do %>
-    <span id="test_counter" class="study-island__counter">
+    <span id="test_counter" class="match-stat__value">
       <%= @test_session.current_index + 1 %> / <%= @test_session.questions_total %>
+    </span>
+  <% end %>
+  <%= turbo_stream.replace "test_score" do %>
+    <span id="test_score" class="match-stat__value">
+      <%= @test_session.score %>
     </span>
   <% end %>
 <% end %>

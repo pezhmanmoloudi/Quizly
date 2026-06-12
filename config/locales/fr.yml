@@ -285,6 +285,8 @@ fr:
     exit: "← Quitter"
     no_cards_title: "Pas encore de cartes"
     back_to_deck: "Retour au paquet"
+    time: "Temps"
+    streak: "Série"
     flashcard:
       empty_description: "Ajoutez des cartes à ce paquet pour commencer."
       keyboard_hint: "← → pour naviguer · Espace pour retourner"
@@ -307,6 +309,8 @@ fr:
       hide: "Masquer"
       restart: "Recommencer les flashcards"
     study:
+      subtitle: "Révisez les cartes et évaluez votre rappel"
+      done_label: "Terminées"
       empty_title: "À jour !"
       empty_description: "Aucune carte n'est due pour révision pour l'instant."
       all_cards_tab: "Toutes les cartes"
@@ -323,6 +327,8 @@ fr:
       easy: "Facile"
       keyboard_hint: "Espace pour révéler · 1 À nouveau · 2 Difficile · 3 Bien · 4 Facile · Échap pour quitter"
     learn:
+      subtitle: "Écrivez la réponse pour maîtriser chaque carte"
+      mastered_label: "Maîtrisées"
       empty_description: "Ajoutez des flashcards à ce paquet avant d'étudier."
       summary_title: "Toutes les cartes maîtrisées !"
       studied: "Cartes étudiées"
@@ -340,6 +346,8 @@ fr:
       keyboard_hint: "Entrée pour soumettre"
       continue: "Continuer →"
     test:
+      subtitle: "Testez vos connaissances"
+      question_label: "Question"
       empty_description: "Ajoutez des flashcards à ce paquet avant de passer un test."
       summary_title: "Test terminé !"
       correct_answers: "Bonnes réponses"

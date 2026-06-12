@@ -285,6 +285,8 @@ ckb:
     exit: "→ دەرچوون"
     no_cards_title: "هێشتا کارتێک نییە"
     back_to_deck: "گەڕانەوە بۆ دەستە"
+    time: "کات"
+    streak: "زنجیرە"
     flashcard:
       empty_description: "چەند کارتێک زیادبکە بۆ ئەم دەستەیە بۆ دەستپێکردن."
       keyboard_hint: "← → بۆ گەشتکردن · بۆشایی بۆ پێچانەوە"
@@ -307,6 +309,8 @@ ckb:
       hide: "شاردنەوە"
       restart: "دەستپێکردنەوەی کارتەکان"
     study:
+      subtitle: "کارتەکان بپشکنە و بیرهێنانەوەت بهاکردن"
+      done_label: "تەواوبوو"
       empty_title: "هەموو شتێک تەواوکرا!"
       empty_description: "هیچ کارتێک ئێستا بۆ پاڕاستنەوە سەرکەوتوو نییە."
       all_cards_tab: "هەموو کارتەکان"
@@ -323,6 +327,8 @@ ckb:
       easy: "ئاسان"
       keyboard_hint: "بۆشایی بۆ ئاشکراکردن · ١ دووبارە · ٢ سەخت · ٣ باش · ٤ ئاسان · Esc بۆ دەرچوون"
     learn:
+      subtitle: "وەڵام بنووسە بۆ ماستەرکردنی هەر کارتێک"
+      mastered_label: "ماستەرکراو"
       empty_description: "کارتی فێربوون زیادبکە بۆ ئەم دەستەیە پێش خوێندن."
       summary_title: "هەموو کارتەکان سەروانە بوون!"
       studied: "کارتە خوێندراوەکان"
@@ -340,6 +346,8 @@ ckb:
       keyboard_hint: "Enter بۆ ناردن"
       continue: "بەردەوامبوون →"
     test:
+      subtitle: "زانستت بيازمێنە"
+      question_label: "پرسیار"
       empty_description: "کارتی فێربوون زیادبکە بۆ ئەم دەستەیە پێش تاقیکردنەوە."
       summary_title: "تاقیکردنەوە تەواو بوو!"
       correct_answers: "وەڵامە درووستەکان"

@@ -285,6 +285,8 @@ de:
     exit: "← Beenden"
     no_cards_title: "Noch keine Karten"
     back_to_deck: "Zurück zum Deck"
+    time: "Zeit"
+    streak: "Serie"
     flashcard:
       empty_description: "Füge Karten zu diesem Deck hinzu, um zu beginnen."
       keyboard_hint: "← → zum Navigieren · Leertaste zum Umdrehen"
@@ -307,6 +309,8 @@ de:
       hide: "Ausblenden"
       restart: "Lernkarten neu starten"
     study:
+      subtitle: "Lerne Karten und bewerte deine Erinnerung"
+      done_label: "Erledigt"
       empty_title: "Alles erledigt!"
       empty_description: "Momentan sind keine Karten zur Wiederholung fällig."
       all_cards_tab: "Alle Karten"
@@ -323,6 +327,8 @@ de:
       easy: "Einfach"
       keyboard_hint: "Leertaste zum Aufdecken · 1 Nochmal · 2 Schwer · 3 Gut · 4 Einfach · Esc zum Beenden"
     learn:
+      subtitle: "Schreibe die Antwort, um jede Karte zu meistern"
+      mastered_label: "Gemeistert"
       empty_description: "Füge Lernkarten zu diesem Deck hinzu, bevor du übst."
       summary_title: "Alle Karten gemeistert!"
       studied: "Gelernte Karten"
@@ -340,6 +346,8 @@ de:
       keyboard_hint: "Eingabe zum Absenden"
       continue: "Weiter →"
     test:
+      subtitle: "Teste dein Wissen"
+      question_label: "Frage"
       empty_description: "Füge Lernkarten zu diesem Deck hinzu, bevor du einen Test machst."
       summary_title: "Test abgeschlossen!"
       correct_answers: "Richtige Antworten"

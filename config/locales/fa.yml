@@ -285,6 +285,8 @@ fa:
     exit: "→ خروج"
     no_cards_title: "هنوز کارتی نداری"
     back_to_deck: "بازگشت به دسته"
+    time: "زمان"
+    streak: "رشته"
     flashcard:
       empty_description: "چند کارت به این دسته اضافه کن تا شروع کنی."
       keyboard_hint: "← → برای ناوبری · فاصله برای برگرداندن"
@@ -307,6 +309,8 @@ fa:
       hide: "پنهان کردن"
       restart: "شروع مجدد فلش‌کارت‌ها"
     study:
+      subtitle: "کارت‌ها را مرور کن و به حافظه‌ات امتیاز بده"
+      done_label: "انجام‌شده"
       empty_title: "همه چیز تمام شد!"
       empty_description: "الان هیچ کارتی برای مرور سررسیده نشده."
       all_cards_tab: "همه کارت‌ها"
@@ -323,6 +327,8 @@ fa:
       easy: "آسان"
       keyboard_hint: "فاصله برای نمایش · ۱ دوباره · ۲ سخت · ۳ خوب · ۴ آسان · Esc برای خروج"
     learn:
+      subtitle: "برای تسلط بر هر کارت، پاسخ را بنویس"
+      mastered_label: "تسلط‌یافته"
       empty_description: "قبل از مطالعه، فلش‌کارت‌هایی به این دسته اضافه کن."
       summary_title: "همه کارت‌ها تسلط یافتند!"
       studied: "کارت‌های مطالعه‌شده"
@@ -340,6 +346,8 @@ fa:
       keyboard_hint: "Enter برای ارسال"
       continue: "ادامه →"
     test:
+      subtitle: "دانش خود را بسنج"
+      question_label: "سوال"
       empty_description: "قبل از آزمون، فلش‌کارت‌هایی به این دسته اضافه کن."
       summary_title: "آزمون تمام شد!"
       correct_answers: "پاسخ‌های درست"

@@ -59,6 +59,13 @@ RSpec.describe "Decks#study", type: :request do
         get study_deck_path(other_deck)
         expect(response).to have_http_status(:not_found)
       end
+
+      it "renders the stats header with subtitle and streak badge" do
+        create(:card_progress, :due, user: user, flashcard: create(:flashcard, deck: deck))
+        get study_deck_path(deck)
+        expect(response.body).to include("study-island__stats")
+        expect(response.body).to include("study-island__subtitle")
+      end
     end
 
     context "when not authenticated" do

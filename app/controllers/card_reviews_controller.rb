@@ -4,6 +4,11 @@ class CardReviewsController < ApplicationController
     quality = quality_from_button(params[:rating])
     Sm2Scheduler.grade_card(@card_progress, quality)
 
+    case params[:rating]
+    when "again" then session[:study_streak] = 0
+    when "good", "easy" then session[:study_streak] = session[:study_streak].to_i + 1
+    end
+
     deck = @card_progress.flashcard.deck
     correct = quality >= 4
     study_mode = params[:study_mode].presence || "all"
@@ -33,6 +38,7 @@ class CardReviewsController < ApplicationController
         BadgeAwarder.call(Current.user)
       end
       session.delete(:study_session_id)
+      session.delete(:study_streak)
       redirect_to study_deck_path(deck),
         flash: { study_summary: {
           reviewed: study_session&.cards_reviewed || 1,
