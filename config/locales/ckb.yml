@@ -499,6 +499,18 @@ ckb:
     minutes_seconds: "%{m}خ %{s}چ"
     hours: "%{h}س"
     hours_minutes: "%{h}س %{m}خ"
+  notifications:
+    bell_aria: "ئاگادارکردنەوەکان"
+    title: "ئاگادارکردنەوەکان"
+    empty: "هێشتا ئاگادارکردنەوەیەک نییە"
+    mark_all_read: "هەموویان وەک خوێندراوەوە دیاری بکە"
+    mark_read: "وەک خوێندراوەوە دیاری بکە"
+    time_ago: "پێش"
+    events:
+      badge_earned: "نیشانەیەکی نوێت بەدەست هێنا"
+      followed: "%{actor} دووکەوتەی تۆ بوو"
+      deck_commented: "%{actor} لەسەر دەستەکەت راپۆرتی نووسی"
+      deck_reacted: "%{actor} بەرپەرشتی دەستەکەت دا"
   activerecord:
     errors:
       models:

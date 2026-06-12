@@ -499,6 +499,18 @@ fa:
     minutes_seconds: "%{m}د %{s}ث"
     hours: "%{h}س"
     hours_minutes: "%{h}س %{m}د"
+  notifications:
+    bell_aria: "اعلان‌ها"
+    title: "اعلان‌ها"
+    empty: "هنوز اعلانی وجود ندارد"
+    mark_all_read: "علامت‌گذاری همه به‌عنوان خوانده‌شده"
+    mark_read: "علامت‌گذاری به‌عنوان خوانده‌شده"
+    time_ago: "پیش"
+    events:
+      badge_earned: "شما یک نشان جدید به دست آوردید"
+      followed: "%{actor} شما را دنبال کرد"
+      deck_commented: "%{actor} روی مجموعه‌تان نظر داد"
+      deck_reacted: "%{actor} به مجموعه‌تان واکنش نشان داد"
   activerecord:
     errors:
       models:

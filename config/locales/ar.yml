@@ -499,6 +499,18 @@ ar:
     minutes_seconds: "%{m}د %{s}ث"
     hours: "%{h}س"
     hours_minutes: "%{h}س %{m}د"
+  notifications:
+    bell_aria: "الإشعارات"
+    title: "الإشعارات"
+    empty: "لا توجد إشعارات حتى الآن"
+    mark_all_read: "وضع علامة مقروء على الكل"
+    mark_read: "وضع علامة مقروء"
+    time_ago: "منذ"
+    events:
+      badge_earned: "لقد حصلت على شارة جديدة"
+      followed: "بدأ %{actor} في متابعتك"
+      deck_commented: "علّق %{actor} على مجموعتك"
+      deck_reacted: "تفاعل %{actor} مع مجموعتك"
   activerecord:
     errors:
       models:

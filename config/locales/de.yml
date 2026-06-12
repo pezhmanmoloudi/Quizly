@@ -499,6 +499,18 @@ de:
     minutes_seconds: "%{m}min %{s}s"
     hours: "%{h}h"
     hours_minutes: "%{h}h %{m}min"
+  notifications:
+    bell_aria: "Benachrichtigungen"
+    title: "Benachrichtigungen"
+    empty: "Noch keine Benachrichtigungen"
+    mark_all_read: "Alle als gelesen markieren"
+    mark_read: "Als gelesen markieren"
+    time_ago: "vor"
+    events:
+      badge_earned: "Du hast ein neues Abzeichen verdient"
+      followed: "%{actor} folgt dir jetzt"
+      deck_commented: "%{actor} hat dein Deck kommentiert"
+      deck_reacted: "%{actor} hat auf dein Deck reagiert"
   activerecord:
     errors:
       models:

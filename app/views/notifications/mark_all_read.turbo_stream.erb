@@ -1,0 +1,6 @@
+<%= turbo_stream.update "notification-list" do %>
+  <%= render partial: "notification", collection: Current.user.notifications.recent,
+       as: :notification %>
+<% end %>
+<%= turbo_stream.update "notification-badge" do %>
+<% end %>
