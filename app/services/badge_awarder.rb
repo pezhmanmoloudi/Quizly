@@ -22,7 +22,8 @@ class BadgeAwarder
       next unless (badge = all_badges[key])
       next unless check.call(user)
 
-      user.user_badges.create!(badge: badge, earned_at: Time.current)
+      user_badge = user.user_badges.create!(badge: badge, earned_at: Time.current)
+      CreateNotification.call(recipient: user, event_type: "badge_earned", notifiable: user_badge)
       newly_earned << badge
     end
 
