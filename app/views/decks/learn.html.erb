@@ -16,15 +16,17 @@
     </div>
 
     <div class="study-island__stats">
-      <div class="match-stat match-stat--timer">
-        <div class="match-stat__badge">
-          <svg class="match-stat__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" width="14" height="14" aria-hidden="true">
-            <path fill-rule="evenodd" d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm.75-13a.75.75 0 0 0-1.5 0v5c0 .414.336.75.75.75h4a.75.75 0 0 0 0-1.5h-3.25V5Z" clip-rule="evenodd"/>
-          </svg>
-          <span class="match-stat__value" data-learn-mode-target="timer">00:00</span>
+      <% if @learn_session.present? %>
+        <div class="match-stat match-stat--timer">
+          <div class="match-stat__badge">
+            <svg class="match-stat__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" width="14" height="14" aria-hidden="true">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm.75-13a.75.75 0 0 0-1.5 0v5c0 .414.336.75.75.75h4a.75.75 0 0 0 0-1.5h-3.25V5Z" clip-rule="evenodd"/>
+            </svg>
+            <span class="match-stat__value" data-learn-mode-target="timer">00:00</span>
+          </div>
+          <span class="match-stat__label"><%= t("study_modes.time") %></span>
         </div>
-        <span class="match-stat__label"><%= t("study_modes.time") %></span>
-      </div>
+      <% end %>
 
       <% if @learn_session.present? %>
         <div class="match-stat match-stat--pairs">
