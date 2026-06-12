@@ -75,6 +75,8 @@ fr:
     have_account: "Déjà un compte ?"
     sign_in_link: "Se connecter"
     created: "Bienvenue sur Quizly !"
+    errors:
+      rate_limited: "Réessayez plus tard."
   passwords:
     new:
       title: "Mot de passe oublié"
@@ -99,6 +101,8 @@ fr:
     reset: "Le mot de passe a été réinitialisé."
     mismatch: "Les mots de passe ne correspondent pas."
     invalid: "Le lien de réinitialisation est invalide ou a expiré."
+    errors:
+      rate_limited: "Réessayez plus tard."
   accounts:
     title: "Paramètres"
     personal_info: "Informations personnelles"

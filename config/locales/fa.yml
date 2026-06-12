@@ -75,6 +75,8 @@ fa:
     have_account: "قبلاً حساب داری؟"
     sign_in_link: "ورود"
     created: "به Quizly خوش آمدی!"
+    errors:
+      rate_limited: "بعداً دوباره امتحان کن."
   passwords:
     new:
       title: "فراموشی رمز عبور"
@@ -99,6 +101,8 @@ fa:
     reset: "رمز عبور بازنشانی شد."
     mismatch: "رمزهای عبور مطابقت ندارند."
     invalid: "لینک بازنشانی نامعتبر یا منقضی شده است."
+    errors:
+      rate_limited: "بعداً دوباره امتحان کن."
   accounts:
     title: "تنظیمات"
     personal_info: "اطلاعات شخصی"

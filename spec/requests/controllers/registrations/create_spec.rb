@@ -65,5 +65,31 @@ RSpec.describe "Registrations#create", type: :request do
         expect(response).to redirect_to(dashboard_path)
       end
     end
+
+    context "rate limiting" do
+      before { ActionController::Base.cache_store.clear }
+
+      it "allows requests up to the limit" do
+        10.times do
+          post signup_path, params: {
+            user: { email_address: "", password: "password123", password_confirmation: "password123" }
+          }
+          expect(response).not_to redirect_to(signup_url)
+        end
+      end
+
+      it "redirects with alert after exceeding the limit" do
+        10.times do
+          post signup_path, params: {
+            user: { email_address: "", password: "password123", password_confirmation: "password123" }
+          }
+        end
+        post signup_path, params: {
+          user: { email_address: "overflow@example.com", password: "password123", password_confirmation: "password123" }
+        }
+        expect(response).to redirect_to(signup_url)
+        expect(flash[:alert]).to eq(I18n.t("registrations.errors.rate_limited"))
+      end
+    end
   end
 end

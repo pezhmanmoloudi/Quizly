@@ -75,6 +75,8 @@ ru:
     have_account: "Уже есть аккаунт?"
     sign_in_link: "Войти"
     created: "Добро пожаловать в Quizly!"
+    errors:
+      rate_limited: "Попробуйте позже."
   passwords:
     new:
       title: "Забыли пароль"
@@ -99,6 +101,8 @@ ru:
     reset: "Пароль успешно изменён."
     mismatch: "Пароли не совпадают."
     invalid: "Ссылка для сброса пароля недействительна или устарела."
+    errors:
+      rate_limited: "Попробуйте позже."
   accounts:
     title: "Настройки"
     personal_info: "Личная информация"

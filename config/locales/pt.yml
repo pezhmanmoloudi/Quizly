@@ -75,6 +75,8 @@ pt:
     have_account: "Já tem uma conta?"
     sign_in_link: "Entrar"
     created: "Bem-vindo ao Quizly!"
+    errors:
+      rate_limited: "Tente novamente mais tarde."
   passwords:
     new:
       title: "Esqueci minha senha"
@@ -99,6 +101,8 @@ pt:
     reset: "Senha redefinida com sucesso."
     mismatch: "As senhas não coincidem."
     invalid: "O link de redefinição é inválido ou expirou."
+    errors:
+      rate_limited: "Tente novamente mais tarde."
   accounts:
     title: "Configurações"
     personal_info: "Informações pessoais"

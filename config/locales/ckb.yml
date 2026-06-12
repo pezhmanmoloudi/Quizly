@@ -75,6 +75,8 @@ ckb:
     have_account: "پێشتر هەژمارت هەیە؟"
     sign_in_link: "چوونەژوورەوە"
     created: "بەخێرهاتی بۆ Quizly!"
+    errors:
+      rate_limited: "دواتر دووبارە هەوڵبدەوە."
   passwords:
     new:
       title: "وشەی نهێنی بیرچووەتەوە"
@@ -99,6 +101,8 @@ ckb:
     reset: "وشەی نهێنی نوێکرایەوە."
     mismatch: "وشەی نهێنیەکان یەکسان نین."
     invalid: "بەستەری نوێکردنەوە نادروست یان کاتی بەسەرچووە."
+    errors:
+      rate_limited: "دواتر دووبارە هەوڵبدەوە."
   accounts:
     title: "ڕێکخستنەکان"
     personal_info: "زانیاری کەسی"

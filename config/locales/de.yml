@@ -75,6 +75,8 @@ de:
     have_account: "Bereits ein Konto?"
     sign_in_link: "Anmelden"
     created: "Willkommen bei Quizly!"
+    errors:
+      rate_limited: "Bitte später erneut versuchen."
   passwords:
     new:
       title: "Passwort vergessen"
@@ -99,6 +101,8 @@ de:
     reset: "Das Passwort wurde zurückgesetzt."
     mismatch: "Die Passwörter stimmen nicht überein."
     invalid: "Der Link zum Zurücksetzen ist ungültig oder abgelaufen."
+    errors:
+      rate_limited: "Bitte später erneut versuchen."
   accounts:
     title: "Einstellungen"
     personal_info: "Persönliche Informationen"

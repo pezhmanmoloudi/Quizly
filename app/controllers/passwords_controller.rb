@@ -2,6 +2,7 @@ class PasswordsController < ApplicationController
   layout "auth"
   allow_unauthenticated_access
   before_action :set_user_by_token, only: %i[ edit update ]
+  rate_limit to: 5, within: 10.minutes, only: :create, with: -> { redirect_to forgot_password_url, alert: I18n.t("passwords.errors.rate_limited") }
 
   def new
   end
