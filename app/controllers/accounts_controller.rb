@@ -72,8 +72,15 @@ class AccountsController < ApplicationController
 
   def destroy_avatar
     Current.user.avatar.purge
-    flash[:section] = "profile"
-    redirect_to account_path(anchor: "profile"), notice: t("accounts.avatar_removed")
+    respond_to do |format|
+      format.turbo_stream do
+        flash.now[:notice] = t("accounts.avatar_removed")
+      end
+      format.html do
+        flash[:section] = "profile"
+        redirect_to account_path(anchor: "profile"), notice: t("accounts.avatar_removed")
+      end
+    end
   end
 
   private
