@@ -141,6 +141,7 @@ en:
       email: "Email updated."
       password: "Password updated."
       language: "Language updated."
+      notifications: "Notification preferences saved."
     avatar_removed: "Profile photo removed."
     deleted: "Your account has been deleted."
     profile_photo_alt: "Profile photo"

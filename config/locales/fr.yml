@@ -141,6 +141,7 @@ fr:
       email: "E-mail mis à jour."
       password: "Mot de passe mis à jour."
       language: "Langue mise à jour."
+      notifications: "Préférences de notification enregistrées."
     avatar_removed: "Photo de profil supprimée."
     deleted: "Votre compte a été supprimé."
     profile_photo_alt: "Photo de profil"

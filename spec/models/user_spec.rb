@@ -19,6 +19,30 @@ RSpec.describe User, type: :model do
       expect(assoc.macro).to eq(:has_many)
       expect(assoc.options[:dependent]).to eq(:destroy)
     end
+
+    it "has one notification_preference with dependent destroy" do
+      assoc = described_class.reflect_on_association(:notification_preference)
+      expect(assoc.macro).to eq(:has_one)
+      expect(assoc.options[:dependent]).to eq(:destroy)
+    end
+  end
+
+  describe "notification_preference auto-creation" do
+    it "creates a notification_preference after user creation" do
+      user = create(:user)
+      expect(user.notification_preference).to be_present
+      expect(user.notification_preference.email_streaks_badges).to be(true)
+      expect(user.notification_preference.email_study_reminders).to be(true)
+      expect(user.notification_preference.reminder_time).to eq("08:00")
+      expect(user.notification_preference.time_zone).to eq("UTC")
+    end
+
+    it "destroys notification_preference when user is destroyed" do
+      user = create(:user)
+      pref_id = user.notification_preference.id
+      user.destroy
+      expect(NotificationPreference.find_by(id: pref_id)).to be_nil
+    end
   end
 
   describe "validations" do

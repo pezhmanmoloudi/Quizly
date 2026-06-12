@@ -141,6 +141,7 @@ ru:
       email: "Email обновлён."
       password: "Пароль обновлён."
       language: "Язык обновлён."
+      notifications: "Настройки уведомлений сохранены."
     avatar_removed: "Фото профиля удалено."
     deleted: "Ваш аккаунт удалён."
     profile_photo_alt: "Фото профиля"

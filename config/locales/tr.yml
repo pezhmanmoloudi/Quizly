@@ -141,6 +141,7 @@ tr:
       email: "E-posta güncellendi."
       password: "Şifre güncellendi."
       language: "Dil güncellendi."
+      notifications: "Bildirim tercihleri kaydedildi."
     avatar_removed: "Profil fotoğrafı kaldırıldı."
     deleted: "Hesabın silindi."
     profile_photo_alt: "Profil fotoğrafı"

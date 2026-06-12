@@ -141,6 +141,7 @@ es:
       email: "Correo actualizado."
       password: "Contraseña actualizada."
       language: "Idioma actualizado."
+      notifications: "Preferencias de notificación guardadas."
     avatar_removed: "Foto de perfil eliminada."
     deleted: "Tu cuenta ha sido eliminada."
     profile_photo_alt: "Foto de perfil"

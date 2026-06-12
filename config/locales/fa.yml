@@ -141,6 +141,7 @@ fa:
       email: "ایمیل به‌روزرسانی شد."
       password: "رمز عبور به‌روزرسانی شد."
       language: "زبان به‌روزرسانی شد."
+      notifications: "تنظیمات اعلان‌ها ذخیره شد."
     avatar_removed: "تصویر پروفایل حذف شد."
     deleted: "حسابت حذف شد."
     profile_photo_alt: "تصویر پروفایل"

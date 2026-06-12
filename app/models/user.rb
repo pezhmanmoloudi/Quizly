@@ -14,6 +14,9 @@ class User < ApplicationRecord
   has_many :test_sessions, dependent: :destroy
   has_many :user_badges, dependent: :destroy
   has_many :badges, through: :user_badges
+  has_one :notification_preference, dependent: :destroy
+
+  after_create :create_notification_preference!
 
   normalizes :email_address, with: ->(e) { e.strip.downcase }
   normalizes :display_name,  with: ->(n) { n.strip.presence }
