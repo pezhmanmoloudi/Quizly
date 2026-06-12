@@ -365,6 +365,12 @@ fr:
       completed: "Tout associé !"
       play_again: "Rejouer"
       guest_cta: "Connectez-vous pour sauvegarder vos scores."
+      subtitle: "Associez les mots avec leurs significations"
+      time: "Temps"
+      pairs_left: "Paires restantes"
+      streak: "Série"
+      progress_label: "%{pct}% de progression"
+      matched_counter: "Associé : %{matched} / %{total}"
   explore:
     title: "Explorer"
     subtitle: "Découvrez et copiez des paquets publics partagés par la communauté."

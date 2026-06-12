@@ -13,7 +13,7 @@ RSpec.describe "Decks#match", type: :request do
         expect(response).to have_http_status(:ok)
       end
 
-      it "shows up to 8 cards" do
+      it "shows match tiles for all deck cards" do
         10.times { |i| create(:flashcard, deck: deck, front_content: "Term #{i}") }
         get match_deck_path(deck)
         expect(response.body).to include("match-tile")
@@ -24,9 +24,9 @@ RSpec.describe "Decks#match", type: :request do
         expect(response.body).to include("No cards yet")
       end
 
-      it "renders inside the study-island container" do
+      it "renders inside the match-island container" do
         get match_deck_path(deck)
-        expect(response.body).to include("study-island")
+        expect(response.body).to include("match-island")
       end
     end
 

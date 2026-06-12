@@ -365,6 +365,12 @@ ar:
       completed: "تمت المطابقة!"
       play_again: "العب مجدداً"
       guest_cta: "سجّل دخولك لحفظ نتائجك وتتبّع تقدّمك."
+      subtitle: "طابق الكلمات مع معانيها"
+      time: "الوقت"
+      pairs_left: "الأزواج المتبقية"
+      streak: "التسلسل"
+      progress_label: "%{pct}% تقدّم"
+      matched_counter: "مطابَق: %{matched} / %{total}"
   explore:
     title: "استكشاف"
     subtitle: "اكتشف المجموعات العامة المشتركة من المجتمع وانسخها."

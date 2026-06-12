@@ -1,13 +1,22 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["complete"]
-  static values = { total: Number }
+  static targets = ["complete", "timer", "pairsLeft", "streak",
+                    "progressFill", "progressLabel", "matchedCounter"]
+  static values  = { total: Number }
 
   connect() {
-    this.selected = null
-    this.matched = 0
-    this.isProcessing = false
+    this.selected      = null
+    this.matched       = 0
+    this.streak        = 0
+    this.seconds       = 0
+    this.isProcessing  = false
+    this.timerInterval = setInterval(() => this.#tickTimer(), 1000)
+    this.#updateStats()
+  }
+
+  disconnect() {
+    clearInterval(this.timerInterval)
   }
 
   select(event) {
@@ -35,9 +44,12 @@ export default class extends Controller {
       this.selected.classList.add("is-matched")
       tile.classList.add("is-matched")
       this.selected = null
-      this.matched += 2
+      this.matched += 1
+      this.streak  += 1
+      this.#updateStats()
 
-      if (this.matched >= this.totalValue * 2) {
+      if (this.matched >= this.totalValue) {
+        clearInterval(this.timerInterval)
         this.completeTarget.hidden = false
       }
     } else {
@@ -45,14 +57,46 @@ export default class extends Controller {
       prev.classList.remove("is-selected")
       prev.classList.add("is-wrong")
       tile.classList.add("is-wrong")
-      this.selected = null
+      this.selected     = null
+      this.streak       = 0
       this.isProcessing = true
+      this.#updateStats()
 
       setTimeout(() => {
         prev.classList.remove("is-wrong")
         tile.classList.remove("is-wrong")
         this.isProcessing = false
       }, 700)
+    }
+  }
+
+  #tickTimer() {
+    this.seconds += 1
+    if (!this.hasTimerTarget) return
+    const m = String(Math.floor(this.seconds / 60)).padStart(2, "0")
+    const s = String(this.seconds % 60).padStart(2, "0")
+    this.timerTarget.textContent = `${m}:${s}`
+  }
+
+  #updateStats() {
+    const pairsLeft = this.totalValue - this.matched
+    const pct = this.totalValue > 0
+      ? Math.round((this.matched / this.totalValue) * 100) : 0
+
+    if (this.hasPairsLeftTarget) this.pairsLeftTarget.textContent = pairsLeft
+    if (this.hasStreakTarget)    this.streakTarget.textContent    = this.streak
+
+    if (this.hasProgressFillTarget)
+      this.progressFillTarget.style.width = `${pct}%`
+
+    if (this.hasProgressLabelTarget) {
+      const tmpl = this.progressLabelTarget.dataset.template || ""
+      this.progressLabelTarget.textContent = tmpl.replace("__PCT__", pct)
+    }
+
+    if (this.hasMatchedCounterTarget) {
+      const tmpl = this.matchedCounterTarget.dataset.template || ""
+      this.matchedCounterTarget.textContent = tmpl.replace("__MATCHED__", this.matched)
     }
   }
 }

@@ -108,7 +108,7 @@ class DecksController < ApplicationController
   end
 
   def match
-    @cards = @deck.flashcards.limit(8).to_a.shuffle
+    @cards = @deck.flashcards.limit(16).to_a.shuffle
   end
 
   def learn

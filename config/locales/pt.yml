@@ -365,6 +365,12 @@ pt:
       completed: "Tudo combinado!"
       play_again: "Jogar novamente"
       guest_cta: "Entre para salvar suas pontuações e acompanhar seu progresso."
+      subtitle: "Combine as palavras com seus significados"
+      time: "Tempo"
+      pairs_left: "Pares restantes"
+      streak: "Sequência"
+      progress_label: "%{pct}% de progresso"
+      matched_counter: "Combinado: %{matched} / %{total}"
   explore:
     title: "Explorar"
     subtitle: "Descubra e copie baralhos públicos compartilhados pela comunidade."

@@ -365,6 +365,12 @@ es:
       completed: "¡Todo emparejado!"
       play_again: "Jugar de nuevo"
       guest_cta: "Inicia sesión para guardar tus puntuaciones y seguir tu progreso."
+      subtitle: "Empareja las palabras con sus significados"
+      time: "Tiempo"
+      pairs_left: "Pares restantes"
+      streak: "Racha"
+      progress_label: "%{pct}% de progreso"
+      matched_counter: "Emparejado: %{matched} / %{total}"
   explore:
     title: "Explorar"
     subtitle: "Descubre y copia mazos públicos compartidos por la comunidad."

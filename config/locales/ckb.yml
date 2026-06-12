@@ -365,6 +365,12 @@ ckb:
       completed: "هەموو دۆشاندرا!"
       play_again: "دووبارە یاریبکە"
       guest_cta: "بچوو ژوورەوە بۆ پاشەکەوتکردنی نمرەکانت."
+      subtitle: "وشەکان لەگەڵ مانایەکانیاندا دۆشان بکە"
+      time: "کات"
+      pairs_left: "جووتەی ماوە"
+      streak: "زنجیرە"
+      progress_label: "%{pct}% پێشکەوتن"
+      matched_counter: "دۆشراو: %{matched} / %{total}"
   explore:
     title: "گەڕان"
     subtitle: "دەستەی گشتیی بەشکراوی کۆمەڵگا دۆزەرەوە و کۆپیبکە."

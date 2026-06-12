@@ -1,4 +1,178 @@
-/* Match game page */
+/* ── Match Island (wide container for the redesigned match game) ── */
+.match-island {
+  max-width: 1100px;
+  margin: 2rem auto;
+  background: var(--color-surface);
+  border-radius: 20px;
+  border: 1px solid var(--color-border-light);
+  box-shadow: var(--shadow-xl);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.match-island__header {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem 1.75rem;
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.match-island__exit {
+  color: var(--color-muted);
+  font-size: 0.85rem;
+  text-decoration: none;
+  transition: color var(--transition-base);
+  white-space: nowrap;
+}
+.match-island__exit:hover { color: var(--color-text); }
+
+.match-island__title-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.25rem;
+}
+.match-island__title  { font-size: 1.1rem; font-weight: 700; margin: 0; }
+.match-island__subtitle { font-size: 0.8rem; color: var(--color-muted); margin: 0; }
+
+.match-island__stats {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+  justify-content: flex-end;
+}
+
+.match-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.match-stat__badge {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.3rem 0.6rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-bg);
+  min-width: 3.5rem;
+  justify-content: center;
+}
+
+.match-stat__value {
+  font-size: 0.9rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
+.match-stat__label {
+  font-size: 0.65rem;
+  color: var(--color-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.match-stat__icon { flex-shrink: 0; }
+
+.match-stat--timer  .match-stat__icon,
+.match-stat--timer  .match-stat__value  { color: var(--color-secondary); }
+.match-stat--pairs  .match-stat__icon,
+.match-stat--pairs  .match-stat__value  { color: #2563eb; }
+.match-stat--streak .match-stat__icon,
+.match-stat--streak .match-stat__value  { color: #ea580c; }
+
+.match-island__progress-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1.75rem;
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.match-island__progress {
+  flex: 1;
+  height: 8px;
+  background: var(--color-border-light);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.match-island__progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-primary), #818cf8);
+  border-radius: 999px;
+  transition: width 300ms ease;
+  width: 0%;
+}
+
+.match-island__progress-label {
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-muted);
+  white-space: nowrap;
+  min-width: 6rem;
+  text-align: end;
+}
+
+.match-island__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 0.75rem;
+  padding: 1.5rem 1.75rem;
+}
+
+.match-island__grid .match-tile {
+  background: color-mix(in srgb, var(--color-primary) 8%, var(--color-surface));
+  border-color: transparent;
+  min-height: 90px;
+}
+
+.match-island__grid .match-tile:hover {
+  border-color: var(--color-primary);
+  background: color-mix(in srgb, var(--color-primary) 14%, var(--color-surface));
+}
+
+.match-island__bottom {
+  display: flex;
+  justify-content: center;
+  padding: 0.75rem 1.75rem;
+  border-top: 1px solid var(--color-border-light);
+}
+
+.match-island__matched-counter {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+}
+
+.match-island__check-icon { color: var(--color-success); flex-shrink: 0; }
+
+.match-island .match-game__complete { margin: 0 1.75rem 1.75rem; }
+
+@media (max-width: 600px) {
+  .match-island { margin: 0.5rem; border-radius: 16px; }
+  .match-island__header {
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto auto;
+  }
+  .match-island__stats { grid-column: 1 / -1; justify-content: flex-start; }
+  .match-island__title-block { align-items: flex-start; text-align: start; }
+  .match-island__grid { grid-template-columns: repeat(2, 1fr); padding: 1rem; }
+  .match-island__progress-wrap,
+  .match-island__bottom { padding: 0.5rem 1rem; }
+}
+
+/* Match game page (legacy — kept for backwards compatibility) */
 .match-game {
   max-width: 700px;
   margin: 0 auto;
