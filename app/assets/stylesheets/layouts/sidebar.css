@@ -447,3 +447,28 @@
   border-color: var(--color-primary);
   color: var(--color-primary);
 }
+
+/* Collapsible settings card parts (used by Change Password <details>) */
+.settings-card__summary {
+  padding: var(--space-4) var(--space-6);
+  font-size: var(--text-sm);
+  font-weight: var(--font-semibold);
+  color: var(--color-muted);
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  user-select: none;
+}
+
+.settings-card__summary::-webkit-details-marker { display: none; }
+
+.settings-card__body {
+  padding: 0 var(--space-6) var(--space-6);
+  border-top: 1px solid var(--color-border-light);
+}
+
+.settings-card__footer {
+  padding: var(--space-3) var(--space-4);
+}
