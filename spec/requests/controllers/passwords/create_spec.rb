@@ -10,6 +10,12 @@ RSpec.describe "Passwords#create", type: :request do
         expect(response).to redirect_to(login_path)
         expect(flash[:notice]).to eq(I18n.t("passwords.sent"))
       end
+
+      it "enqueues a password reset email" do
+        expect {
+          post forgot_password_path, params: { email_address: user.email_address }
+        }.to have_enqueued_mail(PasswordsMailer, :reset).with(user)
+      end
     end
 
     context "when email does not exist (enumeration safety)" do
@@ -17,6 +23,12 @@ RSpec.describe "Passwords#create", type: :request do
         post forgot_password_path, params: { email_address: "nobody@example.com" }
         expect(response).to redirect_to(login_path)
         expect(flash[:notice]).to eq(I18n.t("passwords.sent"))
+      end
+
+      it "does not enqueue any email" do
+        expect {
+          post forgot_password_path, params: { email_address: "nobody@example.com" }
+        }.not_to have_enqueued_mail
       end
     end
 
