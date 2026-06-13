@@ -175,7 +175,8 @@ de:
     show:
       edit: "Deck bearbeiten"
       delete: "Deck löschen"
-      fork: "In meine Bibliothek kopieren"
+      fork: "Deck kopieren"
+      duplicate: "Deck duplizieren"
       delete_confirm: "Möchtest du dieses Deck wirklich löschen?"
       delete_modal_title: "Dieses Deck löschen?"
       delete_modal_card_count:
@@ -192,6 +193,7 @@ de:
       created: "Erstellt"
       forked_from: "Kopiert von"
       forked_from_private: "ein privates Deck"
+      forked_from_by: "von @%{username}"
       cards_section: "Karten"
       add_card: "Karte hinzufügen"
       import: "Importieren"
@@ -265,6 +267,8 @@ de:
     deleted: "Deck gelöscht."
     cards_saved: "Karten gespeichert."
     forked: "Deck zu deiner Bibliothek hinzugefügt."
+    fork_modal:
+      submitting: "Kopieren..."
     share_token_rotated: "Teilungslink wurde neu generiert."
     not_available: "Deck nicht verfügbar."
     unlock:

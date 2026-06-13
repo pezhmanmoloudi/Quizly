@@ -175,7 +175,8 @@ pt:
     show:
       edit: "Editar baralho"
       delete: "Excluir baralho"
-      fork: "Copiar para minha biblioteca"
+      fork: "Copiar baralho"
+      duplicate: "Duplicar baralho"
       delete_confirm: "Tem certeza de que deseja remover este baralho?"
       delete_modal_title: "Excluir este baralho?"
       delete_modal_card_count:
@@ -192,6 +193,7 @@ pt:
       created: "Criado"
       forked_from: "Copiado de"
       forked_from_private: "um baralho privado"
+      forked_from_by: "por @%{username}"
       cards_section: "Cartões"
       add_card: "Adicionar cartão"
       import: "Importar"
@@ -265,6 +267,8 @@ pt:
     deleted: "Baralho excluído."
     cards_saved: "Cartões salvos."
     forked: "Baralho adicionado à sua biblioteca."
+    fork_modal:
+      submitting: "Copiando..."
     share_token_rotated: "Link de compartilhamento regenerado."
     not_available: "Baralho não disponível."
     unlock:

@@ -175,7 +175,8 @@ tr:
     show:
       edit: "Desteyi düzenle"
       delete: "Desteyi sil"
-      fork: "Kütüphaneme ekle"
+      fork: "Desteyi kopyala"
+      duplicate: "Desteyi çoğalt"
       delete_confirm: "Bu desteyi kaldırmak istediğinden emin misin?"
       delete_modal_title: "Bu desteyi sil?"
       delete_modal_card_count:
@@ -192,6 +193,7 @@ tr:
       created: "Oluşturulma"
       forked_from: "Kopyalandı"
       forked_from_private: "özel bir deste"
+      forked_from_by: "@%{username} tarafından"
       cards_section: "Kartlar"
       add_card: "Kart ekle"
       import: "İçe aktar"
@@ -265,6 +267,8 @@ tr:
     deleted: "Deste silindi."
     cards_saved: "Kartlar kaydedildi."
     forked: "Deste kütüphanene eklendi."
+    fork_modal:
+      submitting: "Kopyalanıyor..."
     share_token_rotated: "Paylaşım bağlantısı yenilendi."
     not_available: "Deste mevcut değil."
     unlock:

@@ -17,6 +17,9 @@ class Deck < ApplicationRecord
 
   VISIBILITY_VALUES      = %w[everyone unlisted password_protected private].freeze
   EDIT_PERMISSION_VALUES = %w[owner_only password_users].freeze
+  FORKABLE_VISIBILITIES  = %w[private unlisted everyone].freeze
+
+  after_destroy :decrement_source_forks_count
 
   scope :visible_in_explore,  -> { where(visibility: "everyone") }
   scope :searchable,          -> { visible_in_explore }
@@ -70,6 +73,11 @@ class Deck < ApplicationRecord
     can_edit?(user, session_auth: session_auth)
   end
 
+  def can_fork?(user)
+    return false if private? && user&.id != user_id
+    true
+  end
+
   # ── Tags ──────────────────────────────────────────────────────────────────
 
   def tag_list
@@ -85,6 +93,10 @@ class Deck < ApplicationRecord
 
   def generate_share_token
     self.share_token ||= SecureRandom.urlsafe_base64(32)
+  end
+
+  def decrement_source_forks_count
+    Deck.where(id: forked_from_id).update_counters(forks_count: -1) if forked_from_id
   end
 
   def edit_permission_compatible_with_visibility
