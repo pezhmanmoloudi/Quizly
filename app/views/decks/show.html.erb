@@ -17,7 +17,7 @@
                   data-action="click->modal#open">
             <%= render "shared/icons/trash" %> <%= t("decks.show.delete") %>
           </button>
-        <% elsif authenticated? && @deck.everyone? %>
+        <% elsif authenticated? && (@deck.everyone? || @deck.unlisted?) %>
           <%= button_to fork_deck_path(@deck), method: :post, class: "btn btn--primary btn-with-icon" do %>
             <%= render "shared/icons/fork" %> <%= t("decks.show.fork") %>
           <% end %>
@@ -28,6 +28,10 @@
       <% if @deck.everyone? %>
         <span class="visibility-badge visibility-badge--public">
           <%= render "shared/icons/globe", css_class: "icon--sm" %> <%= t("decks.show.everyone_badge") %>
+        </span>
+      <% elsif @deck.unlisted? %>
+        <span class="visibility-badge visibility-badge--unlisted">
+          <%= render "shared/icons/link", css_class: "icon--sm" %> <%= t("decks.show.unlisted_badge") %>
         </span>
       <% elsif @deck.password_protected? %>
         <span class="visibility-badge visibility-badge--password">
@@ -44,12 +48,35 @@
       <span class="deck-detail-header__date"><%= t("decks.show.created") %> <%= @deck.created_at.strftime("%b %-d, %Y") %></span>
       <% if @deck.forked_from.present? %>
         <span class="deck-detail-header__forked-from">
-          <%= t("decks.show.forked_from") %> <%= link_to @deck.forked_from.name, deck_path(@deck.forked_from) %>
+          <% if @deck.forked_from.everyone? %>
+            <%= t("decks.show.forked_from") %> <%= link_to @deck.forked_from.name, deck_path(@deck.forked_from) %>
+          <% else %>
+            <%= t("decks.show.forked_from") %> <%= t("decks.show.forked_from_private") %>
+          <% end %>
         </span>
       <% end %>
     </div>
     <% if @deck.description.present? %>
       <p class="deck-detail-header__description"><%= @deck.description %></p>
+    <% end %>
+
+    <% if @deck.unlisted? && @deck.can_edit_settings?(Current.user) %>
+      <div class="share-link-panel" data-controller="clip"
+           data-clip-copied-value="<%= t("decks.form.copy_link_copied") %>">
+        <label class="share-link-panel__label"><%= t("decks.show.share_link_label") %></label>
+        <div class="share-link-panel__row">
+          <input class="share-link-panel__input" type="text"
+                 value="<%= shared_deck_url(@deck.share_token) %>"
+                 readonly aria-label="<%= t("decks.show.share_link_label") %>"
+                 data-clip-target="source">
+          <button type="button"
+                  class="btn btn--outline btn--sm btn-with-icon share-link-panel__copy-btn"
+                  data-action="click->clip#copy">
+            <%= render "shared/icons/clipboard_check", css_class: "icon--sm" %>
+            <span data-clip-target="label"><%= t("decks.form.copy_link") %></span>
+          </button>
+        </div>
+      </div>
     <% end %>
 
     <% if can_delete %>

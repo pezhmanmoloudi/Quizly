@@ -184,11 +184,14 @@ ar:
       delete_modal_warning: "ستُحذف جميع البطاقات التعليمية نهائياً. لا يمكن التراجع عن هذا الإجراء."
       delete_modal_confirm: "حذف المجموعة"
       everyone_badge: "عامة"
+      unlisted_badge: "غير مدرج"
+      share_link_label: "رابط المشاركة"
       password_protected_badge: "كلمة مرور"
       public_badge: "عامة"
       private_badge: "خاصة"
       created: "تاريخ الإنشاء"
       forked_from: "منسوخة من"
+      forked_from_private: "مجموعة خاصة"
       cards_section: "البطاقات"
       add_card: "إضافة بطاقة"
       import: "استيراد"
@@ -218,6 +221,16 @@ ar:
       visibility_label: "الظهور"
       visibility_section_label: "من يستطيع مشاهدة هذه المجموعة؟"
       visibility_everyone: "الجميع"
+      visibility_unlisted: "غير مدرج"
+      visibility_unlisted_hint: "فقط الأشخاص الذين لديهم الرابط يمكنهم المشاهدة."
+      unlisted_share_hint: "أي شخص لديه هذا الرابط يمكنه عرض هذه المجموعة ودراستها."
+      copy_link: "نسخ الرابط"
+      copy_link_copied: "تم النسخ!"
+      section_about: "حول"
+      section_access_control: "التحكم في الوصول"
+      share_link_will_be_invalidated: "تغيير مستوى الرؤية سيُبطل رابط المشاركة الحالي."
+      regenerate_link: "إعادة إنشاء الرابط"
+      regenerate_link_confirm: "سيُبطل هذا الرابط الحالي للمشاركة. سيفقد أي شخص لديه الرابط القديم إمكانية الوصول. هل تريد المتابعة؟"
       visibility_password_protected: "محمية بكلمة مرور"
       visibility_private: "أنا فقط"
       visibility_public: "عامة"
@@ -252,6 +265,7 @@ ar:
     deleted: "تم حذف المجموعة."
     cards_saved: "تم حفظ البطاقات."
     forked: "تمّت إضافة المجموعة إلى مكتبتك."
+    share_token_rotated: "تم تجديد رابط المشاركة."
     not_available: "المجموعة غير متاحة."
     unlock:
       title: "كلمة المرور مطلوبة"
@@ -535,6 +549,7 @@ ar:
           attributes:
             edit_permission:
               invalid_for_private_deck: "لا يمكن تعديل المجموعات الخاصة إلا من قِبَل المالك."
+              invalid_for_unlisted_deck: "لا يمكن تعديل المجموعات غير المدرجة إلا من قِبَل المالك."
             access_password:
               too_short:
                 one: "قصيرة جدًا (الحد الأدنى %{count} حرف)"

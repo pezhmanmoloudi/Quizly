@@ -184,11 +184,14 @@ ru:
       delete_modal_warning: "Все карточки будут удалены безвозвратно. Это действие нельзя отменить."
       delete_modal_confirm: "Удалить колоду"
       everyone_badge: "Публичная"
+      unlisted_badge: "Скрытая"
+      share_link_label: "Ссылка для доступа"
       password_protected_badge: "Пароль"
       public_badge: "Публичная"
       private_badge: "Приватная"
       created: "Создана"
       forked_from: "Скопирована из"
+      forked_from_private: "приватной колоды"
       cards_section: "Карточки"
       add_card: "Добавить карточку"
       import: "Импорт"
@@ -218,6 +221,16 @@ ru:
       visibility_label: "Видимость"
       visibility_section_label: "Кто может видеть эту колоду?"
       visibility_everyone: "Все"
+      visibility_unlisted: "Скрытая"
+      visibility_unlisted_hint: "Только люди со ссылкой могут просматривать."
+      unlisted_share_hint: "Любой с этой ссылкой может просматривать и изучать эту колоду."
+      copy_link: "Копировать ссылку"
+      copy_link_copied: "Скопировано!"
+      section_about: "Информация"
+      section_access_control: "Управление доступом"
+      share_link_will_be_invalidated: "Изменение видимости сделает текущую ссылку для доступа недействительной."
+      regenerate_link: "Обновить ссылку"
+      regenerate_link_confirm: "Текущая ссылка для доступа станет недействительной. Все, кто имеет старую ссылку, потеряют доступ. Продолжить?"
       visibility_password_protected: "Защищено паролем"
       visibility_private: "Только я"
       visibility_public: "Публичная"
@@ -252,6 +265,7 @@ ru:
     deleted: "Колода удалена."
     cards_saved: "Карточки сохранены."
     forked: "Колода добавлена в вашу библиотеку."
+    share_token_rotated: "Ссылка для доступа обновлена."
     not_available: "Колода недоступна."
     unlock:
       title: "Требуется пароль"
@@ -549,6 +563,7 @@ ru:
           attributes:
             edit_permission:
               invalid_for_private_deck: "Приватные колоды могут редактировать только их владельцы."
+              invalid_for_unlisted_deck: "Скрытые колоды могут редактировать только их владельцы."
             access_password:
               too_short:
                 one: "слишком короткий (минимум %{count} символ)"

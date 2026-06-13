@@ -184,11 +184,14 @@ tr:
       delete_modal_warning: "Tüm flashcardlar kalıcı olarak silinecek. Bu işlem geri alınamaz."
       delete_modal_confirm: "Desteyi sil"
       everyone_badge: "Herkese açık"
+      unlisted_badge: "Listelenmemiş"
+      share_link_label: "Paylaşım bağlantısı"
       password_protected_badge: "Şifre"
       public_badge: "Herkese açık"
       private_badge: "Özel"
       created: "Oluşturulma"
       forked_from: "Kopyalandı"
+      forked_from_private: "özel bir deste"
       cards_section: "Kartlar"
       add_card: "Kart ekle"
       import: "İçe aktar"
@@ -218,6 +221,16 @@ tr:
       visibility_label: "Görünürlük"
       visibility_section_label: "Bu desteyi kim görebilir?"
       visibility_everyone: "Herkes"
+      visibility_unlisted: "Listelenmemiş"
+      visibility_unlisted_hint: "Yalnızca bağlantıya sahip kişiler görebilir."
+      unlisted_share_hint: "Bu bağlantıya sahip herkes bu desteyi görüntüleyebilir ve çalışabilir."
+      copy_link: "Bağlantıyı kopyala"
+      copy_link_copied: "Kopyalandı!"
+      section_about: "Hakkında"
+      section_access_control: "Erişim kontrolü"
+      share_link_will_be_invalidated: "Görünürlüğü değiştirmek mevcut paylaşım bağlantınızı geçersiz kılacak."
+      regenerate_link: "Bağlantıyı yenile"
+      regenerate_link_confirm: "Bu, mevcut paylaşım bağlantısını geçersiz kılacak. Eski bağlantıya sahip herkes erişimini kaybedecek. Devam edilsin mi?"
       visibility_password_protected: "Şifre korumalı"
       visibility_private: "Sadece ben"
       visibility_public: "Herkese açık"
@@ -252,6 +265,7 @@ tr:
     deleted: "Deste silindi."
     cards_saved: "Kartlar kaydedildi."
     forked: "Deste kütüphanene eklendi."
+    share_token_rotated: "Paylaşım bağlantısı yenilendi."
     not_available: "Deste mevcut değil."
     unlock:
       title: "Şifre gerekli"
@@ -535,6 +549,7 @@ tr:
           attributes:
             edit_permission:
               invalid_for_private_deck: "Özel desteler yalnızca sahibi tarafından düzenlenebilir."
+              invalid_for_unlisted_deck: "Listelenmemiş desteler yalnızca sahibi tarafından düzenlenebilir."
             access_password:
               too_short:
                 one: "çok kısa (minimum %{count} karakter)"

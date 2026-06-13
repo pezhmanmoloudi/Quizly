@@ -16,6 +16,16 @@ RSpec.describe "Decks#new", type: :request do
         get new_deck_path
         expect(response.body).to include("New Deck")
       end
+
+      it "pre-generates a share_token so the form can display the share URL" do
+        get new_deck_path
+        expect(response.body).to include("share_token")
+      end
+
+      it "renders the unlisted radio button" do
+        get new_deck_path
+        expect(response.body).to include('value="unlisted"')
+      end
     end
 
     context "when not authenticated" do

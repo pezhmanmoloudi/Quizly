@@ -184,11 +184,14 @@ ckb:
       delete_modal_warning: "هەموو فلاشکارتەکان بە تەواوی دەسڕێنەوە. ئەم کارە ناتوانرێت گەڕاندرێتەوە."
       delete_modal_confirm: "دەستە بسڕەوە"
       everyone_badge: "گشتی"
+      unlisted_badge: "نه‌سیاوکراو"
+      share_link_label: "لینکی هاوبەشکردن"
       password_protected_badge: "پاسۆرد"
       public_badge: "گشتی"
       private_badge: "تایبەت"
       created: "دروستکرا"
       forked_from: "کۆپیکراوە لە"
+      forked_from_private: "دەستەیەکی تایبەت"
       cards_section: "کارتەکان"
       add_card: "زیادکردنی کارت"
       import: "هاوردەکردن"
@@ -218,6 +221,16 @@ ckb:
       visibility_label: "بینراوی"
       visibility_section_label: "کێ دەتوانێت ئەم دەستەیە ببینێت؟"
       visibility_everyone: "هەمووکەس"
+      visibility_unlisted: "نه‌سیاوکراو"
+      visibility_unlisted_hint: "تەنها کەسانێک کە لینکیانی هەیە دەتوانن ببینن."
+      unlisted_share_hint: "هەر کەسێک کە ئەم لینکەی هەیە دەتوانێت ئەم دەستەیە ببینێت و لێی بخوێنێتەوە."
+      copy_link: "لینک کۆپیبکە"
+      copy_link_copied: "کۆپیکرا!"
+      section_about: "دەربارە"
+      section_access_control: "چاودێری دەستپێگەیشتن"
+      share_link_will_be_invalidated: "گۆڕینی دیتنپذیری لینکی هاوبەشکردنی ئێستاکەت بەتاڵ دەکات."
+      regenerate_link: "لینک نوێبکەرەوە"
+      regenerate_link_confirm: "ئەمە لینکی هاوبەشکردنی ئێستاکەت بەتاڵ دەکات. هەر کەسێک لینکی کۆنی هەیە دەستپێگەیشتنی لەدەست دەدات. بەردەوام بیت؟"
       visibility_password_protected: "پاراستراوە بە پاسۆرد"
       visibility_private: "تەنها من"
       visibility_public: "گشتی"
@@ -252,6 +265,7 @@ ckb:
     deleted: "دەستە سڕایەوە."
     cards_saved: "کارتەکان پاشەکەوتکران."
     forked: "دەستە زیادکرا بۆ کتێبخانەکەت."
+    share_token_rotated: "لینکی هاوبەشکردن نوێکرایەوە."
     not_available: "دەستە بەردەست نییە."
     unlock:
       title: "پاسۆرد پێویستە"
@@ -535,6 +549,7 @@ ckb:
           attributes:
             edit_permission:
               invalid_for_private_deck: "دەستەی تایبەت تەنها دەکرێت لە لایەن خاوەنەکەوە دەستکاریبکرێت."
+              invalid_for_unlisted_deck: "دەستەی نه‌سیاوکراو تەنها دەکرێت لە لایەن خاوەنەکەوە دەستکاریبکرێت."
             access_password:
               too_short:
                 one: "زۆر کورتە (لانیکەم %{count} پیت)"

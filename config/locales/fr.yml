@@ -184,11 +184,14 @@ fr:
       delete_modal_warning: "Toutes les flashcards seront supprimées définitivement. Cette action est irréversible."
       delete_modal_confirm: "Supprimer le paquet"
       everyone_badge: "Public"
+      unlisted_badge: "Non répertorié"
+      share_link_label: "Lien de partage"
       password_protected_badge: "Mot de passe"
       public_badge: "Public"
       private_badge: "Privé"
       created: "Créé"
       forked_from: "Bifurqué de"
+      forked_from_private: "un paquet privé"
       cards_section: "Cartes"
       add_card: "Ajouter une carte"
       import: "Importer"
@@ -218,6 +221,16 @@ fr:
       visibility_label: "Visibilité"
       visibility_section_label: "Qui peut voir ce paquet ?"
       visibility_everyone: "Tout le monde"
+      visibility_unlisted: "Non répertorié"
+      visibility_unlisted_hint: "Seules les personnes ayant le lien peuvent voir."
+      unlisted_share_hint: "Toute personne ayant ce lien peut voir et étudier ce paquet."
+      copy_link: "Copier le lien"
+      copy_link_copied: "Copié !"
+      section_about: "À propos"
+      section_access_control: "Contrôle d'accès"
+      share_link_will_be_invalidated: "Modifier la visibilité invalidera votre lien de partage actuel."
+      regenerate_link: "Régénérer le lien"
+      regenerate_link_confirm: "Cela invalidera votre lien de partage actuel. Toute personne disposant de l'ancien lien perdra l'accès. Continuer ?"
       visibility_password_protected: "Protégé par mot de passe"
       visibility_private: "Moi seulement"
       visibility_public: "Public"
@@ -252,6 +265,7 @@ fr:
     deleted: "Paquet supprimé."
     cards_saved: "Cartes enregistrées."
     forked: "Paquet ajouté à votre bibliothèque."
+    share_token_rotated: "Lien de partage régénéré."
     not_available: "Paquet non disponible."
     unlock:
       title: "Mot de passe requis"
@@ -535,6 +549,7 @@ fr:
           attributes:
             edit_permission:
               invalid_for_private_deck: "Les paquets privés ne peuvent être modifiés que par le propriétaire."
+              invalid_for_unlisted_deck: "Les paquets non répertoriés ne peuvent être modifiés que par le propriétaire."
             access_password:
               too_short:
                 one: "est trop court (minimum %{count} caractère)"

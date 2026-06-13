@@ -25,6 +25,12 @@ RSpec.describe "Decks#update", type: :request do
         expect(deck.reload.name).to eq(original_name)
         expect(response).to have_http_status(:unprocessable_content)
       end
+
+      it "does not change share_token even when submitted in params" do
+        original_token = deck.share_token
+        patch deck_path(deck), params: { deck: { name: deck.name, share_token: "crafted-token" } }
+        expect(deck.reload.share_token).to eq(original_token)
+      end
     end
 
     context "when authenticated as another user" do
