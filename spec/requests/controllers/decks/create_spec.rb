@@ -20,6 +20,22 @@ RSpec.describe "Decks#create", type: :request do
         expect(Deck.last.user).to eq(user)
       end
 
+      it "saves a pre-generated share_token submitted from the form" do
+        token = SecureRandom.urlsafe_base64(32)
+        post decks_path, params: { deck: { name: "My Deck", visibility: "unlisted", share_token: token } }
+        expect(Deck.last.share_token).to eq(token)
+      end
+
+      it "generates a share_token when none is submitted" do
+        post decks_path, params: { deck: { name: "My Deck", visibility: "unlisted" } }
+        expect(Deck.last.share_token).to be_present
+      end
+
+      it "creates an unlisted deck that is excluded from explore" do
+        post decks_path, params: { deck: { name: "My Secret Deck", visibility: "unlisted" } }
+        expect(Deck.visible_in_explore).not_to include(Deck.last)
+      end
+
       it "does not create a deck with a blank name" do
         expect {
           post decks_path, params: { deck: { name: "" } }

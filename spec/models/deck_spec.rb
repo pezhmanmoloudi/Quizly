@@ -1,6 +1,54 @@
 require "rails_helper"
 
 RSpec.describe Deck, type: :model do
+  describe "share_token" do
+    it "is generated on create" do
+      deck = create(:deck)
+      expect(deck.share_token).to be_present
+    end
+
+    it "is a URL-safe random string" do
+      deck = create(:deck)
+      expect(deck.share_token).to match(/\A[A-Za-z0-9_-]+\z/)
+    end
+
+    it "is unique per deck" do
+      tokens = 3.times.map { create(:deck).share_token }
+      expect(tokens.uniq.size).to eq(3)
+    end
+  end
+
+  describe ".accessible_by_token" do
+    it "returns the unlisted deck with matching token" do
+      deck = create(:deck, :unlisted)
+      expect(Deck.accessible_by_token(deck.share_token)).to include(deck)
+    end
+
+    it "does not return a non-unlisted deck even with its token" do
+      deck = create(:deck, :everyone)
+      expect(Deck.accessible_by_token(deck.share_token)).to be_empty
+    end
+
+    it "returns empty for an unknown token" do
+      expect(Deck.accessible_by_token("bogus")).to be_empty
+    end
+  end
+
+  describe "scopes" do
+    it ".visible_in_explore excludes unlisted decks" do
+      create(:deck, :unlisted)
+      create(:deck, :everyone)
+      expect(Deck.visible_in_explore.map(&:visibility)).to all(eq("everyone"))
+    end
+
+    it ".searchable excludes unlisted decks" do
+      create(:deck, :unlisted, name: "Hidden Gem")
+      create(:deck, :everyone, name: "Public Deck")
+      names = Deck.searchable.map(&:name)
+      expect(names).not_to include("Hidden Gem")
+    end
+  end
+
   describe "associations" do
     it "belongs to a user" do
       deck = build(:deck)
@@ -64,6 +112,18 @@ RSpec.describe Deck, type: :model do
       expect(deck.errors[:edit_permission]).to be_present
     end
 
+    it "rejects unlisted + password_users combination" do
+      deck = build(:deck, visibility: "unlisted", edit_permission: "password_users",
+                          access_password: "secret123")
+      expect(deck).not_to be_valid
+      expect(deck.errors[:edit_permission]).to be_present
+    end
+
+    it "is valid with unlisted + owner_only" do
+      deck = build(:deck, visibility: "unlisted", edit_permission: "owner_only")
+      expect(deck).to be_valid
+    end
+
     it "requires access_password when visibility is password_protected" do
       deck = build(:deck, visibility: "password_protected", access_password: nil)
       expect(deck).not_to be_valid
@@ -120,6 +180,10 @@ RSpec.describe Deck, type: :model do
 
     it "#private? is true when visibility is private" do
       expect(build(:deck, visibility: "private").private?).to be true
+    end
+
+    it "#unlisted? is true when visibility is unlisted" do
+      expect(build(:deck, visibility: "unlisted").unlisted?).to be true
     end
 
     it "#public? is an alias for #everyone?" do
@@ -183,6 +247,30 @@ RSpec.describe Deck, type: :model do
       end
 
       it "allows owner" do
+        expect(deck.can_view?(owner, session_auth: false)).to be true
+      end
+    end
+
+    context "visibility: unlisted" do
+      let(:deck) { build(:deck, user: owner, visibility: "unlisted") }
+
+      it "denies nil user without share_auth" do
+        expect(deck.can_view?(nil, session_auth: false)).to be false
+      end
+
+      it "denies non-owner without share_auth" do
+        expect(deck.can_view?(other, session_auth: false)).to be false
+      end
+
+      it "allows nil user with share_auth" do
+        expect(deck.can_view?(nil, session_auth: false, share_auth: true)).to be true
+      end
+
+      it "allows non-owner with share_auth" do
+        expect(deck.can_view?(other, session_auth: false, share_auth: true)).to be true
+      end
+
+      it "allows owner without share_auth" do
         expect(deck.can_view?(owner, session_auth: false)).to be true
       end
     end

@@ -81,7 +81,8 @@ RSpec.describe "Decks#show", type: :request do
     end
 
     context "when authenticated as another user" do
-      before { sign_in(create(:user)) }
+      let(:other_user) { create(:user) }
+      before { sign_in(other_user) }
 
       it "returns 404 for a private deck" do
         get deck_path(deck)
@@ -108,9 +109,21 @@ RSpec.describe "Decks#show", type: :request do
 
       it "returns 200 for a password_protected deck when session is authorized" do
         pw_deck = create(:deck, :password_protected, user: user)
-        # Simulate session auth via the authenticate action
         post authenticate_deck_path(pw_deck), params: { access_password: "secret123" }
         get deck_path(pw_deck)
+        expect(response).to have_http_status(:ok)
+      end
+
+      it "returns 404 for an unlisted deck without share session" do
+        unlisted_deck = create(:deck, :unlisted, user: user)
+        get deck_path(unlisted_deck)
+        expect(response).to have_http_status(:not_found)
+      end
+
+      it "returns 200 for an unlisted deck after visiting the share link" do
+        unlisted_deck = create(:deck, :unlisted, user: user)
+        get shared_deck_path(unlisted_deck.share_token)
+        get deck_path(unlisted_deck)
         expect(response).to have_http_status(:ok)
       end
     end
@@ -137,6 +150,45 @@ RSpec.describe "Decks#show", type: :request do
         everyone_deck = create(:deck, :everyone, user: user)
         get deck_path(everyone_deck)
         expect(response.body).not_to include("Fork")
+      end
+
+      it "returns 404 for an unlisted deck without share session" do
+        unlisted_deck = create(:deck, :unlisted, user: user)
+        get deck_path(unlisted_deck)
+        expect(response).to have_http_status(:not_found)
+      end
+    end
+
+    context "unlisted deck noindex and forked_from" do
+      let(:unlisted_deck) { create(:deck, :unlisted, user: user) }
+
+      before { sign_in(user) }
+
+      it "sets X-Robots-Tag: noindex for an unlisted deck" do
+        get deck_path(unlisted_deck)
+        expect(response.headers["X-Robots-Tag"]).to eq("noindex")
+      end
+
+      it "does not set X-Robots-Tag for a public deck" do
+        everyone_deck = create(:deck, :everyone, user: user)
+        get deck_path(everyone_deck)
+        expect(response.headers["X-Robots-Tag"]).to be_nil
+      end
+
+      it "shows the forked_from link when source deck is public" do
+        source = create(:deck, :everyone, user: create(:user), name: "Source Deck")
+        forked = create(:deck, user: user, forked_from: source)
+        get deck_path(forked)
+        expect(response.body).to include("Source Deck")
+        expect(response.body).to include(deck_path(source))
+      end
+
+      it "hides the source deck name when source is not public" do
+        source = create(:deck, :unlisted, user: create(:user), name: "Secret Source")
+        forked = create(:deck, user: user, forked_from: source)
+        get deck_path(forked)
+        expect(response.body).not_to include("Secret Source")
+        expect(response.body).not_to include(deck_path(source))
       end
     end
   end
