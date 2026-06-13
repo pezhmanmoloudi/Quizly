@@ -7,14 +7,49 @@
      aria-label="Study session">
 
   <div class="study-island__header">
-    <h2 class="study-island__title"><%= @deck.name %></h2>
-    <% if @card_progress.present? && @cards_total.to_i > 0 %>
-      <span class="study-island__counter"><%= @cards_done %> / <%= @cards_total %></span>
-    <% else %>
-      <span></span>
-    <% end %>
     <%= link_to t("study_modes.exit"), @deck, class: "study-island__exit",
           data: { study_mode_target: "exitLink" } %>
+
+    <div class="study-island__title-block">
+      <h2 class="study-island__title"><%= @deck.name %></h2>
+      <p class="study-island__subtitle"><%= t("study_modes.study.subtitle") %></p>
+    </div>
+
+    <div class="study-island__stats">
+      <% if @card_progress.present? %>
+        <div class="match-stat match-stat--timer">
+          <div class="match-stat__badge">
+            <svg class="match-stat__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" width="14" height="14" aria-hidden="true">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm.75-13a.75.75 0 0 0-1.5 0v5c0 .414.336.75.75.75h4a.75.75 0 0 0 0-1.5h-3.25V5Z" clip-rule="evenodd"/>
+            </svg>
+            <span class="match-stat__value" data-study-mode-target="timer">00:00</span>
+          </div>
+          <span class="match-stat__label"><%= t("study_modes.time") %></span>
+        </div>
+      <% end %>
+
+      <% if @card_progress.present? && @cards_total.to_i > 0 %>
+        <div class="match-stat match-stat--pairs">
+          <div class="match-stat__badge">
+            <svg class="match-stat__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" width="14" height="14" aria-hidden="true">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm0-2a6 6 0 1 0 0-12 6 6 0 0 0 0 12Zm0-3a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" clip-rule="evenodd"/>
+            </svg>
+            <span class="match-stat__value"><%= @cards_done %> / <%= @cards_total %></span>
+          </div>
+          <span class="match-stat__label"><%= t("study_modes.study.done_label") %></span>
+        </div>
+      <% end %>
+
+      <div class="match-stat match-stat--streak">
+        <div class="match-stat__badge">
+          <svg class="match-stat__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" width="14" height="14" aria-hidden="true">
+            <path d="M12.395 2.553a1 1 0 0 0-1.45-.385c-.345.23-.614.558-.822.88-.214.33-.403.713-.57 1.116-.334.804-.614 1.768-.84 2.734a31.365 31.365 0 0 0-.613 3.58 2.64 2.64 0 0 1-.945-1.067c-.328-.68-.398-1.534-.398-2.654A1 1 0 0 0 5.05 6.05 6.981 6.981 0 0 0 3 11a7 7 0 1 0 11.95-4.95c-.592-.591-.98-.985-1.348-1.467-.363-.476-.724-1.063-1.207-2.03ZM12.12 15.12A3 3 0 0 1 7 13s.879.5 2.5.5c0-1 .5-4 1.25-4.5.5 1 .786 1.293 1.371 1.879A2.99 2.99 0 0 1 13 13a2.99 2.99 0 0 1-.879 2.121Z"/>
+          </svg>
+          <span class="match-stat__value" data-study-mode-target="streak"><%= @streak || 0 %></span>
+        </div>
+        <span class="match-stat__label"><%= t("study_modes.streak") %></span>
+      </div>
+    </div>
   </div>
 
   <div class="study-island__mode-bar">
@@ -112,19 +147,19 @@
             <div class="rating-buttons">
               <%= f.submit t("study_modes.study.again"), name: :rating, value: "again",
                     class: "rating-btn rating-btn--again",
-                    data: { study_mode_target: "againBtn" },
+                    data: { study_mode_target: "againBtn", action: "click->study-mode#trackRating" },
                     aria: { keyshortcuts: "1" } %>
               <%= f.submit t("study_modes.study.hard"),  name: :rating, value: "hard",
                     class: "rating-btn rating-btn--hard",
-                    data: { study_mode_target: "hardBtn" },
+                    data: { study_mode_target: "hardBtn", action: "click->study-mode#trackRating" },
                     aria: { keyshortcuts: "2" } %>
               <%= f.submit t("study_modes.study.good"),  name: :rating, value: "good",
                     class: "rating-btn rating-btn--good",
-                    data: { study_mode_target: "goodBtn" },
+                    data: { study_mode_target: "goodBtn", action: "click->study-mode#trackRating" },
                     aria: { keyshortcuts: "3" } %>
               <%= f.submit t("study_modes.study.easy"),  name: :rating, value: "easy",
                     class: "rating-btn rating-btn--easy",
-                    data: { study_mode_target: "easyBtn" },
+                    data: { study_mode_target: "easyBtn", action: "click->study-mode#trackRating" },
                     aria: { keyshortcuts: "4" } %>
             </div>
           <% end %>

@@ -285,6 +285,8 @@ tr:
     exit: "← Çık"
     no_cards_title: "Henüz kart yok"
     back_to_deck: "Desteye dön"
+    time: "Süre"
+    streak: "Seri"
     flashcard:
       empty_description: "Başlamak için bu desteye birkaç kart ekle."
       keyboard_hint: "← → gezinmek için · Boşluk çevirmek için"
@@ -307,6 +309,8 @@ tr:
       hide: "Gizle"
       restart: "Flashcard'ları yeniden başlat"
     study:
+      subtitle: "Kartları gözden geçir ve hatırlamanı puanla"
+      done_label: "Tamamlandı"
       empty_title: "Her şey tamam!"
       empty_description: "Şu an bekleyen kart yok."
       all_cards_tab: "Tüm kartlar"
@@ -323,6 +327,8 @@ tr:
       easy: "Kolay"
       keyboard_hint: "Boşluk göstermek için · 1 Tekrar · 2 Zor · 3 İyi · 4 Kolay · Esc çıkmak için"
     learn:
+      subtitle: "Kartı öğrenmek için cevabı yaz"
+      mastered_label: "Öğrenildi"
       empty_description: "Çalışmadan önce bu desteye flashcard ekle."
       summary_title: "Tüm kartlar öğrenildi!"
       studied: "Çalışılan kartlar"
@@ -340,6 +346,8 @@ tr:
       keyboard_hint: "Enter göndermek için"
       continue: "Devam →"
     test:
+      subtitle: "Bilgini test et"
+      question_label: "Soru"
       empty_description: "Test almadan önce bu desteye flashcard ekle."
       summary_title: "Test tamamlandı!"
       correct_answers: "Doğru cevaplar"

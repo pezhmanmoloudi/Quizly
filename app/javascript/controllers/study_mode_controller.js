@@ -1,16 +1,23 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["showButton", "againBtn", "hardBtn", "goodBtn", "easyBtn", "exitLink"]
+  static targets = ["showButton", "againBtn", "hardBtn", "goodBtn", "easyBtn", "exitLink", "timer", "streak"]
 
   #isSubmitting = false
 
   connect() {
     this.element.focus()
+    this.seconds = 0
+    this.timerInterval = setInterval(() => this.#tickTimer(), 1000)
   }
 
   disconnect() {
     this.#isSubmitting = false
+    clearInterval(this.timerInterval)
+  }
+
+  trackRating() {
+    // streak is server-managed via session; page reloads after rating with updated value
   }
 
   handleKey(event) {
@@ -75,5 +82,13 @@ export default class extends Controller {
   #isFormElementFocused() {
     const tag = document.activeElement?.tagName
     return ["INPUT", "BUTTON", "TEXTAREA", "SELECT", "A"].includes(tag)
+  }
+
+  #tickTimer() {
+    this.seconds++
+    if (!this.hasTimerTarget) return
+    const m = String(Math.floor(this.seconds / 60)).padStart(2, "0")
+    const s = String(this.seconds % 60).padStart(2, "0")
+    this.timerTarget.textContent = `${m}:${s}`
   }
 }

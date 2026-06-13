@@ -42,6 +42,13 @@ RSpec.describe "Decks#learn", type: :request do
         get learn_deck_path(other)
         expect(response).to have_http_status(:not_found)
       end
+
+      it "renders the stats header with timer and mastered badges" do
+        create(:flashcard, deck: deck)
+        get learn_deck_path(deck)
+        expect(response.body).to include("study-island__stats")
+        expect(response.body).to include("learn_counter")
+      end
     end
 
     context "when not authenticated" do

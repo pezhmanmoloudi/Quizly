@@ -285,6 +285,8 @@ pt:
     exit: "← Sair"
     no_cards_title: "Nenhum cartão ainda"
     back_to_deck: "Voltar ao baralho"
+    time: "Tempo"
+    streak: "Sequência"
     flashcard:
       empty_description: "Adicione alguns cartões a este baralho para começar."
       keyboard_hint: "← → para navegar · Espaço para virar"
@@ -307,6 +309,8 @@ pt:
       hide: "Ocultar"
       restart: "Reiniciar flashcards"
     study:
+      subtitle: "Revise os cartões e avalie sua memória"
+      done_label: "Concluídos"
       empty_title: "Tudo em dia!"
       empty_description: "Nenhum cartão está pendente para revisão agora."
       all_cards_tab: "Todos os cartões"
@@ -323,6 +327,8 @@ pt:
       easy: "Fácil"
       keyboard_hint: "Espaço para revelar · 1 De novo · 2 Difícil · 3 Bom · 4 Fácil · Esc para sair"
     learn:
+      subtitle: "Escreva a resposta para dominar cada cartão"
+      mastered_label: "Dominados"
       empty_description: "Adicione flashcards a este baralho antes de estudar."
       summary_title: "Todos os cartões dominados!"
       studied: "Cartões estudados"
@@ -340,6 +346,8 @@ pt:
       keyboard_hint: "Enter para enviar"
       continue: "Continuar →"
     test:
+      subtitle: "Teste seu conhecimento"
+      question_label: "Questão"
       empty_description: "Adicione flashcards a este baralho antes de fazer um teste."
       summary_title: "Teste concluído!"
       correct_answers: "Respostas corretas"

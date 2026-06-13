@@ -1,21 +1,28 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["answerInput", "submitBtn", "continueBtn", "exitLink"]
+  static targets = ["answerInput", "submitBtn", "continueBtn", "exitLink", "timer", "streak"]
 
   #isSubmitting = false
 
   connect() {
     this.element.focus()
+    this.streak = 0
+    this.seconds = 0
+    this.timerInterval = setInterval(() => this.#tickTimer(), 1000)
   }
 
   disconnect() {
     this.#isSubmitting = false
+    clearInterval(this.timerInterval)
   }
 
-  // Focus the continue button as soon as feedback is rendered
+  // Focus the continue button as soon as feedback is rendered; update streak from DOM
   continueBtnTargetConnected(target) {
     target.focus()
+    const correct = this.element.querySelector(".learn-card__feedback--correct") !== null
+    correct ? this.streak++ : this.streak = 0
+    if (this.hasStreakTarget) this.streakTarget.textContent = this.streak
   }
 
   // Reset submission gate when a fresh answer input appears (new card loaded)
@@ -63,5 +70,13 @@ export default class extends Controller {
   #activeTagAllowsEnter() {
     const tag = document.activeElement?.tagName
     return ["TEXTAREA", "SELECT"].includes(tag)
+  }
+
+  #tickTimer() {
+    this.seconds++
+    if (!this.hasTimerTarget) return
+    const m = String(Math.floor(this.seconds / 60)).padStart(2, "0")
+    const s = String(this.seconds % 60).padStart(2, "0")
+    this.timerTarget.textContent = `${m}:${s}`
   }
 }

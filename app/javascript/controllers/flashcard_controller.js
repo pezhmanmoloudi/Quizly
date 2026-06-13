@@ -6,7 +6,7 @@ export default class extends Controller {
   reveal(event) {
     const card = event.currentTarget.closest(".flashcard-card")
     if (card) {
-      card.querySelector(".flashcard-card__inner")?.classList.add("is-flipped")
+      card.querySelector(".flashcard-card__inner")?.classList.toggle("is-flipped")
       return
     }
     this.backTarget.hidden = false

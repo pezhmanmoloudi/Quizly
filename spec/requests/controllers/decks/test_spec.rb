@@ -47,6 +47,13 @@ RSpec.describe "Decks#test", type: :request do
         get test_deck_path(other)
         expect(response).to have_http_status(:not_found)
       end
+
+      it "renders the stats header with timer and score badges" do
+        create(:flashcard, deck: deck)
+        get test_deck_path(deck)
+        expect(response.body).to include("study-island__stats")
+        expect(response.body).to include("test_score")
+      end
     end
 
     context "when not authenticated" do

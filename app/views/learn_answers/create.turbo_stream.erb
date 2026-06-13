@@ -45,7 +45,7 @@
   </div>
 <% end %>
 <%= turbo_stream.replace "learn_counter" do %>
-  <span id="learn_counter" class="study-island__counter">
+  <span id="learn_counter" class="match-stat__value">
     <%= @learn_session.cards_mastered %> / <%= @learn_session.cards_total %>
   </span>
 <% end %>

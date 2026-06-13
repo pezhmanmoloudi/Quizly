@@ -285,6 +285,8 @@ ar:
     exit: "→ خروج"
     no_cards_title: "لا توجد بطاقات بعد"
     back_to_deck: "العودة إلى المجموعة"
+    time: "الوقت"
+    streak: "التسلسل"
     flashcard:
       empty_description: "أضف بعض البطاقات إلى هذه المجموعة لتبدأ."
       keyboard_hint: "← → للتنقل · مسافة للقلب"
@@ -307,6 +309,8 @@ ar:
       hide: "إخفاء"
       restart: "إعادة تشغيل البطاقات"
     study:
+      subtitle: "راجع البطاقات وقيّم استرجاعك"
+      done_label: "تمّ"
       empty_title: "أنجزت كل شيء!"
       empty_description: "لا توجد بطاقات مستحقة للمراجعة الآن."
       all_cards_tab: "جميع البطاقات"
@@ -323,6 +327,8 @@ ar:
       easy: "سهل"
       keyboard_hint: "مسافة للكشف · 1 مجدداً · 2 صعب · 3 جيد · 4 سهل · Esc للخروج"
     learn:
+      subtitle: "اكتب الإجابة لإتقان كل بطاقة"
+      mastered_label: "متقن"
       empty_description: "أضف بطاقات تعليمية إلى هذه المجموعة قبل الدراسة."
       summary_title: "أتقنت جميع البطاقات!"
       studied: "البطاقات المدروسة"
@@ -340,6 +346,8 @@ ar:
       keyboard_hint: "Enter للإرسال"
       continue: "متابعة →"
     test:
+      subtitle: "اختبر معرفتك"
+      question_label: "سؤال"
       empty_description: "أضف بطاقات تعليمية إلى هذه المجموعة قبل الاختبار."
       summary_title: "انتهى الاختبار!"
       correct_answers: "الإجابات الصحيحة"
