@@ -175,7 +175,8 @@ ru:
     show:
       edit: "Редактировать колоду"
       delete: "Удалить колоду"
-      fork: "Добавить в мою библиотеку"
+      fork: "Скопировать колоду"
+      duplicate: "Дублировать колоду"
       delete_confirm: "Вы уверены, что хотите удалить эту колоду?"
       delete_modal_title: "Удалить эту колоду?"
       delete_modal_card_count:
@@ -192,6 +193,7 @@ ru:
       created: "Создана"
       forked_from: "Скопирована из"
       forked_from_private: "приватной колоды"
+      forked_from_by: "от @%{username}"
       cards_section: "Карточки"
       add_card: "Добавить карточку"
       import: "Импорт"
@@ -265,6 +267,8 @@ ru:
     deleted: "Колода удалена."
     cards_saved: "Карточки сохранены."
     forked: "Колода добавлена в вашу библиотеку."
+    fork_modal:
+      submitting: "Копируется..."
     share_token_rotated: "Ссылка для доступа обновлена."
     not_available: "Колода недоступна."
     unlock:

@@ -175,7 +175,8 @@ fa:
     show:
       edit: "ویرایش دسته"
       delete: "حذف دسته"
-      fork: "کپی به کتابخانه‌ام"
+      fork: "کپی دسته"
+      duplicate: "تکرار دسته"
       delete_confirm: "آیا مطمئنی که می‌خواهی این دسته را حذف کنی؟"
       delete_modal_title: "این دسته حذف شود؟"
       delete_modal_card_count:
@@ -192,6 +193,7 @@ fa:
       created: "ایجاد شده"
       forked_from: "کپی‌شده از"
       forked_from_private: "یک دسته خصوصی"
+      forked_from_by: "توسط @%{username}"
       cards_section: "کارت‌ها"
       add_card: "افزودن کارت"
       import: "وارد کردن"
@@ -265,6 +267,8 @@ fa:
     deleted: "دسته حذف شد."
     cards_saved: "کارت‌ها ذخیره شدند."
     forked: "دسته به کتابخانه‌ات اضافه شد."
+    fork_modal:
+      submitting: "در حال کپی..."
     share_token_rotated: "لینک اشتراک‌گذاری بازسازی شد."
     not_available: "دسته در دسترس نیست."
     unlock:

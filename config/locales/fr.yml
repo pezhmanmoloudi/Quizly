@@ -175,7 +175,8 @@ fr:
     show:
       edit: "Modifier le paquet"
       delete: "Supprimer le paquet"
-      fork: "Ajouter à ma bibliothèque"
+      fork: "Copier le paquet"
+      duplicate: "Dupliquer le paquet"
       delete_confirm: "Êtes-vous sûr de vouloir supprimer ce paquet ?"
       delete_modal_title: "Supprimer ce paquet ?"
       delete_modal_card_count:
@@ -192,6 +193,7 @@ fr:
       created: "Créé"
       forked_from: "Bifurqué de"
       forked_from_private: "un paquet privé"
+      forked_from_by: "par @%{username}"
       cards_section: "Cartes"
       add_card: "Ajouter une carte"
       import: "Importer"
@@ -265,6 +267,8 @@ fr:
     deleted: "Paquet supprimé."
     cards_saved: "Cartes enregistrées."
     forked: "Paquet ajouté à votre bibliothèque."
+    fork_modal:
+      submitting: "Copie en cours..."
     share_token_rotated: "Lien de partage régénéré."
     not_available: "Paquet non disponible."
     unlock:

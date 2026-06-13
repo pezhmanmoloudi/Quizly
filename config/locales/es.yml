@@ -175,7 +175,8 @@ es:
     show:
       edit: "Editar mazo"
       delete: "Eliminar mazo"
-      fork: "Añadir a mi biblioteca"
+      fork: "Copiar mazo"
+      duplicate: "Duplicar mazo"
       delete_confirm: "¿Estás seguro de que quieres eliminar este mazo?"
       delete_modal_title: "¿Eliminar este mazo?"
       delete_modal_card_count:
@@ -192,6 +193,7 @@ es:
       created: "Creado"
       forked_from: "Bifurcado de"
       forked_from_private: "un mazo privado"
+      forked_from_by: "por @%{username}"
       cards_section: "Tarjetas"
       add_card: "Añadir tarjeta"
       import: "Importar"
@@ -265,6 +267,8 @@ es:
     deleted: "Mazo eliminado."
     cards_saved: "Tarjetas guardadas."
     forked: "Mazo añadido a tu biblioteca."
+    fork_modal:
+      submitting: "Copiando..."
     share_token_rotated: "Enlace de compartir regenerado."
     not_available: "Mazo no disponible."
     unlock:

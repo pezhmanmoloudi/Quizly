@@ -175,7 +175,8 @@ ar:
     show:
       edit: "تعديل المجموعة"
       delete: "حذف المجموعة"
-      fork: "نسخ إلى مكتبتي"
+      fork: "نسخ المجموعة"
+      duplicate: "تكرار المجموعة"
       delete_confirm: "هل أنت متأكد من رغبتك في إزالة هذه المجموعة؟"
       delete_modal_title: "حذف هذه المجموعة؟"
       delete_modal_card_count:
@@ -192,6 +193,7 @@ ar:
       created: "تاريخ الإنشاء"
       forked_from: "منسوخة من"
       forked_from_private: "مجموعة خاصة"
+      forked_from_by: "بواسطة @%{username}"
       cards_section: "البطاقات"
       add_card: "إضافة بطاقة"
       import: "استيراد"
@@ -265,6 +267,8 @@ ar:
     deleted: "تم حذف المجموعة."
     cards_saved: "تم حفظ البطاقات."
     forked: "تمّت إضافة المجموعة إلى مكتبتك."
+    fork_modal:
+      submitting: "جارٍ النسخ..."
     share_token_rotated: "تم تجديد رابط المشاركة."
     not_available: "المجموعة غير متاحة."
     unlock:

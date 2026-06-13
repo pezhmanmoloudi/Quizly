@@ -3,6 +3,7 @@
 <div class="container">
   <% can_edit = @deck.can_edit?(Current.user, session_auth: session["deck_auth_#{@deck.id}"] == true) %>
   <% can_delete = @deck.can_delete?(Current.user) %>
+  <% show_fork = authenticated? && @deck.can_fork?(Current.user) %>
   <div class="deck-detail-header" <% if can_delete %>data-controller="modal"<% end %>>
     <div class="deck-detail-header__top">
       <h1 class="deck-detail-header__name"><%= @deck.name %></h1>
@@ -12,15 +13,22 @@
             <%= render "shared/icons/pencil" %> <%= t("decks.show.edit") %>
           <% end %>
         <% end %>
+        <% if show_fork %>
+          <div data-controller="modal">
+            <button type="button"
+                    class="btn btn--<%= can_delete ? 'secondary' : 'primary' %> btn-with-icon"
+                    data-action="click->modal#open">
+              <%= render "shared/icons/fork" %>
+              <%= can_delete ? t("decks.show.duplicate") : t("decks.show.fork") %>
+            </button>
+            <%= render "decks/fork_modal", deck: @deck, is_owner: can_delete %>
+          </div>
+        <% end %>
         <% if can_delete %>
           <button type="button" class="btn btn--danger btn-with-icon"
                   data-action="click->modal#open">
             <%= render "shared/icons/trash" %> <%= t("decks.show.delete") %>
           </button>
-        <% elsif authenticated? && (@deck.everyone? || @deck.unlisted?) %>
-          <%= button_to fork_deck_path(@deck), method: :post, class: "btn btn--primary btn-with-icon" do %>
-            <%= render "shared/icons/fork" %> <%= t("decks.show.fork") %>
-          <% end %>
         <% end %>
       </div>
     </div>
@@ -46,12 +54,22 @@
         <span class="language-badge"><%= @deck.language_code.upcase %></span>
       <% end %>
       <span class="deck-detail-header__date"><%= t("decks.show.created") %> <%= @deck.created_at.strftime("%b %-d, %Y") %></span>
-      <% if @deck.forked_from.present? %>
+      <% if @deck.forked_from_title_snapshot.present? || @deck.forked_from.present? %>
         <span class="deck-detail-header__forked-from">
-          <% if @deck.forked_from.everyone? %>
-            <%= t("decks.show.forked_from") %> <%= link_to @deck.forked_from.name, deck_path(@deck.forked_from) %>
+          <%= t("decks.show.forked_from") %>
+          <% if @deck.forked_from_title_snapshot.present? %>
+            <% if @deck.forked_from&.everyone? %>
+              <%= link_to @deck.forked_from_title_snapshot, deck_path(@deck.forked_from) %>
+            <% else %>
+              <em><%= @deck.forked_from_title_snapshot %></em>
+            <% end %>
+            <% if @deck.forked_from_owner_display_snapshot.present? %>
+              <%= t("decks.show.forked_from_by", username: @deck.forked_from_owner_display_snapshot) %>
+            <% end %>
+          <% elsif @deck.forked_from.everyone? %>
+            <%= link_to @deck.forked_from.name, deck_path(@deck.forked_from) %>
           <% else %>
-            <%= t("decks.show.forked_from") %> <%= t("decks.show.forked_from_private") %>
+            <%= t("decks.show.forked_from_private") %>
           <% end %>
         </span>
       <% end %>

@@ -175,7 +175,8 @@ ckb:
     show:
       edit: "دەستکاریی دەستە"
       delete: "سڕینەوەی دەستە"
-      fork: "کۆپیکردن بۆ کتێبخانەکەم"
+      fork: "کۆپیکردنی دەستە"
+      duplicate: "دووبارەکردنەوەی دەستە"
       delete_confirm: "دڵنیایی لە لابردنی ئەم دەستەیە؟"
       delete_modal_title: "ئەم دەستەیە بسڕێتەوە؟"
       delete_modal_card_count:
@@ -192,6 +193,7 @@ ckb:
       created: "دروستکرا"
       forked_from: "کۆپیکراوە لە"
       forked_from_private: "دەستەیەکی تایبەت"
+      forked_from_by: "لەلایەن @%{username}"
       cards_section: "کارتەکان"
       add_card: "زیادکردنی کارت"
       import: "هاوردەکردن"
@@ -265,6 +267,8 @@ ckb:
     deleted: "دەستە سڕایەوە."
     cards_saved: "کارتەکان پاشەکەوتکران."
     forked: "دەستە زیادکرا بۆ کتێبخانەکەت."
+    fork_modal:
+      submitting: "کۆپیکردن..."
     share_token_rotated: "لینکی هاوبەشکردن نوێکرایەوە."
     not_available: "دەستە بەردەست نییە."
     unlock:

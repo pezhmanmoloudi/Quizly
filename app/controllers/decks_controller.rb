@@ -197,30 +197,41 @@ class DecksController < ApplicationController
   end
 
   def fork
-    raise ActiveRecord::RecordNotFound unless @deck.everyone? || @deck.unlisted?
+    raise ActiveRecord::RecordNotFound unless @deck.can_fork?(Current.user)
+
+    fork_name = params.dig(:deck, :name).presence || @deck.name
+    fork_vis   = Deck::FORKABLE_VISIBILITIES.include?(params.dig(:deck, :visibility)) \
+                   ? params.dig(:deck, :visibility) : "private"
 
     ActiveRecord::Base.transaction do
-      copy = Deck.create!(
-        user: Current.user,
-        name: "#{@deck.name} (copy)",
-        description: @deck.description,
-        language_code: @deck.language_code,
-        visibility: "private",
-        forked_from: @deck
+      @fork = Deck.create!(
+        user:                               Current.user,
+        name:                               fork_name,
+        description:                        @deck.description,
+        subject_tags:                       @deck.subject_tags,
+        language_code:                      @deck.language_code,
+        edit_permission:                    "owner_only",
+        visibility:                         fork_vis,
+        forked_from:                        @deck,
+        forked_from_title_snapshot:         @deck.name,
+        forked_from_owner_display_snapshot: @deck.user.display_name,
+        forked_at:                          Time.current
       )
       @deck.flashcards.each do |card|
-        copy.flashcards.create!(
+        @fork.flashcards.create!(
           front_content: card.front_content,
-          back_content: card.back_content,
-          position: card.position
+          back_content:  card.back_content,
+          position:      card.position
         )
       end
       @deck.increment!(:forks_count)
     end
 
-    redirect_to decks_path, notice: t("decks.forked")
+    redirect_to edit_deck_path(@fork), notice: t("decks.forked")
   rescue ActiveRecord::RecordNotFound
     redirect_to explore_path, alert: t("decks.not_available")
+  rescue ActiveRecord::RecordInvalid => e
+    redirect_to deck_path(@deck), alert: e.record.errors.full_messages.first
   end
 
   def unlock
