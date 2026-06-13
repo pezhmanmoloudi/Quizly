@@ -19,4 +19,8 @@ class ApplicationController < ActionController::Base
     return unless authenticated?
     @sidebar_decks = Current.user.decks.order(updated_at: :desc).limit(20)
   end
+
+  def deck_session_auth(deck)
+    session["deck_auth_#{deck.id}"] == true
+  end
 end

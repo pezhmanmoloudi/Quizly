@@ -41,6 +41,15 @@ RSpec.describe "Decks#update", type: :request do
         patch deck_path(deck), params: { deck: { name: "Hijacked" } }
         expect(deck.reload.name).to eq(original_name)
       end
+
+      it "returns 404 for a password_users deck even with session auth (admin domain is owner-only)" do
+        pw_deck = create(:deck, :editable_by_password, user: create(:user))
+        sign_in(other_user)
+        post authenticate_deck_path(pw_deck), params: { access_password: "secret123" }
+        patch deck_path(pw_deck), params: { deck: { name: "Hijacked" } }
+        expect(response).to have_http_status(:not_found)
+        expect(pw_deck.reload.name).not_to eq("Hijacked")
+      end
     end
 
     context "when not authenticated" do

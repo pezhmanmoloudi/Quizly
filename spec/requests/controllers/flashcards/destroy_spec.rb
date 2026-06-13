@@ -113,6 +113,24 @@ RSpec.describe "Flashcards#destroy", type: :request do
       end
     end
 
+    context "when authenticated as a password user (content domain)" do
+      let(:owner)   { create(:user) }
+      let(:pw_deck) { create(:deck, :editable_by_password, user: owner) }
+      let(:pw_card) { create(:flashcard, deck: pw_deck) }
+      let(:other)   { create(:user) }
+      before do
+        sign_in(other)
+        post authenticate_deck_path(pw_deck), params: { access_password: "secret123" }
+      end
+
+      it "soft-deletes the flashcard" do
+        pw_card
+        expect {
+          delete flashcard_path(pw_card)
+        }.to change(Flashcard, :count).by(-1)
+      end
+    end
+
     context "when not authenticated" do
       it "redirects to login" do
         delete flashcard_path(flashcard)

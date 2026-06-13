@@ -34,11 +34,11 @@ RSpec.describe "Decks#edit", type: :request do
         expect(response).to have_http_status(:not_found)
       end
 
-      it "returns 200 for a password_users deck with session auth" do
+      it "returns 404 for a password_users deck even with session auth (admin domain is owner-only)" do
         pw_deck = create(:deck, :editable_by_password, user: user)
         post authenticate_deck_path(pw_deck), params: { access_password: "secret123" }
         get edit_deck_path(pw_deck)
-        expect(response).to have_http_status(:ok)
+        expect(response).to have_http_status(:not_found)
       end
     end
 

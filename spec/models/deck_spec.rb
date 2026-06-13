@@ -233,6 +233,29 @@ RSpec.describe Deck, type: :model do
     end
   end
 
+  describe "#can_edit_settings?" do
+    let(:owner) { build(:user, id: 1) }
+    let(:other)  { build(:user, id: 2) }
+    let(:deck)   { build(:deck, user: owner) }
+
+    it "allows owner" do
+      expect(deck.can_edit_settings?(owner)).to be true
+    end
+
+    it "denies non-owner" do
+      expect(deck.can_edit_settings?(other)).to be false
+    end
+
+    it "denies nil" do
+      expect(deck.can_edit_settings?(nil)).to be false
+    end
+
+    it "denies password user with session auth (admin domain is owner-only)" do
+      pw_deck = build(:deck, :editable_by_password, user: owner)
+      expect(pw_deck.can_edit_settings?(other)).to be false
+    end
+  end
+
   describe "#can_delete?" do
     let(:owner) { build(:user, id: 1) }
     let(:other)  { build(:user, id: 2) }
