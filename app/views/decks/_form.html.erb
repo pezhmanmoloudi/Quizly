@@ -1,4 +1,6 @@
-<%= form_with model: deck, data: { controller: "deck-form" } do |f| %>
+<%= form_with model: deck, data: { controller: "deck-form",
+                                        "deck-form-current-visibility-value": deck.visibility.to_s } do |f| %>
+  <%= f.hidden_field :share_token %>
   <% if deck.errors.any? %>
     <div class="form-errors nd-split__errors">
       <% deck.errors.full_messages.each do |msg| %>
@@ -9,7 +11,7 @@
 
   <div class="nd-split__body">
     <div class="nd-split__left">
-      <p class="nd-split__section-label">About</p>
+      <p class="nd-split__section-label"><%= t("decks.form.section_about") %></p>
 
       <div class="form-group">
         <%= f.label :name, t("decks.form.name_label") %>
@@ -36,7 +38,7 @@
     </div>
 
     <div class="nd-split__right">
-      <p class="nd-split__section-label">Access Control</p>
+      <p class="nd-split__section-label"><%= t("decks.form.section_access_control") %></p>
 
       <%# Section 1 — Visibility %>
       <div class="form-group" data-deck-form-target="visibilityGroup">
@@ -48,6 +50,14 @@
             <span class="visibility-label">
               <%= render "shared/icons/globe", css_class: "icon--sm" %>
               <%= t("decks.form.visibility_everyone") %>
+            </span>
+          </label>
+          <label class="visibility-option">
+            <%= f.radio_button :visibility, "unlisted", class: "visibility-radio",
+                  data: { action: "change->deck-form#onVisibilityChange" } %>
+            <span class="visibility-label">
+              <%= render "shared/icons/link", css_class: "icon--sm" %>
+              <%= t("decks.form.visibility_unlisted") %>
             </span>
           </label>
           <label class="visibility-option">
@@ -68,6 +78,47 @@
           </label>
         </div>
       </div>
+
+      <%# Section 4 — Share panel (shown when unlisted) %>
+      <div class="share-panel"
+           data-deck-form-target="sharePanel"
+           style="<%= deck.unlisted? ? '' : 'display:none' %>">
+        <div class="share-panel__header">
+          <%= render "shared/icons/link", css_class: "icon--sm share-panel__icon" %>
+          <span class="share-panel__hint"><%= t("decks.form.unlisted_share_hint") %></span>
+        </div>
+        <div class="share-panel__link-row">
+          <input type="text"
+                 class="share-panel__input"
+                 value="<%= deck.share_token.present? ? shared_deck_url(deck.share_token) : '' %>"
+                 readonly
+                 data-deck-form-target="shareLinkInput"
+                 aria-label="<%= t("decks.show.share_link_label") %>">
+          <button type="button"
+                  class="btn btn--outline btn--sm btn-with-icon share-panel__copy-btn"
+                  data-action="click->deck-form#copyShareLink"
+                  data-copied-label="<%= t("decks.form.copy_link_copied") %>">
+            <%= render "shared/icons/clipboard_check", css_class: "icon--sm" %>
+            <span data-deck-form-target="copyLabel"><%= t("decks.form.copy_link") %></span>
+          </button>
+        </div>
+        <% if deck.persisted? %>
+          <div class="share-panel__rotate-row">
+            <%= link_to t("decks.form.regenerate_link"),
+                  rotate_share_token_deck_path(deck),
+                  data: { turbo_method: "patch",
+                          turbo_confirm: t("decks.form.regenerate_link_confirm") },
+                  class: "share-panel__rotate-link" %>
+          </div>
+        <% end %>
+      </div>
+
+      <%# Visibility change warning (only relevant when editing an existing unlisted deck) %>
+      <% if deck.persisted? && deck.unlisted? %>
+        <p class="share-warning" data-deck-form-target="shareWarning" style="display:none">
+          <%= t("decks.form.share_link_will_be_invalidated") %>
+        </p>
+      <% end %>
 
       <%# Section 2 — Edit Permission %>
       <div class="form-group" data-deck-form-target="editGroup">

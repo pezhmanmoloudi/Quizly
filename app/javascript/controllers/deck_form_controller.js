@@ -1,7 +1,8 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["visibilityGroup", "editGroup", "editPermissionRadio", "passwordSection", "passwordInput"]
+  static targets = ["visibilityGroup", "editGroup", "editPermissionRadio", "passwordSection", "passwordInput", "sharePanel", "shareLinkInput", "copyLabel", "shareWarning"]
+  static values  = { currentVisibility: String }
 
   connect() {
     this.#syncState()
@@ -15,23 +16,44 @@ export default class extends Controller {
     this.#syncState()
   }
 
+  copyShareLink(event) {
+    const input = this.shareLinkInputTarget
+    navigator.clipboard.writeText(input.value).then(() => {
+      const label = this.copyLabelTarget
+      const btn   = event.currentTarget
+      const original = label.textContent
+      label.textContent = btn.dataset.copiedLabel || original
+      btn.disabled = true
+      setTimeout(() => {
+        label.textContent = original
+        btn.disabled = false
+      }, 2000)
+    })
+  }
+
   // ── Private ───────────────────────────────────────────────────────────────
 
   #syncState() {
     const visibility = this.#selectedVisibility()
+    const wasUnlisted = this.currentVisibilityValue === "unlisted"
 
-    if (visibility === "private") {
+    if (visibility === "private" || visibility === "unlisted") {
       this.#forceOwnerOnly()
       this.#setEditGroupDisabled(true)
       this.#setPasswordVisible(false)
+      this.#setSharePanelVisible(visibility === "unlisted")
     } else if (visibility === "password_protected") {
       this.#setEditGroupDisabled(false)
       this.#setPasswordVisible(true)
+      this.#setSharePanelVisible(false)
     } else {
       // everyone
       this.#setEditGroupDisabled(false)
       this.#setPasswordVisible(this.#selectedEditPermission() === "password_users")
+      this.#setSharePanelVisible(false)
     }
+
+    this.#setShareWarningVisible(wasUnlisted && visibility !== "unlisted")
   }
 
   #selectedVisibility() {
@@ -63,6 +85,18 @@ export default class extends Controller {
     }
     if (this.hasPasswordInputTarget) {
       this.passwordInputTarget.required = visible
+    }
+  }
+
+  #setSharePanelVisible(visible) {
+    if (this.hasSharePanelTarget) {
+      this.sharePanelTarget.style.display = visible ? "" : "none"
+    }
+  }
+
+  #setShareWarningVisible(visible) {
+    if (this.hasShareWarningTarget) {
+      this.shareWarningTarget.style.display = visible ? "" : "none"
     }
   }
 }
