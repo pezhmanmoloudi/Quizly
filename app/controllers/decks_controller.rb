@@ -1,6 +1,7 @@
 class DecksController < ApplicationController
   allow_unauthenticated_access only: [:show, :flashcard, :match, :unlock, :authenticate]
-  before_action :set_deck,            only: [:edit, :update, :destroy, :cards, :update_cards]
+  before_action :set_owned_deck,   only: [:edit, :update, :destroy]
+  before_action :set_content_deck, only: [:cards, :update_cards]
   before_action :set_accessible_deck, only: [:show, :study, :flashcard, :match, :fork, :learn, :test]
 
   DECK_INDEX_PER_PAGE    = 12
@@ -58,8 +59,6 @@ class DecksController < ApplicationController
   end
 
   def destroy
-    raise ActiveRecord::RecordNotFound unless @deck.can_delete?(Current.user)
-
     from_page = [params[:from_page].to_i, 1].max
     @deck.destroy
 
@@ -242,7 +241,13 @@ class DecksController < ApplicationController
 
   private
 
-  def set_deck
+  def set_owned_deck
+    deck = Deck.find(params[:id])
+    raise ActiveRecord::RecordNotFound unless deck.can_edit_settings?(Current.user)
+    @deck = deck
+  end
+
+  def set_content_deck
     deck = Deck.find(params[:id])
     raise ActiveRecord::RecordNotFound unless deck.can_edit?(Current.user, session_auth: deck_session_auth(deck))
     @deck = deck
@@ -258,10 +263,6 @@ class DecksController < ApplicationController
       end
     end
     @deck = deck
-  end
-
-  def deck_session_auth(deck)
-    session["deck_auth_#{deck.id}"] == true
   end
 
   def find_or_create_learn_session

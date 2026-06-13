@@ -49,5 +49,21 @@ RSpec.describe "Flashcards#edit", type: :request do
         expect(response).to have_http_status(:not_found)
       end
     end
+
+    context "when authenticated as a password user (content domain)" do
+      let(:owner)     { create(:user) }
+      let(:pw_deck)   { create(:deck, :editable_by_password, user: owner) }
+      let(:pw_card)   { create(:flashcard, deck: pw_deck) }
+      let(:other)     { create(:user) }
+      before do
+        sign_in(other)
+        post authenticate_deck_path(pw_deck), params: { access_password: "secret123" }
+      end
+
+      it "returns 200" do
+        get edit_flashcard_path(pw_card)
+        expect(response).to have_http_status(:ok)
+      end
+    end
   end
 end

@@ -44,5 +44,23 @@ RSpec.describe "Flashcards#update", type: :request do
         expect(response).to have_http_status(:not_found)
       end
     end
+
+    context "when authenticated as a password user (content domain)" do
+      let(:owner)   { create(:user) }
+      let(:pw_deck) { create(:deck, :editable_by_password, user: owner) }
+      let(:pw_card) { create(:flashcard, deck: pw_deck) }
+      let(:other)   { create(:user) }
+      before do
+        sign_in(other)
+        post authenticate_deck_path(pw_deck), params: { access_password: "secret123" }
+      end
+
+      it "updates the flashcard and redirects" do
+        patch flashcard_path(pw_card),
+              params: { flashcard: { front_content: "Updated", back_content: "Content" } }
+        expect(response).to redirect_to(deck_path(pw_deck))
+        expect(pw_card.reload.front_content).to eq("Updated")
+      end
+    end
   end
 end

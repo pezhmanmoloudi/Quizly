@@ -72,19 +72,21 @@ class FlashcardsController < ApplicationController
   private
 
   def set_deck
-    @deck = Current.user.decks.find(params[:deck_id])
+    deck = Deck.find(params[:deck_id])
+    raise ActiveRecord::RecordNotFound unless deck.can_edit?(Current.user, session_auth: deck_session_auth(deck))
+    @deck = deck
   end
 
   def set_flashcard
-    @flashcard = Flashcard.joins(:deck).where(decks: { user: Current.user }).find(params[:id])
+    @flashcard = Flashcard.find(params[:id])
+    deck = @flashcard.deck
+    raise ActiveRecord::RecordNotFound unless deck.can_edit?(Current.user, session_auth: deck_session_auth(deck))
   end
 
   def set_soft_deleted_flashcard
-    @flashcard = Flashcard.unscoped
-      .joins(:deck)
-      .where(decks: { user: Current.user })
-      .where.not(deleted_at: nil)
-      .find(params[:id])
+    @flashcard = Flashcard.unscoped.where.not(deleted_at: nil).find(params[:id])
+    deck = @flashcard.deck
+    raise ActiveRecord::RecordNotFound unless deck.can_edit?(Current.user, session_auth: deck_session_auth(deck))
   end
 
   def flashcard_params

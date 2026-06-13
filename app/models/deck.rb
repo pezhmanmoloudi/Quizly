@@ -51,6 +51,10 @@ class Deck < ApplicationRecord
     false
   end
 
+  def can_edit_settings?(user)
+    user&.id == user_id
+  end
+
   def can_delete?(user)
     user&.id == user_id
   end

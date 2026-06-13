@@ -50,5 +50,22 @@ RSpec.describe "Flashcards#create", type: :request do
         expect(response).to have_http_status(:not_found)
       end
     end
+
+    context "when authenticated as a password user (content domain)" do
+      let(:owner)     { create(:user) }
+      let(:pw_deck)   { create(:deck, :editable_by_password, user: owner) }
+      let(:other)     { create(:user) }
+      before do
+        sign_in(other)
+        post authenticate_deck_path(pw_deck), params: { access_password: "secret123" }
+      end
+
+      it "creates a flashcard" do
+        expect {
+          post deck_flashcards_path(pw_deck), params: valid_params
+        }.to change(Flashcard, :count).by(1)
+        expect(response).to redirect_to(deck_path(pw_deck))
+      end
+    end
   end
 end

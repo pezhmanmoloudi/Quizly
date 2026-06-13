@@ -41,6 +41,8 @@ class ImportsController < ApplicationController
   private
 
   def set_deck
-    @deck = Current.user.decks.find(params[:deck_id])
+    deck = Deck.find(params[:deck_id])
+    raise ActiveRecord::RecordNotFound unless deck.can_edit?(Current.user, session_auth: deck_session_auth(deck))
+    @deck = deck
   end
 end

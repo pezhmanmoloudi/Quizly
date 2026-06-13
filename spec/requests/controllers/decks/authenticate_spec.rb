@@ -35,12 +35,20 @@ RSpec.describe "Decks#authenticate", type: :request do
     context "for a deck with password_users edit permission" do
       let(:pw_edit_deck) { create(:deck, :editable_by_password, user: owner) }
 
-      it "grants edit access after correct password when user is authenticated" do
+      it "grants content access (cards) after correct password when user is authenticated" do
+        editor = create(:user)
+        sign_in(editor)
+        post authenticate_deck_path(pw_edit_deck), params: { access_password: "secret123" }
+        get cards_deck_path(pw_edit_deck)
+        expect(response).to have_http_status(:ok)
+      end
+
+      it "does not grant admin access (edit settings) after correct password" do
         editor = create(:user)
         sign_in(editor)
         post authenticate_deck_path(pw_edit_deck), params: { access_password: "secret123" }
         get edit_deck_path(pw_edit_deck)
-        expect(response).to have_http_status(:ok)
+        expect(response).to have_http_status(:not_found)
       end
     end
   end
