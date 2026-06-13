@@ -23,4 +23,8 @@ class ApplicationController < ActionController::Base
   def deck_session_auth(deck)
     session["deck_auth_#{deck.id}"] == true
   end
+
+  def deck_share_auth(deck)
+    session["deck_share_#{deck.id}"] == true
+  end
 end

@@ -1,8 +1,9 @@
 class DecksController < ApplicationController
   allow_unauthenticated_access only: [:show, :flashcard, :match, :unlock, :authenticate]
-  before_action :set_owned_deck,   only: [:edit, :update, :destroy]
-  before_action :set_content_deck, only: [:cards, :update_cards]
-  before_action :set_accessible_deck, only: [:show, :study, :flashcard, :match, :fork, :learn, :test]
+  before_action :set_owned_deck,        only: [:edit, :update, :destroy, :rotate_share_token]
+  before_action :set_content_deck,      only: [:cards, :update_cards]
+  before_action :set_accessible_deck,   only: [:show, :study, :flashcard, :match, :fork, :learn, :test]
+  before_action :set_noindex_for_unlisted, only: [:show, :study, :flashcard, :match, :learn, :test]
 
   DECK_INDEX_PER_PAGE    = 12
   ITEMS_PER_PAGE_OPTIONS = [5, 10, 15, 20, 30].freeze
@@ -36,10 +37,11 @@ class DecksController < ApplicationController
 
   def new
     @deck = Current.user.decks.build
+    @deck.share_token = SecureRandom.urlsafe_base64(32)
   end
 
   def create
-    @deck = Current.user.decks.build(deck_params)
+    @deck = Current.user.decks.build(deck_create_params)
     if @deck.save
       redirect_to cards_deck_path(@deck), notice: t("decks.created")
     else
@@ -51,7 +53,7 @@ class DecksController < ApplicationController
   end
 
   def update
-    if @deck.update(deck_params)
+    if @deck.update(deck_update_params)
       redirect_to @deck, notice: t("decks.updated")
     else
       render :edit, status: :unprocessable_entity
@@ -195,7 +197,7 @@ class DecksController < ApplicationController
   end
 
   def fork
-    raise ActiveRecord::RecordNotFound unless @deck.everyone?
+    raise ActiveRecord::RecordNotFound unless @deck.everyone? || @deck.unlisted?
 
     ActiveRecord::Base.transaction do
       copy = Deck.create!(
@@ -223,9 +225,14 @@ class DecksController < ApplicationController
 
   def unlock
     @deck = Deck.find(params[:id])
-    if @deck.can_view?(Current.user, session_auth: deck_session_auth(@deck))
+    if @deck.can_view?(Current.user, session_auth: deck_session_auth(@deck), share_auth: deck_share_auth(@deck))
       redirect_to @deck
     end
+  end
+
+  def rotate_share_token
+    @deck.update!(share_token: SecureRandom.urlsafe_base64(32))
+    redirect_to edit_deck_path(@deck), notice: t("decks.share_token_rotated")
   end
 
   def authenticate
@@ -255,7 +262,7 @@ class DecksController < ApplicationController
 
   def set_accessible_deck
     deck = Deck.find(params[:id])
-    unless deck.can_view?(Current.user, session_auth: deck_session_auth(deck))
+    unless deck.can_view?(Current.user, session_auth: deck_session_auth(deck), share_auth: deck_share_auth(deck))
       if deck.password_protected?
         redirect_to unlock_deck_path(deck) and return
       else
@@ -304,11 +311,23 @@ class DecksController < ApplicationController
     Current.user.study_sessions.create!(deck: @deck, cards_total: due_count, started_at: Time.current)
   end
 
-  def deck_params
+  def deck_create_params
+    params.require(:deck).permit(
+      :name, :description, :language_code, :visibility, :tag_list,
+      :edit_permission, :access_password, :access_password_confirmation,
+      :share_token
+    )
+  end
+
+  def deck_update_params
     params.require(:deck).permit(
       :name, :description, :language_code, :visibility, :tag_list,
       :edit_permission, :access_password, :access_password_confirmation
     )
+  end
+
+  def set_noindex_for_unlisted
+    response.headers["X-Robots-Tag"] = "noindex" if @deck&.unlisted?
   end
 
   def cards_params

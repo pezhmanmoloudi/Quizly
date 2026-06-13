@@ -15,12 +15,17 @@ class Deck < ApplicationRecord
   attribute :visibility,      :string, default: "everyone"
   attribute :edit_permission, :string, default: "owner_only"
 
-  VISIBILITY_VALUES      = %w[everyone password_protected private].freeze
+  VISIBILITY_VALUES      = %w[everyone unlisted password_protected private].freeze
   EDIT_PERMISSION_VALUES = %w[owner_only password_users].freeze
 
-  scope :publicly_visible, -> { where(visibility: "everyone") }
-  scope :public_decks,     -> { publicly_visible }
-  scope :popular,          -> { order(forks_count: :desc, created_at: :desc) }
+  scope :visible_in_explore,  -> { where(visibility: "everyone") }
+  scope :searchable,          -> { visible_in_explore }
+  scope :publicly_visible,    -> { visible_in_explore }
+  scope :public_decks,        -> { visible_in_explore }
+  scope :popular,             -> { order(forks_count: :desc, created_at: :desc) }
+  scope :accessible_by_token, ->(token) { where(visibility: "unlisted", share_token: token) }
+
+  before_create :generate_share_token
 
   validates :name,            presence: true, length: { maximum: 100 }
   validates :visibility,      inclusion: { in: VISIBILITY_VALUES }
@@ -31,15 +36,17 @@ class Deck < ApplicationRecord
   # ── Predicates ────────────────────────────────────────────────────────────
 
   def everyone?           = visibility == "everyone"
+  def unlisted?           = visibility == "unlisted"
   def password_protected? = visibility == "password_protected"
   def private?            = visibility == "private"
   def public?             = everyone?
 
   # ── Authorization ─────────────────────────────────────────────────────────
 
-  def can_view?(user, session_auth:)
+  def can_view?(user, session_auth:, share_auth: false)
     return true if everyone?
     return true if user&.id == user_id
+    return true if unlisted? && share_auth
     return true if password_protected? && session_auth
     false
   end
@@ -76,9 +83,17 @@ class Deck < ApplicationRecord
 
   private
 
+  def generate_share_token
+    self.share_token ||= SecureRandom.urlsafe_base64(32)
+  end
+
   def edit_permission_compatible_with_visibility
-    return unless visibility == "private" && edit_permission == "password_users"
-    errors.add(:edit_permission, :invalid_for_private_deck)
+    if visibility == "private" && edit_permission == "password_users"
+      errors.add(:edit_permission, :invalid_for_private_deck)
+    end
+    if visibility == "unlisted" && edit_permission == "password_users"
+      errors.add(:edit_permission, :invalid_for_unlisted_deck)
+    end
   end
 
   def access_password_requirements

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_06_13_000003) do
+ActiveRecord::Schema[8.1].define(version: 2026_06_13_000004) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -82,11 +82,13 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_13_000003) do
     t.integer "forks_count", default: 0, null: false
     t.string "language_code"
     t.string "name", null: false
+    t.string "share_token"
     t.string "subject_tags"
     t.datetime "updated_at", null: false
     t.integer "user_id", null: false
     t.string "visibility", default: "everyone", null: false
     t.index ["forked_from_id"], name: "index_decks_on_forked_from_id"
+    t.index ["share_token"], name: "index_decks_on_share_token", unique: true
     t.index ["user_id"], name: "index_decks_on_user_id"
     t.index ["visibility"], name: "index_decks_on_visibility"
   end

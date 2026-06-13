@@ -19,6 +19,10 @@ FactoryBot.define do
       access_password { "secret123" }
     end
 
+    trait :unlisted do
+      visibility { "unlisted" }
+    end
+
     trait :private do
       visibility { "private" }
     end

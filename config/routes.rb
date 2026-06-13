@@ -22,11 +22,12 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   get "/explore", to: "explore#index", as: :explore
+  get "/share/:token", to: "shared_decks#show", as: :shared_deck
 
   resources :decks do
     member do
-      get  :unlock
-      post :authenticate
+      get   :unlock
+      post  :authenticate
       get   :study
       get   :flashcard
       get   :match
@@ -35,6 +36,7 @@ Rails.application.routes.draw do
       post  :fork
       get   :cards
       patch :update_cards
+      patch :rotate_share_token
     end
     resources :flashcards, shallow: true do
       member do
