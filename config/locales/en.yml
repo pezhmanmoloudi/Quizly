@@ -184,11 +184,14 @@ en:
       delete_modal_warning: "All flashcards will be permanently deleted. This action cannot be undone."
       delete_modal_confirm: "Delete Deck"
       everyone_badge: "Public"
+      unlisted_badge: "Unlisted"
+      share_link_label: "Share link"
       password_protected_badge: "Password"
       public_badge: "Public"
       private_badge: "Private"
       created: "Created"
       forked_from: "Forked from"
+      forked_from_private: "a private deck"
       cards_section: "Cards"
       add_card: "Add Card"
       import: "Import"
@@ -218,6 +221,16 @@ en:
       visibility_label: "Visibility"
       visibility_section_label: "Who can view this deck?"
       visibility_everyone: "Everyone"
+      visibility_unlisted: "Unlisted"
+      visibility_unlisted_hint: "Only people with the link can view."
+      unlisted_share_hint: "Anyone with this link can view and study this deck."
+      copy_link: "Copy link"
+      copy_link_copied: "Copied!"
+      section_about: "About"
+      section_access_control: "Access Control"
+      share_link_will_be_invalidated: "Changing visibility will invalidate your current share link."
+      regenerate_link: "Regenerate link"
+      regenerate_link_confirm: "This will invalidate your current share link. Anyone with the old link will lose access. Continue?"
       visibility_password_protected: "Password protected"
       visibility_private: "Just me"
       visibility_public: "Public"
@@ -252,6 +265,7 @@ en:
     deleted: "Deck deleted."
     cards_saved: "Cards saved."
     forked: "Deck added to your library."
+    share_token_rotated: "Share link regenerated."
     not_available: "Deck not available."
     unlock:
       title: "Password Required"
@@ -535,6 +549,7 @@ en:
           attributes:
             edit_permission:
               invalid_for_private_deck: "Private decks can only be edited by the owner."
+              invalid_for_unlisted_deck: "Unlisted decks can only be edited by the owner."
             access_password:
               too_short:
                 one: "is too short (minimum is %{count} character)"

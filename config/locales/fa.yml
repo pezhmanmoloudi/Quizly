@@ -184,11 +184,14 @@ fa:
       delete_modal_warning: "تمام فلش‌کارت‌ها برای همیشه حذف خواهند شد. این عمل قابل برگشت نیست."
       delete_modal_confirm: "حذف دسته"
       everyone_badge: "عمومی"
+      unlisted_badge: "فهرست‌نشده"
+      share_link_label: "لینک اشتراک‌گذاری"
       password_protected_badge: "رمز"
       public_badge: "عمومی"
       private_badge: "خصوصی"
       created: "ایجاد شده"
       forked_from: "کپی‌شده از"
+      forked_from_private: "یک دسته خصوصی"
       cards_section: "کارت‌ها"
       add_card: "افزودن کارت"
       import: "وارد کردن"
@@ -218,6 +221,16 @@ fa:
       visibility_label: "دسترسی"
       visibility_section_label: "چه کسی می‌تواند این دسته را ببیند؟"
       visibility_everyone: "همه"
+      visibility_unlisted: "فهرست‌نشده"
+      visibility_unlisted_hint: "فقط کسانی که لینک دارند می‌توانند ببینند."
+      unlisted_share_hint: "هر کسی که این لینک را داشته باشد می‌تواند این دسته را ببیند و مطالعه کند."
+      copy_link: "کپی لینک"
+      copy_link_copied: "کپی شد!"
+      section_about: "درباره"
+      section_access_control: "کنترل دسترسی"
+      share_link_will_be_invalidated: "تغییر دید، لینک اشتراک‌گذاری فعلی شما را باطل می‌کند."
+      regenerate_link: "بازسازی لینک"
+      regenerate_link_confirm: "این کار لینک اشتراک‌گذاری فعلی را باطل می‌کند. هر کسی که لینک قدیمی دارد دسترسی را از دست می‌دهد. ادامه می‌دهید؟"
       visibility_password_protected: "محافظت‌شده با رمز"
       visibility_private: "فقط من"
       visibility_public: "عمومی"
@@ -252,6 +265,7 @@ fa:
     deleted: "دسته حذف شد."
     cards_saved: "کارت‌ها ذخیره شدند."
     forked: "دسته به کتابخانه‌ات اضافه شد."
+    share_token_rotated: "لینک اشتراک‌گذاری بازسازی شد."
     not_available: "دسته در دسترس نیست."
     unlock:
       title: "رمز لازم است"
@@ -535,6 +549,7 @@ fa:
           attributes:
             edit_permission:
               invalid_for_private_deck: "دسته‌های خصوصی فقط توسط مالک قابل ویرایش هستند."
+              invalid_for_unlisted_deck: "دسته‌های فهرست‌نشده فقط توسط مالک قابل ویرایش هستند."
             access_password:
               too_short:
                 one: "خیلی کوتاه است (حداقل %{count} کاراکتر)"

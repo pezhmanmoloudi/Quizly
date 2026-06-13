@@ -184,11 +184,14 @@ pt:
       delete_modal_warning: "Todos os flashcards serão excluídos permanentemente. Esta ação não pode ser desfeita."
       delete_modal_confirm: "Excluir baralho"
       everyone_badge: "Público"
+      unlisted_badge: "Não listado"
+      share_link_label: "Link de compartilhamento"
       password_protected_badge: "Senha"
       public_badge: "Público"
       private_badge: "Privado"
       created: "Criado"
       forked_from: "Copiado de"
+      forked_from_private: "um baralho privado"
       cards_section: "Cartões"
       add_card: "Adicionar cartão"
       import: "Importar"
@@ -218,6 +221,16 @@ pt:
       visibility_label: "Visibilidade"
       visibility_section_label: "Quem pode ver este baralho?"
       visibility_everyone: "Todos"
+      visibility_unlisted: "Não listado"
+      visibility_unlisted_hint: "Apenas pessoas com o link podem ver."
+      unlisted_share_hint: "Qualquer pessoa com este link pode ver e estudar este baralho."
+      copy_link: "Copiar link"
+      copy_link_copied: "Copiado!"
+      section_about: "Sobre"
+      section_access_control: "Controle de acesso"
+      share_link_will_be_invalidated: "Alterar a visibilidade invalidará o seu link de compartilhamento atual."
+      regenerate_link: "Regenerar link"
+      regenerate_link_confirm: "Isso invalidará o seu link de compartilhamento atual. Qualquer pessoa com o link antigo perderá o acesso. Continuar?"
       visibility_password_protected: "Protegido por senha"
       visibility_private: "Somente eu"
       visibility_public: "Público"
@@ -252,6 +265,7 @@ pt:
     deleted: "Baralho excluído."
     cards_saved: "Cartões salvos."
     forked: "Baralho adicionado à sua biblioteca."
+    share_token_rotated: "Link de compartilhamento regenerado."
     not_available: "Baralho não disponível."
     unlock:
       title: "Senha obrigatória"
@@ -535,6 +549,7 @@ pt:
           attributes:
             edit_permission:
               invalid_for_private_deck: "Baralhos privados só podem ser editados pelo proprietário."
+              invalid_for_unlisted_deck: "Baralhos não listados só podem ser editados pelo proprietário."
             access_password:
               too_short:
                 one: "é muito curta (mínimo %{count} caractere)"

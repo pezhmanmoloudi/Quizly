@@ -184,11 +184,14 @@ es:
       delete_modal_warning: "Todas las tarjetas flash se eliminarán permanentemente. Esta acción no se puede deshacer."
       delete_modal_confirm: "Eliminar mazo"
       everyone_badge: "Público"
+      unlisted_badge: "No listado"
+      share_link_label: "Enlace para compartir"
       password_protected_badge: "Contraseña"
       public_badge: "Público"
       private_badge: "Privado"
       created: "Creado"
       forked_from: "Bifurcado de"
+      forked_from_private: "un mazo privado"
       cards_section: "Tarjetas"
       add_card: "Añadir tarjeta"
       import: "Importar"
@@ -218,6 +221,16 @@ es:
       visibility_label: "Visibilidad"
       visibility_section_label: "¿Quién puede ver este mazo?"
       visibility_everyone: "Todos"
+      visibility_unlisted: "No listado"
+      visibility_unlisted_hint: "Solo las personas con el enlace pueden verlo."
+      unlisted_share_hint: "Cualquiera con este enlace puede ver y estudiar este mazo."
+      copy_link: "Copiar enlace"
+      copy_link_copied: "¡Copiado!"
+      section_about: "Acerca de"
+      section_access_control: "Control de acceso"
+      share_link_will_be_invalidated: "Cambiar la visibilidad invalidará tu enlace de compartir actual."
+      regenerate_link: "Regenerar enlace"
+      regenerate_link_confirm: "Esto invalidará tu enlace de compartir actual. Cualquiera con el enlace antiguo perderá el acceso. ¿Continuar?"
       visibility_password_protected: "Protegido con contraseña"
       visibility_private: "Solo yo"
       visibility_public: "Público"
@@ -252,6 +265,7 @@ es:
     deleted: "Mazo eliminado."
     cards_saved: "Tarjetas guardadas."
     forked: "Mazo añadido a tu biblioteca."
+    share_token_rotated: "Enlace de compartir regenerado."
     not_available: "Mazo no disponible."
     unlock:
       title: "Contraseña requerida"
@@ -535,6 +549,7 @@ es:
           attributes:
             edit_permission:
               invalid_for_private_deck: "Los mazos privados solo pueden ser editados por el propietario."
+              invalid_for_unlisted_deck: "Los mazos no listados solo pueden ser editados por el propietario."
             access_password:
               too_short:
                 one: "es demasiado corta (mínimo %{count} carácter)"

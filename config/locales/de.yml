@@ -184,11 +184,14 @@ de:
       delete_modal_warning: "Alle Lernkarten werden dauerhaft gelöscht. Diese Aktion kann nicht rückgängig gemacht werden."
       delete_modal_confirm: "Deck löschen"
       everyone_badge: "Öffentlich"
+      unlisted_badge: "Ungelistet"
+      share_link_label: "Link teilen"
       password_protected_badge: "Passwort"
       public_badge: "Öffentlich"
       private_badge: "Privat"
       created: "Erstellt"
       forked_from: "Kopiert von"
+      forked_from_private: "ein privates Deck"
       cards_section: "Karten"
       add_card: "Karte hinzufügen"
       import: "Importieren"
@@ -218,6 +221,16 @@ de:
       visibility_label: "Sichtbarkeit"
       visibility_section_label: "Wer kann dieses Deck sehen?"
       visibility_everyone: "Alle"
+      visibility_unlisted: "Ungelistet"
+      visibility_unlisted_hint: "Nur Personen mit dem Link können es ansehen."
+      unlisted_share_hint: "Jeder mit diesem Link kann dieses Deck anzeigen und lernen."
+      copy_link: "Link kopieren"
+      copy_link_copied: "Kopiert!"
+      section_about: "Über"
+      section_access_control: "Zugangskontrolle"
+      share_link_will_be_invalidated: "Das Ändern der Sichtbarkeit macht deinen aktuellen Teilungslink ungültig."
+      regenerate_link: "Link neu generieren"
+      regenerate_link_confirm: "Der aktuelle Teilungslink wird damit ungültig. Alle, die den alten Link haben, verlieren den Zugang. Fortfahren?"
       visibility_password_protected: "Passwortgeschützt"
       visibility_private: "Nur ich"
       visibility_public: "Öffentlich"
@@ -252,6 +265,7 @@ de:
     deleted: "Deck gelöscht."
     cards_saved: "Karten gespeichert."
     forked: "Deck zu deiner Bibliothek hinzugefügt."
+    share_token_rotated: "Teilungslink wurde neu generiert."
     not_available: "Deck nicht verfügbar."
     unlock:
       title: "Passwort erforderlich"
@@ -535,6 +549,7 @@ de:
           attributes:
             edit_permission:
               invalid_for_private_deck: "Private Decks können nur vom Besitzer bearbeitet werden."
+              invalid_for_unlisted_deck: "Ungelistete Decks können nur vom Besitzer bearbeitet werden."
             access_password:
               too_short:
                 one: "ist zu kurz (Minimum ist %{count} Zeichen)"
