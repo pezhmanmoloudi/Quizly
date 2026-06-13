@@ -155,4 +155,16 @@
   /* ── Star/bookmark active state ── */
   --color-star-bg:       rgba(245, 158, 11, 0.15);
   --color-star-bg-hover: rgba(245, 158, 11, 0.25);
+
+  /* ── Mode palette (dark) ── */
+  --mode-flashcards-bg:  #2d1657;
+  --mode-flashcards-bar: #a78bfa;
+  --mode-learn-bg:       #0a2e38;
+  --mode-learn-bar:      #22d3ee;
+  --mode-study-bg:       #3d2100;
+  --mode-study-bar:      #fbbf24;
+  --mode-test-bg:        #073230;
+  --mode-test-bar:       #2dd4bf;
+  --mode-match-bg:       #0a2e1c;
+  --mode-match-bar:      #34d399;
 }
