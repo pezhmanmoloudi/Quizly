@@ -25,10 +25,12 @@ RSpec.describe "Decks#authenticate", type: :request do
         expect(response.body).to include("Password Required")
       end
 
-      it "does not grant access to the deck" do
+      it "does not grant access to the deck content" do
         post authenticate_deck_path(deck), params: { access_password: "wrongpass" }
         get deck_path(deck)
-        expect(response).to redirect_to(unlock_deck_path(deck))
+        expect(response).to have_http_status(:ok)
+        expect(response.body).not_to include("study-mode-selector")
+        expect(response.body).to include(I18n.t("decks.show.unlock_cta"))
       end
     end
 

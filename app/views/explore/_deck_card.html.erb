@@ -6,8 +6,9 @@
   <div class="deck-tile__header">
     <h3 class="deck-tile__name"><%= deck.name %></h3>
     <% if locked %>
-      <span class="deck-tile__lock-icon" aria-label="<%= t("explore.locked_badge") %>">
-        <%= render "shared/icons/lock", css_class: "icon--sm" %>
+      <span class="deck-tile__protected-chip">
+        <%= render "shared/icons/lock", css_class: "icon--xs" %>
+        <%= t("explore.protected_badge") %>
       </span>
     <% else %>
       <span class="deck-tile__forks">
@@ -35,21 +36,18 @@
       </div>
     <% end %>
     <% if locked && deck.flashcards.any? %>
-      <div class="deck-tile__preview">
+      <ul class="deck-tile__preview-list">
         <% deck.flashcards.first(3).each do |card| %>
-          <p class="deck-tile__preview-term"><%= card.front_content.truncate(60) %></p>
+          <li class="deck-tile__preview-term"><%= card.front_content.truncate(60) %></li>
         <% end %>
-      </div>
+      </ul>
     <% end %>
   </div>
 
   <div class="deck-tile__footer deck-tile__footer--<%= locked ? "locked" : "public" %>">
     <span class="deck-tile__author"><%= t("explore.by") %> <%= deck.user.display_name %></span>
     <% if locked %>
-      <span class="visibility-badge visibility-badge--password">
-        <%= render "shared/icons/lock", css_class: "icon--sm" %>
-        <%= t("explore.locked_badge") %>
-      </span>
+      <span class="deck-tile__unlock-cta"><%= t("explore.unlock_cta_inline") %> →</span>
     <% end %>
   </div>
 </a>

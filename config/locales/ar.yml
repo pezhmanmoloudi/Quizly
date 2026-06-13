@@ -206,6 +206,14 @@ ar:
       mode_test: "الاختبار"
       mode_match: "المطابقة"
       cards_per_page: "بطاقات في الصفحة"
+      locked_title: "This deck is password protected"
+      locked_description: "Enter the password to access all flashcards and study modes."
+      unlock_cta: "Unlock Deck"
+      preview_heading: "Sample Cards"
+      locked_card_placeholder: "• • •"
+      locked_cards_counter:
+        one: "1 card locked"
+        other: "%{count} cards locked"
     new:
       title: "مجموعة جديدة"
       back: "→ رجوع"
@@ -269,6 +277,17 @@ ar:
     forked: "تمّت إضافة المجموعة إلى مكتبتك."
     fork_modal:
       submitting: "جارٍ النسخ..."
+      title_fork: "Save a copy"
+      title_duplicate: "Save a duplicate"
+      source_label: "Copying from"
+      name_label: "Name your copy"
+      visibility_label: "Who can see your copy?"
+      visibility_private_desc: "Only you"
+      visibility_unlisted_desc: "Anyone with the link"
+      visibility_everyone_desc: "Visible in Explore"
+      submit_fork: "Save a copy"
+      submit_duplicate: "Save a duplicate"
+      submitting_new: "Saving…"
     share_token_rotated: "تم تجديد رابط المشاركة."
     not_available: "المجموعة غير متاحة."
     unlock:
@@ -278,6 +297,9 @@ ar:
       submit: "فتح المجموعة"
       invalid_password: "كلمة المرور غير صحيحة. يرجى المحاولة مرة أخرى."
       success: "تم منح الوصول."
+      back_to_preview: "← Back to preview"
+      help_text: "Contact the deck creator if you don't have the password."
+      submitting: "Unlocking…"
     sidebar_no_decks: "لا توجد مجموعات بعد."
     deck_card:
       due:
@@ -408,6 +430,9 @@ ar:
     empty_description: "كن أول من يشارك مجموعة مع المجتمع."
     by: "بواسطة"
     fork: "نسخ"
+    locked_badge: "Password Required"
+    protected_badge: "Protected"
+    unlock_cta_inline: "Unlock to study"
   dashboard:
     total_decks: "إجمالي المجموعات"
     total_cards: "إجمالي البطاقات"

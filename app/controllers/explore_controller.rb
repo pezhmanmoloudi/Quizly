@@ -2,7 +2,7 @@ class ExploreController < ApplicationController
   allow_unauthenticated_access only: [:index]
 
   def index
-    @decks = Deck.public_decks.popular.includes(:user)
+    @decks = Deck.discoverable.popular.includes(:user, :flashcards)
     if (@query = params[:q].presence)
       @decks = @decks.where("name LIKE :q OR description LIKE :q", q: "%#{@query}%")
     end

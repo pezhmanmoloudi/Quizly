@@ -30,6 +30,11 @@ class DecksController < ApplicationController
   end
 
   def show
+    if @locked
+      @sample_flashcards = @deck.flashcards.order(:position).limit(3)
+      @locked_cards_count = @deck.flashcards.count
+      return
+    end
     items = ITEMS_PER_PAGE_OPTIONS.include?(params[:items].to_i) ? params[:items].to_i : 10
     @pagy, @flashcards = pagy(@deck.flashcards.order(:position), limit: items)
     @items_per_page = items
@@ -273,14 +278,16 @@ class DecksController < ApplicationController
 
   def set_accessible_deck
     deck = Deck.find(params[:id])
-    unless deck.can_view?(Current.user, session_auth: deck_session_auth(deck), share_auth: deck_share_auth(deck))
-      if deck.password_protected?
-        redirect_to unlock_deck_path(deck) and return
-      else
-        raise ActiveRecord::RecordNotFound
-      end
+    if deck.can_view?(Current.user, session_auth: deck_session_auth(deck), share_auth: deck_share_auth(deck))
+      @deck = deck
+    elsif deck.password_protected? && action_name == "show"
+      @deck = deck
+      @locked = true
+    elsif deck.password_protected?
+      redirect_to unlock_deck_path(deck) and return
+    else
+      raise ActiveRecord::RecordNotFound
     end
-    @deck = deck
   end
 
   def find_or_create_learn_session

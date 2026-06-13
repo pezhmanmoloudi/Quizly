@@ -206,6 +206,14 @@ tr:
       mode_test: "Test"
       mode_match: "Eşleştir"
       cards_per_page: "Sayfa başına kart"
+      locked_title: "This deck is password protected"
+      locked_description: "Enter the password to access all flashcards and study modes."
+      unlock_cta: "Unlock Deck"
+      preview_heading: "Sample Cards"
+      locked_card_placeholder: "• • •"
+      locked_cards_counter:
+        one: "1 card locked"
+        other: "%{count} cards locked"
     new:
       title: "Yeni Deste"
       back: "← Geri"
@@ -269,6 +277,17 @@ tr:
     forked: "Deste kütüphanene eklendi."
     fork_modal:
       submitting: "Kopyalanıyor..."
+      title_fork: "Save a copy"
+      title_duplicate: "Save a duplicate"
+      source_label: "Copying from"
+      name_label: "Name your copy"
+      visibility_label: "Who can see your copy?"
+      visibility_private_desc: "Only you"
+      visibility_unlisted_desc: "Anyone with the link"
+      visibility_everyone_desc: "Visible in Explore"
+      submit_fork: "Save a copy"
+      submit_duplicate: "Save a duplicate"
+      submitting_new: "Saving…"
     share_token_rotated: "Paylaşım bağlantısı yenilendi."
     not_available: "Deste mevcut değil."
     unlock:
@@ -278,6 +297,9 @@ tr:
       submit: "Desteyi aç"
       invalid_password: "Yanlış şifre. Lütfen tekrar deneyin."
       success: "Erişim sağlandı."
+      back_to_preview: "← Back to preview"
+      help_text: "Contact the deck creator if you don't have the password."
+      submitting: "Unlocking…"
     sidebar_no_decks: "Henüz deste yok."
     deck_card:
       due:
@@ -408,6 +430,9 @@ tr:
     empty_description: "Toplulukla ilk desteyi paylaşan sen ol."
     by: "tarafından"
     fork: "Kopyala"
+    locked_badge: "Password Required"
+    protected_badge: "Protected"
+    unlock_cta_inline: "Unlock to study"
   dashboard:
     total_decks: "Toplam Deste"
     total_cards: "Toplam Kart"

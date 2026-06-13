@@ -25,6 +25,25 @@ RSpec.describe "Explore#index", type: :request do
         expect(response.body).not_to include("Secret Deck")
       end
 
+      it "lists password_protected decks from other users" do
+        create(:deck, :password_protected, user: other_user, name: "Protected Spanish Deck")
+        get explore_path
+        expect(response.body).to include("Protected Spanish Deck")
+      end
+
+      it "shows protected chip for password_protected decks" do
+        create(:deck, :password_protected, user: other_user, name: "Protected Spanish Deck")
+        get explore_path
+        expect(response.body).to include(I18n.t("explore.protected_badge"))
+        expect(response.body).to include(I18n.t("explore.unlock_cta_inline"))
+      end
+
+      it "does not show Fork button for any deck" do
+        create(:deck, :everyone, user: other_user, name: "Public Deck")
+        get explore_path
+        expect(response.body).not_to include(I18n.t("explore.fork"))
+      end
+
       it "filters decks by search query" do
         create(:deck, user: other_user, visibility: "everyone", name: "Spanish Basics")
         create(:deck, user: other_user, visibility: "everyone", name: "French Vocab")
@@ -80,7 +99,7 @@ RSpec.describe "Explore#index", type: :request do
       it "does not show Fork button" do
         create(:deck, user: create(:user), visibility: "everyone", name: "Some Deck")
         get explore_path
-        expect(response.body).not_to include("Fork")
+        expect(response.body).not_to include(I18n.t("explore.fork"))
       end
     end
   end

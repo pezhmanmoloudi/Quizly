@@ -206,6 +206,14 @@ fa:
       mode_test: "آزمون"
       mode_match: "تطبیق"
       cards_per_page: "کارت در هر صفحه"
+      locked_title: "This deck is password protected"
+      locked_description: "Enter the password to access all flashcards and study modes."
+      unlock_cta: "Unlock Deck"
+      preview_heading: "Sample Cards"
+      locked_card_placeholder: "• • •"
+      locked_cards_counter:
+        one: "1 card locked"
+        other: "%{count} cards locked"
     new:
       title: "دسته جدید"
       back: "→ بازگشت"
@@ -269,6 +277,17 @@ fa:
     forked: "دسته به کتابخانه‌ات اضافه شد."
     fork_modal:
       submitting: "در حال کپی..."
+      title_fork: "Save a copy"
+      title_duplicate: "Save a duplicate"
+      source_label: "Copying from"
+      name_label: "Name your copy"
+      visibility_label: "Who can see your copy?"
+      visibility_private_desc: "Only you"
+      visibility_unlisted_desc: "Anyone with the link"
+      visibility_everyone_desc: "Visible in Explore"
+      submit_fork: "Save a copy"
+      submit_duplicate: "Save a duplicate"
+      submitting_new: "Saving…"
     share_token_rotated: "لینک اشتراک‌گذاری بازسازی شد."
     not_available: "دسته در دسترس نیست."
     unlock:
@@ -278,6 +297,9 @@ fa:
       submit: "باز کردن دسته"
       invalid_password: "رمز اشتباه است. لطفاً دوباره امتحان کن."
       success: "دسترسی داده شد."
+      back_to_preview: "← Back to preview"
+      help_text: "Contact the deck creator if you don't have the password."
+      submitting: "Unlocking…"
     sidebar_no_decks: "هنوز دسته‌ای نداری."
     deck_card:
       due:
@@ -408,6 +430,9 @@ fa:
     empty_description: "اولین نفری باش که دسته‌ای را با جامعه به اشتراک می‌گذارد."
     by: "توسط"
     fork: "کپی"
+    locked_badge: "Password Required"
+    protected_badge: "Protected"
+    unlock_cta_inline: "Unlock to study"
   dashboard:
     total_decks: "مجموع دسته‌ها"
     total_cards: "مجموع کارت‌ها"

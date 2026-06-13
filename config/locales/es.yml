@@ -201,6 +201,14 @@ es:
       edit_card: "Editar tarjeta"
       delete_card: "Eliminar tarjeta"
       cards_per_page: "Tarjetas por página"
+      locked_title: "This deck is password protected"
+      locked_description: "Enter the password to access all flashcards and study modes."
+      unlock_cta: "Unlock Deck"
+      preview_heading: "Sample Cards"
+      locked_card_placeholder: "• • •"
+      locked_cards_counter:
+        one: "1 card locked"
+        other: "%{count} cards locked"
       mode_flashcard: "Tarjeta"
       mode_study: "Estudiar"
       mode_learn: "Aprender"
@@ -269,6 +277,17 @@ es:
     forked: "Mazo añadido a tu biblioteca."
     fork_modal:
       submitting: "Copiando..."
+      title_fork: "Save a copy"
+      title_duplicate: "Save a duplicate"
+      source_label: "Copying from"
+      name_label: "Name your copy"
+      visibility_label: "Who can see your copy?"
+      visibility_private_desc: "Only you"
+      visibility_unlisted_desc: "Anyone with the link"
+      visibility_everyone_desc: "Visible in Explore"
+      submit_fork: "Save a copy"
+      submit_duplicate: "Save a duplicate"
+      submitting_new: "Saving…"
     share_token_rotated: "Enlace de compartir regenerado."
     not_available: "Mazo no disponible."
     unlock:
@@ -278,6 +297,9 @@ es:
       submit: "Desbloquear mazo"
       invalid_password: "Contraseña incorrecta. Por favor, inténtalo de nuevo."
       success: "Acceso concedido."
+      back_to_preview: "← Back to preview"
+      help_text: "Contact the deck creator if you don't have the password."
+      submitting: "Unlocking…"
     sidebar_no_decks: "Todavía no hay mazos."
     deck_card:
       due:
@@ -408,6 +430,9 @@ es:
     empty_description: "Sé el primero en compartir un mazo con la comunidad."
     by: "por"
     fork: "Copiar"
+    locked_badge: "Password Required"
+    protected_badge: "Protected"
+    unlock_cta_inline: "Unlock to study"
   dashboard:
     total_decks: "Total de mazos"
     total_cards: "Total de tarjetas"

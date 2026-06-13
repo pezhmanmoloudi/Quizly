@@ -1,0 +1,37 @@
+<div class="deck-locked">
+  <% if sample_flashcards.any? %>
+    <div class="deck-locked__preview-section">
+      <div class="deck-locked__preview-header">
+        <h2 class="deck-locked__preview-title"><%= t("decks.show.preview_heading") %></h2>
+        <span class="deck-locked__counter">
+          <%= render "shared/icons/lock", css_class: "icon--xs" %>
+          <%= t("decks.show.locked_cards_counter", count: locked_cards_count) %>
+        </span>
+      </div>
+      <div class="deck-locked__samples">
+        <% sample_flashcards.each do |card| %>
+          <div class="deck-locked__sample-card">
+            <div class="deck-locked__sample-front"><%= card.front_content %></div>
+            <div class="deck-locked__sample-back--blurred" aria-hidden="true">
+              <%= t("decks.show.locked_card_placeholder") %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="deck-locked__cta-section">
+    <div class="deck-locked__cta-icon">
+      <%= render "shared/icons/lock", css_class: "icon--lg" %>
+    </div>
+    <div>
+      <h2 class="deck-locked__title"><%= t("decks.show.locked_title") %></h2>
+      <p class="deck-locked__description"><%= t("decks.show.locked_description") %></p>
+    </div>
+    <%= link_to unlock_deck_path(deck), class: "btn btn--primary btn--lg btn-with-icon" do %>
+      <%= render "shared/icons/lock", css_class: "icon--sm" %>
+      <%= t("decks.show.unlock_cta") %>
+    <% end %>
+  </div>
+</div>

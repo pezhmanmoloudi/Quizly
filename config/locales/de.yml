@@ -206,6 +206,14 @@ de:
       mode_test: "Test"
       mode_match: "Zuordnen"
       cards_per_page: "Karten pro Seite"
+      locked_title: "This deck is password protected"
+      locked_description: "Enter the password to access all flashcards and study modes."
+      unlock_cta: "Unlock Deck"
+      preview_heading: "Sample Cards"
+      locked_card_placeholder: "• • •"
+      locked_cards_counter:
+        one: "1 card locked"
+        other: "%{count} cards locked"
     new:
       title: "Neues Deck"
       back: "← Zurück"
@@ -269,6 +277,17 @@ de:
     forked: "Deck zu deiner Bibliothek hinzugefügt."
     fork_modal:
       submitting: "Kopieren..."
+      title_fork: "Save a copy"
+      title_duplicate: "Save a duplicate"
+      source_label: "Copying from"
+      name_label: "Name your copy"
+      visibility_label: "Who can see your copy?"
+      visibility_private_desc: "Only you"
+      visibility_unlisted_desc: "Anyone with the link"
+      visibility_everyone_desc: "Visible in Explore"
+      submit_fork: "Save a copy"
+      submit_duplicate: "Save a duplicate"
+      submitting_new: "Saving…"
     share_token_rotated: "Teilungslink wurde neu generiert."
     not_available: "Deck nicht verfügbar."
     unlock:
@@ -278,6 +297,9 @@ de:
       submit: "Deck entsperren"
       invalid_password: "Falsches Passwort. Bitte versuche es erneut."
       success: "Zugang gewährt."
+      back_to_preview: "← Back to preview"
+      help_text: "Contact the deck creator if you don't have the password."
+      submitting: "Unlocking…"
     sidebar_no_decks: "Noch keine Decks."
     deck_card:
       due:
@@ -408,6 +430,9 @@ de:
     empty_description: "Sei der Erste, der ein Deck mit der Community teilt."
     by: "von"
     fork: "Kopieren"
+    locked_badge: "Password Required"
+    protected_badge: "Protected"
+    unlock_cta_inline: "Unlock to study"
   dashboard:
     total_decks: "Decks gesamt"
     total_cards: "Karten gesamt"

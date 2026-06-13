@@ -35,10 +35,45 @@ RSpec.describe Deck, type: :model do
   end
 
   describe "scopes" do
-    it ".visible_in_explore excludes unlisted decks" do
+    it ".discoverable includes everyone decks" do
+      create(:deck, :everyone)
+      expect(Deck.discoverable.map(&:visibility)).to include("everyone")
+    end
+
+    it ".discoverable includes password_protected decks" do
+      create(:deck, :password_protected)
+      expect(Deck.discoverable.map(&:visibility)).to include("password_protected")
+    end
+
+    it ".discoverable excludes private decks" do
+      create(:deck, :private)
+      create(:deck, :everyone)
+      expect(Deck.discoverable.map(&:visibility)).not_to include("private")
+    end
+
+    it ".discoverable excludes unlisted decks" do
       create(:deck, :unlisted)
       create(:deck, :everyone)
-      expect(Deck.visible_in_explore.map(&:visibility)).to all(eq("everyone"))
+      expect(Deck.discoverable.map(&:visibility)).not_to include("unlisted")
+    end
+
+    it ".visible_in_explore includes password_protected decks" do
+      create(:deck, :password_protected)
+      expect(Deck.visible_in_explore.map(&:visibility)).to include("password_protected")
+    end
+
+    it ".visible_in_explore excludes unlisted and private decks" do
+      create(:deck, :unlisted)
+      create(:deck, :private)
+      create(:deck, :everyone)
+      result = Deck.visible_in_explore.map(&:visibility)
+      expect(result).not_to include("unlisted")
+      expect(result).not_to include("private")
+    end
+
+    it ".searchable includes password_protected decks" do
+      create(:deck, :password_protected, name: "Protected Gem")
+      expect(Deck.searchable.map(&:name)).to include("Protected Gem")
     end
 
     it ".searchable excludes unlisted decks" do
@@ -46,6 +81,24 @@ RSpec.describe Deck, type: :model do
       create(:deck, :everyone, name: "Public Deck")
       names = Deck.searchable.map(&:name)
       expect(names).not_to include("Hidden Gem")
+    end
+  end
+
+  describe "#preview_accessible?" do
+    it "is true for everyone decks" do
+      expect(build(:deck, :everyone).preview_accessible?).to be true
+    end
+
+    it "is true for password_protected decks" do
+      expect(build(:deck, :password_protected).preview_accessible?).to be true
+    end
+
+    it "is false for private decks" do
+      expect(build(:deck, :private).preview_accessible?).to be false
+    end
+
+    it "is false for unlisted decks" do
+      expect(build(:deck, :unlisted).preview_accessible?).to be false
     end
   end
 

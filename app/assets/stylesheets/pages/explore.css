@@ -41,3 +41,65 @@
 }
 
 .section-header__link:hover { text-decoration: underline; }
+
+/* ── Locked (password-protected) deck tile ── */
+.deck-tile--locked {
+  border-left: 3px solid var(--color-primary);
+}
+
+.deck-tile--locked:hover {
+  outline: 2px solid color-mix(in srgb, var(--color-primary) 50%, transparent);
+}
+
+.deck-tile__protected-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  background: color-mix(in srgb, var(--color-primary) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-primary) 20%, transparent);
+  border-radius: var(--radius-full);
+  padding: 0.15rem 0.5rem;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.deck-tile__protected-chip .icon--xs { width: 0.6rem; height: 0.6rem; }
+
+.deck-tile__footer--locked { justify-content: space-between; align-items: center; }
+
+.deck-tile__unlock-cta {
+  font-size: var(--text-xs);
+  font-weight: var(--font-semibold);
+  color: var(--color-primary);
+}
+
+.deck-tile__preview-list {
+  list-style: none;
+  padding: 0;
+  margin: 0.375rem 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.deck-tile__preview-term {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  margin: 0;
+  padding-inline-start: 0.875rem;
+  position: relative;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.deck-tile__preview-term::before {
+  content: "•";
+  position: absolute;
+  inset-inline-start: 0.125rem;
+  color: var(--color-primary);
+  opacity: 0.5;
+}

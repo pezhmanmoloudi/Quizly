@@ -21,10 +21,11 @@ class Deck < ApplicationRecord
 
   after_destroy :decrement_source_forks_count
 
-  scope :visible_in_explore,  -> { where(visibility: "everyone") }
-  scope :searchable,          -> { visible_in_explore }
-  scope :publicly_visible,    -> { visible_in_explore }
-  scope :public_decks,        -> { visible_in_explore }
+  scope :discoverable,        -> { where(visibility: %w[everyone password_protected]) }
+  scope :visible_in_explore,  -> { discoverable }
+  scope :searchable,          -> { discoverable }
+  scope :publicly_visible,    -> { discoverable }
+  scope :public_decks,        -> { discoverable }
   scope :popular,             -> { order(forks_count: :desc, created_at: :desc) }
   scope :accessible_by_token, ->(token) { where(visibility: "unlisted", share_token: token) }
 
@@ -76,6 +77,10 @@ class Deck < ApplicationRecord
   def can_fork?(user)
     return false if private? && user&.id != user_id
     true
+  end
+
+  def preview_accessible?
+    everyone? || password_protected?
   end
 
   # ── Tags ──────────────────────────────────────────────────────────────────

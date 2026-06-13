@@ -3,7 +3,7 @@
 <div class="container">
   <% can_edit = @deck.can_edit?(Current.user, session_auth: session["deck_auth_#{@deck.id}"] == true) %>
   <% can_delete = @deck.can_delete?(Current.user) %>
-  <% show_fork = authenticated? && @deck.can_fork?(Current.user) %>
+  <% show_fork = !@locked && authenticated? && @deck.can_fork?(Current.user) %>
   <div class="deck-detail-header" <% if can_delete %>data-controller="modal"<% end %>>
     <div class="deck-detail-header__top">
       <h1 class="deck-detail-header__name"><%= @deck.name %></h1>
@@ -19,7 +19,7 @@
                     class="btn btn--<%= can_delete ? 'secondary' : 'primary' %> btn-with-icon"
                     data-action="click->modal#open">
               <%= render "shared/icons/fork" %>
-              <%= can_delete ? t("decks.show.duplicate") : t("decks.show.fork") %>
+              <%= can_delete ? t("decks.fork_modal.submit_duplicate") : t("decks.fork_modal.submit_fork") %>
             </button>
             <%= render "decks/fork_modal", deck: @deck, is_owner: can_delete %>
           </div>
@@ -113,6 +113,10 @@
             hidden_fields: { from_page: params[:from_page] || 1 } %>
     <% end %>
   </div>
+
+  <% if @locked %>
+    <%= render "decks/locked_preview", deck: @deck, sample_flashcards: @sample_flashcards, locked_cards_count: @locked_cards_count %>
+  <% else %>
 
   <div class="study-mode-selector">
     <%= link_to flashcard_deck_path(@deck), class: "study-mode-btn study-mode-btn--flashcards" do %>
@@ -216,4 +220,5 @@
     </div>
   </div>
 
+  <% end %>
 </div>

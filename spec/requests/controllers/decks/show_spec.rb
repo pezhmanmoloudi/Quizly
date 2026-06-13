@@ -101,10 +101,17 @@ RSpec.describe "Decks#show", type: :request do
         expect(response.body).not_to include("Delete Deck")
       end
 
-      it "redirects to unlock for a password_protected deck" do
+      it "renders locked preview for a password_protected deck" do
         pw_deck = create(:deck, :password_protected, user: user)
         get deck_path(pw_deck)
-        expect(response).to redirect_to(unlock_deck_path(pw_deck))
+        expect(response).to have_http_status(:ok)
+        expect(response.body).to include(I18n.t("decks.show.unlock_cta"))
+      end
+
+      it "does not show study mode selector on locked preview" do
+        pw_deck = create(:deck, :password_protected, user: user)
+        get deck_path(pw_deck)
+        expect(response.body).not_to include("study-mode-selector")
       end
 
       it "returns 200 for a password_protected deck when session is authorized" do
@@ -112,6 +119,14 @@ RSpec.describe "Decks#show", type: :request do
         post authenticate_deck_path(pw_deck), params: { access_password: "secret123" }
         get deck_path(pw_deck)
         expect(response).to have_http_status(:ok)
+      end
+
+      it "renders full deck after unlock, including study modes" do
+        pw_deck = create(:deck, :password_protected, user: user)
+        post authenticate_deck_path(pw_deck), params: { access_password: "secret123" }
+        get deck_path(pw_deck)
+        expect(response.body).to include("study-mode-selector")
+        expect(response.body).not_to include(I18n.t("decks.show.unlock_cta"))
       end
 
       it "returns 404 for an unlisted deck without share session" do
@@ -140,10 +155,17 @@ RSpec.describe "Decks#show", type: :request do
         expect(response).to have_http_status(:ok)
       end
 
-      it "redirects to unlock for a password_protected deck" do
+      it "renders locked preview for a password_protected deck" do
         pw_deck = create(:deck, :password_protected, user: user)
         get deck_path(pw_deck)
-        expect(response).to redirect_to(unlock_deck_path(pw_deck))
+        expect(response).to have_http_status(:ok)
+        expect(response.body).to include(I18n.t("decks.show.unlock_cta"))
+      end
+
+      it "does not show study mode selector on locked preview" do
+        pw_deck = create(:deck, :password_protected, user: user)
+        get deck_path(pw_deck)
+        expect(response.body).not_to include("study-mode-selector")
       end
 
       it "does not show Fork button on an everyone deck" do
