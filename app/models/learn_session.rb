@@ -19,8 +19,10 @@ class LearnSession < ApplicationRecord
 
   def next_item
     learn_session_items
+      .joins(:flashcard)
+      .includes(:flashcard)
       .where.not(status: "mastered")
-      .order(Arel.sql("CASE status WHEN 'unseen' THEN 0 ELSE 1 END, position"))
+      .order(Arel.sql("CASE learn_session_items.status WHEN 'unseen' THEN 0 ELSE 1 END, learn_session_items.position"))
       .first
   end
 

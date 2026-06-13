@@ -54,6 +54,15 @@ RSpec.describe LearnSession, type: :model do
       expect(learn_session.next_item).to be_nil
     end
 
+    it "skips items whose flashcard has been soft-deleted" do
+      live_card    = create(:flashcard, deck: deck)
+      deleted_card = create(:flashcard, deck: deck)
+      create(:learn_session_item, learn_session: learn_session, flashcard: deleted_card, position: 0)
+      live_item = create(:learn_session_item, learn_session: learn_session, flashcard: live_card, position: 1)
+      deleted_card.soft_delete!
+      expect(learn_session.next_item).to eq live_item
+    end
+
     it "prioritises unseen over learning items" do
       card_a = create(:flashcard, deck: deck)
       card_b = create(:flashcard, deck: deck)
