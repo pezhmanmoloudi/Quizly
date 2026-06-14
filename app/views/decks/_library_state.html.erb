@@ -1,0 +1,24 @@
+<div id="library-state-<%= deck.id %>">
+  <% case deck_library_state(deck, Current.user) %>
+  <% when :not_logged_in %>
+    <%= link_to t("decks.action.sign_in_to_save"), login_path,
+          class: "btn btn--secondary btn-with-icon" %>
+
+  <% when :already_saved %>
+    <span class="btn btn--secondary btn-with-icon">
+      <%= render "shared/icons/check" %> <%= t("decks.action.in_library") %>
+    </span>
+    <%= form_with url: unsave_deck_path(deck), method: :delete do %>
+      <button type="submit" class="btn btn--outline btn--sm">
+        <%= t("decks.action.unsave") %>
+      </button>
+    <% end %>
+
+  <% when :can_save %>
+    <%= form_with url: fork_deck_path(deck), method: :post do %>
+      <button type="submit" class="btn btn--primary btn-with-icon">
+        <%= render "shared/icons/bookmark", css_class: "icon--sm" %> <%= t("decks.action.save") %>
+      </button>
+    <% end %>
+  <% end %>
+</div>

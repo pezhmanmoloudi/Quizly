@@ -24,7 +24,7 @@ RSpec.describe "Notifications#mark_read", type: :request do
     it "cannot mark another user's notification as read" do
       other_notification = create(:notification, read: false)
       patch mark_read_notification_path(other_notification)
-      expect(response).to have_http_status(:not_found)
+      expect(response).to redirect_to(decks_path)
     end
 
     it "turbo stream response replaces the notification element and updates the badge" do

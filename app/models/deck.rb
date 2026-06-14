@@ -1,7 +1,8 @@
 class Deck < ApplicationRecord
   belongs_to :user
-  belongs_to :forked_from, class_name: "Deck", optional: true
-  has_many :forks, class_name: "Deck", foreign_key: :forked_from_id, dependent: :nullify
+  belongs_to :source_deck, class_name: "Deck", optional: true
+  has_many :library_items, dependent: :destroy
+  has_many :savers, through: :library_items, source: :user
   has_many :flashcards, dependent: :destroy
   has_many :study_sessions, dependent: :destroy
   has_many :learn_sessions, dependent: :destroy
@@ -10,55 +11,53 @@ class Deck < ApplicationRecord
     reject_if: :all_blank,
     allow_destroy: true
 
-  has_secure_password :access_password, validations: false
+  has_secure_password :password, validations: false
 
-  attribute :visibility,      :string, default: "everyone"
-  attribute :edit_permission, :string, default: "owner_only"
+  attribute :visibility,      :string, default: "public"
+  attribute :edit_permission, :string, default: "only_me"
 
-  VISIBILITY_VALUES      = %w[everyone unlisted password_protected private].freeze
-  EDIT_PERMISSION_VALUES = %w[owner_only password_users].freeze
-  FORKABLE_VISIBILITIES  = %w[private unlisted everyone].freeze
+  VISIBILITY_VALUES      = %w[public unlisted private].freeze
+  EDIT_PERMISSION_VALUES = %w[only_me people_with_password].freeze
+  DUPLICATE_VISIBILITIES = %w[private unlisted public].freeze
 
-  after_destroy :decrement_source_forks_count
-
-  scope :visible_in_explore,  -> { where(visibility: "everyone") }
-  scope :searchable,          -> { visible_in_explore }
-  scope :publicly_visible,    -> { visible_in_explore }
-  scope :public_decks,        -> { visible_in_explore }
-  scope :popular,             -> { order(forks_count: :desc, created_at: :desc) }
-  scope :accessible_by_token, ->(token) { where(visibility: "unlisted", share_token: token) }
-
-  before_create :generate_share_token
+  scope :discoverable, -> { where(visibility: "public") }
+  scope :popular,      -> { order(created_at: :desc) }
 
   validates :name,            presence: true, length: { maximum: 100 }
   validates :visibility,      inclusion: { in: VISIBILITY_VALUES }
   validates :edit_permission, inclusion: { in: EDIT_PERMISSION_VALUES }
   validate  :edit_permission_compatible_with_visibility
-  validate  :access_password_requirements
+  validate  :password_requirements
+
+  # ── Unlock state (stamped by controller from session) ─────────────────────
+
+  attr_writer :unlocked
+  def unlocked? = !!@unlocked
 
   # ── Predicates ────────────────────────────────────────────────────────────
 
-  def everyone?           = visibility == "everyone"
-  def unlisted?           = visibility == "unlisted"
-  def password_protected? = visibility == "password_protected"
-  def private?            = visibility == "private"
-  def public?             = everyone?
+  def public?               = visibility == "public"
+  def unlisted?             = visibility == "unlisted"
+  def private?              = visibility == "private"
+
+  def only_me?              = edit_permission == "only_me"
+  def people_with_password? = edit_permission == "people_with_password"
 
   # ── Authorization ─────────────────────────────────────────────────────────
 
-  def can_view?(user, session_auth:, share_auth: false)
-    return true if everyone?
+  def can_view?(user)
+    return true if public?
     return true if user&.id == user_id
-    return true if unlisted? && share_auth
-    return true if password_protected? && session_auth
-    false
+    return false if private?
+    # unlisted: freely accessible when no password is set; otherwise require unlock
+    password_digest.blank? || unlocked?
   end
 
-  def can_edit?(user, session_auth:)
+  def can_edit?(user)
     return false if user.nil?
     return true if user.id == user_id
-    return true if edit_permission == "password_users" && session_auth
-    false
+    return false if private?
+    unlocked? && people_with_password?
   end
 
   def can_edit_settings?(user)
@@ -69,13 +68,24 @@ class Deck < ApplicationRecord
     user&.id == user_id
   end
 
-  def can_manage_cards?(user, session_auth:)
-    can_edit?(user, session_auth: session_auth)
-  end
-
-  def can_fork?(user)
+  def can_save?(user)
     return false if private? && user&.id != user_id
     true
+  end
+
+  def can_copy?(user)
+    return false if user.nil?
+    return false if user.id == user_id
+    public? || unlisted?
+  end
+
+  def saved_by?(user)
+    return false unless user
+    library_items.exists?(user: user)
+  end
+
+  def preview_accessible?
+    public?
   end
 
   # ── Tags ──────────────────────────────────────────────────────────────────
@@ -91,31 +101,18 @@ class Deck < ApplicationRecord
 
   private
 
-  def generate_share_token
-    self.share_token ||= SecureRandom.urlsafe_base64(32)
-  end
-
-  def decrement_source_forks_count
-    Deck.where(id: forked_from_id).update_counters(forks_count: -1) if forked_from_id
-  end
-
   def edit_permission_compatible_with_visibility
-    if visibility == "private" && edit_permission == "password_users"
-      errors.add(:edit_permission, :invalid_for_private_deck)
-    end
-    if visibility == "unlisted" && edit_permission == "password_users"
-      errors.add(:edit_permission, :invalid_for_unlisted_deck)
-    end
+    return unless visibility == "private" && edit_permission == "people_with_password"
+    errors.add(:edit_permission, :invalid_for_private_deck)
   end
 
-  def access_password_requirements
-    needs_password = visibility == "password_protected" || edit_permission == "password_users"
-    if needs_password && access_password_digest.blank? && access_password.blank?
-      errors.add(:access_password, :blank)
+  def password_requirements
+    if people_with_password? && password_digest.blank? && password.blank?
+      errors.add(:password, :blank)
     end
-    if access_password.present?
-      errors.add(:access_password, :too_short, count: 8)  if access_password.length < 8
-      errors.add(:access_password, :too_long,  count: 128) if access_password.length > 128
+    if password.present?
+      errors.add(:password, :too_short, count: 8)  if password.length < 8
+      errors.add(:password, :too_long,  count: 128) if password.length > 128
     end
   end
 end

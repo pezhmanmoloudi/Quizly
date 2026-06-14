@@ -3,6 +3,6 @@ class HomeController < ApplicationController
 
   def index
     redirect_to dashboard_path and return if authenticated?
-    @featured_decks = Deck.public_decks.popular.includes(:user, :flashcards).limit(6)
+    @featured_decks = Deck.discoverable.popular.includes(:user, :flashcards).limit(6)
   end
 end

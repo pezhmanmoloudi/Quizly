@@ -172,11 +172,10 @@ fa:
       sort_most_due: "بیشترین کارت سررسیده"
       empty_title: "هنوز دسته‌ای نداری"
       empty_description: "اولین دسته‌ات را بساز تا مطالعه را شروع کنی."
+      saved_section_title: "دسته‌های ذخیره‌شده"
     show:
       edit: "ویرایش دسته"
       delete: "حذف دسته"
-      fork: "کپی دسته"
-      duplicate: "تکرار دسته"
       delete_confirm: "آیا مطمئنی که می‌خواهی این دسته را حذف کنی؟"
       delete_modal_title: "این دسته حذف شود؟"
       delete_modal_card_count:
@@ -184,16 +183,10 @@ fa:
         other: "این دسته شامل %{count} فلش‌کارت است."
       delete_modal_warning: "تمام فلش‌کارت‌ها برای همیشه حذف خواهند شد. این عمل قابل برگشت نیست."
       delete_modal_confirm: "حذف دسته"
-      everyone_badge: "عمومی"
       unlisted_badge: "فهرست‌نشده"
-      share_link_label: "لینک اشتراک‌گذاری"
-      password_protected_badge: "رمز"
       public_badge: "عمومی"
       private_badge: "خصوصی"
       created: "ایجاد شده"
-      forked_from: "کپی‌شده از"
-      forked_from_private: "یک دسته خصوصی"
-      forked_from_by: "توسط @%{username}"
       cards_section: "کارت‌ها"
       add_card: "افزودن کارت"
       import: "وارد کردن"
@@ -206,6 +199,14 @@ fa:
       mode_test: "آزمون"
       mode_match: "تطبیق"
       cards_per_page: "کارت در هر صفحه"
+      locked_title: "This deck is password protected"
+      locked_description: "Enter the password to access all flashcards and study modes."
+      unlock_cta: "Unlock Deck"
+      preview_heading: "Sample Cards"
+      locked_card_placeholder: "• • •"
+      locked_cards_counter:
+        one: "1 card locked"
+        other: "%{count} cards locked"
     new:
       title: "دسته جدید"
       back: "→ بازگشت"
@@ -222,27 +223,18 @@ fa:
       tags_placeholder: "مثال: زیست‌شناسی، تشریح، امتحان۱۴۰۴"
       visibility_label: "دسترسی"
       visibility_section_label: "چه کسی می‌تواند این دسته را ببیند؟"
-      visibility_everyone: "همه"
       visibility_unlisted: "فهرست‌نشده"
-      visibility_unlisted_hint: "فقط کسانی که لینک دارند می‌توانند ببینند."
-      unlisted_share_hint: "هر کسی که این لینک را داشته باشد می‌تواند این دسته را ببیند و مطالعه کند."
-      copy_link: "کپی لینک"
-      copy_link_copied: "کپی شد!"
       section_about: "درباره"
       section_access_control: "کنترل دسترسی"
-      share_link_will_be_invalidated: "تغییر دید، لینک اشتراک‌گذاری فعلی شما را باطل می‌کند."
-      regenerate_link: "بازسازی لینک"
-      regenerate_link_confirm: "این کار لینک اشتراک‌گذاری فعلی را باطل می‌کند. هر کسی که لینک قدیمی دارد دسترسی را از دست می‌دهد. ادامه می‌دهید؟"
-      visibility_password_protected: "محافظت‌شده با رمز"
       visibility_private: "فقط من"
       visibility_public: "عمومی"
       visibility_hint: "دسته‌های عمومی توسط همه قابل کشف و کپی هستند."
       edit_permission_label: "چه کسی می‌تواند این دسته را ویرایش کند؟"
-      edit_permission_owner_only: "فقط من"
-      edit_permission_password_users: "هر کس با رمز"
-      access_password_label: "رمز دسته"
-      access_password_placeholder: "حداقل ۸ کاراکتر"
-      access_password_hint: "برای باز کردن دسترسی یا ویرایش لازم است"
+      edit_permission_only_me: "فقط من"
+      edit_permission_people_with_password: "هر کس با رمز"
+      password_label: "رمز دسته"
+      password_placeholder: "حداقل ۸ کاراکتر"
+      password_hint: "برای باز کردن دسترسی یا ویرایش لازم است"
     cards:
       page_title: "افزودن کارت — %{name}"
       add_card: "افزودن کارت"
@@ -266,10 +258,18 @@ fa:
     updated: "دسته به‌روزرسانی شد."
     deleted: "دسته حذف شد."
     cards_saved: "کارت‌ها ذخیره شدند."
-    forked: "دسته به کتابخانه‌ات اضافه شد."
-    fork_modal:
-      submitting: "در حال کپی..."
-    share_token_rotated: "لینک اشتراک‌گذاری بازسازی شد."
+    action:
+      save:                  "ذخیره"
+      in_library:            "در کتابخانه‌ات"
+      sign_in_to_save:       "برای ذخیره وارد شوید"
+      saved:                 "دسته به کتابخانه‌ات اضافه شد."
+      already_saved:         "این دسته کارت قبلاً در کتابخانه‌ات موجود است."
+      unsave:                "Remove from library"
+      unsaved:               "Deck removed from your library."
+      not_in_library:        "This deck is not in your library."
+      copy:                  "ساخت نسخه"
+      copied:                "نسخه ایجاد شد. اکنون می‌توانید آن را ویرایش کنید."
+      copy_name:             "%{name} (نسخه)"
     not_available: "دسته در دسترس نیست."
     unlock:
       title: "رمز لازم است"
@@ -278,6 +278,9 @@ fa:
       submit: "باز کردن دسته"
       invalid_password: "رمز اشتباه است. لطفاً دوباره امتحان کن."
       success: "دسترسی داده شد."
+      back_to_preview: "← Back to preview"
+      help_text: "Contact the deck creator if you don't have the password."
+      submitting: "Unlocking…"
     sidebar_no_decks: "هنوز دسته‌ای نداری."
     deck_card:
       due:
@@ -397,6 +400,9 @@ fa:
       streak: "رشته"
       progress_label: "%{pct}% پیشرفت"
       matched_counter: "تطبیق‌یافته: %{matched} / %{total}"
+  errors:
+    not_found:
+      flash: "This deck is no longer available."
   explore:
     title: "کاوش"
     subtitle: "دسته‌های عمومی به اشتراک‌گذاشته‌شده توسط جامعه را کشف کن و کپی کن."
@@ -407,7 +413,10 @@ fa:
     empty_title: "هنوز هیچ دسته عمومی وجود ندارد"
     empty_description: "اولین نفری باش که دسته‌ای را با جامعه به اشتراک می‌گذارد."
     by: "توسط"
-    fork: "کپی"
+    saved_badge: "ذخیره‌شده"
+    locked_badge: "Password Required"
+    owner_badge:  "شما"
+    by_you:       "توسط شما"
   dashboard:
     total_decks: "مجموع دسته‌ها"
     total_cards: "مجموع کارت‌ها"
@@ -553,8 +562,11 @@ fa:
           attributes:
             edit_permission:
               invalid_for_private_deck: "دسته‌های خصوصی فقط توسط مالک قابل ویرایش هستند."
-              invalid_for_unlisted_deck: "دسته‌های فهرست‌نشده فقط توسط مالک قابل ویرایش هستند."
-            access_password:
+        library_item:
+          attributes:
+            base:
+              own_deck: "نمی‌توانی دسته کارت خودت را در کتابخانه‌ات ذخیره کنی."
+            password:
               too_short:
                 one: "خیلی کوتاه است (حداقل %{count} کاراکتر)"
                 other: "خیلی کوتاه است (حداقل %{count} کاراکتر)"

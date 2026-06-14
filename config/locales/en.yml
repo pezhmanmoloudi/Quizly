@@ -172,11 +172,10 @@ en:
       sort_most_due: "Most Due"
       empty_title: "No decks yet"
       empty_description: "Create your first deck to start studying."
+      saved_section_title: "Saved decks"
     show:
       edit: "Edit Deck"
       delete: "Delete Deck"
-      fork: "Fork Deck"
-      duplicate: "Duplicate Deck"
       delete_confirm: "Are you sure you want to remove this deck?"
       delete_modal_title: "Delete this deck?"
       delete_modal_card_count:
@@ -184,16 +183,10 @@ en:
         other: "This deck contains %{count} flashcards."
       delete_modal_warning: "All flashcards will be permanently deleted. This action cannot be undone."
       delete_modal_confirm: "Delete Deck"
-      everyone_badge: "Public"
-      unlisted_badge: "Unlisted"
-      share_link_label: "Share link"
-      password_protected_badge: "Password"
       public_badge: "Public"
+      unlisted_badge: "Unlisted"
       private_badge: "Private"
       created: "Created"
-      forked_from: "Forked from"
-      forked_from_private: "a private deck"
-      forked_from_by: "by @%{username}"
       cards_section: "Cards"
       add_card: "Add Card"
       import: "Import"
@@ -206,6 +199,14 @@ en:
       mode_test: "Test"
       mode_match: "Match"
       cards_per_page: "Cards per page"
+      locked_title: "This deck is password protected"
+      locked_description: "Enter the password to access all flashcards and study modes."
+      unlock_cta: "Unlock Deck"
+      preview_heading: "Sample Cards"
+      locked_card_placeholder: "• • •"
+      locked_cards_counter:
+        one: "1 card locked"
+        other: "%{count} cards locked"
     new:
       title: "New Deck"
       back: "← Back"
@@ -222,27 +223,18 @@ en:
       tags_placeholder: "e.g. biology, anatomy, exam2025"
       visibility_label: "Visibility"
       visibility_section_label: "Who can view this deck?"
-      visibility_everyone: "Everyone"
+      visibility_public: "Public"
       visibility_unlisted: "Unlisted"
-      visibility_unlisted_hint: "Only people with the link can view."
-      unlisted_share_hint: "Anyone with this link can view and study this deck."
-      copy_link: "Copy link"
-      copy_link_copied: "Copied!"
+      visibility_private: "Just me"
+      visibility_hint: "Public decks can be discovered and saved by anyone."
       section_about: "About"
       section_access_control: "Access Control"
-      share_link_will_be_invalidated: "Changing visibility will invalidate your current share link."
-      regenerate_link: "Regenerate link"
-      regenerate_link_confirm: "This will invalidate your current share link. Anyone with the old link will lose access. Continue?"
-      visibility_password_protected: "Password protected"
-      visibility_private: "Just me"
-      visibility_public: "Public"
-      visibility_hint: "Public decks can be discovered and forked by anyone."
       edit_permission_label: "Who can edit this deck?"
-      edit_permission_owner_only: "Just me"
-      edit_permission_password_users: "Anyone with password"
-      access_password_label: "Deck password"
-      access_password_placeholder: "Min. 8 characters"
-      access_password_hint: "Required to unlock viewing or editing"
+      edit_permission_only_me: "Just me"
+      edit_permission_people_with_password: "Anyone with password"
+      password_label: "Deck password"
+      password_placeholder: "Min. 8 characters"
+      password_hint: "Required to unlock editing"
     cards:
       page_title: "Add Cards — %{name}"
       add_card: "Add a card"
@@ -266,10 +258,18 @@ en:
     updated: "Deck updated."
     deleted: "Deck deleted."
     cards_saved: "Cards saved."
-    forked: "Deck added to your library."
-    fork_modal:
-      submitting: "Forking..."
-    share_token_rotated: "Share link regenerated."
+    action:
+      save:                  "Save"
+      in_library:            "In your library"
+      sign_in_to_save:       "Sign in to save"
+      saved:                 "Deck added to your library."
+      already_saved:         "You already have this deck in your library."
+      unsave:                "Remove from library"
+      unsaved:               "Deck removed from your library."
+      not_in_library:        "This deck is not in your library."
+      copy:                  "Make a Copy"
+      copied:                "Copy created. You can now edit it."
+      copy_name:             "%{name} (Copy)"
     not_available: "Deck not available."
     unlock:
       title: "Password Required"
@@ -278,6 +278,9 @@ en:
       submit: "Unlock Deck"
       invalid_password: "Incorrect password. Please try again."
       success: "Access granted."
+      back_to_preview: "← Back to preview"
+      help_text: "Contact the deck creator if you don't have the password."
+      submitting: "Unlocking…"
     sidebar_no_decks: "No decks yet."
     deck_card:
       due:
@@ -397,9 +400,12 @@ en:
       streak: "Streak"
       progress_label: "%{pct}% Progress"
       matched_counter: "Matched: %{matched} / %{total}"
+  errors:
+    not_found:
+      flash: "This deck is no longer available."
   explore:
     title: "Explore"
-    subtitle: "Discover and fork public decks shared by the community."
+    subtitle: "Discover and save public decks shared by the community."
     search_placeholder: "Search decks…"
     search_aria: "Search public decks"
     empty_search_title: "No decks found for \"%{query}\""
@@ -407,7 +413,10 @@ en:
     empty_title: "No public decks yet"
     empty_description: "Be the first to share a deck with the community."
     by: "by"
-    fork: "Fork"
+    saved_badge: "Saved"
+    locked_badge: "Password Required"
+    owner_badge:  "You"
+    by_you:       "by You"
   dashboard:
     total_decks: "Total Decks"
     total_cards: "Total Cards"
@@ -553,8 +562,11 @@ en:
           attributes:
             edit_permission:
               invalid_for_private_deck: "Private decks can only be edited by the owner."
-              invalid_for_unlisted_deck: "Unlisted decks can only be edited by the owner."
-            access_password:
+        library_item:
+          attributes:
+            base:
+              own_deck: "You cannot save your own deck to your library."
+            password:
               too_short:
                 one: "is too short (minimum is %{count} character)"
                 other: "is too short (minimum is %{count} characters)"

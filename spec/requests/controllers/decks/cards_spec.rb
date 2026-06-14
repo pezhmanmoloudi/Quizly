@@ -18,21 +18,21 @@ RSpec.describe "Decks#cards", type: :request do
         expect(response.body).to include(deck.name)
       end
 
-      it "returns 404 for another user's owner_only deck" do
+      it "redirects for another user's only_me deck" do
         other_deck = create(:deck, user: create(:user))
         get cards_deck_path(other_deck)
-        expect(response).to have_http_status(:not_found)
+        expect(response).to redirect_to(decks_path)
       end
 
-      it "returns 404 for a password_users deck without session auth" do
+      it "redirects for a people_with_password deck without session auth" do
         pw_deck = create(:deck, :editable_by_password, user: create(:user))
         get cards_deck_path(pw_deck)
-        expect(response).to have_http_status(:not_found)
+        expect(response).to redirect_to(decks_path)
       end
 
-      it "returns 200 for a password_users deck with session auth" do
+      it "returns 200 for a people_with_password deck with session auth" do
         pw_deck = create(:deck, :editable_by_password, user: create(:user))
-        post authenticate_deck_path(pw_deck), params: { access_password: "secret123" }
+        post unlock_deck_path(pw_deck), params: { password: "secret123" }
         get cards_deck_path(pw_deck)
         expect(response).to have_http_status(:ok)
       end
@@ -222,10 +222,10 @@ RSpec.describe "Decks#cards", type: :request do
         expect(deck.flashcards.reload.last.image).to be_attached
       end
 
-      it "returns 404 for another user's deck" do
+      it "redirects for another user's deck" do
         other_deck = create(:deck, user: create(:user))
         patch update_cards_deck_path(other_deck), params: { deck: { flashcards_attributes: {} } }
-        expect(response).to have_http_status(:not_found)
+        expect(response).to redirect_to(decks_path)
       end
     end
 

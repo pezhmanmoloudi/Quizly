@@ -40,10 +40,10 @@ RSpec.describe "Imports#text", type: :request do
       expect(response.body).to include(I18n.t("imports.text_no_valid_pairs"))
     end
 
-    it "returns 404 for another user's deck" do
+    it "redirects for another user's deck" do
       other_deck = create(:deck, user: create(:user))
       post text_deck_import_path(other_deck), params: { text: valid_text }
-      expect(response).to have_http_status(:not_found)
+      expect(response).to redirect_to(decks_path)
     end
 
     it "creates cards using a custom row separator" do

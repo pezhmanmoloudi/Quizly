@@ -37,10 +37,10 @@ RSpec.describe "Decks#learn", type: :request do
         expect(response.body).to include("No cards yet")
       end
 
-      it "returns 404 for another user's private deck" do
+      it "redirects for another user's private deck" do
         other = create(:deck, user: create(:user))
         get learn_deck_path(other)
-        expect(response).to have_http_status(:not_found)
+        expect(response).to redirect_to(decks_path)
       end
 
       it "renders the stats header with timer and mastered badges" do

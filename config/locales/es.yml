@@ -172,11 +172,10 @@ es:
       sort_most_due: "Más pendientes"
       empty_title: "Todavía no hay mazos"
       empty_description: "Crea tu primer mazo para empezar a estudiar."
+      saved_section_title: "Mazos guardados"
     show:
       edit: "Editar mazo"
       delete: "Eliminar mazo"
-      fork: "Copiar mazo"
-      duplicate: "Duplicar mazo"
       delete_confirm: "¿Estás seguro de que quieres eliminar este mazo?"
       delete_modal_title: "¿Eliminar este mazo?"
       delete_modal_card_count:
@@ -184,16 +183,10 @@ es:
         other: "Este mazo contiene %{count} tarjetas flash."
       delete_modal_warning: "Todas las tarjetas flash se eliminarán permanentemente. Esta acción no se puede deshacer."
       delete_modal_confirm: "Eliminar mazo"
-      everyone_badge: "Público"
       unlisted_badge: "No listado"
-      share_link_label: "Enlace para compartir"
-      password_protected_badge: "Contraseña"
       public_badge: "Público"
       private_badge: "Privado"
       created: "Creado"
-      forked_from: "Bifurcado de"
-      forked_from_private: "un mazo privado"
-      forked_from_by: "por @%{username}"
       cards_section: "Tarjetas"
       add_card: "Añadir tarjeta"
       import: "Importar"
@@ -201,6 +194,14 @@ es:
       edit_card: "Editar tarjeta"
       delete_card: "Eliminar tarjeta"
       cards_per_page: "Tarjetas por página"
+      locked_title: "This deck is password protected"
+      locked_description: "Enter the password to access all flashcards and study modes."
+      unlock_cta: "Unlock Deck"
+      preview_heading: "Sample Cards"
+      locked_card_placeholder: "• • •"
+      locked_cards_counter:
+        one: "1 card locked"
+        other: "%{count} cards locked"
       mode_flashcard: "Tarjeta"
       mode_study: "Estudiar"
       mode_learn: "Aprender"
@@ -222,27 +223,18 @@ es:
       tags_placeholder: "p. ej. biología, anatomía, examen2025"
       visibility_label: "Visibilidad"
       visibility_section_label: "¿Quién puede ver este mazo?"
-      visibility_everyone: "Todos"
       visibility_unlisted: "No listado"
-      visibility_unlisted_hint: "Solo las personas con el enlace pueden verlo."
-      unlisted_share_hint: "Cualquiera con este enlace puede ver y estudiar este mazo."
-      copy_link: "Copiar enlace"
-      copy_link_copied: "¡Copiado!"
       section_about: "Acerca de"
       section_access_control: "Control de acceso"
-      share_link_will_be_invalidated: "Cambiar la visibilidad invalidará tu enlace de compartir actual."
-      regenerate_link: "Regenerar enlace"
-      regenerate_link_confirm: "Esto invalidará tu enlace de compartir actual. Cualquiera con el enlace antiguo perderá el acceso. ¿Continuar?"
-      visibility_password_protected: "Protegido con contraseña"
       visibility_private: "Solo yo"
       visibility_public: "Público"
       visibility_hint: "Los mazos públicos pueden ser descubiertos y copiados por cualquiera."
       edit_permission_label: "¿Quién puede editar este mazo?"
-      edit_permission_owner_only: "Solo yo"
-      edit_permission_password_users: "Cualquiera con contraseña"
-      access_password_label: "Contraseña del mazo"
-      access_password_placeholder: "Mín. 8 caracteres"
-      access_password_hint: "Requerida para desbloquear el acceso o la edición"
+      edit_permission_only_me: "Solo yo"
+      edit_permission_people_with_password: "Cualquiera con contraseña"
+      password_label: "Contraseña del mazo"
+      password_placeholder: "Mín. 8 caracteres"
+      password_hint: "Requerida para desbloquear el acceso o la edición"
     cards:
       page_title: "Añadir tarjetas — %{name}"
       add_card: "Añadir tarjeta"
@@ -266,10 +258,18 @@ es:
     updated: "Mazo actualizado."
     deleted: "Mazo eliminado."
     cards_saved: "Tarjetas guardadas."
-    forked: "Mazo añadido a tu biblioteca."
-    fork_modal:
-      submitting: "Copiando..."
-    share_token_rotated: "Enlace de compartir regenerado."
+    action:
+      save:                  "Guardar"
+      in_library:            "En tu biblioteca"
+      sign_in_to_save:       "Inicia sesión para guardar"
+      saved:                 "Mazo añadido a tu biblioteca."
+      already_saved:         "Ya tienes este mazo en tu biblioteca."
+      unsave:                "Eliminar de la biblioteca"
+      unsaved:               "Mazo eliminado de tu biblioteca."
+      not_in_library:        "Este mazo no está en tu biblioteca."
+      copy:                  "Hacer una copia"
+      copied:                "Copia creada. Ahora puedes editarla."
+      copy_name:             "%{name} (Copia)"
     not_available: "Mazo no disponible."
     unlock:
       title: "Contraseña requerida"
@@ -278,6 +278,9 @@ es:
       submit: "Desbloquear mazo"
       invalid_password: "Contraseña incorrecta. Por favor, inténtalo de nuevo."
       success: "Acceso concedido."
+      back_to_preview: "← Back to preview"
+      help_text: "Contact the deck creator if you don't have the password."
+      submitting: "Unlocking…"
     sidebar_no_decks: "Todavía no hay mazos."
     deck_card:
       due:
@@ -397,6 +400,9 @@ es:
       streak: "Racha"
       progress_label: "%{pct}% de progreso"
       matched_counter: "Emparejado: %{matched} / %{total}"
+  errors:
+    not_found:
+      flash: "This deck is no longer available."
   explore:
     title: "Explorar"
     subtitle: "Descubre y copia mazos públicos compartidos por la comunidad."
@@ -407,7 +413,10 @@ es:
     empty_title: "Todavía no hay mazos públicos"
     empty_description: "Sé el primero en compartir un mazo con la comunidad."
     by: "por"
-    fork: "Copiar"
+    saved_badge: "Guardado"
+    locked_badge: "Password Required"
+    owner_badge:  "Tú"
+    by_you:       "por ti"
   dashboard:
     total_decks: "Total de mazos"
     total_cards: "Total de tarjetas"
@@ -553,8 +562,11 @@ es:
           attributes:
             edit_permission:
               invalid_for_private_deck: "Los mazos privados solo pueden ser editados por el propietario."
-              invalid_for_unlisted_deck: "Los mazos no listados solo pueden ser editados por el propietario."
-            access_password:
+        library_item:
+          attributes:
+            base:
+              own_deck: "No puedes guardar tu propio mazo en tu biblioteca."
+            password:
               too_short:
                 one: "es demasiado corta (mínimo %{count} carácter)"
                 other: "es demasiado corta (mínimo %{count} caracteres)"

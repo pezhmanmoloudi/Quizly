@@ -172,11 +172,10 @@ tr:
       sort_most_due: "En çok bekleyen"
       empty_title: "Henüz deste yok"
       empty_description: "Çalışmaya başlamak için ilk desteni oluştur."
+      saved_section_title: "Kaydedilen desteler"
     show:
       edit: "Desteyi düzenle"
       delete: "Desteyi sil"
-      fork: "Desteyi kopyala"
-      duplicate: "Desteyi çoğalt"
       delete_confirm: "Bu desteyi kaldırmak istediğinden emin misin?"
       delete_modal_title: "Bu desteyi sil?"
       delete_modal_card_count:
@@ -184,16 +183,10 @@ tr:
         other: "Bu deste %{count} flashcard içeriyor."
       delete_modal_warning: "Tüm flashcardlar kalıcı olarak silinecek. Bu işlem geri alınamaz."
       delete_modal_confirm: "Desteyi sil"
-      everyone_badge: "Herkese açık"
       unlisted_badge: "Listelenmemiş"
-      share_link_label: "Paylaşım bağlantısı"
-      password_protected_badge: "Şifre"
       public_badge: "Herkese açık"
       private_badge: "Özel"
       created: "Oluşturulma"
-      forked_from: "Kopyalandı"
-      forked_from_private: "özel bir deste"
-      forked_from_by: "@%{username} tarafından"
       cards_section: "Kartlar"
       add_card: "Kart ekle"
       import: "İçe aktar"
@@ -206,6 +199,14 @@ tr:
       mode_test: "Test"
       mode_match: "Eşleştir"
       cards_per_page: "Sayfa başına kart"
+      locked_title: "This deck is password protected"
+      locked_description: "Enter the password to access all flashcards and study modes."
+      unlock_cta: "Unlock Deck"
+      preview_heading: "Sample Cards"
+      locked_card_placeholder: "• • •"
+      locked_cards_counter:
+        one: "1 card locked"
+        other: "%{count} cards locked"
     new:
       title: "Yeni Deste"
       back: "← Geri"
@@ -222,27 +223,18 @@ tr:
       tags_placeholder: "örn. biyoloji, anatomi, sınav2025"
       visibility_label: "Görünürlük"
       visibility_section_label: "Bu desteyi kim görebilir?"
-      visibility_everyone: "Herkes"
       visibility_unlisted: "Listelenmemiş"
-      visibility_unlisted_hint: "Yalnızca bağlantıya sahip kişiler görebilir."
-      unlisted_share_hint: "Bu bağlantıya sahip herkes bu desteyi görüntüleyebilir ve çalışabilir."
-      copy_link: "Bağlantıyı kopyala"
-      copy_link_copied: "Kopyalandı!"
       section_about: "Hakkında"
       section_access_control: "Erişim kontrolü"
-      share_link_will_be_invalidated: "Görünürlüğü değiştirmek mevcut paylaşım bağlantınızı geçersiz kılacak."
-      regenerate_link: "Bağlantıyı yenile"
-      regenerate_link_confirm: "Bu, mevcut paylaşım bağlantısını geçersiz kılacak. Eski bağlantıya sahip herkes erişimini kaybedecek. Devam edilsin mi?"
-      visibility_password_protected: "Şifre korumalı"
       visibility_private: "Sadece ben"
       visibility_public: "Herkese açık"
       visibility_hint: "Herkese açık desteler herkes tarafından keşfedilebilir ve kopyalanabilir."
       edit_permission_label: "Bu desteyi kim düzenleyebilir?"
-      edit_permission_owner_only: "Sadece ben"
-      edit_permission_password_users: "Şifresi olan herkes"
-      access_password_label: "Deste şifresi"
-      access_password_placeholder: "En az 8 karakter"
-      access_password_hint: "Erişim veya düzenlemeyi açmak için gerekli"
+      edit_permission_only_me: "Sadece ben"
+      edit_permission_people_with_password: "Şifresi olan herkes"
+      password_label: "Deste şifresi"
+      password_placeholder: "En az 8 karakter"
+      password_hint: "Erişim veya düzenlemeyi açmak için gerekli"
     cards:
       page_title: "Kart Ekle — %{name}"
       add_card: "Kart ekle"
@@ -266,10 +258,18 @@ tr:
     updated: "Deste güncellendi."
     deleted: "Deste silindi."
     cards_saved: "Kartlar kaydedildi."
-    forked: "Deste kütüphanene eklendi."
-    fork_modal:
-      submitting: "Kopyalanıyor..."
-    share_token_rotated: "Paylaşım bağlantısı yenilendi."
+    action:
+      save:                  "Kaydet"
+      in_library:            "Kütüphanenizde"
+      sign_in_to_save:       "Kaydetmek için giriş yap"
+      saved:                 "Deste kütüphanene eklendi."
+      already_saved:         "Bu deste zaten kütüphanenizde."
+      unsave:                "Kitaplıktan kaldır"
+      unsaved:               "Deste kitaplığından kaldırıldı."
+      not_in_library:        "Bu deste kitaplığınızda değil."
+      copy:                  "Kopya oluştur"
+      copied:                "Kopya oluşturuldu. Artık düzenleyebilirsiniz."
+      copy_name:             "%{name} (Kopya)"
     not_available: "Deste mevcut değil."
     unlock:
       title: "Şifre gerekli"
@@ -278,6 +278,9 @@ tr:
       submit: "Desteyi aç"
       invalid_password: "Yanlış şifre. Lütfen tekrar deneyin."
       success: "Erişim sağlandı."
+      back_to_preview: "← Back to preview"
+      help_text: "Contact the deck creator if you don't have the password."
+      submitting: "Unlocking…"
     sidebar_no_decks: "Henüz deste yok."
     deck_card:
       due:
@@ -397,6 +400,9 @@ tr:
       streak: "Seri"
       progress_label: "%{pct}% ilerleme"
       matched_counter: "Eşleşti: %{matched} / %{total}"
+  errors:
+    not_found:
+      flash: "This deck is no longer available."
   explore:
     title: "Keşfet"
     subtitle: "Topluluk tarafından paylaşılan herkese açık desteleri keşfet ve kopyala."
@@ -407,7 +413,10 @@ tr:
     empty_title: "Henüz herkese açık deste yok"
     empty_description: "Toplulukla ilk desteyi paylaşan sen ol."
     by: "tarafından"
-    fork: "Kopyala"
+    saved_badge: "Kaydedildi"
+    locked_badge: "Password Required"
+    owner_badge:  "Sen"
+    by_you:       "senin tarafından"
   dashboard:
     total_decks: "Toplam Deste"
     total_cards: "Toplam Kart"
@@ -553,8 +562,11 @@ tr:
           attributes:
             edit_permission:
               invalid_for_private_deck: "Özel desteler yalnızca sahibi tarafından düzenlenebilir."
-              invalid_for_unlisted_deck: "Listelenmemiş desteler yalnızca sahibi tarafından düzenlenebilir."
-            access_password:
+        library_item:
+          attributes:
+            base:
+              own_deck: "Kendi desteğinizi kütüphanenize kaydedemezsiniz."
+            password:
               too_short:
                 one: "çok kısa (minimum %{count} karakter)"
                 other: "çok kısa (minimum %{count} karakter)"

@@ -7,7 +7,18 @@ class ApplicationController < ActionController::Base
   before_action :set_locale
   before_action :load_sidebar_decks
 
+  rescue_from ActiveRecord::RecordNotFound, with: :redirect_not_found
+
   private
+
+  def redirect_not_found
+    flash[:alert] = t("errors.not_found.flash")
+    redirect_to fallback_destination
+  end
+
+  def fallback_destination
+    authenticated? ? decks_path : explore_path
+  end
 
   def set_locale
     resume_session
@@ -20,11 +31,7 @@ class ApplicationController < ActionController::Base
     @sidebar_decks = Current.user.decks.order(updated_at: :desc).limit(20)
   end
 
-  def deck_session_auth(deck)
-    session["deck_auth_#{deck.id}"] == true
-  end
-
-  def deck_share_auth(deck)
-    session["deck_share_#{deck.id}"] == true
+  def deck_unlocked?(deck)
+    session["deck_#{deck.id}_unlocked"] == true
   end
 end

@@ -42,7 +42,8 @@ class ImportsController < ApplicationController
 
   def set_deck
     deck = Deck.find(params[:deck_id])
-    raise ActiveRecord::RecordNotFound unless deck.can_edit?(Current.user, session_auth: deck_session_auth(deck))
+    deck.unlocked = deck_unlocked?(deck)
+    raise ActiveRecord::RecordNotFound unless deck.can_edit?(Current.user)
     @deck = deck
   end
 end

@@ -1,9 +1,8 @@
 <% content_for :title, @deck.name %>
 
 <div class="container">
-  <% can_edit = @deck.can_edit?(Current.user, session_auth: session["deck_auth_#{@deck.id}"] == true) %>
+  <% can_edit   = @deck.can_edit?(Current.user) %>
   <% can_delete = @deck.can_delete?(Current.user) %>
-  <% show_fork = authenticated? && @deck.can_fork?(Current.user) %>
   <div class="deck-detail-header" <% if can_delete %>data-controller="modal"<% end %>>
     <div class="deck-detail-header__top">
       <h1 class="deck-detail-header__name"><%= @deck.name %></h1>
@@ -13,17 +12,17 @@
             <%= render "shared/icons/pencil" %> <%= t("decks.show.edit") %>
           <% end %>
         <% end %>
-        <% if show_fork %>
-          <div data-controller="modal">
-            <button type="button"
-                    class="btn btn--<%= can_delete ? 'secondary' : 'primary' %> btn-with-icon"
-                    data-action="click->modal#open">
-              <%= render "shared/icons/fork" %>
-              <%= can_delete ? t("decks.show.duplicate") : t("decks.show.fork") %>
+
+        <%= render "decks/library_state", deck: @deck %>
+
+        <% if @deck.can_copy?(Current.user) %>
+          <%= form_with url: copy_deck_path(@deck), method: :post do %>
+            <button type="submit" class="btn btn--secondary btn-with-icon">
+              <%= render "shared/icons/fork" %> <%= t("decks.action.copy") %>
             </button>
-            <%= render "decks/fork_modal", deck: @deck, is_owner: can_delete %>
-          </div>
+          <% end %>
         <% end %>
+
         <% if can_delete %>
           <button type="button" class="btn btn--danger btn-with-icon"
                   data-action="click->modal#open">
@@ -33,17 +32,13 @@
       </div>
     </div>
     <div class="deck-detail-header__meta">
-      <% if @deck.everyone? %>
+      <% if @deck.public? %>
         <span class="visibility-badge visibility-badge--public">
-          <%= render "shared/icons/globe", css_class: "icon--sm" %> <%= t("decks.show.everyone_badge") %>
+          <%= render "shared/icons/globe", css_class: "icon--sm" %> <%= t("decks.show.public_badge") %>
         </span>
       <% elsif @deck.unlisted? %>
         <span class="visibility-badge visibility-badge--unlisted">
           <%= render "shared/icons/link", css_class: "icon--sm" %> <%= t("decks.show.unlisted_badge") %>
-        </span>
-      <% elsif @deck.password_protected? %>
-        <span class="visibility-badge visibility-badge--password">
-          <%= render "shared/icons/lock", css_class: "icon--sm" %> <%= t("decks.show.password_protected_badge") %>
         </span>
       <% else %>
         <span class="visibility-badge visibility-badge--private">
@@ -54,47 +49,9 @@
         <span class="language-badge"><%= @deck.language_code.upcase %></span>
       <% end %>
       <span class="deck-detail-header__date"><%= t("decks.show.created") %> <%= @deck.created_at.strftime("%b %-d, %Y") %></span>
-      <% if @deck.forked_from_title_snapshot.present? || @deck.forked_from.present? %>
-        <span class="deck-detail-header__forked-from">
-          <%= t("decks.show.forked_from") %>
-          <% if @deck.forked_from_title_snapshot.present? %>
-            <% if @deck.forked_from&.everyone? %>
-              <%= link_to @deck.forked_from_title_snapshot, deck_path(@deck.forked_from) %>
-            <% else %>
-              <em><%= @deck.forked_from_title_snapshot %></em>
-            <% end %>
-            <% if @deck.forked_from_owner_display_snapshot.present? %>
-              <%= t("decks.show.forked_from_by", username: @deck.forked_from_owner_display_snapshot) %>
-            <% end %>
-          <% elsif @deck.forked_from.everyone? %>
-            <%= link_to @deck.forked_from.name, deck_path(@deck.forked_from) %>
-          <% else %>
-            <%= t("decks.show.forked_from_private") %>
-          <% end %>
-        </span>
-      <% end %>
     </div>
     <% if @deck.description.present? %>
       <p class="deck-detail-header__description"><%= @deck.description %></p>
-    <% end %>
-
-    <% if @deck.unlisted? && @deck.can_edit_settings?(Current.user) %>
-      <div class="share-link-panel" data-controller="clip"
-           data-clip-copied-value="<%= t("decks.form.copy_link_copied") %>">
-        <label class="share-link-panel__label"><%= t("decks.show.share_link_label") %></label>
-        <div class="share-link-panel__row">
-          <input class="share-link-panel__input" type="text"
-                 value="<%= shared_deck_url(@deck.share_token) %>"
-                 readonly aria-label="<%= t("decks.show.share_link_label") %>"
-                 data-clip-target="source">
-          <button type="button"
-                  class="btn btn--outline btn--sm btn-with-icon share-link-panel__copy-btn"
-                  data-action="click->clip#copy">
-            <%= render "shared/icons/clipboard_check", css_class: "icon--sm" %>
-            <span data-clip-target="label"><%= t("decks.form.copy_link") %></span>
-          </button>
-        </div>
-      </div>
     <% end %>
 
     <% if can_delete %>
@@ -113,6 +70,10 @@
             hidden_fields: { from_page: params[:from_page] || 1 } %>
     <% end %>
   </div>
+
+  <% if @locked %>
+    <%= render "decks/locked_preview", deck: @deck, sample_flashcards: @sample_flashcards, locked_cards_count: @locked_cards_count %>
+  <% else %>
 
   <div class="study-mode-selector">
     <%= link_to flashcard_deck_path(@deck), class: "study-mode-btn study-mode-btn--flashcards" do %>
@@ -216,4 +177,5 @@
     </div>
   </div>
 
+  <% end %>
 </div>

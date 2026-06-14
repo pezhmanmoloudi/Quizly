@@ -67,7 +67,7 @@ RSpec.describe "Card Reviews", type: :request do
         expect(response.body).not_to include("Time spent")
       end
 
-      it "returns 404 when accessing another user's card_progress" do
+      it "redirects when accessing another user's card_progress" do
         other_user      = create(:user)
         other_flashcard = create(:flashcard, deck: create(:deck, user: other_user))
         other_cp        = create(:card_progress, user: other_user, flashcard: other_flashcard)
@@ -76,7 +76,7 @@ RSpec.describe "Card Reviews", type: :request do
           card_progress_id: other_cp.id,
           rating: "good"
         }
-        expect(response).to have_http_status(:not_found)
+        expect(response).to redirect_to(decks_path)
       end
     end
 

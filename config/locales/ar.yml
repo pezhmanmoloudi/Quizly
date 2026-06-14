@@ -172,11 +172,10 @@ ar:
       sort_most_due: "الأكثر استحقاقاً"
       empty_title: "لا توجد مجموعات بعد"
       empty_description: "أنشئ مجموعتك الأولى لتبدأ الدراسة."
+      saved_section_title: "الأوراق المحفوظة"
     show:
       edit: "تعديل المجموعة"
       delete: "حذف المجموعة"
-      fork: "نسخ المجموعة"
-      duplicate: "تكرار المجموعة"
       delete_confirm: "هل أنت متأكد من رغبتك في إزالة هذه المجموعة؟"
       delete_modal_title: "حذف هذه المجموعة؟"
       delete_modal_card_count:
@@ -184,16 +183,10 @@ ar:
         other: "تحتوي هذه المجموعة على %{count} بطاقة تعليمية."
       delete_modal_warning: "ستُحذف جميع البطاقات التعليمية نهائياً. لا يمكن التراجع عن هذا الإجراء."
       delete_modal_confirm: "حذف المجموعة"
-      everyone_badge: "عامة"
       unlisted_badge: "غير مدرج"
-      share_link_label: "رابط المشاركة"
-      password_protected_badge: "كلمة مرور"
       public_badge: "عامة"
       private_badge: "خاصة"
       created: "تاريخ الإنشاء"
-      forked_from: "منسوخة من"
-      forked_from_private: "مجموعة خاصة"
-      forked_from_by: "بواسطة @%{username}"
       cards_section: "البطاقات"
       add_card: "إضافة بطاقة"
       import: "استيراد"
@@ -206,6 +199,14 @@ ar:
       mode_test: "الاختبار"
       mode_match: "المطابقة"
       cards_per_page: "بطاقات في الصفحة"
+      locked_title: "This deck is password protected"
+      locked_description: "Enter the password to access all flashcards and study modes."
+      unlock_cta: "Unlock Deck"
+      preview_heading: "Sample Cards"
+      locked_card_placeholder: "• • •"
+      locked_cards_counter:
+        one: "1 card locked"
+        other: "%{count} cards locked"
     new:
       title: "مجموعة جديدة"
       back: "→ رجوع"
@@ -222,27 +223,18 @@ ar:
       tags_placeholder: "مثال: أحياء، تشريح، امتحان2025"
       visibility_label: "الظهور"
       visibility_section_label: "من يستطيع مشاهدة هذه المجموعة؟"
-      visibility_everyone: "الجميع"
       visibility_unlisted: "غير مدرج"
-      visibility_unlisted_hint: "فقط الأشخاص الذين لديهم الرابط يمكنهم المشاهدة."
-      unlisted_share_hint: "أي شخص لديه هذا الرابط يمكنه عرض هذه المجموعة ودراستها."
-      copy_link: "نسخ الرابط"
-      copy_link_copied: "تم النسخ!"
       section_about: "حول"
       section_access_control: "التحكم في الوصول"
-      share_link_will_be_invalidated: "تغيير مستوى الرؤية سيُبطل رابط المشاركة الحالي."
-      regenerate_link: "إعادة إنشاء الرابط"
-      regenerate_link_confirm: "سيُبطل هذا الرابط الحالي للمشاركة. سيفقد أي شخص لديه الرابط القديم إمكانية الوصول. هل تريد المتابعة؟"
-      visibility_password_protected: "محمية بكلمة مرور"
       visibility_private: "أنا فقط"
       visibility_public: "عامة"
       visibility_hint: "يمكن لأي شخص اكتشاف المجموعات العامة ونسخها."
       edit_permission_label: "من يستطيع تعديل هذه المجموعة؟"
-      edit_permission_owner_only: "أنا فقط"
-      edit_permission_password_users: "أي شخص لديه كلمة المرور"
-      access_password_label: "كلمة مرور المجموعة"
-      access_password_placeholder: "٨ أحرف على الأقل"
-      access_password_hint: "مطلوبة لفتح الوصول أو التعديل"
+      edit_permission_only_me: "أنا فقط"
+      edit_permission_people_with_password: "أي شخص لديه كلمة المرور"
+      password_label: "كلمة مرور المجموعة"
+      password_placeholder: "٨ أحرف على الأقل"
+      password_hint: "مطلوبة لفتح الوصول أو التعديل"
     cards:
       page_title: "إضافة بطاقات — %{name}"
       add_card: "إضافة بطاقة"
@@ -266,10 +258,18 @@ ar:
     updated: "تم تحديث المجموعة."
     deleted: "تم حذف المجموعة."
     cards_saved: "تم حفظ البطاقات."
-    forked: "تمّت إضافة المجموعة إلى مكتبتك."
-    fork_modal:
-      submitting: "جارٍ النسخ..."
-    share_token_rotated: "تم تجديد رابط المشاركة."
+    action:
+      save:                  "حفظ"
+      in_library:            "في مكتبتك"
+      sign_in_to_save:       "سجّل الدخول للحفظ"
+      saved:                 "تمّت إضافة المجموعة إلى مكتبتك."
+      already_saved:         "هذه المجموعة موجودة بالفعل في مكتبتك."
+      unsave:                "Remove from library"
+      unsaved:               "Deck removed from your library."
+      not_in_library:        "This deck is not in your library."
+      copy:                  "عمل نسخة"
+      copied:                "تم إنشاء النسخة. يمكنك الآن تعديلها."
+      copy_name:             "%{name} (نسخة)"
     not_available: "المجموعة غير متاحة."
     unlock:
       title: "كلمة المرور مطلوبة"
@@ -278,6 +278,9 @@ ar:
       submit: "فتح المجموعة"
       invalid_password: "كلمة المرور غير صحيحة. يرجى المحاولة مرة أخرى."
       success: "تم منح الوصول."
+      back_to_preview: "← Back to preview"
+      help_text: "Contact the deck creator if you don't have the password."
+      submitting: "Unlocking…"
     sidebar_no_decks: "لا توجد مجموعات بعد."
     deck_card:
       due:
@@ -397,6 +400,9 @@ ar:
       streak: "التسلسل"
       progress_label: "%{pct}% تقدّم"
       matched_counter: "مطابَق: %{matched} / %{total}"
+  errors:
+    not_found:
+      flash: "This deck is no longer available."
   explore:
     title: "استكشاف"
     subtitle: "اكتشف المجموعات العامة المشتركة من المجتمع وانسخها."
@@ -407,7 +413,10 @@ ar:
     empty_title: "لا توجد مجموعات عامة بعد"
     empty_description: "كن أول من يشارك مجموعة مع المجتمع."
     by: "بواسطة"
-    fork: "نسخ"
+    saved_badge: "محفوظ"
+    locked_badge: "Password Required"
+    owner_badge:  "أنت"
+    by_you:       "بواسطتك"
   dashboard:
     total_decks: "إجمالي المجموعات"
     total_cards: "إجمالي البطاقات"
@@ -553,8 +562,11 @@ ar:
           attributes:
             edit_permission:
               invalid_for_private_deck: "لا يمكن تعديل المجموعات الخاصة إلا من قِبَل المالك."
-              invalid_for_unlisted_deck: "لا يمكن تعديل المجموعات غير المدرجة إلا من قِبَل المالك."
-            access_password:
+        library_item:
+          attributes:
+            base:
+              own_deck: "لا يمكنك حفظ مجموعتك الخاصة في مكتبتك."
+            password:
               too_short:
                 one: "قصيرة جدًا (الحد الأدنى %{count} حرف)"
                 other: "قصيرة جدًا (الحد الأدنى %{count} حرف)"

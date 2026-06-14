@@ -172,11 +172,10 @@ de:
       sort_most_due: "Meiste fällige Karten"
       empty_title: "Noch keine Decks"
       empty_description: "Erstelle dein erstes Deck, um mit dem Lernen zu beginnen."
+      saved_section_title: "Gespeicherte Decks"
     show:
       edit: "Deck bearbeiten"
       delete: "Deck löschen"
-      fork: "Deck kopieren"
-      duplicate: "Deck duplizieren"
       delete_confirm: "Möchtest du dieses Deck wirklich löschen?"
       delete_modal_title: "Dieses Deck löschen?"
       delete_modal_card_count:
@@ -184,16 +183,10 @@ de:
         other: "Dieses Deck enthält %{count} Lernkarten."
       delete_modal_warning: "Alle Lernkarten werden dauerhaft gelöscht. Diese Aktion kann nicht rückgängig gemacht werden."
       delete_modal_confirm: "Deck löschen"
-      everyone_badge: "Öffentlich"
       unlisted_badge: "Ungelistet"
-      share_link_label: "Link teilen"
-      password_protected_badge: "Passwort"
       public_badge: "Öffentlich"
       private_badge: "Privat"
       created: "Erstellt"
-      forked_from: "Kopiert von"
-      forked_from_private: "ein privates Deck"
-      forked_from_by: "von @%{username}"
       cards_section: "Karten"
       add_card: "Karte hinzufügen"
       import: "Importieren"
@@ -206,6 +199,14 @@ de:
       mode_test: "Test"
       mode_match: "Zuordnen"
       cards_per_page: "Karten pro Seite"
+      locked_title: "This deck is password protected"
+      locked_description: "Enter the password to access all flashcards and study modes."
+      unlock_cta: "Unlock Deck"
+      preview_heading: "Sample Cards"
+      locked_card_placeholder: "• • •"
+      locked_cards_counter:
+        one: "1 card locked"
+        other: "%{count} cards locked"
     new:
       title: "Neues Deck"
       back: "← Zurück"
@@ -222,27 +223,18 @@ de:
       tags_placeholder: "z. B. Biologie, Anatomie, Prüfung2025"
       visibility_label: "Sichtbarkeit"
       visibility_section_label: "Wer kann dieses Deck sehen?"
-      visibility_everyone: "Alle"
       visibility_unlisted: "Ungelistet"
-      visibility_unlisted_hint: "Nur Personen mit dem Link können es ansehen."
-      unlisted_share_hint: "Jeder mit diesem Link kann dieses Deck anzeigen und lernen."
-      copy_link: "Link kopieren"
-      copy_link_copied: "Kopiert!"
       section_about: "Über"
       section_access_control: "Zugangskontrolle"
-      share_link_will_be_invalidated: "Das Ändern der Sichtbarkeit macht deinen aktuellen Teilungslink ungültig."
-      regenerate_link: "Link neu generieren"
-      regenerate_link_confirm: "Der aktuelle Teilungslink wird damit ungültig. Alle, die den alten Link haben, verlieren den Zugang. Fortfahren?"
-      visibility_password_protected: "Passwortgeschützt"
       visibility_private: "Nur ich"
       visibility_public: "Öffentlich"
       visibility_hint: "Öffentliche Decks können von allen entdeckt und kopiert werden."
       edit_permission_label: "Wer kann dieses Deck bearbeiten?"
-      edit_permission_owner_only: "Nur ich"
-      edit_permission_password_users: "Alle mit Passwort"
-      access_password_label: "Deck-Passwort"
-      access_password_placeholder: "Mind. 8 Zeichen"
-      access_password_hint: "Erforderlich zum Entsperren des Zugriffs oder der Bearbeitung"
+      edit_permission_only_me: "Nur ich"
+      edit_permission_people_with_password: "Alle mit Passwort"
+      password_label: "Deck-Passwort"
+      password_placeholder: "Mind. 8 Zeichen"
+      password_hint: "Erforderlich zum Entsperren des Zugriffs oder der Bearbeitung"
     cards:
       page_title: "Karten hinzufügen — %{name}"
       add_card: "Karte hinzufügen"
@@ -266,10 +258,18 @@ de:
     updated: "Deck aktualisiert."
     deleted: "Deck gelöscht."
     cards_saved: "Karten gespeichert."
-    forked: "Deck zu deiner Bibliothek hinzugefügt."
-    fork_modal:
-      submitting: "Kopieren..."
-    share_token_rotated: "Teilungslink wurde neu generiert."
+    action:
+      save:                  "Speichern"
+      in_library:            "In deiner Bibliothek"
+      sign_in_to_save:       "Anmelden zum Speichern"
+      saved:                 "Deck zu deiner Bibliothek hinzugefügt."
+      already_saved:         "Dieses Deck ist bereits in deiner Bibliothek."
+      unsave:                "Aus Bibliothek entfernen"
+      unsaved:               "Deck aus deiner Bibliothek entfernt."
+      not_in_library:        "Dieses Deck ist nicht in deiner Bibliothek."
+      copy:                  "Kopie erstellen"
+      copied:                "Kopie erstellt. Du kannst sie jetzt bearbeiten."
+      copy_name:             "%{name} (Kopie)"
     not_available: "Deck nicht verfügbar."
     unlock:
       title: "Passwort erforderlich"
@@ -278,6 +278,9 @@ de:
       submit: "Deck entsperren"
       invalid_password: "Falsches Passwort. Bitte versuche es erneut."
       success: "Zugang gewährt."
+      back_to_preview: "← Back to preview"
+      help_text: "Contact the deck creator if you don't have the password."
+      submitting: "Unlocking…"
     sidebar_no_decks: "Noch keine Decks."
     deck_card:
       due:
@@ -397,6 +400,9 @@ de:
       streak: "Serie"
       progress_label: "%{pct}% Fortschritt"
       matched_counter: "Zugeordnet: %{matched} / %{total}"
+  errors:
+    not_found:
+      flash: "This deck is no longer available."
   explore:
     title: "Entdecken"
     subtitle: "Entdecke und kopiere öffentliche Decks aus der Community."
@@ -407,7 +413,10 @@ de:
     empty_title: "Noch keine öffentlichen Decks"
     empty_description: "Sei der Erste, der ein Deck mit der Community teilt."
     by: "von"
-    fork: "Kopieren"
+    saved_badge: "Gespeichert"
+    locked_badge: "Password Required"
+    owner_badge:  "Du"
+    by_you:       "von dir"
   dashboard:
     total_decks: "Decks gesamt"
     total_cards: "Karten gesamt"
@@ -553,8 +562,11 @@ de:
           attributes:
             edit_permission:
               invalid_for_private_deck: "Private Decks können nur vom Besitzer bearbeitet werden."
-              invalid_for_unlisted_deck: "Ungelistete Decks können nur vom Besitzer bearbeitet werden."
-            access_password:
+        library_item:
+          attributes:
+            base:
+              own_deck: "Du kannst dein eigenes Deck nicht in deiner Bibliothek speichern."
+            password:
               too_short:
                 one: "ist zu kurz (Minimum ist %{count} Zeichen)"
                 other: "ist zu kurz (Minimum ist %{count} Zeichen)"

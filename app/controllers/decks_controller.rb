@@ -1,8 +1,8 @@
 class DecksController < ApplicationController
-  allow_unauthenticated_access only: [:show, :flashcard, :match, :unlock, :authenticate]
-  before_action :set_owned_deck,        only: [:edit, :update, :destroy, :rotate_share_token]
-  before_action :set_content_deck,      only: [:cards, :update_cards]
-  before_action :set_accessible_deck,   only: [:show, :study, :flashcard, :match, :fork, :learn, :test]
+  allow_unauthenticated_access only: [:show, :flashcard, :match, :unlock]
+  before_action :set_owned_deck,          only: [:edit, :update, :destroy]
+  before_action :set_content_deck,        only: [:cards, :update_cards]
+  before_action :set_accessible_deck,     only: [:show, :study, :flashcard, :match, :fork, :copy, :learn, :test]
   before_action :set_noindex_for_unlisted, only: [:show, :study, :flashcard, :match, :learn, :test]
 
   DECK_INDEX_PER_PAGE    = 12
@@ -27,9 +27,18 @@ class DecksController < ApplicationController
     else
       @pagy, @decks = pagy(decks_scope, limit: DECK_INDEX_PER_PAGE)
     end
+
+    @saved_decks = Current.user.saved_decks
+                               .includes(:user, :flashcards)
+                               .order("library_items.created_at DESC")
   end
 
   def show
+    if @locked
+      @sample_flashcards = @deck.flashcards.order(:position).limit(3)
+      @locked_cards_count = @deck.flashcards.count
+      return
+    end
     items = ITEMS_PER_PAGE_OPTIONS.include?(params[:items].to_i) ? params[:items].to_i : 10
     @pagy, @flashcards = pagy(@deck.flashcards.order(:position), limit: items)
     @items_per_page = items
@@ -37,7 +46,6 @@ class DecksController < ApplicationController
 
   def new
     @deck = Current.user.decks.build
-    @deck.share_token = SecureRandom.urlsafe_base64(32)
   end
 
   def create
@@ -197,59 +205,52 @@ class DecksController < ApplicationController
   end
 
   def fork
-    raise ActiveRecord::RecordNotFound unless @deck.can_fork?(Current.user)
-
-    fork_name = params.dig(:deck, :name).presence || @deck.name
-    fork_vis   = Deck::FORKABLE_VISIBILITIES.include?(params.dig(:deck, :visibility)) \
-                   ? params.dig(:deck, :visibility) : "private"
-
-    ActiveRecord::Base.transaction do
-      @fork = Deck.create!(
-        user:                               Current.user,
-        name:                               fork_name,
-        description:                        @deck.description,
-        subject_tags:                       @deck.subject_tags,
-        language_code:                      @deck.language_code,
-        edit_permission:                    "owner_only",
-        visibility:                         fork_vis,
-        forked_from:                        @deck,
-        forked_from_title_snapshot:         @deck.name,
-        forked_from_owner_display_snapshot: @deck.user.display_name,
-        forked_at:                          Time.current
-      )
-      @deck.flashcards.each do |card|
-        @fork.flashcards.create!(
-          front_content: card.front_content,
-          back_content:  card.back_content,
-          position:      card.position
-        )
-      end
-      @deck.increment!(:forks_count)
-    end
-
-    redirect_to edit_deck_path(@fork), notice: t("decks.forked")
+    return redirect_to deck_path(@deck) if @deck.can_delete?(Current.user)
+    raise ActiveRecord::RecordNotFound unless @deck.can_save?(Current.user)
+    perform_library_save
   rescue ActiveRecord::RecordNotFound
     redirect_to explore_path, alert: t("decks.not_available")
-  rescue ActiveRecord::RecordInvalid => e
-    redirect_to deck_path(@deck), alert: e.record.errors.full_messages.first
+  end
+
+  def copy
+    raise ActiveRecord::RecordNotFound unless @deck.can_copy?(Current.user)
+    copied = DeckDuplicator.call(
+      source_deck: @deck,
+      user:        Current.user,
+      name:        t("decks.action.copy_name", name: @deck.name),
+      visibility:  "private"
+    )
+    redirect_to deck_path(copied), notice: t("decks.action.copied")
+  rescue ActiveRecord::RecordNotFound
+    redirect_to explore_path, alert: t("decks.not_available")
+  end
+
+  def unsave
+    deck = Deck.find_by(id: params[:id])
+    item = deck ? Current.user.library_items.find_by(deck: deck) : nil
+    if item
+      @deck = deck
+      item.destroy
+      @no_saved_decks = Current.user.library_items.none?
+      flash.now[:notice] = t("decks.action.unsaved")
+      respond_to do |format|
+        format.turbo_stream
+        format.html { redirect_to deck_path(@deck), notice: t("decks.action.unsaved") }
+      end
+    else
+      redirect_to(deck ? deck_path(deck) : decks_path, alert: t("decks.action.not_in_library"))
+    end
   end
 
   def unlock
     @deck = Deck.find(params[:id])
-    if @deck.can_view?(Current.user, session_auth: deck_session_auth(@deck), share_auth: deck_share_auth(@deck))
-      redirect_to @deck
+    @deck.unlocked = deck_unlocked?(@deck)
+    if request.get? && (@deck.unlocked? || Current.user == @deck.user)
+      return redirect_to @deck
     end
-  end
-
-  def rotate_share_token
-    @deck.update!(share_token: SecureRandom.urlsafe_base64(32))
-    redirect_to edit_deck_path(@deck), notice: t("decks.share_token_rotated")
-  end
-
-  def authenticate
-    @deck = Deck.find(params[:id])
-    if @deck.authenticate_access_password(params[:access_password].to_s)
-      session["deck_auth_#{@deck.id}"] = true
+    return unless request.post?
+    if @deck.authenticate_password(params[:password].to_s)
+      session["deck_#{@deck.id}_unlocked"] = true
       redirect_to @deck, notice: t("decks.unlock.success")
     else
       flash.now[:alert] = t("decks.unlock.invalid_password")
@@ -267,20 +268,25 @@ class DecksController < ApplicationController
 
   def set_content_deck
     deck = Deck.find(params[:id])
-    raise ActiveRecord::RecordNotFound unless deck.can_edit?(Current.user, session_auth: deck_session_auth(deck))
+    deck.unlocked = deck_unlocked?(deck)
+    raise ActiveRecord::RecordNotFound unless deck.can_edit?(Current.user)
     @deck = deck
   end
 
   def set_accessible_deck
     deck = Deck.find(params[:id])
-    unless deck.can_view?(Current.user, session_auth: deck_session_auth(deck), share_auth: deck_share_auth(deck))
-      if deck.password_protected?
-        redirect_to unlock_deck_path(deck) and return
-      else
-        raise ActiveRecord::RecordNotFound
-      end
+    deck.unlocked = deck_unlocked?(deck)
+    if deck.can_view?(Current.user)
+      @deck = deck
+    elsif deck.unlisted? && deck.password_digest.present? && action_name == "show"
+      return redirect_to explore_path unless Current.user
+      @deck = deck
+      @locked = true
+    elsif deck.unlisted? && deck.password_digest.present?
+      redirect_to unlock_deck_path(deck) and return
+    else
+      raise ActiveRecord::RecordNotFound
     end
-    @deck = deck
   end
 
   def find_or_create_learn_session
@@ -322,18 +328,32 @@ class DecksController < ApplicationController
     Current.user.study_sessions.create!(deck: @deck, cards_total: due_count, started_at: Time.current)
   end
 
+  def perform_library_save
+    LibraryItem.create!(user: Current.user, deck: @deck)
+    flash.now[:notice] = t("decks.action.saved")
+    respond_to do |format|
+      format.turbo_stream
+      format.html { redirect_to deck_path(@deck), notice: t("decks.action.saved") }
+    end
+  rescue ActiveRecord::RecordNotUnique, ActiveRecord::RecordInvalid
+    flash.now[:notice] = t("decks.action.already_saved")
+    respond_to do |format|
+      format.turbo_stream
+      format.html { redirect_to deck_path(@deck), notice: t("decks.action.already_saved") }
+    end
+  end
+
   def deck_create_params
     params.require(:deck).permit(
       :name, :description, :language_code, :visibility, :tag_list,
-      :edit_permission, :access_password, :access_password_confirmation,
-      :share_token
+      :edit_permission, :password, :password_confirmation
     )
   end
 
   def deck_update_params
     params.require(:deck).permit(
       :name, :description, :language_code, :visibility, :tag_list,
-      :edit_permission, :access_password, :access_password_confirmation
+      :edit_permission, :password, :password_confirmation
     )
   end
 

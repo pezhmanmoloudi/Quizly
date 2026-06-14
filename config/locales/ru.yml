@@ -172,11 +172,10 @@ ru:
       sort_most_due: "Больше всего к повторению"
       empty_title: "Колод пока нет"
       empty_description: "Создайте первую колоду, чтобы начать учиться."
+      saved_section_title: "Сохранённые колоды"
     show:
       edit: "Редактировать колоду"
       delete: "Удалить колоду"
-      fork: "Скопировать колоду"
-      duplicate: "Дублировать колоду"
       delete_confirm: "Вы уверены, что хотите удалить эту колоду?"
       delete_modal_title: "Удалить эту колоду?"
       delete_modal_card_count:
@@ -184,16 +183,10 @@ ru:
         other: "Эта колода содержит %{count} карточек."
       delete_modal_warning: "Все карточки будут удалены безвозвратно. Это действие нельзя отменить."
       delete_modal_confirm: "Удалить колоду"
-      everyone_badge: "Публичная"
       unlisted_badge: "Скрытая"
-      share_link_label: "Ссылка для доступа"
-      password_protected_badge: "Пароль"
       public_badge: "Публичная"
       private_badge: "Приватная"
       created: "Создана"
-      forked_from: "Скопирована из"
-      forked_from_private: "приватной колоды"
-      forked_from_by: "от @%{username}"
       cards_section: "Карточки"
       add_card: "Добавить карточку"
       import: "Импорт"
@@ -206,6 +199,14 @@ ru:
       mode_test: "Тест"
       mode_match: "Совпадения"
       cards_per_page: "Карточек на страницу"
+      locked_title: "This deck is password protected"
+      locked_description: "Enter the password to access all flashcards and study modes."
+      unlock_cta: "Unlock Deck"
+      preview_heading: "Sample Cards"
+      locked_card_placeholder: "• • •"
+      locked_cards_counter:
+        one: "1 card locked"
+        other: "%{count} cards locked"
     new:
       title: "Новая колода"
       back: "← Назад"
@@ -222,27 +223,18 @@ ru:
       tags_placeholder: "напр. биология, анатомия, экзамен2025"
       visibility_label: "Видимость"
       visibility_section_label: "Кто может видеть эту колоду?"
-      visibility_everyone: "Все"
       visibility_unlisted: "Скрытая"
-      visibility_unlisted_hint: "Только люди со ссылкой могут просматривать."
-      unlisted_share_hint: "Любой с этой ссылкой может просматривать и изучать эту колоду."
-      copy_link: "Копировать ссылку"
-      copy_link_copied: "Скопировано!"
       section_about: "Информация"
       section_access_control: "Управление доступом"
-      share_link_will_be_invalidated: "Изменение видимости сделает текущую ссылку для доступа недействительной."
-      regenerate_link: "Обновить ссылку"
-      regenerate_link_confirm: "Текущая ссылка для доступа станет недействительной. Все, кто имеет старую ссылку, потеряют доступ. Продолжить?"
-      visibility_password_protected: "Защищено паролем"
       visibility_private: "Только я"
       visibility_public: "Публичная"
       visibility_hint: "Публичные колоды могут найти и скопировать все желающие."
       edit_permission_label: "Кто может редактировать эту колоду?"
-      edit_permission_owner_only: "Только я"
-      edit_permission_password_users: "Все с паролем"
-      access_password_label: "Пароль колоды"
-      access_password_placeholder: "Мин. 8 символов"
-      access_password_hint: "Требуется для разблокировки доступа или редактирования"
+      edit_permission_only_me: "Только я"
+      edit_permission_people_with_password: "Все с паролем"
+      password_label: "Пароль колоды"
+      password_placeholder: "Мин. 8 символов"
+      password_hint: "Требуется для разблокировки доступа или редактирования"
     cards:
       page_title: "Добавить карточки — %{name}"
       add_card: "Добавить карточку"
@@ -266,10 +258,18 @@ ru:
     updated: "Колода обновлена."
     deleted: "Колода удалена."
     cards_saved: "Карточки сохранены."
-    forked: "Колода добавлена в вашу библиотеку."
-    fork_modal:
-      submitting: "Копируется..."
-    share_token_rotated: "Ссылка для доступа обновлена."
+    action:
+      save:                  "Сохранить"
+      in_library:            "В вашей библиотеке"
+      sign_in_to_save:       "Войдите для сохранения"
+      saved:                 "Колода добавлена в вашу библиотеку."
+      already_saved:         "Эта колода уже есть в вашей библиотеке."
+      unsave:                "Убрать из библиотеки"
+      unsaved:               "Колода убрана из вашей библиотеки."
+      not_in_library:        "Эта колода не в вашей библиотеке."
+      copy:                  "Сделать копию"
+      copied:                "Копия создана. Теперь вы можете её редактировать."
+      copy_name:             "%{name} (Копия)"
     not_available: "Колода недоступна."
     unlock:
       title: "Требуется пароль"
@@ -278,6 +278,9 @@ ru:
       submit: "Разблокировать колоду"
       invalid_password: "Неверный пароль. Пожалуйста, попробуйте снова."
       success: "Доступ предоставлен."
+      back_to_preview: "← Back to preview"
+      help_text: "Contact the deck creator if you don't have the password."
+      submitting: "Unlocking…"
     sidebar_no_decks: "Колод пока нет."
     deck_card:
       due:
@@ -401,6 +404,9 @@ ru:
       streak: "Серия"
       progress_label: "%{pct}% прогресса"
       matched_counter: "Совпало: %{matched} / %{total}"
+  errors:
+    not_found:
+      flash: "This deck is no longer available."
   explore:
     title: "Обзор"
     subtitle: "Находите и копируйте публичные колоды, которыми делится сообщество."
@@ -411,7 +417,10 @@ ru:
     empty_title: "Публичных колод пока нет"
     empty_description: "Будьте первым, кто поделится колодой с сообществом."
     by: "от"
-    fork: "Скопировать"
+    saved_badge: "Сохранено"
+    locked_badge: "Password Required"
+    owner_badge:  "Вы"
+    by_you:       "от вас"
   dashboard:
     total_decks: "Всего колод"
     total_cards: "Всего карточек"
@@ -567,8 +576,11 @@ ru:
           attributes:
             edit_permission:
               invalid_for_private_deck: "Приватные колоды могут редактировать только их владельцы."
-              invalid_for_unlisted_deck: "Скрытые колоды могут редактировать только их владельцы."
-            access_password:
+        library_item:
+          attributes:
+            base:
+              own_deck: "Вы не можете сохранить свою собственную колоду в библиотеку."
+            password:
               too_short:
                 one: "слишком короткий (минимум %{count} символ)"
                 few: "слишком короткий (минимум %{count} символа)"
