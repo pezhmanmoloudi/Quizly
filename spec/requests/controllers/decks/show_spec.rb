@@ -84,104 +84,114 @@ RSpec.describe "Decks#show", type: :request do
       let(:other_user) { create(:user) }
       before { sign_in(other_user) }
 
-      it "returns 404 for a private deck" do
-        get deck_path(deck)
-        expect(response).to have_http_status(:not_found)
+      context "library state" do
+        let(:public_deck) { create(:deck, :public, user: user) }
+
+        it "renders the library-state wrapper with a stable DOM ID" do
+          get deck_path(public_deck)
+          expect(response.body).to include("id=\"library-state-#{public_deck.id}\"")
+        end
+
+        it "shows Save button for a non-owner (can_save state)" do
+          get deck_path(public_deck)
+          expect(response.body).to include(I18n.t("decks.action.save"))
+        end
+
+        it "shows Save button on a public deck" do
+          pw_deck = create(:deck, :public, user: user)
+          get deck_path(pw_deck)
+          expect(response.body).to include(I18n.t("decks.action.save"))
+        end
+
+        it "shows Saved state and Remove button when deck is already in library" do
+          create(:library_item, user: other_user, deck: public_deck)
+          get deck_path(public_deck)
+          expect(response.body).to include(I18n.t("decks.action.in_library"))
+          expect(response.body).to include(I18n.t("decks.action.unsave"))
+        end
       end
 
-      it "returns 200 for an everyone deck" do
-        everyone_deck = create(:deck, :everyone, user: user)
-        get deck_path(everyone_deck)
+      it "redirects to library for a private deck (inaccessible)" do
+        get deck_path(deck)
+        expect(response).to redirect_to(decks_path)
+      end
+
+      it "returns 200 for a public deck" do
+        public_deck = create(:deck, :public, user: user)
+        get deck_path(public_deck)
         expect(response).to have_http_status(:ok)
       end
 
-      it "does not render Delete Deck button for a non-owner viewing an everyone deck" do
-        everyone_deck = create(:deck, :everyone, user: user)
-        get deck_path(everyone_deck)
+      it "does not render Delete Deck button for a non-owner viewing a public deck" do
+        public_deck = create(:deck, :public, user: user)
+        get deck_path(public_deck)
         expect(response.body).not_to include("Delete Deck")
       end
 
-      it "renders locked preview for a password_protected deck" do
-        pw_deck = create(:deck, :password_protected, user: user)
+      it "returns 200 for an unlisted deck without a password" do
+        unlisted_deck = create(:deck, :unlisted, user: user)
+        get deck_path(unlisted_deck)
+        expect(response).to have_http_status(:ok)
+      end
+
+      it "renders locked preview for an unlisted deck with a password" do
+        pw_deck = create(:deck, visibility: "unlisted", edit_permission: "people_with_password",
+                                password: "secret123", user: user)
         get deck_path(pw_deck)
         expect(response).to have_http_status(:ok)
         expect(response.body).to include(I18n.t("decks.show.unlock_cta"))
       end
 
       it "does not show study mode selector on locked preview" do
-        pw_deck = create(:deck, :password_protected, user: user)
+        pw_deck = create(:deck, visibility: "unlisted", edit_permission: "people_with_password",
+                                password: "secret123", user: user)
         get deck_path(pw_deck)
         expect(response.body).not_to include("study-mode-selector")
       end
 
-      it "returns 200 for a password_protected deck when session is authorized" do
-        pw_deck = create(:deck, :password_protected, user: user)
-        post authenticate_deck_path(pw_deck), params: { access_password: "secret123" }
-        get deck_path(pw_deck)
-        expect(response).to have_http_status(:ok)
-      end
-
-      it "renders full deck after unlock, including study modes" do
-        pw_deck = create(:deck, :password_protected, user: user)
-        post authenticate_deck_path(pw_deck), params: { access_password: "secret123" }
+      it "renders full deck after unlocking an unlisted deck" do
+        pw_deck = create(:deck, visibility: "unlisted", edit_permission: "people_with_password",
+                                password: "secret123", user: user)
+        post unlock_deck_path(pw_deck), params: { password: "secret123" }
         get deck_path(pw_deck)
         expect(response.body).to include("study-mode-selector")
         expect(response.body).not_to include(I18n.t("decks.show.unlock_cta"))
       end
-
-      it "returns 404 for an unlisted deck without share session" do
-        unlisted_deck = create(:deck, :unlisted, user: user)
-        get deck_path(unlisted_deck)
-        expect(response).to have_http_status(:not_found)
-      end
-
-      it "returns 200 for an unlisted deck after visiting the share link" do
-        unlisted_deck = create(:deck, :unlisted, user: user)
-        get shared_deck_path(unlisted_deck.share_token)
-        get deck_path(unlisted_deck)
-        expect(response).to have_http_status(:ok)
-      end
     end
 
     context "when not authenticated" do
-      it "returns 404 for a private deck" do
+      it "redirects to explore for a private deck (inaccessible)" do
         get deck_path(deck)
-        expect(response).to have_http_status(:not_found)
+        expect(response).to redirect_to(explore_path)
       end
 
-      it "returns 200 for an everyone deck" do
-        everyone_deck = create(:deck, :everyone, user: user)
-        get deck_path(everyone_deck)
+      it "returns 200 for a public deck" do
+        public_deck = create(:deck, :public, user: user)
+        get deck_path(public_deck)
         expect(response).to have_http_status(:ok)
       end
 
-      it "renders locked preview for a password_protected deck" do
-        pw_deck = create(:deck, :password_protected, user: user)
-        get deck_path(pw_deck)
-        expect(response).to have_http_status(:ok)
-        expect(response.body).to include(I18n.t("decks.show.unlock_cta"))
-      end
-
-      it "does not show study mode selector on locked preview" do
-        pw_deck = create(:deck, :password_protected, user: user)
-        get deck_path(pw_deck)
-        expect(response.body).not_to include("study-mode-selector")
-      end
-
-      it "does not show Fork button on an everyone deck" do
-        everyone_deck = create(:deck, :everyone, user: user)
-        get deck_path(everyone_deck)
-        expect(response.body).not_to include("Fork")
-      end
-
-      it "returns 404 for an unlisted deck without share session" do
+      it "returns 200 for an unlisted deck without a password" do
         unlisted_deck = create(:deck, :unlisted, user: user)
         get deck_path(unlisted_deck)
-        expect(response).to have_http_status(:not_found)
+        expect(response).to have_http_status(:ok)
+      end
+
+      it "redirects to explore for an unlisted deck with a password (not unlocked)" do
+        pw_deck = create(:deck, visibility: "unlisted", edit_permission: "people_with_password",
+                                password: "secret123", user: user)
+        get deck_path(pw_deck)
+        expect(response).to redirect_to(explore_path)
+      end
+
+      it "does not show Fork button on a public deck" do
+        public_deck = create(:deck, :public, user: user)
+        get deck_path(public_deck)
+        expect(response.body).not_to include("Fork")
       end
     end
 
-    context "unlisted deck noindex and forked_from" do
+    context "unlisted deck noindex" do
       let(:unlisted_deck) { create(:deck, :unlisted, user: user) }
 
       before { sign_in(user) }
@@ -192,25 +202,28 @@ RSpec.describe "Decks#show", type: :request do
       end
 
       it "does not set X-Robots-Tag for a public deck" do
-        everyone_deck = create(:deck, :everyone, user: user)
-        get deck_path(everyone_deck)
+        public_deck = create(:deck, :public, user: user)
+        get deck_path(public_deck)
         expect(response.headers["X-Robots-Tag"]).to be_nil
       end
+    end
 
-      it "shows the forked_from link when source deck is public" do
-        source = create(:deck, :everyone, user: create(:user), name: "Source Deck")
-        forked = create(:deck, user: user, forked_from: source)
-        get deck_path(forked)
-        expect(response.body).to include("Source Deck")
-        expect(response.body).to include(deck_path(source))
+    context "when deck does not exist" do
+      it "redirects unauthenticated users to explore" do
+        get deck_path(id: 999_999)
+        expect(response).to redirect_to(explore_path)
       end
 
-      it "hides the source deck name when source is not public" do
-        source = create(:deck, :unlisted, user: create(:user), name: "Secret Source")
-        forked = create(:deck, user: user, forked_from: source)
-        get deck_path(forked)
-        expect(response.body).not_to include("Secret Source")
-        expect(response.body).not_to include(deck_path(source))
+      it "redirects authenticated users to their library" do
+        sign_in(user)
+        get deck_path(id: 999_999)
+        expect(response).to redirect_to(decks_path)
+      end
+
+      it "sets a flash alert" do
+        get deck_path(id: 999_999)
+        follow_redirect!
+        expect(response.body).to include(I18n.t("errors.not_found.flash"))
       end
     end
   end
