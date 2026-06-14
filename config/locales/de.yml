@@ -415,6 +415,8 @@ de:
     by: "von"
     saved_badge: "Gespeichert"
     locked_badge: "Password Required"
+    owner_badge:  "Du"
+    by_you:       "von dir"
   dashboard:
     total_decks: "Decks gesamt"
     total_cards: "Karten gesamt"

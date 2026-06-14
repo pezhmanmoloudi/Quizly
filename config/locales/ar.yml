@@ -415,6 +415,8 @@ ar:
     by: "بواسطة"
     saved_badge: "محفوظ"
     locked_badge: "Password Required"
+    owner_badge:  "أنت"
+    by_you:       "بواسطتك"
   dashboard:
     total_decks: "إجمالي المجموعات"
     total_cards: "إجمالي البطاقات"

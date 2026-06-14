@@ -415,6 +415,8 @@ es:
     by: "por"
     saved_badge: "Guardado"
     locked_badge: "Password Required"
+    owner_badge:  "Tú"
+    by_you:       "por ti"
   dashboard:
     total_decks: "Total de mazos"
     total_cards: "Total de tarjetas"

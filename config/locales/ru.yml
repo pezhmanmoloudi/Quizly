@@ -419,6 +419,8 @@ ru:
     by: "от"
     saved_badge: "Сохранено"
     locked_badge: "Password Required"
+    owner_badge:  "Вы"
+    by_you:       "от вас"
   dashboard:
     total_decks: "Всего колод"
     total_cards: "Всего карточек"

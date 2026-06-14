@@ -415,6 +415,8 @@ fa:
     by: "توسط"
     saved_badge: "ذخیره‌شده"
     locked_badge: "Password Required"
+    owner_badge:  "شما"
+    by_you:       "توسط شما"
   dashboard:
     total_decks: "مجموع دسته‌ها"
     total_cards: "مجموع کارت‌ها"

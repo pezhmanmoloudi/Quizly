@@ -1,10 +1,13 @@
+<% is_owner = Current.user && deck.user_id == Current.user.id %>
 <a class="deck-tile deck-tile--public"
    href="<%= deck_path(deck) %>"
    data-turbo-frame="_top">
 
   <div class="deck-tile__header">
     <h3 class="deck-tile__name"><%= deck.name %></h3>
-    <% if local_assigns[:saved_deck_ids]&.include?(deck.id) %>
+    <% if is_owner %>
+      <span class="deck-tile__owner-badge"><%= t("explore.owner_badge") %></span>
+    <% elsif local_assigns[:saved_deck_ids]&.include?(deck.id) %>
       <span class="deck-tile__saved-badge">
         <%= render "shared/icons/bookmark", css_class: "icon--xs" %>
         <%= t("explore.saved_badge") %>
@@ -32,6 +35,12 @@
   </div>
 
   <div class="deck-tile__footer deck-tile__footer--public">
-    <span class="deck-tile__author"><%= t("explore.by") %> <%= deck.user.display_name %></span>
+    <span class="deck-tile__author">
+      <% if is_owner %>
+        <%= t("explore.by_you") %>
+      <% else %>
+        <%= t("explore.by") %> <%= deck.user.display_name %>
+      <% end %>
+    </span>
   </div>
 </a>

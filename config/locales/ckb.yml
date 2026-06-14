@@ -415,6 +415,8 @@ ckb:
     by: "لەلایەن"
     saved_badge: "پاشکهوتنراوه"
     locked_badge: "Password Required"
+    owner_badge:  "تۆ"
+    by_you:       "لەلایەن تۆ"
   dashboard:
     total_decks: "کۆی دەستەکان"
     total_cards: "کۆی کارتەکان"

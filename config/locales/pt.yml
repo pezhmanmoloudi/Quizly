@@ -415,6 +415,8 @@ pt:
     by: "por"
     saved_badge: "Salvo"
     locked_badge: "Password Required"
+    owner_badge:  "Você"
+    by_you:       "por você"
   dashboard:
     total_decks: "Total de baralhos"
     total_cards: "Total de cartões"

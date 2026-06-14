@@ -415,6 +415,8 @@ fr:
     by: "par"
     saved_badge: "Enregistré"
     locked_badge: "Password Required"
+    owner_badge:  "Vous"
+    by_you:       "par vous"
   dashboard:
     total_decks: "Total des paquets"
     total_cards: "Total des cartes"
