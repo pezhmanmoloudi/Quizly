@@ -23,11 +23,11 @@
       </div>
     </div>
 
-    <%= form_with url: authenticate_deck_path(@deck), method: :post do |f| %>
+    <%= form_with url: unlock_deck_path(@deck), method: :post do |f| %>
       <div class="form-group" data-controller="password-toggle">
-        <%= f.label :access_password, t("decks.unlock.password_label") %>
+        <%= f.label :password, t("decks.unlock.password_label") %>
         <div class="auth-input field-with-toggle">
-          <%= f.password_field :access_password,
+          <%= f.password_field :password,
                 class: "form-control #{"form-control--error" if flash[:alert]}",
                 autofocus: true,
                 autocomplete: "current-password",
