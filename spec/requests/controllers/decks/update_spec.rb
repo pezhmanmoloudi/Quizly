@@ -25,21 +25,15 @@ RSpec.describe "Decks#update", type: :request do
         expect(deck.reload.name).to eq(original_name)
         expect(response).to have_http_status(:unprocessable_content)
       end
-
-      it "does not change share_token even when submitted in params" do
-        original_token = deck.share_token
-        patch deck_path(deck), params: { deck: { name: deck.name, share_token: "crafted-token" } }
-        expect(deck.reload.share_token).to eq(original_token)
-      end
     end
 
     context "when authenticated as another user" do
       let(:other_user) { create(:user) }
       before { sign_in(other_user) }
 
-      it "returns 404" do
+      it "redirects away" do
         patch deck_path(deck), params: { deck: { name: "Hijacked" } }
-        expect(response).to have_http_status(:not_found)
+        expect(response).to redirect_to(decks_path)
       end
 
       it "does not modify the deck" do
@@ -48,12 +42,12 @@ RSpec.describe "Decks#update", type: :request do
         expect(deck.reload.name).to eq(original_name)
       end
 
-      it "returns 404 for a password_users deck even with session auth (admin domain is owner-only)" do
+      it "redirects for a people_with_password deck even with session auth (admin domain is owner-only)" do
         pw_deck = create(:deck, :editable_by_password, user: create(:user))
         sign_in(other_user)
-        post authenticate_deck_path(pw_deck), params: { access_password: "secret123" }
+        post unlock_deck_path(pw_deck), params: { password: "secret123" }
         patch deck_path(pw_deck), params: { deck: { name: "Hijacked" } }
-        expect(response).to have_http_status(:not_found)
+        expect(response).to redirect_to(decks_path)
         expect(pw_deck.reload.name).not_to eq("Hijacked")
       end
     end

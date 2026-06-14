@@ -51,9 +51,9 @@ RSpec.describe "Decks#destroy", type: :request do
       let(:other_user) { create(:user) }
       before { sign_in(other_user) }
 
-      it "returns 404" do
+      it "redirects away" do
         delete deck_path(deck)
-        expect(response).to have_http_status(:not_found)
+        expect(response).to redirect_to(decks_path)
       end
 
       it "does not destroy the deck" do

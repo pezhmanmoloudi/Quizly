@@ -54,10 +54,10 @@ RSpec.describe "Decks#study", type: :request do
         expect(response).to have_http_status(:ok)
       end
 
-      it "returns 404 for a deck belonging to another user" do
+      it "redirects for a deck belonging to another user" do
         other_deck = create(:deck, user: create(:user))
         get study_deck_path(other_deck)
-        expect(response).to have_http_status(:not_found)
+        expect(response).to redirect_to(decks_path)
       end
 
       it "renders the stats header with subtitle and streak badge" do

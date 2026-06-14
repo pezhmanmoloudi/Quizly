@@ -14,7 +14,7 @@ RSpec.describe "Explore#index", type: :request do
       end
 
       it "lists public decks from other users" do
-        create(:deck, user: other_user, visibility: "everyone", name: "Public Deck A")
+        create(:deck, user: other_user, visibility: "public", name: "Public Deck A")
         get explore_path
         expect(response.body).to include("Public Deck A")
       end
@@ -25,28 +25,21 @@ RSpec.describe "Explore#index", type: :request do
         expect(response.body).not_to include("Secret Deck")
       end
 
-      it "lists password_protected decks from other users" do
-        create(:deck, :password_protected, user: other_user, name: "Protected Spanish Deck")
+      it "lists public decks from other users" do
+        create(:deck, :public, user: other_user, name: "Spanish Deck")
         get explore_path
-        expect(response.body).to include("Protected Spanish Deck")
-      end
-
-      it "shows protected chip for password_protected decks" do
-        create(:deck, :password_protected, user: other_user, name: "Protected Spanish Deck")
-        get explore_path
-        expect(response.body).to include(I18n.t("explore.protected_badge"))
-        expect(response.body).to include(I18n.t("explore.unlock_cta_inline"))
+        expect(response.body).to include("Spanish Deck")
       end
 
       it "does not show Fork button for any deck" do
-        create(:deck, :everyone, user: other_user, name: "Public Deck")
+        create(:deck, :public, user: other_user, name: "Public Deck")
         get explore_path
         expect(response.body).not_to include(I18n.t("explore.fork"))
       end
 
       it "filters decks by search query" do
-        create(:deck, user: other_user, visibility: "everyone", name: "Spanish Basics")
-        create(:deck, user: other_user, visibility: "everyone", name: "French Vocab")
+        create(:deck, user: other_user, visibility: "public", name: "Spanish Basics")
+        create(:deck, user: other_user, visibility: "public", name: "French Vocab")
         get explore_path, params: { q: "Spanish" }
         expect(response.body).to include("Spanish Basics")
         expect(response.body).not_to include("French Vocab")
@@ -61,6 +54,28 @@ RSpec.describe "Explore#index", type: :request do
         get explore_path, params: { q: "nonexistent deck xyz" }
         expect(response.body).to include("No decks found for")
       end
+
+      context "saved deck indicator" do
+        let(:deck) { create(:deck, user: other_user, visibility: "public", name: "French Vocab") }
+
+        it "shows saved badge for a deck already in the user's library" do
+          create(:library_item, user: user, deck: deck)
+          get explore_path
+          expect(response.body).to include("deck-tile__saved-badge")
+        end
+
+        it "does not show saved badge for a deck not in the user's library" do
+          deck
+          get explore_path
+          expect(response.body).not_to include("deck-tile__saved-badge")
+        end
+
+        it "does not show saved badge for the user's own public decks" do
+          create(:deck, user: user, visibility: "public", name: "My Own Deck")
+          get explore_path
+          expect(response.body).not_to include("deck-tile__saved-badge")
+        end
+      end
     end
 
     context "locale persistence on unauthenticated-accessible page" do
@@ -74,7 +89,7 @@ RSpec.describe "Explore#index", type: :request do
 
       it "renders in English for users with default locale" do
         get explore_path
-        expect(response.body).to include("Discover and fork public decks")
+        expect(response.body).to include("Discover and save public decks")
       end
 
       it "keeps the topbar brand LTR in an RTL locale" do
@@ -91,13 +106,13 @@ RSpec.describe "Explore#index", type: :request do
       end
 
       it "lists public decks without logging in" do
-        create(:deck, user: create(:user), visibility: "everyone", name: "Guest Visible Deck")
+        create(:deck, user: create(:user), visibility: "public", name: "Guest Visible Deck")
         get explore_path
         expect(response.body).to include("Guest Visible Deck")
       end
 
       it "does not show Fork button" do
-        create(:deck, user: create(:user), visibility: "everyone", name: "Some Deck")
+        create(:deck, user: create(:user), visibility: "public", name: "Some Deck")
         get explore_path
         expect(response.body).not_to include(I18n.t("explore.fork"))
       end

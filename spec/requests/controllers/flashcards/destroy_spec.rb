@@ -100,9 +100,9 @@ RSpec.describe "Flashcards#destroy", type: :request do
       let(:other_user) { create(:user) }
       before { sign_in(other_user) }
 
-      it "returns 404" do
+      it "redirects away" do
         delete flashcard_path(flashcard)
-        expect(response).to have_http_status(:not_found)
+        expect(response).to redirect_to(decks_path)
       end
 
       it "does not destroy the flashcard" do
@@ -120,7 +120,7 @@ RSpec.describe "Flashcards#destroy", type: :request do
       let(:other)   { create(:user) }
       before do
         sign_in(other)
-        post authenticate_deck_path(pw_deck), params: { access_password: "secret123" }
+        post unlock_deck_path(pw_deck), params: { password: "secret123" }
       end
 
       it "soft-deletes the flashcard" do

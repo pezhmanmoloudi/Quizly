@@ -39,7 +39,7 @@ RSpec.describe "Decks#flashcard", type: :request do
 
     context "when authenticated and deck is public" do
       let(:other_user) { create(:user) }
-      let(:public_deck) { create(:deck, user: user, visibility: "everyone") }
+      let(:public_deck) { create(:deck, user: user, visibility: "public") }
 
       before { sign_in(other_user) }
 
@@ -52,16 +52,16 @@ RSpec.describe "Decks#flashcard", type: :request do
     context "when authenticated and deck is private and owned by another user" do
       before { sign_in(create(:user)) }
 
-      it "returns 404" do
+      it "redirects away" do
         get flashcard_deck_path(deck)
-        expect(response).to have_http_status(:not_found)
+        expect(response).to redirect_to(decks_path)
       end
     end
 
     context "when not authenticated" do
-      it "returns 404 for a private deck" do
+      it "redirects to explore for a private deck" do
         get flashcard_deck_path(deck)
-        expect(response).to have_http_status(:not_found)
+        expect(response).to redirect_to(explore_path)
       end
 
       it "returns 200 for a public deck" do

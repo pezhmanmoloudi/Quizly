@@ -7,5 +7,6 @@ class ExploreController < ApplicationController
       @decks = @decks.where("name LIKE :q OR description LIKE :q", q: "%#{@query}%")
     end
     @decks = @decks.limit(48)
+    @saved_deck_ids = Current.user ? Current.user.library_items.pluck(:deck_id).to_set : Set.new
   end
 end

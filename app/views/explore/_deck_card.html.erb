@@ -1,19 +1,13 @@
-<% locked = deck.password_protected? %>
-<a class="deck-tile deck-tile--<%= locked ? "locked" : "public" %>"
+<a class="deck-tile deck-tile--public"
    href="<%= deck_path(deck) %>"
    data-turbo-frame="_top">
 
   <div class="deck-tile__header">
     <h3 class="deck-tile__name"><%= deck.name %></h3>
-    <% if locked %>
-      <span class="deck-tile__protected-chip">
-        <%= render "shared/icons/lock", css_class: "icon--xs" %>
-        <%= t("explore.protected_badge") %>
-      </span>
-    <% else %>
-      <span class="deck-tile__forks">
-        <%= render "shared/icons/fork", css_class: "icon--sm" %>
-        <%= deck.forks_count %>
+    <% if local_assigns[:saved_deck_ids]&.include?(deck.id) %>
+      <span class="deck-tile__saved-badge">
+        <%= render "shared/icons/bookmark", css_class: "icon--xs" %>
+        <%= t("explore.saved_badge") %>
       </span>
     <% end %>
   </div>
@@ -35,19 +29,9 @@
         <% end %>
       </div>
     <% end %>
-    <% if locked && deck.flashcards.any? %>
-      <ul class="deck-tile__preview-list">
-        <% deck.flashcards.first(3).each do |card| %>
-          <li class="deck-tile__preview-term"><%= card.front_content.truncate(60) %></li>
-        <% end %>
-      </ul>
-    <% end %>
   </div>
 
-  <div class="deck-tile__footer deck-tile__footer--<%= locked ? "locked" : "public" %>">
+  <div class="deck-tile__footer deck-tile__footer--public">
     <span class="deck-tile__author"><%= t("explore.by") %> <%= deck.user.display_name %></span>
-    <% if locked %>
-      <span class="deck-tile__unlock-cta"><%= t("explore.unlock_cta_inline") %> →</span>
-    <% end %>
   </div>
 </a>

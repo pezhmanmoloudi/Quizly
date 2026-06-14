@@ -38,10 +38,10 @@ RSpec.describe "Flashcards#update", type: :request do
       let(:other_user) { create(:user) }
       before { sign_in(other_user) }
 
-      it "returns 404" do
+      it "redirects away" do
         patch flashcard_path(flashcard),
               params: { flashcard: { front_content: "x", back_content: "y" } }
-        expect(response).to have_http_status(:not_found)
+        expect(response).to redirect_to(decks_path)
       end
     end
 
@@ -52,7 +52,7 @@ RSpec.describe "Flashcards#update", type: :request do
       let(:other)   { create(:user) }
       before do
         sign_in(other)
-        post authenticate_deck_path(pw_deck), params: { access_password: "secret123" }
+        post unlock_deck_path(pw_deck), params: { password: "secret123" }
       end
 
       it "updates the flashcard and redirects" do

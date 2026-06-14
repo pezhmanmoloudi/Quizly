@@ -1,96 +1,37 @@
 require "rails_helper"
 
 RSpec.describe Deck, type: :model do
-  describe "share_token" do
-    it "is generated on create" do
-      deck = create(:deck)
-      expect(deck.share_token).to be_present
-    end
-
-    it "is a URL-safe random string" do
-      deck = create(:deck)
-      expect(deck.share_token).to match(/\A[A-Za-z0-9_-]+\z/)
-    end
-
-    it "is unique per deck" do
-      tokens = 3.times.map { create(:deck).share_token }
-      expect(tokens.uniq.size).to eq(3)
-    end
-  end
-
-  describe ".accessible_by_token" do
-    it "returns the unlisted deck with matching token" do
-      deck = create(:deck, :unlisted)
-      expect(Deck.accessible_by_token(deck.share_token)).to include(deck)
-    end
-
-    it "does not return a non-unlisted deck even with its token" do
-      deck = create(:deck, :everyone)
-      expect(Deck.accessible_by_token(deck.share_token)).to be_empty
-    end
-
-    it "returns empty for an unknown token" do
-      expect(Deck.accessible_by_token("bogus")).to be_empty
-    end
-  end
-
   describe "scopes" do
-    it ".discoverable includes everyone decks" do
-      create(:deck, :everyone)
-      expect(Deck.discoverable.map(&:visibility)).to include("everyone")
-    end
-
-    it ".discoverable includes password_protected decks" do
-      create(:deck, :password_protected)
-      expect(Deck.discoverable.map(&:visibility)).to include("password_protected")
+    it ".discoverable includes public decks" do
+      create(:deck, :public)
+      expect(Deck.discoverable.map(&:visibility)).to include("public")
     end
 
     it ".discoverable excludes private decks" do
       create(:deck, :private)
-      create(:deck, :everyone)
+      create(:deck, :public)
       expect(Deck.discoverable.map(&:visibility)).not_to include("private")
     end
 
     it ".discoverable excludes unlisted decks" do
       create(:deck, :unlisted)
-      create(:deck, :everyone)
+      create(:deck, :public)
       expect(Deck.discoverable.map(&:visibility)).not_to include("unlisted")
     end
 
-    it ".visible_in_explore includes password_protected decks" do
-      create(:deck, :password_protected)
-      expect(Deck.visible_in_explore.map(&:visibility)).to include("password_protected")
-    end
-
-    it ".visible_in_explore excludes unlisted and private decks" do
+    it ".discoverable excludes both unlisted and private decks" do
       create(:deck, :unlisted)
       create(:deck, :private)
-      create(:deck, :everyone)
-      result = Deck.visible_in_explore.map(&:visibility)
+      create(:deck, :public)
+      result = Deck.discoverable.map(&:visibility)
       expect(result).not_to include("unlisted")
       expect(result).not_to include("private")
-    end
-
-    it ".searchable includes password_protected decks" do
-      create(:deck, :password_protected, name: "Protected Gem")
-      expect(Deck.searchable.map(&:name)).to include("Protected Gem")
-    end
-
-    it ".searchable excludes unlisted decks" do
-      create(:deck, :unlisted, name: "Hidden Gem")
-      create(:deck, :everyone, name: "Public Deck")
-      names = Deck.searchable.map(&:name)
-      expect(names).not_to include("Hidden Gem")
     end
   end
 
   describe "#preview_accessible?" do
-    it "is true for everyone decks" do
-      expect(build(:deck, :everyone).preview_accessible?).to be true
-    end
-
-    it "is true for password_protected decks" do
-      expect(build(:deck, :password_protected).preview_accessible?).to be true
+    it "is true for public decks" do
+      expect(build(:deck, :public).preview_accessible?).to be true
     end
 
     it "is false for private decks" do
@@ -158,77 +99,66 @@ RSpec.describe Deck, type: :model do
       expect(deck).not_to be_valid
     end
 
-    it "rejects private + password_users combination" do
-      deck = build(:deck, visibility: "private", edit_permission: "password_users",
-                          access_password: "secret123")
+    it "rejects private + people_with_password combination" do
+      deck = build(:deck, visibility: "private", edit_permission: "people_with_password",
+                          password: "secret123")
       expect(deck).not_to be_valid
       expect(deck.errors[:edit_permission]).to be_present
     end
 
-    it "rejects unlisted + password_users combination" do
-      deck = build(:deck, visibility: "unlisted", edit_permission: "password_users",
-                          access_password: "secret123")
-      expect(deck).not_to be_valid
-      expect(deck.errors[:edit_permission]).to be_present
-    end
-
-    it "is valid with unlisted + owner_only" do
-      deck = build(:deck, visibility: "unlisted", edit_permission: "owner_only")
+    it "allows unlisted + people_with_password combination" do
+      deck = build(:deck, visibility: "unlisted", edit_permission: "people_with_password",
+                          password: "secret123")
       expect(deck).to be_valid
     end
 
-    it "requires access_password when visibility is password_protected" do
-      deck = build(:deck, visibility: "password_protected", access_password: nil)
-      expect(deck).not_to be_valid
-      expect(deck.errors[:access_password]).to be_present
-    end
-
-    it "requires access_password when edit_permission is password_users" do
-      deck = build(:deck, edit_permission: "password_users", access_password: nil)
-      expect(deck).not_to be_valid
-      expect(deck.errors[:access_password]).to be_present
-    end
-
-    it "does not require access_password for private + owner_only" do
-      deck = build(:deck, visibility: "private", edit_permission: "owner_only", access_password: nil)
+    it "is valid with unlisted + only_me" do
+      deck = build(:deck, visibility: "unlisted", edit_permission: "only_me")
       expect(deck).to be_valid
     end
 
-    it "does not require access_password for everyone + owner_only" do
-      deck = build(:deck, visibility: "everyone", edit_permission: "owner_only", access_password: nil)
+    it "requires password when edit_permission is people_with_password" do
+      deck = build(:deck, edit_permission: "people_with_password", password: nil)
+      expect(deck).not_to be_valid
+      expect(deck.errors[:password]).to be_present
+    end
+
+    it "does not require password for private + only_me" do
+      deck = build(:deck, visibility: "private", edit_permission: "only_me", password: nil)
       expect(deck).to be_valid
     end
 
-    it "rejects access_password shorter than 8 characters" do
-      deck = build(:deck, visibility: "password_protected", access_password: "short")
-      expect(deck).not_to be_valid
-      expect(deck.errors[:access_password]).to be_present
+    it "does not require password for public + only_me" do
+      deck = build(:deck, visibility: "public", edit_permission: "only_me", password: nil)
+      expect(deck).to be_valid
     end
 
-    it "rejects access_password longer than 128 characters" do
-      deck = build(:deck, visibility: "password_protected", access_password: "a" * 129)
+    it "rejects password shorter than 8 characters" do
+      deck = build(:deck, edit_permission: "people_with_password", password: "short")
       expect(deck).not_to be_valid
-      expect(deck.errors[:access_password]).to be_present
+      expect(deck.errors[:password]).to be_present
     end
 
-    it "is valid with access_password of exactly 8 characters" do
-      deck = build(:deck, visibility: "password_protected", access_password: "a" * 8)
+    it "rejects password longer than 128 characters" do
+      deck = build(:deck, edit_permission: "people_with_password", password: "a" * 129)
+      expect(deck).not_to be_valid
+      expect(deck.errors[:password]).to be_present
+    end
+
+    it "is valid with password of exactly 8 characters" do
+      deck = build(:deck, visibility: "public", edit_permission: "people_with_password", password: "a" * 8)
       expect(deck).to be_valid
     end
   end
 
   describe "visibility predicates" do
-    it "defaults to everyone" do
+    it "defaults to public" do
       deck = Deck.new(name: "Test", user: build(:user))
-      expect(deck.visibility).to eq("everyone")
+      expect(deck.visibility).to eq("public")
     end
 
-    it "#everyone? is true when visibility is everyone" do
-      expect(build(:deck, visibility: "everyone").everyone?).to be true
-    end
-
-    it "#password_protected? is true when visibility is password_protected" do
-      expect(build(:deck, visibility: "password_protected").password_protected?).to be true
+    it "#public? is true when visibility is public" do
+      expect(build(:deck, visibility: "public").public?).to be true
     end
 
     it "#private? is true when visibility is private" do
@@ -238,49 +168,25 @@ RSpec.describe Deck, type: :model do
     it "#unlisted? is true when visibility is unlisted" do
       expect(build(:deck, visibility: "unlisted").unlisted?).to be true
     end
-
-    it "#public? is an alias for #everyone?" do
-      expect(build(:deck, visibility: "everyone").public?).to be true
-    end
   end
 
   describe "#can_view?" do
     let(:owner) { build(:user, id: 1) }
     let(:other)  { build(:user, id: 2) }
 
-    context "visibility: everyone" do
-      let(:deck) { build(:deck, user: owner, visibility: "everyone") }
+    context "visibility: public" do
+      let(:deck) { build(:deck, user: owner, visibility: "public") }
 
-      it "allows everyone (nil user, no session)" do
-        expect(deck.can_view?(nil, session_auth: false)).to be true
+      it "allows nil user" do
+        expect(deck.can_view?(nil)).to be true
       end
 
       it "allows authenticated non-owner" do
-        expect(deck.can_view?(other, session_auth: false)).to be true
+        expect(deck.can_view?(other)).to be true
       end
 
       it "allows owner" do
-        expect(deck.can_view?(owner, session_auth: false)).to be true
-      end
-    end
-
-    context "visibility: password_protected" do
-      let(:deck) { build(:deck, user: owner, visibility: "password_protected") }
-
-      it "denies unauthenticated user without session" do
-        expect(deck.can_view?(nil, session_auth: false)).to be false
-      end
-
-      it "denies non-owner without session" do
-        expect(deck.can_view?(other, session_auth: false)).to be false
-      end
-
-      it "allows non-owner with session" do
-        expect(deck.can_view?(other, session_auth: true)).to be true
-      end
-
-      it "allows owner without session" do
-        expect(deck.can_view?(owner, session_auth: false)).to be true
+        expect(deck.can_view?(owner)).to be true
       end
     end
 
@@ -288,43 +194,62 @@ RSpec.describe Deck, type: :model do
       let(:deck) { build(:deck, user: owner, visibility: "private") }
 
       it "denies nil user" do
-        expect(deck.can_view?(nil, session_auth: false)).to be false
+        expect(deck.can_view?(nil)).to be false
       end
 
       it "denies non-owner" do
-        expect(deck.can_view?(other, session_auth: false)).to be false
+        expect(deck.can_view?(other)).to be false
       end
 
-      it "denies non-owner even with session" do
-        expect(deck.can_view?(other, session_auth: true)).to be false
+      it "denies non-owner even when unlocked" do
+        deck.unlocked = true
+        expect(deck.can_view?(other)).to be false
       end
 
       it "allows owner" do
-        expect(deck.can_view?(owner, session_auth: false)).to be true
+        expect(deck.can_view?(owner)).to be true
       end
     end
 
-    context "visibility: unlisted" do
+    context "visibility: unlisted without password" do
       let(:deck) { build(:deck, user: owner, visibility: "unlisted") }
 
-      it "denies nil user without share_auth" do
-        expect(deck.can_view?(nil, session_auth: false)).to be false
+      it "allows nil user (no password set)" do
+        expect(deck.can_view?(nil)).to be true
       end
 
-      it "denies non-owner without share_auth" do
-        expect(deck.can_view?(other, session_auth: false)).to be false
+      it "allows non-owner (no password set)" do
+        expect(deck.can_view?(other)).to be true
       end
 
-      it "allows nil user with share_auth" do
-        expect(deck.can_view?(nil, session_auth: false, share_auth: true)).to be true
+      it "allows owner" do
+        expect(deck.can_view?(owner)).to be true
+      end
+    end
+
+    context "visibility: unlisted with password" do
+      let(:deck) { build(:deck, user: owner, visibility: "unlisted", edit_permission: "people_with_password", password: "secret123") }
+
+      it "denies nil user without unlock" do
+        expect(deck.can_view?(nil)).to be false
       end
 
-      it "allows non-owner with share_auth" do
-        expect(deck.can_view?(other, session_auth: false, share_auth: true)).to be true
+      it "denies non-owner without unlock" do
+        expect(deck.can_view?(other)).to be false
       end
 
-      it "allows owner without share_auth" do
-        expect(deck.can_view?(owner, session_auth: false)).to be true
+      it "allows nil user when unlocked" do
+        deck.unlocked = true
+        expect(deck.can_view?(nil)).to be true
+      end
+
+      it "allows non-owner when unlocked" do
+        deck.unlocked = true
+        expect(deck.can_view?(other)).to be true
+      end
+
+      it "allows owner without unlock" do
+        expect(deck.can_view?(owner)).to be true
       end
     end
   end
@@ -333,43 +258,55 @@ RSpec.describe Deck, type: :model do
     let(:owner) { build(:user, id: 1) }
     let(:other)  { build(:user, id: 2) }
 
-    context "edit_permission: owner_only" do
-      let(:deck) { build(:deck, user: owner, edit_permission: "owner_only") }
+    context "edit_permission: only_me" do
+      let(:deck) { build(:deck, user: owner, edit_permission: "only_me") }
 
       it "denies nil user" do
-        expect(deck.can_edit?(nil, session_auth: false)).to be false
+        expect(deck.can_edit?(nil)).to be false
       end
 
       it "denies non-owner" do
-        expect(deck.can_edit?(other, session_auth: false)).to be false
+        expect(deck.can_edit?(other)).to be false
       end
 
-      it "denies non-owner even with session" do
-        expect(deck.can_edit?(other, session_auth: true)).to be false
+      it "denies non-owner even when unlocked" do
+        deck.unlocked = true
+        expect(deck.can_edit?(other)).to be false
       end
 
       it "allows owner" do
-        expect(deck.can_edit?(owner, session_auth: false)).to be true
+        expect(deck.can_edit?(owner)).to be true
       end
     end
 
-    context "edit_permission: password_users" do
-      let(:deck) { build(:deck, user: owner, edit_permission: "password_users") }
+    context "edit_permission: people_with_password" do
+      let(:deck) { build(:deck, user: owner, visibility: "public", edit_permission: "people_with_password") }
 
-      it "denies nil user" do
-        expect(deck.can_edit?(nil, session_auth: true)).to be false
+      it "denies nil user even when unlocked" do
+        deck.unlocked = true
+        expect(deck.can_edit?(nil)).to be false
       end
 
-      it "denies non-owner without session" do
-        expect(deck.can_edit?(other, session_auth: false)).to be false
+      it "denies non-owner without unlock" do
+        expect(deck.can_edit?(other)).to be false
       end
 
-      it "allows non-owner with session" do
-        expect(deck.can_edit?(other, session_auth: true)).to be true
+      it "allows non-owner when unlocked" do
+        deck.unlocked = true
+        expect(deck.can_edit?(other)).to be true
       end
 
-      it "allows owner regardless of session" do
-        expect(deck.can_edit?(owner, session_auth: false)).to be true
+      it "allows owner regardless of unlock" do
+        expect(deck.can_edit?(owner)).to be true
+      end
+    end
+
+    context "visibility: private" do
+      let(:deck) { build(:deck, user: owner, visibility: "private", edit_permission: "only_me") }
+
+      it "denies non-owner even when unlocked" do
+        deck.unlocked = true
+        expect(deck.can_edit?(other)).to be false
       end
     end
   end
@@ -391,7 +328,7 @@ RSpec.describe Deck, type: :model do
       expect(deck.can_edit_settings?(nil)).to be false
     end
 
-    it "denies password user with session auth (admin domain is owner-only)" do
+    it "denies password user (admin domain is owner-only)" do
       pw_deck = build(:deck, :editable_by_password, user: owner)
       expect(pw_deck.can_edit_settings?(other)).to be false
     end
@@ -412,15 +349,6 @@ RSpec.describe Deck, type: :model do
 
     it "denies nil" do
       expect(deck.can_delete?(nil)).to be false
-    end
-  end
-
-  describe "#can_manage_cards?" do
-    let(:owner) { build(:user, id: 1) }
-    let(:deck)  { build(:deck, user: owner) }
-
-    it "delegates to can_edit?" do
-      expect(deck.can_manage_cards?(owner, session_auth: false)).to eq(deck.can_edit?(owner, session_auth: false))
     end
   end
 

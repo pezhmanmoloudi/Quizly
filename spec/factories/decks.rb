@@ -4,19 +4,10 @@ FactoryBot.define do
     sequence(:name) { |n| "Deck #{n}" }
     description { "A test deck" }
     visibility { "private" }
-    edit_permission { "owner_only" }
-
-    trait :everyone do
-      visibility { "everyone" }
-    end
+    edit_permission { "only_me" }
 
     trait :public do
-      visibility { "everyone" }
-    end
-
-    trait :password_protected do
-      visibility { "password_protected" }
-      access_password { "secret123" }
+      visibility { "public" }
     end
 
     trait :unlisted do
@@ -28,9 +19,9 @@ FactoryBot.define do
     end
 
     trait :editable_by_password do
-      visibility { "everyone" }
-      edit_permission { "password_users" }
-      access_password { "secret123" }
+      visibility { "public" }
+      edit_permission { "people_with_password" }
+      password { "secret123" }
     end
   end
 end

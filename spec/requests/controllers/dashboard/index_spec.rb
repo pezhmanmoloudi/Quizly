@@ -56,7 +56,7 @@ RSpec.describe "Dashboard#index", type: :request do
       end
 
       it "does not show decks from other users" do
-        create(:deck, user: create(:user), name: "Stranger's Deck", visibility: "everyone")
+        create(:deck, user: create(:user), name: "Stranger's Deck", visibility: "public")
         get dashboard_path
         expect(response.body).not_to include("Stranger&#39;s Deck")
       end
