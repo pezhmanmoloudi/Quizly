@@ -267,6 +267,9 @@ pt:
       unsave:                "Remover da biblioteca"
       unsaved:               "Baralho removido da sua biblioteca."
       not_in_library:        "Este baralho não está na sua biblioteca."
+      copy:                  "Fazer uma cópia"
+      copied:                "Cópia criada. Agora você pode editá-la."
+      copy_name:             "%{name} (Cópia)"
     not_available: "Baralho não disponível."
     unlock:
       title: "Senha obrigatória"

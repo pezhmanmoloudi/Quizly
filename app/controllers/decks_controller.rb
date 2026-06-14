@@ -2,7 +2,7 @@ class DecksController < ApplicationController
   allow_unauthenticated_access only: [:show, :flashcard, :match, :unlock]
   before_action :set_owned_deck,          only: [:edit, :update, :destroy]
   before_action :set_content_deck,        only: [:cards, :update_cards]
-  before_action :set_accessible_deck,     only: [:show, :study, :flashcard, :match, :fork, :learn, :test]
+  before_action :set_accessible_deck,     only: [:show, :study, :flashcard, :match, :fork, :copy, :learn, :test]
   before_action :set_noindex_for_unlisted, only: [:show, :study, :flashcard, :match, :learn, :test]
 
   DECK_INDEX_PER_PAGE    = 12
@@ -208,6 +208,19 @@ class DecksController < ApplicationController
     return redirect_to deck_path(@deck) if @deck.can_delete?(Current.user)
     raise ActiveRecord::RecordNotFound unless @deck.can_save?(Current.user)
     perform_library_save
+  rescue ActiveRecord::RecordNotFound
+    redirect_to explore_path, alert: t("decks.not_available")
+  end
+
+  def copy
+    raise ActiveRecord::RecordNotFound unless @deck.can_copy?(Current.user)
+    copied = DeckDuplicator.call(
+      source_deck: @deck,
+      user:        Current.user,
+      name:        t("decks.action.copy_name", name: @deck.name),
+      visibility:  "private"
+    )
+    redirect_to deck_path(copied), notice: t("decks.action.copied")
   rescue ActiveRecord::RecordNotFound
     redirect_to explore_path, alert: t("decks.not_available")
   end

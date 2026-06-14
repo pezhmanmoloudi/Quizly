@@ -73,6 +73,12 @@ class Deck < ApplicationRecord
     true
   end
 
+  def can_copy?(user)
+    return false if user.nil?
+    return false if user.id == user_id
+    public? || unlisted?
+  end
+
   def saved_by?(user)
     return false unless user
     library_items.exists?(user: user)

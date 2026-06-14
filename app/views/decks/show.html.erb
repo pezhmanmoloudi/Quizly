@@ -15,6 +15,14 @@
 
         <%= render "decks/library_state", deck: @deck %>
 
+        <% if @deck.can_copy?(Current.user) %>
+          <%= form_with url: copy_deck_path(@deck), method: :post do %>
+            <button type="submit" class="btn btn--secondary btn-with-icon">
+              <%= render "shared/icons/fork" %> <%= t("decks.action.copy") %>
+            </button>
+          <% end %>
+        <% end %>
+
         <% if can_delete %>
           <button type="button" class="btn btn--danger btn-with-icon"
                   data-action="click->modal#open">

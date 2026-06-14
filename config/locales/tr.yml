@@ -267,6 +267,9 @@ tr:
       unsave:                "Kitaplıktan kaldır"
       unsaved:               "Deste kitaplığından kaldırıldı."
       not_in_library:        "Bu deste kitaplığınızda değil."
+      copy:                  "Kopya oluştur"
+      copied:                "Kopya oluşturuldu. Artık düzenleyebilirsiniz."
+      copy_name:             "%{name} (Kopya)"
     not_available: "Deste mevcut değil."
     unlock:
       title: "Şifre gerekli"

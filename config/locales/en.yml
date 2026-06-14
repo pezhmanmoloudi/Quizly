@@ -267,6 +267,9 @@ en:
       unsave:                "Remove from library"
       unsaved:               "Deck removed from your library."
       not_in_library:        "This deck is not in your library."
+      copy:                  "Make a Copy"
+      copied:                "Copy created. You can now edit it."
+      copy_name:             "%{name} (Copy)"
     not_available: "Deck not available."
     unlock:
       title: "Password Required"

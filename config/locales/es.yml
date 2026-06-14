@@ -267,6 +267,9 @@ es:
       unsave:                "Eliminar de la biblioteca"
       unsaved:               "Mazo eliminado de tu biblioteca."
       not_in_library:        "Este mazo no está en tu biblioteca."
+      copy:                  "Hacer una copia"
+      copied:                "Copia creada. Ahora puedes editarla."
+      copy_name:             "%{name} (Copia)"
     not_available: "Mazo no disponible."
     unlock:
       title: "Contraseña requerida"

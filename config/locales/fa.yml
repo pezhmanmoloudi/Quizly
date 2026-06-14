@@ -267,6 +267,9 @@ fa:
       unsave:                "Remove from library"
       unsaved:               "Deck removed from your library."
       not_in_library:        "This deck is not in your library."
+      copy:                  "ساخت نسخه"
+      copied:                "نسخه ایجاد شد. اکنون می‌توانید آن را ویرایش کنید."
+      copy_name:             "%{name} (نسخه)"
     not_available: "دسته در دسترس نیست."
     unlock:
       title: "رمز لازم است"

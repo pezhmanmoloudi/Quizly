@@ -267,6 +267,9 @@ ckb:
       unsave:                "Remove from library"
       unsaved:               "Deck removed from your library."
       not_in_library:        "This deck is not in your library."
+      copy:                  "کۆپی بکە"
+      copied:                "کۆپی دروست کرا. ئێستا دەتوانیت دەستکاریی بکەیت."
+      copy_name:             "%{name} (کۆپی)"
     not_available: "دەستە بەردەست نییە."
     unlock:
       title: "پاسۆرد پێویستە"

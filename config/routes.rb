@@ -32,6 +32,7 @@ Rails.application.routes.draw do
       get   :learn
       get   :test
       post  :fork
+      post  :copy
       delete :unsave
       get   :cards
       patch :update_cards

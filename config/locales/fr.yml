@@ -267,6 +267,9 @@ fr:
       unsave:                "Retirer de la bibliothèque"
       unsaved:               "Paquet retiré de votre bibliothèque."
       not_in_library:        "Ce paquet n'est pas dans votre bibliothèque."
+      copy:                  "Faire une copie"
+      copied:                "Copie créée. Vous pouvez maintenant la modifier."
+      copy_name:             "%{name} (Copie)"
     not_available: "Paquet non disponible."
     unlock:
       title: "Mot de passe requis"

@@ -267,6 +267,9 @@ ar:
       unsave:                "Remove from library"
       unsaved:               "Deck removed from your library."
       not_in_library:        "This deck is not in your library."
+      copy:                  "عمل نسخة"
+      copied:                "تم إنشاء النسخة. يمكنك الآن تعديلها."
+      copy_name:             "%{name} (نسخة)"
     not_available: "المجموعة غير متاحة."
     unlock:
       title: "كلمة المرور مطلوبة"
