@@ -1,10 +1,34 @@
 <% content_for :title, t("decks.edit.title") %>
 
 <div class="container">
-  <div class="nd-split">
-    <div class="nd-split__header">
-      <h1 class="nd-split__title"><%= t("decks.edit.title") %></h1>
+  <section class="deck-editor__settings">
+    <div class="nd-split">
+      <div class="nd-split__header">
+        <h1 class="nd-split__title"><%= t("decks.edit.title") %></h1>
+      </div>
+      <%= render "form", deck: @deck %>
     </div>
-    <%= render "form", deck: @deck %>
-  </div>
+  </section>
+
+  <section class="deck-editor__cards cards-editor-page"
+           data-controller="deck-editor">
+    <h2 class="deck-editor__cards-heading"><%= t("decks.show.cards_section") %></h2>
+
+    <div class="card-rows-list" data-deck-editor-target="cardsList">
+      <% @flashcards.each do |card| %>
+        <%= render "decks/editor_card_row", card: card, deck: @deck %>
+      <% end %>
+    </div>
+
+    <div class="cards-editor-add">
+      <button type="button" class="btn btn--outline btn-with-icon"
+              data-action="click->deck-editor#addCard">
+        <%= render "shared/icons/plus" %> <%= t("decks.cards.add_card") %>
+      </button>
+    </div>
+
+    <template data-deck-editor-target="template">
+      <%= render "decks/editor_card_row", card: nil, deck: @deck %>
+    </template>
+  </section>
 </div>

@@ -108,7 +108,7 @@
       </h2>
       <div class="cards-island__controls">
         <% if can_edit %>
-          <%= link_to new_deck_flashcard_path(@deck), class: "btn btn--primary btn-with-icon btn--sm" do %>
+          <%= link_to edit_deck_path(@deck), class: "btn btn--primary btn-with-icon btn--sm" do %>
             <%= render "shared/icons/plus" %> <%= t("decks.show.add_card") %>
           <% end %>
           <div data-controller="modal">
@@ -143,7 +143,7 @@
               <% if can_edit %>
                 <div class="cards-grid__actions">
                   <span class="tooltip-wrap">
-                    <%= link_to edit_flashcard_path(card),
+                    <%= link_to edit_deck_path(@deck),
                           class: "card-action-btn card-action-btn--edit",
                           aria: { label: t("decks.show.edit_card") } do %>
                       <%= render "shared/icons/pencil" %>

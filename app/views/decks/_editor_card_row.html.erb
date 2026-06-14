@@ -1,0 +1,40 @@
+<% is_new = card.nil? || card.id.nil? %>
+<div id="<%= is_new ? "card-row-new" : dom_id(card) %>"
+     class="card-row"
+     data-controller="card-autosave"
+     data-card-autosave-flashcard-id-value="<%= card&.id.to_s %>"
+     data-card-autosave-create-url-value="<%= deck_flashcards_path(deck) %>">
+
+  <div class="card-row__header">
+    <span class="card-row__number"></span>
+    <span class="card-autosave-status" data-card-autosave-target="status"></span>
+    <% if card&.id %>
+      <%= form_with url: flashcard_path(card), method: :delete, data: { turbo: true } do %>
+        <button type="submit" class="card-row__delete"
+                aria-label="<%= t("decks.card_row.remove") %>">
+          <%= render "shared/icons/trash" %>
+        </button>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="card-row__panels">
+    <div class="card-row__panel">
+      <span class="card-editor-panel__label"><%= t("decks.card_row.term_label") %></span>
+      <textarea class="card-editor-field"
+                placeholder="<%= t("decks.card_row.term_placeholder") %>"
+                data-card-autosave-target="front"
+                data-action="input->card-autosave#schedule"
+                rows="3"><%= card&.front_content %></textarea>
+    </div>
+
+    <div class="card-row__panel">
+      <span class="card-editor-panel__label"><%= t("decks.card_row.definition_label") %></span>
+      <textarea class="card-editor-field"
+                placeholder="<%= t("decks.card_row.definition_placeholder") %>"
+                data-card-autosave-target="back"
+                data-action="input->card-autosave#schedule"
+                rows="3"><%= card&.back_content %></textarea>
+    </div>
+  </div>
+</div>

@@ -1,10 +1,7 @@
 class FlashcardsController < ApplicationController
-  before_action :set_deck, only: [:new, :create]
-  before_action :set_flashcard, only: [:edit, :update, :destroy]
+  before_action :set_deck, only: [:create]
+  before_action :set_flashcard, only: [:update, :destroy]
   before_action :set_soft_deleted_flashcard, only: [:restore]
-
-  def new
-  end
 
   def create
     @flashcard = @deck.flashcards.build(flashcard_params)
@@ -15,13 +12,10 @@ class FlashcardsController < ApplicationController
       end
     else
       respond_to do |format|
-        format.html { render :new, status: :unprocessable_entity }
+        format.html { redirect_to edit_deck_path(@deck), alert: @flashcard.errors.full_messages.first }
         format.json { render json: { errors: @flashcard.errors.full_messages }, status: :unprocessable_entity }
       end
     end
-  end
-
-  def edit
   end
 
   def update
@@ -32,7 +26,7 @@ class FlashcardsController < ApplicationController
       end
     else
       respond_to do |format|
-        format.html { render :edit, status: :unprocessable_entity }
+        format.html { redirect_to edit_deck_path(@flashcard.deck), alert: @flashcard.errors.full_messages.first }
         format.json { render json: { errors: @flashcard.errors.full_messages }, status: :unprocessable_entity }
       end
     end

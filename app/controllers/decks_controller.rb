@@ -1,7 +1,6 @@
 class DecksController < ApplicationController
   allow_unauthenticated_access only: [:show, :flashcard, :match, :unlock]
   before_action :set_owned_deck,          only: [:edit, :update, :destroy]
-  before_action :set_content_deck,        only: [:cards, :update_cards]
   before_action :set_accessible_deck,     only: [:show, :study, :flashcard, :match, :fork, :copy, :learn, :test]
   before_action :set_noindex_for_unlisted, only: [:show, :study, :flashcard, :match, :learn, :test]
 
@@ -51,19 +50,21 @@ class DecksController < ApplicationController
   def create
     @deck = Current.user.decks.build(deck_create_params)
     if @deck.save
-      redirect_to cards_deck_path(@deck), notice: t("decks.created")
+      redirect_to edit_deck_path(@deck), notice: t("decks.created")
     else
       render :new, status: :unprocessable_entity
     end
   end
 
   def edit
+    @flashcards = @deck.flashcards.order(:position)
   end
 
   def update
     if @deck.update(deck_update_params)
       redirect_to @deck, notice: t("decks.updated")
     else
+      @flashcards = @deck.flashcards.order(:position)
       render :edit, status: :unprocessable_entity
     end
   end
@@ -162,48 +163,6 @@ class DecksController < ApplicationController
     end
   end
 
-  def cards
-    @existing   = @deck.flashcards.to_a
-    @draft_rows = []
-    @imported   = false
-  end
-
-  def update_cards
-    row_data = (params.dig(:deck, :flashcards_attributes) || {}).values
-                 .reject { |r| r[:front_content].blank? && r[:back_content].blank? && r[:_destroy] != "1" }
-                 .map { |r| r.permit(:front_content, :back_content, :front_language, :back_language).to_h.symbolize_keys }
-
-    form = CardEditorForm.new(
-      rows:              row_data,
-      requires_language: params[:requires_language] == "true"
-    )
-
-    unless form.valid?
-      flash.now[:alert] = form.errors.full_messages.first
-      @existing   = @deck.flashcards.to_a
-      @draft_rows = []
-      @imported   = params[:requires_language] != "true"
-      return render :cards, status: :unprocessable_entity
-    end
-
-    if row_data.empty? && @deck.flashcards.none?
-      flash.now[:alert] = t("decks.cards.error_no_cards")
-      @existing   = @deck.flashcards.to_a
-      @draft_rows = []
-      @imported   = params[:requires_language] != "true"
-      return render :cards, status: :unprocessable_entity
-    end
-
-    if @deck.update(cards_params)
-      redirect_to @deck, notice: t("decks.cards_saved")
-    else
-      @existing   = @deck.flashcards.to_a
-      @draft_rows = []
-      @imported   = params[:requires_language] != "true"
-      render :cards, status: :unprocessable_entity
-    end
-  end
-
   def fork
     return redirect_to deck_path(@deck) if @deck.can_delete?(Current.user)
     raise ActiveRecord::RecordNotFound unless @deck.can_save?(Current.user)
@@ -263,13 +222,6 @@ class DecksController < ApplicationController
   def set_owned_deck
     deck = Deck.find(params[:id])
     raise ActiveRecord::RecordNotFound unless deck.can_edit_settings?(Current.user)
-    @deck = deck
-  end
-
-  def set_content_deck
-    deck = Deck.find(params[:id])
-    deck.unlocked = deck_unlocked?(deck)
-    raise ActiveRecord::RecordNotFound unless deck.can_edit?(Current.user)
     @deck = deck
   end
 
@@ -359,12 +311,5 @@ class DecksController < ApplicationController
 
   def set_noindex_for_unlisted
     response.headers["X-Robots-Tag"] = "noindex" if @deck&.unlisted?
-  end
-
-  def cards_params
-    params.require(:deck).permit(
-      flashcards_attributes: [:id, :front_content, :back_content, :position,
-                               :front_language, :back_language, :image, :_destroy]
-    )
   end
 end

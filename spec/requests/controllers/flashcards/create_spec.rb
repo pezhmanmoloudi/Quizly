@@ -27,10 +27,10 @@ RSpec.describe "Flashcards#create", type: :request do
         expect(card.back_language).to eq("es")
       end
 
-      it "re-renders new with 422 on invalid params" do
+      it "redirects to editor with alert on invalid params" do
         post deck_flashcards_path(deck),
              params: { flashcard: { front_content: "", back_content: "" } }
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to redirect_to(edit_deck_path(deck))
       end
     end
 

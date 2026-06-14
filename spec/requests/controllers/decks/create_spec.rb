@@ -7,12 +7,12 @@ RSpec.describe "Decks#create", type: :request do
     context "when authenticated" do
       before { sign_in(user) }
 
-      it "creates a deck and redirects to the card editor" do
+      it "creates a deck and redirects to the unified editor" do
         expect {
           post decks_path, params: { deck: { name: "Spanish Vocab", description: "Basic words",
                                              language_code: "es", visibility: "private" } }
         }.to change(Deck, :count).by(1)
-        expect(response).to redirect_to(cards_deck_path(Deck.last))
+        expect(response).to redirect_to(edit_deck_path(Deck.last))
       end
 
       it "assigns the deck to the current user" do

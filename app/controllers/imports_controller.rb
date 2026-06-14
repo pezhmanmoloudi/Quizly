@@ -22,20 +22,18 @@ class ImportsController < ApplicationController
 
   def csv
     file = params[:file]
-    if file.blank?
-      return redirect_to @deck, alert: t("imports.no_file")
-    end
+    return redirect_to @deck, alert: t("imports.no_file") if file.blank?
 
     rows = CsvImporter.parse(file: file)
+    return redirect_to @deck, alert: t("imports.csv_no_valid_rows") if rows.empty?
 
-    if rows.empty?
-      return redirect_to @deck, alert: t("imports.csv_no_valid_rows")
+    rows.each do |row|
+      @deck.flashcards.create(
+        front_content: row[:front_content],
+        back_content:  row[:back_content]
+      )
     end
-
-    @draft_rows = rows
-    @imported   = true
-    @existing   = @deck.flashcards.to_a
-    render "decks/cards"
+    redirect_to edit_deck_path(@deck), notice: t("imports.imported", count: rows.size)
   end
 
   private
