@@ -10,7 +10,7 @@ RSpec.describe "Decks#unlock", type: :request do
       it "renders the unlock form" do
         get unlock_deck_path(deck)
         expect(response).to have_http_status(:ok)
-        expect(response.body).to include("Password Required")
+        expect(response.body).to include(I18n.t("decks.unlock.title"))
       end
     end
 

@@ -88,6 +88,28 @@ RSpec.describe "Decks#update_visibility", type: :request do
         expect(response).to have_http_status(:ok)
       end
 
+      it "saves password_digest when switching to people_with_password" do
+        expect(deck.password_digest).to be_nil
+        patch update_visibility_deck_path(deck),
+              params: { deck: { visibility: "public", edit_permission: "people_with_password",
+                                password: "secret123" } },
+              headers: { "Accept" => "text/vnd.turbo-stream.html" }
+        expect(response).to have_http_status(:ok)
+        expect(deck.reload.password_digest).to be_present
+        expect(deck.authenticate_password("secret123")).to be_truthy
+      end
+
+      it "does not save password when edit_permission is only_me" do
+        deck.update!(edit_permission: "people_with_password", password: "oldpass1")
+        patch update_visibility_deck_path(deck),
+              params: { deck: { visibility: "public", edit_permission: "only_me",
+                                password: "newpass1" } },
+              headers: { "Accept" => "text/vnd.turbo-stream.html" }
+        expect(response).to have_http_status(:ok)
+        expect(deck.reload.edit_permission).to eq("only_me")
+        expect(deck.authenticate_password("oldpass1")).to be_truthy
+      end
+
       it "updates edit_permission to only_me" do
         deck.update!(edit_permission: "only_me")
         patch update_visibility_deck_path(deck),

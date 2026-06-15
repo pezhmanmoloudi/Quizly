@@ -129,27 +129,11 @@ RSpec.describe "Decks#show", type: :request do
         expect(response).to have_http_status(:ok)
       end
 
-      it "renders locked preview for an unlisted deck with a password" do
+      it "returns 200 for an unlisted deck with a password (no lock, password only gates editing)" do
         pw_deck = create(:deck, visibility: "unlisted", edit_permission: "people_with_password",
                                 password: "secret123", user: user)
         get deck_path(pw_deck)
         expect(response).to have_http_status(:ok)
-        expect(response.body).to include(I18n.t("decks.show.unlock_cta"))
-      end
-
-      it "does not show study mode selector on locked preview" do
-        pw_deck = create(:deck, visibility: "unlisted", edit_permission: "people_with_password",
-                                password: "secret123", user: user)
-        get deck_path(pw_deck)
-        expect(response.body).not_to include("study-mode-selector")
-      end
-
-      it "renders full deck after unlocking an unlisted deck" do
-        pw_deck = create(:deck, visibility: "unlisted", edit_permission: "people_with_password",
-                                password: "secret123", user: user)
-        post unlock_deck_path(pw_deck), params: { password: "secret123" }
-        get deck_path(pw_deck)
-        expect(response.body).to include("study-mode-selector")
         expect(response.body).not_to include(I18n.t("decks.show.unlock_cta"))
       end
     end
@@ -172,11 +156,11 @@ RSpec.describe "Decks#show", type: :request do
         expect(response).to have_http_status(:ok)
       end
 
-      it "redirects to explore for an unlisted deck with a password (not unlocked)" do
+      it "returns 200 for an unlisted deck with a password (password only gates editing)" do
         pw_deck = create(:deck, visibility: "unlisted", edit_permission: "people_with_password",
                                 password: "secret123", user: user)
         get deck_path(pw_deck)
-        expect(response).to redirect_to(explore_path)
+        expect(response).to have_http_status(:ok)
       end
 
       it "does not show Fork button on a public deck" do

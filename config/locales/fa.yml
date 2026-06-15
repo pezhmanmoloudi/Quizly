@@ -221,6 +221,7 @@ fa:
       copy_link_copied: "کپی شد!"
       visible_to: "قابل مشاهده توسط"
       editable_by: "قابل ویرایش توسط"
+      password_is_set: "A password is set — enter a new one to change it"
     form:
       name_label: "نام"
       description_label: "توضیحات"
@@ -291,7 +292,7 @@ fa:
       submit: "باز کردن دسته"
       invalid_password: "رمز اشتباه است. لطفاً دوباره امتحان کن."
       success: "دسترسی داده شد."
-      back_to_preview: "← Back to preview"
+      back_to_preview: "← Back to deck"
       help_text: "Contact the deck creator if you don't have the password."
       submitting: "Unlocking…"
     sidebar_no_decks: "هنوز دسته‌ای نداری."

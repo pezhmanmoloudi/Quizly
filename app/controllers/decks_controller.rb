@@ -34,11 +34,6 @@ class DecksController < ApplicationController
   end
 
   def show
-    if @locked
-      @sample_flashcards = @deck.flashcards.order(:position).limit(3)
-      @locked_cards_count = @deck.flashcards.count
-      return
-    end
     items = ITEMS_PER_PAGE_OPTIONS.include?(params[:items].to_i) ? params[:items].to_i : 10
     @pagy, @flashcards = pagy(@deck.flashcards.order(:position), limit: items)
     @items_per_page = items
@@ -243,12 +238,6 @@ class DecksController < ApplicationController
     deck.unlocked = deck_unlocked?(deck)
     if deck.can_view?(Current.user)
       @deck = deck
-    elsif deck.unlisted? && deck.password_digest.present? && action_name == "show"
-      return redirect_to explore_path unless Current.user
-      @deck = deck
-      @locked = true
-    elsif deck.unlisted? && deck.password_digest.present?
-      redirect_to unlock_deck_path(deck) and return
     else
       raise ActiveRecord::RecordNotFound
     end
@@ -315,8 +304,10 @@ class DecksController < ApplicationController
     result[:visibility] = vis if Deck::VISIBILITY_VALUES.include?(vis)
     ep = raw[:edit_permission].to_s
     result[:edit_permission] = ep if Deck::EDIT_PERMISSION_VALUES.include?(ep)
-    result[:password] = raw[:password] if raw[:password].present?
-    result[:password_confirmation] = raw[:password_confirmation] if raw[:password].present?
+    if result[:edit_permission] == "people_with_password" && raw[:password].present?
+      result[:password] = raw[:password]
+      result[:password_confirmation] = raw[:password_confirmation]
+    end
     result
   end
 

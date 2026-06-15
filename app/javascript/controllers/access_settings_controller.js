@@ -4,7 +4,7 @@ export default class extends Controller {
   static targets = [
     "visibilitySelect", "visibilityDesc",
     "editSelect",       "editDesc",
-    "passwordSection",  "passwordInput",
+    "passwordSection",
     "shareSection",
   ]
 
@@ -53,10 +53,6 @@ export default class extends Controller {
   #setPasswordVisible(visible) {
     if (this.hasPasswordSectionTarget) {
       this.passwordSectionTarget.classList.toggle("access-section--hidden", !visible)
-    }
-    if (this.hasPasswordInputTarget) {
-      this.passwordInputTarget.required = visible
-      this.passwordInputTarget.disabled = !visible
     }
   }
 }

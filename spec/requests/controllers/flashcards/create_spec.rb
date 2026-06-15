@@ -51,6 +51,27 @@ RSpec.describe "Flashcards#create", type: :request do
       end
     end
 
+    context "when authenticated as another user on a people_with_password deck (not unlocked)" do
+      let(:owner)   { create(:user) }
+      let(:pw_deck) { create(:deck, :editable_by_password, user: owner) }
+      let(:other)   { create(:user) }
+      before do
+        pw_deck
+        sign_in(other)
+      end
+
+      it "redirects to the unlock page" do
+        post deck_flashcards_path(pw_deck), params: valid_params
+        expect(response).to redirect_to(unlock_deck_path(pw_deck))
+      end
+
+      it "does not create a flashcard" do
+        expect {
+          post deck_flashcards_path(pw_deck), params: valid_params
+        }.not_to change(Flashcard, :count)
+      end
+    end
+
     context "when authenticated as a password user (content domain)" do
       let(:owner)     { create(:user) }
       let(:pw_deck)   { create(:deck, :editable_by_password, user: owner) }

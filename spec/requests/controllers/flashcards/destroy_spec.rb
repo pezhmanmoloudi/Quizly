@@ -113,6 +113,27 @@ RSpec.describe "Flashcards#destroy", type: :request do
       end
     end
 
+    context "when authenticated as another user on a people_with_password deck (not unlocked)" do
+      let(:owner)   { create(:user) }
+      let(:pw_deck) { create(:deck, :editable_by_password, user: owner) }
+      let(:pw_card) { create(:flashcard, deck: pw_deck) }
+      let(:other)   { create(:user) }
+      before { sign_in(other) }
+
+      it "redirects to the unlock page" do
+        pw_card
+        delete flashcard_path(pw_card)
+        expect(response).to redirect_to(unlock_deck_path(pw_deck))
+      end
+
+      it "does not destroy the flashcard" do
+        pw_card
+        expect {
+          delete flashcard_path(pw_card)
+        }.not_to change(Flashcard, :count)
+      end
+    end
+
     context "when authenticated as a password user (content domain)" do
       let(:owner)   { create(:user) }
       let(:pw_deck) { create(:deck, :editable_by_password, user: owner) }

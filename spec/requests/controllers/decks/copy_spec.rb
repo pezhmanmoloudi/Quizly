@@ -13,7 +13,7 @@ RSpec.describe "Decks#copy", type: :request do
 
   let(:unlisted_deck) { create(:deck, :unlisted, user: owner, name: "Unlisted Deck") }
   let(:private_deck)  { create(:deck, :private,  user: owner, name: "Private Deck") }
-  let(:empty_deck)    { create(:deck, :public,   user: owner, name: "Empty Deck") }
+  let(:empty_deck)    { create(:deck, user: owner, name: "Empty Deck", visibility: "public") }
 
   describe "POST /decks/:id/copy" do
     # ── non-owner copies a public deck ────────────────────────────────────────

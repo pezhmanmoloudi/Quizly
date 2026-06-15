@@ -221,6 +221,7 @@ pt:
       copy_link_copied: "Copiado!"
       visible_to: "Visível para"
       editable_by: "Editável por"
+      password_is_set: "A password is set — enter a new one to change it"
     form:
       name_label: "Nome"
       description_label: "Descrição"
@@ -291,7 +292,7 @@ pt:
       submit: "Desbloquear baralho"
       invalid_password: "Senha incorreta. Por favor, tente novamente."
       success: "Acesso concedido."
-      back_to_preview: "← Back to preview"
+      back_to_preview: "← Back to deck"
       help_text: "Contact the deck creator if you don't have the password."
       submitting: "Unlocking…"
     sidebar_no_decks: "Nenhum baralho ainda."

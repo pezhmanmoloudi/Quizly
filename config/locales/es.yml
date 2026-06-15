@@ -221,6 +221,7 @@ es:
       copy_link_copied: "¡Copiado!"
       visible_to: "Visible para"
       editable_by: "Editable por"
+      password_is_set: "A password is set — enter a new one to change it"
     form:
       name_label: "Nombre"
       description_label: "Descripción"
@@ -291,7 +292,7 @@ es:
       submit: "Desbloquear mazo"
       invalid_password: "Contraseña incorrecta. Por favor, inténtalo de nuevo."
       success: "Acceso concedido."
-      back_to_preview: "← Back to preview"
+      back_to_preview: "← Back to deck"
       help_text: "Contact the deck creator if you don't have the password."
       submitting: "Unlocking…"
     sidebar_no_decks: "Todavía no hay mazos."

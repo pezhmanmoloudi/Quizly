@@ -221,6 +221,7 @@ fr:
       copy_link_copied: "Copié !"
       visible_to: "Visible par"
       editable_by: "Modifiable par"
+      password_is_set: "A password is set — enter a new one to change it"
     form:
       name_label: "Nom"
       description_label: "Description"
@@ -291,7 +292,7 @@ fr:
       submit: "Déverrouiller le paquet"
       invalid_password: "Mot de passe incorrect. Veuillez réessayer."
       success: "Accès accordé."
-      back_to_preview: "← Back to preview"
+      back_to_preview: "← Back to deck"
       help_text: "Contact the deck creator if you don't have the password."
       submitting: "Unlocking…"
     sidebar_no_decks: "Pas encore de paquets."
