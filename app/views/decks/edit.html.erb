@@ -2,21 +2,23 @@
 
 <div class="container">
 
-  <%# ── Page header: title+badge (left) | delete+save (right) ── %>
+  <%# ── Page title ── %>
   <div class="deck-edit-header">
-    <div class="deck-edit-header__left">
-      <h1 class="deck-edit-header__title"><%= t("decks.edit.title") %></h1>
-      <div data-controller="modal">
-        <button type="button" class="visibility-badge-btn deck-edit-header__badge" data-action="click->modal#open">
-          <span id="visibility-badge-<%= @deck.id %>">
-            <%= render "decks/visibility_badge_content", deck: @deck %>
-          </span>
-        </button>
-        <%= render "decks/manage_access_modal", deck: @deck %>
-      </div>
+    <h1 class="deck-edit-header__title"><%= t("decks.edit.title") %></h1>
+  </div>
+
+  <%# ── Toolbar: manage access (left) | delete+save (right) ── %>
+  <div class="deck-edit-toolbar">
+    <div data-controller="modal">
+      <button type="button" class="visibility-badge-btn deck-edit-header__badge" data-action="click->modal#open">
+        <span id="visibility-badge-<%= @deck.id %>">
+          <%= render "decks/visibility_badge_content", deck: @deck %>
+        </span>
+      </button>
+      <%= render "decks/manage_access_modal", deck: @deck %>
     </div>
 
-    <div class="deck-edit-header__right">
+    <div class="deck-edit-toolbar__right">
       <% if @deck.persisted? && @deck.can_delete?(Current.user) %>
         <div data-controller="modal">
           <button type="button"

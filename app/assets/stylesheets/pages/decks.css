@@ -490,31 +490,28 @@
 }
 
 /* ── Deck edit: page title ── */
+.deck-edit-header {
+  margin-bottom: 0.5rem;
+}
+
 .deck-edit-header__title {
-  margin: 0 0 1.25rem;
+  margin: 0;
   font-size: var(--text-2xl);
   font-weight: var(--font-bold);
   color: var(--color-text);
   letter-spacing: -0.02em;
 }
 
-/* ── Deck edit: page header ── */
-.deck-edit-header {
+/* ── Deck edit: toolbar (manage access left | delete+save right) ── */
+.deck-edit-toolbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  margin-bottom: 1.25rem;
+  margin-bottom: 0.875rem;
 }
 
-.deck-edit-header__left {
-  display: flex;
-  align-items: center;
-  gap: 0.875rem;
-  flex-wrap: wrap;
-}
-
-.deck-edit-header__right {
+.deck-edit-toolbar__right {
   display: flex;
   align-items: center;
   gap: 0.75rem;
@@ -541,9 +538,9 @@
 }
 
 @media (max-width: 768px) {
-  .deck-edit-header { flex-wrap: wrap; }
   .deck-edit-header__title { font-size: var(--text-xl); }
-  .deck-edit-header__right { flex-wrap: wrap; }
+  .deck-edit-toolbar { flex-wrap: wrap; }
+  .deck-edit-toolbar__right { flex-wrap: wrap; }
   .deck-editor__meta-row { grid-template-columns: 1fr; }
 }
 
