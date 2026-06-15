@@ -606,9 +606,9 @@ body.modal-open {
   }
 }
 
-/* ── Manage Access Modal — Quizlet style ── */
+/* ── Manage Access Modal ── */
 .manage-access-modal {
-  max-width: 42rem;
+  max-width: 46rem;
 }
 
 .manage-access-modal__title {
@@ -620,17 +620,15 @@ body.modal-open {
 }
 
 .manage-access-modal .manage-access-modal__body {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
   max-height: 80vh;
   overflow-y: auto;
 }
 
-.manage-access-modal__cols {
+/* 2×2 grid: dropdowns on row 1, share+password on row 2 */
+.manage-access-modal__grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 2rem;
+  gap: 1.5rem 2rem;
   align-items: start;
 }
 
@@ -655,30 +653,30 @@ body.modal-open {
   line-height: 1.4;
 }
 
-/* ── Pill dropdown ── */
+/* ── Full-width bordered select ── */
 .access-select-pill {
   -webkit-appearance: none;
   appearance: none;
-  display: inline-block;
-  min-width: 9rem;
-  padding: 0.4rem 2.25rem 0.4rem 1rem;
-  border: none;
-  border-radius: var(--radius-full);
-  background-color: color-mix(in srgb, var(--color-primary) 10%, transparent);
+  display: block;
+  width: 100%;
+  padding: 0.75rem 2.5rem 0.75rem 1rem;
+  border: 1.5px solid var(--color-primary);
+  border-radius: 8px;
+  background-color: transparent;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%235448e8'%3E%3Cpath fill-rule='evenodd' d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z' clip-rule='evenodd'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
-  background-position: right 0.625rem center;
-  background-size: 1rem;
+  background-position: right 0.875rem center;
+  background-size: 1.125rem;
   color: var(--color-primary);
   font-size: var(--text-sm);
   font-weight: var(--font-semibold);
   font-family: inherit;
   cursor: pointer;
-  transition: background-color var(--transition-base);
+  transition: border-color var(--transition-base);
 }
 
 .access-select-pill:hover {
-  background-color: color-mix(in srgb, var(--color-primary) 15%, transparent);
+  border-color: var(--color-primary-dark);
 }
 
 .access-select-pill:focus {
@@ -691,24 +689,59 @@ body.modal-open {
   cursor: not-allowed;
 }
 
-/* ── Share / password progressive sections ── */
+/* ── Share link + password are row-2 grid cells ── */
 .manage-access-modal__share,
 .manage-access-modal__password {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  padding-top: 1rem;
-  border-top: 1px solid var(--color-border-light);
 }
 
+/* ── Integrated link input with Copy button ── */
+.access-link-row {
+  display: flex;
+  border: 1.5px solid var(--color-border);
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--color-surface-raised, var(--color-surface));
+}
+
+.access-link-input {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  background: transparent;
+  padding: 0.625rem 0.875rem;
+  color: var(--color-text-secondary);
+  font-size: var(--text-sm);
+  font-family: inherit;
+  outline: none;
+}
+
+.access-link-copy {
+  flex-shrink: 0;
+  border: none;
+  border-left: 1.5px solid var(--color-border);
+  background: transparent;
+  padding: 0.5rem 0.875rem;
+  color: var(--color-primary);
+  font-weight: var(--font-semibold);
+  font-size: var(--text-sm);
+  font-family: inherit;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background var(--transition-base);
+}
+
+.access-link-copy:hover {
+  background: color-mix(in srgb, var(--color-primary) 8%, transparent);
+}
+
+/* ── Mobile: stack to single column ── */
 @media (max-width: 540px) {
-  .manage-access-modal__cols {
+  .manage-access-modal__grid {
     grid-template-columns: 1fr;
     gap: 1.25rem;
-  }
-
-  .access-select-pill {
-    width: 100%;
   }
 }
 
