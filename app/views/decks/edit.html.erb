@@ -12,9 +12,31 @@
 
   <section class="deck-editor__cards cards-editor-page"
            data-controller="deck-editor">
-    <h2 class="deck-editor__cards-heading"><%= t("decks.show.cards_section") %></h2>
+    <div class="deck-editor__cards-header">
+      <h2 class="deck-editor__cards-heading"><%= t("decks.show.cards_section") %></h2>
+      <div class="deck-editor__toolbar">
+        <div data-controller="modal">
+          <button type="button" class="visibility-badge-btn" data-action="click->modal#open">
+            <span id="visibility-badge-<%= @deck.id %>">
+              <%= render "decks/visibility_badge_content", deck: @deck %>
+            </span>
+          </button>
+          <%= render "decks/manage_access_modal", deck: @deck %>
+        </div>
+        <div data-controller="modal">
+          <button type="button"
+                  class="btn btn--outline btn-with-icon btn--sm"
+                  data-action="click->modal#open">
+            <%= render "shared/icons/arrow_down_tray" %> <%= t("decks.show.import") %>
+          </button>
+          <%= render "imports/modal", deck: @deck %>
+        </div>
+      </div>
+    </div>
 
-    <div class="card-rows-list" data-deck-editor-target="cardsList">
+    <div id="deck-<%= @deck.id %>-card-rows"
+         class="card-rows-list"
+         data-deck-editor-target="cardsList">
       <% @flashcards.each do |card| %>
         <%= render "decks/editor_card_row", card: card, deck: @deck %>
       <% end %>

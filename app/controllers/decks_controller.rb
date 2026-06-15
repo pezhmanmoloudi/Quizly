@@ -1,6 +1,6 @@
 class DecksController < ApplicationController
   allow_unauthenticated_access only: [:show, :flashcard, :match, :unlock]
-  before_action :set_owned_deck,          only: [:edit, :update, :destroy]
+  before_action :set_owned_deck,          only: [:edit, :update, :destroy, :update_visibility]
   before_action :set_accessible_deck,     only: [:show, :study, :flashcard, :match, :fork, :copy, :learn, :test]
   before_action :set_noindex_for_unlisted, only: [:show, :study, :flashcard, :match, :learn, :test]
 
@@ -80,6 +80,14 @@ class DecksController < ApplicationController
     respond_to do |format|
       format.turbo_stream { redirect_to decks_path(page: safe_page), notice: t("decks.deleted") }
       format.html         { redirect_to decks_path(page: safe_page), notice: t("decks.deleted") }
+    end
+  end
+
+  def update_visibility
+    @deck.update(manage_access_params)
+    respond_to do |format|
+      format.turbo_stream
+      format.html { redirect_to @deck }
     end
   end
 
@@ -293,6 +301,18 @@ class DecksController < ApplicationController
       format.turbo_stream
       format.html { redirect_to deck_path(@deck), notice: t("decks.action.already_saved") }
     end
+  end
+
+  def manage_access_params
+    raw = params.require(:deck).permit(:visibility, :edit_permission, :password, :password_confirmation)
+    result = {}
+    vis = raw[:visibility].to_s
+    result[:visibility] = vis if Deck::VISIBILITY_VALUES.include?(vis)
+    ep = raw[:edit_permission].to_s
+    result[:edit_permission] = ep if Deck::EDIT_PERMISSION_VALUES.include?(ep)
+    result[:password] = raw[:password] if raw[:password].present?
+    result[:password_confirmation] = raw[:password_confirmation] if raw[:password].present?
+    result
   end
 
   def deck_create_params

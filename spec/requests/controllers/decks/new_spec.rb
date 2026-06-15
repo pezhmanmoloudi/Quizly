@@ -17,9 +17,9 @@ RSpec.describe "Decks#new", type: :request do
         expect(response.body).to include("New Deck")
       end
 
-      it "renders the unlisted radio button" do
+      it "renders the deck name field" do
         get new_deck_path
-        expect(response.body).to include('value="unlisted"')
+        expect(response.body).to include("deck[name]")
       end
     end
 

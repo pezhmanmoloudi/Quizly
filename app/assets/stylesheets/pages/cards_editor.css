@@ -26,11 +26,27 @@
 }
 
 /* ── Individual card row ── */
+.card-rows-list {
+  counter-reset: card-counter;
+}
+
+@keyframes card-row-appear {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: none; }
+}
+
 .card-row {
   background: var(--color-surface);
   border: 1px solid var(--color-border-light);
+  border-inline-start: 4px solid var(--color-primary);
   border-radius: 12px;
   overflow: hidden;
+  counter-increment: card-counter;
+  animation: card-row-appear 0.15s ease;
+}
+
+.card-row__number::before {
+  content: counter(card-counter);
 }
 
 .card-row[hidden] { display: none; }

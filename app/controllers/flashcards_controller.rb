@@ -52,13 +52,11 @@ class FlashcardsController < ApplicationController
 
   def restore
     @deck = @flashcard.deck
+    @next_card = @deck.flashcards.where("position > ?", @flashcard.position).order(:position).first
     @flashcard.restore!
 
     respond_to do |format|
-      format.turbo_stream do
-        flash[:notice] = t("flashcards.restored")
-        render turbo_stream: turbo_stream.refresh
-      end
+      format.turbo_stream
       format.html { redirect_to deck_path(@deck), notice: t("flashcards.restored") }
     end
   end

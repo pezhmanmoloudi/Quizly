@@ -16,7 +16,11 @@ class ImportsController < ApplicationController
     if result.errors.any?
       redirect_to @deck, alert: result.errors.first
     else
-      redirect_to @deck, notice: t("imports.imported", count: result.imported)
+      @new_flashcards = @deck.flashcards.order(:position).last(result.imported)
+      respond_to do |format|
+        format.turbo_stream
+        format.html { redirect_to edit_deck_path(@deck), notice: t("imports.imported", count: result.imported) }
+      end
     end
   end
 

@@ -3,19 +3,20 @@
      class="card-row"
      data-controller="card-autosave"
      data-card-autosave-flashcard-id-value="<%= card&.id.to_s %>"
-     data-card-autosave-create-url-value="<%= deck_flashcards_path(deck) %>">
+     data-card-autosave-create-url-value="<%= deck_flashcards_path(deck) %>"
+     data-card-autosave-saving-label-value="<%= t('decks.card_row.saving') %>"
+     data-card-autosave-saved-label-value="<%= t('decks.card_row.saved') %>"
+     data-card-autosave-error-label-value="<%= t('decks.card_row.error') %>">
 
   <div class="card-row__header">
     <span class="card-row__number"></span>
     <span class="card-autosave-status" data-card-autosave-target="status"></span>
-    <% if card&.id %>
-      <%= form_with url: flashcard_path(card), method: :delete, data: { turbo: true } do %>
-        <button type="submit" class="card-row__delete"
-                aria-label="<%= t("decks.card_row.remove") %>">
-          <%= render "shared/icons/trash" %>
-        </button>
-      <% end %>
-    <% end %>
+    <button type="button"
+            class="card-row__delete"
+            aria-label="<%= t('decks.card_row.remove') %>"
+            data-action="click->card-autosave#deleteCard">
+      <%= render "shared/icons/trash" %>
+    </button>
   </div>
 
   <div class="card-row__panels">
@@ -33,7 +34,7 @@
       <textarea class="card-editor-field"
                 placeholder="<%= t("decks.card_row.definition_placeholder") %>"
                 data-card-autosave-target="back"
-                data-action="input->card-autosave#schedule"
+                data-action="input->card-autosave#schedule keydown->card-autosave#handleTab"
                 rows="3"><%= card&.back_content %></textarea>
     </div>
   </div>
