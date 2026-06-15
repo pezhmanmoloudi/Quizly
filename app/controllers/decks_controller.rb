@@ -173,14 +173,14 @@ class DecksController < ApplicationController
 
   def fork
     return redirect_to deck_path(@deck) if @deck.can_delete?(Current.user)
-    raise ActiveRecord::RecordNotFound unless @deck.can_save?(Current.user)
+    authorize @deck, :fork?
     perform_library_save
-  rescue ActiveRecord::RecordNotFound
+  rescue Pundit::NotAuthorizedError
     redirect_to explore_path, alert: t("decks.not_available")
   end
 
   def copy
-    raise ActiveRecord::RecordNotFound unless @deck.can_copy?(Current.user)
+    authorize @deck, :copy?
     copied = DeckDuplicator.call(
       source_deck: @deck,
       user:        Current.user,
@@ -188,7 +188,7 @@ class DecksController < ApplicationController
       visibility:  "private"
     )
     redirect_to deck_path(copied), notice: t("decks.action.copied")
-  rescue ActiveRecord::RecordNotFound
+  rescue Pundit::NotAuthorizedError
     redirect_to explore_path, alert: t("decks.not_available")
   end
 
@@ -228,19 +228,14 @@ class DecksController < ApplicationController
   private
 
   def set_owned_deck
-    deck = Deck.find(params[:id])
-    raise ActiveRecord::RecordNotFound unless deck.can_edit_settings?(Current.user)
-    @deck = deck
+    @deck = Deck.find(params[:id])
+    authorize @deck
   end
 
   def set_accessible_deck
-    deck = Deck.find(params[:id])
-    deck.unlocked = deck_unlocked?(deck)
-    if deck.can_view?(Current.user)
-      @deck = deck
-    else
-      raise ActiveRecord::RecordNotFound
-    end
+    @deck = Deck.find(params[:id])
+    @deck.unlocked = deck_unlocked?(@deck)
+    authorize @deck, :show?
   end
 
   def find_or_create_learn_session

@@ -422,6 +422,7 @@ ru:
   errors:
     not_found:
       flash: "This deck is no longer available."
+    not_authorized: "У вас нет прав для выполнения этого действия."
   explore:
     title: "Обзор"
     subtitle: "Находите и копируйте публичные колоды, которыми делится сообщество."

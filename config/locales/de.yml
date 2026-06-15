@@ -418,6 +418,7 @@ de:
   errors:
     not_found:
       flash: "This deck is no longer available."
+    not_authorized: "Sie sind nicht berechtigt, diese Aktion durchzuführen."
   explore:
     title: "Entdecken"
     subtitle: "Entdecke und kopiere öffentliche Decks aus der Community."

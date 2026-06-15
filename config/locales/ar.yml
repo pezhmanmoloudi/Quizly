@@ -418,6 +418,7 @@ ar:
   errors:
     not_found:
       flash: "This deck is no longer available."
+    not_authorized: "ليس لديك صلاحية للقيام بهذا الإجراء."
   explore:
     title: "استكشاف"
     subtitle: "اكتشف المجموعات العامة المشتركة من المجتمع وانسخها."

@@ -418,6 +418,7 @@ pt:
   errors:
     not_found:
       flash: "This deck is no longer available."
+    not_authorized: "Você não está autorizado a realizar esta ação."
   explore:
     title: "Explorar"
     subtitle: "Descubra e copie baralhos públicos compartilhados pela comunidade."

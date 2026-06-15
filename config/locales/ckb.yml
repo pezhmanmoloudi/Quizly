@@ -418,6 +418,7 @@ ckb:
   errors:
     not_found:
       flash: "This deck is no longer available."
+    not_authorized: "مۆڵەتت نییە ئەم کارە بکەیت."
   explore:
     title: "گەڕان"
     subtitle: "دەستەی گشتیی بەشکراوی کۆمەڵگا دۆزەرەوە و کۆپیبکە."

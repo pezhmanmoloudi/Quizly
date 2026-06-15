@@ -418,6 +418,7 @@ en:
   errors:
     not_found:
       flash: "This deck is no longer available."
+    not_authorized: "You are not authorized to perform this action."
   explore:
     title: "Explore"
     subtitle: "Discover and save public decks shared by the community."
