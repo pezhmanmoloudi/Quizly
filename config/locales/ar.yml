@@ -179,9 +179,6 @@ ar:
       delete: "حذف المجموعة"
       delete_confirm: "هل أنت متأكد من رغبتك في إزالة هذه المجموعة؟"
       delete_modal_title: "حذف هذه المجموعة؟"
-      delete_modal_card_count:
-        one: "تحتوي هذه المجموعة على بطاقة تعليمية واحدة."
-        other: "تحتوي هذه المجموعة على %{count} بطاقة تعليمية."
       delete_modal_warning: "ستُحذف جميع البطاقات التعليمية نهائياً. لا يمكن التراجع عن هذا الإجراء."
       delete_modal_confirm: "حذف المجموعة"
       unlisted_badge: "غير مدرج"
@@ -191,9 +188,6 @@ ar:
       cards_section: "البطاقات"
       add_card: "إضافة بطاقة"
       import: "استيراد"
-      delete_card_confirm: "هل أنت متأكد من رغبتك في إزالة هذه البطاقة؟"
-      edit_card: "تعديل البطاقة"
-      delete_card: "حذف البطاقة"
       mode_flashcard: "بطاقة تعليمية"
       mode_study: "المراجعة"
       mode_learn: "التعلّم"
@@ -208,9 +202,6 @@ ar:
       locked_cards_counter:
         one: "1 card locked"
         other: "%{count} cards locked"
-    new:
-      title: "مجموعة جديدة"
-      back: "→ رجوع"
     edit:
       title: "تعديل المجموعة"
       back: "→ رجوع"
@@ -275,6 +266,8 @@ ar:
       saved: "✓"
       error: "!"
     created: "تم إنشاء المجموعة."
+    default_name: "مجموعة بدون عنوان"
+    create_failed: "تعذّر إنشاء المجموعة. يرجى المحاولة مرة أخرى."
     updated: "تم تحديث المجموعة."
     deleted: "تم حذف المجموعة."
     cards_saved: "تم حفظ البطاقات."
@@ -303,6 +296,7 @@ ar:
       submitting: "Unlocking…"
     sidebar_no_decks: "لا توجد مجموعات بعد."
     deck_card:
+      draft: "مسودة"
       due:
         one: "بطاقة واحدة مستحقة للمراجعة"
         other: "%{count} بطاقات مستحقة للمراجعة"
@@ -580,6 +574,8 @@ ar:
       models:
         deck:
           attributes:
+            base:
+              not_ready_to_share: "أضف بطاقة واحدة على الأقل قبل مشاركة هذه المجموعة."
             edit_permission:
               invalid_for_private_deck: "لا يمكن تعديل المجموعات الخاصة إلا من قِبَل المالك."
         library_item:

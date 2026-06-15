@@ -2,30 +2,62 @@ require "rails_helper"
 
 RSpec.describe Deck, type: :model do
   describe "scopes" do
-    it ".discoverable includes public decks" do
-      create(:deck, :public)
-      expect(Deck.discoverable.map(&:visibility)).to include("public")
+    def public_deck_with_flashcard
+      d = create(:deck)
+      create(:flashcard, deck: d)
+      d.reload.update!(visibility: "public")
+      d
+    end
+
+    def unlisted_deck_with_flashcard
+      d = create(:deck)
+      create(:flashcard, deck: d)
+      d.reload.update!(visibility: "unlisted")
+      d
+    end
+
+    it ".discoverable includes complete public decks" do
+      deck = public_deck_with_flashcard
+      expect(Deck.discoverable).to include(deck)
+    end
+
+    it ".discoverable excludes public decks with no flashcards" do
+      deck = public_deck_with_flashcard
+      deck.flashcards.destroy_all
+      deck.reload
+      expect(Deck.discoverable).not_to include(deck)
     end
 
     it ".discoverable excludes private decks" do
       create(:deck, :private)
-      create(:deck, :public)
+      public_deck_with_flashcard
       expect(Deck.discoverable.map(&:visibility)).not_to include("private")
     end
 
     it ".discoverable excludes unlisted decks" do
-      create(:deck, :unlisted)
-      create(:deck, :public)
+      unlisted_deck_with_flashcard
+      public_deck_with_flashcard
       expect(Deck.discoverable.map(&:visibility)).not_to include("unlisted")
     end
 
     it ".discoverable excludes both unlisted and private decks" do
-      create(:deck, :unlisted)
+      unlisted_deck_with_flashcard
       create(:deck, :private)
-      create(:deck, :public)
+      public_deck_with_flashcard
       result = Deck.discoverable.map(&:visibility)
       expect(result).not_to include("unlisted")
       expect(result).not_to include("private")
+    end
+
+    it ".complete includes decks with at least one flashcard" do
+      deck = create(:deck)
+      create(:flashcard, deck: deck)
+      expect(Deck.complete).to include(deck)
+    end
+
+    it ".complete excludes decks with no flashcards" do
+      deck = create(:deck)
+      expect(Deck.complete).not_to include(deck)
     end
   end
 
@@ -107,13 +139,20 @@ RSpec.describe Deck, type: :model do
     end
 
     it "allows unlisted + people_with_password combination" do
-      deck = build(:deck, visibility: "unlisted", edit_permission: "people_with_password",
-                          password: "secret123")
+      deck = create(:deck)
+      create(:flashcard, deck: deck)
+      deck.reload
+      deck.visibility = "unlisted"
+      deck.edit_permission = "people_with_password"
+      deck.password = "secret123"
       expect(deck).to be_valid
     end
 
     it "is valid with unlisted + only_me" do
-      deck = build(:deck, visibility: "unlisted", edit_permission: "only_me")
+      deck = create(:deck)
+      create(:flashcard, deck: deck)
+      deck.reload
+      deck.visibility = "unlisted"
       expect(deck).to be_valid
     end
 
@@ -129,7 +168,11 @@ RSpec.describe Deck, type: :model do
     end
 
     it "does not require password for public + only_me" do
-      deck = build(:deck, visibility: "public", edit_permission: "only_me", password: nil)
+      deck = create(:deck)
+      create(:flashcard, deck: deck)
+      deck.reload
+      deck.visibility = "public"
+      deck.edit_permission = "only_me"
       expect(deck).to be_valid
     end
 
@@ -146,15 +189,20 @@ RSpec.describe Deck, type: :model do
     end
 
     it "is valid with password of exactly 8 characters" do
-      deck = build(:deck, visibility: "public", edit_permission: "people_with_password", password: "a" * 8)
+      deck = create(:deck)
+      create(:flashcard, deck: deck)
+      deck.reload
+      deck.visibility = "public"
+      deck.edit_permission = "people_with_password"
+      deck.password = "a" * 8
       expect(deck).to be_valid
     end
   end
 
   describe "visibility predicates" do
-    it "defaults to public" do
+    it "defaults to private" do
       deck = Deck.new(name: "Test", user: build(:user))
-      expect(deck.visibility).to eq("public")
+      expect(deck.visibility).to eq("private")
     end
 
     it "#public? is true when visibility is public" do
@@ -374,6 +422,61 @@ RSpec.describe Deck, type: :model do
       deck = build(:deck)
       deck.tag_list = "Biology,  anatomy , EXAM2025"
       expect(deck.subject_tags).to eq("Biology, anatomy, EXAM2025")
+    end
+  end
+
+  describe "#complete? / #draft?" do
+    it "is complete when it has a name and at least one flashcard" do
+      deck = create(:deck, name: "My Deck")
+      create(:flashcard, deck: deck)
+      deck.reload
+      expect(deck.complete?).to be true
+      expect(deck.draft?).to be false
+    end
+
+    it "is a draft when it has no flashcards" do
+      deck = create(:deck, name: "My Deck")
+      expect(deck.complete?).to be false
+      expect(deck.draft?).to be true
+    end
+  end
+
+  describe "#completeness_for_sharing" do
+    it "blocks changing a private deck to public when it has no flashcards" do
+      deck = create(:deck, visibility: "private")
+      deck.visibility = "public"
+      expect(deck).not_to be_valid
+      expect(deck.errors[:base]).to be_present
+    end
+
+    it "blocks changing a private deck to unlisted when it has no flashcards" do
+      deck = create(:deck, visibility: "private")
+      deck.visibility = "unlisted"
+      expect(deck).not_to be_valid
+      expect(deck.errors[:base]).to be_present
+    end
+
+    it "allows changing to public when the deck has at least one flashcard" do
+      deck = create(:deck, visibility: "private")
+      create(:flashcard, deck: deck)
+      deck.reload
+      deck.visibility = "public"
+      expect(deck).to be_valid
+    end
+
+    it "does not block private decks with no flashcards" do
+      deck = create(:deck, visibility: "private")
+      expect(deck).to be_valid
+    end
+
+    it "is invalid when a public deck has no flashcards, even without a visibility change" do
+      deck = create(:deck)
+      create(:flashcard, deck: deck)
+      deck.reload.update!(visibility: "public")
+      deck.flashcards.destroy_all
+      deck.reload
+      expect(deck).not_to be_valid
+      expect(deck.errors[:base]).to be_present
     end
   end
 

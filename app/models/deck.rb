@@ -13,14 +13,15 @@ class Deck < ApplicationRecord
 
   has_secure_password :password, validations: false
 
-  attribute :visibility,      :string, default: "public"
+  attribute :visibility,      :string, default: "private"
   attribute :edit_permission, :string, default: "only_me"
 
   VISIBILITY_VALUES      = %w[public unlisted private].freeze
   EDIT_PERMISSION_VALUES = %w[only_me people_with_password].freeze
   DUPLICATE_VISIBILITIES = %w[private unlisted public].freeze
 
-  scope :discoverable, -> { where(visibility: "public") }
+  scope :complete,     -> { where(flashcards_count: 1..) }
+  scope :discoverable, -> { complete.where(visibility: "public") }
   scope :popular,      -> { order(created_at: :desc) }
 
   validates :name,            presence: true, length: { maximum: 100 }
@@ -28,6 +29,7 @@ class Deck < ApplicationRecord
   validates :edit_permission, inclusion: { in: EDIT_PERMISSION_VALUES }
   validate  :edit_permission_compatible_with_visibility
   validate  :password_requirements
+  validate  :completeness_for_sharing
 
   # ── Unlock state (stamped by controller from session) ─────────────────────
 
@@ -39,6 +41,9 @@ class Deck < ApplicationRecord
   def public?               = visibility == "public"
   def unlisted?             = visibility == "unlisted"
   def private?              = visibility == "private"
+
+  def complete? = name.present? && flashcards.exists?
+  def draft?    = !complete?
 
   def only_me?              = edit_permission == "only_me"
   def people_with_password? = edit_permission == "people_with_password"
@@ -100,6 +105,12 @@ class Deck < ApplicationRecord
   end
 
   private
+
+  def completeness_for_sharing
+    return if private?
+    return if flashcards.exists?
+    errors.add(:base, :not_ready_to_share)
+  end
 
   def edit_permission_compatible_with_visibility
     return unless visibility == "private" && edit_permission == "people_with_password"

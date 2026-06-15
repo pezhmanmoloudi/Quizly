@@ -179,9 +179,6 @@ en:
       delete: "Delete Deck"
       delete_confirm: "Are you sure you want to remove this deck?"
       delete_modal_title: "Delete this deck?"
-      delete_modal_card_count:
-        one: "This deck contains 1 flashcard."
-        other: "This deck contains %{count} flashcards."
       delete_modal_warning: "All flashcards will be permanently deleted. This action cannot be undone."
       delete_modal_confirm: "Delete Deck"
       public_badge: "Public"
@@ -191,9 +188,6 @@ en:
       cards_section: "Cards"
       add_card: "Add Card"
       import: "Import"
-      delete_card_confirm: "Are you sure you want to remove this card?"
-      edit_card: "Edit card"
-      delete_card: "Delete card"
       mode_flashcard: "Flashcard"
       mode_study: "Study"
       mode_learn: "Learn"
@@ -208,9 +202,6 @@ en:
       locked_cards_counter:
         one: "1 card locked"
         other: "%{count} cards locked"
-    new:
-      title: "New Deck"
-      back: "← Back"
     edit:
       title: "Edit Deck"
       back: "← Back"
@@ -275,6 +266,8 @@ en:
       saved: "✓"
       error: "!"
     created: "Deck created."
+    default_name: "Untitled Deck"
+    create_failed: "Could not create deck. Please try again."
     updated: "Deck updated."
     deleted: "Deck deleted."
     cards_saved: "Cards saved."
@@ -303,6 +296,7 @@ en:
       submitting: "Unlocking…"
     sidebar_no_decks: "No decks yet."
     deck_card:
+      draft: "Draft"
       due:
         one: "%{count} card due for review"
         other: "%{count} cards due for review"
@@ -580,6 +574,8 @@ en:
       models:
         deck:
           attributes:
+            base:
+              not_ready_to_share: "Add at least one flashcard before sharing this deck."
             edit_permission:
               invalid_for_private_deck: "Private decks can only be edited by the owner."
         library_item:

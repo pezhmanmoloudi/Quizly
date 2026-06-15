@@ -89,6 +89,7 @@ RSpec.describe "Decks#index", type: :request do
 
       before do
         sign_in(other_user)
+        create(:flashcard, deck: public_deck)
         create(:library_item, user: other_user, deck: public_deck)
       end
 

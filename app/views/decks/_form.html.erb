@@ -1,6 +1,9 @@
 <%= form_with model: deck, html: { id: "deck-settings-form" } do |f| %>
   <% if deck.errors.any? %>
-    <div class="form-errors nd-split__errors">
+    <div class="form-errors nd-split__errors"
+         role="alert"
+         data-controller="flash"
+         data-flash-timeout-value="5000">
       <% deck.errors.full_messages.each do |msg| %>
         <p><%= msg %></p>
       <% end %>

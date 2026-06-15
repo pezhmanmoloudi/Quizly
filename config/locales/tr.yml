@@ -179,9 +179,6 @@ tr:
       delete: "Desteyi sil"
       delete_confirm: "Bu desteyi kaldırmak istediğinden emin misin?"
       delete_modal_title: "Bu desteyi sil?"
-      delete_modal_card_count:
-        one: "Bu deste 1 flashcard içeriyor."
-        other: "Bu deste %{count} flashcard içeriyor."
       delete_modal_warning: "Tüm flashcardlar kalıcı olarak silinecek. Bu işlem geri alınamaz."
       delete_modal_confirm: "Desteyi sil"
       unlisted_badge: "Listelenmemiş"
@@ -191,9 +188,6 @@ tr:
       cards_section: "Kartlar"
       add_card: "Kart ekle"
       import: "İçe aktar"
-      delete_card_confirm: "Bu kartı kaldırmak istediğinden emin misin?"
-      edit_card: "Kartı düzenle"
-      delete_card: "Kartı sil"
       mode_flashcard: "Flashcard"
       mode_study: "Çalış"
       mode_learn: "Öğren"
@@ -208,9 +202,6 @@ tr:
       locked_cards_counter:
         one: "1 card locked"
         other: "%{count} cards locked"
-    new:
-      title: "Yeni Deste"
-      back: "← Geri"
     edit:
       title: "Desteyi Düzenle"
       back: "← Geri"
@@ -275,6 +266,8 @@ tr:
       saved: "✓"
       error: "!"
     created: "Deste oluşturuldu."
+    default_name: "Başlıksız Deste"
+    create_failed: "Deste oluşturulamadı. Lütfen tekrar deneyin."
     updated: "Deste güncellendi."
     deleted: "Deste silindi."
     cards_saved: "Kartlar kaydedildi."
@@ -303,6 +296,7 @@ tr:
       submitting: "Unlocking…"
     sidebar_no_decks: "Henüz deste yok."
     deck_card:
+      draft: "Taslak"
       due:
         one: "%{count} kart bekliyor"
         other: "%{count} kart bekliyor"
@@ -580,6 +574,8 @@ tr:
       models:
         deck:
           attributes:
+            base:
+              not_ready_to_share: "Bu desteyi paylaşmadan önce en az bir kart ekleyin."
             edit_permission:
               invalid_for_private_deck: "Özel desteler yalnızca sahibi tarafından düzenlenebilir."
         library_item:

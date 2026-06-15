@@ -179,9 +179,6 @@ es:
       delete: "Eliminar mazo"
       delete_confirm: "¿Estás seguro de que quieres eliminar este mazo?"
       delete_modal_title: "¿Eliminar este mazo?"
-      delete_modal_card_count:
-        one: "Este mazo contiene 1 tarjeta flash."
-        other: "Este mazo contiene %{count} tarjetas flash."
       delete_modal_warning: "Todas las tarjetas flash se eliminarán permanentemente. Esta acción no se puede deshacer."
       delete_modal_confirm: "Eliminar mazo"
       unlisted_badge: "No listado"
@@ -191,9 +188,6 @@ es:
       cards_section: "Tarjetas"
       add_card: "Añadir tarjeta"
       import: "Importar"
-      delete_card_confirm: "¿Estás seguro de que quieres eliminar esta tarjeta?"
-      edit_card: "Editar tarjeta"
-      delete_card: "Eliminar tarjeta"
       cards_per_page: "Tarjetas por página"
       locked_title: "This deck is password protected"
       locked_description: "Enter the password to access all flashcards and study modes."
@@ -208,9 +202,6 @@ es:
       mode_learn: "Aprender"
       mode_test: "Examen"
       mode_match: "Emparejar"
-    new:
-      title: "Nuevo mazo"
-      back: "← Atrás"
     edit:
       title: "Editar mazo"
       back: "← Atrás"
@@ -275,6 +266,8 @@ es:
       saved: "✓"
       error: "!"
     created: "Mazo creado."
+    default_name: "Mazo sin título"
+    create_failed: "No se pudo crear el mazo. Por favor, inténtalo de nuevo."
     updated: "Mazo actualizado."
     deleted: "Mazo eliminado."
     cards_saved: "Tarjetas guardadas."
@@ -303,6 +296,7 @@ es:
       submitting: "Unlocking…"
     sidebar_no_decks: "Todavía no hay mazos."
     deck_card:
+      draft: "Borrador"
       due:
         one: "%{count} tarjeta pendiente de revisión"
         other: "%{count} tarjetas pendientes de revisión"
@@ -580,6 +574,8 @@ es:
       models:
         deck:
           attributes:
+            base:
+              not_ready_to_share: "Añade al menos una tarjeta antes de compartir este mazo."
             edit_permission:
               invalid_for_private_deck: "Los mazos privados solo pueden ser editados por el propietario."
         library_item:

@@ -179,9 +179,6 @@ ru:
       delete: "Удалить колоду"
       delete_confirm: "Вы уверены, что хотите удалить эту колоду?"
       delete_modal_title: "Удалить эту колоду?"
-      delete_modal_card_count:
-        one: "Эта колода содержит 1 карточку."
-        other: "Эта колода содержит %{count} карточек."
       delete_modal_warning: "Все карточки будут удалены безвозвратно. Это действие нельзя отменить."
       delete_modal_confirm: "Удалить колоду"
       unlisted_badge: "Скрытая"
@@ -191,9 +188,6 @@ ru:
       cards_section: "Карточки"
       add_card: "Добавить карточку"
       import: "Импорт"
-      delete_card_confirm: "Вы уверены, что хотите удалить эту карточку?"
-      edit_card: "Редактировать карточку"
-      delete_card: "Удалить карточку"
       mode_flashcard: "Карточки"
       mode_study: "Изучение"
       mode_learn: "Тренировка"
@@ -208,9 +202,6 @@ ru:
       locked_cards_counter:
         one: "1 card locked"
         other: "%{count} cards locked"
-    new:
-      title: "Новая колода"
-      back: "← Назад"
     edit:
       title: "Редактировать колоду"
       back: "← Назад"
@@ -275,6 +266,8 @@ ru:
       saved: "✓"
       error: "!"
     created: "Колода создана."
+    default_name: "Колода без названия"
+    create_failed: "Не удалось создать колоду. Пожалуйста, попробуйте ещё раз."
     updated: "Колода обновлена."
     deleted: "Колода удалена."
     cards_saved: "Карточки сохранены."
@@ -303,6 +296,7 @@ ru:
       submitting: "Unlocking…"
     sidebar_no_decks: "Колод пока нет."
     deck_card:
+      draft: "Черновик"
       due:
         one: "%{count} карточка к повторению"
         few: "%{count} карточки к повторению"
@@ -594,6 +588,8 @@ ru:
       models:
         deck:
           attributes:
+            base:
+              not_ready_to_share: "Добавьте хотя бы одну карточку, прежде чем делиться колодой."
             edit_permission:
               invalid_for_private_deck: "Приватные колоды могут редактировать только их владельцы."
         library_item:

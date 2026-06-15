@@ -179,9 +179,6 @@ ckb:
       delete: "سڕینەوەی دەستە"
       delete_confirm: "دڵنیایی لە لابردنی ئەم دەستەیە؟"
       delete_modal_title: "ئەم دەستەیە بسڕێتەوە؟"
-      delete_modal_card_count:
-        one: "ئەم دەستەیە ١ فلاشکارتی تێدایە."
-        other: "ئەم دەستەیە %{count} فلاشکارتی تێدایە."
       delete_modal_warning: "هەموو فلاشکارتەکان بە تەواوی دەسڕێنەوە. ئەم کارە ناتوانرێت گەڕاندرێتەوە."
       delete_modal_confirm: "دەستە بسڕەوە"
       unlisted_badge: "نه‌سیاوکراو"
@@ -191,9 +188,6 @@ ckb:
       cards_section: "کارتەکان"
       add_card: "زیادکردنی کارت"
       import: "هاوردەکردن"
-      delete_card_confirm: "دڵنیایی لە لابردنی ئەم کارتە؟"
-      edit_card: "دەستکاریی کارت"
-      delete_card: "سڕینەوەی کارت"
       mode_flashcard: "کارتی فێربوون"
       mode_study: "خوێندن"
       mode_learn: "فێربوون"
@@ -208,9 +202,6 @@ ckb:
       locked_cards_counter:
         one: "1 card locked"
         other: "%{count} cards locked"
-    new:
-      title: "دەستەی نوێ"
-      back: "→ گەڕانەوە"
     edit:
       title: "دەستکاریی دەستە"
       back: "→ گەڕانەوە"
@@ -275,6 +266,8 @@ ckb:
       saved: "✓"
       error: "!"
     created: "دەستە دروستکرا."
+    default_name: "دەستەی بێ سەردێر"
+    create_failed: "ناتوانرێت دەستە دروست بکرێت. تکایە دووبارە هەوڵ بدەرەوە."
     updated: "دەستە نوێکرایەوە."
     deleted: "دەستە سڕایەوە."
     cards_saved: "کارتەکان پاشەکەوتکران."
@@ -303,6 +296,7 @@ ckb:
       submitting: "Unlocking…"
     sidebar_no_decks: "هێشتا دەستەیەک نییە."
     deck_card:
+      draft: "پێشنووس"
       due:
         one: "%{count} کارت بۆ پاڕاستنەوە"
         other: "%{count} کارت بۆ پاڕاستنەوە"
@@ -580,6 +574,8 @@ ckb:
       models:
         deck:
           attributes:
+            base:
+              not_ready_to_share: "پێش هاوبەشکردنی ئەم دەستەیە، لانیکەم یەک بطاقە زیاد بکە."
             edit_permission:
               invalid_for_private_deck: "دەستەی تایبەت تەنها دەکرێت لە لایەن خاوەنەکەوە دەستکاریبکرێت."
         library_item:

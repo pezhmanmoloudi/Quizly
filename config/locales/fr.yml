@@ -179,9 +179,6 @@ fr:
       delete: "Supprimer le paquet"
       delete_confirm: "Êtes-vous sûr de vouloir supprimer ce paquet ?"
       delete_modal_title: "Supprimer ce paquet ?"
-      delete_modal_card_count:
-        one: "Ce paquet contient 1 flashcard."
-        other: "Ce paquet contient %{count} flashcards."
       delete_modal_warning: "Toutes les flashcards seront supprimées définitivement. Cette action est irréversible."
       delete_modal_confirm: "Supprimer le paquet"
       unlisted_badge: "Non répertorié"
@@ -191,9 +188,6 @@ fr:
       cards_section: "Cartes"
       add_card: "Ajouter une carte"
       import: "Importer"
-      delete_card_confirm: "Êtes-vous sûr de vouloir supprimer cette carte ?"
-      edit_card: "Modifier la carte"
-      delete_card: "Supprimer la carte"
       mode_flashcard: "Flashcard"
       mode_study: "Étude"
       mode_learn: "Apprendre"
@@ -208,9 +202,6 @@ fr:
       locked_cards_counter:
         one: "1 card locked"
         other: "%{count} cards locked"
-    new:
-      title: "Nouveau paquet"
-      back: "← Retour"
     edit:
       title: "Modifier le paquet"
       back: "← Retour"
@@ -275,6 +266,8 @@ fr:
       saved: "✓"
       error: "!"
     created: "Paquet créé."
+    default_name: "Paquet sans titre"
+    create_failed: "Impossible de créer le paquet. Veuillez réessayer."
     updated: "Paquet mis à jour."
     deleted: "Paquet supprimé."
     cards_saved: "Cartes enregistrées."
@@ -303,6 +296,7 @@ fr:
       submitting: "Unlocking…"
     sidebar_no_decks: "Pas encore de paquets."
     deck_card:
+      draft: "Brouillon"
       due:
         one: "%{count} carte à réviser"
         other: "%{count} cartes à réviser"
@@ -580,6 +574,8 @@ fr:
       models:
         deck:
           attributes:
+            base:
+              not_ready_to_share: "Ajoutez au moins une carte avant de partager ce paquet."
             edit_permission:
               invalid_for_private_deck: "Les paquets privés ne peuvent être modifiés que par le propriétaire."
         library_item:

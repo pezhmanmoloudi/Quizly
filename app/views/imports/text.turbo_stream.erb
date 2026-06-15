@@ -1,5 +1,5 @@
-<% @new_flashcards.each do |card| %>
-  <%= turbo_stream.append "deck-#{@deck.id}-card-rows" do %>
+<%= turbo_stream.append "deck-#{@deck.id}-card-rows" do %>
+  <% @new_flashcards.each do |card| %>
     <%= render "decks/editor_card_row", card: card, deck: @deck %>
   <% end %>
 <% end %>

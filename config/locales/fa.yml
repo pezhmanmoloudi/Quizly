@@ -179,9 +179,6 @@ fa:
       delete: "حذف دسته"
       delete_confirm: "آیا مطمئنی که می‌خواهی این دسته را حذف کنی؟"
       delete_modal_title: "این دسته حذف شود؟"
-      delete_modal_card_count:
-        one: "این دسته شامل ۱ فلش‌کارت است."
-        other: "این دسته شامل %{count} فلش‌کارت است."
       delete_modal_warning: "تمام فلش‌کارت‌ها برای همیشه حذف خواهند شد. این عمل قابل برگشت نیست."
       delete_modal_confirm: "حذف دسته"
       unlisted_badge: "فهرست‌نشده"
@@ -191,9 +188,6 @@ fa:
       cards_section: "کارت‌ها"
       add_card: "افزودن کارت"
       import: "وارد کردن"
-      delete_card_confirm: "آیا مطمئنی که می‌خواهی این کارت را حذف کنی؟"
-      edit_card: "ویرایش کارت"
-      delete_card: "حذف کارت"
       mode_flashcard: "فلش‌کارت"
       mode_study: "مطالعه"
       mode_learn: "یادگیری"
@@ -208,9 +202,6 @@ fa:
       locked_cards_counter:
         one: "1 card locked"
         other: "%{count} cards locked"
-    new:
-      title: "دسته جدید"
-      back: "→ بازگشت"
     edit:
       title: "ویرایش دسته"
       back: "→ بازگشت"
@@ -275,6 +266,8 @@ fa:
       saved: "✓"
       error: "!"
     created: "دسته ایجاد شد."
+    default_name: "دسته بدون نام"
+    create_failed: "دسته ایجاد نشد. لطفاً دوباره تلاش کنید."
     updated: "دسته به‌روزرسانی شد."
     deleted: "دسته حذف شد."
     cards_saved: "کارت‌ها ذخیره شدند."
@@ -303,6 +296,7 @@ fa:
       submitting: "Unlocking…"
     sidebar_no_decks: "هنوز دسته‌ای نداری."
     deck_card:
+      draft: "پیش‌نویس"
       due:
         one: "%{count} کارت سررسیده"
         other: "%{count} کارت سررسیده"
@@ -580,6 +574,8 @@ fa:
       models:
         deck:
           attributes:
+            base:
+              not_ready_to_share: "قبل از اشتراک‌گذاری این دسته، حداقل یک کارت اضافه کنید."
             edit_permission:
               invalid_for_private_deck: "دسته‌های خصوصی فقط توسط مالک قابل ویرایش هستند."
         library_item:

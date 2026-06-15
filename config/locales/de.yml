@@ -179,9 +179,6 @@ de:
       delete: "Deck löschen"
       delete_confirm: "Möchtest du dieses Deck wirklich löschen?"
       delete_modal_title: "Dieses Deck löschen?"
-      delete_modal_card_count:
-        one: "Dieses Deck enthält 1 Lernkarte."
-        other: "Dieses Deck enthält %{count} Lernkarten."
       delete_modal_warning: "Alle Lernkarten werden dauerhaft gelöscht. Diese Aktion kann nicht rückgängig gemacht werden."
       delete_modal_confirm: "Deck löschen"
       unlisted_badge: "Ungelistet"
@@ -191,9 +188,6 @@ de:
       cards_section: "Karten"
       add_card: "Karte hinzufügen"
       import: "Importieren"
-      delete_card_confirm: "Möchtest du diese Karte wirklich löschen?"
-      edit_card: "Karte bearbeiten"
-      delete_card: "Karte löschen"
       mode_flashcard: "Lernkarte"
       mode_study: "Lernen"
       mode_learn: "Üben"
@@ -208,9 +202,6 @@ de:
       locked_cards_counter:
         one: "1 card locked"
         other: "%{count} cards locked"
-    new:
-      title: "Neues Deck"
-      back: "← Zurück"
     edit:
       title: "Deck bearbeiten"
       back: "← Zurück"
@@ -275,6 +266,8 @@ de:
       saved: "✓"
       error: "!"
     created: "Deck erstellt."
+    default_name: "Unbenanntes Deck"
+    create_failed: "Deck konnte nicht erstellt werden. Bitte erneut versuchen."
     updated: "Deck aktualisiert."
     deleted: "Deck gelöscht."
     cards_saved: "Karten gespeichert."
@@ -303,6 +296,7 @@ de:
       submitting: "Unlocking…"
     sidebar_no_decks: "Noch keine Decks."
     deck_card:
+      draft: "Entwurf"
       due:
         one: "%{count} Karte fällig"
         other: "%{count} Karten fällig"
@@ -580,6 +574,8 @@ de:
       models:
         deck:
           attributes:
+            base:
+              not_ready_to_share: "Füge mindestens eine Karte hinzu, bevor du dieses Deck teilst."
             edit_permission:
               invalid_for_private_deck: "Private Decks können nur vom Besitzer bearbeitet werden."
         library_item:

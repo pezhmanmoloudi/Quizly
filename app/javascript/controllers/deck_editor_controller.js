@@ -4,7 +4,12 @@ export default class extends Controller {
   static targets = ["cardsList", "template"]
 
   connect() {
-    this.element.addEventListener("card-autosave:add-card", () => this.addCard())
+    this._addCardHandler = () => this.addCard()
+    this.element.addEventListener("card-autosave:add-card", this._addCardHandler)
+  }
+
+  disconnect() {
+    this.element.removeEventListener("card-autosave:add-card", this._addCardHandler)
   }
 
   addCard() {
