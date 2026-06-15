@@ -221,6 +221,7 @@ ckb:
       copy_link_copied: "کۆپیکرا!"
       visible_to: "بینراوی بۆ"
       editable_by: "دەستکاریکردنی بۆ"
+      password_is_set: "A password is set — enter a new one to change it"
     form:
       name_label: "ناو"
       description_label: "وەسف"
@@ -291,7 +292,7 @@ ckb:
       submit: "کردنەوەی دەستە"
       invalid_password: "پاسۆردەکە هەڵەیە. تکایە دووبارە هەوڵبدەرەوە."
       success: "مۆڵەت درا."
-      back_to_preview: "← Back to preview"
+      back_to_preview: "← Back to deck"
       help_text: "Contact the deck creator if you don't have the password."
       submitting: "Unlocking…"
     sidebar_no_decks: "هێشتا دەستەیەک نییە."

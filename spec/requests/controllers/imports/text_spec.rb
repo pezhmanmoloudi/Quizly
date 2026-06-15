@@ -15,9 +15,9 @@ RSpec.describe "Imports#text", type: :request do
       }.to change(Flashcard, :count).by(2)
     end
 
-    it "redirects to the deck after successful import" do
+    it "redirects to the deck editor after successful import" do
       post text_deck_import_path(deck), params: { text: valid_text }
-      expect(response).to redirect_to(deck_path(deck))
+      expect(response).to redirect_to(edit_deck_path(deck))
     end
 
     it "does not store anything in the session" do

@@ -221,6 +221,7 @@ tr:
       copy_link_copied: "Kopyalandı!"
       visible_to: "Görüntüleyenler"
       editable_by: "Düzenleyenler"
+      password_is_set: "A password is set — enter a new one to change it"
     form:
       name_label: "Ad"
       description_label: "Açıklama"
@@ -291,7 +292,7 @@ tr:
       submit: "Desteyi aç"
       invalid_password: "Yanlış şifre. Lütfen tekrar deneyin."
       success: "Erişim sağlandı."
-      back_to_preview: "← Back to preview"
+      back_to_preview: "← Back to deck"
       help_text: "Contact the deck creator if you don't have the password."
       submitting: "Unlocking…"
     sidebar_no_decks: "Henüz deste yok."

@@ -29,7 +29,7 @@ class Deck < ApplicationRecord
   validates :edit_permission, inclusion: { in: EDIT_PERMISSION_VALUES }
   validate  :edit_permission_compatible_with_visibility
   validate  :password_requirements
-  validate  :completeness_for_sharing
+  validate  :completeness_for_sharing, on: :update
 
   # ── Unlock state (stamped by controller from session) ─────────────────────
 
@@ -54,8 +54,7 @@ class Deck < ApplicationRecord
     return true if public?
     return true if user&.id == user_id
     return false if private?
-    # unlisted: freely accessible when no password is set; otherwise require unlock
-    password_digest.blank? || unlocked?
+    true
   end
 
   def can_edit?(user)

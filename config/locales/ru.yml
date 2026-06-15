@@ -221,6 +221,7 @@ ru:
       copy_link_copied: "Скопировано!"
       visible_to: "Видно для"
       editable_by: "Доступно для редактирования"
+      password_is_set: "A password is set — enter a new one to change it"
     form:
       name_label: "Название"
       description_label: "Описание"
@@ -291,7 +292,7 @@ ru:
       submit: "Разблокировать колоду"
       invalid_password: "Неверный пароль. Пожалуйста, попробуйте снова."
       success: "Доступ предоставлен."
-      back_to_preview: "← Back to preview"
+      back_to_preview: "← Back to deck"
       help_text: "Contact the deck creator if you don't have the password."
       submitting: "Unlocking…"
     sidebar_no_decks: "Колод пока нет."

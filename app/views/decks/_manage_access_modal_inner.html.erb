@@ -223,9 +223,7 @@
                       class: "form-control",
                       placeholder: t("decks.form.password_placeholder"),
                       autocomplete: "new-password",
-                      disabled: !deck.people_with_password?,
-                      data: { "access-settings-target": "passwordInput",
-                              "password-toggle-target": "field" } %>
+                      data: { "password-toggle-target": "field" } %>
                 <button type="button"
                         class="auth-input__toggle"
                         data-action="password-toggle#toggle"
@@ -238,6 +236,9 @@
                 </button>
               </div>
               <p class="manage-access-col__desc"><%= t("decks.form.password_hint") %></p>
+              <% if deck.people_with_password? && deck.password_digest.present? %>
+                <p class="manage-access-col__desc"><%= t("decks.manage_access.password_is_set") %></p>
+              <% end %>
             </div>
           </div>
 

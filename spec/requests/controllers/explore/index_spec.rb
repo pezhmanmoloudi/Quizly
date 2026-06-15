@@ -14,7 +14,7 @@ RSpec.describe "Explore#index", type: :request do
       end
 
       it "lists public decks from other users" do
-        create(:deck, user: other_user, visibility: "public", name: "Public Deck A")
+        create(:deck, :public, user: other_user, name: "Public Deck A")
         get explore_path
         expect(response.body).to include("Public Deck A")
       end
@@ -38,8 +38,8 @@ RSpec.describe "Explore#index", type: :request do
       end
 
       it "filters decks by search query" do
-        create(:deck, user: other_user, visibility: "public", name: "Spanish Basics")
-        create(:deck, user: other_user, visibility: "public", name: "French Vocab")
+        create(:deck, :public, user: other_user, name: "Spanish Basics")
+        create(:deck, :public, user: other_user, name: "French Vocab")
         get explore_path, params: { q: "Spanish" }
         expect(response.body).to include("Spanish Basics")
         expect(response.body).not_to include("French Vocab")
@@ -57,32 +57,32 @@ RSpec.describe "Explore#index", type: :request do
 
       context "owner badge indicator" do
         it "shows the owner badge for the user's own public deck" do
-          create(:deck, user: user, visibility: "public", name: "My Own Deck")
+          create(:deck, :public, user: user, name: "My Own Deck")
           get explore_path
           expect(response.body).to include("deck-tile__owner-badge")
         end
 
         it "shows 'by You' author text for own deck" do
-          create(:deck, user: user, visibility: "public", name: "My Own Deck")
+          create(:deck, :public, user: user, name: "My Own Deck")
           get explore_path
           expect(response.body).to include(I18n.t("explore.by_you"))
         end
 
         it "does not show the owner badge for another user's deck" do
-          create(:deck, user: other_user, visibility: "public", name: "Their Deck")
+          create(:deck, :public, user: other_user, name: "Their Deck")
           get explore_path
           expect(response.body).not_to include("deck-tile__owner-badge")
         end
 
         it "does not show 'by You' for another user's deck" do
-          create(:deck, user: other_user, visibility: "public", name: "Their Deck")
+          create(:deck, :public, user: other_user, name: "Their Deck")
           get explore_path
           expect(response.body).not_to include(I18n.t("explore.by_you"))
         end
       end
 
       context "saved deck indicator" do
-        let(:deck) { create(:deck, user: other_user, visibility: "public", name: "French Vocab") }
+        let(:deck) { create(:deck, :public, user: other_user, name: "French Vocab") }
 
         it "shows saved badge for a deck already in the user's library" do
           create(:library_item, user: user, deck: deck)
@@ -132,19 +132,19 @@ RSpec.describe "Explore#index", type: :request do
       end
 
       it "lists public decks without logging in" do
-        create(:deck, user: create(:user), visibility: "public", name: "Guest Visible Deck")
+        create(:deck, :public, user: create(:user), name: "Guest Visible Deck")
         get explore_path
         expect(response.body).to include("Guest Visible Deck")
       end
 
       it "does not show Fork button" do
-        create(:deck, user: create(:user), visibility: "public", name: "Some Deck")
+        create(:deck, :public, user: create(:user), name: "Some Deck")
         get explore_path
         expect(response.body).not_to include(I18n.t("explore.fork"))
       end
 
       it "does not show owner badge for any tile" do
-        create(:deck, user: create(:user), visibility: "public", name: "Some Deck")
+        create(:deck, :public, user: create(:user), name: "Some Deck")
         get explore_path
         expect(response.body).not_to include("deck-tile__owner-badge")
       end

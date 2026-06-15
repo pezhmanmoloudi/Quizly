@@ -278,12 +278,12 @@ RSpec.describe Deck, type: :model do
     context "visibility: unlisted with password" do
       let(:deck) { build(:deck, user: owner, visibility: "unlisted", edit_permission: "people_with_password", password: "secret123") }
 
-      it "denies nil user without unlock" do
-        expect(deck.can_view?(nil)).to be false
+      it "allows nil user (password does not gate viewing)" do
+        expect(deck.can_view?(nil)).to be true
       end
 
-      it "denies non-owner without unlock" do
-        expect(deck.can_view?(other)).to be false
+      it "allows non-owner (password does not gate viewing)" do
+        expect(deck.can_view?(other)).to be true
       end
 
       it "allows nil user when unlocked" do

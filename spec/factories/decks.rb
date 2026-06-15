@@ -8,10 +8,12 @@ FactoryBot.define do
 
     trait :public do
       visibility { "public" }
+      after(:create) { |deck| create(:flashcard, deck: deck) }
     end
 
     trait :unlisted do
       visibility { "unlisted" }
+      after(:create) { |deck| create(:flashcard, deck: deck) }
     end
 
     trait :private do
@@ -22,6 +24,7 @@ FactoryBot.define do
       visibility { "public" }
       edit_permission { "people_with_password" }
       password { "secret123" }
+      after(:create) { |deck| create(:flashcard, deck: deck) }
     end
   end
 end

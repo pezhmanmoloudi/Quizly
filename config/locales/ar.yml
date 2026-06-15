@@ -221,6 +221,7 @@ ar:
       copy_link_copied: "تم النسخ!"
       visible_to: "مرئي لـ"
       editable_by: "قابل للتعديل من قِبل"
+      password_is_set: "A password is set — enter a new one to change it"
     form:
       name_label: "الاسم"
       description_label: "الوصف"
@@ -291,7 +292,7 @@ ar:
       submit: "فتح المجموعة"
       invalid_password: "كلمة المرور غير صحيحة. يرجى المحاولة مرة أخرى."
       success: "تم منح الوصول."
-      back_to_preview: "← Back to preview"
+      back_to_preview: "← Back to deck"
       help_text: "Contact the deck creator if you don't have the password."
       submitting: "Unlocking…"
     sidebar_no_decks: "لا توجد مجموعات بعد."

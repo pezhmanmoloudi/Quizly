@@ -221,6 +221,7 @@ de:
       copy_link_copied: "Kopiert!"
       visible_to: "Sichtbar für"
       editable_by: "Bearbeitbar von"
+      password_is_set: "A password is set — enter a new one to change it"
     form:
       name_label: "Name"
       description_label: "Beschreibung"
@@ -291,7 +292,7 @@ de:
       submit: "Deck entsperren"
       invalid_password: "Falsches Passwort. Bitte versuche es erneut."
       success: "Zugang gewährt."
-      back_to_preview: "← Back to preview"
+      back_to_preview: "← Back to deck"
       help_text: "Contact the deck creator if you don't have the password."
       submitting: "Unlocking…"
     sidebar_no_decks: "Noch keine Decks."
