@@ -418,6 +418,7 @@ fa:
   errors:
     not_found:
       flash: "This deck is no longer available."
+    not_authorized: "شما مجاز به انجام این عمل نیستید."
   explore:
     title: "کاوش"
     subtitle: "دسته‌های عمومی به اشتراک‌گذاشته‌شده توسط جامعه را کشف کن و کپی کن."

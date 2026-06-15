@@ -3,6 +3,8 @@ class FlashcardsController < ApplicationController
   before_action :set_flashcard, only: [:update, :destroy]
   before_action :set_soft_deleted_flashcard, only: [:restore]
 
+  rescue_from Pundit::NotAuthorizedError, with: :handle_flashcard_auth
+
   def create
     @flashcard = @deck.flashcards.build(flashcard_params)
     if @flashcard.save
@@ -64,37 +66,30 @@ class FlashcardsController < ApplicationController
   private
 
   def set_deck
-    deck = Deck.find(params[:deck_id])
-    deck.unlocked = deck_unlocked?(deck)
-    unless deck.can_edit?(Current.user)
-      if deck.people_with_password? && !deck.private?
-        redirect_to unlock_deck_path(deck) and return
-      end
-      raise ActiveRecord::RecordNotFound
-    end
-    @deck = deck
+    @deck = Deck.find(params[:deck_id])
+    @deck.unlocked = deck_unlocked?(@deck)
+    authorize @deck, :edit_content?
   end
 
   def set_flashcard
     @flashcard = Flashcard.find(params[:id])
-    deck = @flashcard.deck
-    deck.unlocked = deck_unlocked?(deck)
-    unless deck.can_edit?(Current.user)
-      if deck.people_with_password? && !deck.private?
-        redirect_to unlock_deck_path(deck) and return
-      end
-      raise ActiveRecord::RecordNotFound
-    end
+    @deck = @flashcard.deck
+    @deck.unlocked = deck_unlocked?(@deck)
+    authorize @deck, :edit_content?
   end
 
   def set_soft_deleted_flashcard
     @flashcard = Flashcard.unscoped.where.not(deleted_at: nil).find(params[:id])
-    deck = @flashcard.deck
-    deck.unlocked = deck_unlocked?(deck)
-    unless deck.can_edit?(Current.user)
-      if deck.people_with_password? && !deck.private?
-        redirect_to unlock_deck_path(deck) and return
-      end
+    @deck = @flashcard.deck
+    @deck.unlocked = deck_unlocked?(@deck)
+    authorize @deck, :edit_content?
+  end
+
+  def handle_flashcard_auth(_exception)
+    deck = @deck || @flashcard&.deck
+    if deck&.people_with_password? && !deck.private?
+      redirect_to unlock_deck_path(deck)
+    else
       raise ActiveRecord::RecordNotFound
     end
   end

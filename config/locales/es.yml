@@ -418,6 +418,7 @@ es:
   errors:
     not_found:
       flash: "This deck is no longer available."
+    not_authorized: "No tienes autorización para realizar esta acción."
   explore:
     title: "Explorar"
     subtitle: "Descubre y copia mazos públicos compartidos por la comunidad."

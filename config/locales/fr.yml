@@ -418,6 +418,7 @@ fr:
   errors:
     not_found:
       flash: "This deck is no longer available."
+    not_authorized: "Vous n'êtes pas autorisé à effectuer cette action."
   explore:
     title: "Explorer"
     subtitle: "Découvrez et copiez des paquets publics partagés par la communauté."
