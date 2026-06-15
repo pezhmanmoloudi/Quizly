@@ -296,6 +296,7 @@ ru:
       submitting: "Unlocking…"
     sidebar_no_decks: "Колод пока нет."
     deck_card:
+      draft: "Черновик"
       due:
         one: "%{count} карточка к повторению"
         few: "%{count} карточки к повторению"

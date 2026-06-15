@@ -296,6 +296,7 @@ ckb:
       submitting: "Unlocking…"
     sidebar_no_decks: "هێشتا دەستەیەک نییە."
     deck_card:
+      draft: "پێشنووس"
       due:
         one: "%{count} کارت بۆ پاڕاستنەوە"
         other: "%{count} کارت بۆ پاڕاستنەوە"

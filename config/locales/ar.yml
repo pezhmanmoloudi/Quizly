@@ -296,6 +296,7 @@ ar:
       submitting: "Unlocking…"
     sidebar_no_decks: "لا توجد مجموعات بعد."
     deck_card:
+      draft: "مسودة"
       due:
         one: "بطاقة واحدة مستحقة للمراجعة"
         other: "%{count} بطاقات مستحقة للمراجعة"

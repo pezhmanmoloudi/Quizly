@@ -9,6 +9,9 @@
         <%= due %>
       </span>
     <% end %>
+    <% if local_assigns[:show_draft_badge] && deck.draft? %>
+      <span class="draft-badge"><%= t("decks.deck_card.draft") %></span>
+    <% end %>
   </div>
 
   <div class="deck-tile__body">

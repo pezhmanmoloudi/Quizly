@@ -296,6 +296,7 @@ fa:
       submitting: "Unlocking…"
     sidebar_no_decks: "هنوز دسته‌ای نداری."
     deck_card:
+      draft: "پیش‌نویس"
       due:
         one: "%{count} کارت سررسیده"
         other: "%{count} کارت سررسیده"

@@ -296,6 +296,7 @@ es:
       submitting: "Unlocking…"
     sidebar_no_decks: "Todavía no hay mazos."
     deck_card:
+      draft: "Borrador"
       due:
         one: "%{count} tarjeta pendiente de revisión"
         other: "%{count} tarjetas pendientes de revisión"

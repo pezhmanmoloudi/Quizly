@@ -296,6 +296,7 @@ de:
       submitting: "Unlocking…"
     sidebar_no_decks: "Noch keine Decks."
     deck_card:
+      draft: "Entwurf"
       due:
         one: "%{count} Karte fällig"
         other: "%{count} Karten fällig"

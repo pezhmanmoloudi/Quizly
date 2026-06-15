@@ -296,6 +296,7 @@ tr:
       submitting: "Unlocking…"
     sidebar_no_decks: "Henüz deste yok."
     deck_card:
+      draft: "Taslak"
       due:
         one: "%{count} kart bekliyor"
         other: "%{count} kart bekliyor"

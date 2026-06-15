@@ -296,6 +296,7 @@ fr:
       submitting: "Unlocking…"
     sidebar_no_decks: "Pas encore de paquets."
     deck_card:
+      draft: "Brouillon"
       due:
         one: "%{count} carte à réviser"
         other: "%{count} cartes à réviser"
