@@ -1,0 +1,143 @@
+<div id="manage-access-modal-<%= deck.id %>"
+     data-modal-target="dialog"
+     class="modal-wrapper"
+     role="dialog"
+     aria-modal="true"
+     aria-labelledby="manage-access-title-<%= deck.id %>"
+     hidden>
+  <div class="modal-overlay" data-action="click->modal#closeOnBackdrop">
+    <div class="modal-dialog manage-access-modal">
+
+      <div class="modal-dialog__header">
+        <h2 id="manage-access-title-<%= deck.id %>" class="manage-access-modal__title">
+          <%= t("decks.manage_access.title") %>
+        </h2>
+        <button type="button"
+                class="modal-icon-close"
+                data-action="click->modal#close"
+                aria-label="<%= t("shared.close") %>">
+          <%= render "shared/icons/x_mark" %>
+        </button>
+      </div>
+
+      <%= form_with model: deck, url: update_visibility_deck_path(deck), method: :patch,
+            data: { controller: "access-settings" } do |f| %>
+
+        <div class="manage-access-modal__body">
+
+          <div class="manage-access-modal__cols">
+
+            <%# ── Visible to ── %>
+            <div class="manage-access-col">
+              <label class="manage-access-col__label" for="deck_visibility">
+                <%= t("decks.manage_access.visible_to") %>
+              </label>
+              <%= f.select :visibility,
+                    [
+                      [t("decks.form.visibility_private"),  "private"],
+                      [t("decks.form.visibility_unlisted"), "unlisted"],
+                      [t("decks.form.visibility_public"),   "public"],
+                    ],
+                    {},
+                    class: "access-select-pill",
+                    data: {
+                      "access-settings-target": "visibilitySelect",
+                      action: "change->access-settings#onVisibilityChange",
+                      "desc-private":  t("decks.manage_access.private_desc"),
+                      "desc-unlisted": t("decks.manage_access.unlisted_desc"),
+                      "desc-public":   t("decks.manage_access.public_desc"),
+                    } %>
+              <p class="manage-access-col__desc"
+                 data-access-settings-target="visibilityDesc">
+                <%= t("decks.manage_access.#{deck.visibility}_desc") %>
+              </p>
+            </div>
+
+            <%# ── Editable by ── %>
+            <div class="manage-access-col">
+              <label class="manage-access-col__label" for="deck_edit_permission">
+                <%= t("decks.manage_access.editable_by") %>
+              </label>
+              <%= f.select :edit_permission,
+                    [
+                      [t("decks.form.edit_permission_only_me"),              "only_me"],
+                      [t("decks.form.edit_permission_people_with_password"), "people_with_password"],
+                    ],
+                    {},
+                    class: "access-select-pill",
+                    data: {
+                      "access-settings-target": "editSelect",
+                      action: "change->access-settings#onEditPermissionChange",
+                      "desc-only-me":              t("decks.manage_access.only_me_desc"),
+                      "desc-people-with-password": t("decks.manage_access.people_with_password_desc"),
+                    } %>
+              <p class="manage-access-col__desc"
+                 data-access-settings-target="editDesc">
+                <%= deck.only_me? ?
+                      t("decks.manage_access.only_me_desc") :
+                      t("decks.manage_access.people_with_password_desc") %>
+              </p>
+            </div>
+
+          </div>
+
+          <%# ── Share link (Stimulus-shown when Unlisted) ── %>
+          <div class="manage-access-modal__share<%= deck.unlisted? ? '' : ' access-section--hidden' %>"
+               data-access-settings-target="shareSection">
+            <p class="manage-access-col__label"><%= t("decks.manage_access.share_heading") %></p>
+            <div class="share-panel__link-row">
+              <input class="share-panel__input"
+                     type="text"
+                     value="<%= deck_url(deck) %>"
+                     readonly
+                     id="share-link-<%= deck.id %>"
+                     aria-label="<%= t("decks.manage_access.share_heading") %>">
+              <button type="button"
+                      class="btn btn--secondary btn--sm share-panel__copy-btn"
+                      onclick="navigator.clipboard.writeText(document.getElementById('share-link-<%= deck.id %>').value)">
+                <%= t("decks.manage_access.copy_link") %>
+              </button>
+            </div>
+            <p class="form-hint"><%= t("decks.manage_access.share_hint") %></p>
+          </div>
+
+          <%# ── Password (Stimulus-shown when people_with_password) ── %>
+          <div class="manage-access-modal__password<%= deck.people_with_password? ? '' : ' access-section--hidden' %>"
+               data-access-settings-target="passwordSection">
+            <div data-controller="password-toggle">
+              <label class="manage-access-col__label" for="deck_password">
+                <%= t("decks.form.password_label") %>
+              </label>
+              <div class="field-with-toggle">
+                <%= f.password_field :password,
+                      class: "form-control",
+                      placeholder: t("decks.form.password_placeholder"),
+                      autocomplete: "new-password",
+                      disabled: !deck.people_with_password?,
+                      data: { "access-settings-target": "passwordInput",
+                              "password-toggle-target": "field" } %>
+                <button type="button"
+                        class="auth-input__toggle"
+                        data-action="password-toggle#toggle"
+                        aria-label="<%= t("accounts.toggle_password") %>">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                       viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"/>
+                    <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"/>
+                  </svg>
+                </button>
+              </div>
+              <p class="form-hint"><%= t("decks.form.password_hint") %></p>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="manage-access-modal__actions">
+          <%= f.submit t("shared.save"), class: "btn btn--primary" %>
+        </div>
+
+      <% end %>
+    </div>
+  </div>
+</div>

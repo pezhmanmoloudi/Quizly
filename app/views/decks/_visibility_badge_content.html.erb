@@ -1,0 +1,13 @@
+<% if deck.public? %>
+  <span class="visibility-badge visibility-badge--public">
+    <%= render "shared/icons/globe", css_class: "icon--sm" %> <%= t("decks.show.public_badge") %>
+  </span>
+<% elsif deck.unlisted? %>
+  <span class="visibility-badge visibility-badge--unlisted">
+    <%= render "shared/icons/link", css_class: "icon--sm" %> <%= t("decks.show.unlisted_badge") %>
+  </span>
+<% else %>
+  <span class="visibility-badge visibility-badge--private">
+    <%= render "shared/icons/lock", css_class: "icon--sm" %> <%= t("decks.show.private_badge") %>
+  </span>
+<% end %>
