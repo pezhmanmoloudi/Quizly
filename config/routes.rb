@@ -34,10 +34,9 @@ Rails.application.routes.draw do
       post  :fork
       post  :copy
       delete :unsave
-      get   :cards
-      patch :update_cards
+      patch :update_visibility
     end
-    resources :flashcards, shallow: true do
+    resources :flashcards, shallow: true, only: [:create, :update, :destroy] do
       member do
         patch :restore
       end

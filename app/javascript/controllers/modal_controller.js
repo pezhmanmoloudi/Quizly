@@ -12,6 +12,12 @@ export default class extends Controller {
       this.confirmInputTarget.value = ""
       this.submitButtonTarget.disabled = true
       this.confirmInputTarget.focus()
+    } else {
+      requestAnimationFrame(() => {
+        this.dialogTarget.querySelector(
+          'input:not([type="hidden"]):not([disabled]), button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+        )?.focus()
+      })
     }
   }
 

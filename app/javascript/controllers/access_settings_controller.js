@@ -1,64 +1,62 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["visibilityGroup", "editGroup", "editPermissionRadio", "passwordSection", "passwordInput"]
+  static targets = [
+    "visibilitySelect", "visibilityDesc",
+    "editSelect",       "editDesc",
+    "passwordSection",  "passwordInput",
+    "shareSection",
+  ]
 
   connect() {
     this.#syncState()
   }
 
-  onVisibilityChange() {
-    this.#syncState()
-  }
-
-  onEditPermissionChange() {
-    this.#syncState()
-  }
+  onVisibilityChange()     { this.#syncState() }
+  onEditPermissionChange() { this.#syncState() }
 
   // ── Private ───────────────────────────────────────────────────────────────
 
   #syncState() {
-    const visibility = this.#selectedVisibility()
+    const visibility = this.visibilitySelectTarget.value
+
+    this.#updateDesc(this.visibilitySelectTarget, this.visibilityDescTarget)
 
     if (visibility === "private") {
-      this.#forceOnlyMe()
-      this.#setEditGroupDisabled(true)
-      this.#setPasswordVisible(false)
+      this.editSelectTarget.value    = "only_me"
+      this.editSelectTarget.disabled = true
     } else {
-      this.#setEditGroupDisabled(false)
-      this.#setPasswordVisible(this.#selectedEditPermission() === "people_with_password")
+      this.editSelectTarget.disabled = false
     }
+
+    this.#updateDesc(this.editSelectTarget, this.editDescTarget)
+
+    if (this.hasShareSectionTarget) {
+      this.shareSectionTarget.classList.toggle("access-section--hidden", visibility !== "unlisted")
+    }
+
+    this.#setPasswordVisible(
+      visibility !== "private" &&
+      this.editSelectTarget.value === "people_with_password"
+    )
   }
 
-  #selectedVisibility() {
-    const checked = this.visibilityGroupTarget.querySelector("input[type='radio']:checked")
-    return checked ? checked.value : null
-  }
-
-  #selectedEditPermission() {
-    const checked = this.editGroupTarget.querySelector("input[type='radio']:checked")
-    return checked ? checked.value : null
-  }
-
-  #forceOnlyMe() {
-    this.editPermissionRadioTargets.forEach(radio => {
-      radio.checked = radio.value === "only_me"
-    })
-  }
-
-  #setEditGroupDisabled(disabled) {
-    this.editPermissionRadioTargets.forEach(radio => {
-      radio.disabled = disabled
-    })
-    this.editGroupTarget.style.opacity = disabled ? "0.4" : ""
+  #updateDesc(selectEl, descEl) {
+    if (!descEl) return
+    const key = "desc" + selectEl.value
+      .split("_")
+      .map(w => w[0].toUpperCase() + w.slice(1))
+      .join("")
+    descEl.textContent = selectEl.dataset[key] ?? ""
   }
 
   #setPasswordVisible(visible) {
     if (this.hasPasswordSectionTarget) {
-      this.passwordSectionTarget.style.display = visible ? "" : "none"
+      this.passwordSectionTarget.classList.toggle("access-section--hidden", !visible)
     }
     if (this.hasPasswordInputTarget) {
       this.passwordInputTarget.required = visible
+      this.passwordInputTarget.disabled = !visible
     }
   }
 }

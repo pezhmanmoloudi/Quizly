@@ -1,10 +1,119 @@
 <% content_for :title, t("decks.edit.title") %>
 
 <div class="container">
-  <div class="nd-split">
-    <div class="nd-split__header">
-      <h1 class="nd-split__title"><%= t("decks.edit.title") %></h1>
-    </div>
-    <%= render "form", deck: @deck %>
+
+  <%# ── Page title ── %>
+  <div class="deck-edit-header">
+    <h1 class="deck-edit-header__title"><%= t("decks.edit.title") %></h1>
   </div>
+
+  <%# ── Toolbar: manage access (left) | delete+save (right) ── %>
+  <div class="deck-edit-toolbar">
+    <div data-controller="modal">
+      <button type="button" class="visibility-badge-btn deck-edit-header__badge" data-action="click->modal#open">
+        <span id="visibility-badge-<%= @deck.id %>">
+          <%= render "decks/visibility_badge_content", deck: @deck %>
+        </span>
+      </button>
+      <%= render "decks/manage_access_modal", deck: @deck %>
+    </div>
+
+    <div class="deck-edit-toolbar__right">
+      <% if @deck.persisted? && @deck.can_delete?(Current.user) %>
+        <div data-controller="modal">
+          <button type="button"
+                  class="btn btn--danger-outline btn-with-icon"
+                  data-action="click->modal#open">
+            <%= render "shared/icons/trash" %>
+            <%= t("decks.show.delete") %>
+          </button>
+          <% body_html = capture do %>
+            <p class="modal-warning"><%= t("decks.show.delete_modal_warning") %></p>
+          <% end %>
+          <%= render "shared/destructive_modal",
+                modal_id:      "delete-deck-modal-#{@deck.id}",
+                title:         t("decks.show.delete_modal_title"),
+                body_html:     body_html,
+                confirm_label: t("decks.show.delete_modal_confirm"),
+                form_url:      deck_path(@deck),
+                form_method:   :delete %>
+        </div>
+      <% end %>
+      <button type="submit" form="deck-settings-form" class="btn btn--primary">
+        <%= t("shared.save") %>
+      </button>
+    </div>
+  </div>
+
+  <%# ── Settings card ── %>
+  <section class="deck-editor__settings">
+
+    <%# Name + Description inside form_with %>
+    <%= render "form", deck: @deck, skip_meta_fields: true %>
+
+    <%# Language + Tags on the same row, outside form_with %>
+    <div class="deck-editor__meta-row">
+      <div class="form-group">
+        <label for="deck_language_code"><%= t("decks.form.language_label") %></label>
+        <input type="text"
+               form="deck-settings-form"
+               id="deck_language_code"
+               name="deck[language_code]"
+               class="form-control"
+               value="<%= @deck.language_code %>"
+               placeholder="<%= t('decks.form.language_placeholder') %>">
+      </div>
+
+      <div class="form-group">
+        <label for="deck_tag_list"><%= t("decks.form.tags_label") %></label>
+        <input type="text"
+               form="deck-settings-form"
+               id="deck_tag_list"
+               name="deck[tag_list]"
+               class="form-control"
+               value="<%= @deck.tag_list.join(", ") %>"
+               placeholder="<%= t('decks.form.tags_placeholder') %>">
+        <p class="form-hint"><%= t("decks.form.tags_hint") %></p>
+      </div>
+    </div>
+
+  </section>
+
+  <%# ── Flashcards section ── %>
+  <section class="deck-editor__cards cards-editor-page"
+           data-controller="deck-editor">
+    <div class="deck-editor__cards-header">
+      <h2 class="deck-editor__cards-heading"><%= t("decks.show.cards_section") %></h2>
+      <div class="deck-editor__toolbar">
+        <div data-controller="modal">
+          <button type="button"
+                  class="btn btn--outline btn-with-icon btn--sm"
+                  data-action="click->modal#open">
+            <%= render "shared/icons/arrow_down_tray" %> <%= t("decks.show.import") %>
+          </button>
+          <%= render "imports/modal", deck: @deck %>
+        </div>
+      </div>
+    </div>
+
+    <div id="deck-<%= @deck.id %>-card-rows"
+         class="card-rows-list"
+         data-deck-editor-target="cardsList">
+      <% @flashcards.each do |card| %>
+        <%= render "decks/editor_card_row", card: card, deck: @deck %>
+      <% end %>
+    </div>
+
+    <div class="cards-editor-add">
+      <button type="button" class="btn btn--outline btn-with-icon"
+              data-action="click->deck-editor#addCard">
+        <%= render "shared/icons/plus" %> <%= t("decks.cards.add_card") %>
+      </button>
+    </div>
+
+    <template data-deck-editor-target="template">
+      <%= render "decks/editor_card_row", card: nil, deck: @deck %>
+    </template>
+  </section>
+
 </div>

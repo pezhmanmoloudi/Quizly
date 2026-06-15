@@ -17,6 +17,24 @@ RSpec.describe "Decks#edit", type: :request do
         get edit_deck_path(deck)
         expect(response.body).to include(deck.name)
       end
+
+      it "renders existing flashcard content in the card list" do
+        card = create(:flashcard, deck: deck, front_content: "bonjour", back_content: "hello")
+        get edit_deck_path(deck)
+        expect(response.body).to include("bonjour")
+        expect(response.body).to include("hello")
+      end
+
+      it "renders the card autosave controller on each card row" do
+        create(:flashcard, deck: deck, front_content: "hola", back_content: "hi")
+        get edit_deck_path(deck)
+        expect(response.body).to include("card-autosave")
+      end
+
+      it "includes the Add Card button" do
+        get edit_deck_path(deck)
+        expect(response.body).to include("deck-editor")
+      end
     end
 
     context "when authenticated as another user" do

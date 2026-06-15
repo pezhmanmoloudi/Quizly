@@ -1,0 +1,6 @@
+<%= turbo_stream.replace "visibility-badge-#{@deck.id}" do %>
+  <%= render "decks/visibility_badge_content", deck: @deck %>
+<% end %>
+<%= turbo_stream.replace "manage-access-modal-#{@deck.id}" do %>
+  <%= render "decks/manage_access_modal", deck: @deck %>
+<% end %>

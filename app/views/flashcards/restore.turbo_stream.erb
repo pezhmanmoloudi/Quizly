@@ -1,0 +1,11 @@
+<%= turbo_stream.update "flash-messages", "" %>
+<% if @next_card %>
+  <%= turbo_stream.before dom_id(@next_card) do %>
+    <%= render "decks/editor_card_row", card: @flashcard, deck: @deck %>
+  <% end %>
+<% else %>
+  <%= turbo_stream.append "deck-#{@deck.id}-card-rows" do %>
+    <%= render "decks/editor_card_row", card: @flashcard, deck: @deck %>
+  <% end %>
+<% end %>
+<%= turbo_stream.update "deck_#{@deck.id}_card_count", @deck.flashcards_count %>

@@ -32,17 +32,18 @@
       </div>
     </div>
     <div class="deck-detail-header__meta">
-      <% if @deck.public? %>
-        <span class="visibility-badge visibility-badge--public">
-          <%= render "shared/icons/globe", css_class: "icon--sm" %> <%= t("decks.show.public_badge") %>
-        </span>
-      <% elsif @deck.unlisted? %>
-        <span class="visibility-badge visibility-badge--unlisted">
-          <%= render "shared/icons/link", css_class: "icon--sm" %> <%= t("decks.show.unlisted_badge") %>
-        </span>
+      <% if can_delete %>
+        <div data-controller="modal">
+          <button type="button" class="visibility-badge-btn" data-action="click->modal#open">
+            <span id="visibility-badge-<%= @deck.id %>">
+              <%= render "decks/visibility_badge_content", deck: @deck %>
+            </span>
+          </button>
+          <%= render "decks/manage_access_modal", deck: @deck %>
+        </div>
       <% else %>
-        <span class="visibility-badge visibility-badge--private">
-          <%= render "shared/icons/lock", css_class: "icon--sm" %> <%= t("decks.show.private_badge") %>
+        <span id="visibility-badge-<%= @deck.id %>">
+          <%= render "decks/visibility_badge_content", deck: @deck %>
         </span>
       <% end %>
       <% if @deck.language_code.present? %>
@@ -107,19 +108,6 @@
         <span class="cards-island__count" id="deck_<%= @deck.id %>_card_count"><%= @deck.flashcards.count %></span>
       </h2>
       <div class="cards-island__controls">
-        <% if can_edit %>
-          <%= link_to new_deck_flashcard_path(@deck), class: "btn btn--primary btn-with-icon btn--sm" do %>
-            <%= render "shared/icons/plus" %> <%= t("decks.show.add_card") %>
-          <% end %>
-          <div data-controller="modal">
-            <button type="button"
-                    class="btn btn--outline btn-with-icon btn--sm"
-                    data-action="click->modal#open">
-              <%= render "shared/icons/arrow_down_tray" %> <%= t("decks.show.import") %>
-            </button>
-            <%= render "imports/modal", deck: @deck %>
-          </div>
-        <% end %>
         <%= form_with url: deck_path(@deck), method: :get,
               data: { turbo_action: "replace" }, class: "items-per-page-form" do |f| %>
           <%= f.select :items,
@@ -143,7 +131,7 @@
               <% if can_edit %>
                 <div class="cards-grid__actions">
                   <span class="tooltip-wrap">
-                    <%= link_to edit_flashcard_path(card),
+                    <%= link_to edit_deck_path(@deck),
                           class: "card-action-btn card-action-btn--edit",
                           aria: { label: t("decks.show.edit_card") } do %>
                       <%= render "shared/icons/pencil" %>
