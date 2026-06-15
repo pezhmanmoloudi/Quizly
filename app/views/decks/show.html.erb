@@ -3,7 +3,7 @@
 <div class="container">
   <% can_edit   = @deck.can_edit?(Current.user) %>
   <% can_delete = @deck.can_delete?(Current.user) %>
-  <div class="deck-detail-header" <% if can_delete %>data-controller="modal"<% end %>>
+  <div class="deck-detail-header">
     <div class="deck-detail-header__top">
       <h1 class="deck-detail-header__name"><%= @deck.name %></h1>
       <div class="deck-detail-header__actions">
@@ -23,12 +23,6 @@
           <% end %>
         <% end %>
 
-        <% if can_delete %>
-          <button type="button" class="btn btn--danger btn-with-icon"
-                  data-action="click->modal#open">
-            <%= render "shared/icons/trash" %> <%= t("decks.show.delete") %>
-          </button>
-        <% end %>
       </div>
     </div>
     <div class="deck-detail-header__meta">
@@ -55,21 +49,6 @@
       <p class="deck-detail-header__description"><%= @deck.description %></p>
     <% end %>
 
-    <% if can_delete %>
-      <% deck_modal_body = capture do %>
-        <p><strong><%= @deck.name %></strong></p>
-        <p><%= t("decks.show.delete_modal_card_count", count: @deck.flashcards_count) %></p>
-        <p class="modal-warning"><%= t("decks.show.delete_modal_warning") %></p>
-      <% end %>
-      <%= render "shared/destructive_modal",
-            modal_id: "delete-deck-modal",
-            title: t("decks.show.delete_modal_title"),
-            body_html: deck_modal_body,
-            confirm_label: t("decks.show.delete_modal_confirm"),
-            form_url: deck_path(@deck),
-            form_method: :delete,
-            hidden_fields: { from_page: params[:from_page] || 1 } %>
-    <% end %>
   </div>
 
   <% if @locked %>
@@ -128,33 +107,6 @@
               <div class="cards-grid__front"><%= card.front_content %></div>
               <span class="cards-grid__sep">→</span>
               <div class="cards-grid__back"><%= card.back_content %></div>
-              <% if can_edit %>
-                <div class="cards-grid__actions">
-                  <span class="tooltip-wrap">
-                    <%= link_to edit_deck_path(@deck),
-                          class: "card-action-btn card-action-btn--edit",
-                          aria: { label: t("decks.show.edit_card") } do %>
-                      <%= render "shared/icons/pencil" %>
-                    <% end %>
-                    <span class="tooltip"><%= t("shared.edit") %></span>
-                  </span>
-                  <span class="tooltip-wrap">
-                    <button type="submit"
-                            form="delete-card-<%= card.id %>"
-                            class="card-action-btn card-action-btn--delete"
-                            aria-label="<%= t("decks.show.delete_card") %>">
-                      <%= render "shared/icons/trash" %>
-                    </button>
-                    <span class="tooltip"><%= t("shared.delete") %></span>
-                  </span>
-                </div>
-                <%= form_with url: flashcard_path(card), method: :delete,
-                      id: "delete-card-#{card.id}",
-                      style: "display:none" do |f| %>
-                  <%= f.hidden_field :page,  value: @pagy.page %>
-                  <%= f.hidden_field :items, value: @items_per_page %>
-                <% end %>
-              <% end %>
             </div>
           <% end %>
         </div>

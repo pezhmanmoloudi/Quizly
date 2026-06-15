@@ -67,11 +67,6 @@ RSpec.describe "Decks#show", type: :request do
         expect(response.body).to include("pagination__btn")
       end
 
-      it "renders a Delete Deck button for the owner" do
-        get deck_path(deck)
-        expect(response.body).to include("Delete Deck")
-        expect(response.body).to include("delete-deck-modal")
-      end
 
       it "renders an Edit Deck button for the owner" do
         get deck_path(deck)
