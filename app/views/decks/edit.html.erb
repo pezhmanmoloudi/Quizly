@@ -7,6 +7,28 @@
         <h1 class="nd-split__title"><%= t("decks.edit.title") %></h1>
       </div>
       <%= render "form", deck: @deck %>
+
+      <%# Danger zone: outside form_with to avoid nested <form> elements %>
+      <% if @deck.persisted? && @deck.can_delete?(Current.user) %>
+        <div class="nd-split__danger-zone" data-controller="modal">
+          <button type="button"
+                  class="btn btn--danger-outline btn--sm btn-with-icon"
+                  data-action="click->modal#open">
+            <%= render "shared/icons/trash" %>
+            <%= t("decks.show.delete") %>
+          </button>
+          <% body_html = capture do %>
+            <p class="modal-warning"><%= t("decks.show.delete_modal_warning") %></p>
+          <% end %>
+          <%= render "shared/destructive_modal",
+                modal_id:      "delete-deck-modal-#{@deck.id}",
+                title:         t("decks.show.delete_modal_title"),
+                body_html:     body_html,
+                confirm_label: t("decks.show.delete_modal_confirm"),
+                form_url:      deck_path(@deck),
+                form_method:   :delete %>
+        </div>
+      <% end %>
     </div>
   </section>
 

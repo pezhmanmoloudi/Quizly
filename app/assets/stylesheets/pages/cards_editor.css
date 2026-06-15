@@ -216,3 +216,75 @@
   .cards-editor-footer { flex-direction: column-reverse; }
   .cards-editor-footer .btn { width: 100%; text-align: center; }
 }
+
+/* ── Deck Edit page: section spacing ── */
+.deck-editor__settings {
+  margin-bottom: 1.5rem;
+}
+
+/* ── Deck Edit page: Flashcards section card ── */
+.deck-editor__cards {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+  min-height: unset;
+}
+
+/* ── Deck Edit page: cards section header ── */
+.deck-editor__cards-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.25rem 2rem;
+  border-bottom: 1px solid var(--color-border-light);
+  background: var(--color-bg);
+  flex-wrap: wrap;
+}
+
+.deck-editor__cards-heading {
+  margin: 0;
+  font-size: var(--text-xl);
+  font-weight: var(--font-bold);
+  color: var(--color-text);
+}
+
+/* ── Deck Edit page: toolbar (visibility badge + import button) ── */
+.deck-editor__toolbar {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-shrink: 0;
+}
+
+/* ── Deck Edit page: internal padding for card rows inside the card ── */
+.deck-editor__cards .card-rows-list {
+  padding: 1.5rem 2rem 0.5rem;
+}
+
+.deck-editor__cards .cards-editor-add {
+  padding: 0.5rem 2rem 1.75rem;
+}
+
+/* ── Deck Edit page: reset textarea height (single-card editor sets 160px) ── */
+.deck-editor__cards .card-editor-field {
+  min-height: unset;
+  font-size: 0.9375rem;
+}
+
+/* ── Mobile ── */
+@media (max-width: 768px) {
+  .deck-editor__cards-header {
+    padding: 1rem 1.25rem;
+  }
+
+  .deck-editor__cards .card-rows-list {
+    padding: 1rem 1.25rem 0.25rem;
+  }
+
+  .deck-editor__cards .cards-editor-add {
+    padding: 0.25rem 1.25rem 1.25rem;
+  }
+}

@@ -33,6 +33,16 @@
 .btn--primary:hover   { background: var(--color-primary-dark); }
 .btn--secondary:hover { background: var(--color-border); color: var(--color-text); }
 .btn--danger:hover    { background: var(--color-danger-hover); }
+
+.btn--danger-outline {
+  background: transparent;
+  color: var(--color-danger);
+  border: 1.5px solid var(--color-danger);
+}
+.btn--danger-outline:hover {
+  background: var(--color-danger-bg);
+  color: var(--color-danger);
+}
 .btn--ghost:hover     { background: var(--color-bg); color: var(--color-text); }
 
 .btn--sm    { padding: 0.25rem 0.6rem; font-size: 0.75rem; }

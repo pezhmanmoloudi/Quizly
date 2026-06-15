@@ -431,6 +431,19 @@
   .nd-split__left { border-right: none; border-bottom: 1px solid var(--color-border-light); }
 }
 
+/* ── Danger zone — full-width strip below form body, inside nd-split ── */
+.nd-split__danger-zone {
+  padding: 1rem 2rem;
+  border-top: 1px solid var(--color-border-light);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+@media (max-width: 640px) {
+  .nd-split__danger-zone { padding: 0.875rem 1.25rem; }
+}
+
 /* ── Locked deck show page ── */
 .deck-locked {
   display: flex;
