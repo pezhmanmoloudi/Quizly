@@ -2,7 +2,13 @@ require "rails_helper"
 
 RSpec.describe "Decks#update_visibility", type: :request do
   let(:user) { create(:user) }
-  let(:deck) { create(:deck, user: user, visibility: "public") }
+  let(:deck) do
+    d = create(:deck, user: user)
+    create(:flashcard, deck: d)
+    d.reload
+    d.update!(visibility: "public")
+    d
+  end
 
   describe "PATCH /decks/:id/update_visibility" do
     context "when authenticated as owner" do
@@ -24,11 +30,41 @@ RSpec.describe "Decks#update_visibility", type: :request do
         expect(deck.reload.visibility).to eq("unlisted")
       end
 
-      it "updates visibility to public" do
+      it "updates visibility to public when the deck has flashcards" do
+        create(:flashcard, deck: deck)
         deck.update!(visibility: "private")
         patch update_visibility_deck_path(deck),
               params: { deck: { visibility: "public", edit_permission: "only_me" } },
               headers: { "Accept" => "text/vnd.turbo-stream.html" }
+        expect(deck.reload.visibility).to eq("public")
+      end
+
+      it "blocks setting to public when deck has no flashcards" do
+        deck.flashcards.destroy_all
+        deck.update!(visibility: "private")
+        patch update_visibility_deck_path(deck),
+              params: { deck: { visibility: "public" } },
+              headers: { "Accept" => "text/vnd.turbo-stream.html" }
+        expect(response).to have_http_status(:unprocessable_content)
+        expect(deck.reload.visibility).to eq("private")
+      end
+
+      it "blocks setting to unlisted when deck has no flashcards" do
+        deck.flashcards.destroy_all
+        deck.update!(visibility: "private")
+        patch update_visibility_deck_path(deck),
+              params: { deck: { visibility: "unlisted" } },
+              headers: { "Accept" => "text/vnd.turbo-stream.html" }
+        expect(response).to have_http_status(:unprocessable_content)
+        expect(deck.reload.visibility).to eq("private")
+      end
+
+      it "blocks any save when a public deck has no flashcards (Rule 5)" do
+        deck.flashcards.destroy_all
+        patch update_visibility_deck_path(deck),
+              params: { deck: { visibility: "public" } },
+              headers: { "Accept" => "text/vnd.turbo-stream.html" }
+        expect(response).to have_http_status(:unprocessable_content)
         expect(deck.reload.visibility).to eq("public")
       end
 

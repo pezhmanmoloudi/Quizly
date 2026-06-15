@@ -573,6 +573,8 @@ de:
       models:
         deck:
           attributes:
+            base:
+              not_ready_to_share: "Füge mindestens eine Karte hinzu, bevor du dieses Deck teilst."
             edit_permission:
               invalid_for_private_deck: "Private Decks können nur vom Besitzer bearbeitet werden."
         library_item:

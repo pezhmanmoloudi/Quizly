@@ -573,6 +573,8 @@ fa:
       models:
         deck:
           attributes:
+            base:
+              not_ready_to_share: "قبل از اشتراک‌گذاری این دسته، حداقل یک کارت اضافه کنید."
             edit_permission:
               invalid_for_private_deck: "دسته‌های خصوصی فقط توسط مالک قابل ویرایش هستند."
         library_item:

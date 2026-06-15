@@ -573,6 +573,8 @@ en:
       models:
         deck:
           attributes:
+            base:
+              not_ready_to_share: "Add at least one flashcard before sharing this deck."
             edit_permission:
               invalid_for_private_deck: "Private decks can only be edited by the owner."
         library_item:

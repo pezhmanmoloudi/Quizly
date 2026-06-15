@@ -573,6 +573,8 @@ es:
       models:
         deck:
           attributes:
+            base:
+              not_ready_to_share: "Añade al menos una tarjeta antes de compartir este mazo."
             edit_permission:
               invalid_for_private_deck: "Los mazos privados solo pueden ser editados por el propietario."
         library_item:

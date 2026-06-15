@@ -573,6 +573,8 @@ pt:
       models:
         deck:
           attributes:
+            base:
+              not_ready_to_share: "Adicione pelo menos uma carta antes de compartilhar este baralho."
             edit_permission:
               invalid_for_private_deck: "Baralhos privados só podem ser editados pelo proprietário."
         library_item:

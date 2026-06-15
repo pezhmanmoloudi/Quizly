@@ -28,6 +28,7 @@ class DecksController < ApplicationController
     end
 
     @saved_decks = Current.user.saved_decks
+                               .merge(Deck.complete)
                                .includes(:user, :flashcards)
                                .order("library_items.created_at DESC")
   end
@@ -81,10 +82,16 @@ class DecksController < ApplicationController
   end
 
   def update_visibility
-    @deck.update(manage_access_params)
-    respond_to do |format|
-      format.turbo_stream
-      format.html { redirect_to @deck }
+    if @deck.update(manage_access_params)
+      respond_to do |format|
+        format.turbo_stream
+        format.html { redirect_to @deck }
+      end
+    else
+      respond_to do |format|
+        format.turbo_stream { render :update_visibility, status: :unprocessable_entity }
+        format.html { redirect_to deck_path(@deck), alert: @deck.errors.full_messages.to_sentence }
+      end
     end
   end
 

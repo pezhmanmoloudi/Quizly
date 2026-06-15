@@ -573,6 +573,8 @@ ar:
       models:
         deck:
           attributes:
+            base:
+              not_ready_to_share: "أضف بطاقة واحدة على الأقل قبل مشاركة هذه المجموعة."
             edit_permission:
               invalid_for_private_deck: "لا يمكن تعديل المجموعات الخاصة إلا من قِبَل المالك."
         library_item:

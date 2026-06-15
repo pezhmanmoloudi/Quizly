@@ -587,6 +587,8 @@ ru:
       models:
         deck:
           attributes:
+            base:
+              not_ready_to_share: "Добавьте хотя бы одну карточку, прежде чем делиться колодой."
             edit_permission:
               invalid_for_private_deck: "Приватные колоды могут редактировать только их владельцы."
         library_item:

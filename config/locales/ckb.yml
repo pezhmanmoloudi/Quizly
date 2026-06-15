@@ -573,6 +573,8 @@ ckb:
       models:
         deck:
           attributes:
+            base:
+              not_ready_to_share: "پێش هاوبەشکردنی ئەم دەستەیە، لانیکەم یەک بطاقە زیاد بکە."
             edit_permission:
               invalid_for_private_deck: "دەستەی تایبەت تەنها دەکرێت لە لایەن خاوەنەکەوە دەستکاریبکرێت."
         library_item:

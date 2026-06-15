@@ -573,6 +573,8 @@ tr:
       models:
         deck:
           attributes:
+            base:
+              not_ready_to_share: "Bu desteyi paylaşmadan önce en az bir kart ekleyin."
             edit_permission:
               invalid_for_private_deck: "Özel desteler yalnızca sahibi tarafından düzenlenebilir."
         library_item:

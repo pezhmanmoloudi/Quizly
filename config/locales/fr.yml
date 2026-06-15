@@ -573,6 +573,8 @@ fr:
       models:
         deck:
           attributes:
+            base:
+              not_ready_to_share: "Ajoutez au moins une carte avant de partager ce paquet."
             edit_permission:
               invalid_for_private_deck: "Les paquets privés ne peuvent être modifiés que par le propriétaire."
         library_item:
