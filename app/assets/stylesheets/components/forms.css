@@ -2,6 +2,17 @@
 
 /* ── Base form controls ── */
 .form-group { margin-bottom: 1rem; }
+
+.form-row {
+  display: grid;
+  gap: 1rem;
+}
+
+.form-row--two-col { grid-template-columns: 1fr 1fr; }
+
+@media (max-width: 640px) {
+  .form-row--two-col { grid-template-columns: 1fr; }
+}
 .form-group label { display: block; font-weight: 600; margin-bottom: 0.35rem; font-size: 0.875rem; }
 
 .form-control {

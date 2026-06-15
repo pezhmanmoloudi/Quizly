@@ -1,18 +1,26 @@
 <% content_for :title, t("decks.edit.title") %>
 
 <div class="container">
-  <section class="deck-editor__settings">
-    <div class="nd-split">
-      <div class="nd-split__header">
-        <h1 class="nd-split__title"><%= t("decks.edit.title") %></h1>
-      </div>
-      <%= render "form", deck: @deck %>
 
-      <%# Danger zone: outside form_with to avoid nested <form> elements %>
+  <%# ── Page header: title+badge (left) | delete+save (right) ── %>
+  <div class="deck-edit-header">
+    <div class="deck-edit-header__left">
+      <h1 class="deck-edit-header__title"><%= t("decks.edit.title") %></h1>
+      <div data-controller="modal">
+        <button type="button" class="visibility-badge-btn deck-edit-header__badge" data-action="click->modal#open">
+          <span id="visibility-badge-<%= @deck.id %>">
+            <%= render "decks/visibility_badge_content", deck: @deck %>
+          </span>
+        </button>
+        <%= render "decks/manage_access_modal", deck: @deck %>
+      </div>
+    </div>
+
+    <div class="deck-edit-header__right">
       <% if @deck.persisted? && @deck.can_delete?(Current.user) %>
-        <div class="nd-split__danger-zone" data-controller="modal">
+        <div data-controller="modal">
           <button type="button"
-                  class="btn btn--danger-outline btn--sm btn-with-icon"
+                  class="btn btn--danger-outline btn-with-icon"
                   data-action="click->modal#open">
             <%= render "shared/icons/trash" %>
             <%= t("decks.show.delete") %>
@@ -29,22 +37,52 @@
                 form_method:   :delete %>
         </div>
       <% end %>
+      <button type="submit" form="deck-settings-form" class="btn btn--primary">
+        <%= t("shared.save") %>
+      </button>
     </div>
+  </div>
+
+  <%# ── Settings card ── %>
+  <section class="deck-editor__settings">
+
+    <%# Name + Description inside form_with %>
+    <%= render "form", deck: @deck, skip_meta_fields: true %>
+
+    <%# Language + Tags on the same row, outside form_with %>
+    <div class="deck-editor__meta-row">
+      <div class="form-group">
+        <label for="deck_language_code"><%= t("decks.form.language_label") %></label>
+        <input type="text"
+               form="deck-settings-form"
+               id="deck_language_code"
+               name="deck[language_code]"
+               class="form-control"
+               value="<%= @deck.language_code %>"
+               placeholder="<%= t('decks.form.language_placeholder') %>">
+      </div>
+
+      <div class="form-group">
+        <label for="deck_tag_list"><%= t("decks.form.tags_label") %></label>
+        <input type="text"
+               form="deck-settings-form"
+               id="deck_tag_list"
+               name="deck[tag_list]"
+               class="form-control"
+               value="<%= @deck.tag_list.join(", ") %>"
+               placeholder="<%= t('decks.form.tags_placeholder') %>">
+        <p class="form-hint"><%= t("decks.form.tags_hint") %></p>
+      </div>
+    </div>
+
   </section>
 
+  <%# ── Flashcards section ── %>
   <section class="deck-editor__cards cards-editor-page"
            data-controller="deck-editor">
     <div class="deck-editor__cards-header">
       <h2 class="deck-editor__cards-heading"><%= t("decks.show.cards_section") %></h2>
       <div class="deck-editor__toolbar">
-        <div data-controller="modal">
-          <button type="button" class="visibility-badge-btn" data-action="click->modal#open">
-            <span id="visibility-badge-<%= @deck.id %>">
-              <%= render "decks/visibility_badge_content", deck: @deck %>
-            </span>
-          </button>
-          <%= render "decks/manage_access_modal", deck: @deck %>
-        </div>
         <div data-controller="modal">
           <button type="button"
                   class="btn btn--outline btn-with-icon btn--sm"
@@ -75,4 +113,5 @@
       <%= render "decks/editor_card_row", card: nil, deck: @deck %>
     </template>
   </section>
+
 </div>

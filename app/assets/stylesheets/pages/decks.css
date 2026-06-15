@@ -444,6 +444,109 @@
   .nd-split__danger-zone { padding: 0.875rem 1.25rem; }
 }
 
+/* ── Access strip — visibility settings row inside nd-split ── */
+.nd-split__access-strip {
+  padding: 0.875rem 2rem;
+  border-top: 1px solid var(--color-border-light);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.nd-split__access-label {
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+  color: var(--color-text-secondary);
+}
+
+/* Make the badge feel like a clickable control in this context */
+.nd-split__access-strip .visibility-badge-btn {
+  border-radius: var(--radius-sm);
+  padding: 0.2rem 0.4rem;
+  transition: background var(--transition-base);
+}
+
+.nd-split__access-strip .visibility-badge-btn:hover {
+  background: var(--color-border-light);
+}
+
+@media (max-width: 640px) {
+  .nd-split__access-strip { padding: 0.75rem 1.25rem; }
+}
+
+/* ── Deck edit context: full-width form (hide sparse right column) ── */
+.deck-editor__settings .nd-split__body {
+  grid-template-columns: 1fr;
+}
+
+.deck-editor__settings .nd-split__left {
+  border-right: none;
+  padding-bottom: 0;
+}
+
+.deck-editor__settings .nd-split__right {
+  display: none;
+}
+
+/* ── Deck edit: page title ── */
+.deck-edit-header__title {
+  margin: 0 0 1.25rem;
+  font-size: var(--text-2xl);
+  font-weight: var(--font-bold);
+  color: var(--color-text);
+  letter-spacing: -0.02em;
+}
+
+/* ── Deck edit: page header ── */
+.deck-edit-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.deck-edit-header__left {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  flex-wrap: wrap;
+}
+
+.deck-edit-header__right {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-shrink: 0;
+}
+
+.deck-edit-header__badge {
+  border-radius: var(--radius-full);
+  padding: 0.15rem 0.5rem;
+  transition: background var(--transition-base);
+}
+
+.deck-edit-header__badge:hover {
+  background: var(--color-border-light);
+}
+
+/* ── Deck edit: language + tags row ── */
+.deck-editor__meta-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  align-items: start;
+  padding: 0 2rem 1.75rem;
+}
+
+@media (max-width: 768px) {
+  .deck-edit-header { flex-wrap: wrap; }
+  .deck-edit-header__title { font-size: var(--text-xl); }
+  .deck-edit-header__right { flex-wrap: wrap; }
+  .deck-editor__meta-row { grid-template-columns: 1fr; }
+}
+
 /* ── Locked deck show page ── */
 .deck-locked {
   display: flex;

@@ -1,4 +1,4 @@
-<%= form_with model: deck do |f| %>
+<%= form_with model: deck, html: { id: "deck-settings-form" } do |f| %>
   <% if deck.errors.any? %>
     <div class="form-errors nd-split__errors">
       <% deck.errors.full_messages.each do |msg| %>
@@ -21,18 +21,22 @@
         <%= f.text_area :description, rows: 3, class: "form-control" %>
       </div>
 
-      <div class="form-group">
-        <%= f.label :language_code, t("decks.form.language_label") %>
-        <%= f.text_field :language_code, class: "form-control", placeholder: t("decks.form.language_placeholder") %>
-      </div>
+      <% unless local_assigns[:skip_meta_fields] %>
+        <div class="form-row form-row--two-col">
+          <div class="form-group">
+            <%= f.label :language_code, t("decks.form.language_label") %>
+            <%= f.text_field :language_code, class: "form-control", placeholder: t("decks.form.language_placeholder") %>
+          </div>
 
-      <div class="form-group">
-        <%= f.label :tag_list, t("decks.form.tags_label") %>
-        <%= f.text_field :tag_list, value: deck.tag_list.join(", "),
-              class: "form-control",
-              placeholder: t("decks.form.tags_placeholder") %>
-        <p class="form-hint"><%= t("decks.form.tags_hint") %></p>
-      </div>
+          <div class="form-group">
+            <%= f.label :tag_list, t("decks.form.tags_label") %>
+            <%= f.text_field :tag_list, value: deck.tag_list.join(", "),
+                  class: "form-control",
+                  placeholder: t("decks.form.tags_placeholder") %>
+            <p class="form-hint"><%= t("decks.form.tags_hint") %></p>
+          </div>
+        </div>
+      <% end %>
     </div>
 
     <div class="nd-split__right">
