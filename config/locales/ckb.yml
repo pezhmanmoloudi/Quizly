@@ -202,9 +202,6 @@ ckb:
       locked_cards_counter:
         one: "1 card locked"
         other: "%{count} cards locked"
-    new:
-      title: "دەستەی نوێ"
-      back: "→ گەڕانەوە"
     edit:
       title: "دەستکاریی دەستە"
       back: "→ گەڕانەوە"
@@ -269,6 +266,8 @@ ckb:
       saved: "✓"
       error: "!"
     created: "دەستە دروستکرا."
+    default_name: "دەستەی بێ سەردێر"
+    create_failed: "ناتوانرێت دەستە دروست بکرێت. تکایە دووبارە هەوڵ بدەرەوە."
     updated: "دەستە نوێکرایەوە."
     deleted: "دەستە سڕایەوە."
     cards_saved: "کارتەکان پاشەکەوتکران."

@@ -43,17 +43,14 @@ class DecksController < ApplicationController
     @items_per_page = items
   end
 
-  def new
-    @deck = Current.user.decks.build
-  end
-
   def create
-    @deck = Current.user.decks.build(deck_create_params)
-    if @deck.save
-      redirect_to edit_deck_path(@deck), notice: t("decks.created")
-    else
-      render :new, status: :unprocessable_entity
-    end
+    @deck = Current.user.decks.create!(
+      name: t("decks.default_name"),
+      visibility: "private"
+    )
+    redirect_to edit_deck_path(@deck)
+  rescue ActiveRecord::RecordInvalid
+    redirect_to root_path, alert: t("decks.create_failed")
   end
 
   def edit
@@ -313,13 +310,6 @@ class DecksController < ApplicationController
     result[:password] = raw[:password] if raw[:password].present?
     result[:password_confirmation] = raw[:password_confirmation] if raw[:password].present?
     result
-  end
-
-  def deck_create_params
-    params.require(:deck).permit(
-      :name, :description, :language_code, :visibility, :tag_list,
-      :edit_permission, :password, :password_confirmation
-    )
   end
 
   def deck_update_params

@@ -202,9 +202,6 @@ es:
       mode_learn: "Aprender"
       mode_test: "Examen"
       mode_match: "Emparejar"
-    new:
-      title: "Nuevo mazo"
-      back: "← Atrás"
     edit:
       title: "Editar mazo"
       back: "← Atrás"
@@ -269,6 +266,8 @@ es:
       saved: "✓"
       error: "!"
     created: "Mazo creado."
+    default_name: "Mazo sin título"
+    create_failed: "No se pudo crear el mazo. Por favor, inténtalo de nuevo."
     updated: "Mazo actualizado."
     deleted: "Mazo eliminado."
     cards_saved: "Tarjetas guardadas."

@@ -202,9 +202,6 @@ ar:
       locked_cards_counter:
         one: "1 card locked"
         other: "%{count} cards locked"
-    new:
-      title: "مجموعة جديدة"
-      back: "→ رجوع"
     edit:
       title: "تعديل المجموعة"
       back: "→ رجوع"
@@ -269,6 +266,8 @@ ar:
       saved: "✓"
       error: "!"
     created: "تم إنشاء المجموعة."
+    default_name: "مجموعة بدون عنوان"
+    create_failed: "تعذّر إنشاء المجموعة. يرجى المحاولة مرة أخرى."
     updated: "تم تحديث المجموعة."
     deleted: "تم حذف المجموعة."
     cards_saved: "تم حفظ البطاقات."

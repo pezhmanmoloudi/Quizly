@@ -202,9 +202,6 @@ ru:
       locked_cards_counter:
         one: "1 card locked"
         other: "%{count} cards locked"
-    new:
-      title: "Новая колода"
-      back: "← Назад"
     edit:
       title: "Редактировать колоду"
       back: "← Назад"
@@ -269,6 +266,8 @@ ru:
       saved: "✓"
       error: "!"
     created: "Колода создана."
+    default_name: "Колода без названия"
+    create_failed: "Не удалось создать колоду. Пожалуйста, попробуйте ещё раз."
     updated: "Колода обновлена."
     deleted: "Колода удалена."
     cards_saved: "Карточки сохранены."

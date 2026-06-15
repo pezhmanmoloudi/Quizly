@@ -202,9 +202,6 @@ tr:
       locked_cards_counter:
         one: "1 card locked"
         other: "%{count} cards locked"
-    new:
-      title: "Yeni Deste"
-      back: "← Geri"
     edit:
       title: "Desteyi Düzenle"
       back: "← Geri"
@@ -269,6 +266,8 @@ tr:
       saved: "✓"
       error: "!"
     created: "Deste oluşturuldu."
+    default_name: "Başlıksız Deste"
+    create_failed: "Deste oluşturulamadı. Lütfen tekrar deneyin."
     updated: "Deste güncellendi."
     deleted: "Deste silindi."
     cards_saved: "Kartlar kaydedildi."

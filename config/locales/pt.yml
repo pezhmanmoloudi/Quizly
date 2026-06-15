@@ -202,9 +202,6 @@ pt:
       locked_cards_counter:
         one: "1 card locked"
         other: "%{count} cards locked"
-    new:
-      title: "Novo baralho"
-      back: "← Voltar"
     edit:
       title: "Editar baralho"
       back: "← Voltar"
@@ -269,6 +266,8 @@ pt:
       saved: "✓"
       error: "!"
     created: "Baralho criado."
+    default_name: "Baralho sem título"
+    create_failed: "Não foi possível criar o baralho. Por favor, tente novamente."
     updated: "Baralho atualizado."
     deleted: "Baralho excluído."
     cards_saved: "Cartões salvos."

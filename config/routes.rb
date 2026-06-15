@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   get "/explore", to: "explore#index", as: :explore
-  resources :decks do
+  resources :decks, except: [:new] do
     member do
       get   :unlock
       post  :unlock

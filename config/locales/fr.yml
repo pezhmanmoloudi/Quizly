@@ -202,9 +202,6 @@ fr:
       locked_cards_counter:
         one: "1 card locked"
         other: "%{count} cards locked"
-    new:
-      title: "Nouveau paquet"
-      back: "← Retour"
     edit:
       title: "Modifier le paquet"
       back: "← Retour"
@@ -269,6 +266,8 @@ fr:
       saved: "✓"
       error: "!"
     created: "Paquet créé."
+    default_name: "Paquet sans titre"
+    create_failed: "Impossible de créer le paquet. Veuillez réessayer."
     updated: "Paquet mis à jour."
     deleted: "Paquet supprimé."
     cards_saved: "Cartes enregistrées."

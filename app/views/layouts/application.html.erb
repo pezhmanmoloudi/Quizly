@@ -88,7 +88,8 @@
                      data-open="false"
                      role="menu">
 
-                  <%= link_to new_deck_path,
+                  <%= link_to decks_path,
+                        data: { turbo_method: :post },
                         class: "create-menu__item",
                         role: "menuitem" do %>
                     <%= render "shared/icons/rectangle_stack", css_class: "create-menu__item-icon" %>

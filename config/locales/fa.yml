@@ -202,9 +202,6 @@ fa:
       locked_cards_counter:
         one: "1 card locked"
         other: "%{count} cards locked"
-    new:
-      title: "دسته جدید"
-      back: "→ بازگشت"
     edit:
       title: "ویرایش دسته"
       back: "→ بازگشت"
@@ -269,6 +266,8 @@ fa:
       saved: "✓"
       error: "!"
     created: "دسته ایجاد شد."
+    default_name: "دسته بدون نام"
+    create_failed: "دسته ایجاد نشد. لطفاً دوباره تلاش کنید."
     updated: "دسته به‌روزرسانی شد."
     deleted: "دسته حذف شد."
     cards_saved: "کارت‌ها ذخیره شدند."

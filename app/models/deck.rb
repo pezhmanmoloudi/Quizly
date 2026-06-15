@@ -13,7 +13,7 @@ class Deck < ApplicationRecord
 
   has_secure_password :password, validations: false
 
-  attribute :visibility,      :string, default: "public"
+  attribute :visibility,      :string, default: "private"
   attribute :edit_permission, :string, default: "only_me"
 
   VISIBILITY_VALUES      = %w[public unlisted private].freeze

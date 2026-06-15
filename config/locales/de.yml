@@ -202,9 +202,6 @@ de:
       locked_cards_counter:
         one: "1 card locked"
         other: "%{count} cards locked"
-    new:
-      title: "Neues Deck"
-      back: "← Zurück"
     edit:
       title: "Deck bearbeiten"
       back: "← Zurück"
@@ -269,6 +266,8 @@ de:
       saved: "✓"
       error: "!"
     created: "Deck erstellt."
+    default_name: "Unbenanntes Deck"
+    create_failed: "Deck konnte nicht erstellt werden. Bitte erneut versuchen."
     updated: "Deck aktualisiert."
     deleted: "Deck gelöscht."
     cards_saved: "Karten gespeichert."
