@@ -88,6 +88,7 @@ class DecksController < ApplicationController
         format.html { redirect_to @deck }
       end
     else
+      @deck.restore_attributes
       respond_to do |format|
         format.turbo_stream { render :update_visibility, status: :unprocessable_entity }
         format.html { redirect_to deck_path(@deck), alert: @deck.errors.full_messages.to_sentence }

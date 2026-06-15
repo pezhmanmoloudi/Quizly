@@ -59,6 +59,17 @@ RSpec.describe "Decks#update_visibility", type: :request do
         expect(deck.reload.visibility).to eq("private")
       end
 
+      it "renders the modal with persisted visibility after a failed update" do
+        deck.flashcards.destroy_all
+        deck.update!(visibility: "private")
+        patch update_visibility_deck_path(deck),
+              params: { deck: { visibility: "public" } },
+              headers: { "Accept" => "text/vnd.turbo-stream.html" }
+        expect(response).to have_http_status(:unprocessable_content)
+        expect(response.body).to include("Just me")
+        expect(response.body).not_to include("value=\"public\" selected")
+      end
+
       it "blocks any save when a public deck has no flashcards (Rule 5)" do
         deck.flashcards.destroy_all
         patch update_visibility_deck_path(deck),
