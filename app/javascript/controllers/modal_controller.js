@@ -39,6 +39,14 @@ export default class extends Controller {
     this.submitButtonTarget.disabled = this.confirmInputTarget.value !== required
   }
 
+  dialogTargetDisconnected() {
+    document.body.classList.remove("modal-open")
+    if (this._onKeydown) {
+      document.removeEventListener("keydown", this._onKeydown)
+      this._onKeydown = null
+    }
+  }
+
   disconnect() {
     if (this._onKeydown) document.removeEventListener("keydown", this._onKeydown)
     document.body.classList.remove("modal-open")
