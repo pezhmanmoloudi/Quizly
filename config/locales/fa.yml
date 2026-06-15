@@ -227,6 +227,7 @@ fa:
       share_heading: "اشتراک‌گذاری لینک"
       share_hint: "هر کسی با این لینک می‌تواند دسته را ببیند"
       copy_link: "کپی"
+      copy_link_copied: "کپی شد!"
       visible_to: "قابل مشاهده توسط"
       editable_by: "قابل ویرایش توسط"
     form:

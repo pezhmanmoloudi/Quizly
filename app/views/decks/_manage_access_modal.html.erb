@@ -28,10 +28,14 @@
           <div class="manage-access-modal__grid">
 
             <%# ── Row 1: Visible to ── %>
-            <div class="manage-access-col">
-              <label class="manage-access-col__label" for="deck_visibility">
+            <div class="manage-access-col"
+                 data-controller="select-dropdown"
+                 data-action="click@window->select-dropdown#closeIfOutside keydown@window->select-dropdown#onKeydown">
+              <label class="manage-access-col__label" for="sel-visibility-<%= deck.id %>">
                 <%= t("decks.manage_access.visible_to") %>
               </label>
+
+              <%# Hidden native select — form submission + access_settings_controller target %>
               <%= f.select :visibility,
                     [
                       [t("decks.form.visibility_private"),  "private"],
@@ -39,14 +43,66 @@
                       [t("decks.form.visibility_public"),   "public"],
                     ],
                     {},
-                    class: "access-select-pill",
+                    class: "select-dropdown__native",
                     data: {
+                      "select-dropdown-target": "nativeSelect",
                       "access-settings-target": "visibilitySelect",
                       action: "change->access-settings#onVisibilityChange",
                       "desc-private":  t("decks.manage_access.private_desc"),
                       "desc-unlisted": t("decks.manage_access.unlisted_desc"),
                       "desc-public":   t("decks.manage_access.public_desc"),
                     } %>
+
+              <button type="button"
+                      id="sel-visibility-<%= deck.id %>"
+                      class="select-dropdown__trigger"
+                      aria-haspopup="listbox"
+                      aria-expanded="false"
+                      data-select-dropdown-target="trigger"
+                      data-action="click->select-dropdown#toggle">
+                <span data-select-dropdown-target="label">
+                  <%= t("decks.form.visibility_#{deck.visibility}") %>
+                </span>
+                <svg class="select-dropdown__chevron" xmlns="http://www.w3.org/2000/svg"
+                     viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                </svg>
+              </button>
+
+              <ul class="select-dropdown__menu"
+                  role="listbox"
+                  aria-labelledby="sel-visibility-<%= deck.id %>"
+                  data-select-dropdown-target="menu"
+                  data-open="false">
+                <li role="none">
+                  <button type="button" class="select-dropdown__option" role="option"
+                          data-value="private"
+                          aria-selected="<%= deck.private? %>"
+                          data-select-dropdown-target="option"
+                          data-action="click->select-dropdown#select">
+                    <%= t("decks.form.visibility_private") %>
+                  </button>
+                </li>
+                <li role="none">
+                  <button type="button" class="select-dropdown__option" role="option"
+                          data-value="unlisted"
+                          aria-selected="<%= deck.unlisted? %>"
+                          data-select-dropdown-target="option"
+                          data-action="click->select-dropdown#select">
+                    <%= t("decks.form.visibility_unlisted") %>
+                  </button>
+                </li>
+                <li role="none">
+                  <button type="button" class="select-dropdown__option" role="option"
+                          data-value="public"
+                          aria-selected="<%= deck.public? %>"
+                          data-select-dropdown-target="option"
+                          data-action="click->select-dropdown#select">
+                    <%= t("decks.form.visibility_public") %>
+                  </button>
+                </li>
+              </ul>
+
               <p class="manage-access-col__desc"
                  data-access-settings-target="visibilityDesc">
                 <%= t("decks.manage_access.#{deck.visibility}_desc") %>
@@ -54,23 +110,72 @@
             </div>
 
             <%# ── Row 1: Editable by ── %>
-            <div class="manage-access-col">
-              <label class="manage-access-col__label" for="deck_edit_permission">
+            <div class="manage-access-col"
+                 data-controller="select-dropdown"
+                 data-action="click@window->select-dropdown#closeIfOutside keydown@window->select-dropdown#onKeydown">
+              <label class="manage-access-col__label" for="sel-edit-<%= deck.id %>">
                 <%= t("decks.manage_access.editable_by") %>
               </label>
+
+              <%# Hidden native select — form submission + access_settings_controller target %>
               <%= f.select :edit_permission,
                     [
                       [t("decks.form.edit_permission_only_me"),              "only_me"],
                       [t("decks.form.edit_permission_people_with_password"), "people_with_password"],
                     ],
                     {},
-                    class: "access-select-pill",
+                    class: "select-dropdown__native",
                     data: {
+                      "select-dropdown-target": "nativeSelect",
                       "access-settings-target": "editSelect",
                       action: "change->access-settings#onEditPermissionChange",
                       "desc-only-me":              t("decks.manage_access.only_me_desc"),
                       "desc-people-with-password": t("decks.manage_access.people_with_password_desc"),
                     } %>
+
+              <button type="button"
+                      id="sel-edit-<%= deck.id %>"
+                      class="select-dropdown__trigger"
+                      aria-haspopup="listbox"
+                      aria-expanded="false"
+                      data-select-dropdown-target="trigger"
+                      data-action="click->select-dropdown#toggle">
+                <span data-select-dropdown-target="label">
+                  <%= deck.only_me? ?
+                        t("decks.form.edit_permission_only_me") :
+                        t("decks.form.edit_permission_people_with_password") %>
+                </span>
+                <svg class="select-dropdown__chevron" xmlns="http://www.w3.org/2000/svg"
+                     viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                </svg>
+              </button>
+
+              <ul class="select-dropdown__menu"
+                  role="listbox"
+                  aria-labelledby="sel-edit-<%= deck.id %>"
+                  data-select-dropdown-target="menu"
+                  data-open="false">
+                <li role="none">
+                  <button type="button" class="select-dropdown__option" role="option"
+                          data-value="only_me"
+                          aria-selected="<%= deck.only_me? %>"
+                          data-select-dropdown-target="option"
+                          data-action="click->select-dropdown#select">
+                    <%= t("decks.form.edit_permission_only_me") %>
+                  </button>
+                </li>
+                <li role="none">
+                  <button type="button" class="select-dropdown__option" role="option"
+                          data-value="people_with_password"
+                          aria-selected="<%= deck.people_with_password? %>"
+                          data-select-dropdown-target="option"
+                          data-action="click->select-dropdown#select">
+                    <%= t("decks.form.edit_permission_people_with_password") %>
+                  </button>
+                </li>
+              </ul>
+
               <p class="manage-access-col__desc"
                  data-access-settings-target="editDesc">
                 <%= deck.only_me? ?
@@ -83,17 +188,20 @@
             <div class="manage-access-modal__share<%= deck.unlisted? ? '' : ' access-section--hidden' %>"
                  data-access-settings-target="shareSection">
               <p class="manage-access-col__label"><%= t("decks.manage_access.share_heading") %></p>
-              <div class="access-link-row">
+              <div class="access-link-row"
+                   data-controller="clip"
+                   data-clip-copied-value="<%= t('decks.manage_access.copy_link_copied') %>">
                 <input class="access-link-input"
                        type="text"
                        value="<%= deck_url(deck) %>"
                        readonly
                        id="share-link-<%= deck.id %>"
-                       aria-label="<%= t("decks.manage_access.share_heading") %>">
+                       aria-label="<%= t("decks.manage_access.share_heading") %>"
+                       data-clip-target="source">
                 <button type="button"
                         class="access-link-copy"
-                        onclick="navigator.clipboard.writeText(document.getElementById('share-link-<%= deck.id %>').value)">
-                  <%= t("decks.manage_access.copy_link") %>
+                        data-action="click->clip#copy">
+                  <span data-clip-target="label"><%= t("decks.manage_access.copy_link") %></span>
                 </button>
               </div>
               <p class="manage-access-col__desc"><%= t("decks.manage_access.share_hint") %></p>

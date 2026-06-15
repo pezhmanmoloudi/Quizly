@@ -227,6 +227,7 @@ es:
       share_heading: "Compartir enlace"
       share_hint: "Cualquiera con este enlace puede ver el mazo"
       copy_link: "Copiar"
+      copy_link_copied: "¡Copiado!"
       visible_to: "Visible para"
       editable_by: "Editable por"
     form:

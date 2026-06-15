@@ -227,6 +227,7 @@ fr:
       share_heading: "Partager le lien"
       share_hint: "Toute personne avec ce lien peut voir le jeu"
       copy_link: "Copier"
+      copy_link_copied: "Copié !"
       visible_to: "Visible par"
       editable_by: "Modifiable par"
     form:

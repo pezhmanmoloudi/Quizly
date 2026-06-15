@@ -227,6 +227,7 @@ tr:
       share_heading: "Bağlantıyı paylaş"
       share_hint: "Bu bağlantıya sahip herkes deste görebilir"
       copy_link: "Kopyala"
+      copy_link_copied: "Kopyalandı!"
       visible_to: "Görüntüleyenler"
       editable_by: "Düzenleyenler"
     form:

@@ -227,6 +227,7 @@ de:
       share_heading: "Link teilen"
       share_hint: "Jeder mit diesem Link kann das Deck anzeigen"
       copy_link: "Kopieren"
+      copy_link_copied: "Kopiert!"
       visible_to: "Sichtbar für"
       editable_by: "Bearbeitbar von"
     form:

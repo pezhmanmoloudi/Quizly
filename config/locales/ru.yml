@@ -227,6 +227,7 @@ ru:
       share_heading: "Поделиться ссылкой"
       share_hint: "Любой с этой ссылкой может просмотреть колоду"
       copy_link: "Копировать"
+      copy_link_copied: "Скопировано!"
       visible_to: "Видно для"
       editable_by: "Доступно для редактирования"
     form:

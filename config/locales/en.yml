@@ -227,6 +227,7 @@ en:
       share_heading: "Share link"
       share_hint: "Anyone with this link can view the deck"
       copy_link: "Copy"
+      copy_link_copied: "Copied!"
       visible_to: "Visible to"
       editable_by: "Editable by"
     form:

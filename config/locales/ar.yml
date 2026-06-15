@@ -227,6 +227,7 @@ ar:
       share_heading: "مشاركة الرابط"
       share_hint: "يمكن لأي شخص لديه هذا الرابط عرض البطاقات"
       copy_link: "نسخ"
+      copy_link_copied: "تم النسخ!"
       visible_to: "مرئي لـ"
       editable_by: "قابل للتعديل من قِبل"
     form:

@@ -227,6 +227,7 @@ ckb:
       share_heading: "هاوبەشکردنی بەستەر"
       share_hint: "هەر کەسێک ئەم بەستەرەی هەبێت دەتوانێت دەستەکە ببینێت"
       copy_link: "کۆپیکردن"
+      copy_link_copied: "کۆپیکرا!"
       visible_to: "بینراوی بۆ"
       editable_by: "دەستکاریکردنی بۆ"
     form:

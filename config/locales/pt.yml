@@ -227,6 +227,7 @@ pt:
       share_heading: "Compartilhar link"
       share_hint: "Qualquer pessoa com este link pode ver o baralho"
       copy_link: "Copiar"
+      copy_link_copied: "Copiado!"
       visible_to: "Visível para"
       editable_by: "Editável por"
     form:
