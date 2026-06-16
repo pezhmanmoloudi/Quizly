@@ -10,7 +10,7 @@ fa:
     create_menu_aria: منوی ایجاد
     create_menu_tooltip: ایجاد
     create:
-      flashcard_set: مجموعه فلش‌کارت
+      deck: دسته
       study_guide: راهنمای مطالعه
       practice_test: آزمون تمرینی
       folder: پوشه

@@ -10,7 +10,7 @@ pt:
     create_menu_aria: Menu de criação
     create_menu_tooltip: Criar
     create:
-      flashcard_set: Conjunto de flashcards
+      deck: Baralho
       study_guide: Guia de estudo
       practice_test: Teste prático
       folder: Pasta

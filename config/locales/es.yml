@@ -10,7 +10,7 @@ es:
     create_menu_aria: Menú de creación
     create_menu_tooltip: Crear
     create:
-      flashcard_set: Conjunto de tarjetas
+      deck: Mazo
       study_guide: Guía de estudio
       practice_test: Prueba de práctica
       folder: Carpeta

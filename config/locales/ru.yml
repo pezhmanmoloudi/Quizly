@@ -10,7 +10,7 @@ ru:
     create_menu_aria: Меню создания
     create_menu_tooltip: Создать
     create:
-      flashcard_set: Набор карточек
+      deck: Колода
       study_guide: Учебное пособие
       practice_test: Пробный тест
       folder: Папка

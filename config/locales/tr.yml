@@ -10,7 +10,7 @@ tr:
     create_menu_aria: Oluşturma menüsü
     create_menu_tooltip: Oluştur
     create:
-      flashcard_set: Kart seti
+      deck: Deste
       study_guide: Çalışma rehberi
       practice_test: Pratik sınav
       folder: Klasör

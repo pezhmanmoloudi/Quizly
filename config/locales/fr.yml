@@ -10,7 +10,7 @@ fr:
     create_menu_aria: Menu de création
     create_menu_tooltip: Créer
     create:
-      flashcard_set: Jeu de cartes
+      deck: Paquet
       study_guide: Guide d'étude
       practice_test: Test d'entraînement
       folder: Dossier

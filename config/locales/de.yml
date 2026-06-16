@@ -10,7 +10,7 @@ de:
     create_menu_aria: Erstellen-Menü
     create_menu_tooltip: Erstellen
     create:
-      flashcard_set: Karteikarten-Set
+      deck: Deck
       study_guide: Lernhilfe
       practice_test: Übungstest
       folder: Ordner

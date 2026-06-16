@@ -10,7 +10,7 @@ ar:
     create_menu_aria: قائمة الإنشاء
     create_menu_tooltip: إنشاء
     create:
-      flashcard_set: مجموعة بطاقات
+      deck: مجموعة
       study_guide: دليل الدراسة
       practice_test: اختبار تدريبي
       folder: مجلد

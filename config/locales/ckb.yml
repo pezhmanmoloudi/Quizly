@@ -10,7 +10,7 @@ ckb:
     create_menu_aria: مێنوی دروستکردن
     create_menu_tooltip: دروستکردن
     create:
-      flashcard_set: کۆمەڵەی کارتی فلاش
+      deck: دەستە
       study_guide: ڕێنمای خوێندن
       practice_test: تاقیکردنەوەی پراکتیک
       folder: فۆڵدەر
