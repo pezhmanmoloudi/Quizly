@@ -211,16 +211,14 @@ en:
       unlisted_desc: "Only people with the link can view it"
       private_desc: "Only you can see it"
       visibility_heading: "Visibility"
-      editing_heading: "Editing"
-      only_me_desc: "Only you can make changes"
-      people_with_password_desc: "Collaborators need the deck password"
-      with_password_short: "Password"
+      access_mode_heading: "Access"
+      open_desc: "Anyone who can find this deck can study it"
+      password_desc: "Viewers must enter a password to access flashcards"
       share_heading: "Share link"
       share_hint: "Anyone with this link can view the deck"
       copy_link: "Copy"
       copy_link_copied: "Copied!"
       visible_to: "Visible to"
-      editable_by: "Editable by"
       password_is_set: "A password is set — enter a new one to change it"
     form:
       name_label: "Name"
@@ -237,13 +235,11 @@ en:
       visibility_private: "Just me"
       visibility_hint: "Public decks can be discovered and saved by anyone."
       section_about: "About"
-      section_access_control: "Access Control"
-      edit_permission_label: "Who can edit this deck?"
-      edit_permission_only_me: "Just me"
-      edit_permission_people_with_password: "Anyone with password"
+      access_mode_open: "Open"
+      access_mode_password: "Password protected"
       password_label: "Deck password"
       password_placeholder: "Min. 8 characters"
-      password_hint: "Required to unlock editing"
+      password_hint: "Required to view this deck"
     cards:
       page_title: "Add Cards — %{name}"
       add_card: "Add a card"
@@ -286,12 +282,12 @@ en:
       copy_name:             "%{name} (Copy)"
     not_available: "Deck not available."
     unlock:
-      title: "Password Required to Edit"
-      description: "Enter the password to unlock editing access for this deck."
+      title: "Password Required"
+      description: "Enter the password to view this deck."
       password_label: "Password"
-      submit: "Unlock Editing"
+      submit: "Unlock Deck"
       invalid_password: "Incorrect password. Please try again."
-      success: "Editing unlocked."
+      success: "Deck unlocked."
       back_to_preview: "← Back to deck"
       help_text: "Contact the deck creator if you don't have the password."
       submitting: "Unlocking…"
@@ -418,7 +414,8 @@ en:
   errors:
     not_found:
       flash: "This deck is no longer available."
-    not_authorized: "You are not authorized to perform this action."
+    not_authorized:
+      flash: "You are not authorized to perform this action."
   explore:
     title: "Explore"
     subtitle: "Discover and save public decks shared by the community."
@@ -578,8 +575,8 @@ en:
           attributes:
             base:
               not_ready_to_share: "Add at least one flashcard before sharing this deck."
-            edit_permission:
-              invalid_for_private_deck: "Private decks can only be edited by the owner."
+            access_mode:
+              invalid_for_private_deck: "Private decks cannot be password-protected — only you can see them anyway."
         library_item:
           attributes:
             base:

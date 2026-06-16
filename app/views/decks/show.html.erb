@@ -1,13 +1,12 @@
 <% content_for :title, @deck.name %>
 
 <div class="container">
-  <% can_edit   = @deck.can_edit?(Current.user) %>
-  <% can_delete = @deck.can_delete?(Current.user) %>
+  <% is_owner = policy(@deck).destroy? %>
   <div class="deck-detail-header">
     <div class="deck-detail-header__top">
       <h1 class="deck-detail-header__name"><%= @deck.name %></h1>
       <div class="deck-detail-header__actions">
-        <% if can_edit %>
+        <% if is_owner %>
           <%= link_to edit_deck_path(@deck), class: "btn btn--secondary btn-with-icon" do %>
             <%= render "shared/icons/pencil" %> <%= t("decks.show.edit") %>
           <% end %>
@@ -15,7 +14,7 @@
 
         <%= render "decks/library_state", deck: @deck %>
 
-        <% if @deck.can_copy?(Current.user) %>
+        <% if policy(@deck).copy? %>
           <%= form_with url: copy_deck_path(@deck), method: :post do %>
             <button type="submit" class="btn btn--secondary btn-with-icon">
               <%= render "shared/icons/fork" %> <%= t("decks.action.copy") %>
@@ -26,7 +25,7 @@
       </div>
     </div>
     <div class="deck-detail-header__meta">
-      <% if can_delete %>
+      <% if is_owner %>
         <div data-controller="modal">
           <button type="button" class="visibility-badge-btn" data-action="click->modal#open">
             <span id="visibility-badge-<%= @deck.id %>">

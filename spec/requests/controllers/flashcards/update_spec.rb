@@ -45,21 +45,19 @@ RSpec.describe "Flashcards#update", type: :request do
       end
     end
 
-    context "when authenticated as a password user (content domain)" do
+    context "when authenticated as another user on a password-protected deck" do
       let(:owner)   { create(:user) }
-      let(:pw_deck) { create(:deck, :editable_by_password, user: owner) }
+      let(:pw_deck) { create(:deck, :password_protected, user: owner) }
       let(:pw_card) { create(:flashcard, deck: pw_deck) }
       let(:other)   { create(:user) }
-      before do
-        sign_in(other)
-        post unlock_deck_path(pw_deck), params: { password: "secret123" }
-      end
+      before { sign_in(other) }
 
-      it "updates the flashcard and redirects" do
+      it "redirects away without updating the flashcard (edit is owner-only)" do
+        original = pw_card.front_content
         patch flashcard_path(pw_card),
-              params: { flashcard: { front_content: "Updated", back_content: "Content" } }
-        expect(response).to redirect_to(deck_path(pw_deck))
-        expect(pw_card.reload.front_content).to eq("Updated")
+              params: { flashcard: { front_content: "Hijacked", back_content: "Content" } }
+        expect(response).to redirect_to(decks_path)
+        expect(pw_card.reload.front_content).to eq(original)
       end
     end
   end

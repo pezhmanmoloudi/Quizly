@@ -1,11 +1,13 @@
 class DecksController < ApplicationController
-  allow_unauthenticated_access only: [:show, :flashcard, :match, :unlock]
-  before_action :set_owned_deck,          only: [:edit, :update, :destroy, :update_visibility]
-  before_action :set_accessible_deck,     only: [:show, :study, :flashcard, :match, :fork, :copy, :learn, :test]
-  before_action :set_noindex_for_unlisted, only: [:show, :study, :flashcard, :match, :learn, :test]
+  allow_unauthenticated_access only: [ :show, :flashcard, :match, :unlock ]
+
+  before_action :set_deck,               only: [ :show, :flashcard, :match, :fork, :copy, :learn, :test, :study ]
+  before_action :set_owned_deck,         only: [ :edit, :update, :destroy, :update_visibility ]
+  before_action :ensure_viewable,        only: [ :show, :flashcard, :match, :learn, :test, :study ]
+  before_action :set_noindex_for_unlisted, only: [ :show, :study, :flashcard, :match, :learn, :test ]
 
   DECK_INDEX_PER_PAGE    = 12
-  ITEMS_PER_PAGE_OPTIONS = [5, 10, 15, 20, 30].freeze
+  ITEMS_PER_PAGE_OPTIONS = [ 5, 10, 15, 20, 30 ].freeze
 
   def index
     @sort  = params[:sort].in?(%w[az most_due]) ? params[:sort] : "recent"
@@ -37,13 +39,15 @@ class DecksController < ApplicationController
     items = ITEMS_PER_PAGE_OPTIONS.include?(params[:items].to_i) ? params[:items].to_i : 10
     @pagy, @flashcards = pagy(@deck.flashcards.order(:position), limit: items)
     @items_per_page = items
+    @locked = @deck.password_protected? && !session_unlocked?
+    if @locked
+      @sample_flashcards  = @deck.flashcards.order(:position).limit(3)
+      @locked_cards_count = @deck.flashcards.count - @sample_flashcards.size
+    end
   end
 
   def create
-    @deck = Current.user.decks.create!(
-      name: t("decks.default_name"),
-      visibility: "private"
-    )
+    @deck = Decks::CreationService.call(user: Current.user, name: t("decks.default_name"))
     redirect_to edit_deck_path(@deck)
   rescue ActiveRecord::RecordInvalid
     redirect_to root_path, alert: t("decks.create_failed")
@@ -63,12 +67,12 @@ class DecksController < ApplicationController
   end
 
   def destroy
-    from_page = [params[:from_page].to_i, 1].max
+    from_page = [ params[:from_page].to_i, 1 ].max
     @deck.destroy
 
     remaining = Current.user.decks.count
-    last_page = [(remaining.to_f / DECK_INDEX_PER_PAGE).ceil, 1].max
-    safe_page = [from_page, last_page].min
+    last_page = [ (remaining.to_f / DECK_INDEX_PER_PAGE).ceil, 1 ].max
+    safe_page = [ from_page, last_page ].min
 
     respond_to do |format|
       format.turbo_stream { redirect_to decks_path(page: safe_page), notice: t("decks.deleted") }
@@ -92,6 +96,7 @@ class DecksController < ApplicationController
   end
 
   def study
+    authorize @deck, :study?
     CardProgress.initialize_for_deck(@deck, Current.user)
 
     @study_mode = params[:mode] == "starred" ? "starred" : "all"
@@ -132,6 +137,7 @@ class DecksController < ApplicationController
   end
 
   def learn
+    authorize @deck, :study?
     flashcards = @deck.flashcards.to_a
     if flashcards.empty?
       @learn_session = nil
@@ -153,6 +159,7 @@ class DecksController < ApplicationController
   end
 
   def test
+    authorize @deck, :study?
     flashcards = @deck.flashcards.to_a
     if flashcards.empty?
       @test_session = nil
@@ -172,24 +179,24 @@ class DecksController < ApplicationController
   end
 
   def fork
-    return redirect_to deck_path(@deck) if @deck.can_delete?(Current.user)
-    authorize @deck, :fork?
+    authorize @deck, :save_to_library?
     perform_library_save
   rescue Pundit::NotAuthorizedError
-    redirect_to explore_path, alert: t("decks.not_available")
+    destination = policy(@deck).show? ? deck_path(@deck) : fallback_destination
+    redirect_to destination
   end
 
   def copy
     authorize @deck, :copy?
-    copied = DeckDuplicator.call(
+    copied = Decks::ForkService.call(
       source_deck: @deck,
       user:        Current.user,
-      name:        t("decks.action.copy_name", name: @deck.name),
-      visibility:  "private"
+      name:        t("decks.action.copy_name", name: @deck.name)
     )
     redirect_to deck_path(copied), notice: t("decks.action.copied")
   rescue Pundit::NotAuthorizedError
-    redirect_to explore_path, alert: t("decks.not_available")
+    destination = policy(@deck).update? ? explore_path : fallback_destination
+    redirect_to destination, alert: t("decks.not_available")
   end
 
   def unsave
@@ -211,13 +218,20 @@ class DecksController < ApplicationController
 
   def unlock
     @deck = Deck.find(params[:id])
-    @deck.unlocked = deck_unlocked?(@deck)
-    if request.get? && (@deck.unlocked? || Current.user == @deck.user)
+
+    if request.get? && (session_unlocked? || Current.user == @deck.user)
       return redirect_to @deck
     end
+
     return unless request.post?
-    if @deck.authenticate_password(params[:password].to_s)
-      session["deck_#{@deck.id}_unlocked"] = true
+
+    result = Decks::AccessService.call(
+      deck:     @deck,
+      password: params[:password].to_s,
+      session:  session
+    )
+
+    if result.ok?
       redirect_to @deck, notice: t("decks.unlock.success")
     else
       flash.now[:alert] = t("decks.unlock.invalid_password")
@@ -227,15 +241,23 @@ class DecksController < ApplicationController
 
   private
 
-  def set_owned_deck
+  def set_deck
     @deck = Deck.find(params[:id])
-    authorize @deck
   end
 
-  def set_accessible_deck
-    @deck = Deck.find(params[:id])
-    @deck.unlocked = deck_unlocked?(@deck)
+  def set_owned_deck
+    @deck = Current.user.decks.find(params[:id])
+  end
+
+  def ensure_viewable
     authorize @deck, :show?
+    if @deck.password_protected? && !session_unlocked? && Current.user != @deck.user
+      redirect_to unlock_deck_path(@deck)
+    end
+  end
+
+  def session_unlocked?
+    Decks::AccessService.unlocked?(deck: @deck, session: session)
   end
 
   def find_or_create_learn_session
@@ -293,14 +315,14 @@ class DecksController < ApplicationController
   end
 
   def manage_access_params
-    raw = params.require(:deck).permit(:visibility, :edit_permission, :password, :password_confirmation)
+    raw = params.require(:deck).permit(:visibility, :access_mode, :password, :password_confirmation)
     result = {}
     vis = raw[:visibility].to_s
     result[:visibility] = vis if Deck::VISIBILITY_VALUES.include?(vis)
-    ep = raw[:edit_permission].to_s
-    result[:edit_permission] = ep if Deck::EDIT_PERMISSION_VALUES.include?(ep)
-    if result[:edit_permission] == "people_with_password" && raw[:password].present?
-      result[:password] = raw[:password]
+    am = raw[:access_mode].to_s
+    result[:access_mode] = am if Deck::ACCESS_MODE_VALUES.include?(am)
+    if result[:access_mode] == "password" && raw[:password].present?
+      result[:password]              = raw[:password]
       result[:password_confirmation] = raw[:password_confirmation]
     end
     result
@@ -309,7 +331,7 @@ class DecksController < ApplicationController
   def deck_update_params
     params.require(:deck).permit(
       :name, :description, :language_code, :visibility, :tag_list,
-      :edit_permission, :password, :password_confirmation
+      :access_mode, :password, :password_confirmation
     )
   end
 

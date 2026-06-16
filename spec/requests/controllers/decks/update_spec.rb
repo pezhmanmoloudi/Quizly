@@ -42,8 +42,8 @@ RSpec.describe "Decks#update", type: :request do
         expect(deck.reload.name).to eq(original_name)
       end
 
-      it "redirects for a people_with_password deck even with session auth (admin domain is owner-only)" do
-        pw_deck = create(:deck, :editable_by_password, user: create(:user))
+      it "redirects for a password-protected deck even after unlocking it (edit is owner-only)" do
+        pw_deck = create(:deck, :password_protected, user: create(:user))
         sign_in(other_user)
         post unlock_deck_path(pw_deck), params: { password: "secret123" }
         patch deck_path(pw_deck), params: { deck: { name: "Hijacked" } }

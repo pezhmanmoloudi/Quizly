@@ -2,8 +2,8 @@ import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
   static targets = [
-    "visibilitySelect", "visibilityDesc",
-    "editSelect",       "editDesc",
+    "visibilitySelect",  "visibilityDesc",
+    "accessModeSelect",  "accessModeDesc",
     "passwordSection",
     "shareSection",
   ]
@@ -12,8 +12,8 @@ export default class extends Controller {
     this.#syncState()
   }
 
-  onVisibilityChange()     { this.#syncState() }
-  onEditPermissionChange() { this.#syncState() }
+  onVisibilityChange()  { this.#syncState() }
+  onAccessModeChange()  { this.#syncState() }
 
   // ── Private ───────────────────────────────────────────────────────────────
 
@@ -23,13 +23,13 @@ export default class extends Controller {
     this.#updateDesc(this.visibilitySelectTarget, this.visibilityDescTarget)
 
     if (visibility === "private") {
-      this.editSelectTarget.value    = "only_me"
-      this.editSelectTarget.disabled = true
+      this.accessModeSelectTarget.value    = "open"
+      this.accessModeSelectTarget.disabled = true
     } else {
-      this.editSelectTarget.disabled = false
+      this.accessModeSelectTarget.disabled = false
     }
 
-    this.#updateDesc(this.editSelectTarget, this.editDescTarget)
+    this.#updateDesc(this.accessModeSelectTarget, this.accessModeDescTarget)
 
     if (this.hasShareSectionTarget) {
       this.shareSectionTarget.classList.toggle("access-section--hidden", visibility !== "unlisted")
@@ -37,7 +37,7 @@ export default class extends Controller {
 
     this.#setPasswordVisible(
       visibility !== "private" &&
-      this.editSelectTarget.value === "people_with_password"
+      this.accessModeSelectTarget.value === "password"
     )
   }
 

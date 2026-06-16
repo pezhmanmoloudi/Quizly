@@ -41,20 +41,13 @@ RSpec.describe "Decks#edit", type: :request do
       let(:other) { create(:user) }
       before { sign_in(other) }
 
-      it "redirects for an only_me deck" do
+      it "redirects for a private deck (non-owner)" do
         get edit_deck_path(deck)
         expect(response).to redirect_to(decks_path)
       end
 
-      it "redirects for a people_with_password deck without session auth" do
-        pw_deck = create(:deck, :editable_by_password, user: user)
-        get edit_deck_path(pw_deck)
-        expect(response).to redirect_to(decks_path)
-      end
-
-      it "redirects for a people_with_password deck even with session auth (admin domain is owner-only)" do
-        pw_deck = create(:deck, :editable_by_password, user: user)
-        post unlock_deck_path(pw_deck), params: { password: "secret123" }
+      it "redirects even for a password-protected deck (edit is owner-only)" do
+        pw_deck = create(:deck, :password_protected, user: user)
         get edit_deck_path(pw_deck)
         expect(response).to redirect_to(decks_path)
       end

@@ -211,16 +211,14 @@ fr:
       unlisted_desc: "Seulement les personnes avec le lien"
       private_desc: "Seulement vous"
       visibility_heading: "Visibilité"
-      editing_heading: "Édition"
-      only_me_desc: "Seul vous pouvez faire des modifications"
-      people_with_password_desc: "Les collaborateurs ont besoin du mot de passe"
-      with_password_short: "Mot de passe"
+      access_mode_heading: "Access"
+      open_desc: "Anyone who can find this deck can study it"
+      password_desc: "Viewers must enter a password to access flashcards"
       share_heading: "Partager le lien"
       share_hint: "Toute personne avec ce lien peut voir le jeu"
       copy_link: "Copier"
       copy_link_copied: "Copié !"
       visible_to: "Visible par"
-      editable_by: "Modifiable par"
       password_is_set: "A password is set — enter a new one to change it"
     form:
       name_label: "Nom"
@@ -234,16 +232,14 @@ fr:
       visibility_section_label: "Qui peut voir ce paquet ?"
       visibility_unlisted: "Non répertorié"
       section_about: "À propos"
-      section_access_control: "Contrôle d'accès"
+      access_mode_open: "Open"
+      access_mode_password: "Password protected"
       visibility_private: "Moi seulement"
       visibility_public: "Public"
       visibility_hint: "Les paquets publics peuvent être découverts et copiés par n'importe qui."
-      edit_permission_label: "Qui peut modifier ce paquet ?"
-      edit_permission_only_me: "Moi seulement"
-      edit_permission_people_with_password: "Toute personne avec le mot de passe"
       password_label: "Mot de passe du paquet"
       password_placeholder: "Min. 8 caractères"
-      password_hint: "Requis pour déverrouiller l'accès ou la modification"
+      password_hint: "Required to view this deck"
     cards:
       page_title: "Ajouter des cartes — %{name}"
       add_card: "Ajouter une carte"
@@ -418,7 +414,8 @@ fr:
   errors:
     not_found:
       flash: "This deck is no longer available."
-    not_authorized: "Vous n'êtes pas autorisé à effectuer cette action."
+    not_authorized:
+      flash: "You are not authorized to perform this action."
   explore:
     title: "Explorer"
     subtitle: "Découvrez et copiez des paquets publics partagés par la communauté."
@@ -578,8 +575,8 @@ fr:
           attributes:
             base:
               not_ready_to_share: "Ajoutez au moins une carte avant de partager ce paquet."
-            edit_permission:
-              invalid_for_private_deck: "Les paquets privés ne peuvent être modifiés que par le propriétaire."
+            access_mode:
+              invalid_for_private_deck: "Private decks cannot be password-protected — only you can see them anyway."
         library_item:
           attributes:
             base:

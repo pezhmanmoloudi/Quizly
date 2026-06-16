@@ -4,7 +4,7 @@ FactoryBot.define do
     sequence(:name) { |n| "Deck #{n}" }
     description { "A test deck" }
     visibility { "private" }
-    edit_permission { "only_me" }
+    access_mode { "open" }
 
     trait :public do
       visibility { "public" }
@@ -20,9 +20,9 @@ FactoryBot.define do
       visibility { "private" }
     end
 
-    trait :editable_by_password do
+    trait :password_protected do
       visibility { "public" }
-      edit_permission { "people_with_password" }
+      access_mode { "password" }
       password { "secret123" }
       after(:create) { |deck| create(:flashcard, deck: deck) }
     end

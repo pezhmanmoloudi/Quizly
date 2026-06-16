@@ -4,7 +4,7 @@ RSpec.describe "Decks#unlock", type: :request do
   let(:owner) { create(:user) }
 
   describe "GET /decks/:id/unlock" do
-    let(:deck) { create(:deck, :editable_by_password, user: owner) }
+    let(:deck) { create(:deck, :password_protected, user: owner) }
 
     context "when not authenticated" do
       it "renders the unlock form" do
@@ -25,7 +25,7 @@ RSpec.describe "Decks#unlock", type: :request do
   end
 
   describe "POST /decks/:id/unlock" do
-    let(:deck) { create(:deck, :editable_by_password, user: owner) }
+    let(:deck) { create(:deck, :password_protected, user: owner) }
 
     context "with the correct password" do
       it "sets the session unlock flag and redirects to the deck" do

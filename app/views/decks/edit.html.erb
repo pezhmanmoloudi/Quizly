@@ -19,7 +19,7 @@
     </div>
 
     <div class="deck-edit-toolbar__right">
-      <% if @deck.persisted? && @deck.can_delete?(Current.user) %>
+      <% if @deck.persisted? && policy(@deck).destroy? %>
         <div data-controller="modal">
           <button type="button"
                   class="btn btn--danger-outline btn-with-icon"

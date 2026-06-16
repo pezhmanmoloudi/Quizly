@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_06_14_165543) do
+ActiveRecord::Schema[8.1].define(version: 2026_06_16_034233) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
@@ -69,10 +69,20 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_14_165543) do
     t.index ["user_id"], name: "index_card_progresses_on_user_id"
   end
 
+  create_table "deck_folders", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.integer "deck_id", null: false
+    t.integer "folder_id", null: false
+    t.datetime "updated_at", null: false
+    t.index ["deck_id", "folder_id"], name: "index_deck_folders_on_deck_id_and_folder_id", unique: true
+    t.index ["deck_id"], name: "index_deck_folders_on_deck_id"
+    t.index ["folder_id"], name: "index_deck_folders_on_folder_id"
+  end
+
   create_table "decks", force: :cascade do |t|
+    t.string "access_mode", default: "open", null: false
     t.datetime "created_at", null: false
     t.text "description"
-    t.string "edit_permission", default: "only_me", null: false
     t.integer "flashcards_count", default: 0, null: false
     t.string "language_code"
     t.string "name", null: false
@@ -82,6 +92,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_14_165543) do
     t.datetime "updated_at", null: false
     t.integer "user_id", null: false
     t.string "visibility", default: "public", null: false
+    t.index ["access_mode"], name: "index_decks_on_access_mode"
     t.index ["source_deck_id"], name: "index_decks_on_source_deck_id"
     t.index ["user_id"], name: "index_decks_on_user_id"
     t.index ["visibility"], name: "index_decks_on_visibility"
@@ -100,6 +111,15 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_14_165543) do
     t.index ["deck_id"], name: "index_flashcards_on_deck_id"
     t.index ["deleted_at"], name: "index_flashcards_on_deleted_at"
     t.index ["position"], name: "index_flashcards_on_position"
+  end
+
+  create_table "folders", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.text "description"
+    t.string "name", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id", null: false
+    t.index ["user_id"], name: "index_folders_on_user_id"
   end
 
   create_table "learn_session_items", force: :cascade do |t|
@@ -359,9 +379,12 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_14_165543) do
     t.index ["google_uid"], name: "index_users_on_google_uid", unique: true
   end
 
+  add_foreign_key "deck_folders", "decks", on_delete: :cascade
+  add_foreign_key "deck_folders", "folders", on_delete: :cascade
   add_foreign_key "decks", "decks", column: "source_deck_id", on_delete: :nullify
   add_foreign_key "decks", "users"
   add_foreign_key "flashcards", "decks"
+  add_foreign_key "folders", "users"
   add_foreign_key "learn_session_items", "flashcards"
   add_foreign_key "learn_session_items", "learn_sessions"
   add_foreign_key "learn_sessions", "decks"

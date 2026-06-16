@@ -18,6 +18,7 @@ class User < ApplicationRecord
   has_many :badges, through: :user_badges
   has_many :notifications, foreign_key: :recipient_id, dependent: :destroy, inverse_of: :recipient
   has_one :notification_preference, dependent: :destroy
+  has_many :folders, dependent: :destroy
 
   after_create :create_notification_preference!
 
