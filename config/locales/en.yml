@@ -1,299 +1,295 @@
+---
 en:
   nav:
-    home: "Home"
-    explore: "Explore"
-    my_library: "My Library"
+    home: Home
+    explore: Explore
+    my_library: My Library
   topbar:
-    search_placeholder: "Search decks…"
-    search_aria: "Search decks"
-    create_menu_aria: "Create menu"
-    create_menu_tooltip: "Create"
+    search_placeholder: Search decks…
+    search_aria: Search decks
+    create_menu_aria: Create menu
+    create_menu_tooltip: Create
     create:
-      flashcard_set: "Flashcard set"
-      study_guide: "Study guide"
-      practice_test: "Practice test"
-      folder: "Folder"
-      study_group: "Study group"
-    open_navigation: "Open navigation"
-    close_navigation: "Close navigation"
+      flashcard_set: Flashcard set
+      study_guide: Study guide
+      practice_test: Practice test
+      folder: Folder
+      study_group: Study group
+    open_navigation: Open navigation
+    close_navigation: Close navigation
   menu:
-    settings: "Settings"
-    dark_mode: "Dark mode"
-    light_mode: "Light mode"
-    log_out: "Log out"
-    language: "Language"
+    settings: Settings
+    dark_mode: Dark mode
+    light_mode: Light mode
+    log_out: Log out
+    language: Language
   shared:
-    cancel: "Cancel"
-    close: "Close"
-    delete: "Delete"
-    edit: "Edit"
-    undo: "Undo"
+    cancel: Cancel
+    close: Close
+    delete: Delete
+    edit: Edit
+    undo: Undo
     modal:
-      type_to_confirm: "Type %{word} to confirm"
-    save: "Save"
+      type_to_confirm: Type %{word} to confirm
+    save: Save
     back: "← Back"
-    sign_in: "Sign in"
-    sign_up_free: "Sign up free"
-    previous_page: "Previous page"
-    next_page: "Next page"
-    not_available: "N/A"
+    sign_in: Sign in
+    sign_up_free: Sign up free
+    previous_page: Previous page
+    next_page: Next page
+    not_available: N/A
   auth:
-    back_to_home: "Back to home"
+    back_to_home: Back to home
     panel:
-      heading: "Learn Smarter, Not Harder"
-      tagline: "Quizly uses spaced repetition to surface the right card at the right moment — so knowledge sticks."
-      feature_scheduling: "Science-backed SM-2 scheduling"
-      feature_decks: "Decks you build and own"
-      feature_progress: "Progress that compounds over time"
+      heading: Learn Smarter, Not Harder
+      tagline: Quizly uses spaced repetition to surface the right card at the right
+        moment — so knowledge sticks.
+      feature_scheduling: Science-backed SM-2 scheduling
+      feature_decks: Decks you build and own
+      feature_progress: Progress that compounds over time
   sessions:
-    title: "Sign In"
-    heading: "Welcome Back!"
-    subheading: "Sign in to access your dashboard and continue your learning."
-    email_label: "Email"
-    email_placeholder: "Enter your email"
-    password_label: "Password"
-    password_placeholder: "Enter your password"
-    toggle_password: "Toggle password visibility"
-    forgot_password: "Forgot Password?"
-    submit: "Sign In"
-    no_account: "Don't have an account?"
-    sign_up: "Sign Up"
+    title: Sign In
+    heading: Welcome Back!
+    subheading: Sign in to access your dashboard and continue your learning.
+    email_label: Email
+    email_placeholder: Enter your email
+    password_label: Password
+    password_placeholder: Enter your password
+    toggle_password: Toggle password visibility
+    forgot_password: Forgot Password?
+    submit: Sign In
+    no_account: Don't have an account?
+    sign_up: Sign Up
     errors:
-      rate_limited: "Try again later."
-      invalid: "Try another email address or password."
+      rate_limited: Try again later.
+      invalid: Try another email address or password.
   registrations:
-    title: "Sign Up"
-    heading: "Create your account"
-    subheading: "Start building your decks and studying smarter."
-    email_label: "Email"
-    email_placeholder: "Enter your email"
-    password_label: "Password"
-    password_placeholder: "Minimum 8 characters"
-    confirm_label: "Confirm password"
-    confirm_placeholder: "Repeat your password"
-    toggle_password: "Toggle password visibility"
-    submit: "Create account"
-    have_account: "Already have an account?"
-    sign_in_link: "Sign in"
-    created: "Welcome to Quizly!"
+    title: Sign Up
+    heading: Create your account
+    subheading: Start building your decks and studying smarter.
+    email_label: Email
+    email_placeholder: Enter your email
+    password_label: Password
+    password_placeholder: Minimum 8 characters
+    confirm_label: Confirm password
+    confirm_placeholder: Repeat your password
+    toggle_password: Toggle password visibility
+    submit: Create account
+    have_account: Already have an account?
+    sign_in_link: Sign in
+    created: Welcome to Quizly!
     errors:
-      rate_limited: "Try again later."
+      rate_limited: Try again later.
   passwords:
     new:
-      title: "Forgot Password"
-      heading: "Forgot your password?"
-      subheading: "Enter your email and we'll send you reset instructions."
-      email_label: "Email"
-      email_placeholder: "Enter your email"
-      submit: "Send reset instructions"
+      title: Forgot Password
+      heading: Forgot your password?
+      subheading: Enter your email and we'll send you reset instructions.
+      email_label: Email
+      email_placeholder: Enter your email
+      submit: Send reset instructions
       back: "← Back to sign in"
     edit:
-      title: "Reset Password"
-      heading: "Reset your password"
-      subheading: "Choose a new password for your account."
-      password_label: "New password"
-      password_placeholder: "Minimum 8 characters"
-      confirm_label: "Confirm new password"
-      confirm_placeholder: "Repeat your password"
-      toggle_password: "Toggle password visibility"
-      submit: "Save new password"
+      title: Reset Password
+      heading: Reset your password
+      subheading: Choose a new password for your account.
+      password_label: New password
+      password_placeholder: Minimum 8 characters
+      confirm_label: Confirm new password
+      confirm_placeholder: Repeat your password
+      toggle_password: Toggle password visibility
+      submit: Save new password
       back: "← Back to sign in"
-    sent: "Password reset instructions sent (if user with that email address exists)."
-    reset: "Password has been reset."
-    mismatch: "Passwords did not match."
-    invalid: "Password reset link is invalid or has expired."
+    sent: Password reset instructions sent (if user with that email address exists).
+    reset: Password has been reset.
+    mismatch: Passwords did not match.
+    invalid: Password reset link is invalid or has expired.
     errors:
-      rate_limited: "Try again later."
+      rate_limited: Try again later.
   accounts:
-    title: "Settings"
-    personal_info: "Personal information"
-    profile_picture_heading: "Profile picture"
-    remove_photo: "Remove Photo"
-    remove_photo_confirm: "Are you sure you want to remove your profile picture?"
-    remove_photo_modal_title: "Remove Profile Image"
-    remove_photo_modal_warning: "This action cannot be undone."
-    remove_photo_modal_confirm: "Remove Photo"
-    email_label: "Email"
-    username_label: "Username"
-    username_hint_html: "Leave blank to use your email username (%{email})"
-    account_type_label: "Account type"
-    password_min_hint: "Minimum 8 characters"
-    account_type_student: "Student"
-    account_type_teacher: "Teacher"
-    change_password: "Change password"
-    current_password_placeholder: "Current password"
-    new_password_label: "New password"
-    confirm_password_label: "Confirm new password"
-    update_password: "Update password"
-    appearance_section: "Appearance"
-    theme_label: "Theme"
-    language_label: "Language"
-    search_languages: "Search languages"
-    your_languages: "Your Languages"
-    achievements_section: "Achievements"
-    no_badges: "No badges yet. Keep studying to unlock achievements!"
-    badge_earned_on: "Earned %{date}"
-    delete_title: "Delete Account"
-    delete_description: "Permanently delete your account and all associated data. This action cannot be undone."
-    delete_button: "Delete Account"
-    delete_confirm: "Are you sure you want to delete your account?"
-    delete_confirmation_failed: "Please type DELETE to confirm account deletion."
-    delete_modal_warning: "This will permanently delete your account and all associated data — decks, flashcards, and study history. This action cannot be undone."
-    delete_modal_confirm: "Delete Account"
+    title: Settings
+    personal_info: Personal information
+    profile_picture_heading: Profile picture
+    remove_photo: Remove Photo
+    remove_photo_confirm: Are you sure you want to remove your profile picture?
+    remove_photo_modal_title: Remove Profile Image
+    remove_photo_modal_warning: This action cannot be undone.
+    remove_photo_modal_confirm: Remove Photo
+    email_label: Email
+    username_label: Username
+    username_hint_html: Leave blank to use your email username (%{email})
+    account_type_label: Account type
+    password_min_hint: Minimum 8 characters
+    account_type_student: Student
+    account_type_teacher: Teacher
+    change_password: Change password
+    current_password_placeholder: Current password
+    new_password_label: New password
+    confirm_password_label: Confirm new password
+    update_password: Update password
+    appearance_section: Appearance
+    theme_label: Theme
+    language_label: Language
+    search_languages: Search languages
+    your_languages: Your Languages
+    achievements_section: Achievements
+    no_badges: No badges yet. Keep studying to unlock achievements!
+    badge_earned_on: Earned %{date}
+    delete_title: Delete Account
+    delete_description: Permanently delete your account and all associated data. This
+      action cannot be undone.
+    delete_button: Delete Account
+    delete_confirm: Are you sure you want to delete your account?
+    delete_confirmation_failed: Please type DELETE to confirm account deletion.
+    delete_modal_warning: This will permanently delete your account and all associated
+      data — decks, flashcards, and study history. This action cannot be undone.
+    delete_modal_confirm: Delete Account
     updated:
-      profile: "Profile updated."
-      email: "Email updated."
-      password: "Password updated."
-      language: "Language updated."
-      notifications: "Notification preferences saved."
-    avatar_removed: "Profile photo removed."
-    deleted: "Your account has been deleted."
-    profile_photo_alt: "Profile photo"
-    select_avatar: "Select avatar"
-    upload_photo_title: "Upload a custom photo"
-    toggle_password: "Toggle password visibility"
-    notifications_section: "Notifications"
-    notif_personalised_updates: "Personalised study updates"
-    notif_streaks_badges: "Streaks and badges"
-    notif_study_reminders: "Study reminders"
-    notif_choose_reminder_time: "Choose when to receive study reminders"
-    notif_time_zone: "Time zone"
-    notif_email_label: "Email notification"
-    theme_auto: "Auto"
-    theme_light: "Light"
-    theme_dark: "Dark"
-    password_incorrect: "is incorrect"
-    avatar_format_error: "Invalid file format. Please upload JPG, PNG, or WEBP."
-    avatar_size_error: "Profile picture must be smaller than 5 MB."
+      profile: Profile updated.
+      email: Email updated.
+      password: Password updated.
+      language: Language updated.
+      notifications: Notification preferences saved.
+    avatar_removed: Profile photo removed.
+    deleted: Your account has been deleted.
+    profile_photo_alt: Profile photo
+    select_avatar: Select avatar
+    upload_photo_title: Upload a custom photo
+    toggle_password: Toggle password visibility
+    notifications_section: Notifications
+    notif_personalised_updates: Personalised study updates
+    notif_streaks_badges: Streaks and badges
+    notif_study_reminders: Study reminders
+    notif_choose_reminder_time: Choose when to receive study reminders
+    notif_time_zone: Time zone
+    notif_email_label: Email notification
+    theme_auto: Auto
+    theme_light: Light
+    theme_dark: Dark
+    password_incorrect: is incorrect
+    avatar_format_error: Invalid file format. Please upload JPG, PNG, or WEBP.
+    avatar_size_error: Profile picture must be smaller than 5 MB.
   decks:
     index:
-      title: "My Decks"
-      sort_recent: "Recent"
-      sort_az: "A–Z"
-      sort_most_due: "Most Due"
-      empty_title: "No decks yet"
-      empty_description: "Create your first deck to start studying."
-      saved_section_title: "Saved decks"
+      title: My Decks
+      sort_recent: Recent
+      sort_az: A–Z
+      sort_most_due: Most Due
+      empty_title: No decks yet
+      empty_description: Create your first deck to start studying.
     show:
-      edit: "Edit Deck"
-      delete: "Delete Deck"
-      delete_confirm: "Are you sure you want to remove this deck?"
-      delete_modal_title: "Delete this deck?"
-      delete_modal_warning: "All flashcards will be permanently deleted. This action cannot be undone."
-      delete_modal_confirm: "Delete Deck"
-      public_badge: "Public"
-      unlisted_badge: "Unlisted"
-      private_badge: "Private"
-      created: "Created"
-      cards_section: "Cards"
-      add_card: "Add Card"
-      import: "Import"
-      mode_flashcard: "Flashcard"
-      mode_study: "Study"
-      mode_learn: "Learn"
-      mode_test: "Test"
-      mode_match: "Match"
-      cards_per_page: "Cards per page"
-      locked_title: "This deck is password protected"
-      locked_description: "Enter the password to access all flashcards and study modes."
-      unlock_cta: "Unlock Deck"
-      preview_heading: "Sample Cards"
+      edit: Edit Deck
+      delete: Delete Deck
+      delete_confirm: Are you sure you want to remove this deck?
+      delete_modal_title: Delete this deck?
+      delete_modal_warning: All flashcards will be permanently deleted. This action
+        cannot be undone.
+      delete_modal_confirm: Delete Deck
+      public_badge: Public
+      unlisted_badge: Unlisted
+      private_badge: Private
+      created: Created
+      cards_section: Cards
+      add_card: Add Card
+      import: Import
+      mode_flashcard: Flashcard
+      mode_study: Study
+      mode_learn: Learn
+      mode_test: Test
+      mode_match: Match
+      cards_per_page: Cards per page
+      locked_title: This deck is password protected
+      locked_description: Enter the password to access all flashcards and study modes.
+      unlock_cta: Unlock Deck
+      preview_heading: Sample Cards
       locked_card_placeholder: "• • •"
       locked_cards_counter:
-        one: "1 card locked"
+        one: 1 card locked
         other: "%{count} cards locked"
     edit:
-      title: "Edit Deck"
+      title: Edit Deck
       back: "← Back"
     manage_access:
-      title: "Manage Access"
-      public_desc: "Anyone can find and study this deck"
-      unlisted_desc: "Only people with the link can view it"
-      private_desc: "Only you can see it"
-      visibility_heading: "Visibility"
-      access_mode_heading: "Access"
-      open_desc: "Anyone who can find this deck can study it"
-      password_desc: "Viewers must enter a password to access flashcards"
-      share_heading: "Share link"
-      share_hint: "Anyone with this link can view the deck"
-      copy_link: "Copy"
-      copy_link_copied: "Copied!"
-      visible_to: "Visible to"
-      password_is_set: "A password is set — enter a new one to change it"
+      title: Manage Access
+      public_desc: Anyone can find and study this deck
+      unlisted_desc: Only people with the link can view it
+      private_desc: Only you can see it
+      visibility_heading: Visibility
+      access_mode_heading: Access
+      open_desc: Anyone who can find this deck can study it
+      password_desc: Viewers must enter a password to access flashcards
+      share_heading: Share link
+      share_hint: Anyone with this link can view the deck
+      copy_link: Copy
+      copy_link_copied: Copied!
+      visible_to: Visible to
+      password_is_set: A password is set — enter a new one to change it
     form:
-      name_label: "Name"
-      description_label: "Description"
-      language_label: "Language (optional)"
-      language_placeholder: "e.g. en, es, fr, de"
-      tags_label: "Tags (optional)"
-      tags_hint: "Separate tags with commas."
-      tags_placeholder: "e.g. biology, anatomy, exam2025"
-      visibility_label: "Visibility"
-      visibility_section_label: "Who can view this deck?"
-      visibility_public: "Public"
-      visibility_unlisted: "Unlisted"
-      visibility_private: "Just me"
-      visibility_hint: "Public decks can be discovered and saved by anyone."
-      section_about: "About"
-      access_mode_open: "Open"
-      access_mode_password: "Password protected"
-      password_label: "Deck password"
-      password_placeholder: "Min. 8 characters"
-      password_hint: "Required to view this deck"
+      name_label: Name
+      description_label: Description
+      language_label: Language (optional)
+      language_placeholder: e.g. en, es, fr, de
+      tags_label: Tags (optional)
+      tags_hint: Separate tags with commas.
+      tags_placeholder: e.g. biology, anatomy, exam2025
+      visibility_label: Visibility
+      visibility_section_label: Who can view this deck?
+      visibility_public: Public
+      visibility_unlisted: Unlisted
+      visibility_private: Just me
+      visibility_hint: Public decks can be discovered and saved by anyone.
+      section_about: About
+      access_mode_open: Open
+      access_mode_password: Password protected
+      password_label: Deck password
+      password_placeholder: Min. 8 characters
+      password_hint: Required to view this deck
     cards:
-      page_title: "Add Cards — %{name}"
-      add_card: "Add a card"
-      save: "Save"
-      error_term: "Card %{row}: term is required."
-      error_definition: "Card %{row}: definition is required."
-      error_language: "Card %{row}: language is required for %{side}."
-      error_no_cards: "Add at least one card before saving."
-      back_label: "Back to %{name}"
+      page_title: Add Cards — %{name}
+      add_card: Add a card
+      save: Save
+      error_term: 'Card %{row}: term is required.'
+      error_definition: 'Card %{row}: definition is required.'
+      error_language: 'Card %{row}: language is required for %{side}.'
+      error_no_cards: Add at least one card before saving.
+      back_label: Back to %{name}
     card_row:
-      term_label: "Term"
-      term_placeholder: "Enter term"
-      definition_label: "Definition"
-      definition_placeholder: "Enter definition"
-      front_label: "front"
-      back_label: "back"
-      select_language: "Select language"
-      image: "Image"
-      remove: "Remove card"
-      saving: "Saving…"
+      term_label: Term
+      term_placeholder: Enter term
+      definition_label: Definition
+      definition_placeholder: Enter definition
+      front_label: front
+      back_label: back
+      select_language: Select language
+      image: Image
+      remove: Remove card
+      saving: Saving…
       saved: "✓"
       error: "!"
-    created: "Deck created."
-    default_name: "Untitled Deck"
-    create_failed: "Could not create deck. Please try again."
-    updated: "Deck updated."
-    deleted: "Deck deleted."
-    cards_saved: "Cards saved."
+    created: Deck created.
+    default_name: Untitled Deck
+    create_failed: Could not create deck. Please try again.
+    updated: Deck updated.
+    deleted: Deck deleted.
+    cards_saved: Cards saved.
     action:
-      save:                  "Save"
-      in_library:            "In your library"
-      sign_in_to_save:       "Sign in to save"
-      saved:                 "Deck added to your library."
-      already_saved:         "You already have this deck in your library."
-      unsave:                "Remove from library"
-      unsaved:               "Deck removed from your library."
-      not_in_library:        "This deck is not in your library."
-      copy:                  "Make a Copy"
-      copied:                "Copy created. You can now edit it."
-      copy_name:             "%{name} (Copy)"
-    not_available: "Deck not available."
+      copy: Make a Copy
+      copied: Copy created. You can now edit it.
+      copy_name: "%{name} (Copy)"
+    not_available: Deck not available.
     unlock:
-      title: "Password Required"
-      description: "Enter the password to view this deck."
-      password_label: "Password"
-      submit: "Unlock Deck"
-      invalid_password: "Incorrect password. Please try again."
-      success: "Deck unlocked."
+      title: Password Required
+      description: Enter the password to view this deck.
+      password_label: Password
+      submit: Unlock Deck
+      invalid_password: Incorrect password. Please try again.
+      success: Deck unlocked.
       back_to_preview: "← Back to deck"
-      help_text: "Contact the deck creator if you don't have the password."
-      submitting: "Unlocking…"
-    sidebar_no_decks: "No decks yet."
+      help_text: Contact the deck creator if you don't have the password.
+      submitting: Unlocking…
+    sidebar_no_decks: No decks yet.
     deck_card:
-      draft: "Draft"
+      draft: Draft
       due:
         one: "%{count} card due for review"
         other: "%{count} cards due for review"
@@ -304,251 +300,256 @@ en:
     new:
       back: "← Back to %{name}"
     form:
-      term_label: "Term"
-      term_placeholder: "Enter term"
-      definition_label: "Definition"
-      definition_placeholder: "Enter definition"
-      save: "Save Card →"
-    created: "Card added."
-    updated: "Card updated."
-    deleted: "Flashcard removed."
-    restored: "Flashcard restored."
+      term_label: Term
+      term_placeholder: Enter term
+      definition_label: Definition
+      definition_placeholder: Enter definition
+      save: Save Card →
+    created: Card added.
+    updated: Card updated.
+    deleted: Flashcard removed.
+    restored: Flashcard restored.
   study_modes:
     exit: "← Exit"
-    no_cards_title: "No cards yet"
-    back_to_deck: "Back to Deck"
-    time: "Time"
-    streak: "Streak"
+    no_cards_title: No cards yet
+    back_to_deck: Back to Deck
+    time: Time
+    streak: Streak
     flashcard:
-      empty_description: "Add some cards to this deck to start browsing."
+      empty_description: Add some cards to this deck to start browsing.
       keyboard_hint: "← → to navigate · Space to flip"
       previous: "← Previous"
-      next: "Next →"
-      guest_cta: "Sign in to track your progress and save your study history."
-      click_to_flip: "Click the card to flip it"
-      options: "Options"
-      track_progress: "Track progress"
-      track_progress_desc: "Keep track of what you know and what you're still learning."
-      starred_only: "Starred terms only"
-      starred_only_desc: "Study only your starred cards."
-      show_both_sides: "Show both sides of cards"
-      show_both_sides_desc: "See front and back together."
-      keyboard_shortcuts: "Keyboard shortcuts"
-      key_previous: "Previous"
-      key_next: "Next"
-      key_flip: "Flip"
-      key_star: "Star"
-      hide: "Hide"
-      restart: "Restart Flashcards"
+      next: Next →
+      guest_cta: Sign in to track your progress and save your study history.
+      click_to_flip: Click the card to flip it
+      options: Options
+      track_progress: Track progress
+      track_progress_desc: Keep track of what you know and what you're still learning.
+      starred_only: Starred terms only
+      starred_only_desc: Study only your starred cards.
+      show_both_sides: Show both sides of cards
+      show_both_sides_desc: See front and back together.
+      keyboard_shortcuts: Keyboard shortcuts
+      key_previous: Previous
+      key_next: Next
+      key_flip: Flip
+      key_star: Star
+      hide: Hide
+      restart: Restart Flashcards
     study:
-      subtitle: "Review cards and rate your recall"
-      done_label: "Done"
-      empty_title: "All caught up!"
-      empty_description: "No cards are due for review right now."
-      all_cards_tab: "All cards"
+      subtitle: Review cards and rate your recall
+      done_label: Done
+      empty_title: All caught up!
+      empty_description: No cards are due for review right now.
+      all_cards_tab: All cards
       starred_tab: "⭐ Starred"
-      summary_title: "Session complete!"
-      reviewed: "Cards reviewed"
-      accuracy: "Accuracy"
-      time_spent: "Time spent"
-      summary_sub: "No more cards due right now — great work."
-      show_answer: "Show Answer"
-      again: "Again"
-      hard: "Hard"
-      good: "Good"
-      easy: "Easy"
-      keyboard_hint: "Space to reveal · 1 Again · 2 Hard · 3 Good · 4 Easy · Esc to exit"
+      summary_title: Session complete!
+      reviewed: Cards reviewed
+      accuracy: Accuracy
+      time_spent: Time spent
+      summary_sub: No more cards due right now — great work.
+      show_answer: Show Answer
+      again: Again
+      hard: Hard
+      good: Good
+      easy: Easy
+      keyboard_hint: Space to reveal · 1 Again · 2 Hard · 3 Good · 4 Easy · Esc to
+        exit
     learn:
-      subtitle: "Type your answer to master each card"
-      mastered_label: "Mastered"
-      empty_description: "Add some flashcards to this deck before studying."
-      summary_title: "All cards mastered!"
-      studied: "Cards studied"
-      time_spent: "Time spent"
-      summary_sub: "Great work — every card is mastered."
-      study_again: "Study Again"
+      subtitle: Type your answer to master each card
+      mastered_label: Mastered
+      empty_description: Add some flashcards to this deck before studying.
+      summary_title: All cards mastered!
+      studied: Cards studied
+      time_spent: Time spent
+      summary_sub: Great work — every card is mastered.
+      study_again: Study Again
     learn_card:
-      prompt: "Define this term"
-      your_answer: "Your answer"
-      correct: "Correct!"
-      incorrect: "Incorrect"
-      correct_answer: "Correct answer:"
-      type_answer: "Type your answer…"
-      submit: "Submit"
-      keyboard_hint: "Enter to submit"
-      continue: "Continue →"
+      prompt: Define this term
+      your_answer: Your answer
+      correct: Correct!
+      incorrect: Incorrect
+      correct_answer: 'Correct answer:'
+      type_answer: Type your answer…
+      submit: Submit
+      keyboard_hint: Enter to submit
+      continue: Continue →
     test:
-      subtitle: "Test your knowledge"
-      question_label: "Question"
-      empty_description: "Add flashcards to this deck before taking a test."
-      summary_title: "Test complete!"
-      correct_answers: "Correct answers"
-      score: "Score"
-      time: "Time"
-      retake: "Retake Test"
+      subtitle: Test your knowledge
+      question_label: Question
+      empty_description: Add flashcards to this deck before taking a test.
+      summary_title: Test complete!
+      correct_answers: Correct answers
+      score: Score
+      time: Time
+      retake: Retake Test
     test_question:
-      correct: "Correct!"
-      incorrect: "Incorrect"
-      correct_answer: "Correct answer:"
-      see_results: "See Results →"
-      continue: "Continue →"
-      keyboard_hint: "Space or Enter to continue"
-      your_answer: "Your answer"
-      type_answer: "Type your answer…"
-      submit: "Submit"
-      submit_hint: "Press Enter to submit"
-      submit_matches: "Submit Matches"
+      correct: Correct!
+      incorrect: Incorrect
+      correct_answer: 'Correct answer:'
+      see_results: See Results →
+      continue: Continue →
+      keyboard_hint: Space or Enter to continue
+      your_answer: Your answer
+      type_answer: Type your answer…
+      submit: Submit
+      submit_hint: Press Enter to submit
+      submit_matches: Submit Matches
       true_btn: "✓ True"
       false_btn: "✗ False"
     match:
-      empty_description: "Add some cards to this deck to play Match."
-      completed: "All matched!"
-      play_again: "Play Again"
-      guest_cta: "Sign in to save your scores and track improvement over time."
-      subtitle: "Match the words with their meanings"
-      time: "Time"
-      pairs_left: "Pairs Left"
-      streak: "Streak"
+      empty_description: Add some cards to this deck to play Match.
+      completed: All matched!
+      play_again: Play Again
+      guest_cta: Sign in to save your scores and track improvement over time.
+      subtitle: Match the words with their meanings
+      time: Time
+      pairs_left: Pairs Left
+      streak: Streak
       progress_label: "%{pct}% Progress"
-      matched_counter: "Matched: %{matched} / %{total}"
+      matched_counter: 'Matched: %{matched} / %{total}'
   errors:
     not_found:
-      flash: "This deck is no longer available."
+      flash: This deck is no longer available.
     not_authorized:
-      flash: "You are not authorized to perform this action."
+      flash: You are not authorized to perform this action.
   explore:
-    title: "Explore"
-    subtitle: "Discover and save public decks shared by the community."
-    search_placeholder: "Search decks…"
-    search_aria: "Search public decks"
-    empty_search_title: "No decks found for \"%{query}\""
-    empty_search_description: "Try a different search term or browse all public decks."
-    empty_title: "No public decks yet"
-    empty_description: "Be the first to share a deck with the community."
-    by: "by"
-    saved_badge: "Saved"
-    locked_badge: "Password Required"
-    owner_badge:  "You"
-    by_you:       "by You"
+    title: Explore
+    subtitle: Discover and save public decks shared by the community.
+    search_placeholder: Search decks…
+    search_aria: Search public decks
+    empty_search_title: No decks found for "%{query}"
+    empty_search_description: Try a different search term or browse all public decks.
+    empty_title: No public decks yet
+    empty_description: Be the first to share a deck with the community.
+    by: by
+    locked_badge: Password Required
+    owner_badge: You
+    by_you: by You
   dashboard:
-    total_decks: "Total Decks"
-    total_cards: "Total Cards"
-    cards_due: "Cards Due"
-    current_streak: "Day Streak"
-    longest_streak: "Best Streak"
-    study_history: "Study History"
-    see_all: "See all"
-    empty_history: "Complete a study session to see your history here."
-    my_decks: "My Decks"
-    no_decks_title: "No decks yet"
-    no_decks_description: "Create your first deck to start studying."
+    total_decks: Total Decks
+    total_cards: Total Cards
+    cards_due: Cards Due
+    current_streak: Day Streak
+    longest_streak: Best Streak
+    study_history: Study History
+    see_all: See all
+    empty_history: Complete a study session to see your history here.
+    my_decks: My Decks
+    no_decks_title: No decks yet
+    no_decks_description: Create your first deck to start studying.
     history_stats: "%{cards} cards · %{accuracy}% accuracy"
     continue_studying:
-      title: "Continue Studying"
-      study_now: "Study Now →"
-      card_aria: "Continue studying %{name}"
-      study_aria: "Study %{name}"
+      title: Continue Studying
+      study_now: Study Now →
+      card_aria: Continue studying %{name}
+      study_aria: Study %{name}
       cards_due:
         one: "%{count} card due"
         other: "%{count} cards due"
   study_sessions:
-    title: "Study History"
+    title: Study History
     back: "← Dashboard"
-    empty_title: "No sessions yet"
-    empty_description: "Complete a study session and it will appear here."
-    go_to_decks: "Go to Decks"
-    deck_header: "Deck"
-    date_header: "Date"
-    reviewed_header: "Reviewed"
-    accuracy_header: "Accuracy"
-    time_header: "Time"
+    empty_title: No sessions yet
+    empty_description: Complete a study session and it will appear here.
+    go_to_decks: Go to Decks
+    deck_header: Deck
+    date_header: Date
+    reviewed_header: Reviewed
+    accuracy_header: Accuracy
+    time_header: Time
   imports:
-    title: "Import Cards — %{name}"
+    title: Import Cards — %{name}
     back: "← %{name}"
-    text_tab: "Text"
-    csv_tab: "CSV file"
-    text_hint: "Paste one card per line. Separate front and back with the delimiter you choose below."
-    text_default_format: "Default format (Quizlet-compatible):"
-    text_format_example: "front[TAB]back"
-    text_label: "Cards text"
-    separator_label: "Column separator"
-    tab_separator: "Tab (default)"
-    comma_separator: "Comma"
-    semicolon_separator: "Semicolon"
-    pipe_separator: "Pipe |"
-    submit: "Import Cards"
-    csv_hint_html: "Upload a <code>.csv</code> file with two columns (front/back, term/definition, question/answer)."
-    csv_label: "CSV file"
-    csv_submit: "Import CSV"
-    no_text: "Please paste some text to import."
-    no_file: "Please select a CSV file."
+    text_tab: Text
+    csv_tab: CSV file
+    text_hint: Paste one card per line. Separate front and back with the delimiter
+      you choose below.
+    text_default_format: 'Default format (Quizlet-compatible):'
+    text_format_example: front[TAB]back
+    text_label: Cards text
+    separator_label: Column separator
+    tab_separator: Tab (default)
+    comma_separator: Comma
+    semicolon_separator: Semicolon
+    pipe_separator: Pipe |
+    submit: Import Cards
+    csv_hint_html: Upload a <code>.csv</code> file with two columns (front/back, term/definition,
+      question/answer).
+    csv_label: CSV file
+    csv_submit: Import CSV
+    no_text: Please paste some text to import.
+    no_file: Please select a CSV file.
     imported:
-      one: "Imported 1 card."
-      other: "Imported %{count} cards."
+      one: Imported 1 card.
+      other: Imported %{count} cards.
     skipped:
       one: "%{count} line skipped."
       other: "%{count} lines skipped."
     cards_detected:
       one: "%{count} card detected"
       other: "%{count} cards detected"
-    csv_too_few_columns: "CSV must have at least 2 columns."
-    csv_no_valid_rows: "No valid rows found in the CSV."
-    csv_invalid_format: "Invalid CSV format: %{message}"
-    text_no_valid_pairs: "No valid card pairs found. Make sure each line has a front and back separated by the chosen delimiter."
-    heading: "Import your data"
-    subheading: "Copy and Paste your data here (from Word, Excel, Google Docs, etc.)"
-    col_sep_label: "Between Term and Definition"
-    row_sep_label: "Between cards"
-    sep_tab: "Tab"
-    sep_comma: "Comma"
-    sep_newline: "New Line"
-    sep_semicolon: "Semicolon"
-    sep_custom: "Custom"
-    preview_heading: "Preview"
-    preview_empty: "Nothing to preview yet."
+    csv_too_few_columns: CSV must have at least 2 columns.
+    csv_no_valid_rows: No valid rows found in the CSV.
+    csv_invalid_format: 'Invalid CSV format: %{message}'
+    text_no_valid_pairs: No valid card pairs found. Make sure each line has a front
+      and back separated by the chosen delimiter.
+    heading: Import your data
+    subheading: Copy and Paste your data here (from Word, Excel, Google Docs, etc.)
+    col_sep_label: Between Term and Definition
+    row_sep_label: Between cards
+    sep_tab: Tab
+    sep_comma: Comma
+    sep_newline: New Line
+    sep_semicolon: Semicolon
+    sep_custom: Custom
+    preview_heading: Preview
+    preview_empty: Nothing to preview yet.
     preview_count:
-      one: "1 card"
+      one: 1 card
       other: "%{count} cards"
-    term_label: "TERM"
-    definition_label: "DEFINITION"
-    cancel_import: "Cancel Import"
+    term_label: TERM
+    definition_label: DEFINITION
+    cancel_import: Cancel Import
   home:
-    hero_heading: "How do you want to study?"
-    hero_subtitle: "Master whatever you're learning with Quizly's interactive flashcards, practice tests and study activities."
-    sign_up: "Sign up for free"
-    popular_decks: "Popular Decks"
-    see_all: "See all →"
+    hero_heading: How do you want to study?
+    hero_subtitle: Master whatever you're learning with Quizly's interactive flashcards,
+      practice tests and study activities.
+    sign_up: Sign up for free
+    popular_decks: Popular Decks
+    see_all: See all →
     modes:
-      flashcards: "Flashcards"
-      learn: "Learn"
-      study: "Study"
-      test: "Test"
-      match: "Match"
-    explore_link: "Explore"
-    log_in: "Log In"
-    page_title: "Quizly — Learn Faster with Flashcards"
+      flashcards: Flashcards
+      learn: Learn
+      study: Study
+      test: Test
+      match: Match
+    explore_link: Explore
+    log_in: Log In
+    page_title: Quizly — Learn Faster with Flashcards
     carousel:
-      previous_slide: "Previous slide"
-      next_slide: "Next slide"
-      favourite: "Favourite"
-      audio: "Audio"
-      shuffle: "Shuffle"
-      previous_card: "Previous card"
-      next_card: "Next card"
-      fullscreen: "Fullscreen"
-      go_to_slide: "Go to slide %{n}"
+      previous_slide: Previous slide
+      next_slide: Next slide
+      favourite: Favourite
+      audio: Audio
+      shuffle: Shuffle
+      previous_card: Previous card
+      next_card: Next card
+      fullscreen: Fullscreen
+      go_to_slide: Go to slide %{n}
   settings:
-    language_updated: "Language updated."
+    language_updated: Language updated.
   starred_cards:
-    unstar: "Unstar this card"
-    star: "Star this card"
+    unstar: Unstar this card
+    star: Star this card
   passwords_mailer:
-    reset_subject: "Reset your password"
-    reset_body: "You can reset your password within the next 15 minutes on"
-    reset_link_text: "this password reset page"
-    reset_text_body: "You can reset your password within the next 15 minutes on this password reset page:"
+    reset_subject: Reset your password
+    reset_body: You can reset your password within the next 15 minutes on
+    reset_link_text: this password reset page
+    reset_text_body: 'You can reset your password within the next 15 minutes on this
+      password reset page:'
   question_engine:
-    match_prompt: "Match each term to its definition"
+    match_prompt: Match each term to its definition
   time:
     none: "—"
     seconds: "%{n}s"
@@ -557,14 +558,14 @@ en:
     hours: "%{h}h"
     hours_minutes: "%{h}h %{m}m"
   notifications:
-    bell_aria: "Notifications"
-    title: "Notifications"
-    empty: "No notifications yet"
-    mark_all_read: "Mark all as read"
-    mark_read: "Mark as read"
-    time_ago: "ago"
+    bell_aria: Notifications
+    title: Notifications
+    empty: No notifications yet
+    mark_all_read: Mark all as read
+    mark_read: Mark as read
+    time_ago: ago
     events:
-      badge_earned: "You earned a new badge"
+      badge_earned: You earned a new badge
       followed: "%{actor} started following you"
       deck_commented: "%{actor} commented on your deck"
       deck_reacted: "%{actor} reacted to your deck"
@@ -574,17 +575,7 @@ en:
         deck:
           attributes:
             base:
-              not_ready_to_share: "Add at least one flashcard before sharing this deck."
+              not_ready_to_share: Add at least one flashcard before sharing this deck.
             access_mode:
-              invalid_for_private_deck: "Private decks cannot be password-protected — only you can see them anyway."
-        library_item:
-          attributes:
-            base:
-              own_deck: "You cannot save your own deck to your library."
-            password:
-              too_short:
-                one: "is too short (minimum is %{count} character)"
-                other: "is too short (minimum is %{count} characters)"
-              too_long:
-                one: "is too long (maximum is %{count} character)"
-                other: "is too long (maximum is %{count} characters)"
+              invalid_for_private_deck: Private decks cannot be password-protected
+                — only you can see them anyway.

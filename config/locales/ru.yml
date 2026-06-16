@@ -1,299 +1,298 @@
+---
 ru:
   nav:
-    home: "Главная"
-    explore: "Обзор"
-    my_library: "Моя библиотека"
+    home: Главная
+    explore: Обзор
+    my_library: Моя библиотека
   topbar:
-    search_placeholder: "Поиск колод…"
-    search_aria: "Поиск колод"
-    create_menu_aria: "Меню создания"
-    create_menu_tooltip: "Создать"
+    search_placeholder: Поиск колод…
+    search_aria: Поиск колод
+    create_menu_aria: Меню создания
+    create_menu_tooltip: Создать
     create:
-      flashcard_set: "Набор карточек"
-      study_guide: "Учебное пособие"
-      practice_test: "Пробный тест"
-      folder: "Папка"
-      study_group: "Учебная группа"
-    open_navigation: "Открыть навигацию"
-    close_navigation: "Закрыть навигацию"
+      flashcard_set: Набор карточек
+      study_guide: Учебное пособие
+      practice_test: Пробный тест
+      folder: Папка
+      study_group: Учебная группа
+    open_navigation: Открыть навигацию
+    close_navigation: Закрыть навигацию
   menu:
-    settings: "Настройки"
-    dark_mode: "Тёмный режим"
-    light_mode: "Светлый режим"
-    log_out: "Выйти"
-    language: "Язык"
+    settings: Настройки
+    dark_mode: Тёмный режим
+    light_mode: Светлый режим
+    log_out: Выйти
+    language: Язык
   shared:
-    cancel: "Отмена"
-    close: "Закрыть"
-    delete: "Удалить"
-    edit: "Редактировать"
-    undo: "Отменить"
+    cancel: Отмена
+    close: Закрыть
+    delete: Удалить
+    edit: Редактировать
+    undo: Отменить
     modal:
-      type_to_confirm: "Введите %{word} для подтверждения"
-    save: "Сохранить"
+      type_to_confirm: Введите %{word} для подтверждения
+    save: Сохранить
     back: "← Назад"
-    sign_in: "Войти"
-    sign_up_free: "Зарегистрироваться бесплатно"
-    previous_page: "Предыдущая страница"
-    next_page: "Следующая страница"
-    not_available: "Н/Д"
+    sign_in: Войти
+    sign_up_free: Зарегистрироваться бесплатно
+    previous_page: Предыдущая страница
+    next_page: Следующая страница
+    not_available: Н/Д
   auth:
-    back_to_home: "На главную"
+    back_to_home: На главную
     panel:
-      heading: "Учись умнее, а не тяжелее"
-      tagline: "Quizly использует интервальное повторение, чтобы показывать нужную карточку в нужный момент — знания остаются надолго."
-      feature_scheduling: "Научно обоснованный алгоритм SM-2"
-      feature_decks: "Колоды, которые ты создаёшь и которыми владеешь"
-      feature_progress: "Прогресс, который накапливается со временем"
+      heading: Учись умнее, а не тяжелее
+      tagline: Quizly использует интервальное повторение, чтобы показывать нужную
+        карточку в нужный момент — знания остаются надолго.
+      feature_scheduling: Научно обоснованный алгоритм SM-2
+      feature_decks: Колоды, которые ты создаёшь и которыми владеешь
+      feature_progress: Прогресс, который накапливается со временем
   sessions:
-    title: "Войти"
-    heading: "С возвращением!"
-    subheading: "Войдите, чтобы получить доступ к панели управления и продолжить обучение."
-    email_label: "Электронная почта"
-    email_placeholder: "Введите email"
-    password_label: "Пароль"
-    password_placeholder: "Введите пароль"
-    toggle_password: "Показать/скрыть пароль"
-    forgot_password: "Забыли пароль?"
-    submit: "Войти"
-    no_account: "Нет аккаунта?"
-    sign_up: "Зарегистрироваться"
+    title: Войти
+    heading: С возвращением!
+    subheading: Войдите, чтобы получить доступ к панели управления и продолжить обучение.
+    email_label: Электронная почта
+    email_placeholder: Введите email
+    password_label: Пароль
+    password_placeholder: Введите пароль
+    toggle_password: Показать/скрыть пароль
+    forgot_password: Забыли пароль?
+    submit: Войти
+    no_account: Нет аккаунта?
+    sign_up: Зарегистрироваться
     errors:
-      rate_limited: "Попробуйте позже."
-      invalid: "Попробуйте другой email или пароль."
+      rate_limited: Попробуйте позже.
+      invalid: Попробуйте другой email или пароль.
   registrations:
-    title: "Регистрация"
-    heading: "Создать аккаунт"
-    subheading: "Начните создавать колоды и учиться умнее."
-    email_label: "Электронная почта"
-    email_placeholder: "Введите email"
-    password_label: "Пароль"
-    password_placeholder: "Не менее 8 символов"
-    confirm_label: "Подтвердите пароль"
-    confirm_placeholder: "Повторите пароль"
-    toggle_password: "Показать/скрыть пароль"
-    submit: "Создать аккаунт"
-    have_account: "Уже есть аккаунт?"
-    sign_in_link: "Войти"
-    created: "Добро пожаловать в Quizly!"
+    title: Регистрация
+    heading: Создать аккаунт
+    subheading: Начните создавать колоды и учиться умнее.
+    email_label: Электронная почта
+    email_placeholder: Введите email
+    password_label: Пароль
+    password_placeholder: Не менее 8 символов
+    confirm_label: Подтвердите пароль
+    confirm_placeholder: Повторите пароль
+    toggle_password: Показать/скрыть пароль
+    submit: Создать аккаунт
+    have_account: Уже есть аккаунт?
+    sign_in_link: Войти
+    created: Добро пожаловать в Quizly!
     errors:
-      rate_limited: "Попробуйте позже."
+      rate_limited: Попробуйте позже.
   passwords:
     new:
-      title: "Забыли пароль"
-      heading: "Забыли пароль?"
-      subheading: "Введите email, и мы отправим инструкции по сбросу."
-      email_label: "Электронная почта"
-      email_placeholder: "Введите email"
-      submit: "Отправить инструкции"
+      title: Забыли пароль
+      heading: Забыли пароль?
+      subheading: Введите email, и мы отправим инструкции по сбросу.
+      email_label: Электронная почта
+      email_placeholder: Введите email
+      submit: Отправить инструкции
       back: "← Вернуться к входу"
     edit:
-      title: "Сброс пароля"
-      heading: "Сбросить пароль"
-      subheading: "Выберите новый пароль для аккаунта."
-      password_label: "Новый пароль"
-      password_placeholder: "Не менее 8 символов"
-      confirm_label: "Подтвердите новый пароль"
-      confirm_placeholder: "Повторите пароль"
-      toggle_password: "Показать/скрыть пароль"
-      submit: "Сохранить новый пароль"
+      title: Сброс пароля
+      heading: Сбросить пароль
+      subheading: Выберите новый пароль для аккаунта.
+      password_label: Новый пароль
+      password_placeholder: Не менее 8 символов
+      confirm_label: Подтвердите новый пароль
+      confirm_placeholder: Повторите пароль
+      toggle_password: Показать/скрыть пароль
+      submit: Сохранить новый пароль
       back: "← Вернуться к входу"
-    sent: "Инструкции по сбросу отправлены (если пользователь с таким email существует)."
-    reset: "Пароль успешно изменён."
-    mismatch: "Пароли не совпадают."
-    invalid: "Ссылка для сброса пароля недействительна или устарела."
+    sent: Инструкции по сбросу отправлены (если пользователь с таким email существует).
+    reset: Пароль успешно изменён.
+    mismatch: Пароли не совпадают.
+    invalid: Ссылка для сброса пароля недействительна или устарела.
     errors:
-      rate_limited: "Попробуйте позже."
+      rate_limited: Попробуйте позже.
   accounts:
-    title: "Настройки"
-    personal_info: "Личная информация"
-    profile_picture_heading: "Фото профиля"
-    remove_photo: "Удалить фото"
-    remove_photo_confirm: "Вы уверены, что хотите удалить фото профиля?"
-    remove_photo_modal_title: "Удалить изображение профиля"
-    remove_photo_modal_warning: "Это действие нельзя отменить."
-    remove_photo_modal_confirm: "Удалить фото"
-    email_label: "Электронная почта"
-    username_label: "Имя пользователя"
-    username_hint_html: "Оставьте пустым, чтобы использовать имя пользователя из email (%{email})"
-    account_type_label: "Тип аккаунта"
-    password_min_hint: "Не менее 8 символов"
-    account_type_student: "Студент"
-    account_type_teacher: "Преподаватель"
-    change_password: "Изменить пароль"
-    current_password_placeholder: "Текущий пароль"
-    new_password_label: "Новый пароль"
-    confirm_password_label: "Подтвердите новый пароль"
-    update_password: "Обновить пароль"
-    appearance_section: "Внешний вид"
-    theme_label: "Тема"
-    language_label: "Язык"
-    search_languages: "Поиск языков"
-    your_languages: "Ваши языки"
-    achievements_section: "Достижения"
-    no_badges: "Пока нет значков. Продолжайте учиться, чтобы открыть достижения!"
-    badge_earned_on: "Получено %{date}"
-    delete_title: "Удалить аккаунт"
-    delete_description: "Навсегда удалите аккаунт и все связанные данные. Это действие нельзя отменить."
-    delete_button: "Удалить аккаунт"
-    delete_confirm: "Вы уверены, что хотите удалить аккаунт?"
-    delete_confirmation_failed: "Пожалуйста, введите DELETE для подтверждения удаления аккаунта."
-    delete_modal_warning: "Это навсегда удалит ваш аккаунт и все связанные данные — колоды, карточки и историю обучения. Это действие нельзя отменить."
-    delete_modal_confirm: "Удалить аккаунт"
+    title: Настройки
+    personal_info: Личная информация
+    profile_picture_heading: Фото профиля
+    remove_photo: Удалить фото
+    remove_photo_confirm: Вы уверены, что хотите удалить фото профиля?
+    remove_photo_modal_title: Удалить изображение профиля
+    remove_photo_modal_warning: Это действие нельзя отменить.
+    remove_photo_modal_confirm: Удалить фото
+    email_label: Электронная почта
+    username_label: Имя пользователя
+    username_hint_html: Оставьте пустым, чтобы использовать имя пользователя из email
+      (%{email})
+    account_type_label: Тип аккаунта
+    password_min_hint: Не менее 8 символов
+    account_type_student: Студент
+    account_type_teacher: Преподаватель
+    change_password: Изменить пароль
+    current_password_placeholder: Текущий пароль
+    new_password_label: Новый пароль
+    confirm_password_label: Подтвердите новый пароль
+    update_password: Обновить пароль
+    appearance_section: Внешний вид
+    theme_label: Тема
+    language_label: Язык
+    search_languages: Поиск языков
+    your_languages: Ваши языки
+    achievements_section: Достижения
+    no_badges: Пока нет значков. Продолжайте учиться, чтобы открыть достижения!
+    badge_earned_on: Получено %{date}
+    delete_title: Удалить аккаунт
+    delete_description: Навсегда удалите аккаунт и все связанные данные. Это действие
+      нельзя отменить.
+    delete_button: Удалить аккаунт
+    delete_confirm: Вы уверены, что хотите удалить аккаунт?
+    delete_confirmation_failed: Пожалуйста, введите DELETE для подтверждения удаления
+      аккаунта.
+    delete_modal_warning: Это навсегда удалит ваш аккаунт и все связанные данные —
+      колоды, карточки и историю обучения. Это действие нельзя отменить.
+    delete_modal_confirm: Удалить аккаунт
     updated:
-      profile: "Профиль обновлён."
-      email: "Email обновлён."
-      password: "Пароль обновлён."
-      language: "Язык обновлён."
-      notifications: "Настройки уведомлений сохранены."
-    avatar_removed: "Фото профиля удалено."
-    deleted: "Ваш аккаунт удалён."
-    profile_photo_alt: "Фото профиля"
-    select_avatar: "Выбрать аватар"
-    upload_photo_title: "Загрузить собственное фото"
-    toggle_password: "Показать/скрыть пароль"
-    notifications_section: "Уведомления"
-    notif_personalised_updates: "Персонализированные обновления обучения"
-    notif_streaks_badges: "Серии и значки"
-    notif_study_reminders: "Напоминания об обучении"
-    notif_choose_reminder_time: "Выберите время для получения напоминаний об обучении"
-    notif_time_zone: "Часовой пояс"
-    notif_email_label: "Уведомление по электронной почте"
-    theme_auto: "Авто"
-    theme_light: "Светлая"
-    theme_dark: "Тёмная"
-    password_incorrect: "неверный"
-    avatar_format_error: "Неверный формат файла. Пожалуйста, загрузите JPG, PNG или WEBP."
-    avatar_size_error: "Фото профиля должно быть меньше 5 МБ."
+      profile: Профиль обновлён.
+      email: Email обновлён.
+      password: Пароль обновлён.
+      language: Язык обновлён.
+      notifications: Настройки уведомлений сохранены.
+    avatar_removed: Фото профиля удалено.
+    deleted: Ваш аккаунт удалён.
+    profile_photo_alt: Фото профиля
+    select_avatar: Выбрать аватар
+    upload_photo_title: Загрузить собственное фото
+    toggle_password: Показать/скрыть пароль
+    notifications_section: Уведомления
+    notif_personalised_updates: Персонализированные обновления обучения
+    notif_streaks_badges: Серии и значки
+    notif_study_reminders: Напоминания об обучении
+    notif_choose_reminder_time: Выберите время для получения напоминаний об обучении
+    notif_time_zone: Часовой пояс
+    notif_email_label: Уведомление по электронной почте
+    theme_auto: Авто
+    theme_light: Светлая
+    theme_dark: Тёмная
+    password_incorrect: неверный
+    avatar_format_error: Неверный формат файла. Пожалуйста, загрузите JPG, PNG или
+      WEBP.
+    avatar_size_error: Фото профиля должно быть меньше 5 МБ.
   decks:
     index:
-      title: "Мои колоды"
-      sort_recent: "Недавние"
-      sort_az: "А–Я"
-      sort_most_due: "Больше всего к повторению"
-      empty_title: "Колод пока нет"
-      empty_description: "Создайте первую колоду, чтобы начать учиться."
-      saved_section_title: "Сохранённые колоды"
+      title: Мои колоды
+      sort_recent: Недавние
+      sort_az: А–Я
+      sort_most_due: Больше всего к повторению
+      empty_title: Колод пока нет
+      empty_description: Создайте первую колоду, чтобы начать учиться.
     show:
-      edit: "Редактировать колоду"
-      delete: "Удалить колоду"
-      delete_confirm: "Вы уверены, что хотите удалить эту колоду?"
-      delete_modal_title: "Удалить эту колоду?"
-      delete_modal_warning: "Все карточки будут удалены безвозвратно. Это действие нельзя отменить."
-      delete_modal_confirm: "Удалить колоду"
-      unlisted_badge: "Скрытая"
-      public_badge: "Публичная"
-      private_badge: "Приватная"
-      created: "Создана"
-      cards_section: "Карточки"
-      add_card: "Добавить карточку"
-      import: "Импорт"
-      mode_flashcard: "Карточки"
-      mode_study: "Изучение"
-      mode_learn: "Тренировка"
-      mode_test: "Тест"
-      mode_match: "Совпадения"
-      cards_per_page: "Карточек на страницу"
-      locked_title: "This deck is password protected"
-      locked_description: "Enter the password to access all flashcards and study modes."
-      unlock_cta: "Unlock Deck"
-      preview_heading: "Sample Cards"
+      edit: Редактировать колоду
+      delete: Удалить колоду
+      delete_confirm: Вы уверены, что хотите удалить эту колоду?
+      delete_modal_title: Удалить эту колоду?
+      delete_modal_warning: Все карточки будут удалены безвозвратно. Это действие
+        нельзя отменить.
+      delete_modal_confirm: Удалить колоду
+      unlisted_badge: Скрытая
+      public_badge: Публичная
+      private_badge: Приватная
+      created: Создана
+      cards_section: Карточки
+      add_card: Добавить карточку
+      import: Импорт
+      mode_flashcard: Карточки
+      mode_study: Изучение
+      mode_learn: Тренировка
+      mode_test: Тест
+      mode_match: Совпадения
+      cards_per_page: Карточек на страницу
+      locked_title: This deck is password protected
+      locked_description: Enter the password to access all flashcards and study modes.
+      unlock_cta: Unlock Deck
+      preview_heading: Sample Cards
       locked_card_placeholder: "• • •"
       locked_cards_counter:
-        one: "1 card locked"
+        one: 1 card locked
         other: "%{count} cards locked"
     edit:
-      title: "Редактировать колоду"
+      title: Редактировать колоду
       back: "← Назад"
     manage_access:
-      title: "Управление доступом"
-      public_desc: "Любой может найти и изучить эту колоду"
-      unlisted_desc: "Только люди со ссылкой могут видеть"
-      private_desc: "Только вы"
-      visibility_heading: "Видимость"
-      access_mode_heading: "Access"
-      open_desc: "Anyone who can find this deck can study it"
-      password_desc: "Viewers must enter a password to access flashcards"
-      share_heading: "Поделиться ссылкой"
-      share_hint: "Любой с этой ссылкой может просмотреть колоду"
-      copy_link: "Копировать"
-      copy_link_copied: "Скопировано!"
-      visible_to: "Видно для"
-      password_is_set: "A password is set — enter a new one to change it"
+      title: Управление доступом
+      public_desc: Любой может найти и изучить эту колоду
+      unlisted_desc: Только люди со ссылкой могут видеть
+      private_desc: Только вы
+      visibility_heading: Видимость
+      access_mode_heading: Access
+      open_desc: Anyone who can find this deck can study it
+      password_desc: Viewers must enter a password to access flashcards
+      share_heading: Поделиться ссылкой
+      share_hint: Любой с этой ссылкой может просмотреть колоду
+      copy_link: Копировать
+      copy_link_copied: Скопировано!
+      visible_to: Видно для
+      password_is_set: A password is set — enter a new one to change it
     form:
-      name_label: "Название"
-      description_label: "Описание"
-      language_label: "Язык (необязательно)"
-      language_placeholder: "напр. en, ru, de"
-      tags_label: "Теги (необязательно)"
-      tags_hint: "Разделяйте теги запятыми."
-      tags_placeholder: "напр. биология, анатомия, экзамен2025"
-      visibility_label: "Видимость"
-      visibility_section_label: "Кто может видеть эту колоду?"
-      visibility_unlisted: "Скрытая"
-      section_about: "Информация"
-      access_mode_open: "Open"
-      access_mode_password: "Password protected"
-      visibility_private: "Только я"
-      visibility_public: "Публичная"
-      visibility_hint: "Публичные колоды могут найти и скопировать все желающие."
-      password_label: "Пароль колоды"
-      password_placeholder: "Мин. 8 символов"
-      password_hint: "Required to view this deck"
+      name_label: Название
+      description_label: Описание
+      language_label: Язык (необязательно)
+      language_placeholder: напр. en, ru, de
+      tags_label: Теги (необязательно)
+      tags_hint: Разделяйте теги запятыми.
+      tags_placeholder: напр. биология, анатомия, экзамен2025
+      visibility_label: Видимость
+      visibility_section_label: Кто может видеть эту колоду?
+      visibility_unlisted: Скрытая
+      section_about: Информация
+      access_mode_open: Open
+      access_mode_password: Password protected
+      visibility_private: Только я
+      visibility_public: Публичная
+      visibility_hint: Публичные колоды могут найти и скопировать все желающие.
+      password_label: Пароль колоды
+      password_placeholder: Мин. 8 символов
+      password_hint: Required to view this deck
     cards:
-      page_title: "Добавить карточки — %{name}"
-      add_card: "Добавить карточку"
-      save: "Сохранить"
-      error_term: "Карточка %{row}: термин обязателен."
-      error_definition: "Карточка %{row}: определение обязательно."
-      error_language: "Карточка %{row}: язык обязателен для %{side}."
-      error_no_cards: "Добавьте хотя бы одну карточку перед сохранением."
-      back_label: "Назад к %{name}"
+      page_title: Добавить карточки — %{name}
+      add_card: Добавить карточку
+      save: Сохранить
+      error_term: 'Карточка %{row}: термин обязателен.'
+      error_definition: 'Карточка %{row}: определение обязательно.'
+      error_language: 'Карточка %{row}: язык обязателен для %{side}.'
+      error_no_cards: Добавьте хотя бы одну карточку перед сохранением.
+      back_label: Назад к %{name}
     card_row:
-      term_label: "Термин"
-      term_placeholder: "Введите термин"
-      definition_label: "Определение"
-      definition_placeholder: "Введите определение"
-      front_label: "лицевая"
-      back_label: "оборотная"
-      select_language: "Выбрать язык"
-      image: "Изображение"
-      remove: "Удалить карточку"
-      saving: "Сохранение…"
+      term_label: Термин
+      term_placeholder: Введите термин
+      definition_label: Определение
+      definition_placeholder: Введите определение
+      front_label: лицевая
+      back_label: оборотная
+      select_language: Выбрать язык
+      image: Изображение
+      remove: Удалить карточку
+      saving: Сохранение…
       saved: "✓"
       error: "!"
-    created: "Колода создана."
-    default_name: "Колода без названия"
-    create_failed: "Не удалось создать колоду. Пожалуйста, попробуйте ещё раз."
-    updated: "Колода обновлена."
-    deleted: "Колода удалена."
-    cards_saved: "Карточки сохранены."
+    created: Колода создана.
+    default_name: Колода без названия
+    create_failed: Не удалось создать колоду. Пожалуйста, попробуйте ещё раз.
+    updated: Колода обновлена.
+    deleted: Колода удалена.
+    cards_saved: Карточки сохранены.
     action:
-      save:                  "Сохранить"
-      in_library:            "В вашей библиотеке"
-      sign_in_to_save:       "Войдите для сохранения"
-      saved:                 "Колода добавлена в вашу библиотеку."
-      already_saved:         "Эта колода уже есть в вашей библиотеке."
-      unsave:                "Убрать из библиотеки"
-      unsaved:               "Колода убрана из вашей библиотеки."
-      not_in_library:        "Эта колода не в вашей библиотеке."
-      copy:                  "Сделать копию"
-      copied:                "Копия создана. Теперь вы можете её редактировать."
-      copy_name:             "%{name} (Копия)"
-    not_available: "Колода недоступна."
+      copy: Сделать копию
+      copied: Копия создана. Теперь вы можете её редактировать.
+      copy_name: "%{name} (Копия)"
+    not_available: Колода недоступна.
     unlock:
-      title: "Требуется пароль"
-      description: "Эта колода защищена. Введите пароль, чтобы продолжить."
-      password_label: "Пароль"
-      submit: "Разблокировать колоду"
-      invalid_password: "Неверный пароль. Пожалуйста, попробуйте снова."
-      success: "Доступ предоставлен."
+      title: Требуется пароль
+      description: Эта колода защищена. Введите пароль, чтобы продолжить.
+      password_label: Пароль
+      submit: Разблокировать колоду
+      invalid_password: Неверный пароль. Пожалуйста, попробуйте снова.
+      success: Доступ предоставлен.
       back_to_preview: "← Back to deck"
-      help_text: "Contact the deck creator if you don't have the password."
-      submitting: "Unlocking…"
-    sidebar_no_decks: "Колод пока нет."
+      help_text: Contact the deck creator if you don't have the password.
+      submitting: Unlocking…
+    sidebar_no_decks: Колод пока нет.
     deck_card:
-      draft: "Черновик"
+      draft: Черновик
       due:
         one: "%{count} карточка к повторению"
         few: "%{count} карточки к повторению"
@@ -308,261 +307,267 @@ ru:
     new:
       back: "← Назад к %{name}"
     form:
-      term_label: "Термин"
-      term_placeholder: "Введите термин"
-      definition_label: "Определение"
-      definition_placeholder: "Введите определение"
-      save: "Сохранить карточку →"
-    created: "Карточка добавлена."
-    updated: "Карточка обновлена."
-    deleted: "Флэш-карточка удалена."
-    restored: "Флэш-карточка восстановлена."
+      term_label: Термин
+      term_placeholder: Введите термин
+      definition_label: Определение
+      definition_placeholder: Введите определение
+      save: Сохранить карточку →
+    created: Карточка добавлена.
+    updated: Карточка обновлена.
+    deleted: Флэш-карточка удалена.
+    restored: Флэш-карточка восстановлена.
   study_modes:
     exit: "← Выйти"
-    no_cards_title: "Карточек пока нет"
-    back_to_deck: "Вернуться к колоде"
-    time: "Время"
-    streak: "Серия"
+    no_cards_title: Карточек пока нет
+    back_to_deck: Вернуться к колоде
+    time: Время
+    streak: Серия
     flashcard:
-      empty_description: "Добавьте несколько карточек в эту колоду, чтобы начать."
+      empty_description: Добавьте несколько карточек в эту колоду, чтобы начать.
       keyboard_hint: "← → для навигации · Пробел для перелистывания"
       previous: "← Предыдущая"
-      next: "Следующая →"
-      guest_cta: "Войдите, чтобы отслеживать прогресс и сохранять историю занятий."
-      click_to_flip: "Нажмите на карточку, чтобы перевернуть"
-      options: "Параметры"
-      track_progress: "Отслеживать прогресс"
-      track_progress_desc: "Следите за тем, что вы знаете и что ещё учите."
-      starred_only: "Только отмеченные термины"
-      starred_only_desc: "Изучайте только отмеченные карточки."
-      show_both_sides: "Показать обе стороны"
-      show_both_sides_desc: "Смотреть лицевую и оборотную стороны вместе."
-      keyboard_shortcuts: "Горячие клавиши"
-      key_previous: "Назад"
-      key_next: "Вперёд"
-      key_flip: "Перевернуть"
-      key_star: "Отметить"
-      hide: "Скрыть"
-      restart: "Перезапустить карточки"
+      next: Следующая →
+      guest_cta: Войдите, чтобы отслеживать прогресс и сохранять историю занятий.
+      click_to_flip: Нажмите на карточку, чтобы перевернуть
+      options: Параметры
+      track_progress: Отслеживать прогресс
+      track_progress_desc: Следите за тем, что вы знаете и что ещё учите.
+      starred_only: Только отмеченные термины
+      starred_only_desc: Изучайте только отмеченные карточки.
+      show_both_sides: Показать обе стороны
+      show_both_sides_desc: Смотреть лицевую и оборотную стороны вместе.
+      keyboard_shortcuts: Горячие клавиши
+      key_previous: Назад
+      key_next: Вперёд
+      key_flip: Перевернуть
+      key_star: Отметить
+      hide: Скрыть
+      restart: Перезапустить карточки
     study:
-      subtitle: "Просматривайте карточки и оценивайте своё запоминание"
-      done_label: "Выполнено"
-      empty_title: "Всё сделано!"
-      empty_description: "Сейчас нет карточек для повторения."
-      all_cards_tab: "Все карточки"
+      subtitle: Просматривайте карточки и оценивайте своё запоминание
+      done_label: Выполнено
+      empty_title: Всё сделано!
+      empty_description: Сейчас нет карточек для повторения.
+      all_cards_tab: Все карточки
       starred_tab: "⭐ Избранные"
-      summary_title: "Сессия завершена!"
-      reviewed: "Повторено карточек"
-      accuracy: "Точность"
-      time_spent: "Затраченное время"
-      summary_sub: "Больше нет карточек для повторения — отличная работа."
-      show_answer: "Показать ответ"
-      again: "Ещё раз"
-      hard: "Сложно"
-      good: "Хорошо"
-      easy: "Легко"
-      keyboard_hint: "Пробел для показа · 1 Ещё раз · 2 Сложно · 3 Хорошо · 4 Легко · Esc для выхода"
+      summary_title: Сессия завершена!
+      reviewed: Повторено карточек
+      accuracy: Точность
+      time_spent: Затраченное время
+      summary_sub: Больше нет карточек для повторения — отличная работа.
+      show_answer: Показать ответ
+      again: Ещё раз
+      hard: Сложно
+      good: Хорошо
+      easy: Легко
+      keyboard_hint: Пробел для показа · 1 Ещё раз · 2 Сложно · 3 Хорошо · 4 Легко
+        · Esc для выхода
     learn:
-      subtitle: "Напишите ответ, чтобы освоить каждую карточку"
-      mastered_label: "Освоено"
-      empty_description: "Добавьте карточки в эту колоду перед изучением."
-      summary_title: "Все карточки освоены!"
-      studied: "Изучено карточек"
-      time_spent: "Затраченное время"
-      summary_sub: "Отличная работа — все карточки освоены."
-      study_again: "Учить снова"
+      subtitle: Напишите ответ, чтобы освоить каждую карточку
+      mastered_label: Освоено
+      empty_description: Добавьте карточки в эту колоду перед изучением.
+      summary_title: Все карточки освоены!
+      studied: Изучено карточек
+      time_spent: Затраченное время
+      summary_sub: Отличная работа — все карточки освоены.
+      study_again: Учить снова
     learn_card:
-      prompt: "Дайте определение термину"
-      your_answer: "Ваш ответ"
-      correct: "Верно!"
-      incorrect: "Неверно"
-      correct_answer: "Правильный ответ:"
-      type_answer: "Введите ответ…"
-      submit: "Отправить"
-      keyboard_hint: "Enter для отправки"
-      continue: "Продолжить →"
+      prompt: Дайте определение термину
+      your_answer: Ваш ответ
+      correct: Верно!
+      incorrect: Неверно
+      correct_answer: 'Правильный ответ:'
+      type_answer: Введите ответ…
+      submit: Отправить
+      keyboard_hint: Enter для отправки
+      continue: Продолжить →
     test:
-      subtitle: "Проверьте свои знания"
-      question_label: "Вопрос"
-      empty_description: "Добавьте карточки в эту колоду перед прохождением теста."
-      summary_title: "Тест завершён!"
-      correct_answers: "Правильные ответы"
-      score: "Результат"
-      time: "Время"
-      retake: "Пройти тест снова"
+      subtitle: Проверьте свои знания
+      question_label: Вопрос
+      empty_description: Добавьте карточки в эту колоду перед прохождением теста.
+      summary_title: Тест завершён!
+      correct_answers: Правильные ответы
+      score: Результат
+      time: Время
+      retake: Пройти тест снова
     test_question:
-      correct: "Верно!"
-      incorrect: "Неверно"
-      correct_answer: "Правильный ответ:"
-      see_results: "Посмотреть результаты →"
-      continue: "Продолжить →"
-      keyboard_hint: "Пробел или Enter для продолжения"
-      your_answer: "Ваш ответ"
-      type_answer: "Введите ответ…"
-      submit: "Отправить"
-      submit_hint: "Нажмите Enter для отправки"
-      submit_matches: "Отправить совпадения"
+      correct: Верно!
+      incorrect: Неверно
+      correct_answer: 'Правильный ответ:'
+      see_results: Посмотреть результаты →
+      continue: Продолжить →
+      keyboard_hint: Пробел или Enter для продолжения
+      your_answer: Ваш ответ
+      type_answer: Введите ответ…
+      submit: Отправить
+      submit_hint: Нажмите Enter для отправки
+      submit_matches: Отправить совпадения
       true_btn: "✓ Верно"
       false_btn: "✗ Неверно"
     match:
-      empty_description: "Добавьте карточки в эту колоду, чтобы играть в Совпадения."
-      completed: "Все совпало!"
-      play_again: "Играть снова"
-      guest_cta: "Войдите, чтобы сохранять результаты и отслеживать прогресс."
-      subtitle: "Сопоставьте слова с их значениями"
-      time: "Время"
-      pairs_left: "Осталось пар"
-      streak: "Серия"
+      empty_description: Добавьте карточки в эту колоду, чтобы играть в Совпадения.
+      completed: Все совпало!
+      play_again: Играть снова
+      guest_cta: Войдите, чтобы сохранять результаты и отслеживать прогресс.
+      subtitle: Сопоставьте слова с их значениями
+      time: Время
+      pairs_left: Осталось пар
+      streak: Серия
       progress_label: "%{pct}% прогресса"
-      matched_counter: "Совпало: %{matched} / %{total}"
+      matched_counter: 'Совпало: %{matched} / %{total}'
   errors:
     not_found:
-      flash: "This deck is no longer available."
+      flash: This deck is no longer available.
     not_authorized:
-      flash: "You are not authorized to perform this action."
+      flash: You are not authorized to perform this action.
   explore:
-    title: "Обзор"
-    subtitle: "Находите и копируйте публичные колоды, которыми делится сообщество."
-    search_placeholder: "Поиск колод…"
-    search_aria: "Поиск публичных колод"
-    empty_search_title: "Колоды по запросу \"%{query}\" не найдены"
-    empty_search_description: "Попробуйте другой поисковый запрос или просмотрите все публичные колоды."
-    empty_title: "Публичных колод пока нет"
-    empty_description: "Будьте первым, кто поделится колодой с сообществом."
-    by: "от"
-    saved_badge: "Сохранено"
-    locked_badge: "Password Required"
-    owner_badge:  "Вы"
-    by_you:       "от вас"
+    title: Обзор
+    subtitle: Находите и копируйте публичные колоды, которыми делится сообщество.
+    search_placeholder: Поиск колод…
+    search_aria: Поиск публичных колод
+    empty_search_title: Колоды по запросу "%{query}" не найдены
+    empty_search_description: Попробуйте другой поисковый запрос или просмотрите все
+      публичные колоды.
+    empty_title: Публичных колод пока нет
+    empty_description: Будьте первым, кто поделится колодой с сообществом.
+    by: от
+    locked_badge: Password Required
+    owner_badge: Вы
+    by_you: от вас
   dashboard:
-    total_decks: "Всего колод"
-    total_cards: "Всего карточек"
-    cards_due: "К повторению"
-    current_streak: "Серия дней"
-    longest_streak: "Лучшая серия"
-    study_history: "История занятий"
-    see_all: "Все"
-    empty_history: "Завершите сессию, чтобы увидеть историю здесь."
-    my_decks: "Мои колоды"
-    no_decks_title: "Колод пока нет"
-    no_decks_description: "Создайте первую колоду, чтобы начать учиться."
+    total_decks: Всего колод
+    total_cards: Всего карточек
+    cards_due: К повторению
+    current_streak: Серия дней
+    longest_streak: Лучшая серия
+    study_history: История занятий
+    see_all: Все
+    empty_history: Завершите сессию, чтобы увидеть историю здесь.
+    my_decks: Мои колоды
+    no_decks_title: Колод пока нет
+    no_decks_description: Создайте первую колоду, чтобы начать учиться.
     history_stats: "%{cards} карточек · точность %{accuracy}%"
     continue_studying:
-      title: "Продолжить обучение"
-      study_now: "Учиться сейчас →"
-      card_aria: "Продолжить изучение %{name}"
-      study_aria: "Изучать %{name}"
+      title: Продолжить обучение
+      study_now: Учиться сейчас →
+      card_aria: Продолжить изучение %{name}
+      study_aria: Изучать %{name}
       cards_due:
         one: "%{count} карточка к повторению"
         few: "%{count} карточки к повторению"
         many: "%{count} карточек к повторению"
         other: "%{count} карточки к повторению"
   study_sessions:
-    title: "История занятий"
+    title: История занятий
     back: "← Панель управления"
-    empty_title: "Сессий пока нет"
-    empty_description: "Завершите занятие, и оно появится здесь."
-    go_to_decks: "Перейти к колодам"
-    deck_header: "Колода"
-    date_header: "Дата"
-    reviewed_header: "Повторено"
-    accuracy_header: "Точность"
-    time_header: "Время"
+    empty_title: Сессий пока нет
+    empty_description: Завершите занятие, и оно появится здесь.
+    go_to_decks: Перейти к колодам
+    deck_header: Колода
+    date_header: Дата
+    reviewed_header: Повторено
+    accuracy_header: Точность
+    time_header: Время
   imports:
-    title: "Импорт карточек — %{name}"
+    title: Импорт карточек — %{name}
     back: "← %{name}"
-    text_tab: "Текст"
-    csv_tab: "CSV-файл"
-    text_hint: "Вставьте по одной карточке в строку. Разделяйте лицо и оборот выбранным разделителем."
-    text_default_format: "Формат по умолчанию (совместим с Quizlet):"
-    text_format_example: "лицо[TAB]оборот"
-    text_label: "Текст карточек"
-    separator_label: "Разделитель столбцов"
-    tab_separator: "Табуляция (по умолчанию)"
-    comma_separator: "Запятая"
-    semicolon_separator: "Точка с запятой"
-    pipe_separator: "Вертикальная черта |"
-    submit: "Импортировать карточки"
-    csv_hint_html: "Загрузите файл <code>.csv</code> с двумя столбцами (лицо/оборот)."
-    csv_label: "CSV-файл"
-    csv_submit: "Импортировать CSV"
-    no_text: "Пожалуйста, вставьте текст для импорта."
-    no_file: "Пожалуйста, выберите CSV-файл."
+    text_tab: Текст
+    csv_tab: CSV-файл
+    text_hint: Вставьте по одной карточке в строку. Разделяйте лицо и оборот выбранным
+      разделителем.
+    text_default_format: 'Формат по умолчанию (совместим с Quizlet):'
+    text_format_example: лицо[TAB]оборот
+    text_label: Текст карточек
+    separator_label: Разделитель столбцов
+    tab_separator: Табуляция (по умолчанию)
+    comma_separator: Запятая
+    semicolon_separator: Точка с запятой
+    pipe_separator: Вертикальная черта |
+    submit: Импортировать карточки
+    csv_hint_html: Загрузите файл <code>.csv</code> с двумя столбцами (лицо/оборот).
+    csv_label: CSV-файл
+    csv_submit: Импортировать CSV
+    no_text: Пожалуйста, вставьте текст для импорта.
+    no_file: Пожалуйста, выберите CSV-файл.
     imported:
-      one: "Импортирована %{count} карточка."
-      few: "Импортированы %{count} карточки."
-      many: "Импортировано %{count} карточек."
-      other: "Импортировано %{count} карточки."
+      one: Импортирована %{count} карточка.
+      few: Импортированы %{count} карточки.
+      many: Импортировано %{count} карточек.
+      other: Импортировано %{count} карточки.
     skipped:
-      one: "Пропущена %{count} строка."
-      few: "Пропущены %{count} строки."
-      many: "Пропущено %{count} строк."
-      other: "Пропущено %{count} строки."
+      one: Пропущена %{count} строка.
+      few: Пропущены %{count} строки.
+      many: Пропущено %{count} строк.
+      other: Пропущено %{count} строки.
     cards_detected:
-      one: "Обнаружена %{count} карточка"
-      few: "Обнаружены %{count} карточки"
-      many: "Обнаружено %{count} карточек"
-      other: "Обнаружено %{count} карточки"
-    csv_too_few_columns: "CSV должен содержать не менее 2 столбцов."
-    csv_no_valid_rows: "В CSV не найдено допустимых строк."
-    csv_invalid_format: "Неверный формат CSV: %{message}"
-    text_no_valid_pairs: "Не найдено ни одной допустимой пары карточек. Убедитесь, что каждая строка содержит лицо и оборот, разделённые выбранным разделителем."
-    heading: "Импорт данных"
-    subheading: "Скопируйте и вставьте данные сюда (из Word, Excel, Google Docs и т. д.)"
-    col_sep_label: "Между термином и определением"
-    row_sep_label: "Между карточками"
-    sep_tab: "Табуляция"
-    sep_comma: "Запятая"
-    sep_newline: "Новая строка"
-    sep_semicolon: "Точка с запятой"
-    sep_custom: "Произвольный"
-    preview_heading: "Предпросмотр"
-    preview_empty: "Нет данных для предпросмотра."
+      one: Обнаружена %{count} карточка
+      few: Обнаружены %{count} карточки
+      many: Обнаружено %{count} карточек
+      other: Обнаружено %{count} карточки
+    csv_too_few_columns: CSV должен содержать не менее 2 столбцов.
+    csv_no_valid_rows: В CSV не найдено допустимых строк.
+    csv_invalid_format: 'Неверный формат CSV: %{message}'
+    text_no_valid_pairs: Не найдено ни одной допустимой пары карточек. Убедитесь,
+      что каждая строка содержит лицо и оборот, разделённые выбранным разделителем.
+    heading: Импорт данных
+    subheading: Скопируйте и вставьте данные сюда (из Word, Excel, Google Docs и т.
+      д.)
+    col_sep_label: Между термином и определением
+    row_sep_label: Между карточками
+    sep_tab: Табуляция
+    sep_comma: Запятая
+    sep_newline: Новая строка
+    sep_semicolon: Точка с запятой
+    sep_custom: Произвольный
+    preview_heading: Предпросмотр
+    preview_empty: Нет данных для предпросмотра.
     preview_count:
-      one: "1 карточка"
+      one: 1 карточка
       few: "%{count} карточки"
       many: "%{count} карточек"
       other: "%{count} карточки"
-    term_label: "ТЕРМИН"
-    definition_label: "ОПРЕДЕЛЕНИЕ"
-    cancel_import: "Отменить импорт"
+    term_label: ТЕРМИН
+    definition_label: ОПРЕДЕЛЕНИЕ
+    cancel_import: Отменить импорт
   home:
-    hero_heading: "Как вы хотите учиться?"
-    hero_subtitle: "Освойте всё, что изучаете, с помощью интерактивных карточек, практических тестов и учебных активностей Quizly."
-    sign_up: "Зарегистрироваться бесплатно"
-    popular_decks: "Популярные колоды"
-    see_all: "Смотреть все →"
+    hero_heading: Как вы хотите учиться?
+    hero_subtitle: Освойте всё, что изучаете, с помощью интерактивных карточек, практических
+      тестов и учебных активностей Quizly.
+    sign_up: Зарегистрироваться бесплатно
+    popular_decks: Популярные колоды
+    see_all: Смотреть все →
     modes:
-      flashcards: "Карточки"
-      learn: "Тренировка"
-      study: "Изучение"
-      test: "Тест"
-      match: "Совпадения"
-    explore_link: "Обзор"
-    log_in: "Войти"
-    page_title: "Quizly — Учитесь быстрее с карточками"
+      flashcards: Карточки
+      learn: Тренировка
+      study: Изучение
+      test: Тест
+      match: Совпадения
+    explore_link: Обзор
+    log_in: Войти
+    page_title: Quizly — Учитесь быстрее с карточками
     carousel:
-      previous_slide: "Предыдущий слайд"
-      next_slide: "Следующий слайд"
-      favourite: "Избранное"
-      audio: "Аудио"
-      shuffle: "Перемешать"
-      previous_card: "Предыдущая карточка"
-      next_card: "Следующая карточка"
-      fullscreen: "На весь экран"
-      go_to_slide: "Перейти к слайду %{n}"
+      previous_slide: Предыдущий слайд
+      next_slide: Следующий слайд
+      favourite: Избранное
+      audio: Аудио
+      shuffle: Перемешать
+      previous_card: Предыдущая карточка
+      next_card: Следующая карточка
+      fullscreen: На весь экран
+      go_to_slide: Перейти к слайду %{n}
   settings:
-    language_updated: "Язык обновлён."
+    language_updated: Язык обновлён.
   starred_cards:
-    unstar: "Убрать из избранного"
-    star: "Добавить в избранное"
+    unstar: Убрать из избранного
+    star: Добавить в избранное
   passwords_mailer:
-    reset_subject: "Сброс пароля"
-    reset_body: "Вы можете сбросить пароль в течение следующих 15 минут на"
-    reset_link_text: "этой странице сброса пароля"
-    reset_text_body: "Вы можете сбросить пароль в течение следующих 15 минут на этой странице сброса пароля:"
+    reset_subject: Сброс пароля
+    reset_body: Вы можете сбросить пароль в течение следующих 15 минут на
+    reset_link_text: этой странице сброса пароля
+    reset_text_body: 'Вы можете сбросить пароль в течение следующих 15 минут на этой
+      странице сброса пароля:'
   question_engine:
-    match_prompt: "Сопоставьте каждый термин с его определением"
+    match_prompt: Сопоставьте каждый термин с его определением
   time:
     none: "—"
     seconds: "%{n}с"
@@ -571,14 +576,14 @@ ru:
     hours: "%{h}ч"
     hours_minutes: "%{h}ч %{m}мин"
   notifications:
-    bell_aria: "Уведомления"
-    title: "Уведомления"
-    empty: "Уведомлений пока нет"
-    mark_all_read: "Отметить все как прочитанные"
-    mark_read: "Отметить как прочитанное"
-    time_ago: "назад"
+    bell_aria: Уведомления
+    title: Уведомления
+    empty: Уведомлений пока нет
+    mark_all_read: Отметить все как прочитанные
+    mark_read: Отметить как прочитанное
+    time_ago: назад
     events:
-      badge_earned: "Вы получили новый значок"
+      badge_earned: Вы получили новый значок
       followed: "%{actor} начал(а) подписываться на вас"
       deck_commented: "%{actor} прокомментировал(а) вашу колоду"
       deck_reacted: "%{actor} отреагировал(а) на вашу колоду"
@@ -588,21 +593,8 @@ ru:
         deck:
           attributes:
             base:
-              not_ready_to_share: "Добавьте хотя бы одну карточку, прежде чем делиться колодой."
+              not_ready_to_share: Добавьте хотя бы одну карточку, прежде чем делиться
+                колодой.
             access_mode:
-              invalid_for_private_deck: "Private decks cannot be password-protected — only you can see them anyway."
-        library_item:
-          attributes:
-            base:
-              own_deck: "Вы не можете сохранить свою собственную колоду в библиотеку."
-            password:
-              too_short:
-                one: "слишком короткий (минимум %{count} символ)"
-                few: "слишком короткий (минимум %{count} символа)"
-                many: "слишком короткий (минимум %{count} символов)"
-                other: "слишком короткий (минимум %{count} символа)"
-              too_long:
-                one: "слишком длинный (максимум %{count} символ)"
-                few: "слишком длинный (максимум %{count} символа)"
-                many: "слишком длинный (максимум %{count} символов)"
-                other: "слишком длинный (максимум %{count} символа)"
+              invalid_for_private_deck: Private decks cannot be password-protected
+                — only you can see them anyway.

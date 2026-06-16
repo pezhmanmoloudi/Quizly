@@ -1,299 +1,299 @@
+---
 es:
   nav:
-    home: "Inicio"
-    explore: "Explorar"
-    my_library: "Mi Biblioteca"
+    home: Inicio
+    explore: Explorar
+    my_library: Mi Biblioteca
   topbar:
-    search_placeholder: "Buscar mazos…"
-    search_aria: "Buscar mazos"
-    create_menu_aria: "Menú de creación"
-    create_menu_tooltip: "Crear"
+    search_placeholder: Buscar mazos…
+    search_aria: Buscar mazos
+    create_menu_aria: Menú de creación
+    create_menu_tooltip: Crear
     create:
-      flashcard_set: "Conjunto de tarjetas"
-      study_guide: "Guía de estudio"
-      practice_test: "Prueba de práctica"
-      folder: "Carpeta"
-      study_group: "Grupo de estudio"
-    open_navigation: "Abrir navegación"
-    close_navigation: "Cerrar navegación"
+      flashcard_set: Conjunto de tarjetas
+      study_guide: Guía de estudio
+      practice_test: Prueba de práctica
+      folder: Carpeta
+      study_group: Grupo de estudio
+    open_navigation: Abrir navegación
+    close_navigation: Cerrar navegación
   menu:
-    settings: "Configuración"
-    dark_mode: "Modo oscuro"
-    light_mode: "Modo claro"
-    log_out: "Cerrar sesión"
-    language: "Idioma"
+    settings: Configuración
+    dark_mode: Modo oscuro
+    light_mode: Modo claro
+    log_out: Cerrar sesión
+    language: Idioma
   shared:
-    cancel: "Cancelar"
-    close: "Cerrar"
-    delete: "Eliminar"
-    edit: "Editar"
-    undo: "Deshacer"
+    cancel: Cancelar
+    close: Cerrar
+    delete: Eliminar
+    edit: Editar
+    undo: Deshacer
     modal:
-      type_to_confirm: "Escribe %{word} para confirmar"
-    save: "Guardar"
+      type_to_confirm: Escribe %{word} para confirmar
+    save: Guardar
     back: "← Atrás"
-    sign_in: "Iniciar sesión"
-    sign_up_free: "Registrarse gratis"
-    previous_page: "Página anterior"
-    next_page: "Página siguiente"
-    not_available: "N/D"
+    sign_in: Iniciar sesión
+    sign_up_free: Registrarse gratis
+    previous_page: Página anterior
+    next_page: Página siguiente
+    not_available: N/D
   auth:
-    back_to_home: "Volver al inicio"
+    back_to_home: Volver al inicio
     panel:
-      heading: "Aprende Mejor, No Más"
-      tagline: "Quizly usa repetición espaciada para mostrar la tarjeta correcta en el momento correcto — para que el conocimiento perdure."
-      feature_scheduling: "Programación SM-2 respaldada por la ciencia"
-      feature_decks: "Mazos que construyes y posees"
-      feature_progress: "Progreso que se acumula con el tiempo"
+      heading: Aprende Mejor, No Más
+      tagline: Quizly usa repetición espaciada para mostrar la tarjeta correcta en
+        el momento correcto — para que el conocimiento perdure.
+      feature_scheduling: Programación SM-2 respaldada por la ciencia
+      feature_decks: Mazos que construyes y posees
+      feature_progress: Progreso que se acumula con el tiempo
   sessions:
-    title: "Iniciar sesión"
+    title: Iniciar sesión
     heading: "¡Bienvenido de nuevo!"
-    subheading: "Inicia sesión para acceder a tu panel y continuar aprendiendo."
-    email_label: "Correo electrónico"
-    email_placeholder: "Introduce tu correo"
-    password_label: "Contraseña"
-    password_placeholder: "Introduce tu contraseña"
-    toggle_password: "Mostrar/ocultar contraseña"
+    subheading: Inicia sesión para acceder a tu panel y continuar aprendiendo.
+    email_label: Correo electrónico
+    email_placeholder: Introduce tu correo
+    password_label: Contraseña
+    password_placeholder: Introduce tu contraseña
+    toggle_password: Mostrar/ocultar contraseña
     forgot_password: "¿Olvidaste tu contraseña?"
-    submit: "Iniciar sesión"
+    submit: Iniciar sesión
     no_account: "¿No tienes cuenta?"
-    sign_up: "Regístrate"
+    sign_up: Regístrate
     errors:
-      rate_limited: "Inténtalo más tarde."
-      invalid: "Prueba con otro correo o contraseña."
+      rate_limited: Inténtalo más tarde.
+      invalid: Prueba con otro correo o contraseña.
   registrations:
-    title: "Registrarse"
-    heading: "Crea tu cuenta"
-    subheading: "Empieza a crear tus mazos y estudia de forma más inteligente."
-    email_label: "Correo electrónico"
-    email_placeholder: "Introduce tu correo"
-    password_label: "Contraseña"
-    password_placeholder: "Mínimo 8 caracteres"
-    confirm_label: "Confirmar contraseña"
-    confirm_placeholder: "Repite tu contraseña"
-    toggle_password: "Mostrar/ocultar contraseña"
-    submit: "Crear cuenta"
+    title: Registrarse
+    heading: Crea tu cuenta
+    subheading: Empieza a crear tus mazos y estudia de forma más inteligente.
+    email_label: Correo electrónico
+    email_placeholder: Introduce tu correo
+    password_label: Contraseña
+    password_placeholder: Mínimo 8 caracteres
+    confirm_label: Confirmar contraseña
+    confirm_placeholder: Repite tu contraseña
+    toggle_password: Mostrar/ocultar contraseña
+    submit: Crear cuenta
     have_account: "¿Ya tienes cuenta?"
-    sign_in_link: "Iniciar sesión"
+    sign_in_link: Iniciar sesión
     created: "¡Bienvenido a Quizly!"
     errors:
-      rate_limited: "Inténtalo más tarde."
+      rate_limited: Inténtalo más tarde.
   passwords:
     new:
-      title: "Olvidé mi contraseña"
+      title: Olvidé mi contraseña
       heading: "¿Olvidaste tu contraseña?"
-      subheading: "Introduce tu correo y te enviaremos instrucciones de restablecimiento."
-      email_label: "Correo electrónico"
-      email_placeholder: "Introduce tu correo"
-      submit: "Enviar instrucciones"
+      subheading: Introduce tu correo y te enviaremos instrucciones de restablecimiento.
+      email_label: Correo electrónico
+      email_placeholder: Introduce tu correo
+      submit: Enviar instrucciones
       back: "← Volver al inicio de sesión"
     edit:
-      title: "Restablecer contraseña"
-      heading: "Restablece tu contraseña"
-      subheading: "Elige una nueva contraseña para tu cuenta."
-      password_label: "Nueva contraseña"
-      password_placeholder: "Mínimo 8 caracteres"
-      confirm_label: "Confirmar nueva contraseña"
-      confirm_placeholder: "Repite tu contraseña"
-      toggle_password: "Mostrar/ocultar contraseña"
-      submit: "Guardar nueva contraseña"
+      title: Restablecer contraseña
+      heading: Restablece tu contraseña
+      subheading: Elige una nueva contraseña para tu cuenta.
+      password_label: Nueva contraseña
+      password_placeholder: Mínimo 8 caracteres
+      confirm_label: Confirmar nueva contraseña
+      confirm_placeholder: Repite tu contraseña
+      toggle_password: Mostrar/ocultar contraseña
+      submit: Guardar nueva contraseña
       back: "← Volver al inicio de sesión"
-    sent: "Instrucciones de restablecimiento enviadas (si existe un usuario con ese correo)."
-    reset: "La contraseña ha sido restablecida."
-    mismatch: "Las contraseñas no coinciden."
-    invalid: "El enlace de restablecimiento no es válido o ha expirado."
+    sent: Instrucciones de restablecimiento enviadas (si existe un usuario con ese
+      correo).
+    reset: La contraseña ha sido restablecida.
+    mismatch: Las contraseñas no coinciden.
+    invalid: El enlace de restablecimiento no es válido o ha expirado.
     errors:
-      rate_limited: "Inténtalo más tarde."
+      rate_limited: Inténtalo más tarde.
   accounts:
-    title: "Configuración"
-    personal_info: "Información personal"
-    profile_picture_heading: "Foto de perfil"
-    remove_photo: "Eliminar foto"
+    title: Configuración
+    personal_info: Información personal
+    profile_picture_heading: Foto de perfil
+    remove_photo: Eliminar foto
     remove_photo_confirm: "¿Estás seguro de que quieres eliminar tu foto de perfil?"
-    remove_photo_modal_title: "Eliminar imagen de perfil"
-    remove_photo_modal_warning: "Esta acción no se puede deshacer."
-    remove_photo_modal_confirm: "Eliminar foto"
-    email_label: "Correo electrónico"
-    username_label: "Nombre de usuario"
-    username_hint_html: "Deja en blanco para usar el nombre de usuario de tu correo (%{email})"
-    account_type_label: "Tipo de cuenta"
-    password_min_hint: "Mínimo 8 caracteres"
-    account_type_student: "Estudiante"
-    account_type_teacher: "Profesor"
-    change_password: "Cambiar contraseña"
-    current_password_placeholder: "Contraseña actual"
-    new_password_label: "Nueva contraseña"
-    confirm_password_label: "Confirmar nueva contraseña"
-    update_password: "Actualizar contraseña"
-    appearance_section: "Apariencia"
-    theme_label: "Tema"
-    language_label: "Idioma"
-    search_languages: "Buscar idiomas"
-    your_languages: "Tus idiomas"
-    achievements_section: "Logros"
-    no_badges: "Aún no hay insignias. ¡Sigue estudiando para desbloquear logros!"
-    badge_earned_on: "Ganado el %{date}"
-    delete_title: "Eliminar cuenta"
-    delete_description: "Elimina permanentemente tu cuenta y todos los datos asociados. Esta acción no se puede deshacer."
-    delete_button: "Eliminar cuenta"
+    remove_photo_modal_title: Eliminar imagen de perfil
+    remove_photo_modal_warning: Esta acción no se puede deshacer.
+    remove_photo_modal_confirm: Eliminar foto
+    email_label: Correo electrónico
+    username_label: Nombre de usuario
+    username_hint_html: Deja en blanco para usar el nombre de usuario de tu correo
+      (%{email})
+    account_type_label: Tipo de cuenta
+    password_min_hint: Mínimo 8 caracteres
+    account_type_student: Estudiante
+    account_type_teacher: Profesor
+    change_password: Cambiar contraseña
+    current_password_placeholder: Contraseña actual
+    new_password_label: Nueva contraseña
+    confirm_password_label: Confirmar nueva contraseña
+    update_password: Actualizar contraseña
+    appearance_section: Apariencia
+    theme_label: Tema
+    language_label: Idioma
+    search_languages: Buscar idiomas
+    your_languages: Tus idiomas
+    achievements_section: Logros
+    no_badges: Aún no hay insignias. ¡Sigue estudiando para desbloquear logros!
+    badge_earned_on: Ganado el %{date}
+    delete_title: Eliminar cuenta
+    delete_description: Elimina permanentemente tu cuenta y todos los datos asociados.
+      Esta acción no se puede deshacer.
+    delete_button: Eliminar cuenta
     delete_confirm: "¿Estás seguro de que quieres eliminar tu cuenta?"
-    delete_confirmation_failed: "Por favor escribe DELETE para confirmar la eliminación de la cuenta."
-    delete_modal_warning: "Esto eliminará permanentemente tu cuenta y todos los datos asociados — mazos, tarjetas flash e historial de estudio. Esta acción no se puede deshacer."
-    delete_modal_confirm: "Eliminar cuenta"
+    delete_confirmation_failed: Por favor escribe DELETE para confirmar la eliminación
+      de la cuenta.
+    delete_modal_warning: Esto eliminará permanentemente tu cuenta y todos los datos
+      asociados — mazos, tarjetas flash e historial de estudio. Esta acción no se
+      puede deshacer.
+    delete_modal_confirm: Eliminar cuenta
     updated:
-      profile: "Perfil actualizado."
-      email: "Correo actualizado."
-      password: "Contraseña actualizada."
-      language: "Idioma actualizado."
-      notifications: "Preferencias de notificación guardadas."
-    avatar_removed: "Foto de perfil eliminada."
-    deleted: "Tu cuenta ha sido eliminada."
-    profile_photo_alt: "Foto de perfil"
-    select_avatar: "Seleccionar avatar"
-    upload_photo_title: "Subir una foto personalizada"
-    toggle_password: "Mostrar/ocultar contraseña"
-    notifications_section: "Notificaciones"
-    notif_personalised_updates: "Actualizaciones de estudio personalizadas"
-    notif_streaks_badges: "Rachas e insignias"
-    notif_study_reminders: "Recordatorios de estudio"
-    notif_choose_reminder_time: "Elige cuándo recibir recordatorios de estudio"
-    notif_time_zone: "Zona horaria"
-    notif_email_label: "Notificación por correo"
-    theme_auto: "Auto"
-    theme_light: "Claro"
-    theme_dark: "Oscuro"
-    password_incorrect: "es incorrecta"
-    avatar_format_error: "Formato de archivo no válido. Sube JPG, PNG o WEBP."
-    avatar_size_error: "La foto de perfil debe ser menor de 5 MB."
+      profile: Perfil actualizado.
+      email: Correo actualizado.
+      password: Contraseña actualizada.
+      language: Idioma actualizado.
+      notifications: Preferencias de notificación guardadas.
+    avatar_removed: Foto de perfil eliminada.
+    deleted: Tu cuenta ha sido eliminada.
+    profile_photo_alt: Foto de perfil
+    select_avatar: Seleccionar avatar
+    upload_photo_title: Subir una foto personalizada
+    toggle_password: Mostrar/ocultar contraseña
+    notifications_section: Notificaciones
+    notif_personalised_updates: Actualizaciones de estudio personalizadas
+    notif_streaks_badges: Rachas e insignias
+    notif_study_reminders: Recordatorios de estudio
+    notif_choose_reminder_time: Elige cuándo recibir recordatorios de estudio
+    notif_time_zone: Zona horaria
+    notif_email_label: Notificación por correo
+    theme_auto: Auto
+    theme_light: Claro
+    theme_dark: Oscuro
+    password_incorrect: es incorrecta
+    avatar_format_error: Formato de archivo no válido. Sube JPG, PNG o WEBP.
+    avatar_size_error: La foto de perfil debe ser menor de 5 MB.
   decks:
     index:
-      title: "Mis mazos"
-      sort_recent: "Reciente"
-      sort_az: "A–Z"
-      sort_most_due: "Más pendientes"
-      empty_title: "Todavía no hay mazos"
-      empty_description: "Crea tu primer mazo para empezar a estudiar."
-      saved_section_title: "Mazos guardados"
+      title: Mis mazos
+      sort_recent: Reciente
+      sort_az: A–Z
+      sort_most_due: Más pendientes
+      empty_title: Todavía no hay mazos
+      empty_description: Crea tu primer mazo para empezar a estudiar.
     show:
-      edit: "Editar mazo"
-      delete: "Eliminar mazo"
+      edit: Editar mazo
+      delete: Eliminar mazo
       delete_confirm: "¿Estás seguro de que quieres eliminar este mazo?"
       delete_modal_title: "¿Eliminar este mazo?"
-      delete_modal_warning: "Todas las tarjetas flash se eliminarán permanentemente. Esta acción no se puede deshacer."
-      delete_modal_confirm: "Eliminar mazo"
-      unlisted_badge: "No listado"
-      public_badge: "Público"
-      private_badge: "Privado"
-      created: "Creado"
-      cards_section: "Tarjetas"
-      add_card: "Añadir tarjeta"
-      import: "Importar"
-      cards_per_page: "Tarjetas por página"
-      locked_title: "This deck is password protected"
-      locked_description: "Enter the password to access all flashcards and study modes."
-      unlock_cta: "Unlock Deck"
-      preview_heading: "Sample Cards"
+      delete_modal_warning: Todas las tarjetas flash se eliminarán permanentemente.
+        Esta acción no se puede deshacer.
+      delete_modal_confirm: Eliminar mazo
+      unlisted_badge: No listado
+      public_badge: Público
+      private_badge: Privado
+      created: Creado
+      cards_section: Tarjetas
+      add_card: Añadir tarjeta
+      import: Importar
+      cards_per_page: Tarjetas por página
+      locked_title: This deck is password protected
+      locked_description: Enter the password to access all flashcards and study modes.
+      unlock_cta: Unlock Deck
+      preview_heading: Sample Cards
       locked_card_placeholder: "• • •"
       locked_cards_counter:
-        one: "1 card locked"
+        one: 1 card locked
         other: "%{count} cards locked"
-      mode_flashcard: "Tarjeta"
-      mode_study: "Estudiar"
-      mode_learn: "Aprender"
-      mode_test: "Examen"
-      mode_match: "Emparejar"
+      mode_flashcard: Tarjeta
+      mode_study: Estudiar
+      mode_learn: Aprender
+      mode_test: Examen
+      mode_match: Emparejar
     edit:
-      title: "Editar mazo"
+      title: Editar mazo
       back: "← Atrás"
     manage_access:
-      title: "Gestionar acceso"
-      public_desc: "Cualquiera puede encontrar y estudiar este mazo"
-      unlisted_desc: "Solo personas con el enlace pueden verlo"
-      private_desc: "Solo tú"
-      visibility_heading: "Visibilidad"
-      access_mode_heading: "Access"
-      open_desc: "Anyone who can find this deck can study it"
-      password_desc: "Viewers must enter a password to access flashcards"
-      share_heading: "Compartir enlace"
-      share_hint: "Cualquiera con este enlace puede ver el mazo"
-      copy_link: "Copiar"
+      title: Gestionar acceso
+      public_desc: Cualquiera puede encontrar y estudiar este mazo
+      unlisted_desc: Solo personas con el enlace pueden verlo
+      private_desc: Solo tú
+      visibility_heading: Visibilidad
+      access_mode_heading: Access
+      open_desc: Anyone who can find this deck can study it
+      password_desc: Viewers must enter a password to access flashcards
+      share_heading: Compartir enlace
+      share_hint: Cualquiera con este enlace puede ver el mazo
+      copy_link: Copiar
       copy_link_copied: "¡Copiado!"
-      visible_to: "Visible para"
-      password_is_set: "A password is set — enter a new one to change it"
+      visible_to: Visible para
+      password_is_set: A password is set — enter a new one to change it
     form:
-      name_label: "Nombre"
-      description_label: "Descripción"
-      language_label: "Idioma (opcional)"
-      language_placeholder: "p. ej. en, es, fr, de"
-      tags_label: "Etiquetas (opcional)"
-      tags_hint: "Separa las etiquetas con comas."
-      tags_placeholder: "p. ej. biología, anatomía, examen2025"
-      visibility_label: "Visibilidad"
+      name_label: Nombre
+      description_label: Descripción
+      language_label: Idioma (opcional)
+      language_placeholder: p. ej. en, es, fr, de
+      tags_label: Etiquetas (opcional)
+      tags_hint: Separa las etiquetas con comas.
+      tags_placeholder: p. ej. biología, anatomía, examen2025
+      visibility_label: Visibilidad
       visibility_section_label: "¿Quién puede ver este mazo?"
-      visibility_unlisted: "No listado"
-      section_about: "Acerca de"
-      access_mode_open: "Open"
-      access_mode_password: "Password protected"
-      visibility_private: "Solo yo"
-      visibility_public: "Público"
-      visibility_hint: "Los mazos públicos pueden ser descubiertos y copiados por cualquiera."
-      password_label: "Contraseña del mazo"
-      password_placeholder: "Mín. 8 caracteres"
-      password_hint: "Required to view this deck"
+      visibility_unlisted: No listado
+      section_about: Acerca de
+      access_mode_open: Open
+      access_mode_password: Password protected
+      visibility_private: Solo yo
+      visibility_public: Público
+      visibility_hint: Los mazos públicos pueden ser descubiertos y copiados por cualquiera.
+      password_label: Contraseña del mazo
+      password_placeholder: Mín. 8 caracteres
+      password_hint: Required to view this deck
     cards:
-      page_title: "Añadir tarjetas — %{name}"
-      add_card: "Añadir tarjeta"
-      save: "Guardar"
-      error_term: "Tarjeta %{row}: el término es obligatorio."
-      error_definition: "Tarjeta %{row}: la definición es obligatoria."
-      error_language: "Tarjeta %{row}: el idioma es obligatorio para %{side}."
-      error_no_cards: "Agrega al menos una tarjeta antes de guardar."
-      back_label: "Volver a %{name}"
+      page_title: Añadir tarjetas — %{name}
+      add_card: Añadir tarjeta
+      save: Guardar
+      error_term: 'Tarjeta %{row}: el término es obligatorio.'
+      error_definition: 'Tarjeta %{row}: la definición es obligatoria.'
+      error_language: 'Tarjeta %{row}: el idioma es obligatorio para %{side}.'
+      error_no_cards: Agrega al menos una tarjeta antes de guardar.
+      back_label: Volver a %{name}
     card_row:
-      term_label: "Término"
-      term_placeholder: "Introduce el término"
-      definition_label: "Definición"
-      definition_placeholder: "Introduce la definición"
-      front_label: "frente"
-      back_label: "reverso"
-      select_language: "Seleccionar idioma"
-      image: "Imagen"
-      remove: "Eliminar tarjeta"
-      saving: "Guardando…"
+      term_label: Término
+      term_placeholder: Introduce el término
+      definition_label: Definición
+      definition_placeholder: Introduce la definición
+      front_label: frente
+      back_label: reverso
+      select_language: Seleccionar idioma
+      image: Imagen
+      remove: Eliminar tarjeta
+      saving: Guardando…
       saved: "✓"
       error: "!"
-    created: "Mazo creado."
-    default_name: "Mazo sin título"
-    create_failed: "No se pudo crear el mazo. Por favor, inténtalo de nuevo."
-    updated: "Mazo actualizado."
-    deleted: "Mazo eliminado."
-    cards_saved: "Tarjetas guardadas."
+    created: Mazo creado.
+    default_name: Mazo sin título
+    create_failed: No se pudo crear el mazo. Por favor, inténtalo de nuevo.
+    updated: Mazo actualizado.
+    deleted: Mazo eliminado.
+    cards_saved: Tarjetas guardadas.
     action:
-      save:                  "Guardar"
-      in_library:            "En tu biblioteca"
-      sign_in_to_save:       "Inicia sesión para guardar"
-      saved:                 "Mazo añadido a tu biblioteca."
-      already_saved:         "Ya tienes este mazo en tu biblioteca."
-      unsave:                "Eliminar de la biblioteca"
-      unsaved:               "Mazo eliminado de tu biblioteca."
-      not_in_library:        "Este mazo no está en tu biblioteca."
-      copy:                  "Hacer una copia"
-      copied:                "Copia creada. Ahora puedes editarla."
-      copy_name:             "%{name} (Copia)"
-    not_available: "Mazo no disponible."
+      copy: Hacer una copia
+      copied: Copia creada. Ahora puedes editarla.
+      copy_name: "%{name} (Copia)"
+    not_available: Mazo no disponible.
     unlock:
-      title: "Contraseña requerida"
-      description: "Este mazo está protegido. Introduce la contraseña para continuar."
-      password_label: "Contraseña"
-      submit: "Desbloquear mazo"
-      invalid_password: "Contraseña incorrecta. Por favor, inténtalo de nuevo."
-      success: "Acceso concedido."
+      title: Contraseña requerida
+      description: Este mazo está protegido. Introduce la contraseña para continuar.
+      password_label: Contraseña
+      submit: Desbloquear mazo
+      invalid_password: Contraseña incorrecta. Por favor, inténtalo de nuevo.
+      success: Acceso concedido.
       back_to_preview: "← Back to deck"
-      help_text: "Contact the deck creator if you don't have the password."
-      submitting: "Unlocking…"
-    sidebar_no_decks: "Todavía no hay mazos."
+      help_text: Contact the deck creator if you don't have the password.
+      submitting: Unlocking…
+    sidebar_no_decks: Todavía no hay mazos.
     deck_card:
-      draft: "Borrador"
+      draft: Borrador
       due:
         one: "%{count} tarjeta pendiente de revisión"
         other: "%{count} tarjetas pendientes de revisión"
@@ -304,186 +304,189 @@ es:
     new:
       back: "← Volver a %{name}"
     form:
-      term_label: "Término"
-      term_placeholder: "Introduce el término"
-      definition_label: "Definición"
-      definition_placeholder: "Introduce la definición"
-      save: "Guardar tarjeta →"
-    created: "Tarjeta añadida."
-    updated: "Tarjeta actualizada."
-    deleted: "Tarjeta flash eliminada."
-    restored: "Tarjeta flash restaurada."
+      term_label: Término
+      term_placeholder: Introduce el término
+      definition_label: Definición
+      definition_placeholder: Introduce la definición
+      save: Guardar tarjeta →
+    created: Tarjeta añadida.
+    updated: Tarjeta actualizada.
+    deleted: Tarjeta flash eliminada.
+    restored: Tarjeta flash restaurada.
   study_modes:
     exit: "← Salir"
-    no_cards_title: "Sin tarjetas aún"
-    back_to_deck: "Volver al mazo"
-    time: "Tiempo"
-    streak: "Racha"
+    no_cards_title: Sin tarjetas aún
+    back_to_deck: Volver al mazo
+    time: Tiempo
+    streak: Racha
     flashcard:
-      empty_description: "Añade tarjetas a este mazo para empezar."
+      empty_description: Añade tarjetas a este mazo para empezar.
       keyboard_hint: "← → para navegar · Espacio para girar"
       previous: "← Anterior"
-      next: "Siguiente →"
-      guest_cta: "Inicia sesión para seguir tu progreso y guardar tu historial de estudio."
-      click_to_flip: "Haz clic en la tarjeta para voltearla"
-      options: "Opciones"
-      track_progress: "Seguir progreso"
-      track_progress_desc: "Lleva un registro de lo que sabes y lo que aún estás aprendiendo."
-      starred_only: "Solo términos destacados"
-      starred_only_desc: "Estudia solo tus tarjetas destacadas."
-      show_both_sides: "Mostrar ambos lados"
-      show_both_sides_desc: "Ver el frente y el reverso juntos."
-      keyboard_shortcuts: "Atajos de teclado"
-      key_previous: "Anterior"
-      key_next: "Siguiente"
-      key_flip: "Voltear"
-      key_star: "Destacar"
-      hide: "Ocultar"
-      restart: "Reiniciar tarjetas"
+      next: Siguiente →
+      guest_cta: Inicia sesión para seguir tu progreso y guardar tu historial de estudio.
+      click_to_flip: Haz clic en la tarjeta para voltearla
+      options: Opciones
+      track_progress: Seguir progreso
+      track_progress_desc: Lleva un registro de lo que sabes y lo que aún estás aprendiendo.
+      starred_only: Solo términos destacados
+      starred_only_desc: Estudia solo tus tarjetas destacadas.
+      show_both_sides: Mostrar ambos lados
+      show_both_sides_desc: Ver el frente y el reverso juntos.
+      keyboard_shortcuts: Atajos de teclado
+      key_previous: Anterior
+      key_next: Siguiente
+      key_flip: Voltear
+      key_star: Destacar
+      hide: Ocultar
+      restart: Reiniciar tarjetas
     study:
-      subtitle: "Revisa las tarjetas y valora tu memoria"
-      done_label: "Hechas"
+      subtitle: Revisa las tarjetas y valora tu memoria
+      done_label: Hechas
       empty_title: "¡Al día!"
-      empty_description: "No hay tarjetas pendientes de revisión ahora mismo."
-      all_cards_tab: "Todas las tarjetas"
+      empty_description: No hay tarjetas pendientes de revisión ahora mismo.
+      all_cards_tab: Todas las tarjetas
       starred_tab: "⭐ Destacadas"
       summary_title: "¡Sesión completada!"
-      reviewed: "Tarjetas revisadas"
-      accuracy: "Precisión"
-      time_spent: "Tiempo empleado"
-      summary_sub: "No hay más tarjetas pendientes ahora — ¡buen trabajo!"
-      show_answer: "Mostrar respuesta"
-      again: "De nuevo"
-      hard: "Difícil"
-      good: "Bien"
-      easy: "Fácil"
-      keyboard_hint: "Espacio para revelar · 1 De nuevo · 2 Difícil · 3 Bien · 4 Fácil · Esc para salir"
+      reviewed: Tarjetas revisadas
+      accuracy: Precisión
+      time_spent: Tiempo empleado
+      summary_sub: No hay más tarjetas pendientes ahora — ¡buen trabajo!
+      show_answer: Mostrar respuesta
+      again: De nuevo
+      hard: Difícil
+      good: Bien
+      easy: Fácil
+      keyboard_hint: Espacio para revelar · 1 De nuevo · 2 Difícil · 3 Bien · 4 Fácil
+        · Esc para salir
     learn:
-      subtitle: "Escribe la respuesta para dominar cada tarjeta"
-      mastered_label: "Dominadas"
-      empty_description: "Añade tarjetas a este mazo antes de estudiar."
+      subtitle: Escribe la respuesta para dominar cada tarjeta
+      mastered_label: Dominadas
+      empty_description: Añade tarjetas a este mazo antes de estudiar.
       summary_title: "¡Todas las tarjetas dominadas!"
-      studied: "Tarjetas estudiadas"
-      time_spent: "Tiempo empleado"
+      studied: Tarjetas estudiadas
+      time_spent: Tiempo empleado
       summary_sub: "¡Buen trabajo — todas las tarjetas están dominadas!"
-      study_again: "Estudiar de nuevo"
+      study_again: Estudiar de nuevo
     learn_card:
-      prompt: "Define este término"
-      your_answer: "Tu respuesta"
+      prompt: Define este término
+      your_answer: Tu respuesta
       correct: "¡Correcto!"
-      incorrect: "Incorrecto"
-      correct_answer: "Respuesta correcta:"
-      type_answer: "Escribe tu respuesta…"
-      submit: "Enviar"
-      keyboard_hint: "Enter para enviar"
-      continue: "Continuar →"
+      incorrect: Incorrecto
+      correct_answer: 'Respuesta correcta:'
+      type_answer: Escribe tu respuesta…
+      submit: Enviar
+      keyboard_hint: Enter para enviar
+      continue: Continuar →
     test:
-      subtitle: "Pon a prueba tus conocimientos"
-      question_label: "Pregunta"
-      empty_description: "Añade tarjetas a este mazo antes de hacer el examen."
+      subtitle: Pon a prueba tus conocimientos
+      question_label: Pregunta
+      empty_description: Añade tarjetas a este mazo antes de hacer el examen.
       summary_title: "¡Examen completado!"
-      correct_answers: "Respuestas correctas"
-      score: "Puntuación"
-      time: "Tiempo"
-      retake: "Repetir examen"
+      correct_answers: Respuestas correctas
+      score: Puntuación
+      time: Tiempo
+      retake: Repetir examen
     test_question:
       correct: "¡Correcto!"
-      incorrect: "Incorrecto"
-      correct_answer: "Respuesta correcta:"
-      see_results: "Ver resultados →"
-      continue: "Continuar →"
-      keyboard_hint: "Espacio o Enter para continuar"
-      your_answer: "Tu respuesta"
-      type_answer: "Escribe tu respuesta…"
-      submit: "Enviar"
-      submit_hint: "Pulsa Enter para enviar"
-      submit_matches: "Enviar coincidencias"
+      incorrect: Incorrecto
+      correct_answer: 'Respuesta correcta:'
+      see_results: Ver resultados →
+      continue: Continuar →
+      keyboard_hint: Espacio o Enter para continuar
+      your_answer: Tu respuesta
+      type_answer: Escribe tu respuesta…
+      submit: Enviar
+      submit_hint: Pulsa Enter para enviar
+      submit_matches: Enviar coincidencias
       true_btn: "✓ Verdadero"
       false_btn: "✗ Falso"
     match:
-      empty_description: "Añade tarjetas a este mazo para jugar a Emparejar."
+      empty_description: Añade tarjetas a este mazo para jugar a Emparejar.
       completed: "¡Todo emparejado!"
-      play_again: "Jugar de nuevo"
-      guest_cta: "Inicia sesión para guardar tus puntuaciones y seguir tu progreso."
-      subtitle: "Empareja las palabras con sus significados"
-      time: "Tiempo"
-      pairs_left: "Pares restantes"
-      streak: "Racha"
+      play_again: Jugar de nuevo
+      guest_cta: Inicia sesión para guardar tus puntuaciones y seguir tu progreso.
+      subtitle: Empareja las palabras con sus significados
+      time: Tiempo
+      pairs_left: Pares restantes
+      streak: Racha
       progress_label: "%{pct}% de progreso"
-      matched_counter: "Emparejado: %{matched} / %{total}"
+      matched_counter: 'Emparejado: %{matched} / %{total}'
   errors:
     not_found:
-      flash: "This deck is no longer available."
+      flash: This deck is no longer available.
     not_authorized:
-      flash: "You are not authorized to perform this action."
+      flash: You are not authorized to perform this action.
   explore:
-    title: "Explorar"
-    subtitle: "Descubre y copia mazos públicos compartidos por la comunidad."
-    search_placeholder: "Buscar mazos…"
-    search_aria: "Buscar mazos públicos"
-    empty_search_title: "No se encontraron mazos para \"%{query}\""
-    empty_search_description: "Prueba con otro término de búsqueda o explora todos los mazos públicos."
-    empty_title: "Todavía no hay mazos públicos"
-    empty_description: "Sé el primero en compartir un mazo con la comunidad."
-    by: "por"
-    saved_badge: "Guardado"
-    locked_badge: "Password Required"
-    owner_badge:  "Tú"
-    by_you:       "por ti"
+    title: Explorar
+    subtitle: Descubre y copia mazos públicos compartidos por la comunidad.
+    search_placeholder: Buscar mazos…
+    search_aria: Buscar mazos públicos
+    empty_search_title: No se encontraron mazos para "%{query}"
+    empty_search_description: Prueba con otro término de búsqueda o explora todos
+      los mazos públicos.
+    empty_title: Todavía no hay mazos públicos
+    empty_description: Sé el primero en compartir un mazo con la comunidad.
+    by: por
+    locked_badge: Password Required
+    owner_badge: Tú
+    by_you: por ti
   dashboard:
-    total_decks: "Total de mazos"
-    total_cards: "Total de tarjetas"
-    cards_due: "Tarjetas pendientes"
-    current_streak: "Racha diaria"
-    longest_streak: "Mejor racha"
-    study_history: "Historial de estudio"
-    see_all: "Ver todo"
-    empty_history: "Completa una sesión de estudio para ver tu historial aquí."
+    total_decks: Total de mazos
+    total_cards: Total de tarjetas
+    cards_due: Tarjetas pendientes
+    current_streak: Racha diaria
+    longest_streak: Mejor racha
+    study_history: Historial de estudio
+    see_all: Ver todo
+    empty_history: Completa una sesión de estudio para ver tu historial aquí.
     history_stats: "%{cards} tarjetas · %{accuracy}% precisión"
-    my_decks: "Mis mazos"
-    no_decks_title: "Todavía no hay mazos"
-    no_decks_description: "Crea tu primer mazo para empezar a estudiar."
+    my_decks: Mis mazos
+    no_decks_title: Todavía no hay mazos
+    no_decks_description: Crea tu primer mazo para empezar a estudiar.
     continue_studying:
-      title: "Continuar estudiando"
-      study_now: "Estudiar ahora →"
-      card_aria: "Continuar estudiando %{name}"
-      study_aria: "Estudiar %{name}"
+      title: Continuar estudiando
+      study_now: Estudiar ahora →
+      card_aria: Continuar estudiando %{name}
+      study_aria: Estudiar %{name}
       cards_due:
         one: "%{count} tarjeta pendiente"
         other: "%{count} tarjetas pendientes"
   study_sessions:
-    title: "Historial de estudio"
+    title: Historial de estudio
     back: "← Panel"
-    empty_title: "Todavía no hay sesiones"
-    empty_description: "Completa una sesión de estudio y aparecerá aquí."
-    go_to_decks: "Ir a los mazos"
-    deck_header: "Mazo"
-    date_header: "Fecha"
-    reviewed_header: "Revisadas"
-    accuracy_header: "Precisión"
-    time_header: "Tiempo"
+    empty_title: Todavía no hay sesiones
+    empty_description: Completa una sesión de estudio y aparecerá aquí.
+    go_to_decks: Ir a los mazos
+    deck_header: Mazo
+    date_header: Fecha
+    reviewed_header: Revisadas
+    accuracy_header: Precisión
+    time_header: Tiempo
   imports:
-    title: "Importar tarjetas — %{name}"
+    title: Importar tarjetas — %{name}
     back: "← %{name}"
-    text_tab: "Texto"
-    csv_tab: "Archivo CSV"
-    text_hint: "Pega una tarjeta por línea. Separa el frente y el reverso con el delimitador que elijas."
-    text_default_format: "Formato predeterminado (compatible con Quizlet):"
-    text_format_example: "frente[TAB]reverso"
-    text_label: "Texto de tarjetas"
-    separator_label: "Separador de columnas"
-    tab_separator: "Tabulador (predeterminado)"
-    comma_separator: "Coma"
-    semicolon_separator: "Punto y coma"
-    pipe_separator: "Barra vertical |"
-    submit: "Importar tarjetas"
-    csv_hint_html: "Sube un archivo <code>.csv</code> con dos columnas (frente/reverso, término/definición, pregunta/respuesta)."
-    csv_label: "Archivo CSV"
-    csv_submit: "Importar CSV"
-    no_text: "Por favor, pega texto para importar."
-    no_file: "Por favor, selecciona un archivo CSV."
+    text_tab: Texto
+    csv_tab: Archivo CSV
+    text_hint: Pega una tarjeta por línea. Separa el frente y el reverso con el delimitador
+      que elijas.
+    text_default_format: 'Formato predeterminado (compatible con Quizlet):'
+    text_format_example: frente[TAB]reverso
+    text_label: Texto de tarjetas
+    separator_label: Separador de columnas
+    tab_separator: Tabulador (predeterminado)
+    comma_separator: Coma
+    semicolon_separator: Punto y coma
+    pipe_separator: Barra vertical |
+    submit: Importar tarjetas
+    csv_hint_html: Sube un archivo <code>.csv</code> con dos columnas (frente/reverso,
+      término/definición, pregunta/respuesta).
+    csv_label: Archivo CSV
+    csv_submit: Importar CSV
+    no_text: Por favor, pega texto para importar.
+    no_file: Por favor, selecciona un archivo CSV.
     imported:
-      one: "1 tarjeta importada."
+      one: 1 tarjeta importada.
       other: "%{count} tarjetas importadas."
     skipped:
       one: "%{count} línea omitida."
@@ -491,64 +494,67 @@ es:
     cards_detected:
       one: "%{count} tarjeta detectada"
       other: "%{count} tarjetas detectadas"
-    csv_too_few_columns: "El CSV debe tener al menos 2 columnas."
-    csv_no_valid_rows: "No se encontraron filas válidas en el CSV."
-    csv_invalid_format: "Formato CSV no válido: %{message}"
-    text_no_valid_pairs: "No se encontraron pares de tarjetas válidos. Asegúrate de que cada línea tenga un frente y un reverso separados por el delimitador elegido."
-    heading: "Importa tus datos"
-    subheading: "Copia y pega tus datos aquí (desde Word, Excel, Google Docs, etc.)"
-    col_sep_label: "Entre Término y Definición"
-    row_sep_label: "Entre tarjetas"
-    sep_tab: "Tabulador"
-    sep_comma: "Coma"
-    sep_newline: "Nueva línea"
-    sep_semicolon: "Punto y coma"
-    sep_custom: "Personalizado"
-    preview_heading: "Vista previa"
-    preview_empty: "Nada para previsualizar aún."
+    csv_too_few_columns: El CSV debe tener al menos 2 columnas.
+    csv_no_valid_rows: No se encontraron filas válidas en el CSV.
+    csv_invalid_format: 'Formato CSV no válido: %{message}'
+    text_no_valid_pairs: No se encontraron pares de tarjetas válidos. Asegúrate de
+      que cada línea tenga un frente y un reverso separados por el delimitador elegido.
+    heading: Importa tus datos
+    subheading: Copia y pega tus datos aquí (desde Word, Excel, Google Docs, etc.)
+    col_sep_label: Entre Término y Definición
+    row_sep_label: Entre tarjetas
+    sep_tab: Tabulador
+    sep_comma: Coma
+    sep_newline: Nueva línea
+    sep_semicolon: Punto y coma
+    sep_custom: Personalizado
+    preview_heading: Vista previa
+    preview_empty: Nada para previsualizar aún.
     preview_count:
-      one: "1 tarjeta"
+      one: 1 tarjeta
       other: "%{count} tarjetas"
-    term_label: "TÉRMINO"
-    definition_label: "DEFINICIÓN"
-    cancel_import: "Cancelar importación"
+    term_label: TÉRMINO
+    definition_label: DEFINICIÓN
+    cancel_import: Cancelar importación
   home:
     hero_heading: "¿Cómo quieres estudiar?"
-    hero_subtitle: "Domina lo que estás aprendiendo con las tarjetas interactivas, pruebas de práctica y actividades de estudio de Quizly."
-    sign_up: "Regístrate gratis"
-    popular_decks: "Mazos populares"
-    see_all: "Ver todos →"
+    hero_subtitle: Domina lo que estás aprendiendo con las tarjetas interactivas,
+      pruebas de práctica y actividades de estudio de Quizly.
+    sign_up: Regístrate gratis
+    popular_decks: Mazos populares
+    see_all: Ver todos →
     modes:
-      flashcards: "Tarjetas"
-      learn: "Aprender"
-      study: "Estudiar"
-      test: "Examen"
-      match: "Emparejar"
-    explore_link: "Explorar"
-    log_in: "Iniciar sesión"
-    page_title: "Quizly — Aprende más rápido con tarjetas"
+      flashcards: Tarjetas
+      learn: Aprender
+      study: Estudiar
+      test: Examen
+      match: Emparejar
+    explore_link: Explorar
+    log_in: Iniciar sesión
+    page_title: Quizly — Aprende más rápido con tarjetas
     carousel:
-      previous_slide: "Diapositiva anterior"
-      next_slide: "Diapositiva siguiente"
-      favourite: "Favorito"
-      audio: "Audio"
-      shuffle: "Aleatorio"
-      previous_card: "Tarjeta anterior"
-      next_card: "Tarjeta siguiente"
-      fullscreen: "Pantalla completa"
-      go_to_slide: "Ir a la diapositiva %{n}"
+      previous_slide: Diapositiva anterior
+      next_slide: Diapositiva siguiente
+      favourite: Favorito
+      audio: Audio
+      shuffle: Aleatorio
+      previous_card: Tarjeta anterior
+      next_card: Tarjeta siguiente
+      fullscreen: Pantalla completa
+      go_to_slide: Ir a la diapositiva %{n}
   settings:
-    language_updated: "Idioma actualizado."
+    language_updated: Idioma actualizado.
   starred_cards:
-    unstar: "Quitar destacado"
-    star: "Destacar esta tarjeta"
+    unstar: Quitar destacado
+    star: Destacar esta tarjeta
   passwords_mailer:
-    reset_subject: "Restablece tu contraseña"
-    reset_body: "Puedes restablecer tu contraseña en los próximos 15 minutos en"
-    reset_link_text: "esta página de restablecimiento de contraseña"
-    reset_text_body: "Puedes restablecer tu contraseña en los próximos 15 minutos en esta página:"
+    reset_subject: Restablece tu contraseña
+    reset_body: Puedes restablecer tu contraseña en los próximos 15 minutos en
+    reset_link_text: esta página de restablecimiento de contraseña
+    reset_text_body: 'Puedes restablecer tu contraseña en los próximos 15 minutos
+      en esta página:'
   question_engine:
-    match_prompt: "Relaciona cada término con su definición"
+    match_prompt: Relaciona cada término con su definición
   time:
     none: "—"
     seconds: "%{n}s"
@@ -557,14 +563,14 @@ es:
     hours: "%{h}h"
     hours_minutes: "%{h}h %{m}m"
   notifications:
-    bell_aria: "Notificaciones"
-    title: "Notificaciones"
-    empty: "Aún no hay notificaciones"
-    mark_all_read: "Marcar todo como leído"
-    mark_read: "Marcar como leído"
-    time_ago: "hace"
+    bell_aria: Notificaciones
+    title: Notificaciones
+    empty: Aún no hay notificaciones
+    mark_all_read: Marcar todo como leído
+    mark_read: Marcar como leído
+    time_ago: hace
     events:
-      badge_earned: "Has ganado una nueva insignia"
+      badge_earned: Has ganado una nueva insignia
       followed: "%{actor} empezó a seguirte"
       deck_commented: "%{actor} comentó en tu mazo"
       deck_reacted: "%{actor} reaccionó a tu mazo"
@@ -574,17 +580,8 @@ es:
         deck:
           attributes:
             base:
-              not_ready_to_share: "Añade al menos una tarjeta antes de compartir este mazo."
+              not_ready_to_share: Añade al menos una tarjeta antes de compartir este
+                mazo.
             access_mode:
-              invalid_for_private_deck: "Private decks cannot be password-protected — only you can see them anyway."
-        library_item:
-          attributes:
-            base:
-              own_deck: "No puedes guardar tu propio mazo en tu biblioteca."
-            password:
-              too_short:
-                one: "es demasiado corta (mínimo %{count} carácter)"
-                other: "es demasiado corta (mínimo %{count} caracteres)"
-              too_long:
-                one: "es demasiado larga (máximo %{count} carácter)"
-                other: "es demasiado larga (máximo %{count} caracteres)"
+              invalid_for_private_deck: Private decks cannot be password-protected
+                — only you can see them anyway.

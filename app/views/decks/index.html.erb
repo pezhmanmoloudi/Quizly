@@ -32,14 +32,4 @@
     <% end %>
   </div>
 
-  <% if @saved_decks.any? %>
-    <div id="saved-decks-section" class="deck-index__saved-section">
-      <h2 class="deck-index__saved-title"><%= t("decks.index.saved_section_title") %></h2>
-      <div class="deck-grid">
-        <% @saved_decks.each do |deck| %>
-          <%= render "decks/saved_deck_card", deck: deck %>
-        <% end %>
-      </div>
-    </div>
-  <% end %>
 </div>

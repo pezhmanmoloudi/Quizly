@@ -106,33 +106,6 @@ RSpec.describe "Decks#show", type: :request do
       let(:other_user) { create(:user) }
       before { sign_in(other_user) }
 
-      context "library state" do
-        let(:public_deck) { create(:deck, :public, user: user) }
-
-        it "renders the library-state wrapper with a stable DOM ID" do
-          get deck_path(public_deck)
-          expect(response.body).to include("id=\"library-state-#{public_deck.id}\"")
-        end
-
-        it "shows Save button for a non-owner (can_save state)" do
-          get deck_path(public_deck)
-          expect(response.body).to include(I18n.t("decks.action.save"))
-        end
-
-        it "shows Save button on a public deck" do
-          pw_deck = create(:deck, :public, user: user)
-          get deck_path(pw_deck)
-          expect(response.body).to include(I18n.t("decks.action.save"))
-        end
-
-        it "shows Saved state and Remove button when deck is already in library" do
-          create(:library_item, user: other_user, deck: public_deck)
-          get deck_path(public_deck)
-          expect(response.body).to include(I18n.t("decks.action.in_library"))
-          expect(response.body).to include(I18n.t("decks.action.unsave"))
-        end
-      end
-
       it "redirects to library for a private deck (inaccessible)" do
         get deck_path(deck)
         expect(response).to redirect_to(decks_path)

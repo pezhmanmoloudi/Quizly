@@ -1,5 +1,5 @@
 module Decks
-  class ForkService
+  class CopyService
     def self.call(source_deck:, user:, name: nil)
       new(source_deck:, user:, name:).call
     end

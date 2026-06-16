@@ -1,4 +1,4 @@
-<% is_owner = deck_library_state(deck, Current.user) == :owner %>
+<% is_owner = Current.user&.id == deck.user_id %>
 <a class="deck-tile deck-tile--public"
    href="<%= deck_path(deck) %>"
    data-turbo-frame="_top">
@@ -7,11 +7,6 @@
     <h3 class="deck-tile__name"><%= deck.name %></h3>
     <% if is_owner %>
       <span class="deck-tile__owner-badge"><%= t("explore.owner_badge") %></span>
-    <% elsif local_assigns[:saved_deck_ids]&.include?(deck.id) %>
-      <span class="deck-tile__saved-badge">
-        <%= render "shared/icons/bookmark", css_class: "icon--xs" %>
-        <%= t("explore.saved_badge") %>
-      </span>
     <% end %>
   </div>
 
