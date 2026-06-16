@@ -31,12 +31,6 @@ RSpec.describe "Explore#index", type: :request do
         expect(response.body).not_to include("Unlisted Hidden Deck")
       end
 
-      it "does not show Fork button for any deck" do
-        create(:deck, :public, user: other_user, name: "Public Deck")
-        get explore_path
-        expect(response.body).not_to include(I18n.t("explore.fork"))
-      end
-
       it "filters decks by search query" do
         create(:deck, :public, user: other_user, name: "Spanish Basics")
         create(:deck, :public, user: other_user, name: "French Vocab")
@@ -111,27 +105,6 @@ RSpec.describe "Explore#index", type: :request do
         end
       end
 
-      context "saved deck indicator" do
-        let(:deck) { create(:deck, :public, user: other_user, name: "French Vocab") }
-
-        it "shows saved badge for a deck already in the user's library" do
-          create(:library_item, user: user, deck: deck)
-          get explore_path
-          expect(response.body).to include("deck-tile__saved-badge")
-        end
-
-        it "does not show saved badge for a deck not in the user's library" do
-          deck
-          get explore_path
-          expect(response.body).not_to include("deck-tile__saved-badge")
-        end
-
-        it "does not show saved badge for the user's own public decks" do
-          create(:deck, user: user, visibility: "public", name: "My Own Deck")
-          get explore_path
-          expect(response.body).not_to include("deck-tile__saved-badge")
-        end
-      end
     end
 
     context "locale persistence on unauthenticated-accessible page" do
@@ -177,12 +150,6 @@ RSpec.describe "Explore#index", type: :request do
         create(:deck, :private, user: create(:user), name: "Private Hidden Guest")
         get explore_path
         expect(response.body).not_to include("Private Hidden Guest")
-      end
-
-      it "does not show Fork button" do
-        create(:deck, :public, user: create(:user), name: "Some Deck")
-        get explore_path
-        expect(response.body).not_to include(I18n.t("explore.fork"))
       end
 
       it "does not show owner badge for any tile" do

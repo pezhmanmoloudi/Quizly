@@ -1,7 +1,0 @@
-<%= turbo_stream.replace "library-state-#{@deck.id}" do %>
-  <%= render "decks/library_state", deck: @deck %>
-<% end %>
-
-<%= turbo_stream.update "flash-messages" do %>
-  <div class="flash flash--notice" data-controller="flash"><%= flash[:notice] %></div>
-<% end %>

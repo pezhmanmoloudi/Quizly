@@ -1,299 +1,296 @@
+---
 tr:
   nav:
-    home: "Ana Sayfa"
-    explore: "Keşfet"
-    my_library: "Kütüphanem"
+    home: Ana Sayfa
+    explore: Keşfet
+    my_library: Kütüphanem
   topbar:
-    search_placeholder: "Desteler ara…"
-    search_aria: "Desteler ara"
-    create_menu_aria: "Oluşturma menüsü"
-    create_menu_tooltip: "Oluştur"
+    search_placeholder: Desteler ara…
+    search_aria: Desteler ara
+    create_menu_aria: Oluşturma menüsü
+    create_menu_tooltip: Oluştur
     create:
-      flashcard_set: "Kart seti"
-      study_guide: "Çalışma rehberi"
-      practice_test: "Pratik sınav"
-      folder: "Klasör"
-      study_group: "Çalışma grubu"
-    open_navigation: "Gezintiyi aç"
-    close_navigation: "Gezintiyi kapat"
+      flashcard_set: Kart seti
+      study_guide: Çalışma rehberi
+      practice_test: Pratik sınav
+      folder: Klasör
+      study_group: Çalışma grubu
+    open_navigation: Gezintiyi aç
+    close_navigation: Gezintiyi kapat
   menu:
-    settings: "Ayarlar"
-    dark_mode: "Karanlık mod"
-    light_mode: "Açık mod"
-    log_out: "Çıkış yap"
-    language: "Dil"
+    settings: Ayarlar
+    dark_mode: Karanlık mod
+    light_mode: Açık mod
+    log_out: Çıkış yap
+    language: Dil
   shared:
-    cancel: "İptal"
-    close: "Kapat"
-    delete: "Sil"
-    edit: "Düzenle"
-    undo: "Geri Al"
+    cancel: İptal
+    close: Kapat
+    delete: Sil
+    edit: Düzenle
+    undo: Geri Al
     modal:
-      type_to_confirm: "Onaylamak için %{word} yazın"
-    save: "Kaydet"
+      type_to_confirm: Onaylamak için %{word} yazın
+    save: Kaydet
     back: "← Geri"
-    sign_in: "Giriş yap"
-    sign_up_free: "Ücretsiz kaydol"
-    previous_page: "Önceki sayfa"
-    next_page: "Sonraki sayfa"
-    not_available: "Yok"
+    sign_in: Giriş yap
+    sign_up_free: Ücretsiz kaydol
+    previous_page: Önceki sayfa
+    next_page: Sonraki sayfa
+    not_available: Yok
   auth:
-    back_to_home: "Ana sayfaya dön"
+    back_to_home: Ana sayfaya dön
     panel:
-      heading: "Daha akıllı öğren, daha zor değil"
-      tagline: "Quizly, doğru kartı doğru anda göstermek için aralıklı tekrar kullanır — bilgi kalıcı olsun."
-      feature_scheduling: "Bilim destekli SM-2 planlaması"
-      feature_decks: "Kendi oluşturduğun ve sahip olduğun desteler"
-      feature_progress: "Zamanla biriken ilerleme"
+      heading: Daha akıllı öğren, daha zor değil
+      tagline: Quizly, doğru kartı doğru anda göstermek için aralıklı tekrar kullanır
+        — bilgi kalıcı olsun.
+      feature_scheduling: Bilim destekli SM-2 planlaması
+      feature_decks: Kendi oluşturduğun ve sahip olduğun desteler
+      feature_progress: Zamanla biriken ilerleme
   sessions:
-    title: "Giriş Yap"
-    heading: "Tekrar hoş geldin!"
-    subheading: "Panonuza erişmek ve öğrenmeye devam etmek için giriş yap."
-    email_label: "E-posta"
-    email_placeholder: "E-postanı gir"
-    password_label: "Şifre"
-    password_placeholder: "Şifreni gir"
-    toggle_password: "Şifre görünürlüğünü aç/kapat"
-    forgot_password: "Şifreni mi unuttun?"
-    submit: "Giriş Yap"
-    no_account: "Hesabın yok mu?"
-    sign_up: "Kaydol"
+    title: Giriş Yap
+    heading: Tekrar hoş geldin!
+    subheading: Panonuza erişmek ve öğrenmeye devam etmek için giriş yap.
+    email_label: E-posta
+    email_placeholder: E-postanı gir
+    password_label: Şifre
+    password_placeholder: Şifreni gir
+    toggle_password: Şifre görünürlüğünü aç/kapat
+    forgot_password: Şifreni mi unuttun?
+    submit: Giriş Yap
+    no_account: Hesabın yok mu?
+    sign_up: Kaydol
     errors:
-      rate_limited: "Daha sonra tekrar dene."
-      invalid: "Başka bir e-posta adresi veya şifre dene."
+      rate_limited: Daha sonra tekrar dene.
+      invalid: Başka bir e-posta adresi veya şifre dene.
   registrations:
-    title: "Kaydol"
-    heading: "Hesap oluştur"
-    subheading: "Destelerini oluşturmaya başla ve daha akıllıca öğren."
-    email_label: "E-posta"
-    email_placeholder: "E-postanı gir"
-    password_label: "Şifre"
-    password_placeholder: "En az 8 karakter"
-    confirm_label: "Şifreyi onayla"
-    confirm_placeholder: "Şifreni tekrarla"
-    toggle_password: "Şifre görünürlüğünü aç/kapat"
-    submit: "Hesap oluştur"
-    have_account: "Zaten hesabın var mı?"
-    sign_in_link: "Giriş yap"
-    created: "Quizly'ye hoş geldin!"
+    title: Kaydol
+    heading: Hesap oluştur
+    subheading: Destelerini oluşturmaya başla ve daha akıllıca öğren.
+    email_label: E-posta
+    email_placeholder: E-postanı gir
+    password_label: Şifre
+    password_placeholder: En az 8 karakter
+    confirm_label: Şifreyi onayla
+    confirm_placeholder: Şifreni tekrarla
+    toggle_password: Şifre görünürlüğünü aç/kapat
+    submit: Hesap oluştur
+    have_account: Zaten hesabın var mı?
+    sign_in_link: Giriş yap
+    created: Quizly'ye hoş geldin!
     errors:
-      rate_limited: "Daha sonra tekrar dene."
+      rate_limited: Daha sonra tekrar dene.
   passwords:
     new:
-      title: "Şifremi Unuttum"
-      heading: "Şifreni mi unuttun?"
-      subheading: "E-postanı gir, sıfırlama talimatlarını gönderelim."
-      email_label: "E-posta"
-      email_placeholder: "E-postanı gir"
-      submit: "Sıfırlama talimatlarını gönder"
+      title: Şifremi Unuttum
+      heading: Şifreni mi unuttun?
+      subheading: E-postanı gir, sıfırlama talimatlarını gönderelim.
+      email_label: E-posta
+      email_placeholder: E-postanı gir
+      submit: Sıfırlama talimatlarını gönder
       back: "← Girişe geri dön"
     edit:
-      title: "Şifreyi Sıfırla"
-      heading: "Şifreni sıfırla"
-      subheading: "Hesabın için yeni bir şifre seç."
-      password_label: "Yeni şifre"
-      password_placeholder: "En az 8 karakter"
-      confirm_label: "Yeni şifreyi onayla"
-      confirm_placeholder: "Şifreni tekrarla"
-      toggle_password: "Şifre görünürlüğünü aç/kapat"
-      submit: "Yeni şifreyi kaydet"
+      title: Şifreyi Sıfırla
+      heading: Şifreni sıfırla
+      subheading: Hesabın için yeni bir şifre seç.
+      password_label: Yeni şifre
+      password_placeholder: En az 8 karakter
+      confirm_label: Yeni şifreyi onayla
+      confirm_placeholder: Şifreni tekrarla
+      toggle_password: Şifre görünürlüğünü aç/kapat
+      submit: Yeni şifreyi kaydet
       back: "← Girişe geri dön"
-    sent: "Sıfırlama talimatları gönderildi (bu e-posta adresine sahip bir kullanıcı varsa)."
-    reset: "Şifre sıfırlandı."
-    mismatch: "Şifreler eşleşmedi."
-    invalid: "Şifre sıfırlama bağlantısı geçersiz veya süresi dolmuş."
+    sent: Sıfırlama talimatları gönderildi (bu e-posta adresine sahip bir kullanıcı
+      varsa).
+    reset: Şifre sıfırlandı.
+    mismatch: Şifreler eşleşmedi.
+    invalid: Şifre sıfırlama bağlantısı geçersiz veya süresi dolmuş.
     errors:
-      rate_limited: "Daha sonra tekrar dene."
+      rate_limited: Daha sonra tekrar dene.
   accounts:
-    title: "Ayarlar"
-    personal_info: "Kişisel bilgiler"
-    profile_picture_heading: "Profil fotoğrafı"
-    remove_photo: "Fotoğrafı kaldır"
-    remove_photo_confirm: "Profil fotoğrafını kaldırmak istediğinden emin misin?"
-    remove_photo_modal_title: "Profil görselini kaldır"
-    remove_photo_modal_warning: "Bu işlem geri alınamaz."
-    remove_photo_modal_confirm: "Fotoğrafı kaldır"
-    email_label: "E-posta"
-    username_label: "Kullanıcı adı"
-    username_hint_html: "E-posta kullanıcı adını kullanmak için boş bırak (%{email})"
-    account_type_label: "Hesap türü"
-    password_min_hint: "En az 8 karakter"
-    account_type_student: "Öğrenci"
-    account_type_teacher: "Öğretmen"
-    change_password: "Şifreyi değiştir"
-    current_password_placeholder: "Mevcut şifre"
-    new_password_label: "Yeni şifre"
-    confirm_password_label: "Yeni şifreyi onayla"
-    update_password: "Şifreyi güncelle"
-    appearance_section: "Görünüm"
-    theme_label: "Tema"
-    language_label: "Dil"
-    search_languages: "Dil ara"
-    your_languages: "Dillerim"
-    achievements_section: "Başarılar"
-    no_badges: "Henüz rozet yok. Başarıları açmak için çalışmaya devam edin!"
+    title: Ayarlar
+    personal_info: Kişisel bilgiler
+    profile_picture_heading: Profil fotoğrafı
+    remove_photo: Fotoğrafı kaldır
+    remove_photo_confirm: Profil fotoğrafını kaldırmak istediğinden emin misin?
+    remove_photo_modal_title: Profil görselini kaldır
+    remove_photo_modal_warning: Bu işlem geri alınamaz.
+    remove_photo_modal_confirm: Fotoğrafı kaldır
+    email_label: E-posta
+    username_label: Kullanıcı adı
+    username_hint_html: E-posta kullanıcı adını kullanmak için boş bırak (%{email})
+    account_type_label: Hesap türü
+    password_min_hint: En az 8 karakter
+    account_type_student: Öğrenci
+    account_type_teacher: Öğretmen
+    change_password: Şifreyi değiştir
+    current_password_placeholder: Mevcut şifre
+    new_password_label: Yeni şifre
+    confirm_password_label: Yeni şifreyi onayla
+    update_password: Şifreyi güncelle
+    appearance_section: Görünüm
+    theme_label: Tema
+    language_label: Dil
+    search_languages: Dil ara
+    your_languages: Dillerim
+    achievements_section: Başarılar
+    no_badges: Henüz rozet yok. Başarıları açmak için çalışmaya devam edin!
     badge_earned_on: "%{date} tarihinde kazanıldı"
-    delete_title: "Hesabı Sil"
-    delete_description: "Hesabını ve ilgili tüm verileri kalıcı olarak sil. Bu işlem geri alınamaz."
-    delete_button: "Hesabı Sil"
-    delete_confirm: "Hesabını silmek istediğinden emin misin?"
-    delete_confirmation_failed: "Hesap silmeyi onaylamak için lütfen DELETE yazın."
-    delete_modal_warning: "Bu, hesabınızı ve tüm ilgili verileri — desteler, flashcardlar ve çalışma geçmişi — kalıcı olarak silecek. Bu işlem geri alınamaz."
-    delete_modal_confirm: "Hesabı sil"
+    delete_title: Hesabı Sil
+    delete_description: Hesabını ve ilgili tüm verileri kalıcı olarak sil. Bu işlem
+      geri alınamaz.
+    delete_button: Hesabı Sil
+    delete_confirm: Hesabını silmek istediğinden emin misin?
+    delete_confirmation_failed: Hesap silmeyi onaylamak için lütfen DELETE yazın.
+    delete_modal_warning: Bu, hesabınızı ve tüm ilgili verileri — desteler, flashcardlar
+      ve çalışma geçmişi — kalıcı olarak silecek. Bu işlem geri alınamaz.
+    delete_modal_confirm: Hesabı sil
     updated:
-      profile: "Profil güncellendi."
-      email: "E-posta güncellendi."
-      password: "Şifre güncellendi."
-      language: "Dil güncellendi."
-      notifications: "Bildirim tercihleri kaydedildi."
-    avatar_removed: "Profil fotoğrafı kaldırıldı."
-    deleted: "Hesabın silindi."
-    profile_photo_alt: "Profil fotoğrafı"
-    select_avatar: "Avatar seç"
-    upload_photo_title: "Özel fotoğraf yükle"
-    toggle_password: "Şifre görünürlüğünü aç/kapat"
-    notifications_section: "Bildirimler"
-    notif_personalised_updates: "Kişiselleştirilmiş çalışma güncellemeleri"
-    notif_streaks_badges: "Seriler ve rozetler"
-    notif_study_reminders: "Çalışma hatırlatıcıları"
-    notif_choose_reminder_time: "Çalışma hatırlatıcılarını ne zaman alacağınızı seçin"
-    notif_time_zone: "Saat dilimi"
-    notif_email_label: "E-posta bildirimi"
-    theme_auto: "Otomatik"
-    theme_light: "Açık"
-    theme_dark: "Koyu"
-    password_incorrect: "hatalı"
-    avatar_format_error: "Geçersiz dosya biçimi. Lütfen JPG, PNG veya WEBP yükle."
-    avatar_size_error: "Profil fotoğrafı 5 MB'tan küçük olmalı."
+      profile: Profil güncellendi.
+      email: E-posta güncellendi.
+      password: Şifre güncellendi.
+      language: Dil güncellendi.
+      notifications: Bildirim tercihleri kaydedildi.
+    avatar_removed: Profil fotoğrafı kaldırıldı.
+    deleted: Hesabın silindi.
+    profile_photo_alt: Profil fotoğrafı
+    select_avatar: Avatar seç
+    upload_photo_title: Özel fotoğraf yükle
+    toggle_password: Şifre görünürlüğünü aç/kapat
+    notifications_section: Bildirimler
+    notif_personalised_updates: Kişiselleştirilmiş çalışma güncellemeleri
+    notif_streaks_badges: Seriler ve rozetler
+    notif_study_reminders: Çalışma hatırlatıcıları
+    notif_choose_reminder_time: Çalışma hatırlatıcılarını ne zaman alacağınızı seçin
+    notif_time_zone: Saat dilimi
+    notif_email_label: E-posta bildirimi
+    theme_auto: Otomatik
+    theme_light: Açık
+    theme_dark: Koyu
+    password_incorrect: hatalı
+    avatar_format_error: Geçersiz dosya biçimi. Lütfen JPG, PNG veya WEBP yükle.
+    avatar_size_error: Profil fotoğrafı 5 MB'tan küçük olmalı.
   decks:
     index:
-      title: "Destelerim"
-      sort_recent: "Son kullanılan"
-      sort_az: "A–Z"
-      sort_most_due: "En çok bekleyen"
-      empty_title: "Henüz deste yok"
-      empty_description: "Çalışmaya başlamak için ilk desteni oluştur."
-      saved_section_title: "Kaydedilen desteler"
+      title: Destelerim
+      sort_recent: Son kullanılan
+      sort_az: A–Z
+      sort_most_due: En çok bekleyen
+      empty_title: Henüz deste yok
+      empty_description: Çalışmaya başlamak için ilk desteni oluştur.
     show:
-      edit: "Desteyi düzenle"
-      delete: "Desteyi sil"
-      delete_confirm: "Bu desteyi kaldırmak istediğinden emin misin?"
-      delete_modal_title: "Bu desteyi sil?"
-      delete_modal_warning: "Tüm flashcardlar kalıcı olarak silinecek. Bu işlem geri alınamaz."
-      delete_modal_confirm: "Desteyi sil"
-      unlisted_badge: "Listelenmemiş"
-      public_badge: "Herkese açık"
-      private_badge: "Özel"
-      created: "Oluşturulma"
-      cards_section: "Kartlar"
-      add_card: "Kart ekle"
-      import: "İçe aktar"
-      mode_flashcard: "Flashcard"
-      mode_study: "Çalış"
-      mode_learn: "Öğren"
-      mode_test: "Test"
-      mode_match: "Eşleştir"
-      cards_per_page: "Sayfa başına kart"
-      locked_title: "This deck is password protected"
-      locked_description: "Enter the password to access all flashcards and study modes."
-      unlock_cta: "Unlock Deck"
-      preview_heading: "Sample Cards"
+      edit: Desteyi düzenle
+      delete: Desteyi sil
+      delete_confirm: Bu desteyi kaldırmak istediğinden emin misin?
+      delete_modal_title: Bu desteyi sil?
+      delete_modal_warning: Tüm flashcardlar kalıcı olarak silinecek. Bu işlem geri
+        alınamaz.
+      delete_modal_confirm: Desteyi sil
+      unlisted_badge: Listelenmemiş
+      public_badge: Herkese açık
+      private_badge: Özel
+      created: Oluşturulma
+      cards_section: Kartlar
+      add_card: Kart ekle
+      import: İçe aktar
+      mode_flashcard: Flashcard
+      mode_study: Çalış
+      mode_learn: Öğren
+      mode_test: Test
+      mode_match: Eşleştir
+      cards_per_page: Sayfa başına kart
+      locked_title: This deck is password protected
+      locked_description: Enter the password to access all flashcards and study modes.
+      unlock_cta: Unlock Deck
+      preview_heading: Sample Cards
       locked_card_placeholder: "• • •"
       locked_cards_counter:
-        one: "1 card locked"
+        one: 1 card locked
         other: "%{count} cards locked"
     edit:
-      title: "Desteyi Düzenle"
+      title: Desteyi Düzenle
       back: "← Geri"
     manage_access:
-      title: "Erişimi yönet"
-      public_desc: "Herkes bu desteyi bulabilir ve çalışabilir"
-      unlisted_desc: "Yalnızca bağlantıya sahip kişiler görebilir"
-      private_desc: "Yalnızca sen"
-      visibility_heading: "Görünürlük"
-      access_mode_heading: "Access"
-      open_desc: "Anyone who can find this deck can study it"
-      password_desc: "Viewers must enter a password to access flashcards"
-      share_heading: "Bağlantıyı paylaş"
-      share_hint: "Bu bağlantıya sahip herkes deste görebilir"
-      copy_link: "Kopyala"
-      copy_link_copied: "Kopyalandı!"
-      visible_to: "Görüntüleyenler"
-      password_is_set: "A password is set — enter a new one to change it"
+      title: Erişimi yönet
+      public_desc: Herkes bu desteyi bulabilir ve çalışabilir
+      unlisted_desc: Yalnızca bağlantıya sahip kişiler görebilir
+      private_desc: Yalnızca sen
+      visibility_heading: Görünürlük
+      access_mode_heading: Access
+      open_desc: Anyone who can find this deck can study it
+      password_desc: Viewers must enter a password to access flashcards
+      share_heading: Bağlantıyı paylaş
+      share_hint: Bu bağlantıya sahip herkes deste görebilir
+      copy_link: Kopyala
+      copy_link_copied: Kopyalandı!
+      visible_to: Görüntüleyenler
+      password_is_set: A password is set — enter a new one to change it
     form:
-      name_label: "Ad"
-      description_label: "Açıklama"
-      language_label: "Dil (isteğe bağlı)"
-      language_placeholder: "örn. en, tr, de"
-      tags_label: "Etiketler (isteğe bağlı)"
-      tags_hint: "Etiketleri virgülle ayır."
-      tags_placeholder: "örn. biyoloji, anatomi, sınav2025"
-      visibility_label: "Görünürlük"
-      visibility_section_label: "Bu desteyi kim görebilir?"
-      visibility_unlisted: "Listelenmemiş"
-      section_about: "Hakkında"
-      access_mode_open: "Open"
-      access_mode_password: "Password protected"
-      visibility_private: "Sadece ben"
-      visibility_public: "Herkese açık"
-      visibility_hint: "Herkese açık desteler herkes tarafından keşfedilebilir ve kopyalanabilir."
-      password_label: "Deste şifresi"
-      password_placeholder: "En az 8 karakter"
-      password_hint: "Required to view this deck"
+      name_label: Ad
+      description_label: Açıklama
+      language_label: Dil (isteğe bağlı)
+      language_placeholder: örn. en, tr, de
+      tags_label: Etiketler (isteğe bağlı)
+      tags_hint: Etiketleri virgülle ayır.
+      tags_placeholder: örn. biyoloji, anatomi, sınav2025
+      visibility_label: Görünürlük
+      visibility_section_label: Bu desteyi kim görebilir?
+      visibility_unlisted: Listelenmemiş
+      section_about: Hakkında
+      access_mode_open: Open
+      access_mode_password: Password protected
+      visibility_private: Sadece ben
+      visibility_public: Herkese açık
+      visibility_hint: Herkese açık desteler herkes tarafından keşfedilebilir ve kopyalanabilir.
+      password_label: Deste şifresi
+      password_placeholder: En az 8 karakter
+      password_hint: Required to view this deck
     cards:
-      page_title: "Kart Ekle — %{name}"
-      add_card: "Kart ekle"
-      save: "Kaydet"
-      error_term: "Kart %{row}: terim zorunludur."
-      error_definition: "Kart %{row}: tanım zorunludur."
-      error_language: "Kart %{row}: %{side} için dil zorunludur."
-      error_no_cards: "Kaydetmeden önce en az bir kart ekleyin."
+      page_title: Kart Ekle — %{name}
+      add_card: Kart ekle
+      save: Kaydet
+      error_term: 'Kart %{row}: terim zorunludur.'
+      error_definition: 'Kart %{row}: tanım zorunludur.'
+      error_language: 'Kart %{row}: %{side} için dil zorunludur.'
+      error_no_cards: Kaydetmeden önce en az bir kart ekleyin.
       back_label: "%{name} geri dön"
     card_row:
-      term_label: "Terim"
-      term_placeholder: "Terimi gir"
-      definition_label: "Tanım"
-      definition_placeholder: "Tanımı gir"
-      front_label: "ön"
-      back_label: "arka"
-      select_language: "Dil seç"
-      image: "Resim"
-      remove: "Kartı kaldır"
-      saving: "Kaydediliyor…"
+      term_label: Terim
+      term_placeholder: Terimi gir
+      definition_label: Tanım
+      definition_placeholder: Tanımı gir
+      front_label: ön
+      back_label: arka
+      select_language: Dil seç
+      image: Resim
+      remove: Kartı kaldır
+      saving: Kaydediliyor…
       saved: "✓"
       error: "!"
-    created: "Deste oluşturuldu."
-    default_name: "Başlıksız Deste"
-    create_failed: "Deste oluşturulamadı. Lütfen tekrar deneyin."
-    updated: "Deste güncellendi."
-    deleted: "Deste silindi."
-    cards_saved: "Kartlar kaydedildi."
+    created: Deste oluşturuldu.
+    default_name: Başlıksız Deste
+    create_failed: Deste oluşturulamadı. Lütfen tekrar deneyin.
+    updated: Deste güncellendi.
+    deleted: Deste silindi.
+    cards_saved: Kartlar kaydedildi.
     action:
-      save:                  "Kaydet"
-      in_library:            "Kütüphanenizde"
-      sign_in_to_save:       "Kaydetmek için giriş yap"
-      saved:                 "Deste kütüphanene eklendi."
-      already_saved:         "Bu deste zaten kütüphanenizde."
-      unsave:                "Kitaplıktan kaldır"
-      unsaved:               "Deste kitaplığından kaldırıldı."
-      not_in_library:        "Bu deste kitaplığınızda değil."
-      copy:                  "Kopya oluştur"
-      copied:                "Kopya oluşturuldu. Artık düzenleyebilirsiniz."
-      copy_name:             "%{name} (Kopya)"
-    not_available: "Deste mevcut değil."
+      copy: Kopya oluştur
+      copied: Kopya oluşturuldu. Artık düzenleyebilirsiniz.
+      copy_name: "%{name} (Kopya)"
+    not_available: Deste mevcut değil.
     unlock:
-      title: "Şifre gerekli"
-      description: "Bu deste korumalıdır. Devam etmek için şifreyi girin."
-      password_label: "Şifre"
-      submit: "Desteyi aç"
-      invalid_password: "Yanlış şifre. Lütfen tekrar deneyin."
-      success: "Erişim sağlandı."
+      title: Şifre gerekli
+      description: Bu deste korumalıdır. Devam etmek için şifreyi girin.
+      password_label: Şifre
+      submit: Desteyi aç
+      invalid_password: Yanlış şifre. Lütfen tekrar deneyin.
+      success: Erişim sağlandı.
       back_to_preview: "← Back to deck"
-      help_text: "Contact the deck creator if you don't have the password."
-      submitting: "Unlocking…"
-    sidebar_no_decks: "Henüz deste yok."
+      help_text: Contact the deck creator if you don't have the password.
+      submitting: Unlocking…
+    sidebar_no_decks: Henüz deste yok.
     deck_card:
-      draft: "Taslak"
+      draft: Taslak
       due:
         one: "%{count} kart bekliyor"
         other: "%{count} kart bekliyor"
@@ -304,186 +301,188 @@ tr:
     new:
       back: "← %{name} sayfasına geri dön"
     form:
-      term_label: "Terim"
-      term_placeholder: "Terimi gir"
-      definition_label: "Tanım"
-      definition_placeholder: "Tanımı gir"
-      save: "Kartı Kaydet →"
-    created: "Kart eklendi."
-    updated: "Kart güncellendi."
-    deleted: "Flashcard kaldırıldı."
-    restored: "Flashcard geri yüklendi."
+      term_label: Terim
+      term_placeholder: Terimi gir
+      definition_label: Tanım
+      definition_placeholder: Tanımı gir
+      save: Kartı Kaydet →
+    created: Kart eklendi.
+    updated: Kart güncellendi.
+    deleted: Flashcard kaldırıldı.
+    restored: Flashcard geri yüklendi.
   study_modes:
     exit: "← Çık"
-    no_cards_title: "Henüz kart yok"
-    back_to_deck: "Desteye dön"
-    time: "Süre"
-    streak: "Seri"
+    no_cards_title: Henüz kart yok
+    back_to_deck: Desteye dön
+    time: Süre
+    streak: Seri
     flashcard:
-      empty_description: "Başlamak için bu desteye birkaç kart ekle."
+      empty_description: Başlamak için bu desteye birkaç kart ekle.
       keyboard_hint: "← → gezinmek için · Boşluk çevirmek için"
       previous: "← Önceki"
-      next: "Sonraki →"
-      guest_cta: "İlerlemenizi takip etmek ve çalışma geçmişinizi kaydetmek için giriş yap."
-      click_to_flip: "Kartı çevirmek için tıkla"
-      options: "Seçenekler"
-      track_progress: "İlerlemeyi takip et"
-      track_progress_desc: "Ne bildiğini ve ne öğrendiğini takip et."
-      starred_only: "Yalnızca yıldızlı terimler"
-      starred_only_desc: "Yalnızca yıldızladığın kartları çalış."
-      show_both_sides: "Her iki tarafı göster"
-      show_both_sides_desc: "Ön ve arka yüzü birlikte gör."
-      keyboard_shortcuts: "Klavye kısayolları"
-      key_previous: "Önceki"
-      key_next: "Sonraki"
-      key_flip: "Çevir"
-      key_star: "Yıldızla"
-      hide: "Gizle"
-      restart: "Flashcard'ları yeniden başlat"
+      next: Sonraki →
+      guest_cta: İlerlemenizi takip etmek ve çalışma geçmişinizi kaydetmek için giriş
+        yap.
+      click_to_flip: Kartı çevirmek için tıkla
+      options: Seçenekler
+      track_progress: İlerlemeyi takip et
+      track_progress_desc: Ne bildiğini ve ne öğrendiğini takip et.
+      starred_only: Yalnızca yıldızlı terimler
+      starred_only_desc: Yalnızca yıldızladığın kartları çalış.
+      show_both_sides: Her iki tarafı göster
+      show_both_sides_desc: Ön ve arka yüzü birlikte gör.
+      keyboard_shortcuts: Klavye kısayolları
+      key_previous: Önceki
+      key_next: Sonraki
+      key_flip: Çevir
+      key_star: Yıldızla
+      hide: Gizle
+      restart: Flashcard'ları yeniden başlat
     study:
-      subtitle: "Kartları gözden geçir ve hatırlamanı puanla"
-      done_label: "Tamamlandı"
-      empty_title: "Her şey tamam!"
-      empty_description: "Şu an bekleyen kart yok."
-      all_cards_tab: "Tüm kartlar"
+      subtitle: Kartları gözden geçir ve hatırlamanı puanla
+      done_label: Tamamlandı
+      empty_title: Her şey tamam!
+      empty_description: Şu an bekleyen kart yok.
+      all_cards_tab: Tüm kartlar
       starred_tab: "⭐ Yıldızlı"
-      summary_title: "Oturum tamamlandı!"
-      reviewed: "İncelenen kartlar"
-      accuracy: "Doğruluk"
-      time_spent: "Harcanan süre"
-      summary_sub: "Şu an bekleyen kart yok — harika iş."
-      show_answer: "Cevabı göster"
-      again: "Tekrar"
-      hard: "Zor"
-      good: "İyi"
-      easy: "Kolay"
-      keyboard_hint: "Boşluk göstermek için · 1 Tekrar · 2 Zor · 3 İyi · 4 Kolay · Esc çıkmak için"
+      summary_title: Oturum tamamlandı!
+      reviewed: İncelenen kartlar
+      accuracy: Doğruluk
+      time_spent: Harcanan süre
+      summary_sub: Şu an bekleyen kart yok — harika iş.
+      show_answer: Cevabı göster
+      again: Tekrar
+      hard: Zor
+      good: İyi
+      easy: Kolay
+      keyboard_hint: Boşluk göstermek için · 1 Tekrar · 2 Zor · 3 İyi · 4 Kolay ·
+        Esc çıkmak için
     learn:
-      subtitle: "Kartı öğrenmek için cevabı yaz"
-      mastered_label: "Öğrenildi"
-      empty_description: "Çalışmadan önce bu desteye flashcard ekle."
-      summary_title: "Tüm kartlar öğrenildi!"
-      studied: "Çalışılan kartlar"
-      time_spent: "Harcanan süre"
-      summary_sub: "Harika iş — tüm kartlar öğrenildi."
-      study_again: "Tekrar Çalış"
+      subtitle: Kartı öğrenmek için cevabı yaz
+      mastered_label: Öğrenildi
+      empty_description: Çalışmadan önce bu desteye flashcard ekle.
+      summary_title: Tüm kartlar öğrenildi!
+      studied: Çalışılan kartlar
+      time_spent: Harcanan süre
+      summary_sub: Harika iş — tüm kartlar öğrenildi.
+      study_again: Tekrar Çalış
     learn_card:
-      prompt: "Bu terimi tanımla"
-      your_answer: "Cevabın"
-      correct: "Doğru!"
-      incorrect: "Yanlış"
-      correct_answer: "Doğru cevap:"
-      type_answer: "Cevabını yaz…"
-      submit: "Gönder"
-      keyboard_hint: "Enter göndermek için"
-      continue: "Devam →"
+      prompt: Bu terimi tanımla
+      your_answer: Cevabın
+      correct: Doğru!
+      incorrect: Yanlış
+      correct_answer: 'Doğru cevap:'
+      type_answer: Cevabını yaz…
+      submit: Gönder
+      keyboard_hint: Enter göndermek için
+      continue: Devam →
     test:
-      subtitle: "Bilgini test et"
-      question_label: "Soru"
-      empty_description: "Test almadan önce bu desteye flashcard ekle."
-      summary_title: "Test tamamlandı!"
-      correct_answers: "Doğru cevaplar"
-      score: "Puan"
-      time: "Süre"
-      retake: "Testi Tekrarla"
+      subtitle: Bilgini test et
+      question_label: Soru
+      empty_description: Test almadan önce bu desteye flashcard ekle.
+      summary_title: Test tamamlandı!
+      correct_answers: Doğru cevaplar
+      score: Puan
+      time: Süre
+      retake: Testi Tekrarla
     test_question:
-      correct: "Doğru!"
-      incorrect: "Yanlış"
-      correct_answer: "Doğru cevap:"
-      see_results: "Sonuçları Gör →"
-      continue: "Devam →"
-      keyboard_hint: "Boşluk veya Enter devam etmek için"
-      your_answer: "Cevabın"
-      type_answer: "Cevabını yaz…"
-      submit: "Gönder"
-      submit_hint: "Göndermek için Enter'a bas"
-      submit_matches: "Eşleştirmeleri Gönder"
+      correct: Doğru!
+      incorrect: Yanlış
+      correct_answer: 'Doğru cevap:'
+      see_results: Sonuçları Gör →
+      continue: Devam →
+      keyboard_hint: Boşluk veya Enter devam etmek için
+      your_answer: Cevabın
+      type_answer: Cevabını yaz…
+      submit: Gönder
+      submit_hint: Göndermek için Enter'a bas
+      submit_matches: Eşleştirmeleri Gönder
       true_btn: "✓ Doğru"
       false_btn: "✗ Yanlış"
     match:
-      empty_description: "Eşleştirme oynamak için bu desteye kart ekle."
-      completed: "Hepsi eşleşti!"
-      play_again: "Tekrar Oyna"
-      guest_cta: "Puanlarını kaydetmek ve gelişimini takip etmek için giriş yap."
-      subtitle: "Kelimeleri anlamlarıyla eşleştir"
-      time: "Süre"
-      pairs_left: "Kalan çift"
-      streak: "Seri"
+      empty_description: Eşleştirme oynamak için bu desteye kart ekle.
+      completed: Hepsi eşleşti!
+      play_again: Tekrar Oyna
+      guest_cta: Puanlarını kaydetmek ve gelişimini takip etmek için giriş yap.
+      subtitle: Kelimeleri anlamlarıyla eşleştir
+      time: Süre
+      pairs_left: Kalan çift
+      streak: Seri
       progress_label: "%{pct}% ilerleme"
-      matched_counter: "Eşleşti: %{matched} / %{total}"
+      matched_counter: 'Eşleşti: %{matched} / %{total}'
   errors:
     not_found:
-      flash: "This deck is no longer available."
+      flash: This deck is no longer available.
     not_authorized:
-      flash: "You are not authorized to perform this action."
+      flash: You are not authorized to perform this action.
   explore:
-    title: "Keşfet"
-    subtitle: "Topluluk tarafından paylaşılan herkese açık desteleri keşfet ve kopyala."
-    search_placeholder: "Desteler ara…"
-    search_aria: "Herkese açık desteler ara"
-    empty_search_title: "\"%{query}\" için deste bulunamadı"
-    empty_search_description: "Farklı bir arama terimi dene veya tüm herkese açık destelere göz at."
-    empty_title: "Henüz herkese açık deste yok"
-    empty_description: "Toplulukla ilk desteyi paylaşan sen ol."
-    by: "tarafından"
-    saved_badge: "Kaydedildi"
-    locked_badge: "Password Required"
-    owner_badge:  "Sen"
-    by_you:       "senin tarafından"
+    title: Keşfet
+    subtitle: Topluluk tarafından paylaşılan herkese açık desteleri keşfet ve kopyala.
+    search_placeholder: Desteler ara…
+    search_aria: Herkese açık desteler ara
+    empty_search_title: '"%{query}" için deste bulunamadı'
+    empty_search_description: Farklı bir arama terimi dene veya tüm herkese açık destelere
+      göz at.
+    empty_title: Henüz herkese açık deste yok
+    empty_description: Toplulukla ilk desteyi paylaşan sen ol.
+    by: tarafından
+    locked_badge: Password Required
+    owner_badge: Sen
+    by_you: senin tarafından
   dashboard:
-    total_decks: "Toplam Deste"
-    total_cards: "Toplam Kart"
-    cards_due: "Bekleyen Kartlar"
-    current_streak: "Günlük Seri"
-    longest_streak: "En İyi Seri"
-    study_history: "Çalışma Geçmişi"
-    see_all: "Tümünü gör"
-    empty_history: "Geçmişini burada görmek için bir çalışma oturumu tamamla."
-    my_decks: "Destelerim"
-    no_decks_title: "Henüz deste yok"
-    no_decks_description: "Çalışmaya başlamak için ilk desteni oluştur."
+    total_decks: Toplam Deste
+    total_cards: Toplam Kart
+    cards_due: Bekleyen Kartlar
+    current_streak: Günlük Seri
+    longest_streak: En İyi Seri
+    study_history: Çalışma Geçmişi
+    see_all: Tümünü gör
+    empty_history: Geçmişini burada görmek için bir çalışma oturumu tamamla.
+    my_decks: Destelerim
+    no_decks_title: Henüz deste yok
+    no_decks_description: Çalışmaya başlamak için ilk desteni oluştur.
     history_stats: "%{cards} kart · %{accuracy}% doğruluk"
     continue_studying:
-      title: "Çalışmaya Devam Et"
-      study_now: "Şimdi Çalış →"
+      title: Çalışmaya Devam Et
+      study_now: Şimdi Çalış →
       card_aria: "%{name} çalışmaya devam et"
       study_aria: "%{name} çalış"
       cards_due:
         one: "%{count} kart bekliyor"
         other: "%{count} kart bekliyor"
   study_sessions:
-    title: "Çalışma Geçmişi"
+    title: Çalışma Geçmişi
     back: "← Panel"
-    empty_title: "Henüz oturum yok"
-    empty_description: "Bir çalışma oturumu tamamla, burada görünecek."
-    go_to_decks: "Destelere Git"
-    deck_header: "Deste"
-    date_header: "Tarih"
-    reviewed_header: "İncelenen"
-    accuracy_header: "Doğruluk"
-    time_header: "Süre"
+    empty_title: Henüz oturum yok
+    empty_description: Bir çalışma oturumu tamamla, burada görünecek.
+    go_to_decks: Destelere Git
+    deck_header: Deste
+    date_header: Tarih
+    reviewed_header: İncelenen
+    accuracy_header: Doğruluk
+    time_header: Süre
   imports:
-    title: "Kartları İçe Aktar — %{name}"
+    title: Kartları İçe Aktar — %{name}
     back: "← %{name}"
-    text_tab: "Metin"
-    csv_tab: "CSV dosyası"
-    text_hint: "Satır başına bir kart yapıştır. Ön ve arkayı seçtiğin ayırıcıyla ayır."
-    text_default_format: "Varsayılan biçim (Quizlet uyumlu):"
-    text_format_example: "ön[TAB]arka"
-    text_label: "Kart metni"
-    separator_label: "Sütun ayırıcı"
-    tab_separator: "Sekme (varsayılan)"
-    comma_separator: "Virgül"
-    semicolon_separator: "Noktalı virgül"
-    pipe_separator: "Boru |"
-    submit: "Kartları İçe Aktar"
-    csv_hint_html: "İki sütunlu (ön/arka) bir <code>.csv</code> dosyası yükle."
-    csv_label: "CSV dosyası"
-    csv_submit: "CSV'yi İçe Aktar"
-    no_text: "Lütfen içe aktarmak için metin yapıştır."
-    no_file: "Lütfen bir CSV dosyası seç."
+    text_tab: Metin
+    csv_tab: CSV dosyası
+    text_hint: Satır başına bir kart yapıştır. Ön ve arkayı seçtiğin ayırıcıyla ayır.
+    text_default_format: 'Varsayılan biçim (Quizlet uyumlu):'
+    text_format_example: ön[TAB]arka
+    text_label: Kart metni
+    separator_label: Sütun ayırıcı
+    tab_separator: Sekme (varsayılan)
+    comma_separator: Virgül
+    semicolon_separator: Noktalı virgül
+    pipe_separator: Boru |
+    submit: Kartları İçe Aktar
+    csv_hint_html: İki sütunlu (ön/arka) bir <code>.csv</code> dosyası yükle.
+    csv_label: CSV dosyası
+    csv_submit: CSV'yi İçe Aktar
+    no_text: Lütfen içe aktarmak için metin yapıştır.
+    no_file: Lütfen bir CSV dosyası seç.
     imported:
-      one: "1 kart içe aktarıldı."
+      one: 1 kart içe aktarıldı.
       other: "%{count} kart içe aktarıldı."
     skipped:
       one: "%{count} satır atlandı."
@@ -491,64 +490,67 @@ tr:
     cards_detected:
       one: "%{count} kart algılandı"
       other: "%{count} kart algılandı"
-    csv_too_few_columns: "CSV en az 2 sütun içermelidir."
-    csv_no_valid_rows: "CSV'de geçerli satır bulunamadı."
-    csv_invalid_format: "Geçersiz CSV biçimi: %{message}"
-    text_no_valid_pairs: "Geçerli kart çifti bulunamadı. Her satırın seçilen ayırıcıyla ayrılmış ön ve arka içerdiğinden emin ol."
-    heading: "Verilerini içe aktar"
-    subheading: "Verilerini buraya kopyalayıp yapıştır (Word, Excel, Google Docs vb.)"
-    col_sep_label: "Terim ile Tanım Arasında"
-    row_sep_label: "Kartlar Arasında"
-    sep_tab: "Sekme"
-    sep_comma: "Virgül"
-    sep_newline: "Yeni Satır"
-    sep_semicolon: "Noktalı Virgül"
-    sep_custom: "Özel"
-    preview_heading: "Önizleme"
-    preview_empty: "Henüz önizlenecek bir şey yok."
+    csv_too_few_columns: CSV en az 2 sütun içermelidir.
+    csv_no_valid_rows: CSV'de geçerli satır bulunamadı.
+    csv_invalid_format: 'Geçersiz CSV biçimi: %{message}'
+    text_no_valid_pairs: Geçerli kart çifti bulunamadı. Her satırın seçilen ayırıcıyla
+      ayrılmış ön ve arka içerdiğinden emin ol.
+    heading: Verilerini içe aktar
+    subheading: Verilerini buraya kopyalayıp yapıştır (Word, Excel, Google Docs vb.)
+    col_sep_label: Terim ile Tanım Arasında
+    row_sep_label: Kartlar Arasında
+    sep_tab: Sekme
+    sep_comma: Virgül
+    sep_newline: Yeni Satır
+    sep_semicolon: Noktalı Virgül
+    sep_custom: Özel
+    preview_heading: Önizleme
+    preview_empty: Henüz önizlenecek bir şey yok.
     preview_count:
-      one: "1 kart"
+      one: 1 kart
       other: "%{count} kart"
-    term_label: "TERİM"
-    definition_label: "TANIM"
-    cancel_import: "İçe aktarmayı iptal et"
+    term_label: TERİM
+    definition_label: TANIM
+    cancel_import: İçe aktarmayı iptal et
   home:
-    hero_heading: "Nasıl çalışmak istersin?"
-    hero_subtitle: "Quizly'nin etkileşimli flashcard'ları, pratik testleri ve çalışma etkinlikleriyle öğrendiklerini pekiştir."
-    sign_up: "Ücretsiz kaydol"
-    popular_decks: "Popüler Desteler"
-    see_all: "Tümünü gör →"
+    hero_heading: Nasıl çalışmak istersin?
+    hero_subtitle: Quizly'nin etkileşimli flashcard'ları, pratik testleri ve çalışma
+      etkinlikleriyle öğrendiklerini pekiştir.
+    sign_up: Ücretsiz kaydol
+    popular_decks: Popüler Desteler
+    see_all: Tümünü gör →
     modes:
-      flashcards: "Flashcard'lar"
-      learn: "Öğren"
-      study: "Çalış"
-      test: "Test"
-      match: "Eşleştir"
-    explore_link: "Keşfet"
-    log_in: "Giriş Yap"
-    page_title: "Quizly — Flashcard'larla Daha Hızlı Öğren"
+      flashcards: Flashcard'lar
+      learn: Öğren
+      study: Çalış
+      test: Test
+      match: Eşleştir
+    explore_link: Keşfet
+    log_in: Giriş Yap
+    page_title: Quizly — Flashcard'larla Daha Hızlı Öğren
     carousel:
-      previous_slide: "Önceki slayt"
-      next_slide: "Sonraki slayt"
-      favourite: "Favori"
-      audio: "Ses"
-      shuffle: "Karıştır"
-      previous_card: "Önceki kart"
-      next_card: "Sonraki kart"
-      fullscreen: "Tam ekran"
+      previous_slide: Önceki slayt
+      next_slide: Sonraki slayt
+      favourite: Favori
+      audio: Ses
+      shuffle: Karıştır
+      previous_card: Önceki kart
+      next_card: Sonraki kart
+      fullscreen: Tam ekran
       go_to_slide: "%{n}. slayta git"
   settings:
-    language_updated: "Dil güncellendi."
+    language_updated: Dil güncellendi.
   starred_cards:
-    unstar: "Yıldızı kaldır"
-    star: "Bu kartı yıldızla"
+    unstar: Yıldızı kaldır
+    star: Bu kartı yıldızla
   passwords_mailer:
-    reset_subject: "Şifreni sıfırla"
-    reset_body: "Şifreni sonraki 15 dakika içinde şu adreste sıfırlayabilirsin:"
-    reset_link_text: "bu şifre sıfırlama sayfası"
-    reset_text_body: "Şifreni sonraki 15 dakika içinde bu şifre sıfırlama sayfasında sıfırlayabilirsin:"
+    reset_subject: Şifreni sıfırla
+    reset_body: 'Şifreni sonraki 15 dakika içinde şu adreste sıfırlayabilirsin:'
+    reset_link_text: bu şifre sıfırlama sayfası
+    reset_text_body: 'Şifreni sonraki 15 dakika içinde bu şifre sıfırlama sayfasında
+      sıfırlayabilirsin:'
   question_engine:
-    match_prompt: "Her terimi tanımıyla eşleştir"
+    match_prompt: Her terimi tanımıyla eşleştir
   time:
     none: "—"
     seconds: "%{n}sn"
@@ -557,14 +559,14 @@ tr:
     hours: "%{h}sa"
     hours_minutes: "%{h}sa %{m}dk"
   notifications:
-    bell_aria: "Bildirimler"
-    title: "Bildirimler"
-    empty: "Henüz bildirim yok"
-    mark_all_read: "Tümünü okundu olarak işaretle"
-    mark_read: "Okundu olarak işaretle"
-    time_ago: "önce"
+    bell_aria: Bildirimler
+    title: Bildirimler
+    empty: Henüz bildirim yok
+    mark_all_read: Tümünü okundu olarak işaretle
+    mark_read: Okundu olarak işaretle
+    time_ago: önce
     events:
-      badge_earned: "Yeni bir rozet kazandınız"
+      badge_earned: Yeni bir rozet kazandınız
       followed: "%{actor} sizi takip etmeye başladı"
       deck_commented: "%{actor} demetinizi yorumladı"
       deck_reacted: "%{actor} demetinize tepki verdi"
@@ -574,17 +576,7 @@ tr:
         deck:
           attributes:
             base:
-              not_ready_to_share: "Bu desteyi paylaşmadan önce en az bir kart ekleyin."
+              not_ready_to_share: Bu desteyi paylaşmadan önce en az bir kart ekleyin.
             access_mode:
-              invalid_for_private_deck: "Private decks cannot be password-protected — only you can see them anyway."
-        library_item:
-          attributes:
-            base:
-              own_deck: "Kendi desteğinizi kütüphanenize kaydedemezsiniz."
-            password:
-              too_short:
-                one: "çok kısa (minimum %{count} karakter)"
-                other: "çok kısa (minimum %{count} karakter)"
-              too_long:
-                one: "çok uzun (maksimum %{count} karakter)"
-                other: "çok uzun (maksimum %{count} karakter)"
+              invalid_for_private_deck: Private decks cannot be password-protected
+                — only you can see them anyway.

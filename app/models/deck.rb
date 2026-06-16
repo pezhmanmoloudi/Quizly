@@ -1,8 +1,6 @@
 class Deck < ApplicationRecord
   belongs_to :user
   belongs_to :source_deck, class_name: "Deck", optional: true
-  has_many :library_items, dependent: :destroy
-  has_many :savers, through: :library_items, source: :user
   has_many :flashcards, dependent: :destroy
   before_destroy :purge_soft_deleted_flashcards
   has_many :study_sessions, dependent: :destroy
@@ -45,11 +43,6 @@ class Deck < ApplicationRecord
 
   def complete? = name.present? && flashcards.exists?
   def draft?    = !complete?
-
-  def saved_by?(user)
-    return false unless user
-    library_items.exists?(user: user)
-  end
 
   # ── Tags ──────────────────────────────────────────────────────────────────
 

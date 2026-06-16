@@ -1,554 +1,552 @@
+---
 ar:
   nav:
-    home: "الرئيسية"
-    explore: "استكشاف"
-    my_library: "مكتبتي"
+    home: الرئيسية
+    explore: استكشاف
+    my_library: مكتبتي
   topbar:
-    search_placeholder: "ابحث عن مجموعات…"
-    search_aria: "ابحث عن مجموعات"
-    create_menu_aria: "قائمة الإنشاء"
-    create_menu_tooltip: "إنشاء"
+    search_placeholder: ابحث عن مجموعات…
+    search_aria: ابحث عن مجموعات
+    create_menu_aria: قائمة الإنشاء
+    create_menu_tooltip: إنشاء
     create:
-      flashcard_set: "مجموعة بطاقات"
-      study_guide: "دليل الدراسة"
-      practice_test: "اختبار تدريبي"
-      folder: "مجلد"
-      study_group: "مجموعة دراسية"
-    open_navigation: "فتح قائمة التنقل"
-    close_navigation: "إغلاق قائمة التنقل"
+      flashcard_set: مجموعة بطاقات
+      study_guide: دليل الدراسة
+      practice_test: اختبار تدريبي
+      folder: مجلد
+      study_group: مجموعة دراسية
+    open_navigation: فتح قائمة التنقل
+    close_navigation: إغلاق قائمة التنقل
   menu:
-    settings: "الإعدادات"
-    dark_mode: "الوضع الداكن"
-    light_mode: "الوضع الفاتح"
-    log_out: "تسجيل الخروج"
-    language: "اللغة"
+    settings: الإعدادات
+    dark_mode: الوضع الداكن
+    light_mode: الوضع الفاتح
+    log_out: تسجيل الخروج
+    language: اللغة
   shared:
-    cancel: "إلغاء"
-    close: "إغلاق"
-    delete: "حذف"
-    edit: "تعديل"
-    undo: "تراجع"
+    cancel: إلغاء
+    close: إغلاق
+    delete: حذف
+    edit: تعديل
+    undo: تراجع
     modal:
-      type_to_confirm: "اكتب %{word} للتأكيد"
-    save: "حفظ"
+      type_to_confirm: اكتب %{word} للتأكيد
+    save: حفظ
     back: "→ رجوع"
-    sign_in: "تسجيل الدخول"
-    sign_up_free: "إنشاء حساب مجاني"
-    previous_page: "الصفحة السابقة"
-    next_page: "الصفحة التالية"
-    not_available: "غ/م"
+    sign_in: تسجيل الدخول
+    sign_up_free: إنشاء حساب مجاني
+    previous_page: الصفحة السابقة
+    next_page: الصفحة التالية
+    not_available: غ/م
   auth:
-    back_to_home: "العودة إلى الرئيسية"
+    back_to_home: العودة إلى الرئيسية
     panel:
-      heading: "تعلّم بذكاء، لا بجهد"
-      tagline: "يستخدم Quizly تقنية التكرار المتباعد لعرض البطاقة المناسبة في الوقت المناسب — حتى تترسّخ المعرفة."
-      feature_scheduling: "جدولة SM-2 مدعومة علمياً"
-      feature_decks: "مجموعات تبنيها وتمتلكها"
-      feature_progress: "تقدّم يتراكم مع الوقت"
+      heading: تعلّم بذكاء، لا بجهد
+      tagline: يستخدم Quizly تقنية التكرار المتباعد لعرض البطاقة المناسبة في الوقت
+        المناسب — حتى تترسّخ المعرفة.
+      feature_scheduling: جدولة SM-2 مدعومة علمياً
+      feature_decks: مجموعات تبنيها وتمتلكها
+      feature_progress: تقدّم يتراكم مع الوقت
   sessions:
-    title: "تسجيل الدخول"
-    heading: "مرحباً بعودتك!"
-    subheading: "سجّل دخولك للوصول إلى لوحتك ومواصلة التعلّم."
-    email_label: "البريد الإلكتروني"
-    email_placeholder: "أدخل بريدك الإلكتروني"
-    password_label: "كلمة المرور"
-    password_placeholder: "أدخل كلمة المرور"
-    toggle_password: "إظهار/إخفاء كلمة المرور"
-    forgot_password: "نسيت كلمة المرور؟"
-    submit: "تسجيل الدخول"
-    no_account: "ليس لديك حساب؟"
-    sign_up: "إنشاء حساب"
+    title: تسجيل الدخول
+    heading: مرحباً بعودتك!
+    subheading: سجّل دخولك للوصول إلى لوحتك ومواصلة التعلّم.
+    email_label: البريد الإلكتروني
+    email_placeholder: أدخل بريدك الإلكتروني
+    password_label: كلمة المرور
+    password_placeholder: أدخل كلمة المرور
+    toggle_password: إظهار/إخفاء كلمة المرور
+    forgot_password: نسيت كلمة المرور؟
+    submit: تسجيل الدخول
+    no_account: ليس لديك حساب؟
+    sign_up: إنشاء حساب
     errors:
-      rate_limited: "حاول مجدداً لاحقاً."
-      invalid: "جرّب بريداً إلكترونياً أو كلمة مرور أخرى."
+      rate_limited: حاول مجدداً لاحقاً.
+      invalid: جرّب بريداً إلكترونياً أو كلمة مرور أخرى.
   registrations:
-    title: "إنشاء حساب"
-    heading: "أنشئ حسابك"
-    subheading: "ابدأ ببناء مجموعاتك وتعلّم بشكل أذكى."
-    email_label: "البريد الإلكتروني"
-    email_placeholder: "أدخل بريدك الإلكتروني"
-    password_label: "كلمة المرور"
-    password_placeholder: "8 أحرف على الأقل"
-    confirm_label: "تأكيد كلمة المرور"
-    confirm_placeholder: "أعد كتابة كلمة المرور"
-    toggle_password: "إظهار/إخفاء كلمة المرور"
-    submit: "إنشاء الحساب"
-    have_account: "لديك حساب بالفعل؟"
-    sign_in_link: "تسجيل الدخول"
-    created: "مرحباً بك في Quizly!"
+    title: إنشاء حساب
+    heading: أنشئ حسابك
+    subheading: ابدأ ببناء مجموعاتك وتعلّم بشكل أذكى.
+    email_label: البريد الإلكتروني
+    email_placeholder: أدخل بريدك الإلكتروني
+    password_label: كلمة المرور
+    password_placeholder: 8 أحرف على الأقل
+    confirm_label: تأكيد كلمة المرور
+    confirm_placeholder: أعد كتابة كلمة المرور
+    toggle_password: إظهار/إخفاء كلمة المرور
+    submit: إنشاء الحساب
+    have_account: لديك حساب بالفعل؟
+    sign_in_link: تسجيل الدخول
+    created: مرحباً بك في Quizly!
     errors:
-      rate_limited: "حاول مجدداً لاحقاً."
+      rate_limited: حاول مجدداً لاحقاً.
   passwords:
     new:
-      title: "نسيت كلمة المرور"
-      heading: "نسيت كلمة المرور؟"
-      subheading: "أدخل بريدك الإلكتروني وسنرسل لك تعليمات الاستعادة."
-      email_label: "البريد الإلكتروني"
-      email_placeholder: "أدخل بريدك الإلكتروني"
-      submit: "إرسال التعليمات"
+      title: نسيت كلمة المرور
+      heading: نسيت كلمة المرور؟
+      subheading: أدخل بريدك الإلكتروني وسنرسل لك تعليمات الاستعادة.
+      email_label: البريد الإلكتروني
+      email_placeholder: أدخل بريدك الإلكتروني
+      submit: إرسال التعليمات
       back: "→ العودة لتسجيل الدخول"
     edit:
-      title: "إعادة تعيين كلمة المرور"
-      heading: "أعد تعيين كلمة المرور"
-      subheading: "اختر كلمة مرور جديدة لحسابك."
-      password_label: "كلمة المرور الجديدة"
-      password_placeholder: "8 أحرف على الأقل"
-      confirm_label: "تأكيد كلمة المرور الجديدة"
-      confirm_placeholder: "أعد كتابة كلمة المرور"
-      toggle_password: "إظهار/إخفاء كلمة المرور"
-      submit: "حفظ كلمة المرور الجديدة"
+      title: إعادة تعيين كلمة المرور
+      heading: أعد تعيين كلمة المرور
+      subheading: اختر كلمة مرور جديدة لحسابك.
+      password_label: كلمة المرور الجديدة
+      password_placeholder: 8 أحرف على الأقل
+      confirm_label: تأكيد كلمة المرور الجديدة
+      confirm_placeholder: أعد كتابة كلمة المرور
+      toggle_password: إظهار/إخفاء كلمة المرور
+      submit: حفظ كلمة المرور الجديدة
       back: "→ العودة لتسجيل الدخول"
-    sent: "تم إرسال تعليمات الاستعادة (إذا كان حساب بهذا البريد موجوداً)."
-    reset: "تمّت إعادة تعيين كلمة المرور."
-    mismatch: "كلمتا المرور غير متطابقتين."
-    invalid: "رابط إعادة التعيين غير صالح أو منتهي الصلاحية."
+    sent: تم إرسال تعليمات الاستعادة (إذا كان حساب بهذا البريد موجوداً).
+    reset: تمّت إعادة تعيين كلمة المرور.
+    mismatch: كلمتا المرور غير متطابقتين.
+    invalid: رابط إعادة التعيين غير صالح أو منتهي الصلاحية.
     errors:
-      rate_limited: "حاول مجدداً لاحقاً."
+      rate_limited: حاول مجدداً لاحقاً.
   accounts:
-    title: "الإعدادات"
-    personal_info: "المعلومات الشخصية"
-    profile_picture_heading: "صورة الملف الشخصي"
-    remove_photo: "إزالة الصورة"
-    remove_photo_confirm: "هل أنت متأكد من رغبتك في إزالة صورة ملفك الشخصي؟"
-    remove_photo_modal_title: "إزالة صورة الملف الشخصي"
-    remove_photo_modal_warning: "لا يمكن التراجع عن هذا الإجراء."
-    remove_photo_modal_confirm: "إزالة الصورة"
-    email_label: "البريد الإلكتروني"
-    username_label: "اسم المستخدم"
-    username_hint_html: "اتركه فارغاً لاستخدام اسم مستخدم بريدك الإلكتروني (%{email})"
-    account_type_label: "نوع الحساب"
-    password_min_hint: "8 أحرف على الأقل"
-    account_type_student: "طالب"
-    account_type_teacher: "معلم"
-    change_password: "تغيير كلمة المرور"
-    current_password_placeholder: "كلمة المرور الحالية"
-    new_password_label: "كلمة المرور الجديدة"
-    confirm_password_label: "تأكيد كلمة المرور الجديدة"
-    update_password: "تحديث كلمة المرور"
-    appearance_section: "المظهر"
-    theme_label: "السمة"
-    language_label: "اللغة"
-    search_languages: "ابحث عن اللغات"
-    your_languages: "لغاتك"
-    achievements_section: "الإنجازات"
-    no_badges: "لا توجد شارات بعد. استمر في الدراسة لفتح الإنجازات!"
-    badge_earned_on: "مكتسبة %{date}"
-    delete_title: "حذف الحساب"
-    delete_description: "احذف حسابك وجميع بياناتك المرتبطة به بشكل دائم. لا يمكن التراجع عن هذا الإجراء."
-    delete_button: "حذف الحساب"
-    delete_confirm: "هل أنت متأكد من رغبتك في حذف حسابك؟"
-    delete_confirmation_failed: "الرجاء كتابة DELETE للتأكيد على حذف الحساب."
-    delete_modal_warning: "سيؤدي هذا إلى حذف حسابك وجميع البيانات المرتبطة به نهائياً — المجموعات والبطاقات التعليمية وتاريخ الدراسة. لا يمكن التراجع عن هذا الإجراء."
-    delete_modal_confirm: "حذف الحساب"
+    title: الإعدادات
+    personal_info: المعلومات الشخصية
+    profile_picture_heading: صورة الملف الشخصي
+    remove_photo: إزالة الصورة
+    remove_photo_confirm: هل أنت متأكد من رغبتك في إزالة صورة ملفك الشخصي؟
+    remove_photo_modal_title: إزالة صورة الملف الشخصي
+    remove_photo_modal_warning: لا يمكن التراجع عن هذا الإجراء.
+    remove_photo_modal_confirm: إزالة الصورة
+    email_label: البريد الإلكتروني
+    username_label: اسم المستخدم
+    username_hint_html: اتركه فارغاً لاستخدام اسم مستخدم بريدك الإلكتروني (%{email})
+    account_type_label: نوع الحساب
+    password_min_hint: 8 أحرف على الأقل
+    account_type_student: طالب
+    account_type_teacher: معلم
+    change_password: تغيير كلمة المرور
+    current_password_placeholder: كلمة المرور الحالية
+    new_password_label: كلمة المرور الجديدة
+    confirm_password_label: تأكيد كلمة المرور الجديدة
+    update_password: تحديث كلمة المرور
+    appearance_section: المظهر
+    theme_label: السمة
+    language_label: اللغة
+    search_languages: ابحث عن اللغات
+    your_languages: لغاتك
+    achievements_section: الإنجازات
+    no_badges: لا توجد شارات بعد. استمر في الدراسة لفتح الإنجازات!
+    badge_earned_on: مكتسبة %{date}
+    delete_title: حذف الحساب
+    delete_description: احذف حسابك وجميع بياناتك المرتبطة به بشكل دائم. لا يمكن التراجع
+      عن هذا الإجراء.
+    delete_button: حذف الحساب
+    delete_confirm: هل أنت متأكد من رغبتك في حذف حسابك؟
+    delete_confirmation_failed: الرجاء كتابة DELETE للتأكيد على حذف الحساب.
+    delete_modal_warning: سيؤدي هذا إلى حذف حسابك وجميع البيانات المرتبطة به نهائياً
+      — المجموعات والبطاقات التعليمية وتاريخ الدراسة. لا يمكن التراجع عن هذا الإجراء.
+    delete_modal_confirm: حذف الحساب
     updated:
-      profile: "تم تحديث الملف الشخصي."
-      email: "تم تحديث البريد الإلكتروني."
-      password: "تم تحديث كلمة المرور."
-      language: "تم تحديث اللغة."
-      notifications: "تم حفظ تفضيلات الإشعارات."
-    avatar_removed: "تمّت إزالة صورة الملف الشخصي."
-    deleted: "تم حذف حسابك."
-    profile_photo_alt: "صورة الملف الشخصي"
-    select_avatar: "اختر صورة رمزية"
-    upload_photo_title: "رفع صورة مخصصة"
-    toggle_password: "إظهار/إخفاء كلمة المرور"
-    notifications_section: "الإشعارات"
-    notif_personalised_updates: "تحديثات الدراسة المخصصة"
-    notif_streaks_badges: "السلاسل والشارات"
-    notif_study_reminders: "تذكيرات الدراسة"
-    notif_choose_reminder_time: "اختر وقت استلام تذكيرات الدراسة"
-    notif_time_zone: "المنطقة الزمنية"
-    notif_email_label: "إشعار البريد الإلكتروني"
-    theme_auto: "تلقائي"
-    theme_light: "فاتح"
-    theme_dark: "داكن"
-    password_incorrect: "غير صحيحة"
-    avatar_format_error: "صيغة الملف غير صالحة. يرجى رفع ملف JPG أو PNG أو WEBP."
-    avatar_size_error: "يجب أن تكون صورة الملف الشخصي أقل من 5 ميغابايت."
+      profile: تم تحديث الملف الشخصي.
+      email: تم تحديث البريد الإلكتروني.
+      password: تم تحديث كلمة المرور.
+      language: تم تحديث اللغة.
+      notifications: تم حفظ تفضيلات الإشعارات.
+    avatar_removed: تمّت إزالة صورة الملف الشخصي.
+    deleted: تم حذف حسابك.
+    profile_photo_alt: صورة الملف الشخصي
+    select_avatar: اختر صورة رمزية
+    upload_photo_title: رفع صورة مخصصة
+    toggle_password: إظهار/إخفاء كلمة المرور
+    notifications_section: الإشعارات
+    notif_personalised_updates: تحديثات الدراسة المخصصة
+    notif_streaks_badges: السلاسل والشارات
+    notif_study_reminders: تذكيرات الدراسة
+    notif_choose_reminder_time: اختر وقت استلام تذكيرات الدراسة
+    notif_time_zone: المنطقة الزمنية
+    notif_email_label: إشعار البريد الإلكتروني
+    theme_auto: تلقائي
+    theme_light: فاتح
+    theme_dark: داكن
+    password_incorrect: غير صحيحة
+    avatar_format_error: صيغة الملف غير صالحة. يرجى رفع ملف JPG أو PNG أو WEBP.
+    avatar_size_error: يجب أن تكون صورة الملف الشخصي أقل من 5 ميغابايت.
   decks:
     index:
-      title: "مجموعاتي"
-      sort_recent: "الأحدث"
-      sort_az: "أ–ي"
-      sort_most_due: "الأكثر استحقاقاً"
-      empty_title: "لا توجد مجموعات بعد"
-      empty_description: "أنشئ مجموعتك الأولى لتبدأ الدراسة."
-      saved_section_title: "الأوراق المحفوظة"
+      title: مجموعاتي
+      sort_recent: الأحدث
+      sort_az: أ–ي
+      sort_most_due: الأكثر استحقاقاً
+      empty_title: لا توجد مجموعات بعد
+      empty_description: أنشئ مجموعتك الأولى لتبدأ الدراسة.
     show:
-      edit: "تعديل المجموعة"
-      delete: "حذف المجموعة"
-      delete_confirm: "هل أنت متأكد من رغبتك في إزالة هذه المجموعة؟"
-      delete_modal_title: "حذف هذه المجموعة؟"
-      delete_modal_warning: "ستُحذف جميع البطاقات التعليمية نهائياً. لا يمكن التراجع عن هذا الإجراء."
-      delete_modal_confirm: "حذف المجموعة"
-      unlisted_badge: "غير مدرج"
-      public_badge: "عامة"
-      private_badge: "خاصة"
-      created: "تاريخ الإنشاء"
-      cards_section: "البطاقات"
-      add_card: "إضافة بطاقة"
-      import: "استيراد"
-      mode_flashcard: "بطاقة تعليمية"
-      mode_study: "المراجعة"
-      mode_learn: "التعلّم"
-      mode_test: "الاختبار"
-      mode_match: "المطابقة"
-      cards_per_page: "بطاقات في الصفحة"
-      locked_title: "This deck is password protected"
-      locked_description: "Enter the password to access all flashcards and study modes."
-      unlock_cta: "Unlock Deck"
-      preview_heading: "Sample Cards"
+      edit: تعديل المجموعة
+      delete: حذف المجموعة
+      delete_confirm: هل أنت متأكد من رغبتك في إزالة هذه المجموعة؟
+      delete_modal_title: حذف هذه المجموعة؟
+      delete_modal_warning: ستُحذف جميع البطاقات التعليمية نهائياً. لا يمكن التراجع
+        عن هذا الإجراء.
+      delete_modal_confirm: حذف المجموعة
+      unlisted_badge: غير مدرج
+      public_badge: عامة
+      private_badge: خاصة
+      created: تاريخ الإنشاء
+      cards_section: البطاقات
+      add_card: إضافة بطاقة
+      import: استيراد
+      mode_flashcard: بطاقة تعليمية
+      mode_study: المراجعة
+      mode_learn: التعلّم
+      mode_test: الاختبار
+      mode_match: المطابقة
+      cards_per_page: بطاقات في الصفحة
+      locked_title: This deck is password protected
+      locked_description: Enter the password to access all flashcards and study modes.
+      unlock_cta: Unlock Deck
+      preview_heading: Sample Cards
       locked_card_placeholder: "• • •"
       locked_cards_counter:
-        one: "1 card locked"
+        one: 1 card locked
         other: "%{count} cards locked"
     edit:
-      title: "تعديل المجموعة"
+      title: تعديل المجموعة
       back: "→ رجوع"
     manage_access:
-      title: "إدارة الوصول"
-      public_desc: "يمكن للجميع العثور على هذه المجموعة ودراستها"
-      unlisted_desc: "فقط الأشخاص الذين لديهم الرابط يمكنهم الرؤية"
-      private_desc: "أنت فقط"
-      visibility_heading: "الرؤية"
-      access_mode_heading: "Access"
-      open_desc: "Anyone who can find this deck can study it"
-      password_desc: "Viewers must enter a password to access flashcards"
-      share_heading: "مشاركة الرابط"
-      share_hint: "يمكن لأي شخص لديه هذا الرابط عرض البطاقات"
-      copy_link: "نسخ"
-      copy_link_copied: "تم النسخ!"
-      visible_to: "مرئي لـ"
-      password_is_set: "A password is set — enter a new one to change it"
+      title: إدارة الوصول
+      public_desc: يمكن للجميع العثور على هذه المجموعة ودراستها
+      unlisted_desc: فقط الأشخاص الذين لديهم الرابط يمكنهم الرؤية
+      private_desc: أنت فقط
+      visibility_heading: الرؤية
+      access_mode_heading: Access
+      open_desc: Anyone who can find this deck can study it
+      password_desc: Viewers must enter a password to access flashcards
+      share_heading: مشاركة الرابط
+      share_hint: يمكن لأي شخص لديه هذا الرابط عرض البطاقات
+      copy_link: نسخ
+      copy_link_copied: تم النسخ!
+      visible_to: مرئي لـ
+      password_is_set: A password is set — enter a new one to change it
     form:
-      name_label: "الاسم"
-      description_label: "الوصف"
-      language_label: "اللغة (اختياري)"
-      language_placeholder: "مثال: en, es, ar"
-      tags_label: "الوسوم (اختياري)"
-      tags_hint: "افصل الوسوم بفواصل."
-      tags_placeholder: "مثال: أحياء، تشريح، امتحان2025"
-      visibility_label: "الظهور"
-      visibility_section_label: "من يستطيع مشاهدة هذه المجموعة؟"
-      visibility_unlisted: "غير مدرج"
-      section_about: "حول"
-      access_mode_open: "Open"
-      access_mode_password: "Password protected"
-      visibility_private: "أنا فقط"
-      visibility_public: "عامة"
-      visibility_hint: "يمكن لأي شخص اكتشاف المجموعات العامة ونسخها."
-      password_label: "كلمة مرور المجموعة"
-      password_placeholder: "٨ أحرف على الأقل"
-      password_hint: "Required to view this deck"
+      name_label: الاسم
+      description_label: الوصف
+      language_label: اللغة (اختياري)
+      language_placeholder: 'مثال: en, es, ar'
+      tags_label: الوسوم (اختياري)
+      tags_hint: افصل الوسوم بفواصل.
+      tags_placeholder: 'مثال: أحياء، تشريح، امتحان2025'
+      visibility_label: الظهور
+      visibility_section_label: من يستطيع مشاهدة هذه المجموعة؟
+      visibility_unlisted: غير مدرج
+      section_about: حول
+      access_mode_open: Open
+      access_mode_password: Password protected
+      visibility_private: أنا فقط
+      visibility_public: عامة
+      visibility_hint: يمكن لأي شخص اكتشاف المجموعات العامة ونسخها.
+      password_label: كلمة مرور المجموعة
+      password_placeholder: ٨ أحرف على الأقل
+      password_hint: Required to view this deck
     cards:
-      page_title: "إضافة بطاقات — %{name}"
-      add_card: "إضافة بطاقة"
-      save: "حفظ"
-      error_term: "البطاقة %{row}: المصطلح مطلوب."
-      error_definition: "البطاقة %{row}: التعريف مطلوب."
-      error_language: "البطاقة %{row}: اللغة مطلوبة لـ %{side}."
-      error_no_cards: "أضف بطاقة واحدة على الأقل قبل الحفظ."
-      back_label: "العودة إلى %{name}"
+      page_title: إضافة بطاقات — %{name}
+      add_card: إضافة بطاقة
+      save: حفظ
+      error_term: 'البطاقة %{row}: المصطلح مطلوب.'
+      error_definition: 'البطاقة %{row}: التعريف مطلوب.'
+      error_language: 'البطاقة %{row}: اللغة مطلوبة لـ %{side}.'
+      error_no_cards: أضف بطاقة واحدة على الأقل قبل الحفظ.
+      back_label: العودة إلى %{name}
     card_row:
-      term_label: "المصطلح"
-      term_placeholder: "أدخل المصطلح"
-      definition_label: "التعريف"
-      definition_placeholder: "أدخل التعريف"
-      front_label: "الوجه"
-      back_label: "الظهر"
-      select_language: "اختر لغة"
-      image: "صورة"
-      remove: "إزالة البطاقة"
-      saving: "جارٍ الحفظ…"
+      term_label: المصطلح
+      term_placeholder: أدخل المصطلح
+      definition_label: التعريف
+      definition_placeholder: أدخل التعريف
+      front_label: الوجه
+      back_label: الظهر
+      select_language: اختر لغة
+      image: صورة
+      remove: إزالة البطاقة
+      saving: جارٍ الحفظ…
       saved: "✓"
       error: "!"
-    created: "تم إنشاء المجموعة."
-    default_name: "مجموعة بدون عنوان"
-    create_failed: "تعذّر إنشاء المجموعة. يرجى المحاولة مرة أخرى."
-    updated: "تم تحديث المجموعة."
-    deleted: "تم حذف المجموعة."
-    cards_saved: "تم حفظ البطاقات."
+    created: تم إنشاء المجموعة.
+    default_name: مجموعة بدون عنوان
+    create_failed: تعذّر إنشاء المجموعة. يرجى المحاولة مرة أخرى.
+    updated: تم تحديث المجموعة.
+    deleted: تم حذف المجموعة.
+    cards_saved: تم حفظ البطاقات.
     action:
-      save:                  "حفظ"
-      in_library:            "في مكتبتك"
-      sign_in_to_save:       "سجّل الدخول للحفظ"
-      saved:                 "تمّت إضافة المجموعة إلى مكتبتك."
-      already_saved:         "هذه المجموعة موجودة بالفعل في مكتبتك."
-      unsave:                "Remove from library"
-      unsaved:               "Deck removed from your library."
-      not_in_library:        "This deck is not in your library."
-      copy:                  "عمل نسخة"
-      copied:                "تم إنشاء النسخة. يمكنك الآن تعديلها."
-      copy_name:             "%{name} (نسخة)"
-    not_available: "المجموعة غير متاحة."
+      copy: عمل نسخة
+      copied: تم إنشاء النسخة. يمكنك الآن تعديلها.
+      copy_name: "%{name} (نسخة)"
+    not_available: المجموعة غير متاحة.
     unlock:
-      title: "كلمة المرور مطلوبة"
-      description: "هذه المجموعة محمية. أدخل كلمة المرور للمتابعة."
-      password_label: "كلمة المرور"
-      submit: "فتح المجموعة"
-      invalid_password: "كلمة المرور غير صحيحة. يرجى المحاولة مرة أخرى."
-      success: "تم منح الوصول."
+      title: كلمة المرور مطلوبة
+      description: هذه المجموعة محمية. أدخل كلمة المرور للمتابعة.
+      password_label: كلمة المرور
+      submit: فتح المجموعة
+      invalid_password: كلمة المرور غير صحيحة. يرجى المحاولة مرة أخرى.
+      success: تم منح الوصول.
       back_to_preview: "← Back to deck"
-      help_text: "Contact the deck creator if you don't have the password."
-      submitting: "Unlocking…"
-    sidebar_no_decks: "لا توجد مجموعات بعد."
+      help_text: Contact the deck creator if you don't have the password.
+      submitting: Unlocking…
+    sidebar_no_decks: لا توجد مجموعات بعد.
     deck_card:
-      draft: "مسودة"
+      draft: مسودة
       due:
-        one: "بطاقة واحدة مستحقة للمراجعة"
+        one: بطاقة واحدة مستحقة للمراجعة
         other: "%{count} بطاقات مستحقة للمراجعة"
       count:
-        one: "بطاقة واحدة"
+        one: بطاقة واحدة
         other: "%{count} بطاقات"
   flashcards:
     new:
       back: "→ رجوع إلى %{name}"
     form:
-      term_label: "المصطلح"
-      term_placeholder: "أدخل المصطلح"
-      definition_label: "التعريف"
-      definition_placeholder: "أدخل التعريف"
-      save: "حفظ البطاقة →"
-    created: "تمت إضافة البطاقة."
-    updated: "تم تحديث البطاقة."
-    deleted: "تمت إزالة البطاقة التعليمية."
-    restored: "تمت استعادة البطاقة التعليمية."
+      term_label: المصطلح
+      term_placeholder: أدخل المصطلح
+      definition_label: التعريف
+      definition_placeholder: أدخل التعريف
+      save: حفظ البطاقة →
+    created: تمت إضافة البطاقة.
+    updated: تم تحديث البطاقة.
+    deleted: تمت إزالة البطاقة التعليمية.
+    restored: تمت استعادة البطاقة التعليمية.
   study_modes:
     exit: "→ خروج"
-    no_cards_title: "لا توجد بطاقات بعد"
-    back_to_deck: "العودة إلى المجموعة"
-    time: "الوقت"
-    streak: "التسلسل"
+    no_cards_title: لا توجد بطاقات بعد
+    back_to_deck: العودة إلى المجموعة
+    time: الوقت
+    streak: التسلسل
     flashcard:
-      empty_description: "أضف بعض البطاقات إلى هذه المجموعة لتبدأ."
+      empty_description: أضف بعض البطاقات إلى هذه المجموعة لتبدأ.
       keyboard_hint: "← → للتنقل · مسافة للقلب"
       previous: "→ السابقة"
-      next: "التالية ←"
-      guest_cta: "سجّل دخولك لتتابع تقدّمك وتحفظ سجلّ دراستك."
-      click_to_flip: "انقر على البطاقة لقلبها"
-      options: "خيارات"
-      track_progress: "تتبّع التقدّم"
-      track_progress_desc: "تابع ما تعرفه وما لا تزال تتعلّمه."
-      starred_only: "المصطلحات المميّزة فقط"
-      starred_only_desc: "ادرس البطاقات المميّزة فقط."
-      show_both_sides: "عرض الوجهين"
-      show_both_sides_desc: "رؤية الوجه والظهر معاً."
-      keyboard_shortcuts: "اختصارات لوحة المفاتيح"
-      key_previous: "السابق"
-      key_next: "التالي"
-      key_flip: "قلب"
-      key_star: "تمييز"
-      hide: "إخفاء"
-      restart: "إعادة تشغيل البطاقات"
+      next: التالية ←
+      guest_cta: سجّل دخولك لتتابع تقدّمك وتحفظ سجلّ دراستك.
+      click_to_flip: انقر على البطاقة لقلبها
+      options: خيارات
+      track_progress: تتبّع التقدّم
+      track_progress_desc: تابع ما تعرفه وما لا تزال تتعلّمه.
+      starred_only: المصطلحات المميّزة فقط
+      starred_only_desc: ادرس البطاقات المميّزة فقط.
+      show_both_sides: عرض الوجهين
+      show_both_sides_desc: رؤية الوجه والظهر معاً.
+      keyboard_shortcuts: اختصارات لوحة المفاتيح
+      key_previous: السابق
+      key_next: التالي
+      key_flip: قلب
+      key_star: تمييز
+      hide: إخفاء
+      restart: إعادة تشغيل البطاقات
     study:
-      subtitle: "راجع البطاقات وقيّم استرجاعك"
-      done_label: "تمّ"
-      empty_title: "أنجزت كل شيء!"
-      empty_description: "لا توجد بطاقات مستحقة للمراجعة الآن."
-      all_cards_tab: "جميع البطاقات"
+      subtitle: راجع البطاقات وقيّم استرجاعك
+      done_label: تمّ
+      empty_title: أنجزت كل شيء!
+      empty_description: لا توجد بطاقات مستحقة للمراجعة الآن.
+      all_cards_tab: جميع البطاقات
       starred_tab: "⭐ المميّزة"
-      summary_title: "انتهت الجلسة!"
-      reviewed: "البطاقات المراجَعة"
-      accuracy: "الدقة"
-      time_spent: "الوقت المستغرق"
-      summary_sub: "لا مزيد من البطاقات المستحقة الآن — عمل رائع."
-      show_answer: "عرض الإجابة"
-      again: "مجدداً"
-      hard: "صعب"
-      good: "جيد"
-      easy: "سهل"
-      keyboard_hint: "مسافة للكشف · 1 مجدداً · 2 صعب · 3 جيد · 4 سهل · Esc للخروج"
+      summary_title: انتهت الجلسة!
+      reviewed: البطاقات المراجَعة
+      accuracy: الدقة
+      time_spent: الوقت المستغرق
+      summary_sub: لا مزيد من البطاقات المستحقة الآن — عمل رائع.
+      show_answer: عرض الإجابة
+      again: مجدداً
+      hard: صعب
+      good: جيد
+      easy: سهل
+      keyboard_hint: مسافة للكشف · 1 مجدداً · 2 صعب · 3 جيد · 4 سهل · Esc للخروج
     learn:
-      subtitle: "اكتب الإجابة لإتقان كل بطاقة"
-      mastered_label: "متقن"
-      empty_description: "أضف بطاقات تعليمية إلى هذه المجموعة قبل الدراسة."
-      summary_title: "أتقنت جميع البطاقات!"
-      studied: "البطاقات المدروسة"
-      time_spent: "الوقت المستغرق"
-      summary_sub: "عمل رائع — أتقنت جميع البطاقات."
-      study_again: "الدراسة مجدداً"
+      subtitle: اكتب الإجابة لإتقان كل بطاقة
+      mastered_label: متقن
+      empty_description: أضف بطاقات تعليمية إلى هذه المجموعة قبل الدراسة.
+      summary_title: أتقنت جميع البطاقات!
+      studied: البطاقات المدروسة
+      time_spent: الوقت المستغرق
+      summary_sub: عمل رائع — أتقنت جميع البطاقات.
+      study_again: الدراسة مجدداً
     learn_card:
-      prompt: "عرّف هذا المصطلح"
-      your_answer: "إجابتك"
-      correct: "صحيح!"
-      incorrect: "خطأ"
-      correct_answer: "الإجابة الصحيحة:"
-      type_answer: "اكتب إجابتك…"
-      submit: "إرسال"
-      keyboard_hint: "Enter للإرسال"
-      continue: "متابعة →"
+      prompt: عرّف هذا المصطلح
+      your_answer: إجابتك
+      correct: صحيح!
+      incorrect: خطأ
+      correct_answer: 'الإجابة الصحيحة:'
+      type_answer: اكتب إجابتك…
+      submit: إرسال
+      keyboard_hint: Enter للإرسال
+      continue: متابعة →
     test:
-      subtitle: "اختبر معرفتك"
-      question_label: "سؤال"
-      empty_description: "أضف بطاقات تعليمية إلى هذه المجموعة قبل الاختبار."
-      summary_title: "انتهى الاختبار!"
-      correct_answers: "الإجابات الصحيحة"
-      score: "النتيجة"
-      time: "الوقت"
-      retake: "إعادة الاختبار"
+      subtitle: اختبر معرفتك
+      question_label: سؤال
+      empty_description: أضف بطاقات تعليمية إلى هذه المجموعة قبل الاختبار.
+      summary_title: انتهى الاختبار!
+      correct_answers: الإجابات الصحيحة
+      score: النتيجة
+      time: الوقت
+      retake: إعادة الاختبار
     test_question:
-      correct: "صحيح!"
-      incorrect: "خطأ"
-      correct_answer: "الإجابة الصحيحة:"
-      see_results: "عرض النتائج →"
-      continue: "متابعة →"
-      keyboard_hint: "مسافة أو Enter للمتابعة"
-      your_answer: "إجابتك"
-      type_answer: "اكتب إجابتك…"
-      submit: "إرسال"
-      submit_hint: "اضغط Enter للإرسال"
-      submit_matches: "إرسال المطابقات"
+      correct: صحيح!
+      incorrect: خطأ
+      correct_answer: 'الإجابة الصحيحة:'
+      see_results: عرض النتائج →
+      continue: متابعة →
+      keyboard_hint: مسافة أو Enter للمتابعة
+      your_answer: إجابتك
+      type_answer: اكتب إجابتك…
+      submit: إرسال
+      submit_hint: اضغط Enter للإرسال
+      submit_matches: إرسال المطابقات
       true_btn: "✓ صحيح"
       false_btn: "✗ خطأ"
     match:
-      empty_description: "أضف بعض البطاقات إلى هذه المجموعة للعب المطابقة."
-      completed: "تمت المطابقة!"
-      play_again: "العب مجدداً"
-      guest_cta: "سجّل دخولك لحفظ نتائجك وتتبّع تقدّمك."
-      subtitle: "طابق الكلمات مع معانيها"
-      time: "الوقت"
-      pairs_left: "الأزواج المتبقية"
-      streak: "التسلسل"
+      empty_description: أضف بعض البطاقات إلى هذه المجموعة للعب المطابقة.
+      completed: تمت المطابقة!
+      play_again: العب مجدداً
+      guest_cta: سجّل دخولك لحفظ نتائجك وتتبّع تقدّمك.
+      subtitle: طابق الكلمات مع معانيها
+      time: الوقت
+      pairs_left: الأزواج المتبقية
+      streak: التسلسل
       progress_label: "%{pct}% تقدّم"
-      matched_counter: "مطابَق: %{matched} / %{total}"
+      matched_counter: 'مطابَق: %{matched} / %{total}'
   errors:
     not_found:
-      flash: "This deck is no longer available."
+      flash: This deck is no longer available.
     not_authorized:
-      flash: "You are not authorized to perform this action."
+      flash: You are not authorized to perform this action.
   explore:
-    title: "استكشاف"
-    subtitle: "اكتشف المجموعات العامة المشتركة من المجتمع وانسخها."
-    search_placeholder: "ابحث عن مجموعات…"
-    search_aria: "ابحث في المجموعات العامة"
-    empty_search_title: "لم يُعثر على مجموعات لـ \"%{query}\""
-    empty_search_description: "جرّب مصطلح بحث مختلفاً أو تصفّح جميع المجموعات العامة."
-    empty_title: "لا توجد مجموعات عامة بعد"
-    empty_description: "كن أول من يشارك مجموعة مع المجتمع."
-    by: "بواسطة"
-    saved_badge: "محفوظ"
-    locked_badge: "Password Required"
-    owner_badge:  "أنت"
-    by_you:       "بواسطتك"
+    title: استكشاف
+    subtitle: اكتشف المجموعات العامة المشتركة من المجتمع وانسخها.
+    search_placeholder: ابحث عن مجموعات…
+    search_aria: ابحث في المجموعات العامة
+    empty_search_title: لم يُعثر على مجموعات لـ "%{query}"
+    empty_search_description: جرّب مصطلح بحث مختلفاً أو تصفّح جميع المجموعات العامة.
+    empty_title: لا توجد مجموعات عامة بعد
+    empty_description: كن أول من يشارك مجموعة مع المجتمع.
+    by: بواسطة
+    locked_badge: Password Required
+    owner_badge: أنت
+    by_you: بواسطتك
   dashboard:
-    total_decks: "إجمالي المجموعات"
-    total_cards: "إجمالي البطاقات"
-    cards_due: "البطاقات المستحقة"
-    current_streak: "سلسلة الأيام"
-    longest_streak: "أفضل سلسلة"
-    study_history: "سجلّ الدراسة"
-    see_all: "عرض الكل"
-    empty_history: "أكمل جلسة دراسة لترى سجلّك هنا."
-    my_decks: "مجموعاتي"
-    no_decks_title: "لا توجد مجموعات بعد"
-    no_decks_description: "أنشئ مجموعتك الأولى لتبدأ الدراسة."
+    total_decks: إجمالي المجموعات
+    total_cards: إجمالي البطاقات
+    cards_due: البطاقات المستحقة
+    current_streak: سلسلة الأيام
+    longest_streak: أفضل سلسلة
+    study_history: سجلّ الدراسة
+    see_all: عرض الكل
+    empty_history: أكمل جلسة دراسة لترى سجلّك هنا.
+    my_decks: مجموعاتي
+    no_decks_title: لا توجد مجموعات بعد
+    no_decks_description: أنشئ مجموعتك الأولى لتبدأ الدراسة.
     history_stats: "%{cards} بطاقات · %{accuracy}% دقة"
     continue_studying:
-      title: "مواصلة الدراسة"
-      study_now: "ادرس الآن →"
-      card_aria: "مواصلة دراسة %{name}"
-      study_aria: "دراسة %{name}"
+      title: مواصلة الدراسة
+      study_now: ادرس الآن →
+      card_aria: مواصلة دراسة %{name}
+      study_aria: دراسة %{name}
       cards_due:
-        one: "بطاقة واحدة مستحقة"
+        one: بطاقة واحدة مستحقة
         other: "%{count} بطاقات مستحقة"
   study_sessions:
-    title: "سجلّ الدراسة"
+    title: سجلّ الدراسة
     back: "→ لوحة التحكم"
-    empty_title: "لا توجد جلسات بعد"
-    empty_description: "أكمل جلسة دراسة وستظهر هنا."
-    go_to_decks: "الذهاب إلى المجموعات"
-    deck_header: "المجموعة"
-    date_header: "التاريخ"
-    reviewed_header: "المراجَع"
-    accuracy_header: "الدقة"
-    time_header: "الوقت"
+    empty_title: لا توجد جلسات بعد
+    empty_description: أكمل جلسة دراسة وستظهر هنا.
+    go_to_decks: الذهاب إلى المجموعات
+    deck_header: المجموعة
+    date_header: التاريخ
+    reviewed_header: المراجَع
+    accuracy_header: الدقة
+    time_header: الوقت
   imports:
-    title: "استيراد البطاقات — %{name}"
+    title: استيراد البطاقات — %{name}
     back: "→ %{name}"
-    text_tab: "نص"
-    csv_tab: "ملف CSV"
-    text_hint: "الصق بطاقة واحدة في كل سطر. افصل الوجه والظهر بالمحدد الذي تختاره."
-    text_default_format: "الصيغة الافتراضية (متوافق مع Quizlet):"
-    text_format_example: "الوجه[TAB]الظهر"
-    text_label: "نص البطاقات"
-    separator_label: "فاصل الأعمدة"
-    tab_separator: "مسافة جدولة (افتراضي)"
-    comma_separator: "فاصلة"
-    semicolon_separator: "فاصلة منقوطة"
-    pipe_separator: "خط عمودي |"
-    submit: "استيراد البطاقات"
-    csv_hint_html: "ارفع ملف <code>.csv</code> بعمودين (وجه/ظهر)."
-    csv_label: "ملف CSV"
-    csv_submit: "استيراد CSV"
-    no_text: "الرجاء لصق نص للاستيراد."
-    no_file: "الرجاء تحديد ملف CSV."
+    text_tab: نص
+    csv_tab: ملف CSV
+    text_hint: الصق بطاقة واحدة في كل سطر. افصل الوجه والظهر بالمحدد الذي تختاره.
+    text_default_format: 'الصيغة الافتراضية (متوافق مع Quizlet):'
+    text_format_example: الوجه[TAB]الظهر
+    text_label: نص البطاقات
+    separator_label: فاصل الأعمدة
+    tab_separator: مسافة جدولة (افتراضي)
+    comma_separator: فاصلة
+    semicolon_separator: فاصلة منقوطة
+    pipe_separator: خط عمودي |
+    submit: استيراد البطاقات
+    csv_hint_html: ارفع ملف <code>.csv</code> بعمودين (وجه/ظهر).
+    csv_label: ملف CSV
+    csv_submit: استيراد CSV
+    no_text: الرجاء لصق نص للاستيراد.
+    no_file: الرجاء تحديد ملف CSV.
     imported:
-      one: "تم استيراد بطاقة واحدة."
-      other: "تم استيراد %{count} بطاقات."
+      one: تم استيراد بطاقة واحدة.
+      other: تم استيراد %{count} بطاقات.
     skipped:
-      one: "تم تخطّي %{count} سطر."
-      other: "تم تخطّي %{count} أسطر."
+      one: تم تخطّي %{count} سطر.
+      other: تم تخطّي %{count} أسطر.
     cards_detected:
-      one: "تم اكتشاف بطاقة واحدة"
-      other: "تم اكتشاف %{count} بطاقات"
-    csv_too_few_columns: "يجب أن يحتوي ملف CSV على عمودين على الأقل."
-    csv_no_valid_rows: "لم يُعثر على صفوف صالحة في ملف CSV."
-    csv_invalid_format: "صيغة CSV غير صالحة: %{message}"
-    text_no_valid_pairs: "لم يُعثر على أزواج بطاقات صالحة. تأكد من أن كل سطر يحتوي على وجه وظهر مفصولين بالمحدد المختار."
-    heading: "استيراد بياناتك"
-    subheading: "انسخ والصق بياناتك هنا (من Word أو Excel أو Google Docs وغيرها)"
-    col_sep_label: "بين المصطلح والتعريف"
-    row_sep_label: "بين البطاقات"
-    sep_tab: "تبويب"
-    sep_comma: "فاصلة"
-    sep_newline: "سطر جديد"
-    sep_semicolon: "فاصلة منقوطة"
-    sep_custom: "مخصص"
-    preview_heading: "معاينة"
-    preview_empty: "لا يوجد شيء للمعاينة بعد."
+      one: تم اكتشاف بطاقة واحدة
+      other: تم اكتشاف %{count} بطاقات
+    csv_too_few_columns: يجب أن يحتوي ملف CSV على عمودين على الأقل.
+    csv_no_valid_rows: لم يُعثر على صفوف صالحة في ملف CSV.
+    csv_invalid_format: 'صيغة CSV غير صالحة: %{message}'
+    text_no_valid_pairs: لم يُعثر على أزواج بطاقات صالحة. تأكد من أن كل سطر يحتوي
+      على وجه وظهر مفصولين بالمحدد المختار.
+    heading: استيراد بياناتك
+    subheading: انسخ والصق بياناتك هنا (من Word أو Excel أو Google Docs وغيرها)
+    col_sep_label: بين المصطلح والتعريف
+    row_sep_label: بين البطاقات
+    sep_tab: تبويب
+    sep_comma: فاصلة
+    sep_newline: سطر جديد
+    sep_semicolon: فاصلة منقوطة
+    sep_custom: مخصص
+    preview_heading: معاينة
+    preview_empty: لا يوجد شيء للمعاينة بعد.
     preview_count:
-      one: "بطاقة واحدة"
+      one: بطاقة واحدة
       other: "%{count} بطاقات"
-    term_label: "المصطلح"
-    definition_label: "التعريف"
-    cancel_import: "إلغاء الاستيراد"
+    term_label: المصطلح
+    definition_label: التعريف
+    cancel_import: إلغاء الاستيراد
   home:
-    hero_heading: "كيف تريد أن تتعلم؟"
-    hero_subtitle: "أتقن ما تتعلمه مع بطاقات Quizly التفاعلية واختبارات التدريب وأنشطة الدراسة."
-    sign_up: "إنشاء حساب مجاني"
-    popular_decks: "المجموعات الشائعة"
-    see_all: "عرض الكل →"
+    hero_heading: كيف تريد أن تتعلم؟
+    hero_subtitle: أتقن ما تتعلمه مع بطاقات Quizly التفاعلية واختبارات التدريب وأنشطة
+      الدراسة.
+    sign_up: إنشاء حساب مجاني
+    popular_decks: المجموعات الشائعة
+    see_all: عرض الكل →
     modes:
-      flashcards: "بطاقات تعليمية"
-      learn: "التعلّم"
-      study: "المراجعة"
-      test: "اختبار"
-      match: "مطابقة"
-    explore_link: "استكشاف"
-    log_in: "تسجيل الدخول"
-    page_title: "Quizly — تعلّم بسرعة أكبر مع البطاقات التعليمية"
+      flashcards: بطاقات تعليمية
+      learn: التعلّم
+      study: المراجعة
+      test: اختبار
+      match: مطابقة
+    explore_link: استكشاف
+    log_in: تسجيل الدخول
+    page_title: Quizly — تعلّم بسرعة أكبر مع البطاقات التعليمية
     carousel:
-      previous_slide: "الشريحة السابقة"
-      next_slide: "الشريحة التالية"
-      favourite: "مفضّل"
-      audio: "صوت"
-      shuffle: "ترتيب عشوائي"
-      previous_card: "البطاقة السابقة"
-      next_card: "البطاقة التالية"
-      fullscreen: "ملء الشاشة"
-      go_to_slide: "الانتقال إلى الشريحة %{n}"
+      previous_slide: الشريحة السابقة
+      next_slide: الشريحة التالية
+      favourite: مفضّل
+      audio: صوت
+      shuffle: ترتيب عشوائي
+      previous_card: البطاقة السابقة
+      next_card: البطاقة التالية
+      fullscreen: ملء الشاشة
+      go_to_slide: الانتقال إلى الشريحة %{n}
   settings:
-    language_updated: "تم تحديث اللغة."
+    language_updated: تم تحديث اللغة.
   starred_cards:
-    unstar: "إزالة التمييز"
-    star: "تمييز هذه البطاقة"
+    unstar: إزالة التمييز
+    star: تمييز هذه البطاقة
   passwords_mailer:
-    reset_subject: "إعادة تعيين كلمة المرور"
-    reset_body: "يمكنك إعادة تعيين كلمة مرورك خلال الـ 15 دقيقة القادمة على"
-    reset_link_text: "صفحة إعادة تعيين كلمة المرور"
-    reset_text_body: "يمكنك إعادة تعيين كلمة مرورك خلال الـ 15 دقيقة القادمة على صفحة إعادة تعيين كلمة المرور:"
+    reset_subject: إعادة تعيين كلمة المرور
+    reset_body: يمكنك إعادة تعيين كلمة مرورك خلال الـ 15 دقيقة القادمة على
+    reset_link_text: صفحة إعادة تعيين كلمة المرور
+    reset_text_body: 'يمكنك إعادة تعيين كلمة مرورك خلال الـ 15 دقيقة القادمة على صفحة
+      إعادة تعيين كلمة المرور:'
   question_engine:
-    match_prompt: "طابق كل مصطلح مع تعريفه"
+    match_prompt: طابق كل مصطلح مع تعريفه
   time:
     none: "—"
     seconds: "%{n}ث"
@@ -557,34 +555,24 @@ ar:
     hours: "%{h}س"
     hours_minutes: "%{h}س %{m}د"
   notifications:
-    bell_aria: "الإشعارات"
-    title: "الإشعارات"
-    empty: "لا توجد إشعارات حتى الآن"
-    mark_all_read: "وضع علامة مقروء على الكل"
-    mark_read: "وضع علامة مقروء"
-    time_ago: "منذ"
+    bell_aria: الإشعارات
+    title: الإشعارات
+    empty: لا توجد إشعارات حتى الآن
+    mark_all_read: وضع علامة مقروء على الكل
+    mark_read: وضع علامة مقروء
+    time_ago: منذ
     events:
-      badge_earned: "لقد حصلت على شارة جديدة"
-      followed: "بدأ %{actor} في متابعتك"
-      deck_commented: "علّق %{actor} على مجموعتك"
-      deck_reacted: "تفاعل %{actor} مع مجموعتك"
+      badge_earned: لقد حصلت على شارة جديدة
+      followed: بدأ %{actor} في متابعتك
+      deck_commented: علّق %{actor} على مجموعتك
+      deck_reacted: تفاعل %{actor} مع مجموعتك
   activerecord:
     errors:
       models:
         deck:
           attributes:
             base:
-              not_ready_to_share: "أضف بطاقة واحدة على الأقل قبل مشاركة هذه المجموعة."
+              not_ready_to_share: أضف بطاقة واحدة على الأقل قبل مشاركة هذه المجموعة.
             access_mode:
-              invalid_for_private_deck: "Private decks cannot be password-protected — only you can see them anyway."
-        library_item:
-          attributes:
-            base:
-              own_deck: "لا يمكنك حفظ مجموعتك الخاصة في مكتبتك."
-            password:
-              too_short:
-                one: "قصيرة جدًا (الحد الأدنى %{count} حرف)"
-                other: "قصيرة جدًا (الحد الأدنى %{count} حرف)"
-              too_long:
-                one: "طويلة جدًا (الحد الأقصى %{count} حرف)"
-                other: "طويلة جدًا (الحد الأقصى %{count} حرف)"
+              invalid_for_private_deck: Private decks cannot be password-protected
+                — only you can see them anyway.

@@ -82,46 +82,6 @@ RSpec.describe "Decks#index", type: :request do
       end
     end
 
-    context "saved decks section" do
-      let(:owner)       { create(:user) }
-      let(:other_user)  { create(:user) }
-      let(:public_deck) { create(:deck, :public, user: owner, name: "French Basics") }
-
-      before do
-        sign_in(other_user)
-        create(:flashcard, deck: public_deck)
-        create(:library_item, user: other_user, deck: public_deck)
-      end
-
-      it "shows the saved section heading" do
-        get decks_path
-        expect(response.body).to include(I18n.t("decks.index.saved_section_title"))
-      end
-
-      it "shows the saved deck name" do
-        get decks_path
-        expect(response.body).to include("French Basics")
-      end
-
-      it "shows the author name" do
-        get decks_path
-        expect(response.body).to include(owner.display_name)
-      end
-
-      it "does not show the saved section when there are no saved decks" do
-        LibraryItem.destroy_all
-        get decks_path
-        expect(response.body).not_to include(I18n.t("decks.index.saved_section_title"))
-      end
-
-      it "does not include owned decks in the saved section" do
-        owned = create(:deck, user: other_user, name: "My Own Deck")
-        get decks_path
-        expect(response.body).to include("My Own Deck")
-        expect(response.body).to include("French Basics")
-      end
-    end
-
     context "when not authenticated" do
       it "redirects to login" do
         get decks_path

@@ -12,12 +12,10 @@
           <% end %>
         <% end %>
 
-        <%= render "decks/library_state", deck: @deck %>
-
         <% if policy(@deck).copy? %>
           <%= form_with url: copy_deck_path(@deck), method: :post do %>
             <button type="submit" class="btn btn--secondary btn-with-icon">
-              <%= render "shared/icons/fork" %> <%= t("decks.action.copy") %>
+              <%= render "shared/icons/copy" %> <%= t("decks.action.copy") %>
             </button>
           <% end %>
         <% end %>

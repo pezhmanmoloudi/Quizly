@@ -1,7 +1,7 @@
 class DecksController < ApplicationController
   allow_unauthenticated_access only: [ :show, :flashcard, :match, :unlock ]
 
-  before_action :set_deck,       only: [ :show, :flashcard, :match, :fork, :copy,
+  before_action :set_deck,       only: [ :show, :flashcard, :match, :copy,
                                           :learn, :test, :study,
                                           :edit, :update, :destroy, :update_visibility, :unlock ]
   before_action :resolve_access, only: [ :show, :flashcard, :match, :study, :learn, :test, :copy ]
@@ -29,11 +29,6 @@ class DecksController < ApplicationController
     else
       @pagy, @decks = pagy(decks_scope, limit: DECK_INDEX_PER_PAGE)
     end
-
-    @saved_decks = Current.user.saved_decks
-                               .merge(Deck.complete)
-                               .includes(:user, :flashcards)
-                               .order("library_items.created_at DESC")
   end
 
   def show
@@ -188,44 +183,17 @@ class DecksController < ApplicationController
     end
   end
 
-  # fork is intentionally excluded from resolve_access: saving a locked deck to library
-  # does not reveal flashcard content — the user still encounters the password gate on first view.
-  def fork
-    authorize @deck, :save_to_library?
-    perform_library_save
-  rescue Pundit::NotAuthorizedError
-    destination = policy(@deck).show? ? deck_path(@deck) : fallback_destination
-    redirect_to destination
-  end
-
   def copy
     authorize @deck, :copy?
-    copied = Decks::ForkService.call(
+    copied = Decks::CopyService.call(
       source_deck: @deck,
       user:        Current.user,
       name:        t("decks.action.copy_name", name: @deck.name)
     )
     redirect_to deck_path(copied), notice: t("decks.action.copied")
   rescue Pundit::NotAuthorizedError
-    destination = policy(@deck).update? ? explore_path : fallback_destination
-    redirect_to destination, alert: t("decks.not_available")
-  end
-
-  def unsave
-    deck = Deck.find_by(id: params[:id])
-    item = deck ? Current.user.library_items.find_by(deck: deck) : nil
-    if item
-      @deck = deck
-      item.destroy
-      @no_saved_decks = Current.user.library_items.none?
-      flash.now[:notice] = t("decks.action.unsaved")
-      respond_to do |format|
-        format.turbo_stream
-        format.html { redirect_to deck_path(@deck), notice: t("decks.action.unsaved") }
-      end
-    else
-      redirect_to(deck ? deck_path(deck) : decks_path, alert: t("decks.action.not_in_library"))
-    end
+    redirect_to @access.owner? ? explore_path : fallback_destination,
+                alert: t("decks.not_available")
   end
 
   def unlock
@@ -266,21 +234,6 @@ class DecksController < ApplicationController
 
   def items_per_page
     ITEMS_PER_PAGE_OPTIONS.include?(params[:items].to_i) ? params[:items].to_i : 10
-  end
-
-  def perform_library_save
-    LibraryItem.create!(user: Current.user, deck: @deck)
-    flash.now[:notice] = t("decks.action.saved")
-    respond_to do |format|
-      format.turbo_stream
-      format.html { redirect_to deck_path(@deck), notice: t("decks.action.saved") }
-    end
-  rescue ActiveRecord::RecordNotUnique, ActiveRecord::RecordInvalid
-    flash.now[:notice] = t("decks.action.already_saved")
-    respond_to do |format|
-      format.turbo_stream
-      format.html { redirect_to deck_path(@deck), notice: t("decks.action.already_saved") }
-    end
   end
 
   def manage_access_params

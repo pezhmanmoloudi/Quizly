@@ -1,299 +1,296 @@
+---
 ckb:
   nav:
-    home: "ماڵەوە"
-    explore: "گەڕان"
-    my_library: "کتێبخانەکەم"
+    home: ماڵەوە
+    explore: گەڕان
+    my_library: کتێبخانەکەم
   topbar:
-    search_placeholder: "گەڕان بەدوای دەستەکاندا…"
-    search_aria: "گەڕان بەدوای دەستەکاندا"
-    create_menu_aria: "مێنوی دروستکردن"
-    create_menu_tooltip: "دروستکردن"
+    search_placeholder: گەڕان بەدوای دەستەکاندا…
+    search_aria: گەڕان بەدوای دەستەکاندا
+    create_menu_aria: مێنوی دروستکردن
+    create_menu_tooltip: دروستکردن
     create:
-      flashcard_set: "کۆمەڵەی کارتی فلاش"
-      study_guide: "ڕێنمای خوێندن"
-      practice_test: "تاقیکردنەوەی پراکتیک"
-      folder: "فۆڵدەر"
-      study_group: "گروپی خوێندن"
-    open_navigation: "کردنەوەی ناڤیگەیشن"
-    close_navigation: "داخستنی ناڤیگەیشن"
+      flashcard_set: کۆمەڵەی کارتی فلاش
+      study_guide: ڕێنمای خوێندن
+      practice_test: تاقیکردنەوەی پراکتیک
+      folder: فۆڵدەر
+      study_group: گروپی خوێندن
+    open_navigation: کردنەوەی ناڤیگەیشن
+    close_navigation: داخستنی ناڤیگەیشن
   menu:
-    settings: "ڕێکخستنەکان"
-    dark_mode: "دۆخی تاریک"
-    light_mode: "دۆخی ڕووناک"
-    log_out: "چوونەدەرەوە"
-    language: "زمان"
+    settings: ڕێکخستنەکان
+    dark_mode: دۆخی تاریک
+    light_mode: دۆخی ڕووناک
+    log_out: چوونەدەرەوە
+    language: زمان
   shared:
-    cancel: "پاشگەزبوونەوە"
-    close: "داخستن"
-    delete: "سڕینەوە"
-    edit: "دەستکاری"
-    undo: "پاشگەزبوونەوە"
+    cancel: پاشگەزبوونەوە
+    close: داخستن
+    delete: سڕینەوە
+    edit: دەستکاری
+    undo: پاشگەزبوونەوە
     modal:
       type_to_confirm: "%{word} بنووسە بۆ دووپاتکردنەوە"
-    save: "پاشەکەوتکردن"
+    save: پاشەکەوتکردن
     back: "→ گەڕانەوە"
-    sign_in: "چوونەژوورەوە"
-    sign_up_free: "خۆتۆمارکردنی بەخۆڕایی"
-    previous_page: "پەڕەی پێشوو"
-    next_page: "پەڕەی داهاتوو"
-    not_available: "بەردەست نییە"
+    sign_in: چوونەژوورەوە
+    sign_up_free: خۆتۆمارکردنی بەخۆڕایی
+    previous_page: پەڕەی پێشوو
+    next_page: پەڕەی داهاتوو
+    not_available: بەردەست نییە
   auth:
-    back_to_home: "گەڕانەوە بۆ ماڵپەڕ"
+    back_to_home: گەڕانەوە بۆ ماڵپەڕ
     panel:
-      heading: "زیرەکانەتر فێربە، نەک سەختتر"
-      tagline: "Quizly رێبازی دووبارەکردنەوەی بەفاسڵ بەکاردێنێت بۆ پیشاندانی کارتی گونجاو لە کاتی گونجاودا — تا زانیاری بمێنێتەوە."
-      feature_scheduling: "پلانکردنی SM-2 بەپشتبەستن بە زانست"
-      feature_decks: "دەستەکانێک کە خۆت دروستیانکردووە و خاوەنیانی"
-      feature_progress: "پێشکەوتنێک کە بە کاتەوە زیاد دەبێت"
+      heading: زیرەکانەتر فێربە، نەک سەختتر
+      tagline: Quizly رێبازی دووبارەکردنەوەی بەفاسڵ بەکاردێنێت بۆ پیشاندانی کارتی
+        گونجاو لە کاتی گونجاودا — تا زانیاری بمێنێتەوە.
+      feature_scheduling: پلانکردنی SM-2 بەپشتبەستن بە زانست
+      feature_decks: دەستەکانێک کە خۆت دروستیانکردووە و خاوەنیانی
+      feature_progress: پێشکەوتنێک کە بە کاتەوە زیاد دەبێت
   sessions:
-    title: "چوونەژوورەوە"
-    heading: "بەخێرهاتیتەوە!"
-    subheading: "بچوو ژوورەوە بۆ دەستگەیشتن بە داشبۆردەکەت و بەردەوامبوون لە فێربوون."
-    email_label: "ئیمەیل"
-    email_placeholder: "ئیمەیلەکەت بنووسە"
-    password_label: "وشەی نهێنی"
-    password_placeholder: "وشەی نهێنیەکەت بنووسە"
-    toggle_password: "پیشاندان/شاردنەوەی وشەی نهێنی"
-    forgot_password: "وشەی نهێنیت بیرچووەتەوە؟"
-    submit: "چوونەژوورەوە"
-    no_account: "هەژمارت نییە؟"
-    sign_up: "خۆتۆمارکردن"
+    title: چوونەژوورەوە
+    heading: بەخێرهاتیتەوە!
+    subheading: بچوو ژوورەوە بۆ دەستگەیشتن بە داشبۆردەکەت و بەردەوامبوون لە فێربوون.
+    email_label: ئیمەیل
+    email_placeholder: ئیمەیلەکەت بنووسە
+    password_label: وشەی نهێنی
+    password_placeholder: وشەی نهێنیەکەت بنووسە
+    toggle_password: پیشاندان/شاردنەوەی وشەی نهێنی
+    forgot_password: وشەی نهێنیت بیرچووەتەوە؟
+    submit: چوونەژوورەوە
+    no_account: هەژمارت نییە؟
+    sign_up: خۆتۆمارکردن
     errors:
-      rate_limited: "دواتر دووبارە هەوڵبدەوە."
-      invalid: "ئیمەیل یان وشەی نهێنیەکی تر تاقیبکەرەوە."
+      rate_limited: دواتر دووبارە هەوڵبدەوە.
+      invalid: ئیمەیل یان وشەی نهێنیەکی تر تاقیبکەرەوە.
   registrations:
-    title: "خۆتۆمارکردن"
-    heading: "هەژمارەکەت دروستبکە"
-    subheading: "دەستپێبکە بە دروستکردنی دەستەکانت و زیرەکانەتر فێربە."
-    email_label: "ئیمەیل"
-    email_placeholder: "ئیمەیلەکەت بنووسە"
-    password_label: "وشەی نهێنی"
-    password_placeholder: "کەمترین ٨ پیت"
-    confirm_label: "پشتڕاستکردنەوەی وشەی نهێنی"
-    confirm_placeholder: "وشەی نهێنیەکەت دووبارە بنووسە"
-    toggle_password: "پیشاندان/شاردنەوەی وشەی نهێنی"
-    submit: "دروستکردنی هەژمار"
-    have_account: "پێشتر هەژمارت هەیە؟"
-    sign_in_link: "چوونەژوورەوە"
-    created: "بەخێرهاتی بۆ Quizly!"
+    title: خۆتۆمارکردن
+    heading: هەژمارەکەت دروستبکە
+    subheading: دەستپێبکە بە دروستکردنی دەستەکانت و زیرەکانەتر فێربە.
+    email_label: ئیمەیل
+    email_placeholder: ئیمەیلەکەت بنووسە
+    password_label: وشەی نهێنی
+    password_placeholder: کەمترین ٨ پیت
+    confirm_label: پشتڕاستکردنەوەی وشەی نهێنی
+    confirm_placeholder: وشەی نهێنیەکەت دووبارە بنووسە
+    toggle_password: پیشاندان/شاردنەوەی وشەی نهێنی
+    submit: دروستکردنی هەژمار
+    have_account: پێشتر هەژمارت هەیە؟
+    sign_in_link: چوونەژوورەوە
+    created: بەخێرهاتی بۆ Quizly!
     errors:
-      rate_limited: "دواتر دووبارە هەوڵبدەوە."
+      rate_limited: دواتر دووبارە هەوڵبدەوە.
   passwords:
     new:
-      title: "وشەی نهێنی بیرچووەتەوە"
-      heading: "وشەی نهێنیت بیرچووەتەوە؟"
-      subheading: "ئیمەیلەکەت بنووسە و ئێمە ڕێنمایی نوێکردنەوەمان بۆ دەنێرین."
-      email_label: "ئیمەیل"
-      email_placeholder: "ئیمەیلەکەت بنووسە"
-      submit: "ناردنی ڕێنمایی"
+      title: وشەی نهێنی بیرچووەتەوە
+      heading: وشەی نهێنیت بیرچووەتەوە؟
+      subheading: ئیمەیلەکەت بنووسە و ئێمە ڕێنمایی نوێکردنەوەمان بۆ دەنێرین.
+      email_label: ئیمەیل
+      email_placeholder: ئیمەیلەکەت بنووسە
+      submit: ناردنی ڕێنمایی
       back: "→ گەڕانەوە بۆ چوونەژوورەوە"
     edit:
-      title: "نوێکردنەوەی وشەی نهێنی"
-      heading: "وشەی نهێنیەکەت نوێبکەرەوە"
-      subheading: "وشەی نهێنیەکی نوێ بۆ هەژمارەکەت هەڵبژێرە."
-      password_label: "وشەی نهێنیی نوێ"
-      password_placeholder: "کەمترین ٨ پیت"
-      confirm_label: "پشتڕاستکردنەوەی وشەی نهێنیی نوێ"
-      confirm_placeholder: "وشەی نهێنیەکەت دووبارە بنووسە"
-      toggle_password: "پیشاندان/شاردنەوەی وشەی نهێنی"
-      submit: "پاشەکەوتکردنی وشەی نهێنیی نوێ"
+      title: نوێکردنەوەی وشەی نهێنی
+      heading: وشەی نهێنیەکەت نوێبکەرەوە
+      subheading: وشەی نهێنیەکی نوێ بۆ هەژمارەکەت هەڵبژێرە.
+      password_label: وشەی نهێنیی نوێ
+      password_placeholder: کەمترین ٨ پیت
+      confirm_label: پشتڕاستکردنەوەی وشەی نهێنیی نوێ
+      confirm_placeholder: وشەی نهێنیەکەت دووبارە بنووسە
+      toggle_password: پیشاندان/شاردنەوەی وشەی نهێنی
+      submit: پاشەکەوتکردنی وشەی نهێنیی نوێ
       back: "→ گەڕانەوە بۆ چوونەژوورەوە"
-    sent: "ڕێنماییەکانی نوێکردنەوە نێردران (ئەگەر بەکارهێنەرێک بەم ئیمەیلە هەبێت)."
-    reset: "وشەی نهێنی نوێکرایەوە."
-    mismatch: "وشەی نهێنیەکان یەکسان نین."
-    invalid: "بەستەری نوێکردنەوە نادروست یان کاتی بەسەرچووە."
+    sent: ڕێنماییەکانی نوێکردنەوە نێردران (ئەگەر بەکارهێنەرێک بەم ئیمەیلە هەبێت).
+    reset: وشەی نهێنی نوێکرایەوە.
+    mismatch: وشەی نهێنیەکان یەکسان نین.
+    invalid: بەستەری نوێکردنەوە نادروست یان کاتی بەسەرچووە.
     errors:
-      rate_limited: "دواتر دووبارە هەوڵبدەوە."
+      rate_limited: دواتر دووبارە هەوڵبدەوە.
   accounts:
-    title: "ڕێکخستنەکان"
-    personal_info: "زانیاری کەسی"
-    profile_picture_heading: "وێنەی پرۆفایل"
-    remove_photo: "لابردنی وێنە"
-    remove_photo_confirm: "دڵنیایی لە لابردنی وێنەی پرۆفایلەکەت؟"
-    remove_photo_modal_title: "لابردنی وێنەی پرۆفایل"
-    remove_photo_modal_warning: "ئەم کارە گەڕانەوەی نییە."
-    remove_photo_modal_confirm: "لابردنی وێنە"
-    email_label: "ئیمەیل"
-    username_label: "ناوی بەکارهێنەر"
-    username_hint_html: "بەتاڵی بهێڵەرەوە بۆ بەکارهێنانی ناوی بەکارهێنەری ئیمەیلەکەت (%{email})"
-    account_type_label: "جۆری هەژمار"
-    password_min_hint: "کەمترین ٨ پیت"
-    account_type_student: "خوێندکار"
-    account_type_teacher: "مامۆستا"
-    change_password: "گۆڕینی وشەی نهێنی"
-    current_password_placeholder: "وشەی نهێنیی ئێستا"
-    new_password_label: "وشەی نهێنیی نوێ"
-    confirm_password_label: "پشتڕاستکردنەوەی وشەی نهێنیی نوێ"
-    update_password: "نوێکردنەوەی وشەی نهێنی"
-    appearance_section: "ئەندامایەتی"
-    theme_label: "ڕووکار"
-    language_label: "زمان"
-    search_languages: "گەڕان بەدوای زمانەکاندا"
-    your_languages: "زمانەکانت"
-    achievements_section: "دەستکەوتەکان"
-    no_badges: "هیچ نیشانێک نییە. بەردەوام بە لە خوێندنەوە بۆ کردنەوەی دەستکەوتەکان!"
+    title: ڕێکخستنەکان
+    personal_info: زانیاری کەسی
+    profile_picture_heading: وێنەی پرۆفایل
+    remove_photo: لابردنی وێنە
+    remove_photo_confirm: دڵنیایی لە لابردنی وێنەی پرۆفایلەکەت؟
+    remove_photo_modal_title: لابردنی وێنەی پرۆفایل
+    remove_photo_modal_warning: ئەم کارە گەڕانەوەی نییە.
+    remove_photo_modal_confirm: لابردنی وێنە
+    email_label: ئیمەیل
+    username_label: ناوی بەکارهێنەر
+    username_hint_html: بەتاڵی بهێڵەرەوە بۆ بەکارهێنانی ناوی بەکارهێنەری ئیمەیلەکەت
+      (%{email})
+    account_type_label: جۆری هەژمار
+    password_min_hint: کەمترین ٨ پیت
+    account_type_student: خوێندکار
+    account_type_teacher: مامۆستا
+    change_password: گۆڕینی وشەی نهێنی
+    current_password_placeholder: وشەی نهێنیی ئێستا
+    new_password_label: وشەی نهێنیی نوێ
+    confirm_password_label: پشتڕاستکردنەوەی وشەی نهێنیی نوێ
+    update_password: نوێکردنەوەی وشەی نهێنی
+    appearance_section: ئەندامایەتی
+    theme_label: ڕووکار
+    language_label: زمان
+    search_languages: گەڕان بەدوای زمانەکاندا
+    your_languages: زمانەکانت
+    achievements_section: دەستکەوتەکان
+    no_badges: هیچ نیشانێک نییە. بەردەوام بە لە خوێندنەوە بۆ کردنەوەی دەستکەوتەکان!
     badge_earned_on: "%{date} بەدەستهێنراوە"
-    delete_title: "سڕینەوەی هەژمار"
-    delete_description: "هەژمارەکەت و هەموو داتاکانی پەیوەندیدار بە بەردەوامی بسڕەرەوە. ئەم کارە گەڕانەوەی نییە."
-    delete_button: "سڕینەوەی هەژمار"
-    delete_confirm: "دڵنیایی لە سڕینەوەی هەژمارەکەت؟"
-    delete_confirmation_failed: "تکایە DELETE بنووسە بۆ دووپاتکردنەوەی سڕینەوەی هەژمار."
-    delete_modal_warning: "ئەمە هەژمارەکەت و هەموو داتای پەیوەندیدارت بە تەواوی دەسڕێتەوە — دەستەکان، فلاشکارتەکان و مێژووی خوێندنەوە. ئەم کارە ناتوانرێت گەڕاندرێتەوە."
-    delete_modal_confirm: "هەژمار بسڕەوە"
+    delete_title: سڕینەوەی هەژمار
+    delete_description: هەژمارەکەت و هەموو داتاکانی پەیوەندیدار بە بەردەوامی بسڕەرەوە.
+      ئەم کارە گەڕانەوەی نییە.
+    delete_button: سڕینەوەی هەژمار
+    delete_confirm: دڵنیایی لە سڕینەوەی هەژمارەکەت؟
+    delete_confirmation_failed: تکایە DELETE بنووسە بۆ دووپاتکردنەوەی سڕینەوەی هەژمار.
+    delete_modal_warning: ئەمە هەژمارەکەت و هەموو داتای پەیوەندیدارت بە تەواوی دەسڕێتەوە
+      — دەستەکان، فلاشکارتەکان و مێژووی خوێندنەوە. ئەم کارە ناتوانرێت گەڕاندرێتەوە.
+    delete_modal_confirm: هەژمار بسڕەوە
     updated:
-      profile: "پرۆفایل نوێکرایەوە."
-      email: "ئیمەیل نوێکرایەوە."
-      password: "وشەی نهێنی نوێکرایەوە."
-      language: "زمان نوێکرایەوە."
-      notifications: "ڕێکخستنەکانی ئاگادارکردنەوە پاشەکەوت کران."
-    avatar_removed: "وێنەی پرۆفایل لابرا."
-    deleted: "هەژمارەکەت سڕایەوە."
-    profile_photo_alt: "وێنەی پرۆفایل"
-    select_avatar: "هەڵبژاردنی ئاواتار"
-    upload_photo_title: "بارکردنی وێنەی تایبەت"
-    toggle_password: "پیشاندان/شاردنەوەی وشەی نهێنی"
-    notifications_section: "ئاگادارکردنەوەکان"
-    notif_personalised_updates: "نوێکردنەوەی خوێندنی تایبەتی"
-    notif_streaks_badges: "زنجیرەکان و نیشانەکان"
-    notif_study_reminders: "بیرخستنەوەی خوێندن"
-    notif_choose_reminder_time: "کاتی وەرگرتنی بیرخستنەوەی خوێندن دیاری بکە"
-    notif_time_zone: "ناوچەی کاتی"
-    notif_email_label: "ئاگادارکردنەوەی ئیمەیڵ"
-    theme_auto: "خۆکار"
-    theme_light: "ڕووناک"
-    theme_dark: "تاریک"
-    password_incorrect: "هەڵەیە"
-    avatar_format_error: "فۆرماتی فایل نادروستە. تکایە JPG، PNG یان WEBP بارکە."
-    avatar_size_error: "وێنەی پرۆفایل دەبێت کەمتر لە ٥ میگابایت بێت."
+      profile: پرۆفایل نوێکرایەوە.
+      email: ئیمەیل نوێکرایەوە.
+      password: وشەی نهێنی نوێکرایەوە.
+      language: زمان نوێکرایەوە.
+      notifications: ڕێکخستنەکانی ئاگادارکردنەوە پاشەکەوت کران.
+    avatar_removed: وێنەی پرۆفایل لابرا.
+    deleted: هەژمارەکەت سڕایەوە.
+    profile_photo_alt: وێنەی پرۆفایل
+    select_avatar: هەڵبژاردنی ئاواتار
+    upload_photo_title: بارکردنی وێنەی تایبەت
+    toggle_password: پیشاندان/شاردنەوەی وشەی نهێنی
+    notifications_section: ئاگادارکردنەوەکان
+    notif_personalised_updates: نوێکردنەوەی خوێندنی تایبەتی
+    notif_streaks_badges: زنجیرەکان و نیشانەکان
+    notif_study_reminders: بیرخستنەوەی خوێندن
+    notif_choose_reminder_time: کاتی وەرگرتنی بیرخستنەوەی خوێندن دیاری بکە
+    notif_time_zone: ناوچەی کاتی
+    notif_email_label: ئاگادارکردنەوەی ئیمەیڵ
+    theme_auto: خۆکار
+    theme_light: ڕووناک
+    theme_dark: تاریک
+    password_incorrect: هەڵەیە
+    avatar_format_error: فۆرماتی فایل نادروستە. تکایە JPG، PNG یان WEBP بارکە.
+    avatar_size_error: وێنەی پرۆفایل دەبێت کەمتر لە ٥ میگابایت بێت.
   decks:
     index:
-      title: "دەستەکانم"
-      sort_recent: "دوایین"
-      sort_az: "الف–ی"
-      sort_most_due: "زۆرترین کارتی سەرکەوتوو"
-      empty_title: "هێشتا دەستەیەک نییە"
-      empty_description: "یەکەم دەستەکەت دروستبکە بۆ دەستپێکردن بە خوێندن."
-      saved_section_title: "دەستەکانی پاشەکەوتکراو"
+      title: دەستەکانم
+      sort_recent: دوایین
+      sort_az: الف–ی
+      sort_most_due: زۆرترین کارتی سەرکەوتوو
+      empty_title: هێشتا دەستەیەک نییە
+      empty_description: یەکەم دەستەکەت دروستبکە بۆ دەستپێکردن بە خوێندن.
     show:
-      edit: "دەستکاریی دەستە"
-      delete: "سڕینەوەی دەستە"
-      delete_confirm: "دڵنیایی لە لابردنی ئەم دەستەیە؟"
-      delete_modal_title: "ئەم دەستەیە بسڕێتەوە؟"
-      delete_modal_warning: "هەموو فلاشکارتەکان بە تەواوی دەسڕێنەوە. ئەم کارە ناتوانرێت گەڕاندرێتەوە."
-      delete_modal_confirm: "دەستە بسڕەوە"
-      unlisted_badge: "نه‌سیاوکراو"
-      public_badge: "گشتی"
-      private_badge: "تایبەت"
-      created: "دروستکرا"
-      cards_section: "کارتەکان"
-      add_card: "زیادکردنی کارت"
-      import: "هاوردەکردن"
-      mode_flashcard: "کارتی فێربوون"
-      mode_study: "خوێندن"
-      mode_learn: "فێربوون"
-      mode_test: "تاقیکردنەوە"
-      mode_match: "دۆشاندن"
-      cards_per_page: "کارت لە هەر پەڕەیەک"
-      locked_title: "This deck is password protected"
-      locked_description: "Enter the password to access all flashcards and study modes."
-      unlock_cta: "Unlock Deck"
-      preview_heading: "Sample Cards"
+      edit: دەستکاریی دەستە
+      delete: سڕینەوەی دەستە
+      delete_confirm: دڵنیایی لە لابردنی ئەم دەستەیە؟
+      delete_modal_title: ئەم دەستەیە بسڕێتەوە؟
+      delete_modal_warning: هەموو فلاشکارتەکان بە تەواوی دەسڕێنەوە. ئەم کارە ناتوانرێت
+        گەڕاندرێتەوە.
+      delete_modal_confirm: دەستە بسڕەوە
+      unlisted_badge: نه‌سیاوکراو
+      public_badge: گشتی
+      private_badge: تایبەت
+      created: دروستکرا
+      cards_section: کارتەکان
+      add_card: زیادکردنی کارت
+      import: هاوردەکردن
+      mode_flashcard: کارتی فێربوون
+      mode_study: خوێندن
+      mode_learn: فێربوون
+      mode_test: تاقیکردنەوە
+      mode_match: دۆشاندن
+      cards_per_page: کارت لە هەر پەڕەیەک
+      locked_title: This deck is password protected
+      locked_description: Enter the password to access all flashcards and study modes.
+      unlock_cta: Unlock Deck
+      preview_heading: Sample Cards
       locked_card_placeholder: "• • •"
       locked_cards_counter:
-        one: "1 card locked"
+        one: 1 card locked
         other: "%{count} cards locked"
     edit:
-      title: "دەستکاریی دەستە"
+      title: دەستکاریی دەستە
       back: "→ گەڕانەوە"
     manage_access:
-      title: "بەڕێوەبردنی دەستڕاگەیشتن"
-      public_desc: "هەر کەسێک دەتوانێت ئەم دەستەیە بدۆزێتەوە و بخوێندێتەوە"
-      unlisted_desc: "تەنها کەسانی بە لینک دەتوانن ببینن"
-      private_desc: "تەنها تۆ"
-      visibility_heading: "بینراوی"
-      access_mode_heading: "Access"
-      open_desc: "Anyone who can find this deck can study it"
-      password_desc: "Viewers must enter a password to access flashcards"
-      share_heading: "هاوبەشکردنی بەستەر"
-      share_hint: "هەر کەسێک ئەم بەستەرەی هەبێت دەتوانێت دەستەکە ببینێت"
-      copy_link: "کۆپیکردن"
-      copy_link_copied: "کۆپیکرا!"
-      visible_to: "بینراوی بۆ"
-      password_is_set: "A password is set — enter a new one to change it"
+      title: بەڕێوەبردنی دەستڕاگەیشتن
+      public_desc: هەر کەسێک دەتوانێت ئەم دەستەیە بدۆزێتەوە و بخوێندێتەوە
+      unlisted_desc: تەنها کەسانی بە لینک دەتوانن ببینن
+      private_desc: تەنها تۆ
+      visibility_heading: بینراوی
+      access_mode_heading: Access
+      open_desc: Anyone who can find this deck can study it
+      password_desc: Viewers must enter a password to access flashcards
+      share_heading: هاوبەشکردنی بەستەر
+      share_hint: هەر کەسێک ئەم بەستەرەی هەبێت دەتوانێت دەستەکە ببینێت
+      copy_link: کۆپیکردن
+      copy_link_copied: کۆپیکرا!
+      visible_to: بینراوی بۆ
+      password_is_set: A password is set — enter a new one to change it
     form:
-      name_label: "ناو"
-      description_label: "وەسف"
-      language_label: "زمان (ئارەزووی)"
-      language_placeholder: "بۆ نموونە: en, ckb, ar"
-      tags_label: "تاگەکان (ئارەزووی)"
-      tags_hint: "تاگەکان بە کۆمای جیابکەرەوە."
-      tags_placeholder: "بۆ نموونە: بایۆلۆجی، ئەناتۆمی، تاقیکردنەوە٢٠٢٥"
-      visibility_label: "بینراوی"
-      visibility_section_label: "کێ دەتوانێت ئەم دەستەیە ببینێت؟"
-      visibility_unlisted: "نه‌سیاوکراو"
-      section_about: "دەربارە"
-      access_mode_open: "Open"
-      access_mode_password: "Password protected"
-      visibility_private: "تەنها من"
-      visibility_public: "گشتی"
-      visibility_hint: "دەستەی گشتی دەکرێت لە لایەن هەر کەسێکەوە دۆزراوەوە و کۆپیبکرێت."
-      password_label: "پاسۆردی دەستە"
-      password_placeholder: "لانیکەم ٨ پیت"
-      password_hint: "Required to view this deck"
+      name_label: ناو
+      description_label: وەسف
+      language_label: زمان (ئارەزووی)
+      language_placeholder: 'بۆ نموونە: en, ckb, ar'
+      tags_label: تاگەکان (ئارەزووی)
+      tags_hint: تاگەکان بە کۆمای جیابکەرەوە.
+      tags_placeholder: 'بۆ نموونە: بایۆلۆجی، ئەناتۆمی، تاقیکردنەوە٢٠٢٥'
+      visibility_label: بینراوی
+      visibility_section_label: کێ دەتوانێت ئەم دەستەیە ببینێت؟
+      visibility_unlisted: نه‌سیاوکراو
+      section_about: دەربارە
+      access_mode_open: Open
+      access_mode_password: Password protected
+      visibility_private: تەنها من
+      visibility_public: گشتی
+      visibility_hint: دەستەی گشتی دەکرێت لە لایەن هەر کەسێکەوە دۆزراوەوە و کۆپیبکرێت.
+      password_label: پاسۆردی دەستە
+      password_placeholder: لانیکەم ٨ پیت
+      password_hint: Required to view this deck
     cards:
-      page_title: "زیادکردنی کارت — %{name}"
-      add_card: "زیادکردنی کارت"
-      save: "پاشکەوتکردن"
-      error_term: "کارت %{row}: تەرمینۆلۆجیا پێویستە."
-      error_definition: "کارت %{row}: پێناسە پێویستە."
-      error_language: "کارت %{row}: زمان پێویستە بۆ %{side}."
-      error_no_cards: "پێش پاشەکەوتکردن لانیکەم یەک کارت زیاد بکە."
-      back_label: "گەڕانەوە بۆ %{name}"
+      page_title: زیادکردنی کارت — %{name}
+      add_card: زیادکردنی کارت
+      save: پاشکەوتکردن
+      error_term: 'کارت %{row}: تەرمینۆلۆجیا پێویستە.'
+      error_definition: 'کارت %{row}: پێناسە پێویستە.'
+      error_language: 'کارت %{row}: زمان پێویستە بۆ %{side}.'
+      error_no_cards: پێش پاشەکەوتکردن لانیکەم یەک کارت زیاد بکە.
+      back_label: گەڕانەوە بۆ %{name}
     card_row:
-      term_label: "تەرمینۆلۆجیا"
-      term_placeholder: "تەرمینۆلۆجیاکە بنووسە"
-      definition_label: "پێناسە"
-      definition_placeholder: "پێناسەکە بنووسە"
-      front_label: "پێشەوە"
-      back_label: "دواوە"
-      select_language: "زمان هەڵبژێرە"
-      image: "وێنە"
-      remove: "لابردنی کارت"
-      saving: "پاشەکەوتدەکرێت…"
+      term_label: تەرمینۆلۆجیا
+      term_placeholder: تەرمینۆلۆجیاکە بنووسە
+      definition_label: پێناسە
+      definition_placeholder: پێناسەکە بنووسە
+      front_label: پێشەوە
+      back_label: دواوە
+      select_language: زمان هەڵبژێرە
+      image: وێنە
+      remove: لابردنی کارت
+      saving: پاشەکەوتدەکرێت…
       saved: "✓"
       error: "!"
-    created: "دەستە دروستکرا."
-    default_name: "دەستەی بێ سەردێر"
-    create_failed: "ناتوانرێت دەستە دروست بکرێت. تکایە دووبارە هەوڵ بدەرەوە."
-    updated: "دەستە نوێکرایەوە."
-    deleted: "دەستە سڕایەوە."
-    cards_saved: "کارتەکان پاشەکەوتکران."
+    created: دەستە دروستکرا.
+    default_name: دەستەی بێ سەردێر
+    create_failed: ناتوانرێت دەستە دروست بکرێت. تکایە دووبارە هەوڵ بدەرەوە.
+    updated: دەستە نوێکرایەوە.
+    deleted: دەستە سڕایەوە.
+    cards_saved: کارتەکان پاشەکەوتکران.
     action:
-      save:                  "پاشەکەوتکردن"
-      in_library:            "لە کتێبخانەکەتدایە"
-      sign_in_to_save:       "چوونەژوورەوە بۆ پاشەکەوتکردن"
-      saved:                 "دەستە زیادکرا بۆ کتێبخانەکەت."
-      already_saved:         "ئەم دەستەیە ئێستا لە کتێبخانەتدا دەبێ."
-      unsave:                "Remove from library"
-      unsaved:               "Deck removed from your library."
-      not_in_library:        "This deck is not in your library."
-      copy:                  "کۆپی بکە"
-      copied:                "کۆپی دروست کرا. ئێستا دەتوانیت دەستکاریی بکەیت."
-      copy_name:             "%{name} (کۆپی)"
-    not_available: "دەستە بەردەست نییە."
+      copy: کۆپی بکە
+      copied: کۆپی دروست کرا. ئێستا دەتوانیت دەستکاریی بکەیت.
+      copy_name: "%{name} (کۆپی)"
+    not_available: دەستە بەردەست نییە.
     unlock:
-      title: "پاسۆرد پێویستە"
-      description: "ئەم دەستەیە پاراستراوە. پاسۆردەکە بنووسە بۆ بەردەوامبوون."
-      password_label: "پاسۆرد"
-      submit: "کردنەوەی دەستە"
-      invalid_password: "پاسۆردەکە هەڵەیە. تکایە دووبارە هەوڵبدەرەوە."
-      success: "مۆڵەت درا."
+      title: پاسۆرد پێویستە
+      description: ئەم دەستەیە پاراستراوە. پاسۆردەکە بنووسە بۆ بەردەوامبوون.
+      password_label: پاسۆرد
+      submit: کردنەوەی دەستە
+      invalid_password: پاسۆردەکە هەڵەیە. تکایە دووبارە هەوڵبدەرەوە.
+      success: مۆڵەت درا.
       back_to_preview: "← Back to deck"
-      help_text: "Contact the deck creator if you don't have the password."
-      submitting: "Unlocking…"
-    sidebar_no_decks: "هێشتا دەستەیەک نییە."
+      help_text: Contact the deck creator if you don't have the password.
+      submitting: Unlocking…
+    sidebar_no_decks: هێشتا دەستەیەک نییە.
     deck_card:
-      draft: "پێشنووس"
+      draft: پێشنووس
       due:
         one: "%{count} کارت بۆ پاڕاستنەوە"
         other: "%{count} کارت بۆ پاڕاستنەوە"
@@ -304,186 +301,188 @@ ckb:
     new:
       back: "→ گەڕانەوە بۆ %{name}"
     form:
-      term_label: "تەرمینۆلۆجیا"
-      term_placeholder: "تەرمینۆلۆجیاکە بنووسە"
-      definition_label: "پێناسە"
-      definition_placeholder: "پێناسەکە بنووسە"
-      save: "پاشەکەوتکردنی کارت →"
-    created: "کارت زیادکرا."
-    updated: "کارت نوێکرایەوە."
-    deleted: "فلاشکارت سڕایەوە."
-    restored: "فلاشکارت گەڕاندرایەوە."
+      term_label: تەرمینۆلۆجیا
+      term_placeholder: تەرمینۆلۆجیاکە بنووسە
+      definition_label: پێناسە
+      definition_placeholder: پێناسەکە بنووسە
+      save: پاشەکەوتکردنی کارت →
+    created: کارت زیادکرا.
+    updated: کارت نوێکرایەوە.
+    deleted: فلاشکارت سڕایەوە.
+    restored: فلاشکارت گەڕاندرایەوە.
   study_modes:
     exit: "→ دەرچوون"
-    no_cards_title: "هێشتا کارتێک نییە"
-    back_to_deck: "گەڕانەوە بۆ دەستە"
-    time: "کات"
-    streak: "زنجیرە"
+    no_cards_title: هێشتا کارتێک نییە
+    back_to_deck: گەڕانەوە بۆ دەستە
+    time: کات
+    streak: زنجیرە
     flashcard:
-      empty_description: "چەند کارتێک زیادبکە بۆ ئەم دەستەیە بۆ دەستپێکردن."
+      empty_description: چەند کارتێک زیادبکە بۆ ئەم دەستەیە بۆ دەستپێکردن.
       keyboard_hint: "← → بۆ گەشتکردن · بۆشایی بۆ پێچانەوە"
       previous: "→ پێشوو"
-      next: "داهاتوو ←"
-      guest_cta: "بچوو ژوورەوە بۆ شوێنکەوتنی پێشکەوتنت."
-      click_to_flip: "کرتە بکە لەسەر کارتەکە بۆ بەرپێچانەوەی"
-      options: "هەڵبژاردەکان"
-      track_progress: "شوێنکەوتنی پێشکەوتن"
-      track_progress_desc: "شوێنبکەوە بە ئەوەی دەزانیت و ئەوەی هێشتا فێردەبیت."
-      starred_only: "تەنها پەیوەندیە ئەستێرەکراوەکان"
-      starred_only_desc: "تەنها کارتە ئەستێرەکراوەکانت بخوێنەوە."
-      show_both_sides: "نیشاندانی هەردوو لا"
-      show_both_sides_desc: "ڕووی پێشەوە و پاشەوە پێکەوە ببینە."
-      keyboard_shortcuts: "کورتکراوەکانی کیبۆرد"
-      key_previous: "پێشوو"
-      key_next: "داهاتوو"
-      key_flip: "بەرپێچانەوە"
-      key_star: "ئەستێرە"
-      hide: "شاردنەوە"
-      restart: "دەستپێکردنەوەی کارتەکان"
+      next: داهاتوو ←
+      guest_cta: بچوو ژوورەوە بۆ شوێنکەوتنی پێشکەوتنت.
+      click_to_flip: کرتە بکە لەسەر کارتەکە بۆ بەرپێچانەوەی
+      options: هەڵبژاردەکان
+      track_progress: شوێنکەوتنی پێشکەوتن
+      track_progress_desc: شوێنبکەوە بە ئەوەی دەزانیت و ئەوەی هێشتا فێردەبیت.
+      starred_only: تەنها پەیوەندیە ئەستێرەکراوەکان
+      starred_only_desc: تەنها کارتە ئەستێرەکراوەکانت بخوێنەوە.
+      show_both_sides: نیشاندانی هەردوو لا
+      show_both_sides_desc: ڕووی پێشەوە و پاشەوە پێکەوە ببینە.
+      keyboard_shortcuts: کورتکراوەکانی کیبۆرد
+      key_previous: پێشوو
+      key_next: داهاتوو
+      key_flip: بەرپێچانەوە
+      key_star: ئەستێرە
+      hide: شاردنەوە
+      restart: دەستپێکردنەوەی کارتەکان
     study:
-      subtitle: "کارتەکان بپشکنە و بیرهێنانەوەت بهاکردن"
-      done_label: "تەواوبوو"
-      empty_title: "هەموو شتێک تەواوکرا!"
-      empty_description: "هیچ کارتێک ئێستا بۆ پاڕاستنەوە سەرکەوتوو نییە."
-      all_cards_tab: "هەموو کارتەکان"
+      subtitle: کارتەکان بپشکنە و بیرهێنانەوەت بهاکردن
+      done_label: تەواوبوو
+      empty_title: هەموو شتێک تەواوکرا!
+      empty_description: هیچ کارتێک ئێستا بۆ پاڕاستنەوە سەرکەوتوو نییە.
+      all_cards_tab: هەموو کارتەکان
       starred_tab: "⭐ ئەستێرەکراوەکان"
-      summary_title: "دانیشتن تەواو بوو!"
-      reviewed: "کارتە پاڕاستنەوەکراوەکان"
-      accuracy: "تەواوی"
-      time_spent: "کاتی خەرجکراو"
-      summary_sub: "هیچ کارتی دیکەی سەرکەوتوو نییە — کاری باش."
-      show_answer: "پیشاندانی وەڵام"
-      again: "دووبارە"
-      hard: "سەخت"
-      good: "باش"
-      easy: "ئاسان"
-      keyboard_hint: "بۆشایی بۆ ئاشکراکردن · ١ دووبارە · ٢ سەخت · ٣ باش · ٤ ئاسان · Esc بۆ دەرچوون"
+      summary_title: دانیشتن تەواو بوو!
+      reviewed: کارتە پاڕاستنەوەکراوەکان
+      accuracy: تەواوی
+      time_spent: کاتی خەرجکراو
+      summary_sub: هیچ کارتی دیکەی سەرکەوتوو نییە — کاری باش.
+      show_answer: پیشاندانی وەڵام
+      again: دووبارە
+      hard: سەخت
+      good: باش
+      easy: ئاسان
+      keyboard_hint: بۆشایی بۆ ئاشکراکردن · ١ دووبارە · ٢ سەخت · ٣ باش · ٤ ئاسان ·
+        Esc بۆ دەرچوون
     learn:
-      subtitle: "وەڵام بنووسە بۆ ماستەرکردنی هەر کارتێک"
-      mastered_label: "ماستەرکراو"
-      empty_description: "کارتی فێربوون زیادبکە بۆ ئەم دەستەیە پێش خوێندن."
-      summary_title: "هەموو کارتەکان سەروانە بوون!"
-      studied: "کارتە خوێندراوەکان"
-      time_spent: "کاتی خەرجکراو"
-      summary_sub: "کاری باش — هەموو کارتەکان سەروانە بوون."
-      study_again: "دووبارە بیخوێنەوە"
+      subtitle: وەڵام بنووسە بۆ ماستەرکردنی هەر کارتێک
+      mastered_label: ماستەرکراو
+      empty_description: کارتی فێربوون زیادبکە بۆ ئەم دەستەیە پێش خوێندن.
+      summary_title: هەموو کارتەکان سەروانە بوون!
+      studied: کارتە خوێندراوەکان
+      time_spent: کاتی خەرجکراو
+      summary_sub: کاری باش — هەموو کارتەکان سەروانە بوون.
+      study_again: دووبارە بیخوێنەوە
     learn_card:
-      prompt: "ئەم تەرمینۆلۆجیایە پێناسەبکە"
-      your_answer: "وەڵامی تۆ"
-      correct: "درووستە!"
-      incorrect: "هەڵەیە"
-      correct_answer: "وەڵامی درووست:"
-      type_answer: "وەڵامەکەت بنووسە…"
-      submit: "ناردن"
-      keyboard_hint: "Enter بۆ ناردن"
-      continue: "بەردەوامبوون →"
+      prompt: ئەم تەرمینۆلۆجیایە پێناسەبکە
+      your_answer: وەڵامی تۆ
+      correct: درووستە!
+      incorrect: هەڵەیە
+      correct_answer: 'وەڵامی درووست:'
+      type_answer: وەڵامەکەت بنووسە…
+      submit: ناردن
+      keyboard_hint: Enter بۆ ناردن
+      continue: بەردەوامبوون →
     test:
-      subtitle: "زانستت بيازمێنە"
-      question_label: "پرسیار"
-      empty_description: "کارتی فێربوون زیادبکە بۆ ئەم دەستەیە پێش تاقیکردنەوە."
-      summary_title: "تاقیکردنەوە تەواو بوو!"
-      correct_answers: "وەڵامە درووستەکان"
-      score: "نمرە"
-      time: "کات"
-      retake: "دووبارە تاقیکردنەوە"
+      subtitle: زانستت بيازمێنە
+      question_label: پرسیار
+      empty_description: کارتی فێربوون زیادبکە بۆ ئەم دەستەیە پێش تاقیکردنەوە.
+      summary_title: تاقیکردنەوە تەواو بوو!
+      correct_answers: وەڵامە درووستەکان
+      score: نمرە
+      time: کات
+      retake: دووبارە تاقیکردنەوە
     test_question:
-      correct: "درووستە!"
-      incorrect: "هەڵەیە"
-      correct_answer: "وەڵامی درووست:"
-      see_results: "بینینی ئەنجامەکان →"
-      continue: "بەردەوامبوون →"
-      keyboard_hint: "بۆشایی یان Enter بۆ بەردەوامبوون"
-      your_answer: "وەڵامی تۆ"
-      type_answer: "وەڵامەکەت بنووسە…"
-      submit: "ناردن"
-      submit_hint: "Enter داگرتن بۆ ناردن"
-      submit_matches: "ناردنی دۆشاندنەکان"
+      correct: درووستە!
+      incorrect: هەڵەیە
+      correct_answer: 'وەڵامی درووست:'
+      see_results: بینینی ئەنجامەکان →
+      continue: بەردەوامبوون →
+      keyboard_hint: بۆشایی یان Enter بۆ بەردەوامبوون
+      your_answer: وەڵامی تۆ
+      type_answer: وەڵامەکەت بنووسە…
+      submit: ناردن
+      submit_hint: Enter داگرتن بۆ ناردن
+      submit_matches: ناردنی دۆشاندنەکان
       true_btn: "✓ درووستە"
       false_btn: "✗ هەڵەیە"
     match:
-      empty_description: "چەند کارتێک زیادبکە بۆ ئەم دەستەیە بۆ یاریکردنی دۆشاندن."
-      completed: "هەموو دۆشاندرا!"
-      play_again: "دووبارە یاریبکە"
-      guest_cta: "بچوو ژوورەوە بۆ پاشەکەوتکردنی نمرەکانت."
-      subtitle: "وشەکان لەگەڵ مانایەکانیاندا دۆشان بکە"
-      time: "کات"
-      pairs_left: "جووتەی ماوە"
-      streak: "زنجیرە"
+      empty_description: چەند کارتێک زیادبکە بۆ ئەم دەستەیە بۆ یاریکردنی دۆشاندن.
+      completed: هەموو دۆشاندرا!
+      play_again: دووبارە یاریبکە
+      guest_cta: بچوو ژوورەوە بۆ پاشەکەوتکردنی نمرەکانت.
+      subtitle: وشەکان لەگەڵ مانایەکانیاندا دۆشان بکە
+      time: کات
+      pairs_left: جووتەی ماوە
+      streak: زنجیرە
       progress_label: "%{pct}% پێشکەوتن"
-      matched_counter: "دۆشراو: %{matched} / %{total}"
+      matched_counter: 'دۆشراو: %{matched} / %{total}'
   errors:
     not_found:
-      flash: "This deck is no longer available."
+      flash: This deck is no longer available.
     not_authorized:
-      flash: "You are not authorized to perform this action."
+      flash: You are not authorized to perform this action.
   explore:
-    title: "گەڕان"
-    subtitle: "دەستەی گشتیی بەشکراوی کۆمەڵگا دۆزەرەوە و کۆپیبکە."
-    search_placeholder: "گەڕان بەدوای دەستەکاندا…"
-    search_aria: "گەڕان بەدوای دەستەی گشتیداندا"
-    empty_search_title: "هیچ دەستەیەک نەدۆزرایەوە بۆ \"%{query}\""
-    empty_search_description: "تەرمینۆلۆجیایەکی تر تاقیبکەرەوە یان هەموو دەستەی گشتیەکان بگەڕێ."
-    empty_title: "هێشتا هیچ دەستەی گشتییەک نییە"
-    empty_description: "یەکەمین ببە بۆ بەشکردنی دەستەیەک لەگەڵ کۆمەڵگا."
-    by: "لەلایەن"
-    saved_badge: "پاشکهوتنراوه"
-    locked_badge: "Password Required"
-    owner_badge:  "تۆ"
-    by_you:       "لەلایەن تۆ"
+    title: گەڕان
+    subtitle: دەستەی گشتیی بەشکراوی کۆمەڵگا دۆزەرەوە و کۆپیبکە.
+    search_placeholder: گەڕان بەدوای دەستەکاندا…
+    search_aria: گەڕان بەدوای دەستەی گشتیداندا
+    empty_search_title: هیچ دەستەیەک نەدۆزرایەوە بۆ "%{query}"
+    empty_search_description: تەرمینۆلۆجیایەکی تر تاقیبکەرەوە یان هەموو دەستەی گشتیەکان
+      بگەڕێ.
+    empty_title: هێشتا هیچ دەستەی گشتییەک نییە
+    empty_description: یەکەمین ببە بۆ بەشکردنی دەستەیەک لەگەڵ کۆمەڵگا.
+    by: لەلایەن
+    locked_badge: Password Required
+    owner_badge: تۆ
+    by_you: لەلایەن تۆ
   dashboard:
-    total_decks: "کۆی دەستەکان"
-    total_cards: "کۆی کارتەکان"
-    cards_due: "کارتە سەرکەوتووەکان"
-    current_streak: "زنجیری ڕۆژ"
-    longest_streak: "باشترین زنجیر"
-    study_history: "مێژووی خوێندن"
-    see_all: "بینینی هەمووان"
-    empty_history: "دانیشتنێکی خوێندن تەواوبکە بۆ بینینی مێژووکەت ئێرەدا."
-    my_decks: "دەستەکانم"
-    no_decks_title: "هێشتا دەستەیەک نییە"
-    no_decks_description: "یەکەم دەستەکەت دروستبکە بۆ دەستپێکردن بە خوێندن."
+    total_decks: کۆی دەستەکان
+    total_cards: کۆی کارتەکان
+    cards_due: کارتە سەرکەوتووەکان
+    current_streak: زنجیری ڕۆژ
+    longest_streak: باشترین زنجیر
+    study_history: مێژووی خوێندن
+    see_all: بینینی هەمووان
+    empty_history: دانیشتنێکی خوێندن تەواوبکە بۆ بینینی مێژووکەت ئێرەدا.
+    my_decks: دەستەکانم
+    no_decks_title: هێشتا دەستەیەک نییە
+    no_decks_description: یەکەم دەستەکەت دروستبکە بۆ دەستپێکردن بە خوێندن.
     history_stats: "%{cards} کارت · %{accuracy}% تەواوی"
     continue_studying:
-      title: "بەردەوامبوون لە خوێندن"
-      study_now: "ئێستا بیخوێنە →"
-      card_aria: "بەردەوامبوون لە خوێندنی %{name}"
-      study_aria: "خوێندنی %{name}"
+      title: بەردەوامبوون لە خوێندن
+      study_now: ئێستا بیخوێنە →
+      card_aria: بەردەوامبوون لە خوێندنی %{name}
+      study_aria: خوێندنی %{name}
       cards_due:
         one: "%{count} کارت سەرکەوتوو"
         other: "%{count} کارت سەرکەوتوو"
   study_sessions:
-    title: "مێژووی خوێندن"
+    title: مێژووی خوێندن
     back: "→ داشبۆرد"
-    empty_title: "هێشتا دانیشتنێک نییە"
-    empty_description: "دانیشتنێکی خوێندن تەواوبکە و ئەوە ئێرەدا دەردەکەوێت."
-    go_to_decks: "چوون بۆ دەستەکان"
-    deck_header: "دەستە"
-    date_header: "بەروار"
-    reviewed_header: "پاڕاستنەوەکراو"
-    accuracy_header: "تەواوی"
-    time_header: "کات"
+    empty_title: هێشتا دانیشتنێک نییە
+    empty_description: دانیشتنێکی خوێندن تەواوبکە و ئەوە ئێرەدا دەردەکەوێت.
+    go_to_decks: چوون بۆ دەستەکان
+    deck_header: دەستە
+    date_header: بەروار
+    reviewed_header: پاڕاستنەوەکراو
+    accuracy_header: تەواوی
+    time_header: کات
   imports:
-    title: "هاوردەکردنی کارت — %{name}"
+    title: هاوردەکردنی کارت — %{name}
     back: "→ %{name}"
-    text_tab: "دەق"
-    csv_tab: "فایلی CSV"
-    text_hint: "یەک کارت لە هەر ڕیزێکدا جێبەجێبکە. ڕووی پێشەوە و دواوە بەجیاکەرەوەی هەڵبژێردراو جیابکەرەوە."
-    text_default_format: "فۆرماتی بنەڕەتی (گونجاو لەگەڵ Quizlet):"
-    text_format_example: "ڕووی پێشەوە[TAB]ڕووی دواوە"
-    text_label: "دەقی کارتەکان"
-    separator_label: "جیاکەرەوەی ستوون"
-    tab_separator: "تاب (بنەڕەتی)"
-    comma_separator: "کۆما"
-    semicolon_separator: "نووکتە-کۆما"
-    pipe_separator: "پایپ |"
-    submit: "هاوردەکردنی کارتەکان"
-    csv_hint_html: "فایلێکی <code>.csv</code> بارکە بە دوو ستوون (پێشەوە/دواوە)."
-    csv_label: "فایلی CSV"
-    csv_submit: "هاوردەکردنی CSV"
-    no_text: "تکایە دەقێک جێبەجێبکە بۆ هاوردەکردن."
-    no_file: "تکایە فایلێکی CSV هەڵبژێرە."
+    text_tab: دەق
+    csv_tab: فایلی CSV
+    text_hint: یەک کارت لە هەر ڕیزێکدا جێبەجێبکە. ڕووی پێشەوە و دواوە بەجیاکەرەوەی
+      هەڵبژێردراو جیابکەرەوە.
+    text_default_format: 'فۆرماتی بنەڕەتی (گونجاو لەگەڵ Quizlet):'
+    text_format_example: ڕووی پێشەوە[TAB]ڕووی دواوە
+    text_label: دەقی کارتەکان
+    separator_label: جیاکەرەوەی ستوون
+    tab_separator: تاب (بنەڕەتی)
+    comma_separator: کۆما
+    semicolon_separator: نووکتە-کۆما
+    pipe_separator: پایپ |
+    submit: هاوردەکردنی کارتەکان
+    csv_hint_html: فایلێکی <code>.csv</code> بارکە بە دوو ستوون (پێشەوە/دواوە).
+    csv_label: فایلی CSV
+    csv_submit: هاوردەکردنی CSV
+    no_text: تکایە دەقێک جێبەجێبکە بۆ هاوردەکردن.
+    no_file: تکایە فایلێکی CSV هەڵبژێرە.
     imported:
-      one: "١ کارت هاوردەکرا."
+      one: ١ کارت هاوردەکرا.
       other: "%{count} کارت هاوردەکران."
     skipped:
       one: "%{count} ڕیز تێپەڕا."
@@ -491,64 +490,68 @@ ckb:
     cards_detected:
       one: "%{count} کارت دۆزرایەوە"
       other: "%{count} کارت دۆزرایەوە"
-    csv_too_few_columns: "CSV دەبێت کەمترین ٢ ستوونی هەبێت."
-    csv_no_valid_rows: "هیچ ڕیزێکی دروست لە CSV نەدۆزرایەوە."
-    csv_invalid_format: "فۆرماتی CSV نادروستە: %{message}"
-    text_no_valid_pairs: "هیچ جووتی کارتێکی دروست نەدۆزرایەوە. دڵنیابە هەر ڕیزێک ڕووی پێشەوە و دواوەی هەیە کە بە جیاکەرەوەی هەڵبژێردراو جیاکراونەتەوە."
-    heading: "داتاکەت هاوردەبکە"
-    subheading: "داتاکەت لێرەوە کۆپی بکە و پەیست بکە (لە Word، Excel، Google Docs، ھتد)"
-    col_sep_label: "نێوان تەرم و پێناسە"
-    row_sep_label: "نێوان کارتەکان"
-    sep_tab: "تاب"
-    sep_comma: "کۆما"
-    sep_newline: "ڕیزی نوێ"
-    sep_semicolon: "نوکتەویرگول"
-    sep_custom: "دیاریکراو"
-    preview_heading: "پێشبینین"
-    preview_empty: "هێشتا هیچی پێشبینینکردن نییە."
+    csv_too_few_columns: CSV دەبێت کەمترین ٢ ستوونی هەبێت.
+    csv_no_valid_rows: هیچ ڕیزێکی دروست لە CSV نەدۆزرایەوە.
+    csv_invalid_format: 'فۆرماتی CSV نادروستە: %{message}'
+    text_no_valid_pairs: هیچ جووتی کارتێکی دروست نەدۆزرایەوە. دڵنیابە هەر ڕیزێک ڕووی
+      پێشەوە و دواوەی هەیە کە بە جیاکەرەوەی هەڵبژێردراو جیاکراونەتەوە.
+    heading: داتاکەت هاوردەبکە
+    subheading: داتاکەت لێرەوە کۆپی بکە و پەیست بکە (لە Word، Excel، Google Docs،
+      ھتد)
+    col_sep_label: نێوان تەرم و پێناسە
+    row_sep_label: نێوان کارتەکان
+    sep_tab: تاب
+    sep_comma: کۆما
+    sep_newline: ڕیزی نوێ
+    sep_semicolon: نوکتەویرگول
+    sep_custom: دیاریکراو
+    preview_heading: پێشبینین
+    preview_empty: هێشتا هیچی پێشبینینکردن نییە.
     preview_count:
-      one: "١ کارت"
+      one: ١ کارت
       other: "%{count} کارت"
-    term_label: "تەرم"
-    definition_label: "پێناسە"
-    cancel_import: "هاوردەکردن هەڵوەشێنەوە"
+    term_label: تەرم
+    definition_label: پێناسە
+    cancel_import: هاوردەکردن هەڵوەشێنەوە
   home:
-    hero_heading: "چۆن دەتەوێت بیخوێنی؟"
-    hero_subtitle: "هەر شتێک فێردەبیت بە کارتی فێربوونی تەواوکار، تاقیکردنەوەی وەرزشی، و چالاکییەکانی خوێندنی Quizly سەروانەبکە."
-    sign_up: "خۆتۆمارکردنی بەخۆڕایی"
-    popular_decks: "دەستەی بناوبانگ"
-    see_all: "بینینی هەمووان →"
+    hero_heading: چۆن دەتەوێت بیخوێنی؟
+    hero_subtitle: هەر شتێک فێردەبیت بە کارتی فێربوونی تەواوکار، تاقیکردنەوەی وەرزشی،
+      و چالاکییەکانی خوێندنی Quizly سەروانەبکە.
+    sign_up: خۆتۆمارکردنی بەخۆڕایی
+    popular_decks: دەستەی بناوبانگ
+    see_all: بینینی هەمووان →
     modes:
-      flashcards: "کارتی فێربوون"
-      learn: "فێربوون"
-      study: "خوێندن"
-      test: "تاقیکردنەوە"
-      match: "دۆشاندن"
-    explore_link: "گەڕان"
-    log_in: "چوونەژوورەوە"
-    page_title: "Quizly — بە خێرایی زیاتر فێربە بە کارتی فێربوون"
+      flashcards: کارتی فێربوون
+      learn: فێربوون
+      study: خوێندن
+      test: تاقیکردنەوە
+      match: دۆشاندن
+    explore_link: گەڕان
+    log_in: چوونەژوورەوە
+    page_title: Quizly — بە خێرایی زیاتر فێربە بە کارتی فێربوون
     carousel:
-      previous_slide: "شارەڵەی پێشوو"
-      next_slide: "شارەڵەی داهاتوو"
-      favourite: "دڵخوازی"
-      audio: "دەنگ"
-      shuffle: "تێکەڵکردن"
-      previous_card: "کارتی پێشوو"
-      next_card: "کارتی داهاتوو"
-      fullscreen: "پڕی شاشە"
-      go_to_slide: "چوون بۆ شارەڵەی %{n}"
+      previous_slide: شارەڵەی پێشوو
+      next_slide: شارەڵەی داهاتوو
+      favourite: دڵخوازی
+      audio: دەنگ
+      shuffle: تێکەڵکردن
+      previous_card: کارتی پێشوو
+      next_card: کارتی داهاتوو
+      fullscreen: پڕی شاشە
+      go_to_slide: چوون بۆ شارەڵەی %{n}
   settings:
-    language_updated: "زمان نوێکرایەوە."
+    language_updated: زمان نوێکرایەوە.
   starred_cards:
-    unstar: "لابردنی ئەستێرە"
-    star: "ئەستێرەکردنی ئەم کارتە"
+    unstar: لابردنی ئەستێرە
+    star: ئەستێرەکردنی ئەم کارتە
   passwords_mailer:
-    reset_subject: "نوێکردنەوەی وشەی نهێنی"
-    reset_body: "دەتوانیت وشەی نهێنیەکەت لە ١٥ خولەکی داهاتوودا نوێبکەیتەوە لەسەر"
-    reset_link_text: "ئەم پەڕەی نوێکردنەوەیە"
-    reset_text_body: "دەتوانیت وشەی نهێنیەکەت لە ١٥ خولەکی داهاتوودا لەسەر ئەم پەڕەی نوێکردنەوەیە نوێبکەیتەوە:"
+    reset_subject: نوێکردنەوەی وشەی نهێنی
+    reset_body: دەتوانیت وشەی نهێنیەکەت لە ١٥ خولەکی داهاتوودا نوێبکەیتەوە لەسەر
+    reset_link_text: ئەم پەڕەی نوێکردنەوەیە
+    reset_text_body: 'دەتوانیت وشەی نهێنیەکەت لە ١٥ خولەکی داهاتوودا لەسەر ئەم پەڕەی
+      نوێکردنەوەیە نوێبکەیتەوە:'
   question_engine:
-    match_prompt: "هەر تەرمینۆلۆجیایەک بە پێناسەکەیەوە دۆشان بکە"
+    match_prompt: هەر تەرمینۆلۆجیایەک بە پێناسەکەیەوە دۆشان بکە
   time:
     none: "—"
     seconds: "%{n}چ"
@@ -557,14 +560,14 @@ ckb:
     hours: "%{h}س"
     hours_minutes: "%{h}س %{m}خ"
   notifications:
-    bell_aria: "ئاگادارکردنەوەکان"
-    title: "ئاگادارکردنەوەکان"
-    empty: "هێشتا ئاگادارکردنەوەیەک نییە"
-    mark_all_read: "هەموویان وەک خوێندراوەوە دیاری بکە"
-    mark_read: "وەک خوێندراوەوە دیاری بکە"
-    time_ago: "پێش"
+    bell_aria: ئاگادارکردنەوەکان
+    title: ئاگادارکردنەوەکان
+    empty: هێشتا ئاگادارکردنەوەیەک نییە
+    mark_all_read: هەموویان وەک خوێندراوەوە دیاری بکە
+    mark_read: وەک خوێندراوەوە دیاری بکە
+    time_ago: پێش
     events:
-      badge_earned: "نیشانەیەکی نوێت بەدەست هێنا"
+      badge_earned: نیشانەیەکی نوێت بەدەست هێنا
       followed: "%{actor} دووکەوتەی تۆ بوو"
       deck_commented: "%{actor} لەسەر دەستەکەت راپۆرتی نووسی"
       deck_reacted: "%{actor} بەرپەرشتی دەستەکەت دا"
@@ -574,17 +577,8 @@ ckb:
         deck:
           attributes:
             base:
-              not_ready_to_share: "پێش هاوبەشکردنی ئەم دەستەیە، لانیکەم یەک بطاقە زیاد بکە."
+              not_ready_to_share: پێش هاوبەشکردنی ئەم دەستەیە، لانیکەم یەک بطاقە زیاد
+                بکە.
             access_mode:
-              invalid_for_private_deck: "Private decks cannot be password-protected — only you can see them anyway."
-        library_item:
-          attributes:
-            base:
-              own_deck: "You cannot save your own deck to your library."
-            password:
-              too_short:
-                one: "زۆر کورتە (لانیکەم %{count} پیت)"
-                other: "زۆر کورتە (لانیکەم %{count} پیت)"
-              too_long:
-                one: "زۆر درێژە (زۆرترین %{count} پیت)"
-                other: "زۆر درێژە (زۆرترین %{count} پیت)"
+              invalid_for_private_deck: Private decks cannot be password-protected
+                — only you can see them anyway.

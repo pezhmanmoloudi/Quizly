@@ -8,8 +8,6 @@ class User < ApplicationRecord
   has_one_attached :avatar
   has_many :sessions, dependent: :destroy
   has_many :decks, dependent: :destroy
-  has_many :library_items, dependent: :destroy
-  has_many :saved_decks, through: :library_items, source: :deck
   has_many :card_progresses, dependent: :destroy
   has_many :study_sessions, dependent: :destroy
   has_many :learn_sessions, dependent: :destroy

@@ -209,30 +209,6 @@ RSpec.describe DeckPolicy, type: :policy do
     end
   end
 
-  describe "#save_to_library?" do
-    let(:deck) { create(:deck, :public, user: owner) }
-
-    it "permits another authenticated user" do
-      expect(described_class.new(other, deck).save_to_library?).to be true
-    end
-
-    it "denies the owner (already owns it)" do
-      expect(described_class.new(owner, deck).save_to_library?).to be false
-    end
-
-    it "denies nil user (guest)" do
-      expect(described_class.new(nil, deck).save_to_library?).to be false
-    end
-
-    context "private deck" do
-      let(:deck) { create(:deck, :private, user: owner) }
-
-      it "denies another user" do
-        expect(described_class.new(other, deck).save_to_library?).to be false
-      end
-    end
-  end
-
   describe "#copy?" do
     context "public deck" do
       let(:deck) { create(:deck, :public, user: owner) }
