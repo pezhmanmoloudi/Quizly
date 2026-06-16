@@ -75,6 +75,33 @@ RSpec.describe "Decks#show", type: :request do
       end
     end
 
+    context "when authenticated as owner of a password-protected deck" do
+      let(:pw_deck) { create(:deck, :password_protected, user: user) }
+
+      before { sign_in(user) }
+
+      it "returns 200 (owner bypasses the password gate)" do
+        get deck_path(pw_deck)
+        expect(response).to have_http_status(:ok)
+      end
+
+      it "shows full deck content, not a locked preview" do
+        card = pw_deck.flashcards.first
+        get deck_path(pw_deck)
+        expect(response.body).to include(card.front_content)
+      end
+    end
+
+    context "when authenticated as owner of an unlisted password-protected deck" do
+      before { sign_in(user) }
+
+      it "returns 200 (owner bypasses the password gate)" do
+        ul_pw_deck = create(:deck, :unlisted_password_protected, user: user)
+        get deck_path(ul_pw_deck)
+        expect(response).to have_http_status(:ok)
+      end
+    end
+
     context "when authenticated as another user" do
       let(:other_user) { create(:user) }
       before { sign_in(other_user) }
@@ -141,6 +168,19 @@ RSpec.describe "Decks#show", type: :request do
         get deck_path(pw_deck)
         expect(response).to have_http_status(:ok)
       end
+
+      it "redirects to unlock for an unlisted password-protected deck (non-owner, no session)" do
+        ul_pw_deck = create(:deck, :unlisted_password_protected, user: user)
+        get deck_path(ul_pw_deck)
+        expect(response).to redirect_to(unlock_deck_path(ul_pw_deck))
+      end
+
+      it "returns 200 for an unlisted password-protected deck after unlocking" do
+        ul_pw_deck = create(:deck, :unlisted_password_protected, user: user)
+        post unlock_deck_path(ul_pw_deck), params: { password: "secret123" }
+        get deck_path(ul_pw_deck)
+        expect(response).to have_http_status(:ok)
+      end
     end
 
     context "when not authenticated" do
@@ -171,6 +211,37 @@ RSpec.describe "Decks#show", type: :request do
         public_deck = create(:deck, :public, user: user)
         get deck_path(public_deck)
         expect(response.body).not_to include("Fork")
+      end
+    end
+
+    context "learn and test button visibility" do
+      let(:public_deck) { create(:deck, :public, user: user) }
+
+      context "when authenticated as non-owner" do
+        let(:other_user) { create(:user) }
+        before { sign_in(other_user) }
+
+        it "shows the Learn button" do
+          get deck_path(public_deck)
+          expect(response.body).to include(learn_deck_path(public_deck))
+        end
+
+        it "shows the Test button" do
+          get deck_path(public_deck)
+          expect(response.body).to include(test_deck_path(public_deck))
+        end
+      end
+
+      context "when not authenticated (guest)" do
+        it "does not show the Learn button" do
+          get deck_path(public_deck)
+          expect(response.body).not_to include(learn_deck_path(public_deck))
+        end
+
+        it "does not show the Test button" do
+          get deck_path(public_deck)
+          expect(response.body).not_to include(test_deck_path(public_deck))
+        end
       end
     end
 

@@ -48,6 +48,25 @@ RSpec.describe "Decks#test", type: :request do
         expect(response).to redirect_to(decks_path)
       end
 
+      it "returns 200 for a non-owner on a public deck" do
+        public_deck = create(:deck, :public, user: create(:user))
+        get test_deck_path(public_deck)
+        expect(response).to have_http_status(:ok)
+      end
+
+      it "redirects to unlock for a password-protected public deck (non-owner, no session)" do
+        pw_deck = create(:deck, :password_protected, user: create(:user))
+        get test_deck_path(pw_deck)
+        expect(response).to redirect_to(unlock_deck_path(pw_deck))
+      end
+
+      it "returns 200 for a password-protected deck after unlocking" do
+        pw_deck = create(:deck, :password_protected, user: create(:user))
+        post unlock_deck_path(pw_deck), params: { password: "secret123" }
+        get test_deck_path(pw_deck)
+        expect(response).to have_http_status(:ok)
+      end
+
       it "renders the stats header with timer and score badges" do
         create(:flashcard, deck: deck)
         get test_deck_path(deck)
@@ -60,6 +79,23 @@ RSpec.describe "Decks#test", type: :request do
       it "redirects to login" do
         get test_deck_path(deck)
         expect(response).to redirect_to(login_path)
+      end
+
+      it "redirects to login even for a public deck (test requires authentication)" do
+        public_deck = create(:deck, :public, user: user)
+        get test_deck_path(public_deck)
+        expect(response).to redirect_to(login_path)
+      end
+    end
+
+    context "password-protected deck — owner bypass" do
+      before { sign_in(user) }
+
+      it "returns 200 for the owner without needing to unlock" do
+        pw_deck = create(:deck, :password_protected, user: user)
+        create(:flashcard, deck: pw_deck)
+        get test_deck_path(pw_deck)
+        expect(response).to have_http_status(:ok)
       end
     end
   end

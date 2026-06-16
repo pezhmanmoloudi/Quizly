@@ -24,6 +24,26 @@ RSpec.describe "Decks#unlock", type: :request do
     end
   end
 
+  describe "GET /decks/:id/unlock (authorization)" do
+    let(:private_deck) { create(:deck, :private, user: owner) }
+
+    context "when another user tries to reach the unlock page of a private deck" do
+      before { sign_in(create(:user)) }
+
+      it "redirects away (Pundit denies show? before AccessService runs)" do
+        get unlock_deck_path(private_deck)
+        expect(response).to redirect_to(decks_path)
+      end
+    end
+
+    context "when a guest tries to reach the unlock page of a private deck" do
+      it "redirects away (Pundit denies show?)" do
+        get unlock_deck_path(private_deck)
+        expect(response).to redirect_to(explore_path)
+      end
+    end
+  end
+
   describe "POST /decks/:id/unlock" do
     let(:deck) { create(:deck, :password_protected, user: owner) }
 

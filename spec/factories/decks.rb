@@ -26,5 +26,12 @@ FactoryBot.define do
       password { "secret123" }
       after(:create) { |deck| create(:flashcard, deck: deck) }
     end
+
+    trait :unlisted_password_protected do
+      visibility { "unlisted" }
+      access_mode { "password" }
+      password { "secret123" }
+      after(:create) { |deck| create(:flashcard, deck: deck) }
+    end
   end
 end

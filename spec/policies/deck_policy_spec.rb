@@ -114,10 +114,10 @@ RSpec.describe DeckPolicy, type: :policy do
         expect(described_class.new(owner, deck).study?).to be true
       end
 
-      it "denies non-owner on a draft deck" do
+      it "permits non-owner (study? = show?, empty state is shown instead)" do
         aggregate_failures do
-          expect(described_class.new(other, deck).study?).to be false
-          expect(described_class.new(nil,   deck).study?).to be false
+          expect(described_class.new(other, deck).study?).to be true
+          expect(described_class.new(nil,   deck).study?).to be true
         end
       end
     end
@@ -145,6 +145,66 @@ RSpec.describe DeckPolicy, type: :policy do
 
       it "denies another user (empty private deck)" do
         expect(described_class.new(other, deck).study?).to be false
+      end
+    end
+  end
+
+  describe "#learn?" do
+    context "public deck" do
+      let(:deck) { create(:deck, :public, user: owner) }
+
+      it "permits the owner" do
+        expect(described_class.new(owner, deck).learn?).to be true
+      end
+
+      it "permits another authenticated user" do
+        expect(described_class.new(other, deck).learn?).to be true
+      end
+
+      it "denies a nil (guest) user — learn requires a session" do
+        expect(described_class.new(nil, deck).learn?).to be false
+      end
+    end
+
+    context "private deck" do
+      let(:deck) { create(:deck, :private, user: owner) }
+
+      it "permits owner" do
+        expect(described_class.new(owner, deck).learn?).to be true
+      end
+
+      it "denies another user" do
+        expect(described_class.new(other, deck).learn?).to be false
+      end
+    end
+  end
+
+  describe "#test?" do
+    context "public deck" do
+      let(:deck) { create(:deck, :public, user: owner) }
+
+      it "permits the owner" do
+        expect(described_class.new(owner, deck).test?).to be true
+      end
+
+      it "permits another authenticated user" do
+        expect(described_class.new(other, deck).test?).to be true
+      end
+
+      it "denies a nil (guest) user — test requires a session" do
+        expect(described_class.new(nil, deck).test?).to be false
+      end
+    end
+
+    context "private deck" do
+      let(:deck) { create(:deck, :private, user: owner) }
+
+      it "permits owner" do
+        expect(described_class.new(owner, deck).test?).to be true
+      end
+
+      it "denies another user" do
+        expect(described_class.new(other, deck).test?).to be false
       end
     end
   end

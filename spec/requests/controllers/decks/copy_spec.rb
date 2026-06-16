@@ -126,9 +126,36 @@ RSpec.describe "Decks#copy", type: :request do
         }.not_to change { Deck.count }
       end
 
-      it "returns a 404 redirect (set_accessible_deck blocks before action runs)" do
+      it "redirects away (Pundit denies show? before copy action runs)" do
         post copy_deck_path(private_deck)
         expect(response).to redirect_to(decks_path)
+      end
+    end
+
+    # ── password-protected deck ───────────────────────────────────────────────
+
+    context "when the deck is password-protected (locked)" do
+      let(:pw_deck) { create(:deck, :password_protected, user: owner) }
+
+      before { sign_in(copier) }
+
+      it "does not copy without unlocking first" do
+        pw_deck
+        expect {
+          post copy_deck_path(pw_deck)
+        }.not_to change { Deck.count }
+      end
+
+      it "redirects to the unlock page when locked" do
+        post copy_deck_path(pw_deck)
+        expect(response).to redirect_to(unlock_deck_path(pw_deck))
+      end
+
+      it "copies successfully after unlocking" do
+        post unlock_deck_path(pw_deck), params: { password: "secret123" }
+        expect {
+          post copy_deck_path(pw_deck)
+        }.to change { copier.decks.count }.by(1)
       end
     end
 

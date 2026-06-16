@@ -1,7 +1,7 @@
 <% content_for :title, @deck.name %>
 
 <div class="container">
-  <% is_owner = policy(@deck).destroy? %>
+  <% is_owner = @access.owner? %>
   <div class="deck-detail-header">
     <div class="deck-detail-header__top">
       <h1 class="deck-detail-header__name"><%= @deck.name %></h1>
@@ -50,10 +50,6 @@
 
   </div>
 
-  <% if @locked %>
-    <%= render "decks/locked_preview", deck: @deck, sample_flashcards: @sample_flashcards, locked_cards_count: @locked_cards_count %>
-  <% else %>
-
   <div class="study-mode-selector">
     <%= link_to flashcard_deck_path(@deck), class: "study-mode-btn study-mode-btn--flashcards" do %>
       <%= render "shared/icons/play" %>
@@ -63,11 +59,13 @@
       <%= render "shared/icons/academic_cap" %>
       <span><%= t("decks.show.mode_study") %></span>
     <% end %>
-    <% if authenticated? %>
+    <% if policy(@deck).learn? %>
       <%= link_to learn_deck_path(@deck), class: "study-mode-btn study-mode-btn--learn" do %>
         <%= render "shared/icons/rectangle_stack" %>
         <span><%= t("decks.show.mode_learn") %></span>
       <% end %>
+    <% end %>
+    <% if policy(@deck).test? %>
       <%= link_to test_deck_path(@deck), class: "study-mode-btn study-mode-btn--test" do %>
         <%= render "shared/icons/pencil" %>
         <span><%= t("decks.show.mode_test") %></span>
@@ -116,5 +114,4 @@
     </div>
   </div>
 
-  <% end %>
 </div>

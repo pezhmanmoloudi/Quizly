@@ -51,10 +51,6 @@ class Deck < ApplicationRecord
     library_items.exists?(user: user)
   end
 
-  def preview_accessible?
-    public?
-  end
-
   # ── Tags ──────────────────────────────────────────────────────────────────
 
   def tag_list
