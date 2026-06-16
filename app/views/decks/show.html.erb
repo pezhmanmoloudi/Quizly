@@ -1,7 +1,7 @@
 <% content_for :title, @deck.name %>
 
 <div class="container">
-  <% is_owner = policy(@deck).destroy? %>
+  <% is_owner = @access.owner? %>
   <div class="deck-detail-header">
     <div class="deck-detail-header__top">
       <h1 class="deck-detail-header__name"><%= @deck.name %></h1>
@@ -49,10 +49,6 @@
     <% end %>
 
   </div>
-
-  <% if @locked %>
-    <%= render "decks/locked_preview", deck: @deck, sample_flashcards: @sample_flashcards, locked_cards_count: @locked_cards_count %>
-  <% else %>
 
   <div class="study-mode-selector">
     <%= link_to flashcard_deck_path(@deck), class: "study-mode-btn study-mode-btn--flashcards" do %>
@@ -116,5 +112,4 @@
     </div>
   </div>
 
-  <% end %>
 </div>

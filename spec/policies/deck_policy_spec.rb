@@ -114,10 +114,10 @@ RSpec.describe DeckPolicy, type: :policy do
         expect(described_class.new(owner, deck).study?).to be true
       end
 
-      it "denies non-owner on a draft deck" do
+      it "permits non-owner (study? = show?, empty state is shown instead)" do
         aggregate_failures do
-          expect(described_class.new(other, deck).study?).to be false
-          expect(described_class.new(nil,   deck).study?).to be false
+          expect(described_class.new(other, deck).study?).to be true
+          expect(described_class.new(nil,   deck).study?).to be true
         end
       end
     end

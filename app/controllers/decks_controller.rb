@@ -1,9 +1,10 @@
 class DecksController < ApplicationController
   allow_unauthenticated_access only: [ :show, :flashcard, :match, :unlock ]
 
-  before_action :set_deck,               only: [ :show, :flashcard, :match, :fork, :copy, :learn, :test, :study ]
-  before_action :set_owned_deck,         only: [ :edit, :update, :destroy, :update_visibility ]
-  before_action :ensure_viewable,        only: [ :show, :flashcard, :match, :learn, :test, :study ]
+  before_action :set_deck,       only: [ :show, :flashcard, :match, :fork, :copy,
+                                          :learn, :test, :study,
+                                          :edit, :update, :destroy, :update_visibility, :unlock ]
+  before_action :resolve_access, only: [ :show, :flashcard, :match, :study, :learn, :test ]
   before_action :set_noindex_for_unlisted, only: [ :show, :study, :flashcard, :match, :learn, :test ]
 
   DECK_INDEX_PER_PAGE    = 12
@@ -36,14 +37,8 @@ class DecksController < ApplicationController
   end
 
   def show
-    items = ITEMS_PER_PAGE_OPTIONS.include?(params[:items].to_i) ? params[:items].to_i : 10
-    @pagy, @flashcards = pagy(@deck.flashcards.order(:position), limit: items)
-    @items_per_page = items
-    @locked = @deck.password_protected? && !session_unlocked?
-    if @locked
-      @sample_flashcards  = @deck.flashcards.order(:position).limit(3)
-      @locked_cards_count = @deck.flashcards.count - @sample_flashcards.size
-    end
+    @pagy, @flashcards = pagy(@deck.flashcards.order(:position), limit: items_per_page)
+    @items_per_page = items_per_page
   end
 
   def create
@@ -54,10 +49,12 @@ class DecksController < ApplicationController
   end
 
   def edit
+    authorize @deck, :update?
     @flashcards = @deck.flashcards.order(:position)
   end
 
   def update
+    authorize @deck
     if @deck.update(deck_update_params)
       redirect_to @deck, notice: t("decks.updated")
     else
@@ -67,6 +64,7 @@ class DecksController < ApplicationController
   end
 
   def destroy
+    authorize @deck
     from_page = [ params[:from_page].to_i, 1 ].max
     @deck.destroy
 
@@ -81,6 +79,7 @@ class DecksController < ApplicationController
   end
 
   def update_visibility
+    authorize @deck, :manage_access?
     if @deck.update(manage_access_params)
       respond_to do |format|
         format.turbo_stream
@@ -96,7 +95,6 @@ class DecksController < ApplicationController
   end
 
   def study
-    authorize @deck, :study?
     CardProgress.initialize_for_deck(@deck, Current.user)
 
     @study_mode = params[:mode] == "starred" ? "starred" : "all"
@@ -111,7 +109,12 @@ class DecksController < ApplicationController
     @card_progress   = due_scope.includes(:flashcard).first
 
     if @card_progress.present?
-      @study_session = find_or_create_study_session(@cards_remaining)
+      @study_session = Decks::StudySessionService.find_or_create(
+        deck:       @deck,
+        user:       Current.user,
+        session_id: session[:study_session_id],
+        due_count:  @cards_remaining
+      )
       session[:study_session_id] = @study_session.id
       @cards_total = @study_session.cards_total
       @cards_done  = @cards_total - @cards_remaining
@@ -124,7 +127,7 @@ class DecksController < ApplicationController
 
   def flashcard
     @flashcards = @deck.flashcards
-    if authenticated? && @deck.user == Current.user
+    if @access.owner?
       CardProgress.initialize_for_deck(@deck, Current.user)
       @card_progresses = Current.user.card_progresses
                                      .where(flashcard_id: @flashcards.map(&:id))
@@ -137,7 +140,6 @@ class DecksController < ApplicationController
   end
 
   def learn
-    authorize @deck, :study?
     flashcards = @deck.flashcards.to_a
     if flashcards.empty?
       @learn_session = nil
@@ -149,7 +151,11 @@ class DecksController < ApplicationController
       session.delete(:learn_session_id)
     end
 
-    @learn_session = find_or_create_learn_session
+    @learn_session = Decks::LearnSessionService.find_or_create(
+      deck:       @deck,
+      user:       Current.user,
+      session_id: session[:learn_session_id]
+    )
     session[:learn_session_id] = @learn_session.id
     @current_item = @learn_session.next_item
 
@@ -159,7 +165,6 @@ class DecksController < ApplicationController
   end
 
   def test
-    authorize @deck, :study?
     flashcards = @deck.flashcards.to_a
     if flashcards.empty?
       @test_session = nil
@@ -170,7 +175,12 @@ class DecksController < ApplicationController
       session.delete(:test_session_id)
     end
 
-    @test_session = find_or_create_test_session(flashcards)
+    @test_session = Decks::TestSessionService.find_or_create(
+      deck:       @deck,
+      user:       Current.user,
+      session_id: session[:test_session_id],
+      flashcards: flashcards
+    )
     session[:test_session_id] = @test_session.id
 
     if @test_session.finished?
@@ -217,9 +227,9 @@ class DecksController < ApplicationController
   end
 
   def unlock
-    @deck = Deck.find(params[:id])
+    @access = Decks::AccessService.evaluate(deck: @deck, user: Current.user, session: session)
 
-    if request.get? && (session_unlocked? || Current.user == @deck.user)
+    if request.get? && !@access.locked?
       return redirect_to @deck
     end
 
@@ -245,58 +255,14 @@ class DecksController < ApplicationController
     @deck = Deck.find(params[:id])
   end
 
-  def set_owned_deck
-    @deck = Current.user.decks.find(params[:id])
-  end
-
-  def ensure_viewable
+  def resolve_access
     authorize @deck, :show?
-    if @deck.password_protected? && !session_unlocked? && Current.user != @deck.user
-      redirect_to unlock_deck_path(@deck)
-    end
+    @access = Decks::AccessService.evaluate(deck: @deck, user: Current.user, session: session)
+    redirect_to unlock_deck_path(@deck) if @access.locked?
   end
 
-  def session_unlocked?
-    Decks::AccessService.unlocked?(deck: @deck, session: session)
-  end
-
-  def find_or_create_learn_session
-    sid = session[:learn_session_id]
-    if sid
-      existing = Current.user.learn_sessions.find_by(id: sid, finished_at: nil, deck: @deck)
-      return existing if existing
-    end
-    ls = LearnSession.build_for(deck: @deck, user: Current.user)
-    ls.save!
-    ls
-  end
-
-  def find_or_create_test_session(flashcards)
-    sid = session[:test_session_id]
-    if sid
-      existing = Current.user.test_sessions.find_by(id: sid, finished_at: nil, deck: @deck)
-      return existing if existing
-    end
-    count = [ flashcards.size, 20 ].min
-    questions = QuestionEngine.generate(flashcards: flashcards, count: count)
-    Current.user.test_sessions.create!(
-      deck: @deck,
-      questions_data: questions.to_json,
-      questions_total: questions.size,
-      started_at: Time.current
-    )
-  end
-
-  def find_or_create_study_session(due_count)
-    sid = session[:study_session_id]
-    if sid
-      existing = Current.user.study_sessions.find_by(id: sid, finished_at: nil, deck: @deck)
-      if existing
-        existing.update_columns(cards_total: due_count) if due_count > existing.cards_total
-        return existing
-      end
-    end
-    Current.user.study_sessions.create!(deck: @deck, cards_total: due_count, started_at: Time.current)
+  def items_per_page
+    ITEMS_PER_PAGE_OPTIONS.include?(params[:items].to_i) ? params[:items].to_i : 10
   end
 
   def perform_library_save

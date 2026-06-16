@@ -75,6 +75,23 @@ RSpec.describe "Decks#show", type: :request do
       end
     end
 
+    context "when authenticated as owner of a password-protected deck" do
+      let(:pw_deck) { create(:deck, :password_protected, user: user) }
+
+      before { sign_in(user) }
+
+      it "returns 200 (owner bypasses the password gate)" do
+        get deck_path(pw_deck)
+        expect(response).to have_http_status(:ok)
+      end
+
+      it "shows full deck content, not a locked preview" do
+        card = pw_deck.flashcards.first
+        get deck_path(pw_deck)
+        expect(response.body).to include(card.front_content)
+      end
+    end
+
     context "when authenticated as another user" do
       let(:other_user) { create(:user) }
       before { sign_in(other_user) }
