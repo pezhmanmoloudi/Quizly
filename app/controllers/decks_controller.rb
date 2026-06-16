@@ -4,7 +4,7 @@ class DecksController < ApplicationController
   before_action :set_deck,       only: [ :show, :flashcard, :match, :fork, :copy,
                                           :learn, :test, :study,
                                           :edit, :update, :destroy, :update_visibility, :unlock ]
-  before_action :resolve_access, only: [ :show, :flashcard, :match, :study, :learn, :test ]
+  before_action :resolve_access, only: [ :show, :flashcard, :match, :study, :learn, :test, :copy ]
   before_action :set_noindex_for_unlisted, only: [ :show, :study, :flashcard, :match, :learn, :test ]
 
   DECK_INDEX_PER_PAGE    = 12
@@ -188,6 +188,8 @@ class DecksController < ApplicationController
     end
   end
 
+  # fork is intentionally excluded from resolve_access: saving a locked deck to library
+  # does not reveal flashcard content — the user still encounters the password gate on first view.
   def fork
     authorize @deck, :save_to_library?
     perform_library_save
@@ -227,6 +229,7 @@ class DecksController < ApplicationController
   end
 
   def unlock
+    authorize @deck, :show?
     @access = Decks::AccessService.evaluate(deck: @deck, user: Current.user, session: session)
 
     if request.get? && !@access.locked?

@@ -149,6 +149,66 @@ RSpec.describe DeckPolicy, type: :policy do
     end
   end
 
+  describe "#learn?" do
+    context "public deck" do
+      let(:deck) { create(:deck, :public, user: owner) }
+
+      it "permits the owner" do
+        expect(described_class.new(owner, deck).learn?).to be true
+      end
+
+      it "permits another authenticated user" do
+        expect(described_class.new(other, deck).learn?).to be true
+      end
+
+      it "denies a nil (guest) user — learn requires a session" do
+        expect(described_class.new(nil, deck).learn?).to be false
+      end
+    end
+
+    context "private deck" do
+      let(:deck) { create(:deck, :private, user: owner) }
+
+      it "permits owner" do
+        expect(described_class.new(owner, deck).learn?).to be true
+      end
+
+      it "denies another user" do
+        expect(described_class.new(other, deck).learn?).to be false
+      end
+    end
+  end
+
+  describe "#test?" do
+    context "public deck" do
+      let(:deck) { create(:deck, :public, user: owner) }
+
+      it "permits the owner" do
+        expect(described_class.new(owner, deck).test?).to be true
+      end
+
+      it "permits another authenticated user" do
+        expect(described_class.new(other, deck).test?).to be true
+      end
+
+      it "denies a nil (guest) user — test requires a session" do
+        expect(described_class.new(nil, deck).test?).to be false
+      end
+    end
+
+    context "private deck" do
+      let(:deck) { create(:deck, :private, user: owner) }
+
+      it "permits owner" do
+        expect(described_class.new(owner, deck).test?).to be true
+      end
+
+      it "denies another user" do
+        expect(described_class.new(other, deck).test?).to be false
+      end
+    end
+  end
+
   describe "#save_to_library?" do
     let(:deck) { create(:deck, :public, user: owner) }
 

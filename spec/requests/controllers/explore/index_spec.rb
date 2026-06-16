@@ -25,10 +25,10 @@ RSpec.describe "Explore#index", type: :request do
         expect(response.body).not_to include("Secret Deck")
       end
 
-      it "lists public decks from other users" do
-        create(:deck, :public, user: other_user, name: "Spanish Deck")
+      it "does not list unlisted decks" do
+        create(:deck, :unlisted, user: other_user, name: "Unlisted Hidden Deck")
         get explore_path
-        expect(response.body).to include("Spanish Deck")
+        expect(response.body).not_to include("Unlisted Hidden Deck")
       end
 
       it "does not show Fork button for any deck" do
@@ -78,6 +78,36 @@ RSpec.describe "Explore#index", type: :request do
           create(:deck, :public, user: other_user, name: "Their Deck")
           get explore_path
           expect(response.body).not_to include(I18n.t("explore.by_you"))
+        end
+      end
+
+      context "public + open decks" do
+        it "lists them in explore" do
+          deck = create(:deck, visibility: "public", access_mode: "open", user: other_user, name: "Open Public Deck")
+          create(:flashcard, deck: deck)
+          get explore_path
+          expect(response.body).to include("Open Public Deck")
+        end
+
+        it "does not show the lock badge" do
+          deck = create(:deck, visibility: "public", access_mode: "open", user: other_user, name: "Open Public Deck")
+          create(:flashcard, deck: deck)
+          get explore_path
+          expect(response.body).not_to include(I18n.t("explore.locked_badge"))
+        end
+      end
+
+      context "password-protected public decks" do
+        it "lists them (password does not affect discoverability)" do
+          create(:deck, :password_protected, user: other_user, name: "Locked Public Deck")
+          get explore_path
+          expect(response.body).to include("Locked Public Deck")
+        end
+
+        it "shows the lock badge for password-protected decks" do
+          create(:deck, :password_protected, user: other_user, name: "Locked Public Deck")
+          get explore_path
+          expect(response.body).to include(I18n.t("explore.locked_badge"))
         end
       end
 
@@ -137,6 +167,18 @@ RSpec.describe "Explore#index", type: :request do
         expect(response.body).to include("Guest Visible Deck")
       end
 
+      it "does not list unlisted decks" do
+        create(:deck, :unlisted, user: create(:user), name: "Unlisted Hidden Guest")
+        get explore_path
+        expect(response.body).not_to include("Unlisted Hidden Guest")
+      end
+
+      it "does not list private decks" do
+        create(:deck, :private, user: create(:user), name: "Private Hidden Guest")
+        get explore_path
+        expect(response.body).not_to include("Private Hidden Guest")
+      end
+
       it "does not show Fork button" do
         create(:deck, :public, user: create(:user), name: "Some Deck")
         get explore_path
@@ -147,6 +189,19 @@ RSpec.describe "Explore#index", type: :request do
         create(:deck, :public, user: create(:user), name: "Some Deck")
         get explore_path
         expect(response.body).not_to include("deck-tile__owner-badge")
+      end
+
+      it "lists password-protected public decks for guests" do
+        create(:deck, :password_protected, user: create(:user), name: "Guest Locked Deck")
+        get explore_path
+        expect(response.body).to include("Guest Locked Deck")
+      end
+
+      it "lists public + open decks for guests" do
+        deck = create(:deck, visibility: "public", access_mode: "open", user: create(:user), name: "Guest Open Deck")
+        create(:flashcard, deck: deck)
+        get explore_path
+        expect(response.body).to include("Guest Open Deck")
       end
     end
   end

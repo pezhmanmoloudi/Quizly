@@ -80,6 +80,23 @@ RSpec.describe "Decks#test", type: :request do
         get test_deck_path(deck)
         expect(response).to redirect_to(login_path)
       end
+
+      it "redirects to login even for a public deck (test requires authentication)" do
+        public_deck = create(:deck, :public, user: user)
+        get test_deck_path(public_deck)
+        expect(response).to redirect_to(login_path)
+      end
+    end
+
+    context "password-protected deck — owner bypass" do
+      before { sign_in(user) }
+
+      it "returns 200 for the owner without needing to unlock" do
+        pw_deck = create(:deck, :password_protected, user: user)
+        create(:flashcard, deck: pw_deck)
+        get test_deck_path(pw_deck)
+        expect(response).to have_http_status(:ok)
+      end
     end
   end
 end

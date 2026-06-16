@@ -59,11 +59,13 @@
       <%= render "shared/icons/academic_cap" %>
       <span><%= t("decks.show.mode_study") %></span>
     <% end %>
-    <% if authenticated? %>
+    <% if policy(@deck).learn? %>
       <%= link_to learn_deck_path(@deck), class: "study-mode-btn study-mode-btn--learn" do %>
         <%= render "shared/icons/rectangle_stack" %>
         <span><%= t("decks.show.mode_learn") %></span>
       <% end %>
+    <% end %>
+    <% if policy(@deck).test? %>
       <%= link_to test_deck_path(@deck), class: "study-mode-btn study-mode-btn--test" do %>
         <%= render "shared/icons/pencil" %>
         <span><%= t("decks.show.mode_test") %></span>

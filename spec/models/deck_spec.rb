@@ -61,19 +61,6 @@ RSpec.describe Deck, type: :model do
     end
   end
 
-  describe "#preview_accessible?" do
-    it "is true for public decks" do
-      expect(build(:deck, :public).preview_accessible?).to be true
-    end
-
-    it "is false for private decks" do
-      expect(build(:deck, :private).preview_accessible?).to be false
-    end
-
-    it "is false for unlisted decks" do
-      expect(build(:deck, :unlisted).preview_accessible?).to be false
-    end
-  end
 
   describe "associations" do
     it "belongs to a user" do
