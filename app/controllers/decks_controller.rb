@@ -1,11 +1,12 @@
 class DecksController < ApplicationController
-  allow_unauthenticated_access only: [ :show, :flashcard, :match, :unlock ]
+  include DeckScoped
 
-  before_action :set_deck,       only: [ :show, :flashcard, :match, :copy,
-                                          :learn, :test, :study,
-                                          :edit, :update, :destroy, :update_visibility, :unlock ]
-  before_action :resolve_access, only: [ :show, :flashcard, :match, :study, :learn, :test, :copy ]
-  before_action :set_noindex_for_unlisted, only: [ :show, :study, :flashcard, :match, :learn, :test ]
+  allow_unauthenticated_access only: [ :show, :flashcard, :match ]
+
+  before_action :set_deck,                 only: [ :show, :flashcard, :match,
+                                                    :edit, :update, :destroy, :update_visibility ]
+  before_action :resolve_access,           only: [ :show, :flashcard, :match ]
+  before_action :set_noindex_for_unlisted, only: [ :show, :flashcard, :match ]
 
   DECK_INDEX_PER_PAGE    = 12
   ITEMS_PER_PAGE_OPTIONS = [ 5, 10, 15, 20, 30 ].freeze
@@ -73,6 +74,7 @@ class DecksController < ApplicationController
     end
   end
 
+  # TODO: belongs in a future DeckSettingsController (settings/access-management domain)
   def update_visibility
     authorize @deck, :manage_access?
     if @deck.update(manage_access_params)
@@ -89,40 +91,10 @@ class DecksController < ApplicationController
     end
   end
 
-  def study
-    CardProgress.initialize_for_deck(@deck, Current.user)
-
-    @study_mode = params[:mode] == "starred" ? "starred" : "all"
-
-    due_scope = Current.user.card_progresses
-                            .due
-                            .joins(:flashcard)
-                            .where(flashcards: { deck_id: @deck.id })
-    due_scope = due_scope.starred if @study_mode == "starred"
-
-    @cards_remaining = due_scope.unscope(:order).count
-    @card_progress   = due_scope.includes(:flashcard).first
-
-    if @card_progress.present?
-      @study_session = Decks::StudySessionService.find_or_create(
-        deck:       @deck,
-        user:       Current.user,
-        session_id: session[:study_session_id],
-        due_count:  @cards_remaining
-      )
-      session[:study_session_id] = @study_session.id
-      @cards_total = @study_session.cards_total
-      @cards_done  = @cards_total - @cards_remaining
-      @streak      = session[:study_streak].to_i
-    else
-      session.delete(:study_session_id)
-      session.delete(:study_streak)
-    end
-  end
-
   def flashcard
     @flashcards = @deck.flashcards
     if @access.owner?
+      # TODO: CardProgress.initialize_for_deck is a future extraction candidate (e.g., a StudyContext concern)
       CardProgress.initialize_for_deck(@deck, Current.user)
       @card_progresses = Current.user.card_progresses
                                      .where(flashcard_id: @flashcards.map(&:id))
@@ -134,103 +106,7 @@ class DecksController < ApplicationController
     @cards = @deck.flashcards.limit(16).to_a.shuffle
   end
 
-  def learn
-    flashcards = @deck.flashcards.to_a
-    if flashcards.empty?
-      @learn_session = nil
-      @current_item  = nil
-      return
-    end
-
-    if params[:turbo_action] == "replace" || params[:restart]
-      session.delete(:learn_session_id)
-    end
-
-    @learn_session = Decks::LearnSessionService.find_or_create(
-      deck:       @deck,
-      user:       Current.user,
-      session_id: session[:learn_session_id]
-    )
-    session[:learn_session_id] = @learn_session.id
-    @current_item = @learn_session.next_item
-
-    if @current_item.nil? && !@learn_session.finished?
-      @learn_session.update!(finished_at: Time.current)
-    end
-  end
-
-  def test
-    flashcards = @deck.flashcards.to_a
-    if flashcards.empty?
-      @test_session = nil
-      return
-    end
-
-    if params[:turbo_action] == "replace" || params[:restart]
-      session.delete(:test_session_id)
-    end
-
-    @test_session = Decks::TestSessionService.find_or_create(
-      deck:       @deck,
-      user:       Current.user,
-      session_id: session[:test_session_id],
-      flashcards: flashcards
-    )
-    session[:test_session_id] = @test_session.id
-
-    if @test_session.finished?
-      @test_session = nil
-    end
-  end
-
-  def copy
-    authorize @deck, :copy?
-    copied = Decks::CopyService.call(
-      source_deck: @deck,
-      user:        Current.user,
-      name:        t("decks.action.copy_name", name: @deck.name)
-    )
-    redirect_to deck_path(copied), notice: t("decks.action.copied")
-  rescue Pundit::NotAuthorizedError
-    redirect_to @access.owner? ? explore_path : fallback_destination,
-                alert: t("decks.not_available")
-  end
-
-  def unlock
-    authorize @deck, :show?
-    @access = Decks::AccessService.evaluate(deck: @deck, user: Current.user, session: session)
-
-    if request.get? && !@access.locked?
-      return redirect_to @deck
-    end
-
-    return unless request.post?
-
-    result = Decks::AccessService.call(
-      deck:     @deck,
-      password: params[:password].to_s,
-      session:  session
-    )
-
-    if result.ok?
-      redirect_to @deck, notice: t("decks.unlock.success")
-    else
-      flash.now[:alert] = t("decks.unlock.invalid_password")
-      render :unlock, status: :unprocessable_entity
-    end
-  end
-
   private
-
-  def set_deck
-    @deck = Deck.find(params[:id])
-  end
-
-  def resolve_access
-    authorize @deck, :show?
-    @access = Decks::AccessService.evaluate(deck: @deck, user: Current.user, session: session)
-    redirect_to unlock_deck_path(@deck) if @access.locked?
-  end
 
   def items_per_page
     ITEMS_PER_PAGE_OPTIONS.include?(params[:items].to_i) ? params[:items].to_i : 10
@@ -255,9 +131,5 @@ class DecksController < ApplicationController
       :name, :description, :language_code, :visibility, :tag_list,
       :access_mode, :password, :password_confirmation
     )
-  end
-
-  def set_noindex_for_unlisted
-    response.headers["X-Robots-Tag"] = "noindex" if @deck&.unlisted?
   end
 end

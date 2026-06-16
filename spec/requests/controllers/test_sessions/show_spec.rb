@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "Decks#test", type: :request do
+RSpec.describe "TestSessions#show", type: :request do
   let(:user) { create(:user) }
   let(:deck) { create(:deck, user: user) }
 

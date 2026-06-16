@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "Decks#copy", type: :request do
+RSpec.describe "DeckCopy#create", type: :request do
   let(:owner)  { create(:user) }
   let(:copier) { create(:user) }
 
@@ -126,7 +126,7 @@ RSpec.describe "Decks#copy", type: :request do
         }.not_to change { Deck.count }
       end
 
-      it "redirects away (Pundit denies show? before copy action runs)" do
+      it "redirects away (denied state raises NotAuthorizedError)" do
         post copy_deck_path(private_deck)
         expect(response).to redirect_to(decks_path)
       end
@@ -171,9 +171,9 @@ RSpec.describe "Decks#copy", type: :request do
         }.not_to change { Deck.count }
       end
 
-      it "redirects to explore" do
+      it "redirects away (owner cannot copy their own deck)" do
         post copy_deck_path(public_deck)
-        expect(response).to redirect_to(explore_path)
+        expect(response).to redirect_to(decks_path)
       end
     end
 
