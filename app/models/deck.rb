@@ -4,6 +4,7 @@ class Deck < ApplicationRecord
   has_many :library_items, dependent: :destroy
   has_many :savers, through: :library_items, source: :user
   has_many :flashcards, dependent: :destroy
+  before_destroy :purge_soft_deleted_flashcards
   has_many :study_sessions, dependent: :destroy
   has_many :learn_sessions, dependent: :destroy
   has_many :test_sessions, dependent: :destroy
@@ -66,6 +67,10 @@ class Deck < ApplicationRecord
   end
 
   private
+
+  def purge_soft_deleted_flashcards
+    Flashcard.unscoped.where(deck_id: id).where.not(deleted_at: nil).delete_all
+  end
 
   def completeness_for_sharing
     return if private?

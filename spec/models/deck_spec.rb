@@ -334,5 +334,14 @@ RSpec.describe Deck, type: :model do
       create(:flashcard, deck: deck)
       expect { deck.destroy }.to change(Flashcard, :count).by(-1)
     end
+
+    it "destroys a deck that has soft-deleted flashcards without a FK error" do
+      deck = create(:deck)
+      card = create(:flashcard, deck: deck)
+      card.soft_delete!
+      expect { deck.destroy }.not_to raise_error
+      expect(Deck.exists?(deck.id)).to be false
+      expect(Flashcard.unscoped.where(deck_id: deck.id).count).to eq(0)
+    end
   end
 end
