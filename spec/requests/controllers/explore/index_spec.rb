@@ -104,7 +104,6 @@ RSpec.describe "Explore#index", type: :request do
           expect(response.body).to include(I18n.t("explore.locked_badge"))
         end
       end
-
     end
 
     context "locale persistence on unauthenticated-accessible page" do
