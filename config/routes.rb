@@ -24,14 +24,14 @@ Rails.application.routes.draw do
   get "/explore", to: "explore#index", as: :explore
   resources :decks, except: [:new] do
     member do
-      get   :unlock
-      post  :unlock
-      get   :study
+      get   :unlock, to: "deck_access#show"
+      post  :unlock, to: "deck_access#create"
+      get   :study, to: "study_sessions#show"
       get   :flashcard
       get   :match
-      get   :learn
-      get   :test
-      post  :copy
+      get   :learn, to: "learn_sessions#show"
+      get   :test, to: "test_sessions#show"
+      post  :copy, to: "deck_copy#create"
       patch :update_visibility
     end
     resources :flashcards, shallow: true, only: [:create, :update, :destroy] do

@@ -71,7 +71,7 @@
             description: t("study_modes.test.empty_description"),
             variant: :default %>
     <% else %>
-      <%= render "test_question",
+      <%= render "decks/test_question",
             question: @test_session.current_question,
             test_session: @test_session %>
     <% end %>
