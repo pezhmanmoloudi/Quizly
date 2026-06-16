@@ -211,16 +211,14 @@ ar:
       unlisted_desc: "فقط الأشخاص الذين لديهم الرابط يمكنهم الرؤية"
       private_desc: "أنت فقط"
       visibility_heading: "الرؤية"
-      editing_heading: "التحرير"
-      only_me_desc: "فقط أنت تستطيع إجراء تغييرات"
-      people_with_password_desc: "يحتاج المتعاونون إلى كلمة مرور البطاقات"
-      with_password_short: "كلمة المرور"
+      access_mode_heading: "Access"
+      open_desc: "Anyone who can find this deck can study it"
+      password_desc: "Viewers must enter a password to access flashcards"
       share_heading: "مشاركة الرابط"
       share_hint: "يمكن لأي شخص لديه هذا الرابط عرض البطاقات"
       copy_link: "نسخ"
       copy_link_copied: "تم النسخ!"
       visible_to: "مرئي لـ"
-      editable_by: "قابل للتعديل من قِبل"
       password_is_set: "A password is set — enter a new one to change it"
     form:
       name_label: "الاسم"
@@ -234,16 +232,14 @@ ar:
       visibility_section_label: "من يستطيع مشاهدة هذه المجموعة؟"
       visibility_unlisted: "غير مدرج"
       section_about: "حول"
-      section_access_control: "التحكم في الوصول"
+      access_mode_open: "Open"
+      access_mode_password: "Password protected"
       visibility_private: "أنا فقط"
       visibility_public: "عامة"
       visibility_hint: "يمكن لأي شخص اكتشاف المجموعات العامة ونسخها."
-      edit_permission_label: "من يستطيع تعديل هذه المجموعة؟"
-      edit_permission_only_me: "أنا فقط"
-      edit_permission_people_with_password: "أي شخص لديه كلمة المرور"
       password_label: "كلمة مرور المجموعة"
       password_placeholder: "٨ أحرف على الأقل"
-      password_hint: "مطلوبة لفتح الوصول أو التعديل"
+      password_hint: "Required to view this deck"
     cards:
       page_title: "إضافة بطاقات — %{name}"
       add_card: "إضافة بطاقة"
@@ -418,7 +414,8 @@ ar:
   errors:
     not_found:
       flash: "This deck is no longer available."
-    not_authorized: "ليس لديك صلاحية للقيام بهذا الإجراء."
+    not_authorized:
+      flash: "You are not authorized to perform this action."
   explore:
     title: "استكشاف"
     subtitle: "اكتشف المجموعات العامة المشتركة من المجتمع وانسخها."
@@ -578,8 +575,8 @@ ar:
           attributes:
             base:
               not_ready_to_share: "أضف بطاقة واحدة على الأقل قبل مشاركة هذه المجموعة."
-            edit_permission:
-              invalid_for_private_deck: "لا يمكن تعديل المجموعات الخاصة إلا من قِبَل المالك."
+            access_mode:
+              invalid_for_private_deck: "Private decks cannot be password-protected — only you can see them anyway."
         library_item:
           attributes:
             base:

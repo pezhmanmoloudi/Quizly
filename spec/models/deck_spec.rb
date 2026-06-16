@@ -86,6 +86,18 @@ RSpec.describe Deck, type: :model do
       expect(assoc.macro).to eq(:has_many)
       expect(assoc.options[:dependent]).to eq(:destroy)
     end
+
+    it "has many deck_folders" do
+      assoc = described_class.reflect_on_association(:deck_folders)
+      expect(assoc.macro).to eq(:has_many)
+      expect(assoc.options[:dependent]).to eq(:destroy)
+    end
+
+    it "has many folders through deck_folders" do
+      assoc = described_class.reflect_on_association(:folders)
+      expect(assoc.macro).to eq(:has_many)
+      expect(assoc.options[:through]).to eq(:deck_folders)
+    end
   end
 
   describe "validations" do
@@ -126,29 +138,28 @@ RSpec.describe Deck, type: :model do
       expect(deck).not_to be_valid
     end
 
-    it "rejects an unsupported edit_permission value" do
-      deck = build(:deck, edit_permission: "admin_only")
+    it "rejects an unsupported access_mode value" do
+      deck = build(:deck, access_mode: "admin_only")
       expect(deck).not_to be_valid
     end
 
-    it "rejects private + people_with_password combination" do
-      deck = build(:deck, visibility: "private", edit_permission: "people_with_password",
-                          password: "secret123")
+    it "rejects private + password access_mode combination" do
+      deck = build(:deck, visibility: "private", access_mode: "password", password: "secret123")
       expect(deck).not_to be_valid
-      expect(deck.errors[:edit_permission]).to be_present
+      expect(deck.errors[:access_mode]).to be_present
     end
 
-    it "allows unlisted + people_with_password combination" do
+    it "allows unlisted + password access_mode combination" do
       deck = create(:deck)
       create(:flashcard, deck: deck)
       deck.reload
       deck.visibility = "unlisted"
-      deck.edit_permission = "people_with_password"
+      deck.access_mode = "password"
       deck.password = "secret123"
       expect(deck).to be_valid
     end
 
-    it "is valid with unlisted + only_me" do
+    it "is valid with unlisted + open access_mode" do
       deck = create(:deck)
       create(:flashcard, deck: deck)
       deck.reload
@@ -156,34 +167,34 @@ RSpec.describe Deck, type: :model do
       expect(deck).to be_valid
     end
 
-    it "requires password when edit_permission is people_with_password" do
-      deck = build(:deck, edit_permission: "people_with_password", password: nil)
+    it "requires password when access_mode is password" do
+      deck = build(:deck, access_mode: "password", password: nil)
       expect(deck).not_to be_valid
       expect(deck.errors[:password]).to be_present
     end
 
-    it "does not require password for private + only_me" do
-      deck = build(:deck, visibility: "private", edit_permission: "only_me", password: nil)
+    it "does not require password for private + open access_mode" do
+      deck = build(:deck, visibility: "private", access_mode: "open", password: nil)
       expect(deck).to be_valid
     end
 
-    it "does not require password for public + only_me" do
+    it "does not require password for public + open access_mode" do
       deck = create(:deck)
       create(:flashcard, deck: deck)
       deck.reload
       deck.visibility = "public"
-      deck.edit_permission = "only_me"
+      deck.access_mode = "open"
       expect(deck).to be_valid
     end
 
     it "rejects password shorter than 8 characters" do
-      deck = build(:deck, edit_permission: "people_with_password", password: "short")
+      deck = build(:deck, access_mode: "password", password: "short")
       expect(deck).not_to be_valid
       expect(deck.errors[:password]).to be_present
     end
 
     it "rejects password longer than 128 characters" do
-      deck = build(:deck, edit_permission: "people_with_password", password: "a" * 129)
+      deck = build(:deck, access_mode: "password", password: "a" * 129)
       expect(deck).not_to be_valid
       expect(deck.errors[:password]).to be_present
     end
@@ -193,7 +204,7 @@ RSpec.describe Deck, type: :model do
       create(:flashcard, deck: deck)
       deck.reload
       deck.visibility = "public"
-      deck.edit_permission = "people_with_password"
+      deck.access_mode = "password"
       deck.password = "a" * 8
       expect(deck).to be_valid
     end
@@ -218,185 +229,22 @@ RSpec.describe Deck, type: :model do
     end
   end
 
-  describe "#can_view?" do
-    let(:owner) { build(:user, id: 1) }
-    let(:other)  { build(:user, id: 2) }
-
-    context "visibility: public" do
-      let(:deck) { build(:deck, user: owner, visibility: "public") }
-
-      it "allows nil user" do
-        expect(deck.can_view?(nil)).to be true
-      end
-
-      it "allows authenticated non-owner" do
-        expect(deck.can_view?(other)).to be true
-      end
-
-      it "allows owner" do
-        expect(deck.can_view?(owner)).to be true
-      end
+  describe "access_mode predicates" do
+    it "defaults to open" do
+      deck = Deck.new(name: "Test", user: build(:user))
+      expect(deck.access_mode).to eq("open")
     end
 
-    context "visibility: private" do
-      let(:deck) { build(:deck, user: owner, visibility: "private") }
-
-      it "denies nil user" do
-        expect(deck.can_view?(nil)).to be false
-      end
-
-      it "denies non-owner" do
-        expect(deck.can_view?(other)).to be false
-      end
-
-      it "denies non-owner even when unlocked" do
-        deck.unlocked = true
-        expect(deck.can_view?(other)).to be false
-      end
-
-      it "allows owner" do
-        expect(deck.can_view?(owner)).to be true
-      end
+    it "#open? is true when access_mode is open" do
+      expect(build(:deck, access_mode: "open").open?).to be true
     end
 
-    context "visibility: unlisted without password" do
-      let(:deck) { build(:deck, user: owner, visibility: "unlisted") }
-
-      it "allows nil user (no password set)" do
-        expect(deck.can_view?(nil)).to be true
-      end
-
-      it "allows non-owner (no password set)" do
-        expect(deck.can_view?(other)).to be true
-      end
-
-      it "allows owner" do
-        expect(deck.can_view?(owner)).to be true
-      end
+    it "#password_protected? is true when access_mode is password" do
+      expect(build(:deck, access_mode: "password").password_protected?).to be true
     end
 
-    context "visibility: unlisted with password" do
-      let(:deck) { build(:deck, user: owner, visibility: "unlisted", edit_permission: "people_with_password", password: "secret123") }
-
-      it "allows nil user (password does not gate viewing)" do
-        expect(deck.can_view?(nil)).to be true
-      end
-
-      it "allows non-owner (password does not gate viewing)" do
-        expect(deck.can_view?(other)).to be true
-      end
-
-      it "allows nil user when unlocked" do
-        deck.unlocked = true
-        expect(deck.can_view?(nil)).to be true
-      end
-
-      it "allows non-owner when unlocked" do
-        deck.unlocked = true
-        expect(deck.can_view?(other)).to be true
-      end
-
-      it "allows owner without unlock" do
-        expect(deck.can_view?(owner)).to be true
-      end
-    end
-  end
-
-  describe "#can_edit?" do
-    let(:owner) { build(:user, id: 1) }
-    let(:other)  { build(:user, id: 2) }
-
-    context "edit_permission: only_me" do
-      let(:deck) { build(:deck, user: owner, edit_permission: "only_me") }
-
-      it "denies nil user" do
-        expect(deck.can_edit?(nil)).to be false
-      end
-
-      it "denies non-owner" do
-        expect(deck.can_edit?(other)).to be false
-      end
-
-      it "denies non-owner even when unlocked" do
-        deck.unlocked = true
-        expect(deck.can_edit?(other)).to be false
-      end
-
-      it "allows owner" do
-        expect(deck.can_edit?(owner)).to be true
-      end
-    end
-
-    context "edit_permission: people_with_password" do
-      let(:deck) { build(:deck, user: owner, visibility: "public", edit_permission: "people_with_password") }
-
-      it "denies nil user even when unlocked" do
-        deck.unlocked = true
-        expect(deck.can_edit?(nil)).to be false
-      end
-
-      it "denies non-owner without unlock" do
-        expect(deck.can_edit?(other)).to be false
-      end
-
-      it "allows non-owner when unlocked" do
-        deck.unlocked = true
-        expect(deck.can_edit?(other)).to be true
-      end
-
-      it "allows owner regardless of unlock" do
-        expect(deck.can_edit?(owner)).to be true
-      end
-    end
-
-    context "visibility: private" do
-      let(:deck) { build(:deck, user: owner, visibility: "private", edit_permission: "only_me") }
-
-      it "denies non-owner even when unlocked" do
-        deck.unlocked = true
-        expect(deck.can_edit?(other)).to be false
-      end
-    end
-  end
-
-  describe "#can_edit_settings?" do
-    let(:owner) { build(:user, id: 1) }
-    let(:other)  { build(:user, id: 2) }
-    let(:deck)   { build(:deck, user: owner) }
-
-    it "allows owner" do
-      expect(deck.can_edit_settings?(owner)).to be true
-    end
-
-    it "denies non-owner" do
-      expect(deck.can_edit_settings?(other)).to be false
-    end
-
-    it "denies nil" do
-      expect(deck.can_edit_settings?(nil)).to be false
-    end
-
-    it "denies password user (admin domain is owner-only)" do
-      pw_deck = build(:deck, :editable_by_password, user: owner)
-      expect(pw_deck.can_edit_settings?(other)).to be false
-    end
-  end
-
-  describe "#can_delete?" do
-    let(:owner) { build(:user, id: 1) }
-    let(:other)  { build(:user, id: 2) }
-    let(:deck)   { build(:deck, user: owner) }
-
-    it "allows owner" do
-      expect(deck.can_delete?(owner)).to be true
-    end
-
-    it "denies non-owner" do
-      expect(deck.can_delete?(other)).to be false
-    end
-
-    it "denies nil" do
-      expect(deck.can_delete?(nil)).to be false
+    it "#password_protected? is false when access_mode is open" do
+      expect(build(:deck, access_mode: "open").password_protected?).to be false
     end
   end
 
@@ -485,6 +333,15 @@ RSpec.describe Deck, type: :model do
       deck = create(:deck)
       create(:flashcard, deck: deck)
       expect { deck.destroy }.to change(Flashcard, :count).by(-1)
+    end
+
+    it "destroys a deck that has soft-deleted flashcards without a FK error" do
+      deck = create(:deck)
+      card = create(:flashcard, deck: deck)
+      card.soft_delete!
+      expect { deck.destroy }.not_to raise_error
+      expect(Deck.exists?(deck.id)).to be false
+      expect(Flashcard.unscoped.where(deck_id: deck.id).count).to eq(0)
     end
   end
 end

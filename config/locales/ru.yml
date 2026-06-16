@@ -211,16 +211,14 @@ ru:
       unlisted_desc: "Только люди со ссылкой могут видеть"
       private_desc: "Только вы"
       visibility_heading: "Видимость"
-      editing_heading: "Редактирование"
-      only_me_desc: "Только вы можете вносить изменения"
-      people_with_password_desc: "Соавторам нужен пароль от колоды"
-      with_password_short: "Пароль"
+      access_mode_heading: "Access"
+      open_desc: "Anyone who can find this deck can study it"
+      password_desc: "Viewers must enter a password to access flashcards"
       share_heading: "Поделиться ссылкой"
       share_hint: "Любой с этой ссылкой может просмотреть колоду"
       copy_link: "Копировать"
       copy_link_copied: "Скопировано!"
       visible_to: "Видно для"
-      editable_by: "Доступно для редактирования"
       password_is_set: "A password is set — enter a new one to change it"
     form:
       name_label: "Название"
@@ -234,16 +232,14 @@ ru:
       visibility_section_label: "Кто может видеть эту колоду?"
       visibility_unlisted: "Скрытая"
       section_about: "Информация"
-      section_access_control: "Управление доступом"
+      access_mode_open: "Open"
+      access_mode_password: "Password protected"
       visibility_private: "Только я"
       visibility_public: "Публичная"
       visibility_hint: "Публичные колоды могут найти и скопировать все желающие."
-      edit_permission_label: "Кто может редактировать эту колоду?"
-      edit_permission_only_me: "Только я"
-      edit_permission_people_with_password: "Все с паролем"
       password_label: "Пароль колоды"
       password_placeholder: "Мин. 8 символов"
-      password_hint: "Требуется для разблокировки доступа или редактирования"
+      password_hint: "Required to view this deck"
     cards:
       page_title: "Добавить карточки — %{name}"
       add_card: "Добавить карточку"
@@ -422,7 +418,8 @@ ru:
   errors:
     not_found:
       flash: "This deck is no longer available."
-    not_authorized: "У вас нет прав для выполнения этого действия."
+    not_authorized:
+      flash: "You are not authorized to perform this action."
   explore:
     title: "Обзор"
     subtitle: "Находите и копируйте публичные колоды, которыми делится сообщество."
@@ -592,8 +589,8 @@ ru:
           attributes:
             base:
               not_ready_to_share: "Добавьте хотя бы одну карточку, прежде чем делиться колодой."
-            edit_permission:
-              invalid_for_private_deck: "Приватные колоды могут редактировать только их владельцы."
+            access_mode:
+              invalid_for_private_deck: "Private decks cannot be password-protected — only you can see them anyway."
         library_item:
           attributes:
             base:

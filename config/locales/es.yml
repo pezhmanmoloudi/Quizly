@@ -211,16 +211,14 @@ es:
       unlisted_desc: "Solo personas con el enlace pueden verlo"
       private_desc: "Solo tú"
       visibility_heading: "Visibilidad"
-      editing_heading: "Edición"
-      only_me_desc: "Solo tú puedes hacer cambios"
-      people_with_password_desc: "Los colaboradores necesitan la contraseña del mazo"
-      with_password_short: "Contraseña"
+      access_mode_heading: "Access"
+      open_desc: "Anyone who can find this deck can study it"
+      password_desc: "Viewers must enter a password to access flashcards"
       share_heading: "Compartir enlace"
       share_hint: "Cualquiera con este enlace puede ver el mazo"
       copy_link: "Copiar"
       copy_link_copied: "¡Copiado!"
       visible_to: "Visible para"
-      editable_by: "Editable por"
       password_is_set: "A password is set — enter a new one to change it"
     form:
       name_label: "Nombre"
@@ -234,16 +232,14 @@ es:
       visibility_section_label: "¿Quién puede ver este mazo?"
       visibility_unlisted: "No listado"
       section_about: "Acerca de"
-      section_access_control: "Control de acceso"
+      access_mode_open: "Open"
+      access_mode_password: "Password protected"
       visibility_private: "Solo yo"
       visibility_public: "Público"
       visibility_hint: "Los mazos públicos pueden ser descubiertos y copiados por cualquiera."
-      edit_permission_label: "¿Quién puede editar este mazo?"
-      edit_permission_only_me: "Solo yo"
-      edit_permission_people_with_password: "Cualquiera con contraseña"
       password_label: "Contraseña del mazo"
       password_placeholder: "Mín. 8 caracteres"
-      password_hint: "Requerida para desbloquear el acceso o la edición"
+      password_hint: "Required to view this deck"
     cards:
       page_title: "Añadir tarjetas — %{name}"
       add_card: "Añadir tarjeta"
@@ -418,7 +414,8 @@ es:
   errors:
     not_found:
       flash: "This deck is no longer available."
-    not_authorized: "No tienes autorización para realizar esta acción."
+    not_authorized:
+      flash: "You are not authorized to perform this action."
   explore:
     title: "Explorar"
     subtitle: "Descubre y copia mazos públicos compartidos por la comunidad."
@@ -578,8 +575,8 @@ es:
           attributes:
             base:
               not_ready_to_share: "Añade al menos una tarjeta antes de compartir este mazo."
-            edit_permission:
-              invalid_for_private_deck: "Los mazos privados solo pueden ser editados por el propietario."
+            access_mode:
+              invalid_for_private_deck: "Private decks cannot be password-protected — only you can see them anyway."
         library_item:
           attributes:
             base:

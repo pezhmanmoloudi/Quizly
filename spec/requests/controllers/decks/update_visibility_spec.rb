@@ -34,7 +34,7 @@ RSpec.describe "Decks#update_visibility", type: :request do
         create(:flashcard, deck: deck)
         deck.update!(visibility: "private")
         patch update_visibility_deck_path(deck),
-              params: { deck: { visibility: "public", edit_permission: "only_me" } },
+              params: { deck: { visibility: "public", access_mode: "open" } },
               headers: { "Accept" => "text/vnd.turbo-stream.html" }
         expect(deck.reload.visibility).to eq("public")
       end
@@ -70,7 +70,7 @@ RSpec.describe "Decks#update_visibility", type: :request do
         expect(response.body).not_to include("value=\"public\" selected")
       end
 
-      it "blocks any save when a public deck has no flashcards (Rule 5)" do
+      it "blocks any save when a public deck has no flashcards" do
         deck.flashcards.destroy_all
         patch update_visibility_deck_path(deck),
               params: { deck: { visibility: "public" } },
@@ -79,19 +79,19 @@ RSpec.describe "Decks#update_visibility", type: :request do
         expect(deck.reload.visibility).to eq("public")
       end
 
-      it "updates edit_permission to people_with_password with a password" do
+      it "updates access_mode to password with a password" do
         patch update_visibility_deck_path(deck),
-              params: { deck: { visibility: "public", edit_permission: "people_with_password",
+              params: { deck: { visibility: "public", access_mode: "password",
                                 password: "secret123", password_confirmation: "secret123" } },
               headers: { "Accept" => "text/vnd.turbo-stream.html" }
-        expect(deck.reload.edit_permission).to eq("people_with_password")
+        expect(deck.reload.access_mode).to eq("password")
         expect(response).to have_http_status(:ok)
       end
 
-      it "saves password_digest when switching to people_with_password" do
+      it "saves password_digest when switching to password access_mode" do
         expect(deck.password_digest).to be_nil
         patch update_visibility_deck_path(deck),
-              params: { deck: { visibility: "public", edit_permission: "people_with_password",
+              params: { deck: { visibility: "public", access_mode: "password",
                                 password: "secret123" } },
               headers: { "Accept" => "text/vnd.turbo-stream.html" }
         expect(response).to have_http_status(:ok)
@@ -99,23 +99,14 @@ RSpec.describe "Decks#update_visibility", type: :request do
         expect(deck.authenticate_password("secret123")).to be_truthy
       end
 
-      it "does not save password when edit_permission is only_me" do
-        deck.update!(edit_permission: "people_with_password", password: "oldpass1")
+      it "does not save password when access_mode is open" do
+        deck.update!(access_mode: "password", password: "oldpass1")
         patch update_visibility_deck_path(deck),
-              params: { deck: { visibility: "public", edit_permission: "only_me",
+              params: { deck: { visibility: "public", access_mode: "open",
                                 password: "newpass1" } },
               headers: { "Accept" => "text/vnd.turbo-stream.html" }
         expect(response).to have_http_status(:ok)
-        expect(deck.reload.edit_permission).to eq("only_me")
-        expect(deck.authenticate_password("oldpass1")).to be_truthy
-      end
-
-      it "updates edit_permission to only_me" do
-        deck.update!(edit_permission: "only_me")
-        patch update_visibility_deck_path(deck),
-              params: { deck: { visibility: "public", edit_permission: "only_me" } },
-              headers: { "Accept" => "text/vnd.turbo-stream.html" }
-        expect(deck.reload.edit_permission).to eq("only_me")
+        expect(deck.reload.access_mode).to eq("open")
       end
 
       it "ignores an invalid visibility value" do
@@ -126,11 +117,11 @@ RSpec.describe "Decks#update_visibility", type: :request do
         expect(response).to have_http_status(:ok)
       end
 
-      it "ignores an invalid edit_permission value" do
+      it "ignores an invalid access_mode value" do
         patch update_visibility_deck_path(deck),
-              params: { deck: { edit_permission: "everyone" } },
+              params: { deck: { access_mode: "everyone" } },
               headers: { "Accept" => "text/vnd.turbo-stream.html" }
-        expect(deck.reload.edit_permission).to eq("only_me")
+        expect(deck.reload.access_mode).to eq("open")
         expect(response).to have_http_status(:ok)
       end
 

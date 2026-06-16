@@ -44,7 +44,6 @@ class ImportsController < ApplicationController
 
   def set_deck
     @deck = Deck.find(params[:deck_id])
-    @deck.unlocked = deck_unlocked?(@deck)
-    authorize @deck, :edit_content?
+    authorize @deck, :manage_flashcards?
   end
 end

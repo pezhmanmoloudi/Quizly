@@ -211,16 +211,14 @@ ckb:
       unlisted_desc: "تەنها کەسانی بە لینک دەتوانن ببینن"
       private_desc: "تەنها تۆ"
       visibility_heading: "بینراوی"
-      editing_heading: "دەستکاری"
-      only_me_desc: "تەنها تۆ دەتوانیت گۆڕانکاری بکەیت"
-      people_with_password_desc: "هاوکارەکان پێویستیان بە وشەی نهێنی دەستەکەیە"
-      with_password_short: "وشەی نهێنی"
+      access_mode_heading: "Access"
+      open_desc: "Anyone who can find this deck can study it"
+      password_desc: "Viewers must enter a password to access flashcards"
       share_heading: "هاوبەشکردنی بەستەر"
       share_hint: "هەر کەسێک ئەم بەستەرەی هەبێت دەتوانێت دەستەکە ببینێت"
       copy_link: "کۆپیکردن"
       copy_link_copied: "کۆپیکرا!"
       visible_to: "بینراوی بۆ"
-      editable_by: "دەستکاریکردنی بۆ"
       password_is_set: "A password is set — enter a new one to change it"
     form:
       name_label: "ناو"
@@ -234,16 +232,14 @@ ckb:
       visibility_section_label: "کێ دەتوانێت ئەم دەستەیە ببینێت؟"
       visibility_unlisted: "نه‌سیاوکراو"
       section_about: "دەربارە"
-      section_access_control: "چاودێری دەستپێگەیشتن"
+      access_mode_open: "Open"
+      access_mode_password: "Password protected"
       visibility_private: "تەنها من"
       visibility_public: "گشتی"
       visibility_hint: "دەستەی گشتی دەکرێت لە لایەن هەر کەسێکەوە دۆزراوەوە و کۆپیبکرێت."
-      edit_permission_label: "کێ دەتوانێت ئەم دەستەیە دەستکاری بکات؟"
-      edit_permission_only_me: "تەنها من"
-      edit_permission_people_with_password: "هەر کەسێک بە پاسۆرد"
       password_label: "پاسۆردی دەستە"
       password_placeholder: "لانیکەم ٨ پیت"
-      password_hint: "پێویستە بۆ کردنەوەی دەستپێشی یان دەستکاری"
+      password_hint: "Required to view this deck"
     cards:
       page_title: "زیادکردنی کارت — %{name}"
       add_card: "زیادکردنی کارت"
@@ -418,7 +414,8 @@ ckb:
   errors:
     not_found:
       flash: "This deck is no longer available."
-    not_authorized: "مۆڵەتت نییە ئەم کارە بکەیت."
+    not_authorized:
+      flash: "You are not authorized to perform this action."
   explore:
     title: "گەڕان"
     subtitle: "دەستەی گشتیی بەشکراوی کۆمەڵگا دۆزەرەوە و کۆپیبکە."
@@ -578,8 +575,8 @@ ckb:
           attributes:
             base:
               not_ready_to_share: "پێش هاوبەشکردنی ئەم دەستەیە، لانیکەم یەک بطاقە زیاد بکە."
-            edit_permission:
-              invalid_for_private_deck: "دەستەی تایبەت تەنها دەکرێت لە لایەن خاوەنەکەوە دەستکاریبکرێت."
+            access_mode:
+              invalid_for_private_deck: "Private decks cannot be password-protected — only you can see them anyway."
         library_item:
           attributes:
             base:

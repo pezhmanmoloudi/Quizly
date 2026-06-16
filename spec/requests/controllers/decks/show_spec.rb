@@ -129,12 +129,17 @@ RSpec.describe "Decks#show", type: :request do
         expect(response).to have_http_status(:ok)
       end
 
-      it "returns 200 for an unlisted deck with a password (no lock, password only gates editing)" do
-        pw_deck = create(:deck, visibility: "unlisted", edit_permission: "people_with_password",
-                                password: "secret123", user: user)
+      it "redirects to unlock for a password-protected deck (non-owner, no session)" do
+        pw_deck = create(:deck, :password_protected, user: user)
+        get deck_path(pw_deck)
+        expect(response).to redirect_to(unlock_deck_path(pw_deck))
+      end
+
+      it "allows access to a password-protected deck after unlocking" do
+        pw_deck = create(:deck, :password_protected, user: user)
+        post unlock_deck_path(pw_deck), params: { password: "secret123" }
         get deck_path(pw_deck)
         expect(response).to have_http_status(:ok)
-        expect(response.body).not_to include(I18n.t("decks.show.unlock_cta"))
       end
     end
 
@@ -156,11 +161,10 @@ RSpec.describe "Decks#show", type: :request do
         expect(response).to have_http_status(:ok)
       end
 
-      it "returns 200 for an unlisted deck with a password (password only gates editing)" do
-        pw_deck = create(:deck, visibility: "unlisted", edit_permission: "people_with_password",
-                                password: "secret123", user: user)
+      it "redirects to unlock for a password-protected deck (guest)" do
+        pw_deck = create(:deck, :password_protected, user: user)
         get deck_path(pw_deck)
-        expect(response).to have_http_status(:ok)
+        expect(response).to redirect_to(unlock_deck_path(pw_deck))
       end
 
       it "does not show Fork button on a public deck" do

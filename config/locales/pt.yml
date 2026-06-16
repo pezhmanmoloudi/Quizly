@@ -211,16 +211,14 @@ pt:
       unlisted_desc: "Apenas pessoas com o link podem ver"
       private_desc: "Apenas você"
       visibility_heading: "Visibilidade"
-      editing_heading: "Edição"
-      only_me_desc: "Só você pode fazer alterações"
-      people_with_password_desc: "Os colaboradores precisam da senha do baralho"
-      with_password_short: "Senha"
+      access_mode_heading: "Access"
+      open_desc: "Anyone who can find this deck can study it"
+      password_desc: "Viewers must enter a password to access flashcards"
       share_heading: "Compartilhar link"
       share_hint: "Qualquer pessoa com este link pode ver o baralho"
       copy_link: "Copiar"
       copy_link_copied: "Copiado!"
       visible_to: "Visível para"
-      editable_by: "Editável por"
       password_is_set: "A password is set — enter a new one to change it"
     form:
       name_label: "Nome"
@@ -234,16 +232,14 @@ pt:
       visibility_section_label: "Quem pode ver este baralho?"
       visibility_unlisted: "Não listado"
       section_about: "Sobre"
-      section_access_control: "Controle de acesso"
+      access_mode_open: "Open"
+      access_mode_password: "Password protected"
       visibility_private: "Somente eu"
       visibility_public: "Público"
       visibility_hint: "Baralhos públicos podem ser descobertos e copiados por qualquer pessoa."
-      edit_permission_label: "Quem pode editar este baralho?"
-      edit_permission_only_me: "Somente eu"
-      edit_permission_people_with_password: "Qualquer pessoa com senha"
       password_label: "Senha do baralho"
       password_placeholder: "Mín. 8 caracteres"
-      password_hint: "Necessária para desbloquear acesso ou edição"
+      password_hint: "Required to view this deck"
     cards:
       page_title: "Adicionar cartões — %{name}"
       add_card: "Adicionar cartão"
@@ -418,7 +414,8 @@ pt:
   errors:
     not_found:
       flash: "This deck is no longer available."
-    not_authorized: "Você não está autorizado a realizar esta ação."
+    not_authorized:
+      flash: "You are not authorized to perform this action."
   explore:
     title: "Explorar"
     subtitle: "Descubra e copie baralhos públicos compartilhados pela comunidade."
@@ -578,8 +575,8 @@ pt:
           attributes:
             base:
               not_ready_to_share: "Adicione pelo menos uma carta antes de compartilhar este baralho."
-            edit_permission:
-              invalid_for_private_deck: "Baralhos privados só podem ser editados pelo proprietário."
+            access_mode:
+              invalid_for_private_deck: "Private decks cannot be password-protected — only you can see them anyway."
         library_item:
           attributes:
             base:

@@ -211,16 +211,14 @@ fa:
       unlisted_desc: "فقط افراد دارای لینک می‌توانند ببینند"
       private_desc: "فقط شما"
       visibility_heading: "نمایان‌پذیری"
-      editing_heading: "ویرایش"
-      only_me_desc: "فقط شما می‌توانید تغییر ایجاد کنید"
-      people_with_password_desc: "همکاران به رمز عبور دسته نیاز دارند"
-      with_password_short: "رمز عبور"
+      access_mode_heading: "Access"
+      open_desc: "Anyone who can find this deck can study it"
+      password_desc: "Viewers must enter a password to access flashcards"
       share_heading: "اشتراک‌گذاری لینک"
       share_hint: "هر کسی با این لینک می‌تواند دسته را ببیند"
       copy_link: "کپی"
       copy_link_copied: "کپی شد!"
       visible_to: "قابل مشاهده توسط"
-      editable_by: "قابل ویرایش توسط"
       password_is_set: "A password is set — enter a new one to change it"
     form:
       name_label: "نام"
@@ -234,16 +232,14 @@ fa:
       visibility_section_label: "چه کسی می‌تواند این دسته را ببیند؟"
       visibility_unlisted: "فهرست‌نشده"
       section_about: "درباره"
-      section_access_control: "کنترل دسترسی"
+      access_mode_open: "Open"
+      access_mode_password: "Password protected"
       visibility_private: "فقط من"
       visibility_public: "عمومی"
       visibility_hint: "دسته‌های عمومی توسط همه قابل کشف و کپی هستند."
-      edit_permission_label: "چه کسی می‌تواند این دسته را ویرایش کند؟"
-      edit_permission_only_me: "فقط من"
-      edit_permission_people_with_password: "هر کس با رمز"
       password_label: "رمز دسته"
       password_placeholder: "حداقل ۸ کاراکتر"
-      password_hint: "برای باز کردن دسترسی یا ویرایش لازم است"
+      password_hint: "Required to view this deck"
     cards:
       page_title: "افزودن کارت — %{name}"
       add_card: "افزودن کارت"
@@ -418,7 +414,8 @@ fa:
   errors:
     not_found:
       flash: "This deck is no longer available."
-    not_authorized: "شما مجاز به انجام این عمل نیستید."
+    not_authorized:
+      flash: "You are not authorized to perform this action."
   explore:
     title: "کاوش"
     subtitle: "دسته‌های عمومی به اشتراک‌گذاشته‌شده توسط جامعه را کشف کن و کپی کن."
@@ -578,8 +575,8 @@ fa:
           attributes:
             base:
               not_ready_to_share: "قبل از اشتراک‌گذاری این دسته، حداقل یک کارت اضافه کنید."
-            edit_permission:
-              invalid_for_private_deck: "دسته‌های خصوصی فقط توسط مالک قابل ویرایش هستند."
+            access_mode:
+              invalid_for_private_deck: "Private decks cannot be password-protected — only you can see them anyway."
         library_item:
           attributes:
             base:

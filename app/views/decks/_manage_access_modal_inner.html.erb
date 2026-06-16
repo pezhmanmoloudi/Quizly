@@ -113,41 +113,39 @@
             </p>
           </div>
 
-          <%# ── Row 1: Editable by ── %>
+          <%# ── Row 1: Access mode ── %>
           <div class="manage-access-col"
                data-controller="select-dropdown"
                data-action="click@window->select-dropdown#closeIfOutside keydown@window->select-dropdown#onKeydown">
-            <label class="manage-access-col__label" for="sel-edit-<%= deck.id %>">
-              <%= t("decks.manage_access.editable_by") %>
+            <label class="manage-access-col__label" for="sel-access-mode-<%= deck.id %>">
+              <%= t("decks.manage_access.access_mode_heading") %>
             </label>
 
             <%# Hidden native select — form submission + access_settings_controller target %>
-            <%= f.select :edit_permission,
+            <%= f.select :access_mode,
                   [
-                    [t("decks.form.edit_permission_only_me"),              "only_me"],
-                    [t("decks.form.edit_permission_people_with_password"), "people_with_password"],
+                    [t("decks.form.access_mode_open"),     "open"],
+                    [t("decks.form.access_mode_password"), "password"],
                   ],
                   {},
                   class: "select-dropdown__native",
                   data: {
                     "select-dropdown-target": "nativeSelect",
-                    "access-settings-target": "editSelect",
-                    action: "change->access-settings#onEditPermissionChange",
-                    "desc-only-me":              t("decks.manage_access.only_me_desc"),
-                    "desc-people-with-password": t("decks.manage_access.people_with_password_desc"),
+                    "access-settings-target": "accessModeSelect",
+                    action: "change->access-settings#onAccessModeChange",
+                    "desc-open":     t("decks.manage_access.open_desc"),
+                    "desc-password": t("decks.manage_access.password_desc"),
                   } %>
 
             <button type="button"
-                    id="sel-edit-<%= deck.id %>"
+                    id="sel-access-mode-<%= deck.id %>"
                     class="select-dropdown__trigger"
                     aria-haspopup="listbox"
                     aria-expanded="false"
                     data-select-dropdown-target="trigger"
                     data-action="click->select-dropdown#toggle">
               <span data-select-dropdown-target="label">
-                <%= deck.only_me? ?
-                      t("decks.form.edit_permission_only_me") :
-                      t("decks.form.edit_permission_people_with_password") %>
+                <%= t("decks.form.access_mode_#{deck.access_mode}") %>
               </span>
               <svg class="select-dropdown__chevron" xmlns="http://www.w3.org/2000/svg"
                    viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -157,34 +155,32 @@
 
             <ul class="select-dropdown__menu"
                 role="listbox"
-                aria-labelledby="sel-edit-<%= deck.id %>"
+                aria-labelledby="sel-access-mode-<%= deck.id %>"
                 data-select-dropdown-target="menu"
                 data-open="false">
               <li role="none">
                 <button type="button" class="select-dropdown__option" role="option"
-                        data-value="only_me"
-                        aria-selected="<%= deck.only_me? %>"
+                        data-value="open"
+                        aria-selected="<%= deck.open? %>"
                         data-select-dropdown-target="option"
                         data-action="click->select-dropdown#select">
-                  <%= t("decks.form.edit_permission_only_me") %>
+                  <%= t("decks.form.access_mode_open") %>
                 </button>
               </li>
               <li role="none">
                 <button type="button" class="select-dropdown__option" role="option"
-                        data-value="people_with_password"
-                        aria-selected="<%= deck.people_with_password? %>"
+                        data-value="password"
+                        aria-selected="<%= deck.password_protected? %>"
                         data-select-dropdown-target="option"
                         data-action="click->select-dropdown#select">
-                  <%= t("decks.form.edit_permission_people_with_password") %>
+                  <%= t("decks.form.access_mode_password") %>
                 </button>
               </li>
             </ul>
 
             <p class="manage-access-col__desc"
-               data-access-settings-target="editDesc">
-              <%= deck.only_me? ?
-                    t("decks.manage_access.only_me_desc") :
-                    t("decks.manage_access.people_with_password_desc") %>
+               data-access-settings-target="accessModeDesc">
+              <%= t("decks.manage_access.#{deck.access_mode}_desc") %>
             </p>
           </div>
 
@@ -212,7 +208,7 @@
           </div>
 
           <%# ── Row 2: Deck password ── %>
-          <div class="manage-access-modal__password<%= deck.people_with_password? ? '' : ' access-section--hidden' %>"
+          <div class="manage-access-modal__password<%= deck.password_protected? ? '' : ' access-section--hidden' %>"
                data-access-settings-target="passwordSection">
             <div data-controller="password-toggle">
               <label class="manage-access-col__label" for="deck_password">
@@ -236,7 +232,7 @@
                 </button>
               </div>
               <p class="manage-access-col__desc"><%= t("decks.form.password_hint") %></p>
-              <% if deck.people_with_password? && deck.password_digest.present? %>
+              <% if deck.password_protected? && deck.password_digest.present? %>
                 <p class="manage-access-col__desc"><%= t("decks.manage_access.password_is_set") %></p>
               <% end %>
             </div>

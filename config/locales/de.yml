@@ -211,16 +211,14 @@ de:
       unlisted_desc: "Nur Personen mit dem Link können es sehen"
       private_desc: "Nur du"
       visibility_heading: "Sichtbarkeit"
-      editing_heading: "Bearbeitung"
-      only_me_desc: "Nur du kannst Änderungen vornehmen"
-      people_with_password_desc: "Mitarbeiter benötigen das Deck-Passwort"
-      with_password_short: "Passwort"
+      access_mode_heading: "Access"
+      open_desc: "Anyone who can find this deck can study it"
+      password_desc: "Viewers must enter a password to access flashcards"
       share_heading: "Link teilen"
       share_hint: "Jeder mit diesem Link kann das Deck anzeigen"
       copy_link: "Kopieren"
       copy_link_copied: "Kopiert!"
       visible_to: "Sichtbar für"
-      editable_by: "Bearbeitbar von"
       password_is_set: "A password is set — enter a new one to change it"
     form:
       name_label: "Name"
@@ -234,16 +232,14 @@ de:
       visibility_section_label: "Wer kann dieses Deck sehen?"
       visibility_unlisted: "Ungelistet"
       section_about: "Über"
-      section_access_control: "Zugangskontrolle"
+      access_mode_open: "Open"
+      access_mode_password: "Password protected"
       visibility_private: "Nur ich"
       visibility_public: "Öffentlich"
       visibility_hint: "Öffentliche Decks können von allen entdeckt und kopiert werden."
-      edit_permission_label: "Wer kann dieses Deck bearbeiten?"
-      edit_permission_only_me: "Nur ich"
-      edit_permission_people_with_password: "Alle mit Passwort"
       password_label: "Deck-Passwort"
       password_placeholder: "Mind. 8 Zeichen"
-      password_hint: "Erforderlich zum Entsperren des Zugriffs oder der Bearbeitung"
+      password_hint: "Required to view this deck"
     cards:
       page_title: "Karten hinzufügen — %{name}"
       add_card: "Karte hinzufügen"
@@ -418,7 +414,8 @@ de:
   errors:
     not_found:
       flash: "This deck is no longer available."
-    not_authorized: "Sie sind nicht berechtigt, diese Aktion durchzuführen."
+    not_authorized:
+      flash: "You are not authorized to perform this action."
   explore:
     title: "Entdecken"
     subtitle: "Entdecke und kopiere öffentliche Decks aus der Community."
@@ -578,8 +575,8 @@ de:
           attributes:
             base:
               not_ready_to_share: "Füge mindestens eine Karte hinzu, bevor du dieses Deck teilst."
-            edit_permission:
-              invalid_for_private_deck: "Private Decks können nur vom Besitzer bearbeitet werden."
+            access_mode:
+              invalid_for_private_deck: "Private decks cannot be password-protected — only you can see them anyway."
         library_item:
           attributes:
             base:

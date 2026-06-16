@@ -1,9 +1,7 @@
 class FlashcardsController < ApplicationController
-  before_action :set_deck, only: [:create]
-  before_action :set_flashcard, only: [:update, :destroy]
-  before_action :set_soft_deleted_flashcard, only: [:restore]
-
-  rescue_from Pundit::NotAuthorizedError, with: :handle_flashcard_auth
+  before_action :set_deck,                   only: [ :create ]
+  before_action :set_flashcard,              only: [ :update, :destroy ]
+  before_action :set_soft_deleted_flashcard, only: [ :restore ]
 
   def create
     @flashcard = @deck.flashcards.build(flashcard_params)
@@ -43,10 +41,10 @@ class FlashcardsController < ApplicationController
       format.turbo_stream { render :destroy }
       format.html do
         items        = params[:items].to_i.positive? ? params[:items].to_i : 10
-        current_page = [params[:page].to_i, 1].max
+        current_page = [ params[:page].to_i, 1 ].max
         total        = @deck.flashcards.count
-        last_page    = [(total.to_f / items).ceil, 1].max
-        safe_page    = [current_page, last_page].min
+        last_page    = [ (total.to_f / items).ceil, 1 ].max
+        safe_page    = [ current_page, last_page ].min
         redirect_to deck_path(@deck, page: safe_page, items: items), notice: t("flashcards.deleted")
       end
     end
@@ -67,31 +65,17 @@ class FlashcardsController < ApplicationController
 
   def set_deck
     @deck = Deck.find(params[:deck_id])
-    @deck.unlocked = deck_unlocked?(@deck)
-    authorize @deck, :edit_content?
+    authorize @deck, :manage_flashcards?
   end
 
   def set_flashcard
     @flashcard = Flashcard.find(params[:id])
-    @deck = @flashcard.deck
-    @deck.unlocked = deck_unlocked?(@deck)
-    authorize @deck, :edit_content?
+    authorize @flashcard
   end
 
   def set_soft_deleted_flashcard
     @flashcard = Flashcard.unscoped.where.not(deleted_at: nil).find(params[:id])
-    @deck = @flashcard.deck
-    @deck.unlocked = deck_unlocked?(@deck)
-    authorize @deck, :edit_content?
-  end
-
-  def handle_flashcard_auth(_exception)
-    deck = @deck || @flashcard&.deck
-    if deck&.people_with_password? && !deck.private?
-      redirect_to unlock_deck_path(deck)
-    else
-      raise ActiveRecord::RecordNotFound
-    end
+    authorize @flashcard, :restore?
   end
 
   def flashcard_params
