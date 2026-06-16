@@ -3,7 +3,7 @@ ru:
   nav:
     home: Главная
     explore: Обзор
-    my_library: Моя библиотека
+    my_decks: Мои колоды
   topbar:
     search_placeholder: Поиск колод…
     search_aria: Поиск колод

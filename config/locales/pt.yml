@@ -3,7 +3,7 @@ pt:
   nav:
     home: Início
     explore: Explorar
-    my_library: Minha Biblioteca
+    my_decks: Meus baralhos
   topbar:
     search_placeholder: Pesquisar baralhos…
     search_aria: Pesquisar baralhos

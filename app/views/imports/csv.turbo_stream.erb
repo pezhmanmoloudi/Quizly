@@ -1,0 +1,16 @@
+<%= turbo_stream.append "deck-#{@deck.id}-card-rows" do %>
+  <% @new_flashcards.each do |card| %>
+    <%= render "decks/editor_card_row", card: card, deck: @deck %>
+  <% end %>
+<% end %>
+<%= turbo_stream.replace "import-modal" do %>
+  <%= render "imports/modal", deck: @deck %>
+<% end %>
+<%= turbo_stream.update "deck_#{@deck.id}_card_count", @deck.flashcards_count %>
+<%= turbo_stream.update "flash-messages" do %>
+  <div class="flash flash--notice"
+       data-controller="flash"
+       data-flash-timeout-value="4000">
+    <%= t("imports.imported", count: @new_flashcards.size) %>
+  </div>
+<% end %>

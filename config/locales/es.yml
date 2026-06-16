@@ -3,7 +3,7 @@ es:
   nav:
     home: Inicio
     explore: Explorar
-    my_library: Mi Biblioteca
+    my_decks: Mis mazos
   topbar:
     search_placeholder: Buscar mazos…
     search_aria: Buscar mazos

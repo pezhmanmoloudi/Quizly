@@ -39,7 +39,7 @@ Rails.application.routes.draw do
         patch :restore
       end
     end
-    resource :import, only: [:new], controller: :imports do
+    resource :import, only: [], controller: :imports do
       post :text, on: :collection
       post :csv,  on: :collection
     end

@@ -3,7 +3,7 @@ fa:
   nav:
     home: خانه
     explore: کاوش
-    my_library: کتابخانه من
+    my_decks: دسته‌های من
   topbar:
     search_placeholder: جستجوی دسته‌ها…
     search_aria: جستجوی دسته‌ها

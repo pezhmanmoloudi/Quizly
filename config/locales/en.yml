@@ -3,7 +3,7 @@ en:
   nav:
     home: Home
     explore: Explore
-    my_library: My Library
+    my_decks: My Decks
   topbar:
     search_placeholder: Search decks…
     search_aria: Search decks

@@ -3,7 +3,7 @@ ar:
   nav:
     home: الرئيسية
     explore: استكشاف
-    my_library: مكتبتي
+    my_decks: مجموعاتي
   topbar:
     search_placeholder: ابحث عن مجموعات…
     search_aria: ابحث عن مجموعات

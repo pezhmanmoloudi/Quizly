@@ -3,7 +3,7 @@ tr:
   nav:
     home: Ana Sayfa
     explore: Keşfet
-    my_library: Kütüphanem
+    my_decks: Destelerim
   topbar:
     search_placeholder: Desteler ara…
     search_aria: Desteler ara

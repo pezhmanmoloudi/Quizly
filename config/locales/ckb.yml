@@ -3,7 +3,7 @@ ckb:
   nav:
     home: ماڵەوە
     explore: گەڕان
-    my_library: کتێبخانەکەم
+    my_decks: دەستەکانم
   topbar:
     search_placeholder: گەڕان بەدوای دەستەکاندا…
     search_aria: گەڕان بەدوای دەستەکاندا
