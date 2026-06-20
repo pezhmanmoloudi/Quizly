@@ -4,6 +4,7 @@ fa:
     home: خانه
     explore: کاوش
     my_decks: دسته‌های من
+    folders: پوشه‌ها
   topbar:
     search_placeholder: جستجوی دسته‌ها…
     search_aria: جستجوی دسته‌ها
@@ -296,6 +297,38 @@ fa:
       count:
         one: "%{count} کارت"
         other: "%{count} کارت"
+  folders:
+    create_failed: ایجاد پوشه ممکن نشد.
+    updated: پوشه به‌روزرسانی شد.
+    deleted: پوشه حذف شد.
+    deck_removed: دسته از پوشه حذف شد.
+    save_button: ذخیره
+    saved_button: ذخیره شد
+    create_modal:
+      title: ایجاد پوشه
+      name_placeholder: نام پوشه
+      submit: ایجاد
+    save_modal:
+      title: ذخیره در پوشه
+      save: ذخیره
+      no_folders: هنوز هیچ پوشه‌ای ندارید.
+    index:
+      title: پوشه‌های من
+      empty: هنوز هیچ پوشه‌ای وجود ندارد.
+      deck_count:
+        one: "۱ دسته"
+        other: "%{count} دسته"
+    show:
+      empty: هنوز هیچ دسته‌ای در این پوشه وجود ندارد.
+      options_aria: گزینه‌های پوشه
+      rename: تغییر نام
+      rename_save: ذخیره
+      delete_title: این پوشه حذف شود؟
+      delete_body: این عمل قابل برگشت نیست.
+      delete_confirm: حذف
+      delete: حذف
+      deck_options_aria: گزینه‌های دسته
+      remove_from_folder: حذف از پوشه
   flashcards:
     new:
       back: "→ بازگشت به %{name}"

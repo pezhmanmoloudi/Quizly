@@ -1,0 +1,42 @@
+<%= turbo_frame_tag "modal" do %>
+  <div data-modal-target="dialog"
+       class="modal-wrapper"
+       role="dialog"
+       aria-modal="true"
+       aria-label="<%= t("folders.create_modal.title") %>"
+       hidden>
+    <div class="modal-overlay" data-action="click->modal#closeOnBackdrop">
+      <div class="modal-dialog">
+        <div class="modal-icon-header">
+          <%= render "shared/icons/folder", css_class: "modal-icon-header__icon" %>
+        </div>
+
+        <% if @folder.errors.any? %>
+          <p class="form-error"><%= @folder.errors.full_messages.first %></p>
+        <% end %>
+
+        <%= form_with model: @folder,
+              data: { action: "turbo:submit-end->modal#closeOnSuccess" } do |f| %>
+          <%= f.text_field :name,
+                placeholder: t("folders.create_modal.name_placeholder"),
+                class: "form-control",
+                maxlength: 60,
+                autofocus: true,
+                data: { action: "input->modal#enableIfNotBlank" } %>
+          <div class="modal-actions modal-actions--end">
+            <button type="button" class="btn btn--secondary"
+                    data-action="click->modal#close">
+              <%= t("shared.cancel") %>
+            </button>
+            <button type="submit"
+                    class="btn btn--primary"
+                    disabled
+                    data-modal-target="submitButton">
+              <%= t("folders.create_modal.submit") %>
+            </button>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>

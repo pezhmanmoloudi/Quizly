@@ -21,13 +21,22 @@ export default class extends Controller {
     }
   }
 
+  // Called via turbo:frame-load on the global modal frame
+  openFromFrame() {
+    requestAnimationFrame(() => {
+      if (this.hasDialogTarget) this.open()
+    })
+  }
+
   close() {
-    this.dialogTarget.hidden = true
     document.body.classList.remove("modal-open")
     if (this._onKeydown) {
       document.removeEventListener("keydown", this._onKeydown)
       this._onKeydown = null
     }
+    if (this.hasDialogTarget) this.dialogTarget.hidden = true
+    const frame = this.element.querySelector("turbo-frame#modal")
+    if (frame) frame.innerHTML = ""
   }
 
   closeOnBackdrop(event) {
@@ -37,6 +46,25 @@ export default class extends Controller {
   validateConfirmation() {
     const required = this.confirmInputTarget.dataset.requiredValue
     this.submitButtonTarget.disabled = this.confirmInputTarget.value !== required
+  }
+
+  enableIfNotBlank(event) {
+    this.submitButtonTarget.disabled = !event.target.value.trim()
+  }
+
+  enableIfChanged(event) {
+    const original = event.target.dataset.originalValue
+    this.submitButtonTarget.disabled =
+      !event.target.value.trim() || event.target.value === original
+  }
+
+  closeOnSuccess(event) {
+    if (event.detail.success) this.close()
+  }
+
+  validateCheckboxes() {
+    const checked = this.element.querySelectorAll('input[type="checkbox"]:checked').length
+    this.submitButtonTarget.disabled = checked === 0
   }
 
   dialogTargetDisconnected() {

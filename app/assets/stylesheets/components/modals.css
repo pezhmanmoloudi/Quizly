@@ -22,14 +22,18 @@
 .modal-dialog {
   position: relative;
   background: var(--color-surface);
-  border-radius: 0.75rem;
+  border-radius: 1rem;
   box-shadow: var(--shadow-xl);
-  width: 100%;
-  max-width: 28rem;
-  padding: 1.75rem;
+  width: 27.5rem;
+  max-width: 92vw;
+  padding: 1.5rem;
   display: flex;
   flex-direction: column;
   gap: 1rem;
+}
+
+.modal-dialog--narrow {
+  width: 23.75rem;
 }
 
 .modal-title {
@@ -37,6 +41,18 @@
   font-weight: var(--font-semibold);
   color: var(--color-text);
   margin: 0;
+}
+
+.modal-icon-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.modal-icon-header__icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  color: var(--color-muted);
 }
 
 .modal-body {
@@ -101,6 +117,25 @@
 /* Prevent body scroll when modal is open */
 body.modal-open {
   overflow: hidden;
+}
+
+/* Entry animation: backdrop fade + dialog scale (progressive enhancement) */
+.modal-overlay {
+  transition: opacity 0.15s ease;
+}
+
+.modal-dialog {
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+@starting-style {
+  .modal-wrapper:not([hidden]) .modal-overlay {
+    opacity: 0;
+  }
+  .modal-wrapper:not([hidden]) .modal-dialog {
+    opacity: 0;
+    transform: scale(0.97) translateY(-6px);
+  }
 }
 
 /* Flash toast undo button */

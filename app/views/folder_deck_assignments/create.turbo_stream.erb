@@ -1,0 +1,3 @@
+<%= turbo_stream.replace dom_id(@deck, :save_btn),
+      partial: "shared/save_button",
+      locals: { deck: @deck, is_saved: true } %>

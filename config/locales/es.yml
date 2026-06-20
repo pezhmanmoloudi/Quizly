@@ -4,6 +4,7 @@ es:
     home: Inicio
     explore: Explorar
     my_decks: Mis mazos
+    folders: Carpetas
   topbar:
     search_placeholder: Buscar mazos…
     search_aria: Buscar mazos
@@ -300,6 +301,38 @@ es:
       count:
         one: "%{count} tarjeta"
         other: "%{count} tarjetas"
+  folders:
+    create_failed: No se pudo crear la carpeta.
+    updated: Carpeta actualizada.
+    deleted: Carpeta eliminada.
+    deck_removed: Mazo eliminado de la carpeta.
+    save_button: Guardar
+    saved_button: Guardado
+    create_modal:
+      title: Crear carpeta
+      name_placeholder: Nombre de la carpeta
+      submit: Crear
+    save_modal:
+      title: Guardar en carpeta
+      save: Guardar
+      no_folders: Aún no tienes carpetas.
+    index:
+      title: Mis carpetas
+      empty: No hay carpetas aún.
+      deck_count:
+        one: "1 mazo"
+        other: "%{count} mazos"
+    show:
+      empty: No hay mazos en esta carpeta aún.
+      options_aria: Opciones de carpeta
+      rename: Renombrar
+      rename_save: Guardar
+      delete_title: "¿Eliminar esta carpeta?"
+      delete_body: Esta acción no se puede deshacer.
+      delete_confirm: Eliminar
+      delete: Eliminar
+      deck_options_aria: Opciones del mazo
+      remove_from_folder: Quitar de la carpeta
   flashcards:
     new:
       back: "← Volver a %{name}"

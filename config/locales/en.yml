@@ -4,6 +4,7 @@ en:
     home: Home
     explore: Explore
     my_decks: My Decks
+    folders: Folders
   topbar:
     search_placeholder: Search decks…
     search_aria: Search decks
@@ -296,6 +297,38 @@ en:
       count:
         one: "%{count} card"
         other: "%{count} cards"
+  folders:
+    create_failed: Could not create folder.
+    updated: Folder updated.
+    deleted: Folder deleted.
+    deck_removed: Deck removed from folder.
+    save_button: Save
+    saved_button: Saved
+    create_modal:
+      title: Create Folder
+      name_placeholder: Folder name
+      submit: Create
+    save_modal:
+      title: Save to folder
+      save: Save
+      no_folders: You don't have any folders yet.
+    index:
+      title: My Folders
+      empty: No folders yet.
+      deck_count:
+        one: "1 deck"
+        other: "%{count} decks"
+    show:
+      empty: No decks in this folder yet.
+      options_aria: Folder options
+      rename: Rename
+      rename_save: Save
+      delete_title: Delete this folder?
+      delete_body: This action cannot be undone.
+      delete_confirm: Delete
+      delete: Delete
+      deck_options_aria: Deck options
+      remove_from_folder: Remove from folder
   flashcards:
     new:
       back: "← Back to %{name}"

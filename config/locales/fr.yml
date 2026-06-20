@@ -4,6 +4,7 @@ fr:
     home: Accueil
     explore: Explorer
     my_decks: Mes paquets
+    folders: Dossiers
   topbar:
     search_placeholder: Rechercher des paquets…
     search_aria: Rechercher des paquets
@@ -304,6 +305,38 @@ fr:
       count:
         one: "%{count} carte"
         other: "%{count} cartes"
+  folders:
+    create_failed: Impossible de créer le dossier.
+    updated: Dossier mis à jour.
+    deleted: Dossier supprimé.
+    deck_removed: Paquet retiré du dossier.
+    save_button: Enregistrer
+    saved_button: Enregistré
+    create_modal:
+      title: Créer un dossier
+      name_placeholder: Nom du dossier
+      submit: Créer
+    save_modal:
+      title: Enregistrer dans un dossier
+      save: Enregistrer
+      no_folders: Vous n'avez pas encore de dossiers.
+    index:
+      title: Mes dossiers
+      empty: Aucun dossier pour l'instant.
+      deck_count:
+        one: "1 paquet"
+        other: "%{count} paquets"
+    show:
+      empty: Aucun paquet dans ce dossier pour l'instant.
+      options_aria: Options du dossier
+      rename: Renommer
+      rename_save: Enregistrer
+      delete_title: Supprimer ce dossier ?
+      delete_body: Cette action est irréversible.
+      delete_confirm: Supprimer
+      delete: Supprimer
+      deck_options_aria: Options du paquet
+      remove_from_folder: Retirer du dossier
   flashcards:
     new:
       back: "← Retour à %{name}"

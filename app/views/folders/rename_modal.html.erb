@@ -1,0 +1,44 @@
+<%= turbo_frame_tag "modal" do %>
+  <div data-modal-target="dialog"
+       class="modal-wrapper"
+       role="dialog"
+       aria-modal="true"
+       aria-labelledby="rename-folder-title"
+       hidden>
+    <div class="modal-overlay" data-action="click->modal#closeOnBackdrop">
+      <div class="modal-dialog">
+        <h2 id="rename-folder-title" class="modal-title">
+          <%= t("folders.show.rename") %>
+        </h2>
+
+        <% if @folder.errors.any? %>
+          <p class="form-error"><%= @folder.errors.full_messages.first %></p>
+        <% end %>
+
+        <%= form_with model: @folder,
+              data: { action: "turbo:submit-end->modal#closeOnSuccess" } do |f| %>
+          <%= f.text_field :name,
+                class: "form-control",
+                maxlength: 60,
+                autofocus: true,
+                data: {
+                  action: "input->modal#enableIfChanged",
+                  original_value: @folder.name_was || @folder.name
+                } %>
+          <div class="modal-actions modal-actions--end">
+            <button type="button" class="btn btn--secondary"
+                    data-action="click->modal#close">
+              <%= t("shared.cancel") %>
+            </button>
+            <button type="submit"
+                    class="btn btn--primary"
+                    disabled
+                    data-modal-target="submitButton">
+              <%= t("folders.show.rename_save") %>
+            </button>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>

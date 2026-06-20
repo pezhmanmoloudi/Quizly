@@ -4,6 +4,7 @@ ar:
     home: الرئيسية
     explore: استكشاف
     my_decks: مجموعاتي
+    folders: مجلداتي
   topbar:
     search_placeholder: ابحث عن مجموعات…
     search_aria: ابحث عن مجموعات
@@ -296,6 +297,38 @@ ar:
       count:
         one: بطاقة واحدة
         other: "%{count} بطاقات"
+  folders:
+    create_failed: تعذر إنشاء المجلد.
+    updated: تم تحديث المجلد.
+    deleted: تم حذف المجلد.
+    deck_removed: تمت إزالة المجموعة من المجلد.
+    save_button: حفظ
+    saved_button: تم الحفظ
+    create_modal:
+      title: إنشاء مجلد
+      name_placeholder: اسم المجلد
+      submit: إنشاء
+    save_modal:
+      title: حفظ في مجلد
+      save: حفظ
+      no_folders: ليس لديك أي مجلدات بعد.
+    index:
+      title: مجلداتي
+      empty: لا توجد مجلدات بعد.
+      deck_count:
+        one: "مجموعة واحدة"
+        other: "%{count} مجموعة"
+    show:
+      empty: لا توجد مجموعات في هذا المجلد بعد.
+      options_aria: خيارات المجلد
+      rename: إعادة التسمية
+      rename_save: حفظ
+      delete_title: حذف هذا المجلد؟
+      delete_body: لا يمكن التراجع عن هذا الإجراء.
+      delete_confirm: حذف
+      delete: حذف
+      deck_options_aria: خيارات المجموعة
+      remove_from_folder: إزالة من المجلد
   flashcards:
     new:
       back: "→ رجوع إلى %{name}"

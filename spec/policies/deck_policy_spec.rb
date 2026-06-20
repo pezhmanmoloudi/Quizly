@@ -184,6 +184,32 @@ RSpec.describe DeckPolicy, type: :policy do
     end
   end
 
+  describe "#save?" do
+    context "public deck" do
+      let(:deck) { create(:deck, :public, user: owner) }
+
+      it "permits another authenticated user" do
+        expect(described_class.new(other, deck).save?).to be true
+      end
+
+      it "denies the owner" do
+        expect(described_class.new(owner, deck).save?).to be false
+      end
+
+      it "denies nil user (guest)" do
+        expect(described_class.new(nil, deck).save?).to be false
+      end
+    end
+
+    context "private deck" do
+      let(:deck) { create(:deck, :private, user: owner) }
+
+      it "permits another authenticated user" do
+        expect(described_class.new(other, deck).save?).to be true
+      end
+    end
+  end
+
   describe "Scope" do
     let!(:public_deck)   { create(:deck, :public,   user: owner) }
     let!(:unlisted_deck) { create(:deck, :unlisted, user: owner) }

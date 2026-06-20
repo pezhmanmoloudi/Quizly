@@ -1,0 +1,31 @@
+<%= turbo_frame_tag "modal" do %>
+  <div data-modal-target="dialog"
+       class="modal-wrapper"
+       role="dialog"
+       aria-modal="true"
+       aria-labelledby="delete-folder-title"
+       hidden>
+    <div class="modal-overlay" data-action="click->modal#closeOnBackdrop">
+      <div class="modal-dialog modal-dialog--narrow">
+        <h2 id="delete-folder-title" class="modal-title">
+          <%= t("folders.show.delete_title") %>
+        </h2>
+        <div class="modal-body">
+          <p><%= t("folders.show.delete_body") %></p>
+        </div>
+        <%= form_with url: folder_path(@folder), method: :delete,
+              data: { action: "turbo:submit-end->modal#closeOnSuccess" } do |f| %>
+          <div class="modal-actions">
+            <button type="button" class="btn btn--secondary"
+                    data-action="click->modal#close">
+              <%= t("shared.cancel") %>
+            </button>
+            <button type="submit" class="btn btn--danger">
+              <%= t("folders.show.delete_confirm") %>
+            </button>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>

@@ -4,6 +4,7 @@ pt:
     home: Início
     explore: Explorar
     my_decks: Meus baralhos
+    folders: Pastas
   topbar:
     search_placeholder: Pesquisar baralhos…
     search_aria: Pesquisar baralhos
@@ -301,6 +302,38 @@ pt:
       count:
         one: "%{count} cartão"
         other: "%{count} cartões"
+  folders:
+    create_failed: Não foi possível criar a pasta.
+    updated: Pasta atualizada.
+    deleted: Pasta excluída.
+    deck_removed: Baralho removido da pasta.
+    save_button: Salvar
+    saved_button: Salvo
+    create_modal:
+      title: Criar pasta
+      name_placeholder: Nome da pasta
+      submit: Criar
+    save_modal:
+      title: Salvar na pasta
+      save: Salvar
+      no_folders: Você ainda não tem nenhuma pasta.
+    index:
+      title: Minhas pastas
+      empty: Nenhuma pasta ainda.
+      deck_count:
+        one: "1 baralho"
+        other: "%{count} baralhos"
+    show:
+      empty: Nenhum baralho nesta pasta ainda.
+      options_aria: Opções da pasta
+      rename: Renomear
+      rename_save: Salvar
+      delete_title: Excluir esta pasta?
+      delete_body: Esta ação não pode ser desfeita.
+      delete_confirm: Excluir
+      delete: Excluir
+      deck_options_aria: Opções do baralho
+      remove_from_folder: Remover da pasta
   flashcards:
     new:
       back: "← Voltar para %{name}"

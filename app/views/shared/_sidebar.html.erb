@@ -47,6 +47,23 @@
       <% end %>
     </div>
 
+    <hr class="sidebar__divider">
+
+    <div class="sidebar__section-header">
+      <%= link_to folders_path,
+            class: "sidebar__section-title #{"is-active" if request.path.start_with?(folders_path)}",
+            data: { tooltip: t("nav.folders") } do %>
+        <%= render "shared/icons/folder", css_class: "icon--sm" %>
+        <span><%= t("nav.folders") %></span>
+      <% end %>
+    </div>
+
+    <div class="sidebar__folder-section">
+      <%= turbo_frame_tag "sidebar-folders" do %>
+        <%= render "folders/sidebar_list", folders: @sidebar_folders %>
+      <% end %>
+    </div>
+
   </nav>
 
 </aside>

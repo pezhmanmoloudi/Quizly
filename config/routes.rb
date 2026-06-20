@@ -45,6 +45,15 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :folders do
+    member do
+      get :rename_modal
+      get :delete_modal
+    end
+    resource :deck, only: [:destroy], controller: "folder_decks"
+  end
+  resources :folder_deck_assignments, only: [:create, :new]
+
   resources :notifications, only: [ :index ] do
     collection do
       get  :badge

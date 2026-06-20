@@ -1,0 +1,26 @@
+<div id="<%= dom_id(deck, :in_folder) %>" class="folder-deck-card">
+  <%= render "decks/deck_card", deck: deck %>
+
+  <div data-controller="create-menu"
+       data-action="click@document->create-menu#closeIfOutside keydown.esc@document->create-menu#close"
+       class="folder-deck-card__options">
+    <button class="btn-icon"
+            data-create-menu-target="button"
+            data-action="click->create-menu#toggle"
+            aria-haspopup="true"
+            aria-label="<%= t("folders.show.deck_options_aria") %>">
+      <%= render "shared/icons/ellipsis_horizontal" %>
+    </button>
+    <div data-create-menu-target="menu"
+         data-open="false"
+         class="folder-deck-card__menu"
+         role="menu">
+      <%= button_to t("folders.show.remove_from_folder"),
+            folder_deck_path(folder),
+            method: :delete,
+            params: { deck_id: deck.id },
+            class: "folder-deck-card__menu-item folder-deck-card__menu-item--danger",
+            role: "menuitem" %>
+    </div>
+  </div>
+</div>
