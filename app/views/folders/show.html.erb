@@ -3,9 +3,7 @@
 <div class="container">
   <div class="folder-show-header">
     <div class="folder-show-header__left">
-      <div class="folder-show-header__icon">
-        <%= render "shared/icons/folder", css_class: "icon--lg" %>
-      </div>
+      <%= render "shared/icons/folder", css_class: "folder-show-header__icon" %>
       <h1 class="folder-show-header__name">
         <span id="folder-<%= @folder.id %>-name"><%= @folder.name %></span>
       </h1>
