@@ -341,6 +341,18 @@ ru:
       all_filter: Все
       add_tag: Добавить тег
       empty_description: Сохраняйте колоды, чтобы организовать ваши учебные коллекции.
+      start_building: Давайте начнём создавать вашу папку
+      add_study_materials: Добавить учебные материалы
+    add_decks_modal:
+      title: Добавить учебные материалы
+      done: Готово
+      no_decks: У вас пока нет колод.
+      save: Сохранить в папку
+      remove: Удалить из папки
+      my_decks: Мои колоды
+      explore: Исследовать
+      search_placeholder: Поиск колод…
+      no_results: Ни одна колода не соответствует вашему поиску.
   flashcards:
     new:
       back: "← Назад к %{name}"

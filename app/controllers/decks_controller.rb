@@ -35,7 +35,7 @@ class DecksController < ApplicationController
   def show
     @pagy, @flashcards = pagy(@deck.flashcards.order(:position), limit: items_per_page)
     @items_per_page = items_per_page
-    if authenticated? && !@access.owner?
+    if authenticated?
       @is_saved = DeckFolder.joins(:folder)
                             .where(deck_id: @deck.id, folders: { user_id: Current.user.id })
                             .exists?

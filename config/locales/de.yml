@@ -335,6 +335,18 @@ de:
       all_filter: Alle
       add_tag: Tag hinzufügen
       empty_description: Speichere Decks, um deine Lernsammlungen zu organisieren.
+      start_building: Lass uns deinen Ordner aufbauen
+      add_study_materials: Lernmaterialien hinzufügen
+    add_decks_modal:
+      title: Lernmaterialien hinzufügen
+      done: Fertig
+      no_decks: Du hast noch keine Decks.
+      save: Im Ordner speichern
+      remove: Aus Ordner entfernen
+      my_decks: Meine Decks
+      explore: Entdecken
+      search_placeholder: Decks durchsuchen…
+      no_results: Keine Decks entsprechen deiner Suche.
   flashcards:
     new:
       back: "← Zurück zu %{name}"

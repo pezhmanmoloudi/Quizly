@@ -332,6 +332,18 @@ ar:
       all_filter: الكل
       add_tag: إضافة وسم
       empty_description: احفظ المجموعات لتنظيم مجموعات دراستك.
+      start_building: لنبدأ في بناء مجلدك
+      add_study_materials: إضافة مواد الدراسة
+    add_decks_modal:
+      title: إضافة مواد الدراسة
+      done: تم
+      no_decks: ليس لديك أي مجموعات بعد.
+      save: حفظ في المجلد
+      remove: إزالة من المجلد
+      my_decks: مجموعاتي
+      explore: استكشاف
+      search_placeholder: البحث في المجموعات…
+      no_results: لا توجد مجموعات تطابق بحثك.
   flashcards:
     new:
       back: "→ رجوع إلى %{name}"

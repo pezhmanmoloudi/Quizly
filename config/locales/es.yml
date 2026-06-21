@@ -336,6 +336,18 @@ es:
       all_filter: Todo
       add_tag: Añadir etiqueta
       empty_description: Guarda mazos para organizar tus colecciones de estudio.
+      start_building: Empecemos a construir tu carpeta
+      add_study_materials: Añadir materiales de estudio
+    add_decks_modal:
+      title: Añadir materiales de estudio
+      done: Listo
+      no_decks: Aún no tienes ningún mazo.
+      save: Guardar en carpeta
+      remove: Eliminar de carpeta
+      my_decks: Mis mazos
+      explore: Explorar
+      search_placeholder: Buscar mazos…
+      no_results: Ningún mazo coincide con tu búsqueda.
   flashcards:
     new:
       back: "← Volver a %{name}"

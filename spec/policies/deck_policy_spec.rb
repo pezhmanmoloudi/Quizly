@@ -192,8 +192,8 @@ RSpec.describe DeckPolicy, type: :policy do
         expect(described_class.new(other, deck).save?).to be true
       end
 
-      it "denies the owner" do
-        expect(described_class.new(owner, deck).save?).to be false
+      it "permits the owner" do
+        expect(described_class.new(owner, deck).save?).to be true
       end
 
       it "denies nil user (guest)" do

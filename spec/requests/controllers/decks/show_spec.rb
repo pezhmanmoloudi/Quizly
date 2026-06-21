@@ -246,9 +246,16 @@ RSpec.describe "Decks#show", type: :request do
       context "when authenticated as owner" do
         before { sign_in(user) }
 
-        it "does not show the save modal link" do
+        it "shows the Save button" do
           get deck_path(public_deck)
-          expect(response.body).not_to include(new_folder_deck_assignment_path(deck_id: public_deck.id))
+          expect(response.body).to include(new_folder_deck_assignment_path(deck_id: public_deck.id))
+        end
+
+        it "shows Saved when the owner's deck is already in a folder" do
+          folder = create(:folder, user: user)
+          create(:deck_folder, deck: public_deck, folder: folder)
+          get deck_path(public_deck)
+          expect(response.body).to include(I18n.t("folders.saved_button"))
         end
       end
 

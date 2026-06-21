@@ -332,6 +332,18 @@ fa:
       all_filter: همه
       add_tag: افزودن برچسب
       empty_description: دک‌ها را ذخیره کنید تا مجموعه‌های مطالعه‌تان را سازماندهی کنید.
+      start_building: بیایید پوشه‌تان را بسازیم
+      add_study_materials: افزودن مواد مطالعاتی
+    add_decks_modal:
+      title: افزودن مواد مطالعاتی
+      done: تمام
+      no_decks: هنوز هیچ دکی ندارید.
+      save: ذخیره در پوشه
+      remove: حذف از پوشه
+      my_decks: دک‌های من
+      explore: کشف
+      search_placeholder: جستجوی دک…
+      no_results: هیچ دکی با جستجوی شما مطابقت ندارد.
   flashcards:
     new:
       back: "→ بازگشت به %{name}"

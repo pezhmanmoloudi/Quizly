@@ -1,6 +1,6 @@
 <% content_for :title, @folder.name %>
 
-<div class="container">
+<div class="container folder-show__content">
   <div class="folder-show-header">
     <div class="folder-show-header__left">
       <%= render "shared/icons/folder", css_class: "folder-show-header__icon" %>
@@ -55,16 +55,21 @@
   </div>
 
   <% if @decks.empty? %>
-    <%= render "shared/empty_state",
-          icon: "folder",
-          title: t("folders.show.empty"),
-          description: t("folders.show.empty_description"),
-          variant: :dashboard %>
-  <% else %>
-    <div id="folder-<%= @folder.id %>-decks" class="deck-grid">
-      <% @decks.each do |deck| %>
-        <%= render "folders/deck_in_folder", deck: deck, folder: @folder %>
-      <% end %>
+    <div id="folder-<%= @folder.id %>-empty-state" class="empty-state empty-state--dashboard">
+      <h3 class="empty-state__title"><%= t("folders.show.start_building") %></h3>
     </div>
   <% end %>
+
+  <div id="folder-<%= @folder.id %>-decks" class="deck-grid">
+    <% @decks.each do |deck| %>
+      <%= render "folders/deck_in_folder", deck: deck, folder: @folder %>
+    <% end %>
+  </div>
+</div>
+
+<div class="folder-show-fixed-bar">
+  <%= link_to t("folders.show.add_study_materials"),
+        add_decks_modal_folder_path(@folder),
+        class: "btn btn--primary",
+        data: { turbo_frame: "modal" } %>
 </div>

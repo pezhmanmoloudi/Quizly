@@ -7,7 +7,7 @@ class DeckPolicy < ApplicationPolicy
   def learn?             = user.present? && show?
   def test?              = user.present? && show?
   def copy?              = user.present? && !owner? && (record.public? || record.unlisted?)
-  def save?              = user.present? && !owner?
+  def save?              = user.present?
   def manage_access?     = owner?
   def manage_flashcards? = owner?
 
