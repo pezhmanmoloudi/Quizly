@@ -6,22 +6,81 @@
     <div class="deck-detail-header__top">
       <h1 class="deck-detail-header__name"><%= @deck.name %></h1>
       <div class="deck-detail-header__actions">
+        <% if policy(@deck).save? %>
+          <%= render "shared/save_button", deck: @deck, is_saved: @is_saved %>
+        <% end %>
+
         <% if is_owner %>
-          <%= link_to edit_deck_path(@deck), class: "btn btn--secondary btn-with-icon" do %>
-            <%= render "shared/icons/pencil" %> <%= t("decks.show.edit") %>
-          <% end %>
+          <div data-controller="create-menu modal"
+               data-action="click@document->create-menu#closeIfOutside keydown.esc@document->create-menu#close"
+               class="deck-options">
+            <button class="btn-icon"
+                    data-create-menu-target="button"
+                    data-action="click->create-menu#toggle"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                    aria-label="<%= t("folders.show.options_aria") %>">
+              <%= render "shared/icons/ellipsis_horizontal" %>
+            </button>
+            <div data-create-menu-target="menu"
+                 data-open="false"
+                 class="deck-options__menu"
+                 role="menu">
+              <%= link_to edit_deck_path(@deck),
+                    class: "deck-options__item",
+                    role: "menuitem",
+                    data: { action: "click->create-menu#close" } do %>
+                <%= render "shared/icons/pencil", css_class: "icon--sm" %>
+                <%= t("decks.show.edit") %>
+              <% end %>
+              <button class="deck-options__item deck-options__item--danger"
+                      role="menuitem"
+                      data-action="click->modal#open click->create-menu#close">
+                <%= render "shared/icons/trash", css_class: "icon--sm" %>
+                <%= t("decks.show.delete") %>
+              </button>
+            </div>
+
+            <% body = capture do %>
+              <p><%= t("decks.show.delete_modal_warning") %></p>
+            <% end %>
+            <%= render "shared/destructive_modal",
+                  modal_id: dom_id(@deck, :delete_modal),
+                  title: t("decks.show.delete_modal_title"),
+                  body_html: body,
+                  confirm_label: t("decks.show.delete_modal_confirm"),
+                  form_url: deck_path(@deck),
+                  form_method: :delete %>
+          </div>
         <% end %>
 
         <% if policy(@deck).copy? %>
-          <%= form_with url: copy_deck_path(@deck), method: :post do %>
-            <button type="submit" class="btn btn--secondary btn-with-icon">
-              <%= render "shared/icons/copy" %> <%= t("decks.action.copy") %>
+          <div data-controller="create-menu"
+               data-action="click@document->create-menu#closeIfOutside keydown.esc@document->create-menu#close"
+               class="deck-options">
+            <button class="btn-icon"
+                    data-create-menu-target="button"
+                    data-action="click->create-menu#toggle"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                    aria-label="<%= t("folders.show.options_aria") %>">
+              <%= render "shared/icons/ellipsis_horizontal" %>
             </button>
-          <% end %>
-        <% end %>
-
-        <% if policy(@deck).save? %>
-          <%= render "shared/save_button", deck: @deck, is_saved: @is_saved %>
+            <div data-create-menu-target="menu"
+                 data-open="false"
+                 class="deck-options__menu"
+                 role="menu">
+              <%= form_with url: copy_deck_path(@deck), method: :post do %>
+                <button type="submit"
+                        class="deck-options__item"
+                        role="menuitem"
+                        data-action="click->create-menu#close">
+                  <%= render "shared/icons/copy", css_class: "icon--sm" %>
+                  <%= t("decks.action.copy") %>
+                </button>
+              <% end %>
+            </div>
+          </div>
         <% end %>
 
       </div>

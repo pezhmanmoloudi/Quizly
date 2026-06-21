@@ -337,6 +337,14 @@ pt:
       all_filter: Tudo
       add_tag: Adicionar etiqueta
       empty_description: Salve baralhos para organizar suas coleções de estudo.
+      start_building: Vamos começar a construir sua pasta
+      add_study_materials: Adicionar materiais de estudo
+    add_decks_modal:
+      title: Adicionar materiais de estudo
+      done: Concluído
+      no_decks: Você ainda não tem nenhum baralho.
+      save: Salvar na pasta
+      remove: Remover da pasta
   flashcards:
     new:
       back: "← Voltar para %{name}"

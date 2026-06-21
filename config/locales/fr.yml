@@ -340,6 +340,14 @@ fr:
       all_filter: Tout
       add_tag: Ajouter un tag
       empty_description: Enregistrez des paquets pour organiser vos collections d'étude.
+      start_building: Commençons à construire votre dossier
+      add_study_materials: Ajouter des supports d'étude
+    add_decks_modal:
+      title: Ajouter des supports d'étude
+      done: Terminer
+      no_decks: Vous n'avez pas encore de paquets.
+      save: Enregistrer dans le dossier
+      remove: Retirer du dossier
   flashcards:
     new:
       back: "← Retour à %{name}"

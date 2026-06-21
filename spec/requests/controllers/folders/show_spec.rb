@@ -27,7 +27,7 @@ RSpec.describe "Folders#show", type: :request do
 
       it "shows empty state when no decks" do
         get folder_path(folder)
-        expect(response.body).to include(I18n.t("folders.show.empty"))
+        expect(response.body).to include("folder-#{folder.id}-empty-state")
       end
 
       it "renders rename and delete options" do
@@ -51,9 +51,9 @@ RSpec.describe "Folders#show", type: :request do
         expect(response.body).to include(I18n.t("folders.show.add_tag"))
       end
 
-      it "shows empty state description when no decks" do
+      it "shows the add study materials button" do
         get folder_path(folder)
-        expect(response.body).to include(I18n.t("folders.show.empty_description"))
+        expect(response.body).to include(I18n.t("folders.show.add_study_materials"))
       end
     end
 

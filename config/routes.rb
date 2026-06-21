@@ -47,8 +47,10 @@ Rails.application.routes.draw do
 
   resources :folders do
     member do
-      get :rename_modal
-      get :delete_modal
+      get   :rename_modal
+      get   :delete_modal
+      get   :add_decks_modal
+      patch :update_deck_assignments
     end
     resource :deck, only: [:destroy], controller: "folder_decks"
   end

@@ -1,0 +1,26 @@
+<label id="<%= dom_id(deck, :modal_row) %>"
+       class="add-decks-deck-row <%= 'add-decks-deck-row--selected' if in_folder %>">
+  <div class="add-decks-deck-row__info">
+    <%= render "shared/icons/rectangle_stack", css_class: "add-decks-deck-row__icon" %>
+    <div class="add-decks-deck-row__text">
+      <span class="add-decks-deck-row__name"><%= deck.name %></span>
+      <span class="add-decks-deck-row__meta"><%= t("decks.deck_card.count", count: deck.flashcards.size) %></span>
+    </div>
+  </div>
+
+  <input type="checkbox"
+         name="deck_ids[]"
+         value="<%= deck.id %>"
+         <%= "checked" if in_folder %>
+         class="sr-only"
+         data-action="change->add-decks-modal#handleChange">
+
+  <span class="add-decks-deck-row__toggle" aria-hidden="true">
+    <span class="add-decks-deck-row__check-icon">
+      <%= render "shared/icons/check", css_class: "icon" %>
+    </span>
+    <span class="add-decks-deck-row__plus-icon">
+      <%= render "shared/icons/plus", css_class: "icon" %>
+    </span>
+  </span>
+</label>

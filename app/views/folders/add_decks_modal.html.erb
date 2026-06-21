@@ -1,0 +1,48 @@
+<%= turbo_frame_tag "modal" do %>
+  <div data-modal-target="dialog"
+       class="modal-wrapper"
+       role="dialog"
+       aria-modal="true"
+       aria-labelledby="add-decks-modal-title"
+       hidden>
+    <div class="modal-overlay" data-action="click->modal#closeOnBackdrop">
+      <div class="modal-dialog modal-dialog--add-decks">
+        <div class="modal-dialog__header">
+          <h2 id="add-decks-modal-title" class="modal-title">
+            <%= t("folders.add_decks_modal.title") %>
+          </h2>
+          <button type="button"
+                  class="modal-icon-close"
+                  aria-label="<%= t("shared.close") %>"
+                  data-action="click->modal#close">
+            <%= render "shared/icons/x_mark" %>
+          </button>
+        </div>
+
+        <%= form_with url: update_deck_assignments_folder_path(@folder),
+              method: :patch,
+              data: { controller: "add-decks-modal", turbo_frame: "_top" } do |f| %>
+
+          <div class="add-decks-list">
+            <% if @decks.empty? %>
+              <p class="add-decks-list__empty"><%= t("folders.add_decks_modal.no_decks") %></p>
+            <% else %>
+              <% @decks.each do |deck| %>
+                <%= render "folders/add_decks_modal_deck",
+                      deck: deck,
+                      in_folder: @folder_deck_ids.include?(deck.id) %>
+              <% end %>
+            <% end %>
+          </div>
+
+          <div class="modal-actions">
+            <%= f.submit t("folders.add_decks_modal.done"),
+                  class: "btn btn--primary",
+                  disabled: true,
+                  data: { "add_decks_modal_target": "doneButton" } %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>

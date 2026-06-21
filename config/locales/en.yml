@@ -320,6 +320,8 @@ en:
         other: "%{count} decks"
     show:
       empty: No decks in this folder yet.
+      start_building: Let's start building your folder
+      add_study_materials: Add study materials
       options_aria: Folder options
       rename: Rename
       rename_save: Save
@@ -332,6 +334,12 @@ en:
       all_filter: All
       add_tag: Add tag
       empty_description: Save decks to organize your study collections.
+    add_decks_modal:
+      title: Add study materials
+      done: Done
+      no_decks: You don't have any decks yet.
+      save: Save to folder
+      remove: Remove from folder
   flashcards:
     new:
       back: "← Back to %{name}"

@@ -333,6 +333,14 @@ tr:
       all_filter: Tümü
       add_tag: Etiket ekle
       empty_description: Çalışma koleksiyonlarınızı düzenlemek için desteler kaydedin.
+      start_building: Klasörünüzü oluşturmaya başlayalım
+      add_study_materials: Çalışma materyali ekle
+    add_decks_modal:
+      title: Çalışma materyali ekle
+      done: Tamam
+      no_decks: Henüz hiç destiniz yok.
+      save: Klasöre kaydet
+      remove: Klasörden kaldır
   flashcards:
     new:
       back: "← %{name} sayfasına geri dön"
