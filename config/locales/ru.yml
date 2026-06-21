@@ -338,6 +338,9 @@ ru:
       delete: Удалить
       deck_options_aria: Параметры колоды
       remove_from_folder: Убрать из папки
+      all_filter: Все
+      add_tag: Добавить тег
+      empty_description: Сохраняйте колоды, чтобы организовать ваши учебные коллекции.
   flashcards:
     new:
       back: "← Назад к %{name}"

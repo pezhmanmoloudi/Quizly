@@ -215,6 +215,7 @@
 .folder-options__item {
   display: flex;
   align-items: center;
+  gap: 0.5rem;
   width: 100%;
   padding: 0.55rem 0.875rem;
   font-size: var(--text-sm);

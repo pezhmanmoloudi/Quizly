@@ -330,6 +330,9 @@ ckb:
       delete: سڕینەوە
       deck_options_aria: هەڵبژاردنەکانی دەستە
       remove_from_folder: لابردن لە پوشەکەوە
+      all_filter: هەموو
+      add_tag: تاگ زیادبکە
+      empty_description: دیکەکان پاشەکەوت بکە بۆ رێکخستنی کۆمەڵەکانت.
   flashcards:
     new:
       back: "→ گەڕانەوە بۆ %{name}"

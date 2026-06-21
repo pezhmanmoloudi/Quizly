@@ -329,6 +329,9 @@ fa:
       delete: حذف
       deck_options_aria: گزینه‌های دسته
       remove_from_folder: حذف از پوشه
+      all_filter: همه
+      add_tag: افزودن برچسب
+      empty_description: دک‌ها را ذخیره کنید تا مجموعه‌های مطالعه‌تان را سازماندهی کنید.
   flashcards:
     new:
       back: "→ بازگشت به %{name}"

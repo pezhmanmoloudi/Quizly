@@ -333,6 +333,9 @@ es:
       delete: Eliminar
       deck_options_aria: Opciones del mazo
       remove_from_folder: Quitar de la carpeta
+      all_filter: Todo
+      add_tag: Añadir etiqueta
+      empty_description: Guarda mazos para organizar tus colecciones de estudio.
   flashcards:
     new:
       back: "← Volver a %{name}"

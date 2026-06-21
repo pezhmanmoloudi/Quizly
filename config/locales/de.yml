@@ -332,6 +332,9 @@ de:
       delete: Löschen
       deck_options_aria: Deck-Optionen
       remove_from_folder: Aus Ordner entfernen
+      all_filter: Alle
+      add_tag: Tag hinzufügen
+      empty_description: Speichere Decks, um deine Lernsammlungen zu organisieren.
   flashcards:
     new:
       back: "← Zurück zu %{name}"

@@ -330,6 +330,9 @@ tr:
       delete: Sil
       deck_options_aria: Deste seçenekleri
       remove_from_folder: Klasörden kaldır
+      all_filter: Tümü
+      add_tag: Etiket ekle
+      empty_description: Çalışma koleksiyonlarınızı düzenlemek için desteler kaydedin.
   flashcards:
     new:
       back: "← %{name} sayfasına geri dön"

@@ -35,6 +35,26 @@ RSpec.describe "Folders#show", type: :request do
         expect(response.body).to include(I18n.t("folders.show.rename"))
         expect(response.body).to include(I18n.t("folders.show.delete"))
       end
+
+      it "renders the folder icon header" do
+        get folder_path(folder)
+        expect(response.body).to include("folder-show-header")
+      end
+
+      it "renders the All filter chip" do
+        get folder_path(folder)
+        expect(response.body).to include(I18n.t("folders.show.all_filter"))
+      end
+
+      it "renders the Add tag chip" do
+        get folder_path(folder)
+        expect(response.body).to include(I18n.t("folders.show.add_tag"))
+      end
+
+      it "shows empty state description when no decks" do
+        get folder_path(folder)
+        expect(response.body).to include(I18n.t("folders.show.empty_description"))
+      end
     end
 
     context "when authenticated as another user" do

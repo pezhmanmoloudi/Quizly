@@ -1,12 +1,16 @@
 <% content_for :title, @folder.name %>
 
 <div class="container">
-  <div class="page-header">
-    <h1>
-      <span id="folder-<%= @folder.id %>-name"><%= @folder.name %></span>
-    </h1>
+  <div class="folder-show-header">
+    <div class="folder-show-header__left">
+      <div class="folder-show-header__icon">
+        <%= render "shared/icons/folder", css_class: "icon--lg" %>
+      </div>
+      <h1 class="folder-show-header__name">
+        <span id="folder-<%= @folder.id %>-name"><%= @folder.name %></span>
+      </h1>
+    </div>
 
-    <%# 3-dot options menu %>
     <div data-controller="create-menu"
          data-action="click@document->create-menu#closeIfOutside keydown.esc@document->create-menu#close"
          class="folder-options">
@@ -28,6 +32,7 @@
               class: "folder-options__item",
               role: "menuitem",
               data: { turbo_frame: "modal", action: "click->create-menu#close" } do %>
+          <%= render "shared/icons/pencil", css_class: "icon--sm" %>
           <%= t("folders.show.rename") %>
         <% end %>
 
@@ -35,6 +40,7 @@
               class: "folder-options__item folder-options__item--danger",
               role: "menuitem",
               data: { turbo_frame: "modal", action: "click->create-menu#close" } do %>
+          <%= render "shared/icons/trash", css_class: "icon--sm" %>
           <%= t("folders.show.delete") %>
         <% end %>
 
@@ -42,10 +48,19 @@
     </div>
   </div>
 
+  <div class="folder-show-filters">
+    <span class="filter-chip filter-chip--active"><%= t("folders.show.all_filter") %></span>
+    <button class="filter-chip filter-chip--ghost" type="button" disabled>
+      <%= render "shared/icons/plus", css_class: "icon--xs" %>
+      <%= t("folders.show.add_tag") %>
+    </button>
+  </div>
+
   <% if @decks.empty? %>
     <%= render "shared/empty_state",
           icon: "folder",
           title: t("folders.show.empty"),
+          description: t("folders.show.empty_description"),
           variant: :dashboard %>
   <% else %>
     <div id="folder-<%= @folder.id %>-decks" class="deck-grid">

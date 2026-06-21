@@ -329,6 +329,9 @@ ar:
       delete: حذف
       deck_options_aria: خيارات المجموعة
       remove_from_folder: إزالة من المجلد
+      all_filter: الكل
+      add_tag: إضافة وسم
+      empty_description: احفظ المجموعات لتنظيم مجموعات دراستك.
   flashcards:
     new:
       back: "→ رجوع إلى %{name}"

@@ -1,0 +1,171 @@
+/* ── Folder show page ── */
+
+.folder-show-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.folder-show-header__left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  min-width: 0;
+}
+
+.folder-show-header__icon {
+  flex-shrink: 0;
+  width: 3.25rem;
+  height: 3.25rem;
+  border-radius: 12px;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-secondary);
+}
+
+.folder-show-header__name {
+  font-size: 1.75rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  color: var(--color-text);
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ── Filter chips ── */
+
+.folder-show-filters {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.filter-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.3rem 0.75rem;
+  border-radius: var(--radius-full);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  font-family: inherit;
+  line-height: 1.5;
+  cursor: pointer;
+  border: 1.5px solid var(--color-border);
+  background: transparent;
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  transition: background var(--transition-base), border-color var(--transition-base),
+              color var(--transition-base);
+}
+
+.filter-chip--active {
+  background: var(--color-text);
+  border-color: var(--color-text);
+  color: var(--color-surface);
+}
+
+.filter-chip--ghost {
+  color: var(--color-muted);
+  border-style: dashed;
+}
+
+.filter-chip--ghost:hover:not(:disabled) {
+  color: var(--color-text-secondary);
+  border-color: var(--color-border);
+}
+
+.filter-chip:disabled {
+  cursor: default;
+  opacity: 0.65;
+}
+
+/* ── Deck card inside folder (with per-card options overlay) ── */
+
+.folder-deck-card {
+  position: relative;
+}
+
+.folder-deck-card__options {
+  position: absolute;
+  top: 0.5rem;
+  inset-inline-end: 0.5rem;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity var(--transition-base);
+}
+
+.folder-deck-card:hover .folder-deck-card__options,
+.folder-deck-card__options:focus-within {
+  opacity: 1;
+}
+
+.folder-deck-card__menu {
+  position: absolute;
+  top: calc(100% + 0.25rem);
+  inset-inline-end: 0;
+  min-width: 11rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-xl);
+  z-index: var(--z-dropdown);
+  padding: 0.25rem 0;
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(-4px) scale(0.98);
+  transition: opacity var(--transition-base), transform var(--transition-base),
+              visibility 0s var(--transition-base);
+}
+
+.folder-deck-card__menu[data-open="true"] {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  transition: opacity var(--transition-base), transform var(--transition-base),
+              visibility 0s 0s;
+}
+
+.folder-deck-card__menu-item {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 0.55rem 0.875rem;
+  font-size: var(--text-sm);
+  font-family: inherit;
+  color: var(--color-text-secondary);
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: start;
+  text-decoration: none;
+  transition: background var(--transition-base), color var(--transition-base);
+}
+
+.folder-deck-card__menu-item:hover {
+  background: var(--color-bg);
+  color: var(--color-text);
+}
+
+.folder-deck-card__menu-item--danger { color: var(--color-danger); }
+
+.folder-deck-card__menu-item--danger:hover {
+  background: var(--color-danger-bg);
+  color: var(--color-danger);
+}
+
+/* ── Responsive ── */
+
+@media (max-width: 480px) {
+  .folder-show-header__name { font-size: 1.375rem; }
+  .folder-show-header__icon { width: 2.75rem; height: 2.75rem; border-radius: 10px; }
+}

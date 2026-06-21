@@ -334,6 +334,9 @@ pt:
       delete: Excluir
       deck_options_aria: Opções do baralho
       remove_from_folder: Remover da pasta
+      all_filter: Tudo
+      add_tag: Adicionar etiqueta
+      empty_description: Salve baralhos para organizar suas coleções de estudo.
   flashcards:
     new:
       back: "← Voltar para %{name}"

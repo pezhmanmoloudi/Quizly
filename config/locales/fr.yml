@@ -337,6 +337,9 @@ fr:
       delete: Supprimer
       deck_options_aria: Options du paquet
       remove_from_folder: Retirer du dossier
+      all_filter: Tout
+      add_tag: Ajouter un tag
+      empty_description: Enregistrez des paquets pour organiser vos collections d'étude.
   flashcards:
     new:
       back: "← Retour à %{name}"

@@ -329,6 +329,9 @@ en:
       delete: Delete
       deck_options_aria: Deck options
       remove_from_folder: Remove from folder
+      all_filter: All
+      add_tag: Add tag
+      empty_description: Save decks to organize your study collections.
   flashcards:
     new:
       back: "← Back to %{name}"
