@@ -29,9 +29,8 @@ RSpec.describe "Folders#update_deck_assignments", type: :request do
         expect(DeckFolder.where(folder: folder).pluck(:deck_id)).to contain_exactly(deck_a.id)
       end
 
-      it "does not remove decks belonging to other users" do
-        other_user = create(:user)
-        other_deck = create(:deck, user: other_user)
+      it "does not remove private decks belonging to other users" do
+        other_deck = create(:deck, user: create(:user))
         create(:deck_folder, deck: other_deck, folder: folder)
 
         patch update_deck_assignments_folder_path(folder),
@@ -40,13 +39,34 @@ RSpec.describe "Folders#update_deck_assignments", type: :request do
         expect(DeckFolder.where(folder: folder, deck: other_deck)).to exist
       end
 
-      it "ignores deck IDs that belong to another user" do
+      it "ignores deck IDs that belong to another user's private deck" do
         other_deck = create(:deck, user: create(:user))
 
         expect {
           patch update_deck_assignments_folder_path(folder),
                 params: { deck_ids: [ other_deck.id ] }
         }.not_to change(DeckFolder, :count)
+      end
+
+      it "adds a discoverable explore deck to the folder" do
+        explore_deck = create(:deck, :public, user: create(:user))
+
+        expect {
+          patch update_deck_assignments_folder_path(folder),
+                params: { deck_ids: [ explore_deck.id ] }
+        }.to change(DeckFolder, :count).by(1)
+      end
+
+      it "removes a discoverable explore deck from the folder when not submitted" do
+        explore_deck = create(:deck, :public, user: create(:user))
+        create(:deck_folder, deck: explore_deck, folder: folder)
+
+        expect {
+          patch update_deck_assignments_folder_path(folder),
+                params: { deck_ids: [] }
+        }.to change(DeckFolder, :count).by(-1)
+
+        expect(DeckFolder.where(folder: folder, deck: explore_deck)).not_to exist
       end
 
       it "redirects to the folder after saving" do

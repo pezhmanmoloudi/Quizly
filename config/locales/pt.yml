@@ -345,6 +345,10 @@ pt:
       no_decks: Você ainda não tem nenhum baralho.
       save: Salvar na pasta
       remove: Remover da pasta
+      my_decks: Meus baralhos
+      explore: Explorar
+      search_placeholder: Pesquisar baralhos…
+      no_results: Nenhum baralho corresponde à sua pesquisa.
   flashcards:
     new:
       back: "← Voltar para %{name}"

@@ -340,6 +340,10 @@ ar:
       no_decks: ليس لديك أي مجموعات بعد.
       save: حفظ في المجلد
       remove: إزالة من المجلد
+      my_decks: مجموعاتي
+      explore: استكشاف
+      search_placeholder: البحث في المجموعات…
+      no_results: لا توجد مجموعات تطابق بحثك.
   flashcards:
     new:
       back: "→ رجوع إلى %{name}"

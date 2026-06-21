@@ -341,6 +341,10 @@ tr:
       no_decks: Henüz hiç destiniz yok.
       save: Klasöre kaydet
       remove: Klasörden kaldır
+      my_decks: Destelerim
+      explore: Keşfet
+      search_placeholder: Deste ara…
+      no_results: Aramanızla eşleşen deste yok.
   flashcards:
     new:
       back: "← %{name} sayfasına geri dön"

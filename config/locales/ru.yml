@@ -349,6 +349,10 @@ ru:
       no_decks: У вас пока нет колод.
       save: Сохранить в папку
       remove: Удалить из папки
+      my_decks: Мои колоды
+      explore: Исследовать
+      search_placeholder: Поиск колод…
+      no_results: Ни одна колода не соответствует вашему поиску.
   flashcards:
     new:
       back: "← Назад к %{name}"

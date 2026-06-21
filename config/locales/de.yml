@@ -343,6 +343,10 @@ de:
       no_decks: Du hast noch keine Decks.
       save: Im Ordner speichern
       remove: Aus Ordner entfernen
+      my_decks: Meine Decks
+      explore: Entdecken
+      search_placeholder: Decks durchsuchen…
+      no_results: Keine Decks entsprechen deiner Suche.
   flashcards:
     new:
       back: "← Zurück zu %{name}"

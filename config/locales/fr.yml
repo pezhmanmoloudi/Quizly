@@ -348,6 +348,10 @@ fr:
       no_decks: Vous n'avez pas encore de paquets.
       save: Enregistrer dans le dossier
       remove: Retirer du dossier
+      my_decks: Mes paquets
+      explore: Explorer
+      search_placeholder: Rechercher des paquets…
+      no_results: Aucun paquet ne correspond à votre recherche.
   flashcards:
     new:
       back: "← Retour à %{name}"

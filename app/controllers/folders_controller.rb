@@ -31,21 +31,28 @@ class FoldersController < ApplicationController
 
   def add_decks_modal
     authorize @folder, :add_deck?
-    @decks = Current.user.decks.includes(:flashcards).order(updated_at: :desc)
+    @my_decks      = Current.user.decks.includes(:flashcards).order(updated_at: :desc)
+    @explore_decks = Deck.discoverable.where.not(user_id: Current.user.id)
+                         .includes(:flashcards, :user).order(updated_at: :desc)
     @folder_deck_ids = DeckFolder.where(folder: @folder).pluck(:deck_id).to_set
   end
 
   def update_deck_assignments
     authorize @folder, :add_deck?
     requested_ids = Array(params[:deck_ids]).map(&:to_i).to_set
-    valid_ids     = Current.user.decks.where(id: requested_ids).pluck(:id).to_set
     current_ids   = DeckFolder.where(folder: @folder).pluck(:deck_id).to_set
-    user_deck_ids = Current.user.decks.pluck(:id).to_set
+
+    valid_ids     = Deck.where(id: requested_ids, user_id: Current.user.id)
+                        .or(Deck.discoverable.where(id: requested_ids))
+                        .pluck(:id).to_set
+    removable_ids = Deck.where(id: current_ids, user_id: Current.user.id)
+                        .or(Deck.discoverable.where(id: current_ids))
+                        .pluck(:id).to_set
 
     (valid_ids - current_ids).each do |id|
       Folders::AssignDeckService.call(folder: @folder, deck: Deck.find(id), action: :add)
     end
-    ((current_ids & user_deck_ids) - valid_ids).each do |id|
+    (removable_ids - valid_ids).each do |id|
       Folders::AssignDeckService.call(folder: @folder, deck: Deck.find(id), action: :remove)
     end
 

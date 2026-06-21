@@ -340,6 +340,10 @@ en:
       no_decks: You don't have any decks yet.
       save: Save to folder
       remove: Remove from folder
+      my_decks: My Decks
+      explore: Explore
+      search_placeholder: Search decks…
+      no_results: No decks match your search.
   flashcards:
     new:
       back: "← Back to %{name}"

@@ -1,10 +1,15 @@
 <label id="<%= dom_id(deck, :modal_row) %>"
-       class="add-decks-deck-row <%= 'add-decks-deck-row--selected' if in_folder %>">
+       class="add-decks-deck-row <%= 'add-decks-deck-row--selected' if in_folder %>"
+       data-add-decks-modal-target="deckRow"
+       data-deck-name="<%= deck.name.downcase %>">
   <div class="add-decks-deck-row__info">
     <%= render "shared/icons/rectangle_stack", css_class: "add-decks-deck-row__icon" %>
     <div class="add-decks-deck-row__text">
       <span class="add-decks-deck-row__name"><%= deck.name %></span>
-      <span class="add-decks-deck-row__meta"><%= t("decks.deck_card.count", count: deck.flashcards.size) %></span>
+      <span class="add-decks-deck-row__meta">
+        <%= t("decks.deck_card.count", count: deck.flashcards.size) %>
+        <% if local_assigns[:show_author] %> · <%= deck.user.display_name %><% end %>
+      </span>
     </div>
   </div>
 

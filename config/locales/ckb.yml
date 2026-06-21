@@ -341,6 +341,10 @@ ckb:
       no_decks: تا ئێستا هیچ دیکەیەکت نییە.
       save: پاشەکەوتکردن لە بوخچەدا
       remove: سڕینەوە لە بوخچەوە
+      my_decks: دیکەکانی من
+      explore: گەڕانەوە
+      search_placeholder: گەڕان بۆ دیک…
+      no_results: هیچ دیکەیەک لە گەڕانەکەت نەدۆزرایەوە.
   flashcards:
     new:
       back: "→ گەڕانەوە بۆ %{name}"

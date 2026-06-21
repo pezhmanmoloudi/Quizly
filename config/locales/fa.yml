@@ -340,6 +340,10 @@ fa:
       no_decks: هنوز هیچ دکی ندارید.
       save: ذخیره در پوشه
       remove: حذف از پوشه
+      my_decks: دک‌های من
+      explore: کشف
+      search_placeholder: جستجوی دک…
+      no_results: هیچ دکی با جستجوی شما مطابقت ندارد.
   flashcards:
     new:
       back: "→ بازگشت به %{name}"

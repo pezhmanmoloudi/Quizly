@@ -23,14 +23,44 @@
               method: :patch,
               data: { controller: "add-decks-modal", turbo_frame: "_top" } do |f| %>
 
+          <div class="add-decks-search">
+            <input type="search"
+                   class="add-decks-search__input"
+                   placeholder="<%= t("folders.add_decks_modal.search_placeholder") %>"
+                   autocomplete="off"
+                   data-add-decks-modal-target="searchInput"
+                   data-action="input->add-decks-modal#filter">
+          </div>
+
           <div class="add-decks-list">
-            <% if @decks.empty? %>
+            <% if @my_decks.empty? && @explore_decks.empty? %>
               <p class="add-decks-list__empty"><%= t("folders.add_decks_modal.no_decks") %></p>
             <% else %>
-              <% @decks.each do |deck| %>
-                <%= render "folders/add_decks_modal_deck",
-                      deck: deck,
-                      in_folder: @folder_deck_ids.include?(deck.id) %>
+              <p class="add-decks-list__empty" hidden data-add-decks-modal-target="noResults">
+                <%= t("folders.add_decks_modal.no_results") %>
+              </p>
+
+              <% unless @my_decks.empty? %>
+                <div data-add-decks-modal-target="section">
+                  <p class="add-decks-section-label"><%= t("folders.add_decks_modal.my_decks") %></p>
+                  <% @my_decks.each do |deck| %>
+                    <%= render "folders/add_decks_modal_deck",
+                          deck: deck,
+                          in_folder: @folder_deck_ids.include?(deck.id) %>
+                  <% end %>
+                </div>
+              <% end %>
+
+              <% unless @explore_decks.empty? %>
+                <div data-add-decks-modal-target="section">
+                  <p class="add-decks-section-label"><%= t("folders.add_decks_modal.explore") %></p>
+                  <% @explore_decks.each do |deck| %>
+                    <%= render "folders/add_decks_modal_deck",
+                          deck: deck,
+                          in_folder: @folder_deck_ids.include?(deck.id),
+                          show_author: true %>
+                  <% end %>
+                </div>
               <% end %>
             <% end %>
           </div>

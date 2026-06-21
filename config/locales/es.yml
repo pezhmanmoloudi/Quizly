@@ -344,6 +344,10 @@ es:
       no_decks: Aún no tienes ningún mazo.
       save: Guardar en carpeta
       remove: Eliminar de carpeta
+      my_decks: Mis mazos
+      explore: Explorar
+      search_placeholder: Buscar mazos…
+      no_results: Ningún mazo coincide con tu búsqueda.
   flashcards:
     new:
       back: "← Volver a %{name}"
