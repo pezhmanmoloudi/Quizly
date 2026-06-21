@@ -3,14 +3,15 @@ de:
   nav:
     home: Startseite
     explore: Entdecken
-    my_library: Meine Bibliothek
+    my_decks: Meine Decks
+    folders: Ordner
   topbar:
     search_placeholder: Decks suchen…
     search_aria: Decks suchen
     create_menu_aria: Erstellen-Menü
     create_menu_tooltip: Erstellen
     create:
-      flashcard_set: Karteikarten-Set
+      deck: Deck
       study_guide: Lernhilfe
       practice_test: Übungstest
       folder: Ordner
@@ -299,6 +300,41 @@ de:
       count:
         one: "%{count} Karte"
         other: "%{count} Karten"
+  folders:
+    create_failed: Ordner konnte nicht erstellt werden.
+    updated: Ordner aktualisiert.
+    deleted: Ordner gelöscht.
+    deck_removed: Deck aus Ordner entfernt.
+    save_button: Speichern
+    saved_button: Gespeichert
+    create_modal:
+      title: Ordner erstellen
+      name_placeholder: Ordnername
+      submit: Erstellen
+    save_modal:
+      title: In Ordner speichern
+      save: Speichern
+      no_folders: Du hast noch keine Ordner.
+    index:
+      title: Meine Ordner
+      empty: Noch keine Ordner.
+      deck_count:
+        one: "1 Deck"
+        other: "%{count} Decks"
+    show:
+      empty: Noch keine Decks in diesem Ordner.
+      options_aria: Ordneroptionen
+      rename: Umbenennen
+      rename_save: Speichern
+      delete_title: Diesen Ordner löschen?
+      delete_body: Diese Aktion kann nicht rückgängig gemacht werden.
+      delete_confirm: Löschen
+      delete: Löschen
+      deck_options_aria: Deck-Optionen
+      remove_from_folder: Aus Ordner entfernen
+      all_filter: Alle
+      add_tag: Tag hinzufügen
+      empty_description: Speichere Decks, um deine Lernsammlungen zu organisieren.
   flashcards:
     new:
       back: "← Zurück zu %{name}"

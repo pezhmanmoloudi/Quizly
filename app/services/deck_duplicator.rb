@@ -7,7 +7,7 @@ class DeckDuplicator
     @source_deck = source_deck
     @user        = user
     @name        = name.presence || source_deck.name
-    @visibility  = Deck::DUPLICATE_VISIBILITIES.include?(visibility) ? visibility : "private"
+    @visibility  = Deck::VISIBILITY_VALUES.include?(visibility) ? visibility : "private"
     @access_mode = Deck::ACCESS_MODE_VALUES.include?(access_mode) ? access_mode : "open"
   end
 

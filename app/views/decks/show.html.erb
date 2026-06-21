@@ -20,6 +20,10 @@
           <% end %>
         <% end %>
 
+        <% if policy(@deck).save? %>
+          <%= render "shared/save_button", deck: @deck, is_saved: @is_saved %>
+        <% end %>
+
       </div>
     </div>
     <div class="deck-detail-header__meta">

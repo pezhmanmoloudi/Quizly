@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
 
   before_action :set_locale
   before_action :load_sidebar_decks
+  before_action :load_sidebar_folders
 
   rescue_from ActiveRecord::RecordNotFound, with: :redirect_not_found
   rescue_from Pundit::NotAuthorizedError,   with: :pundit_not_authorized
@@ -39,5 +40,10 @@ class ApplicationController < ActionController::Base
   def load_sidebar_decks
     return unless authenticated?
     @sidebar_decks = Current.user.decks.order(updated_at: :desc).limit(20)
+  end
+
+  def load_sidebar_folders
+    return unless authenticated?
+    @sidebar_folders = Current.user.folders.order(name: :asc)
   end
 end

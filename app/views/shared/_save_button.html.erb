@@ -1,0 +1,7 @@
+<a id="<%= dom_id(deck, :save_btn) %>"
+   class="btn <%= is_saved ? "btn--primary" : "btn--secondary" %> btn-with-icon"
+   href="<%= new_folder_deck_assignment_path(deck_id: deck.id) %>"
+   data-turbo-frame="modal">
+  <%= render "shared/icons/bookmark" %>
+  <%= is_saved ? t("folders.saved_button") : t("folders.save_button") %>
+</a>

@@ -39,11 +39,20 @@ Rails.application.routes.draw do
         patch :restore
       end
     end
-    resource :import, only: [:new], controller: :imports do
+    resource :import, only: [], controller: :imports do
       post :text, on: :collection
       post :csv,  on: :collection
     end
   end
+
+  resources :folders do
+    member do
+      get :rename_modal
+      get :delete_modal
+    end
+    resource :deck, only: [:destroy], controller: "folder_decks"
+  end
+  resources :folder_deck_assignments, only: [:create, :new]
 
   resources :notifications, only: [ :index ] do
     collection do

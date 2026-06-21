@@ -1,47 +1,51 @@
 <% is_owner = Current.user&.id == deck.user_id %>
-<a class="deck-tile deck-tile--public"
-   href="<%= deck_path(deck) %>"
-   data-turbo-frame="_top">
 
-  <div class="deck-tile__header">
-    <h3 class="deck-tile__name"><%= deck.name %></h3>
-    <% if is_owner %>
-      <span class="deck-tile__owner-badge"><%= t("explore.owner_badge") %></span>
-    <% end %>
-  </div>
+<div id="<%= dom_id(deck) %>" class="explore-deck-card-wrap">
+  <a class="deck-tile deck-tile--public"
+     href="<%= deck_path(deck) %>"
+     data-turbo-frame="_top">
 
-  <div class="deck-tile__body">
-    <% if deck.description.present? %>
-      <p class="deck-tile__description"><%= deck.description %></p>
-    <% end %>
-    <p class="deck-tile__meta">
-      <%= t("decks.deck_card.count", count: deck.flashcards.size) %>
-      <% if deck.language_code.present? %>
-        · <span class="deck-tile__lang"><%= deck.language_code.upcase %></span>
-      <% end %>
-    </p>
-    <% if deck.tag_list.any? %>
-      <div class="deck-tile__tags">
-        <% deck.tag_list.first(3).each do |tag| %>
-          <span class="tag-badge"><%= tag %></span>
-        <% end %>
-      </div>
-    <% end %>
-  </div>
-
-  <div class="deck-tile__footer deck-tile__footer--public">
-    <span class="deck-tile__author">
+    <div class="deck-tile__header">
+      <h3 class="deck-tile__name"><%= deck.name %></h3>
       <% if is_owner %>
-        <%= t("explore.by_you") %>
-      <% else %>
-        <%= t("explore.by") %> <%= deck.user.display_name %>
+        <span class="deck-tile__owner-badge"><%= t("explore.owner_badge") %></span>
       <% end %>
-    </span>
-    <% if deck.password_protected? %>
-      <span class="deck-tile__locked-badge">
-        <%= render "shared/icons/lock", css_class: "icon--xs" %>
-        <%= t("explore.locked_badge") %>
+    </div>
+
+    <div class="deck-tile__body">
+      <% if deck.description.present? %>
+        <p class="deck-tile__description"><%= deck.description %></p>
+      <% end %>
+      <p class="deck-tile__meta">
+        <%= t("decks.deck_card.count", count: deck.flashcards.size) %>
+        <% if deck.language_code.present? %>
+          · <span class="deck-tile__lang"><%= deck.language_code.upcase %></span>
+        <% end %>
+      </p>
+      <% if deck.tag_list.any? %>
+        <div class="deck-tile__tags">
+          <% deck.tag_list.first(3).each do |tag| %>
+            <span class="tag-badge"><%= tag %></span>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="deck-tile__footer deck-tile__footer--public">
+      <span class="deck-tile__author">
+        <% if is_owner %>
+          <%= t("explore.by_you") %>
+        <% else %>
+          <%= t("explore.by") %> <%= deck.user.display_name %>
+        <% end %>
       </span>
-    <% end %>
-  </div>
-</a>
+      <% if deck.password_protected? %>
+        <span class="deck-tile__locked-badge">
+          <%= render "shared/icons/lock", css_class: "icon--xs" %>
+          <%= t("explore.locked_badge") %>
+        </span>
+      <% end %>
+    </div>
+  </a>
+
+</div>

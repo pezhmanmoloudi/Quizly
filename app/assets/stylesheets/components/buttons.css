@@ -81,3 +81,27 @@
 
 /* Scale up icon inside the navbar circle button */
 .btn--circle .icon { width: 1.125rem; height: 1.125rem; }
+
+/* Ghost icon-only button (no label) */
+.btn-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--color-muted);
+  cursor: pointer;
+  transition: background var(--transition-base), color var(--transition-base);
+  flex-shrink: 0;
+}
+
+.btn-icon:hover {
+  background: var(--color-bg);
+  color: var(--color-text-secondary);
+}
+
+.btn-icon .icon { width: 1.125rem; height: 1.125rem; }

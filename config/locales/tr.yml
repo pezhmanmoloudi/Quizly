@@ -3,14 +3,15 @@ tr:
   nav:
     home: Ana Sayfa
     explore: Keşfet
-    my_library: Kütüphanem
+    my_decks: Destelerim
+    folders: Klasörler
   topbar:
     search_placeholder: Desteler ara…
     search_aria: Desteler ara
     create_menu_aria: Oluşturma menüsü
     create_menu_tooltip: Oluştur
     create:
-      flashcard_set: Kart seti
+      deck: Deste
       study_guide: Çalışma rehberi
       practice_test: Pratik sınav
       folder: Klasör
@@ -297,6 +298,41 @@ tr:
       count:
         one: "%{count} kart"
         other: "%{count} kart"
+  folders:
+    create_failed: Klasör oluşturulamadı.
+    updated: Klasör güncellendi.
+    deleted: Klasör silindi.
+    deck_removed: Deste klasörden kaldırıldı.
+    save_button: Kaydet
+    saved_button: Kaydedildi
+    create_modal:
+      title: Klasör oluştur
+      name_placeholder: Klasör adı
+      submit: Oluştur
+    save_modal:
+      title: Klasöre kaydet
+      save: Kaydet
+      no_folders: Henüz klasörünüz yok.
+    index:
+      title: Klasörlerim
+      empty: Henüz klasör yok.
+      deck_count:
+        one: "1 deste"
+        other: "%{count} deste"
+    show:
+      empty: Bu klasörde henüz deste yok.
+      options_aria: Klasör seçenekleri
+      rename: Yeniden adlandır
+      rename_save: Kaydet
+      delete_title: Bu klasör silinsin mi?
+      delete_body: Bu işlem geri alınamaz.
+      delete_confirm: Sil
+      delete: Sil
+      deck_options_aria: Deste seçenekleri
+      remove_from_folder: Klasörden kaldır
+      all_filter: Tümü
+      add_tag: Etiket ekle
+      empty_description: Çalışma koleksiyonlarınızı düzenlemek için desteler kaydedin.
   flashcards:
     new:
       back: "← %{name} sayfasına geri dön"

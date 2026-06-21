@@ -3,14 +3,15 @@ ckb:
   nav:
     home: ماڵەوە
     explore: گەڕان
-    my_library: کتێبخانەکەم
+    my_decks: دەستەکانم
+    folders: پوشەکانم
   topbar:
     search_placeholder: گەڕان بەدوای دەستەکاندا…
     search_aria: گەڕان بەدوای دەستەکاندا
     create_menu_aria: مێنوی دروستکردن
     create_menu_tooltip: دروستکردن
     create:
-      flashcard_set: کۆمەڵەی کارتی فلاش
+      deck: دەستە
       study_guide: ڕێنمای خوێندن
       practice_test: تاقیکردنەوەی پراکتیک
       folder: فۆڵدەر
@@ -297,6 +298,41 @@ ckb:
       count:
         one: "%{count} کارت"
         other: "%{count} کارت"
+  folders:
+    create_failed: نەتوانرا پوشەکە دروست بکرێت.
+    updated: پوشەکە نوێ کرایەوە.
+    deleted: پوشەکە سڕایەوە.
+    deck_removed: دەستەکە لە پوشەکەوە لابرا.
+    save_button: پاشەکەوتکردن
+    saved_button: پاشەکەوتکرا
+    create_modal:
+      title: دروستکردنی پوشە
+      name_placeholder: ناوی پوشە
+      submit: دروستکردن
+    save_modal:
+      title: پاشەکەوتکردن لە پوشەدا
+      save: پاشەکەوتکردن
+      no_folders: تا ئێستا هیچ پوشەیەکت نییە.
+    index:
+      title: پوشەکانم
+      empty: تا ئێستا هیچ پوشەیەک نییە.
+      deck_count:
+        one: "یەک دەستە"
+        other: "%{count} دەستە"
+    show:
+      empty: هیچ دەستەیەک لەم پوشەیەدا نییە.
+      options_aria: هەڵبژاردنەکانی پوشە
+      rename: دووبارە ناونانی
+      rename_save: پاشەکەوتکردن
+      delete_title: ئایا ئەم پوشەیە بسڕێتەوە؟
+      delete_body: ئەم کارە ناگەڕێتەوە.
+      delete_confirm: سڕینەوە
+      delete: سڕینەوە
+      deck_options_aria: هەڵبژاردنەکانی دەستە
+      remove_from_folder: لابردن لە پوشەکەوە
+      all_filter: هەموو
+      add_tag: تاگ زیادبکە
+      empty_description: دیکەکان پاشەکەوت بکە بۆ رێکخستنی کۆمەڵەکانت.
   flashcards:
     new:
       back: "→ گەڕانەوە بۆ %{name}"

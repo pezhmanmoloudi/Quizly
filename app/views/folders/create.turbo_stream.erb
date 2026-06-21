@@ -1,0 +1,4 @@
+<%= turbo_stream.prepend "sidebar-folders",
+      partial: "folders/sidebar_item",
+      locals: { folder: @folder } %>
+<%= turbo_stream_action_tag "redirect", target: folder_path(@folder) %>

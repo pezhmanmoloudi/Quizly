@@ -93,28 +93,16 @@
                         class: "create-menu__item",
                         role: "menuitem" do %>
                     <%= render "shared/icons/rectangle_stack", css_class: "create-menu__item-icon" %>
-                    <span><%= t("topbar.create.flashcard_set") %></span>
+                    <span><%= t("topbar.create.deck") %></span>
                   <% end %>
 
-                  <span class="create-menu__item create-menu__item--disabled" role="menuitem" aria-disabled="true">
-                    <%= render "shared/icons/book_open", css_class: "create-menu__item-icon" %>
-                    <span><%= t("topbar.create.study_guide") %></span>
-                  </span>
-
-                  <span class="create-menu__item create-menu__item--disabled" role="menuitem" aria-disabled="true">
-                    <%= render "shared/icons/clipboard_check", css_class: "create-menu__item-icon" %>
-                    <span><%= t("topbar.create.practice_test") %></span>
-                  </span>
-
-                  <span class="create-menu__item create-menu__item--disabled" role="menuitem" aria-disabled="true">
+                  <%= link_to new_folder_path,
+                        class: "create-menu__item",
+                        role: "menuitem",
+                        data: { turbo_frame: "modal", action: "click->create-menu#close" } do %>
                     <%= render "shared/icons/folder", css_class: "create-menu__item-icon" %>
                     <span><%= t("topbar.create.folder") %></span>
-                  </span>
-
-                  <span class="create-menu__item create-menu__item--disabled" role="menuitem" aria-disabled="true">
-                    <%= render "shared/icons/user_group", css_class: "create-menu__item-icon" %>
-                    <span><%= t("topbar.create.study_group") %></span>
-                  </span>
+                  <% end %>
 
                 </div>
               </div>
@@ -250,6 +238,12 @@
           <%= render "shared/sidebar" %>
         </div>
 
+      </div>
+
+      <div id="global-modal-host" data-controller="modal">
+        <turbo-frame id="modal"
+                     data-action="turbo:frame-load->modal#openFromFrame">
+        </turbo-frame>
       </div>
 
     <% else %>

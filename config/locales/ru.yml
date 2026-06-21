@@ -3,14 +3,15 @@ ru:
   nav:
     home: Главная
     explore: Обзор
-    my_library: Моя библиотека
+    my_decks: Мои колоды
+    folders: Папки
   topbar:
     search_placeholder: Поиск колод…
     search_aria: Поиск колод
     create_menu_aria: Меню создания
     create_menu_tooltip: Создать
     create:
-      flashcard_set: Набор карточек
+      deck: Колода
       study_guide: Учебное пособие
       practice_test: Пробный тест
       folder: Папка
@@ -303,6 +304,43 @@ ru:
         few: "%{count} карточки"
         many: "%{count} карточек"
         other: "%{count} карточки"
+  folders:
+    create_failed: Не удалось создать папку.
+    updated: Папка обновлена.
+    deleted: Папка удалена.
+    deck_removed: Колода удалена из папки.
+    save_button: Сохранить
+    saved_button: Сохранено
+    create_modal:
+      title: Создать папку
+      name_placeholder: Название папки
+      submit: Создать
+    save_modal:
+      title: Сохранить в папку
+      save: Сохранить
+      no_folders: У вас ещё нет папок.
+    index:
+      title: Мои папки
+      empty: Папок пока нет.
+      deck_count:
+        one: "%{count} колода"
+        few: "%{count} колоды"
+        many: "%{count} колод"
+        other: "%{count} колоды"
+    show:
+      empty: В этой папке пока нет колод.
+      options_aria: Параметры папки
+      rename: Переименовать
+      rename_save: Сохранить
+      delete_title: Удалить эту папку?
+      delete_body: Это действие нельзя отменить.
+      delete_confirm: Удалить
+      delete: Удалить
+      deck_options_aria: Параметры колоды
+      remove_from_folder: Убрать из папки
+      all_filter: Все
+      add_tag: Добавить тег
+      empty_description: Сохраняйте колоды, чтобы организовать ваши учебные коллекции.
   flashcards:
     new:
       back: "← Назад к %{name}"

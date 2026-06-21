@@ -1,0 +1,18 @@
+<% content_for :title, t("folders.index.title") %>
+
+<div class="container">
+  <div class="page-header">
+    <h1><%= t("folders.index.title") %></h1>
+  </div>
+
+  <% if @folders.empty? %>
+    <%= render "shared/empty_state",
+          icon: "folder",
+          title: t("folders.index.empty"),
+          variant: :dashboard %>
+  <% else %>
+    <div id="folder-index-grid" class="deck-grid">
+      <%= render partial: "folders/folder_card", collection: @folders, as: :folder %>
+    </div>
+  <% end %>
+</div>

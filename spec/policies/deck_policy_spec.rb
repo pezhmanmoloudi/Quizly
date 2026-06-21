@@ -90,65 +90,6 @@ RSpec.describe DeckPolicy, type: :policy do
     include_examples "owner-only action", :manage_flashcards
   end
 
-  describe "#study?" do
-    context "complete public deck" do
-      let(:deck) { create(:deck, :public, user: owner) }
-
-      it "permits owner" do
-        expect(described_class.new(owner, deck).study?).to be true
-      end
-
-      it "permits another user" do
-        expect(described_class.new(other, deck).study?).to be true
-      end
-
-      it "permits nil user" do
-        expect(described_class.new(nil, deck).study?).to be true
-      end
-    end
-
-    context "draft (no flashcards) public deck" do
-      let(:deck) { create(:deck, user: owner).tap { |d| d.update_column(:visibility, "public") } }
-
-      it "permits owner (to see the empty state)" do
-        expect(described_class.new(owner, deck).study?).to be true
-      end
-
-      it "permits non-owner (study? = show?, empty state is shown instead)" do
-        aggregate_failures do
-          expect(described_class.new(other, deck).study?).to be true
-          expect(described_class.new(nil,   deck).study?).to be true
-        end
-      end
-    end
-
-    context "private deck with flashcards" do
-      let(:deck) do
-        create(:deck, :private, user: owner).tap { |d| create(:flashcard, deck: d) && d.reload }
-      end
-
-      it "permits owner" do
-        expect(described_class.new(owner, deck).study?).to be true
-      end
-
-      it "denies another user" do
-        expect(described_class.new(other, deck).study?).to be false
-      end
-    end
-
-    context "owner with empty (draft) deck" do
-      let(:deck) { create(:deck, :private, user: owner) }
-
-      it "permits owner (can see empty state)" do
-        expect(described_class.new(owner, deck).study?).to be true
-      end
-
-      it "denies another user (empty private deck)" do
-        expect(described_class.new(other, deck).study?).to be false
-      end
-    end
-  end
-
   describe "#learn?" do
     context "public deck" do
       let(:deck) { create(:deck, :public, user: owner) }
@@ -239,6 +180,32 @@ RSpec.describe DeckPolicy, type: :policy do
 
       it "denies another authenticated user" do
         expect(described_class.new(other, deck).copy?).to be false
+      end
+    end
+  end
+
+  describe "#save?" do
+    context "public deck" do
+      let(:deck) { create(:deck, :public, user: owner) }
+
+      it "permits another authenticated user" do
+        expect(described_class.new(other, deck).save?).to be true
+      end
+
+      it "denies the owner" do
+        expect(described_class.new(owner, deck).save?).to be false
+      end
+
+      it "denies nil user (guest)" do
+        expect(described_class.new(nil, deck).save?).to be false
+      end
+    end
+
+    context "private deck" do
+      let(:deck) { create(:deck, :private, user: owner) }
+
+      it "permits another authenticated user" do
+        expect(described_class.new(other, deck).save?).to be true
       end
     end
   end

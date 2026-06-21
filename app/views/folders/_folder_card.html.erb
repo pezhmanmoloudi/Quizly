@@ -1,0 +1,11 @@
+<a id="<%= dom_id(folder) %>" class="deck-tile" href="<%= folder_path(folder) %>">
+  <div class="deck-tile__header">
+    <%= render "shared/icons/folder" %>
+    <h3 class="deck-tile__name"><%= folder.name %></h3>
+  </div>
+  <div class="deck-tile__body">
+    <span class="deck-tile__meta">
+      <%= t("folders.index.deck_count", count: folder.deck_folders.size) %>
+    </span>
+  </div>
+</a>

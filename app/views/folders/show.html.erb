@@ -1,0 +1,70 @@
+<% content_for :title, @folder.name %>
+
+<div class="container">
+  <div class="folder-show-header">
+    <div class="folder-show-header__left">
+      <%= render "shared/icons/folder", css_class: "folder-show-header__icon" %>
+      <h1 class="folder-show-header__name">
+        <span id="folder-<%= @folder.id %>-name"><%= @folder.name %></span>
+      </h1>
+    </div>
+
+    <div data-controller="create-menu"
+         data-action="click@document->create-menu#closeIfOutside keydown.esc@document->create-menu#close"
+         class="folder-options">
+      <button class="btn-icon"
+              data-create-menu-target="button"
+              data-action="click->create-menu#toggle"
+              aria-haspopup="true"
+              aria-expanded="false"
+              aria-label="<%= t("folders.show.options_aria") %>">
+        <%= render "shared/icons/ellipsis_horizontal" %>
+      </button>
+
+      <div class="folder-options__menu"
+           data-create-menu-target="menu"
+           data-open="false"
+           role="menu">
+
+        <%= link_to rename_modal_folder_path(@folder),
+              class: "folder-options__item",
+              role: "menuitem",
+              data: { turbo_frame: "modal", action: "click->create-menu#close" } do %>
+          <%= render "shared/icons/pencil", css_class: "icon--sm" %>
+          <%= t("folders.show.rename") %>
+        <% end %>
+
+        <%= link_to delete_modal_folder_path(@folder),
+              class: "folder-options__item folder-options__item--danger",
+              role: "menuitem",
+              data: { turbo_frame: "modal", action: "click->create-menu#close" } do %>
+          <%= render "shared/icons/trash", css_class: "icon--sm" %>
+          <%= t("folders.show.delete") %>
+        <% end %>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="folder-show-filters">
+    <span class="filter-chip filter-chip--active"><%= t("folders.show.all_filter") %></span>
+    <button class="filter-chip filter-chip--ghost" type="button" disabled>
+      <%= render "shared/icons/plus", css_class: "icon--xs" %>
+      <%= t("folders.show.add_tag") %>
+    </button>
+  </div>
+
+  <% if @decks.empty? %>
+    <%= render "shared/empty_state",
+          icon: "folder",
+          title: t("folders.show.empty"),
+          description: t("folders.show.empty_description"),
+          variant: :dashboard %>
+  <% else %>
+    <div id="folder-<%= @folder.id %>-decks" class="deck-grid">
+      <% @decks.each do |deck| %>
+        <%= render "folders/deck_in_folder", deck: deck, folder: @folder %>
+      <% end %>
+    </div>
+  <% end %>
+</div>

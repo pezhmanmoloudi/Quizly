@@ -17,9 +17,8 @@ class Deck < ApplicationRecord
   attribute :visibility,  :string, default: "private"
   attribute :access_mode, :string, default: "open"
 
-  VISIBILITY_VALUES      = %w[public unlisted private].freeze
-  ACCESS_MODE_VALUES     = %w[open password].freeze
-  DUPLICATE_VISIBILITIES = %w[private unlisted public].freeze
+  VISIBILITY_VALUES  = %w[public unlisted private].freeze
+  ACCESS_MODE_VALUES = %w[open password].freeze
 
   scope :complete,     -> { where(flashcards_count: 1..) }
   scope :discoverable, -> { complete.where(visibility: "public") }

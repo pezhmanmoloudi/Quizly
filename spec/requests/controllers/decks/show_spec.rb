@@ -218,6 +218,48 @@ RSpec.describe "Decks#show", type: :request do
       end
     end
 
+    context "save button visibility" do
+      let(:public_deck) { create(:deck, :public, user: user) }
+      let(:other_user)  { create(:user) }
+
+      context "when authenticated as non-owner" do
+        before { sign_in(other_user) }
+
+        it "shows the Save button" do
+          get deck_path(public_deck)
+          expect(response.body).to include(I18n.t("folders.save_button"))
+        end
+
+        it "shows Saved when the deck is already saved" do
+          folder = create(:folder, user: other_user)
+          create(:deck_folder, deck: public_deck, folder: folder)
+          get deck_path(public_deck)
+          expect(response.body).to include(I18n.t("folders.saved_button"))
+        end
+
+        it "links to the save modal" do
+          get deck_path(public_deck)
+          expect(response.body).to include(new_folder_deck_assignment_path(deck_id: public_deck.id))
+        end
+      end
+
+      context "when authenticated as owner" do
+        before { sign_in(user) }
+
+        it "does not show the save modal link" do
+          get deck_path(public_deck)
+          expect(response.body).not_to include(new_folder_deck_assignment_path(deck_id: public_deck.id))
+        end
+      end
+
+      context "when not authenticated" do
+        it "does not show the save modal link" do
+          get deck_path(public_deck)
+          expect(response.body).not_to include(new_folder_deck_assignment_path(deck_id: public_deck.id))
+        end
+      end
+    end
+
     context "unlisted deck noindex" do
       let(:unlisted_deck) { create(:deck, :unlisted, user: user) }
 

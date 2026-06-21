@@ -1,0 +1,51 @@
+<%= turbo_frame_tag "modal" do %>
+  <div data-modal-target="dialog"
+       class="modal-wrapper"
+       role="dialog"
+       aria-modal="true"
+       aria-labelledby="save-deck-modal-title"
+       hidden>
+    <div class="modal-overlay" data-action="click->modal#closeOnBackdrop">
+      <div class="modal-dialog">
+        <h2 id="save-deck-modal-title" class="modal-title">
+          <%= t("folders.save_modal.title") %>
+        </h2>
+
+        <%= form_with url: folder_deck_assignments_path,
+              data: { action: "turbo:submit-end->modal#closeOnSuccess" } do |f| %>
+          <%= f.hidden_field :deck_id, value: @deck.id %>
+
+          <% if @user_folders.any? %>
+            <div class="folder-checklist">
+              <% @user_folders.each do |folder| %>
+                <label class="folder-check-item">
+                  <%= check_box_tag "folder_ids[]", folder.id,
+                        @deck_folder_ids.include?(folder.id),
+                        data: { action: "change->modal#validateCheckboxes" } %>
+                  <%= render "shared/icons/folder" %>
+                  <span><%= folder.name %></span>
+                </label>
+              <% end %>
+            </div>
+          <% else %>
+            <p class="modal-empty"><%= t("folders.save_modal.no_folders") %></p>
+          <% end %>
+
+          <div class="modal-actions modal-actions--end">
+            <button type="button" class="btn btn--secondary"
+                    data-action="click->modal#close">
+              <%= t("shared.cancel") %>
+            </button>
+            <button type="submit"
+                    class="btn btn--primary"
+                    <%= "disabled" unless @deck_folder_ids.any? %>
+                    data-modal-target="submitButton"
+                    data-allow-empty="<%= @deck_folder_ids.any? %>">
+              <%= t("folders.save_modal.save") %>
+            </button>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>

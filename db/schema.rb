@@ -10,7 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_06_16_100000) do
+ActiveRecord::Schema[8.1].define(version: 2026_06_20_205556) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "pg_catalog.plpgsql"
+
   create_table "active_storage_attachments", force: :cascade do |t|
     t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
@@ -71,8 +74,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_16_100000) do
 
   create_table "deck_folders", force: :cascade do |t|
     t.datetime "created_at", null: false
-    t.integer "deck_id", null: false
-    t.integer "folder_id", null: false
+    t.bigint "deck_id", null: false
+    t.bigint "folder_id", null: false
     t.datetime "updated_at", null: false
     t.index ["deck_id", "folder_id"], name: "index_deck_folders_on_deck_id_and_folder_id", unique: true
     t.index ["deck_id"], name: "index_deck_folders_on_deck_id"
@@ -83,17 +86,21 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_16_100000) do
     t.string "access_mode", default: "open", null: false
     t.datetime "created_at", null: false
     t.text "description"
+    t.boolean "draft", default: true, null: false
     t.integer "flashcards_count", default: 0, null: false
     t.string "language_code"
-    t.string "name", null: false
+    t.string "name"
     t.string "password_digest"
     t.integer "source_deck_id"
+    t.string "status", default: "published", null: false
     t.string "subject_tags"
     t.datetime "updated_at", null: false
     t.integer "user_id", null: false
     t.string "visibility", default: "public", null: false
     t.index ["access_mode"], name: "index_decks_on_access_mode"
+    t.index ["draft"], name: "index_decks_on_draft"
     t.index ["source_deck_id"], name: "index_decks_on_source_deck_id"
+    t.index ["status"], name: "index_decks_on_status"
     t.index ["user_id"], name: "index_decks_on_user_id"
     t.index ["visibility"], name: "index_decks_on_visibility"
   end
@@ -116,9 +123,11 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_16_100000) do
   create_table "folders", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.text "description"
+    t.string "kind", default: "manual", null: false
     t.string "name", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
+    t.index ["kind"], name: "index_folders_on_kind"
     t.index ["user_id"], name: "index_folders_on_user_id"
   end
 
@@ -126,8 +135,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_16_100000) do
     t.integer "attempts", default: 0, null: false
     t.integer "correct_streak", default: 0, null: false
     t.datetime "created_at", null: false
-    t.integer "flashcard_id", null: false
-    t.integer "learn_session_id", null: false
+    t.bigint "flashcard_id", null: false
+    t.bigint "learn_session_id", null: false
     t.integer "position", null: false
     t.string "status", default: "unseen", null: false
     t.datetime "updated_at", null: false
@@ -142,11 +151,11 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_16_100000) do
     t.integer "cards_mastered", default: 0, null: false
     t.integer "cards_total", default: 0, null: false
     t.datetime "created_at", null: false
-    t.integer "deck_id", null: false
+    t.bigint "deck_id", null: false
     t.datetime "finished_at"
     t.datetime "started_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.index ["deck_id"], name: "index_learn_sessions_on_deck_id"
     t.index ["user_id", "deck_id"], name: "index_learn_sessions_on_user_id_and_deck_id"
     t.index ["user_id", "started_at"], name: "index_learn_sessions_on_user_id_and_started_at"
@@ -160,7 +169,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_16_100000) do
     t.string "reminder_time", default: "08:00", null: false
     t.string "time_zone", default: "UTC", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.index ["user_id"], name: "index_notification_preferences_on_user_id", unique: true
   end
 
@@ -314,11 +323,11 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_16_100000) do
     t.integer "cards_reviewed", default: 0, null: false
     t.integer "cards_total", default: 0, null: false
     t.datetime "created_at", null: false
-    t.integer "deck_id", null: false
+    t.bigint "deck_id", null: false
     t.datetime "finished_at"
     t.datetime "started_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.index ["deck_id"], name: "index_study_sessions_on_deck_id"
     t.index ["user_id", "deck_id"], name: "index_study_sessions_on_user_id_and_deck_id"
     t.index ["user_id", "started_at"], name: "index_study_sessions_on_user_id_and_started_at"
@@ -328,14 +337,14 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_16_100000) do
   create_table "test_sessions", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.integer "current_index", default: 0, null: false
-    t.integer "deck_id", null: false
+    t.bigint "deck_id", null: false
     t.datetime "finished_at"
     t.text "questions_data", null: false
     t.integer "questions_total", default: 0, null: false
     t.integer "score", default: 0, null: false
     t.datetime "started_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.index ["deck_id"], name: "index_test_sessions_on_deck_id"
     t.index ["user_id", "deck_id"], name: "index_test_sessions_on_user_id_and_deck_id"
     t.index ["user_id", "started_at"], name: "index_test_sessions_on_user_id_and_started_at"
@@ -343,11 +352,11 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_16_100000) do
   end
 
   create_table "user_badges", force: :cascade do |t|
-    t.integer "badge_id", null: false
+    t.bigint "badge_id", null: false
     t.datetime "created_at", null: false
     t.datetime "earned_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.index ["badge_id"], name: "index_user_badges_on_badge_id"
     t.index ["user_id", "badge_id"], name: "index_user_badges_on_user_id_and_badge_id", unique: true
   end
@@ -369,6 +378,10 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_16_100000) do
     t.index ["google_uid"], name: "index_users_on_google_uid", unique: true
   end
 
+  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "card_progresses", "flashcards"
+  add_foreign_key "card_progresses", "users"
   add_foreign_key "deck_folders", "decks", on_delete: :cascade
   add_foreign_key "deck_folders", "folders", on_delete: :cascade
   add_foreign_key "decks", "decks", column: "source_deck_id", on_delete: :nullify

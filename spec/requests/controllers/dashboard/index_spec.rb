@@ -30,9 +30,9 @@ RSpec.describe "Dashboard#index", type: :request do
         expect(response.body).to include("5")
       end
 
-      it "shows the My Library section header in the sidebar" do
+      it "shows the My Decks section header in the sidebar" do
         get dashboard_path
-        expect(response.body).to include("My Library")
+        expect(response.body).to include("My Decks")
       end
 
       it "shows the global create deck button in the topbar" do

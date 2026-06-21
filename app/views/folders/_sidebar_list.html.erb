@@ -1,0 +1,12 @@
+<% folders.each do |folder| %>
+  <div id="sidebar-folder-<%= folder.id %>" class="sidebar__item-wrapper">
+    <%= link_to folder_path(folder),
+          class: "sidebar__item sidebar__item--folder #{"is-active" if request.path == folder_path(folder)}",
+          data: { turbo_frame: "_top" } do %>
+      <%= render "shared/icons/folder" %>
+      <span id="sidebar-folder-<%= folder.id %>-name" class="sidebar__label">
+        <%= folder.name %>
+      </span>
+    <% end %>
+  </div>
+<% end %>
