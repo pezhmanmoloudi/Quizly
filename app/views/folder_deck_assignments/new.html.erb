@@ -38,8 +38,9 @@
             </button>
             <button type="submit"
                     class="btn btn--primary"
-                    disabled
-                    data-modal-target="submitButton">
+                    <%= "disabled" unless @deck_folder_ids.any? %>
+                    data-modal-target="submitButton"
+                    data-allow-empty="<%= @deck_folder_ids.any? %>">
               <%= t("folders.save_modal.save") %>
             </button>
           </div>

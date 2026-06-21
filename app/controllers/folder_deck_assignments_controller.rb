@@ -9,9 +9,20 @@ class FolderDeckAssignmentsController < ApplicationController
     @deck = Deck.find(params[:deck_id])
     folder_ids = Array(params[:folder_ids]).map(&:to_i).uniq
 
-    Current.user.folders.where(id: folder_ids).each do |folder|
-      Folders::AssignDeckService.call(folder: folder, deck: @deck, action: :add)
+    user_folder_ids = Current.user.folders.pluck(:id)
+    current_ids     = DeckFolder.where(folder_id: user_folder_ids, deck_id: @deck.id).pluck(:folder_id)
+
+    (folder_ids - current_ids).each do |id|
+      folder = Current.user.folders.find_by(id:)
+      Folders::AssignDeckService.call(folder:, deck: @deck, action: :add) if folder
     end
+
+    (current_ids - folder_ids).each do |id|
+      folder = Current.user.folders.find_by(id:)
+      Folders::AssignDeckService.call(folder:, deck: @deck, action: :remove) if folder
+    end
+
+    @is_saved = folder_ids.any?
 
     respond_to do |format|
       format.turbo_stream

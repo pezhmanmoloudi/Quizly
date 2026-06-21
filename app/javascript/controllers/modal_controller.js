@@ -63,8 +63,9 @@ export default class extends Controller {
   }
 
   validateCheckboxes() {
+    const allowEmpty = this.submitButtonTarget.dataset.allowEmpty === "true"
     const checked = this.element.querySelectorAll('input[type="checkbox"]:checked').length
-    this.submitButtonTarget.disabled = checked === 0
+    this.submitButtonTarget.disabled = !allowEmpty && checked === 0
   }
 
   dialogTargetDisconnected() {
