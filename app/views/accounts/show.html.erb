@@ -304,7 +304,7 @@
   </details>
 
   <%# Notifications %>
-  <p class="settings-section-label"><%= t("accounts.notifications_section") %></p>
+  <p class="settings-section-label" id="notifications"><%= t("accounts.notifications_section") %></p>
   <div class="settings-info-card">
 
     <% pref = Current.user.notification_preference || Current.user.build_notification_preference %>

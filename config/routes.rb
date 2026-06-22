@@ -57,6 +57,9 @@ Rails.application.routes.draw do
   resources :folder_deck_assignments, only: [:create, :new]
 
   resources :users, only: [ :show ], param: :username do
+    member do
+      get :following
+    end
     resource :follow, only: [ :create, :destroy ], controller: "follows"
   end
 

@@ -1,0 +1,42 @@
+<% content_for :title, t("follows.following_page_title", name: @user.display_name) %>
+
+<div class="container">
+  <h1 class="page-heading">
+    <%= link_to @user.display_name, user_path(@user), class: "page-heading__link" %>
+    &middot; <%= t("follows.following_heading") %>
+  </h1>
+
+  <% if @following.any? %>
+    <div class="user-list">
+      <% @following.each do |followed_user| %>
+        <div class="user-list-row">
+          <%= link_to user_path(followed_user), class: "user-list-row__identity" do %>
+            <div class="deck-row__avatar">
+              <% if followed_user.show_avatar? %>
+                <%= image_tag followed_user.avatar.variant(resize_to_fill: [40, 40]), alt: "" %>
+              <% else %>
+                <span class="deck-row__avatar-initials">
+                  <%= followed_user.display_name.first&.upcase %>
+                </span>
+              <% end %>
+            </div>
+            <div class="user-list-row__info">
+              <span class="user-list-row__name"><%= followed_user.display_name %></span>
+              <span class="user-list-row__username">@<%= followed_user.username %></span>
+              <span class="user-list-row__stat">
+                <%= t("follows.followers", count: followed_user.followers_count) %>
+              </span>
+            </div>
+          <% end %>
+          <% if authenticated? && Current.user != followed_user %>
+            <%= render "follows/follow_button",
+                  followed_user: followed_user,
+                  following: @current_user_following_ids.include?(followed_user.id) %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <p class="empty-state__text"><%= t("follows.no_following") %></p>
+  <% end %>
+</div>

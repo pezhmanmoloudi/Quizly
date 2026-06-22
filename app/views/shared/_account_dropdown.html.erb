@@ -1,0 +1,116 @@
+<div class="avatar-dropdown"
+     data-controller="avatar-dropdown"
+     data-action="click@document->avatar-dropdown#closeIfOutside keydown.esc@document->avatar-dropdown#close">
+
+  <button class="avatar-dropdown__trigger header-action-btn header-action-btn--menu"
+          data-avatar-dropdown-target="button"
+          data-action="click->avatar-dropdown#toggle"
+          aria-haspopup="true"
+          aria-expanded="false"
+          aria-label="<%= Current.user.display_name %> — <%= t("topbar.account_menu") %>">
+    <div class="user-avatar">
+      <% if Current.user.show_avatar? %>
+        <%= image_tag Current.user.avatar, alt: "" %>
+      <% else %>
+        <%= Current.user.display_name.first.upcase %>
+      <% end %>
+    </div>
+    <span class="avatar-dropdown__chevron" aria-hidden="true">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" width="8" height="8">
+        <path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd"/>
+      </svg>
+    </span>
+  </button>
+
+  <div class="avatar-dropdown__menu"
+       data-avatar-dropdown-target="menu"
+       data-open="false"
+       role="menu">
+
+    <%# Section 1: Profile header %>
+    <div class="avatar-dropdown__header" role="presentation">
+      <div class="avatar-dropdown__header-inner">
+        <% if Current.user.show_avatar? %>
+          <%= image_tag Current.user.avatar,
+                class: "avatar-dropdown__avatar-img", alt: "" %>
+        <% else %>
+          <div class="user-avatar avatar-dropdown__avatar-placeholder">
+            <%= Current.user.display_name.first.upcase %>
+          </div>
+        <% end %>
+        <div>
+          <span class="avatar-dropdown__name"><%= Current.user.display_name %></span>
+          <span class="avatar-dropdown__username">@<%= Current.user.username %></span>
+        </div>
+      </div>
+    </div>
+
+    <%# Section 2: Social stats %>
+    <div class="avatar-dropdown__stats" role="presentation">
+      <div class="avatar-dropdown__stat">
+        <span class="avatar-dropdown__stat-count"><%= Current.user.followers_count %></span>
+        <span class="avatar-dropdown__stat-label"><%= t("menu.followers") %></span>
+      </div>
+      <span class="avatar-dropdown__stat-sep" aria-hidden="true">·</span>
+      <div class="avatar-dropdown__stat">
+        <span class="avatar-dropdown__stat-count"><%= Current.user.follows_as_follower.size %></span>
+        <span class="avatar-dropdown__stat-label"><%= t("menu.following") %></span>
+      </div>
+    </div>
+
+    <%# Section 3: Account actions %>
+    <div class="avatar-dropdown__items">
+      <%= link_to user_path(Current.user),
+            class: "avatar-dropdown__item", role: "menuitem" do %>
+        <%= render "shared/icons/user", css_class: "avatar-dropdown__item-icon" %>
+        <span><%= t("menu.view_profile") %></span>
+      <% end %>
+
+      <%= link_to account_path,
+            class: "avatar-dropdown__item", role: "menuitem" do %>
+        <%= render "shared/icons/cog", css_class: "avatar-dropdown__item-icon" %>
+        <span><%= t("menu.settings") %></span>
+      <% end %>
+
+      <%= link_to following_user_path(Current.user),
+            class: "avatar-dropdown__item", role: "menuitem" do %>
+        <%= render "shared/icons/user_group", css_class: "avatar-dropdown__item-icon" %>
+        <span><%= t("menu.following") %></span>
+      <% end %>
+
+      <%= link_to account_path(anchor: "notifications"),
+            class: "avatar-dropdown__item", role: "menuitem" do %>
+        <%= render "shared/icons/bolt", css_class: "avatar-dropdown__item-icon" %>
+        <span><%= t("menu.notifications") %></span>
+      <% end %>
+
+      <button class="avatar-dropdown__item" role="menuitem"
+              data-action="click->theme#toggle">
+        <%= render "shared/icons/moon", css_class: "avatar-dropdown__item-icon" %>
+        <span data-theme-target="label"
+              data-dark-label="<%= t("menu.dark_mode") %>"
+              data-light-label="<%= t("menu.light_mode") %>"><%= t("menu.dark_mode") %></span>
+      </button>
+
+      <%= link_to account_path(anchor: "language"),
+            class: "avatar-dropdown__item", role: "menuitem" do %>
+        <%= render "shared/icons/globe", css_class: "avatar-dropdown__item-icon" %>
+        <span><%= t("menu.language") %> · <%= Language::LANGUAGES[Current.user.locale] %></span>
+      <% end %>
+    </div>
+
+    <hr class="avatar-dropdown__divider">
+
+    <%# Section 4: Session %>
+    <div class="avatar-dropdown__items">
+      <%= button_to logout_path, method: :delete,
+            class: "avatar-dropdown__item avatar-dropdown__item--danger",
+            role: "menuitem" do %>
+        <%= render "shared/icons/arrow_right_on_rectangle",
+              css_class: "avatar-dropdown__item-icon" %>
+        <span><%= t("menu.log_out") %></span>
+      <% end %>
+    </div>
+
+  </div>
+</div>

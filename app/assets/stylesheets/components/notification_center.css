@@ -90,6 +90,8 @@
 
 .notif-item__avatar { flex-shrink: 0; }
 
+.notif-item__avatar-link { display: block; }
+
 .notif-item__avatar-img {
   width: 2rem;
   height: 2rem;

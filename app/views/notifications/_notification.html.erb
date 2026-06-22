@@ -4,12 +4,14 @@
 
   <div class="notif-item__avatar">
     <% if notification.actor %>
-      <% if notification.actor.show_avatar? %>
-        <%= image_tag notification.actor.avatar, class: "notif-item__avatar-img", alt: "" %>
-      <% else %>
-        <div class="user-avatar user-avatar--sm">
-          <%= notification.actor.display_name.first.upcase %>
-        </div>
+      <%= link_to user_path(notification.actor), class: "notif-item__avatar-link" do %>
+        <% if notification.actor.show_avatar? %>
+          <%= image_tag notification.actor.avatar, class: "notif-item__avatar-img", alt: "" %>
+        <% else %>
+          <div class="user-avatar user-avatar--sm">
+            <%= notification.actor.display_name.first.upcase %>
+          </div>
+        <% end %>
       <% end %>
     <% else %>
       <div class="notif-item__system-icon">&#128276;</div>

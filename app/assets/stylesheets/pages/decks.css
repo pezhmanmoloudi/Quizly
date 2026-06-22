@@ -779,3 +779,27 @@
   background: var(--color-danger-bg);
   color: var(--color-danger);
 }
+
+/* Deck creator attribution (non-owner view) */
+.deck-creator {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  margin-top: 0.5rem;
+}
+
+.deck-creator__identity {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  text-decoration: none;
+  color: inherit;
+}
+
+.deck-creator__identity:hover .deck-creator__name { text-decoration: underline; }
+
+.deck-creator__name {
+  font-size: var(--text-sm);
+  color: var(--color-muted);
+  font-weight: 500;
+}

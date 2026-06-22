@@ -18,12 +18,17 @@ fr:
       study_group: Groupe d'étude
     open_navigation: Ouvrir la navigation
     close_navigation: Fermer la navigation
+    account_menu: Account menu
   menu:
     settings: Paramètres
     dark_mode: Mode sombre
     light_mode: Mode clair
     log_out: Se déconnecter
     language: Langue
+    view_profile: View Profile
+    notifications: Notifications
+    followers: Followers
+    following: Following
   shared:
     cancel: Annuler
     close: Fermer
@@ -652,8 +657,14 @@ fr:
     followers:
       one: "%{count} follower"
       other: "%{count} followers"
+    follower_label:
+      one: "follower"
+      other: "followers"
     public_decks: "Public Decks"
     no_public_decks: "No public decks yet."
+    following_heading: "Following"
+    following_page_title: "%{name}'s Following"
+    no_following: "Not following anyone yet."
   activerecord:
     errors:
       models:

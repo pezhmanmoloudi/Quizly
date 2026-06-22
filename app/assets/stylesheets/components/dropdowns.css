@@ -181,6 +181,46 @@
   font-family: inherit;
 }
 
+/* ── Username secondary line in header ── */
+.avatar-dropdown__username {
+  font-size: var(--text-xs);
+  color: var(--color-muted);
+  display: block;
+  margin-top: 0.1rem;
+}
+
+/* ── Social stats row ── */
+.avatar-dropdown__stats {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.625rem 1rem;
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.avatar-dropdown__stat {
+  display: flex;
+  align-items: baseline;
+  gap: 0.25rem;
+}
+
+.avatar-dropdown__stat-count {
+  font-size: var(--text-sm);
+  font-weight: var(--font-semibold);
+  color: var(--color-text);
+}
+
+.avatar-dropdown__stat-label {
+  font-size: var(--text-xs);
+  color: var(--color-muted);
+}
+
+.avatar-dropdown__stat-sep {
+  color: var(--color-border);
+  font-size: var(--text-xs);
+  user-select: none;
+}
+
 /* ── Folder / page-level options menu ── */
 .folder-options {
   position: relative;

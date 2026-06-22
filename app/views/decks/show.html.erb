@@ -105,6 +105,30 @@
       <% end %>
       <span class="deck-detail-header__date"><%= t("decks.show.created") %> <%= @deck.created_at.strftime("%b %-d, %Y") %></span>
     </div>
+
+    <%# Creator attribution — shown to non-owners only %>
+    <% unless is_owner %>
+      <div class="deck-creator">
+        <%= link_to user_path(@deck.user), class: "deck-creator__identity" do %>
+          <div class="deck-row__avatar">
+            <% if @deck.user.show_avatar? %>
+              <%= image_tag @deck.user.avatar.variant(resize_to_fill: [22, 22]), alt: "" %>
+            <% else %>
+              <span class="deck-row__avatar-initials">
+                <%= @deck.user.display_name.first&.upcase %>
+              </span>
+            <% end %>
+          </div>
+          <span class="deck-creator__name"><%= @deck.user.display_name %></span>
+        <% end %>
+        <% if authenticated? %>
+          <%= render "follows/follow_button",
+                followed_user: @deck.user,
+                following: Current.user.following?(@deck.user) %>
+        <% end %>
+      </div>
+    <% end %>
+
     <% if @deck.description.present? %>
       <p class="deck-detail-header__description"><%= @deck.description %></p>
     <% end %>
