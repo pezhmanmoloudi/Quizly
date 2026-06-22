@@ -8,6 +8,7 @@ class Deck < ApplicationRecord
   has_many :test_sessions, dependent: :destroy
   has_many :deck_folders, dependent: :destroy
   has_many :folders, through: :deck_folders
+  after_update_commit :notify_followers_of_publish, if: :just_published?
   accepts_nested_attributes_for :flashcards,
     reject_if: :all_blank,
     allow_destroy: true
@@ -55,6 +56,16 @@ class Deck < ApplicationRecord
   end
 
   private
+
+  def just_published?
+    saved_change_to_visibility? &&
+      visibility == "public" &&
+      visibility_before_last_save != "public"
+  end
+
+  def notify_followers_of_publish
+    Follows::DeckPublishedNotificationJob.perform_later(id)
+  end
 
   def purge_soft_deleted_flashcards
     Flashcard.unscoped.where(deck_id: id).where.not(deleted_at: nil).delete_all

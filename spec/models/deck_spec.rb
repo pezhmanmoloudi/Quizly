@@ -315,6 +315,57 @@ RSpec.describe Deck, type: :model do
     end
   end
 
+  describe "#just_published? / publish notification callback" do
+    let(:deck_owner) { create(:user) }
+
+    def deck_with_flashcard(visibility: "private")
+      d = create(:deck, user: deck_owner, visibility: "private")
+      create(:flashcard, deck: d)
+      d.reload
+      d.update_columns(visibility: visibility)
+      d
+    end
+
+    it "enqueues DeckPublishedNotificationJob when visibility changes from private to public" do
+      deck = deck_with_flashcard(visibility: "private")
+      expect {
+        deck.update!(visibility: "public")
+      }.to have_enqueued_job(Follows::DeckPublishedNotificationJob).with(deck.id)
+    end
+
+    it "enqueues DeckPublishedNotificationJob when visibility changes from unlisted to public" do
+      deck = deck_with_flashcard(visibility: "unlisted")
+      expect {
+        deck.update!(visibility: "public")
+      }.to have_enqueued_job(Follows::DeckPublishedNotificationJob).with(deck.id)
+    end
+
+    it "does not enqueue the job when an already-public deck is saved with other changes" do
+      deck = deck_with_flashcard(visibility: "public")
+      expect {
+        deck.update!(name: "Updated Name")
+      }.not_to have_enqueued_job(Follows::DeckPublishedNotificationJob)
+    end
+
+    it "does not enqueue the job when visibility changes from public to private" do
+      deck = deck_with_flashcard(visibility: "public")
+      expect {
+        deck.update_columns(visibility: "private")
+        deck.reload
+        deck.update!(name: "Trigger save without visibility change")
+      }.not_to have_enqueued_job(Follows::DeckPublishedNotificationJob)
+    end
+
+    it "does not enqueue the job when visibility changes from public to unlisted" do
+      deck = deck_with_flashcard(visibility: "public")
+      expect {
+        deck.update_columns(visibility: "unlisted")
+        deck.reload
+        deck.update!(name: "Trigger save")
+      }.not_to have_enqueued_job(Follows::DeckPublishedNotificationJob)
+    end
+  end
+
   describe "dependent destruction" do
     it "destroys associated flashcards when the deck is deleted" do
       deck = create(:deck)
