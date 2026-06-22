@@ -79,9 +79,9 @@ The container entrypoint (`bin/docker-entrypoint`) runs `bundle check || bundle 
 
 `docker-compose.yml` sets `DATABASE_URL=postgresql://...` which Rails uses in place of the SQLite config in `database.yml`. Local developers without Docker continue using SQLite at `storage/development.sqlite3` — the two environments are fully isolated. No changes were made to `database.yml`.
 
-### Solid Queue vs Sidekiq
+### Background Jobs (Solid Queue)
 
-Quizly uses **Solid Queue** as its Active Job adapter. The `sidekiq` and `redis` gems are included in the bundle for optional use, but the Active Job adapter is not changed. Solid Queue processes all jobs by default.
+Quizly uses **Solid Queue** as its Active Job adapter — no Redis or Sidekiq required. Solid Queue stores jobs in the PostgreSQL database (Docker) or SQLite (local).
 
 The Solid Queue supervisor starts inside Puma via `SOLID_QUEUE_IN_PUMA=true` — no separate worker container is needed.
 
