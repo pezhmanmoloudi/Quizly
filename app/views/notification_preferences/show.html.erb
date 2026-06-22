@@ -1,0 +1,183 @@
+<% content_for :title, t("accounts.notifications_section") %>
+
+<div class="container">
+  <div class="page-header">
+    <h1><%= t("accounts.notifications_section") %></h1>
+  </div>
+
+  <div class="settings-info-card">
+
+    <%= form_with url: notification_preferences_path, method: :patch do |f| %>
+
+      <%# In-App Notifications section %>
+      <details class="notif-accordion" open>
+        <summary class="notif-accordion__summary">
+          <%= t("accounts.notif_in_app_heading") %>
+          <%= render "shared/icons/chevron_down", css_class: "notif-accordion__chevron" %>
+        </summary>
+        <div class="notif-accordion__body">
+
+          <%# Someone follows me %>
+          <div class="settings-info-row">
+            <div class="settings-info-row__label" style="font-weight: 400; color: var(--color-text-secondary);">
+              <%= t("accounts.notif_in_app_follows") %>
+            </div>
+            <div class="settings-info-row__right">
+              <label class="notif-channel-btn" aria-label="<%= t("accounts.notif_in_app_follows") %>">
+                <%= hidden_field_tag "notification_preference[in_app_follows]", "0" %>
+                <%= check_box_tag "notification_preference[in_app_follows]", "1",
+                      @notification_preference.in_app_follows?, class: "sr-only" %>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" width="14" height="14" aria-hidden="true">
+                  <path d="M10 9a3 3 0 100-6 3 3 0 000 6zM6 8a2 2 0 11-4 0 2 2 0 014 0zM1.49 15.326a.78.78 0 01-.358-.442 3 3 0 014.308-3.516 6.484 6.484 0 00-1.905 3.959c-.023.222-.014.442.025.654a4.97 4.97 0 01-2.07-.655zM16.44 15.98a4.97 4.97 0 002.07-.654.78.78 0 00.357-.442 3 3 0 00-4.308-3.517 6.484 6.484 0 011.907 3.96 2.32 2.32 0 01-.026.654zM18 8a2 2 0 11-4 0 2 2 0 014 0zM5.304 16.19a.844.844 0 01-.277-.71 5 5 0 019.947 0 .843.843 0 01-.277.71A6.975 6.975 0 0110 18a6.974 6.974 0 01-4.696-1.81z"/>
+                </svg>
+              </label>
+            </div>
+          </div>
+
+          <%# Activity from people I follow %>
+          <div class="settings-info-row">
+            <div class="settings-info-row__label" style="font-weight: 400; color: var(--color-text-secondary);">
+              <%= t("accounts.notif_in_app_following_activity") %>
+            </div>
+            <div class="settings-info-row__right">
+              <label class="notif-channel-btn" aria-label="<%= t("accounts.notif_in_app_following_activity") %>">
+                <%= hidden_field_tag "notification_preference[in_app_following_activity]", "0" %>
+                <%= check_box_tag "notification_preference[in_app_following_activity]", "1",
+                      @notification_preference.in_app_following_activity?, class: "sr-only" %>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" width="14" height="14" aria-hidden="true">
+                  <path d="M10 12.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"/>
+                  <path fill-rule="evenodd" d="M.664 10.59a1.651 1.651 0 010-1.186A10.004 10.004 0 0110 3c4.257 0 7.893 2.66 9.336 6.41.147.381.146.804 0 1.186A10.004 10.004 0 0110 17c-4.257 0-7.893-2.66-9.336-6.41z" clip-rule="evenodd"/>
+                </svg>
+              </label>
+            </div>
+          </div>
+
+          <%# Badge & streak — in-app is always on, so no toggle, just informational %>
+          <div class="settings-info-row">
+            <div class="settings-info-row__label" style="font-weight: 400; color: var(--color-text-secondary);">
+              <%= t("accounts.notif_streaks_badges") %>
+            </div>
+            <div class="settings-info-row__right">
+              <span class="notif-always-on"><%= t("accounts.notif_always_on") %></span>
+            </div>
+          </div>
+
+        </div>
+      </details>
+
+      <%# Email Notifications section %>
+      <details class="notif-accordion" open>
+        <summary class="notif-accordion__summary">
+          <%= t("accounts.notif_email_heading") %>
+          <%= render "shared/icons/chevron_down", css_class: "notif-accordion__chevron" %>
+        </summary>
+        <div class="notif-accordion__body">
+
+          <%# Someone follows me (email) %>
+          <div class="settings-info-row">
+            <div class="settings-info-row__label" style="font-weight: 400; color: var(--color-text-secondary);">
+              <%= t("accounts.notif_email_follows") %>
+            </div>
+            <div class="settings-info-row__right">
+              <label class="notif-channel-btn" aria-label="<%= t("accounts.notif_email_label") %>">
+                <%= hidden_field_tag "notification_preference[email_follows]", "0" %>
+                <%= check_box_tag "notification_preference[email_follows]", "1",
+                      @notification_preference.email_follows?, class: "sr-only" %>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" width="14" height="14" aria-hidden="true">
+                  <path d="M3 4a2 2 0 00-2 2v1.161l8.441 4.221a1.25 1.25 0 001.118 0L19 7.162V6a2 2 0 00-2-2H3z"/>
+                  <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 01-2.46 0L1 8.839V14a2 2 0 002 2h14a2 2 0 002-2V8.839z"/>
+                </svg>
+              </label>
+            </div>
+          </div>
+
+          <%# Activity from people I follow (email) %>
+          <div class="settings-info-row">
+            <div class="settings-info-row__label" style="font-weight: 400; color: var(--color-text-secondary);">
+              <%= t("accounts.notif_email_following_activity") %>
+            </div>
+            <div class="settings-info-row__right">
+              <label class="notif-channel-btn" aria-label="<%= t("accounts.notif_email_label") %>">
+                <%= hidden_field_tag "notification_preference[email_following_activity]", "0" %>
+                <%= check_box_tag "notification_preference[email_following_activity]", "1",
+                      @notification_preference.email_following_activity?, class: "sr-only" %>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" width="14" height="14" aria-hidden="true">
+                  <path d="M3 4a2 2 0 00-2 2v1.161l8.441 4.221a1.25 1.25 0 001.118 0L19 7.162V6a2 2 0 00-2-2H3z"/>
+                  <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 01-2.46 0L1 8.839V14a2 2 0 002 2h14a2 2 0 002-2V8.839z"/>
+                </svg>
+              </label>
+            </div>
+          </div>
+
+          <%# Streaks and badges (email) %>
+          <div class="settings-info-row">
+            <div class="settings-info-row__label" style="font-weight: 400; color: var(--color-text-secondary);">
+              <%= t("accounts.notif_streaks_badges_email") %>
+            </div>
+            <div class="settings-info-row__right">
+              <label class="notif-channel-btn" aria-label="<%= t("accounts.notif_email_label") %>">
+                <%= hidden_field_tag "notification_preference[email_streaks_badges]", "0" %>
+                <%= check_box_tag "notification_preference[email_streaks_badges]", "1",
+                      @notification_preference.email_streaks_badges?, class: "sr-only" %>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" width="14" height="14" aria-hidden="true">
+                  <path d="M3 4a2 2 0 00-2 2v1.161l8.441 4.221a1.25 1.25 0 001.118 0L19 7.162V6a2 2 0 00-2-2H3z"/>
+                  <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 01-2.46 0L1 8.839V14a2 2 0 002 2h14a2 2 0 002-2V8.839z"/>
+                </svg>
+              </label>
+            </div>
+          </div>
+
+          <%# Study reminders (email) %>
+          <div class="settings-info-row">
+            <div class="settings-info-row__label" style="font-weight: 400; color: var(--color-text-secondary);">
+              <%= t("accounts.notif_study_reminders_email") %>
+            </div>
+            <div class="settings-info-row__right">
+              <label class="notif-channel-btn" aria-label="<%= t("accounts.notif_email_label") %>">
+                <%= hidden_field_tag "notification_preference[email_study_reminders]", "0" %>
+                <%= check_box_tag "notification_preference[email_study_reminders]", "1",
+                      @notification_preference.email_study_reminders?, class: "sr-only" %>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" width="14" height="14" aria-hidden="true">
+                  <path d="M3 4a2 2 0 00-2 2v1.161l8.441 4.221a1.25 1.25 0 001.118 0L19 7.162V6a2 2 0 00-2-2H3z"/>
+                  <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 01-2.46 0L1 8.839V14a2 2 0 002 2h14a2 2 0 002-2V8.839z"/>
+                </svg>
+              </label>
+            </div>
+          </div>
+
+          <%# Reminder time %>
+          <div class="settings-info-row">
+            <div class="settings-info-row__label" style="font-weight: 400; color: var(--color-text-secondary);">
+              <%= t("accounts.notif_choose_reminder_time") %>
+            </div>
+            <div class="settings-info-row__right">
+              <%= f.select "notification_preference[reminder_time]",
+                    (0..23).map { |h| v = format("%02d:00", h); [v, v] },
+                    { selected: @notification_preference.reminder_time },
+                    { class: "form-control form-control--sm" } %>
+            </div>
+          </div>
+
+          <%# Time zone %>
+          <div class="settings-info-row">
+            <div class="settings-info-row__label" style="font-weight: 400; color: var(--color-text-secondary);">
+              <%= t("accounts.notif_time_zone") %>
+            </div>
+            <div class="settings-info-row__right">
+              <%= f.select "notification_preference[time_zone]",
+                    ActiveSupport::TimeZone.all.map { |tz| [tz.to_s, tz.name] },
+                    { selected: @notification_preference.time_zone },
+                    { class: "form-control form-control--sm" } %>
+            </div>
+          </div>
+
+        </div>
+      </details>
+
+      <div class="settings-card__footer">
+        <%= f.submit t("shared.save"), class: "btn btn--primary btn--sm" %>
+      </div>
+
+    <% end %>
+  </div>
+</div>

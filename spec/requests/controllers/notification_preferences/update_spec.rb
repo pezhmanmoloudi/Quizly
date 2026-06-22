@@ -1,15 +1,14 @@
 require "rails_helper"
 
-RSpec.describe "Accounts#update notifications", type: :request do
+RSpec.describe "NotificationPreferences#update", type: :request do
   let(:user) { create(:user) }
 
-  describe "PATCH /account with section=notifications" do
+  describe "PATCH /notification_preferences" do
     context "when authenticated" do
       before { sign_in(user) }
 
       it "turns off email_streaks_badges" do
-        patch account_path, params: {
-          section: "notifications",
+        patch notification_preferences_path, params: {
           notification_preference: {
             email_streaks_badges: "0",
             email_study_reminders: "1",
@@ -18,12 +17,11 @@ RSpec.describe "Accounts#update notifications", type: :request do
           }
         }
         expect(user.reload.notification_preference.email_streaks_badges).to be(false)
-        expect(response).to redirect_to(account_path(anchor: "notifications"))
+        expect(response).to redirect_to(notification_preferences_path)
       end
 
       it "turns off email_study_reminders" do
-        patch account_path, params: {
-          section: "notifications",
+        patch notification_preferences_path, params: {
           notification_preference: {
             email_streaks_badges: "1",
             email_study_reminders: "0",
@@ -32,12 +30,11 @@ RSpec.describe "Accounts#update notifications", type: :request do
           }
         }
         expect(user.reload.notification_preference.email_study_reminders).to be(false)
-        expect(response).to redirect_to(account_path(anchor: "notifications"))
+        expect(response).to redirect_to(notification_preferences_path)
       end
 
       it "updates reminder_time" do
-        patch account_path, params: {
-          section: "notifications",
+        patch notification_preferences_path, params: {
           notification_preference: {
             email_streaks_badges: "1",
             email_study_reminders: "1",
@@ -49,8 +46,7 @@ RSpec.describe "Accounts#update notifications", type: :request do
       end
 
       it "updates time_zone" do
-        patch account_path, params: {
-          section: "notifications",
+        patch notification_preferences_path, params: {
           notification_preference: {
             email_streaks_badges: "1",
             email_study_reminders: "1",
@@ -62,8 +58,7 @@ RSpec.describe "Accounts#update notifications", type: :request do
       end
 
       it "sets flash notice on success" do
-        patch account_path, params: {
-          section: "notifications",
+        patch notification_preferences_path, params: {
           notification_preference: {
             email_streaks_badges: "1",
             email_study_reminders: "1",
@@ -75,8 +70,7 @@ RSpec.describe "Accounts#update notifications", type: :request do
       end
 
       it "rejects invalid reminder_time" do
-        patch account_path, params: {
-          section: "notifications",
+        patch notification_preferences_path, params: {
           notification_preference: {
             email_streaks_badges: "1",
             email_study_reminders: "1",
@@ -88,8 +82,7 @@ RSpec.describe "Accounts#update notifications", type: :request do
       end
 
       it "rejects invalid time_zone" do
-        patch account_path, params: {
-          section: "notifications",
+        patch notification_preferences_path, params: {
           notification_preference: {
             email_streaks_badges: "1",
             email_study_reminders: "1",
@@ -102,8 +95,7 @@ RSpec.describe "Accounts#update notifications", type: :request do
 
       it "does not change preferences on validation failure" do
         original_time = user.notification_preference.reminder_time
-        patch account_path, params: {
-          section: "notifications",
+        patch notification_preferences_path, params: {
           notification_preference: {
             email_streaks_badges: "1",
             email_study_reminders: "1",
@@ -117,8 +109,7 @@ RSpec.describe "Accounts#update notifications", type: :request do
 
     context "when not authenticated" do
       it "redirects to login" do
-        patch account_path, params: {
-          section: "notifications",
+        patch notification_preferences_path, params: {
           notification_preference: { email_streaks_badges: "0" }
         }
         expect(response).to redirect_to(login_path)

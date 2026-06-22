@@ -78,7 +78,7 @@
         <span><%= t("menu.following") %></span>
       <% end %>
 
-      <%= link_to account_path(anchor: "notifications"),
+      <%= link_to notification_preferences_path,
             class: "avatar-dropdown__item", role: "menuitem" do %>
         <%= render "shared/icons/bolt", css_class: "avatar-dropdown__item-icon" %>
         <span><%= t("menu.notifications") %></span>
