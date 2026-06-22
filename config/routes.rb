@@ -38,7 +38,8 @@ Rails.application.routes.draw do
     end
     resources :flashcards, shallow: true, only: [:create, :update, :destroy] do
       member do
-        patch :restore
+        patch  :restore
+        delete :purge_image
       end
     end
     resource :import, only: [], controller: :imports do

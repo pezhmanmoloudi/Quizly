@@ -59,5 +59,44 @@
               action: "change->card-autosave#schedule"
             } %>
     </div>
+
+    <div class="card-row__image-panel" data-card-autosave-target="imagePanel">
+      <span class="card-editor-panel__label"><%= t("decks.card_row.image") %></span>
+
+      <input type="file" accept="image/*"
+             data-card-autosave-target="imageInput"
+             data-action="change->card-autosave#uploadImage"
+             hidden>
+
+      <button type="button"
+              class="card-row__image-placeholder"
+              aria-label="<%= t('decks.card_row.add_image') %>"
+              data-card-autosave-target="imagePlaceholder"
+              data-action="click->card-autosave#triggerImageUpload"
+              <%= "hidden" if card&.image&.attached? %>>
+      </button>
+
+      <img src="<%= card&.image&.attached? ? rails_blob_path(card.image, disposition: "inline") : "" %>"
+           class="card-row__image-preview"
+           data-card-autosave-target="imagePreview"
+           alt=""
+           <%= "hidden" unless card&.image&.attached? %>>
+
+      <button type="button"
+              class="card-row__image-action"
+              data-card-autosave-target="imageBtn"
+              data-action="click->card-autosave#triggerImageUpload"
+              <%= "hidden" if card&.image&.attached? %>>
+        <%= t("decks.card_row.add_image") %>
+      </button>
+
+      <button type="button"
+              class="card-row__image-action card-row__image-action--remove"
+              data-card-autosave-target="imageRemoveBtn"
+              data-action="click->card-autosave#removeImage"
+              <%= "hidden" unless card&.image&.attached? %>>
+        <%= t("decks.card_row.remove_image") %>
+      </button>
+    </div>
   </div>
 </div>

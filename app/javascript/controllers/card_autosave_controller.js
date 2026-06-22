@@ -1,7 +1,9 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["front", "back", "status", "frontLanguage", "backLanguage"]
+  static targets = ["front", "back", "status", "frontLanguage", "backLanguage",
+                    "imagePanel", "imageInput", "imagePreview", "imageBtn", "imageRemoveBtn",
+                    "imagePlaceholder"]
   static values  = {
     flashcardId:  String,
     createUrl:    String,
@@ -73,6 +75,79 @@ export default class extends Controller {
     })
     if (response.ok) Turbo.renderStreamMessage(await response.text())
   }
+
+  // ── Image handling ───────────────────────────────────────────────────────
+
+  triggerImageUpload() {
+    this.imageInputTarget?.click()
+  }
+
+  async uploadImage(event) {
+    const file = event.currentTarget.files?.[0]
+    if (!file) return
+
+    this.imagePreviewTarget.src = URL.createObjectURL(file)
+    this.imagePreviewTarget.hidden = false
+    if (this.hasImagePlaceholderTarget) this.imagePlaceholderTarget.hidden = true
+    if (this.hasImageBtnTarget) this.imageBtnTarget.hidden = true
+    if (this.hasImageRemoveBtnTarget) this.imageRemoveBtnTarget.hidden = false
+
+    if (!this.flashcardIdValue) await this.save()
+    if (!this.flashcardIdValue) return
+
+    this.#setStatus("saving")
+    try {
+      const formData = new FormData()
+      formData.append("flashcard[image]", file)
+      const response = await fetch(`/flashcards/${this.flashcardIdValue}`, {
+        method: "PATCH",
+        headers: {
+          "Accept": "application/json",
+          "X-CSRF-Token": document.querySelector("meta[name='csrf-token']").content
+        },
+        body: formData
+      })
+      if (response.ok) {
+        this.#setStatus("saved")
+        setTimeout(() => this.#setStatus(""), 2000)
+      } else {
+        this.#setStatus("error")
+      }
+    } catch {
+      this.#setStatus("error")
+    }
+  }
+
+  async removeImage() {
+    if (!this.flashcardIdValue) return
+
+    this.#setStatus("saving")
+    try {
+      const response = await fetch(`/flashcards/${this.flashcardIdValue}/purge_image`, {
+        method: "DELETE",
+        headers: {
+          "Accept": "application/json",
+          "X-CSRF-Token": document.querySelector("meta[name='csrf-token']").content
+        }
+      })
+      if (response.ok) {
+        this.imagePreviewTarget.src = ""
+        this.imagePreviewTarget.hidden = true
+        this.imageInputTarget.value = ""
+        if (this.hasImagePlaceholderTarget) this.imagePlaceholderTarget.hidden = false
+        if (this.hasImageBtnTarget) this.imageBtnTarget.hidden = false
+        if (this.hasImageRemoveBtnTarget) this.imageRemoveBtnTarget.hidden = true
+        this.#setStatus("saved")
+        setTimeout(() => this.#setStatus(""), 2000)
+      } else {
+        this.#setStatus("error")
+      }
+    } catch {
+      this.#setStatus("error")
+    }
+  }
+
+  // ── Tab handling ─────────────────────────────────────────────────────────
 
   handleTab(event) {
     if (event.key !== "Tab" || event.shiftKey) return

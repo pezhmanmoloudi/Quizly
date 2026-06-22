@@ -25,7 +25,6 @@
         <%= link_to t("study_modes.test.retake"), test_deck_path(@test_session.deck),
               class: "btn btn--primary btn--sm",
               data: { turbo_action: "replace" } %>
-        <%= link_to t("study_modes.back_to_deck"), @test_session.deck, class: "btn btn--secondary btn--sm" %>
       </div>
     </div>
   <% end %>

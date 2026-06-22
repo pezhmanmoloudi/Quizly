@@ -120,13 +120,13 @@
 .learn-card__correct-answer {
   margin-top: var(--space-2);
   padding: var(--space-3) var(--space-4);
-  background: rgba(255, 255, 255, 0.6);
+  background: color-mix(in srgb, currentColor 12%, transparent);
   border-radius: var(--radius-sm);
   font-size: var(--text-sm);
 }
 
 .learn-card__answer-label {
-  color: var(--color-muted);
+  color: inherit;
   margin-inline-end: var(--space-2);
 }
 
