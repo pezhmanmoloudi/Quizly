@@ -22,7 +22,7 @@
   grid-area: 1 / 1;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
-  background: var(--color-surface);
+  background: var(--color-card);
   border-radius: 14px;
   padding: 2.5rem 2rem;
   min-height: 220px;
@@ -88,8 +88,8 @@
   gap: 0.875rem;
   margin-top: 2rem;
   padding: 1rem 1.5rem;
-  background: rgba(79, 70, 229, 0.06);
-  border: 1px solid rgba(79, 70, 229, 0.15);
+  background: rgba(77, 162, 255, 0.06);
+  border: 1px solid rgba(77, 162, 255, 0.15);
   border-radius: 10px;
   text-align: center;
 }

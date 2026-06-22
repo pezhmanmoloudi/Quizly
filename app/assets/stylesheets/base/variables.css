@@ -3,15 +3,20 @@
   color-scheme: light;
 
   /* Colors */
-  --color-primary:        #5448e8;
-  --color-primary-dark:   #4338d6;
-  --color-text:           #1a1a1a;
+  --color-primary:        #4DA2FF;
+  --color-primary-dark:   #2F8CFF;
+  --color-text:           #0F172A;
   --color-text-secondary: #374151;
-  --color-muted:          #6b7280;
-  --color-border:         #d0d5df;
-  --color-border-light:   #e8ebf1;
-  --color-bg:             #f4f5f8;
-  --color-surface:        #ffffff;
+  --color-muted:          #64748B;
+  --color-border:         #E6EEF8;
+  --color-border-light:   #EEF4FB;
+  --color-bg:             #F1F5F9;
+  --color-surface:        #F8FBFF;
+  --color-card:           #FFFFFF;
+  --color-card-raised:    #FFFFFF;
+  --color-accent:         #EEF2F7;
+  --color-surface-hover:  #EEF5FF;
+  --color-surface-raised: #FFFFFF;
   --color-danger:         #ef4444;
   --color-danger-bg:      #fee2e2;
   --color-danger-text:    #991b1b;
@@ -19,14 +24,14 @@
   --color-success-bg:     #d1fae5;
   --color-success-text:   #065f46;
   --color-warning:        #f59e0b;
-  --color-secondary:      #7c3aed;
+  --color-secondary:      #8B5CF6;
 
   /* Transitions */
   --transition-base: 150ms ease;
 
   /* Mode palette */
-  --mode-flashcards-bg:  #ede9fe;
-  --mode-flashcards-bar: #7c3aed;
+  --mode-flashcards-bg:  #E0F0FF;
+  --mode-flashcards-bar: #4DA2FF;
   --mode-learn-bg:       #cffafe;
   --mode-learn-bar:      #0891b2;
   --mode-study-bg:       #fef3c7;
@@ -83,7 +88,7 @@
   --shadow-lg:    0 6px 24px rgba(0,0,0,.11);
   --shadow-xl:    0 10px 40px rgba(0,0,0,.10), 0 2px 6px rgba(0,0,0,.06);
   --shadow-toast: 0 4px 20px rgba(0,0,0,.18);
-  --shadow-focus: 0 0 0 3px rgba(84,72,232,.22);
+  --shadow-focus: 0 0 0 3px rgba(77,162,255,.25);
 
   /* ── Animation timing ── */
   --duration-fast: 150ms;
@@ -104,8 +109,8 @@
 
   /* ── Additional colour tokens ── */
   --color-danger-hover:     #dc2626;  /* btn--danger:hover */
-  --color-btn-circle:       #5448e8;  /* btn--circle bg */
-  --color-btn-circle-hover: #4338d6;  /* btn--circle hover */
+  --color-btn-circle:       #4DA2FF;  /* btn--circle bg */
+  --color-btn-circle-hover: #2F8CFF;  /* btn--circle hover */
   --color-separator:        #9ca3af;  /* flashcard row separator */
   --color-success-solid:    #18a058;  /* flash notice background */
 
@@ -122,15 +127,20 @@
 [data-theme="dark"] {
   color-scheme: dark;
 
-  --color-primary:          #818cf8;
-  --color-primary-dark:     #6366f1;
-  --color-text:             #f1f5f9;
+  --color-primary:          #6BB8FF;
+  --color-primary-dark:     #8BCBFF;
+  --color-text:             #F3F7FC;
   --color-text-secondary:   #cbd5e1;
   --color-muted:            #94a3b8;
-  --color-border:           #334155;
-  --color-border-light:     #1e293b;
-  --color-bg:               #0f172a;
-  --color-surface:          #1e293b;
+  --color-border:           #253040;
+  --color-border-light:     #1C2535;
+  --color-bg:               #0D1117;
+  --color-surface:          #161D27;
+  --color-card:             #1E2A3A;
+  --color-card-raised:      #263444;
+  --color-accent:           #1D2D40;
+  --color-surface-hover:    #1D2B3D;
+  --color-surface-raised:   #263444;
   --color-danger:           #f87171;
   --color-danger-bg:        #450a0a;
   --color-danger-text:      #fca5a5;
@@ -140,13 +150,13 @@
   --color-warning:          #fbbf24;
   --color-secondary:        #a78bfa;
   --color-danger-hover:     #ef4444;
-  --color-btn-circle:       #6366f1;
-  --color-btn-circle-hover: #818cf8;
+  --color-btn-circle:       #4DA2FF;
+  --color-btn-circle-hover: #6BB8FF;
   --color-separator:        #475569;
   --color-success-solid:    #059669;
   --shadow-lg:    0 4px 16px rgba(0,0,0,.45);
   --shadow-xl:    0 8px 32px rgba(0,0,0,.50), 0 1px 4px rgba(0,0,0,.30);
-  --shadow-focus: 0 0 0 3px rgba(129, 140, 248, 0.20);
+  --shadow-focus: 0 0 0 3px rgba(107,184,255,.25);
 
   /* ── Scrollbar tokens ── */
   --scrollbar-thumb: rgba(255, 255, 255, 0.14);
@@ -157,8 +167,8 @@
   --color-star-bg-hover: rgba(245, 158, 11, 0.25);
 
   /* ── Mode palette (dark) ── */
-  --mode-flashcards-bg:  #2d1657;
-  --mode-flashcards-bar: #a78bfa;
+  --mode-flashcards-bg:  #0C1F38;
+  --mode-flashcards-bar: #6BB8FF;
   --mode-learn-bg:       #0a2e38;
   --mode-learn-bar:      #22d3ee;
   --mode-study-bg:       #3d2100;
