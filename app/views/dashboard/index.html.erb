@@ -54,7 +54,7 @@
     </div>
     <div class="deck-grid">
       <%= render partial: "decks/deck_card", collection: @decks, as: :deck,
-                 locals: { due_counts: @due_counts } %>
+                 locals: { due_counts: @due_counts, last_studied_dates: @last_studied_dates } %>
     </div>
   <% else %>
     <div style="margin-top: 2.5rem;">

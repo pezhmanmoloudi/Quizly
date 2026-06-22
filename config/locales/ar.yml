@@ -297,6 +297,11 @@ ar:
       count:
         one: بطاقة واحدة
         other: "%{count} بطاقات"
+      cards_label: بطاقات
+      due_label: مستحقة
+      studied_label: تمت الدراسة
+      never_studied: لم تتم الدراسة
+      studied_time: "منذ %{time}"
   folders:
     create_failed: تعذر إنشاء المجلد.
     updated: تم تحديث المجلد.
@@ -473,6 +478,8 @@ ar:
     locked_badge: Password Required
     owner_badge: أنت
     by_you: بواسطتك
+    language_label: لغة
+    created_label: مضاف
   dashboard:
     total_decks: إجمالي المجموعات
     total_cards: إجمالي البطاقات

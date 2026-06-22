@@ -300,6 +300,11 @@ de:
       count:
         one: "%{count} Karte"
         other: "%{count} Karten"
+      cards_label: Karten
+      due_label: fällig
+      studied_label: gelernt
+      never_studied: Noch nicht gelernt
+      studied_time: "vor %{time}"
   folders:
     create_failed: Ordner konnte nicht erstellt werden.
     updated: Ordner aktualisiert.
@@ -479,6 +484,8 @@ de:
     locked_badge: Password Required
     owner_badge: Du
     by_you: von dir
+    language_label: Sprache
+    created_label: erstellt
   dashboard:
     total_decks: Decks gesamt
     total_cards: Karten gesamt

@@ -305,6 +305,11 @@ fr:
       count:
         one: "%{count} carte"
         other: "%{count} cartes"
+      cards_label: cartes
+      due_label: à réviser
+      studied_label: étudié
+      never_studied: Jamais étudié
+      studied_time: "il y a %{time}"
   folders:
     create_failed: Impossible de créer le dossier.
     updated: Dossier mis à jour.
@@ -483,6 +488,8 @@ fr:
     locked_badge: Password Required
     owner_badge: Vous
     by_you: par vous
+    language_label: langue
+    created_label: ajouté
   dashboard:
     total_decks: Total des paquets
     total_cards: Total des cartes

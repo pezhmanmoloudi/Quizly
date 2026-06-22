@@ -301,6 +301,11 @@ es:
       count:
         one: "%{count} tarjeta"
         other: "%{count} tarjetas"
+      cards_label: tarjetas
+      due_label: pendientes
+      studied_label: estudiado
+      never_studied: Nunca estudiado
+      studied_time: "hace %{time}"
   folders:
     create_failed: No se pudo crear la carpeta.
     updated: Carpeta actualizada.
@@ -479,6 +484,8 @@ es:
     locked_badge: Password Required
     owner_badge: Tú
     by_you: por ti
+    language_label: idioma
+    created_label: agregado
   dashboard:
     total_decks: Total de mazos
     total_cards: Total de tarjetas

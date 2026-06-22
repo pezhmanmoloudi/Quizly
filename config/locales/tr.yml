@@ -298,6 +298,11 @@ tr:
       count:
         one: "%{count} kart"
         other: "%{count} kart"
+      cards_label: kart
+      due_label: bekliyor
+      studied_label: çalışıldı
+      never_studied: Hiç çalışılmadı
+      studied_time: "%{time} önce"
   folders:
     create_failed: Klasör oluşturulamadı.
     updated: Klasör güncellendi.
@@ -477,6 +482,8 @@ tr:
     locked_badge: Password Required
     owner_badge: Sen
     by_you: senin tarafından
+    language_label: dil
+    created_label: eklendi
   dashboard:
     total_decks: Toplam Deste
     total_cards: Toplam Kart

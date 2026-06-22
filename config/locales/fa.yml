@@ -297,6 +297,11 @@ fa:
       count:
         one: "%{count} کارت"
         other: "%{count} کارت"
+      cards_label: کارت‌ها
+      due_label: سررسیده
+      studied_label: مطالعه شده
+      never_studied: هرگز مطالعه نشده
+      studied_time: "%{time} پیش"
   folders:
     create_failed: ایجاد پوشه ممکن نشد.
     updated: پوشه به‌روزرسانی شد.
@@ -475,6 +480,8 @@ fa:
     locked_badge: Password Required
     owner_badge: شما
     by_you: توسط شما
+    language_label: زبان
+    created_label: اضافه‌شده
   dashboard:
     total_decks: مجموع دسته‌ها
     total_cards: مجموع کارت‌ها

@@ -297,6 +297,11 @@ en:
       count:
         one: "%{count} card"
         other: "%{count} cards"
+      cards_label: cards
+      due_label: due
+      studied_label: studied
+      never_studied: Never studied
+      studied_time: "%{time} ago"
   folders:
     create_failed: Could not create folder.
     updated: Folder updated.
@@ -474,6 +479,8 @@ en:
     locked_badge: Password Required
     owner_badge: You
     by_you: by You
+    language_label: language
+    created_label: added
   dashboard:
     total_decks: Total Decks
     total_cards: Total Cards

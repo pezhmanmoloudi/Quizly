@@ -49,29 +49,11 @@ RSpec.describe "Explore#index", type: :request do
         expect(response.body).to include("No decks found for")
       end
 
-      context "owner badge indicator" do
-        it "shows the owner badge for the user's own public deck" do
-          create(:deck, :public, user: user, name: "My Own Deck")
-          get explore_path
-          expect(response.body).to include("deck-tile__owner-badge")
-        end
-
-        it "shows 'by You' author text for own deck" do
-          create(:deck, :public, user: user, name: "My Own Deck")
-          get explore_path
-          expect(response.body).to include(I18n.t("explore.by_you"))
-        end
-
-        it "does not show the owner badge for another user's deck" do
+      context "author name" do
+        it "shows the deck creator's display name" do
           create(:deck, :public, user: other_user, name: "Their Deck")
           get explore_path
-          expect(response.body).not_to include("deck-tile__owner-badge")
-        end
-
-        it "does not show 'by You' for another user's deck" do
-          create(:deck, :public, user: other_user, name: "Their Deck")
-          get explore_path
-          expect(response.body).not_to include(I18n.t("explore.by_you"))
+          expect(response.body).to include(other_user.display_name)
         end
       end
 
@@ -83,11 +65,11 @@ RSpec.describe "Explore#index", type: :request do
           expect(response.body).to include("Open Public Deck")
         end
 
-        it "does not show the lock badge" do
+        it "does not show a lock icon" do
           deck = create(:deck, visibility: "public", access_mode: "open", user: other_user, name: "Open Public Deck")
           create(:flashcard, deck: deck)
           get explore_path
-          expect(response.body).not_to include(I18n.t("explore.locked_badge"))
+          expect(response.body).not_to include("deck-tile__lock-icon")
         end
       end
 
@@ -98,10 +80,16 @@ RSpec.describe "Explore#index", type: :request do
           expect(response.body).to include("Locked Public Deck")
         end
 
-        it "shows the lock badge for password-protected decks" do
+        it "shows a closed lock icon for password-protected decks" do
           create(:deck, :password_protected, user: other_user, name: "Locked Public Deck")
           get explore_path
-          expect(response.body).to include(I18n.t("explore.locked_badge"))
+          expect(response.body).to include("deck-tile__lock-icon--closed")
+        end
+
+        it "shows an open lock icon when the deck is owned by the current user" do
+          create(:deck, :password_protected, user: user, name: "My Locked Deck")
+          get explore_path
+          expect(response.body).to include("deck-tile__lock-icon--open")
         end
       end
     end
@@ -151,10 +139,11 @@ RSpec.describe "Explore#index", type: :request do
         expect(response.body).not_to include("Private Hidden Guest")
       end
 
-      it "does not show owner badge for any tile" do
-        create(:deck, :public, user: create(:user), name: "Some Deck")
+      it "shows the deck creator's display name for unauthenticated visitors" do
+        creator = create(:user)
+        create(:deck, :public, user: creator, name: "Some Deck")
         get explore_path
-        expect(response.body).not_to include("deck-tile__owner-badge")
+        expect(response.body).to include(creator.display_name)
       end
 
       it "lists password-protected public decks for guests" do

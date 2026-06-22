@@ -21,21 +21,23 @@
 /* ── Responsive grid container ── */
 .deck-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 1rem;
 }
 
-/* ── Grid tile card (used in dashboard) ── */
+/* ── Grid tile card ── */
 .deck-tile {
   background: var(--color-surface);
-  border-radius: 12px;
+  border: 1px solid var(--color-border-light);
+  border-radius: 16px;
   box-shadow: var(--shadow-sm);
   padding: 1.25rem;
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 0.875rem;
+  min-height: 260px;
   transition: transform var(--transition-base), box-shadow var(--transition-base),
-              outline-color var(--transition-base);
+              border-color var(--transition-base);
   cursor: pointer;
   text-decoration: none;
   color: inherit;
@@ -44,73 +46,239 @@
 .deck-tile:hover {
   transform: translateY(-2px);
   box-shadow: var(--shadow-md);
-  outline: 2px solid color-mix(in srgb, var(--color-primary) 30%, transparent);
-  outline-offset: 0;
+  border-color: color-mix(in srgb, var(--color-primary) 40%, transparent);
 }
 
-/* Header row: name (left) + date (right) */
-.deck-tile__header {
+/* Dark-mode: deeper navy card with glassmorphism touch */
+[data-theme="dark"] .deck-tile {
+  background: #141c2e;
+  border-color: rgba(148, 163, 184, 0.08);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.04);
+}
+
+[data-theme="dark"] .deck-tile:hover {
+  border-color: color-mix(in srgb, var(--color-primary) 45%, transparent);
+  box-shadow: 0 4px 20px rgba(99, 102, 241, 0.15), 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+/* ── Top meta: avatar + author info ── */
+.deck-tile__top-meta {
   display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
+  align-items: center;
   gap: 0.5rem;
 }
 
-.deck-tile__body { flex: 1; display: flex; flex-direction: column; gap: 0.4rem; }
+.deck-tile__author-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 0;
+}
 
-.deck-tile__name { font-size: 1rem; font-weight: 600; margin: 0; }
-.deck-tile__name a { text-decoration: none; color: var(--color-text); }
-.deck-tile__name a:hover { color: var(--color-primary); }
+.deck-tile__avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: color-mix(in srgb, var(--color-primary) 15%, transparent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.deck-tile__avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.deck-tile__avatar-initials {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  line-height: 1;
+}
+
+.deck-tile__author-name {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.deck-tile__last-studied-time {
+  font-size: 0.72rem;
+  color: var(--color-muted);
+}
+
+/* Visibility badge */
+.deck-tile__visibility-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.deck-tile__visibility-badge--public {
+  background: color-mix(in srgb, var(--color-success) 12%, transparent);
+  color: var(--color-success);
+}
+
+.deck-tile__visibility-badge--private {
+  background: color-mix(in srgb, var(--color-muted) 12%, transparent);
+  color: var(--color-muted);
+  border: 1px solid color-mix(in srgb, var(--color-muted) 20%, transparent);
+}
+
+.deck-tile__visibility-badge--unlisted {
+  background: color-mix(in srgb, var(--color-secondary) 12%, transparent);
+  color: var(--color-secondary);
+}
+
+.deck-tile__badge-icon {
+  width: 0.875rem;
+  height: 0.875rem;
+  flex-shrink: 0;
+}
+
+/* Wraps multiple badges side-by-side (e.g. lock icon + public on explore) */
+.deck-tile__visibility-group {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.35rem;
+}
+
+/* Lock icon — icon-only, no text */
+.deck-tile__lock-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Closed lock: user hasn't entered password yet */
+.deck-tile__lock-icon--closed {
+  color: var(--color-warning);
+}
+
+/* Open lock: user is owner or has unlocked with password */
+.deck-tile__lock-icon--open {
+  color: var(--color-muted);
+}
+
+/* Draft badge — shown left of visibility badge for incomplete decks */
+.deck-tile__draft-badge {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--color-warning) 12%, transparent);
+  color: var(--color-warning);
+  border: 1px solid color-mix(in srgb, var(--color-warning) 20%, transparent);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* ── Body: title, description, tags ── */
+.deck-tile__body { flex: 1; display: flex; flex-direction: column; gap: 0.35rem; }
+
+.deck-tile__name {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 0;
+  color: var(--color-text);
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
 
 .deck-tile__description {
-  font-size: 0.85rem;
+  font-size: 0.875rem;
   color: var(--color-muted);
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   margin: 0;
+  line-height: 1.5;
 }
 
-.deck-tile__meta { font-size: 0.8rem; color: var(--color-muted); margin: 0; }
-
-/* Meta row: card count + language badge inline */
-.deck-tile__meta-row {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-}
-
-/* Language badge on tile */
-.deck-tile__lang-badge {
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  padding: 0.1rem 0.4rem;
-  border-radius: 4px;
-  background: var(--color-border-light);
-  color: var(--color-muted);
-}
-
-/* Tag badges on tile */
 .deck-tile__tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.3rem;
+  gap: 0.35rem;
   margin-top: 0.25rem;
 }
 
 .tag-badge {
-  font-size: 0.7rem;
+  font-size: 0.72rem;
   font-weight: 500;
-  padding: 0.15rem 0.5rem;
-  border-radius: 999px;
+  padding: 0.2rem 0.55rem;
+  border-radius: 8px;
   background: color-mix(in srgb, var(--color-primary) 10%, transparent);
   color: var(--color-primary);
+  border: 1px solid color-mix(in srgb, var(--color-primary) 20%, transparent);
 }
 
-/* Cards-due badge (top-right of tile header) */
+/* ── Footer: 3-column stats row ── */
+.deck-tile__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--color-border-light);
+  gap: 0.5rem;
+}
+
+.deck-tile__stat {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.deck-tile__stat-icon {
+  width: 1.1rem;
+  height: 1.1rem;
+  color: var(--color-muted);
+  flex-shrink: 0;
+}
+
+.deck-tile__stat-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.deck-tile__stat-value {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-text);
+  line-height: 1.2;
+}
+
+.deck-tile__stat-value--none {
+  color: var(--color-muted);
+}
+
+.deck-tile__stat-label {
+  font-size: 0.68rem;
+  color: var(--color-muted);
+  line-height: 1;
+}
+
+/* ── Preserved: due/draft badges (used elsewhere) ── */
 .due-badge {
   display: inline-flex;
   align-items: center;
@@ -137,28 +305,7 @@
   flex-shrink: 0;
 }
 
-.deck-tile__date {
-  font-size: 0.75rem;
-  color: var(--color-muted);
-  white-space: nowrap;
-  flex-shrink: 0;
-  padding-top: 0.15rem;
-}
-
-/* Footer: action buttons separated from body by a top border */
-.deck-tile__footer {
-  display: flex;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-  margin-top: auto;
-  padding-top: 0.75rem;
-  border-top: 1px solid var(--color-border-light);
-}
-
-/* Kept for backward compatibility with inline deck-tile__actions usage */
-.deck-tile__actions { display: flex; gap: 0.5rem; flex-wrap: wrap; }
-
-/* New Deck CTA tile */
+/* ── New Deck CTA tile ── */
 .deck-tile--new {
   border-top: none;
   border: 2px dashed var(--color-border);
@@ -184,6 +331,38 @@
 }
 
 .deck-tile--new__icon { font-size: 1.75rem; line-height: 1; }
+
+/* ── Explore page public card extensions ── */
+.deck-tile__meta { font-size: 0.8rem; color: var(--color-muted); margin: 0; }
+.deck-tile__lang { font-weight: 600; }
+
+.deck-tile__footer--public { justify-content: space-between; }
+
+.deck-tile__author {
+  font-size: 0.8rem;
+  color: var(--color-muted);
+}
+
+.deck-tile__owner-badge {
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--color-success) 12%, transparent);
+  color: var(--color-success);
+}
+
+.deck-tile__locked-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--color-primary) 10%, transparent);
+  color: var(--color-primary);
+}
 
 @media (max-width: 768px) {
   .deck-grid { grid-template-columns: 1fr; }

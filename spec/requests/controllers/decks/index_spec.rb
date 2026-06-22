@@ -80,6 +80,40 @@ RSpec.describe "Decks#index", type: :request do
         get decks_path
         expect(response.body).to include("from_page=1")
       end
+
+      it "assigns last_studied_dates as a hash" do
+        deck = create(:deck, user: user)
+        create(:study_session, user: user, deck: deck, started_at: 3.days.ago)
+        get decks_path
+        expect(controller.instance_variable_get(:@last_studied_dates)).to be_a(Hash)
+      end
+
+      it "shows studied_time for decks with a study session" do
+        deck = create(:deck, user: user)
+        create(:study_session, user: user, deck: deck, started_at: 2.days.ago)
+        get decks_path
+        expect(response.body).to include(I18n.t("decks.deck_card.studied_label"))
+      end
+
+      it "shows an open lock icon for own password-protected decks" do
+        create(:deck, :password_protected, user: user)
+        get decks_path
+        expect(response.body).to include("deck-tile__lock-icon--open")
+      end
+
+      it "shows the draft badge for incomplete decks" do
+        create(:deck, user: user)
+        get decks_path
+        expect(response.body).to include("deck-tile__draft-badge")
+        expect(response.body).to include(I18n.t("decks.deck_card.draft"))
+      end
+
+      it "does not show the draft badge for complete decks" do
+        deck = create(:deck, user: user)
+        create(:flashcard, deck: deck)
+        get decks_path
+        expect(response.body).not_to include("deck-tile__draft-badge")
+      end
     end
 
     context "when not authenticated" do

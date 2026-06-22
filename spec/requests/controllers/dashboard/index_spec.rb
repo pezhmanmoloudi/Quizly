@@ -60,6 +60,13 @@ RSpec.describe "Dashboard#index", type: :request do
         get dashboard_path
         expect(response.body).not_to include("Stranger&#39;s Deck")
       end
+
+      it "assigns last_studied_dates as a hash" do
+        deck = create(:deck, user: user)
+        create(:study_session, user: user, deck: deck, started_at: 1.week.ago)
+        get dashboard_path
+        expect(controller.instance_variable_get(:@last_studied_dates)).to be_a(Hash)
+      end
     end
 
     context "when not authenticated" do
