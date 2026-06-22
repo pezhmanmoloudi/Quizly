@@ -47,12 +47,12 @@
 
     <%# Section 2: Social stats %>
     <div class="avatar-dropdown__stats" role="presentation">
-      <div class="avatar-dropdown__stat">
+      <div id="nav-followers-count" class="avatar-dropdown__stat">
         <span class="avatar-dropdown__stat-count"><%= Current.user.followers_count %></span>
         <span class="avatar-dropdown__stat-label"><%= t("menu.followers") %></span>
       </div>
       <span class="avatar-dropdown__stat-sep" aria-hidden="true">·</span>
-      <div class="avatar-dropdown__stat">
+      <div id="nav-following-count" class="avatar-dropdown__stat">
         <span class="avatar-dropdown__stat-count"><%= Current.user.follows_as_follower.size %></span>
         <span class="avatar-dropdown__stat-label"><%= t("menu.following") %></span>
       </div>

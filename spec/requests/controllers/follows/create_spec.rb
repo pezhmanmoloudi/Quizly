@@ -19,6 +19,11 @@ RSpec.describe "Follows#create", type: :request do
       expect(response.media_type).to eq("text/vnd.turbo-stream.html")
     end
 
+    it "includes nav-following-count in the turbo stream response" do
+      post user_follow_path(followed), headers: { "Accept" => "text/vnd.turbo-stream.html" }
+      expect(response.body).to include("nav-following-count")
+    end
+
     it "creates a followed notification for the followed user when in_app_follows is true" do
       followed.notification_preference.update!(in_app_follows: true)
       expect {

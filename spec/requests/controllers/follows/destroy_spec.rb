@@ -22,6 +22,11 @@ RSpec.describe "Follows#destroy", type: :request do
       expect(response.media_type).to eq("text/vnd.turbo-stream.html")
     end
 
+    it "includes nav-following-count in the turbo stream response" do
+      delete user_follow_path(followed), headers: { "Accept" => "text/vnd.turbo-stream.html" }
+      expect(response.body).to include("nav-following-count")
+    end
+
     it "does not create an unfollow notification" do
       expect {
         delete user_follow_path(followed), headers: { "Accept" => "text/vnd.turbo-stream.html" }
