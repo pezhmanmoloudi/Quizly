@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_06_20_205556) do
+ActiveRecord::Schema[8.1].define(version: 2026_06_22_000001) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -183,6 +183,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_20_205556) do
     t.datetime "read_at"
     t.bigint "recipient_id", null: false
     t.datetime "updated_at", null: false
+    t.index ["actor_id"], name: "index_notifications_on_actor_id"
     t.index ["notifiable_type", "notifiable_id"], name: "index_notifications_on_notifiable_type_and_notifiable_id"
     t.index ["recipient_id", "created_at"], name: "index_notifications_on_recipient_id_and_created_at"
     t.index ["recipient_id", "read", "created_at"], name: "index_notifications_on_recipient_id_and_read_and_created_at"
@@ -393,7 +394,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_20_205556) do
   add_foreign_key "learn_sessions", "decks"
   add_foreign_key "learn_sessions", "users"
   add_foreign_key "notification_preferences", "users"
-  add_foreign_key "notifications", "users", column: "actor_id"
+  add_foreign_key "notifications", "users", column: "actor_id", on_delete: :nullify
   add_foreign_key "notifications", "users", column: "recipient_id"
   add_foreign_key "sessions", "users"
   add_foreign_key "solid_queue_blocked_executions", "solid_queue_jobs", column: "job_id", on_delete: :cascade

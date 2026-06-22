@@ -438,7 +438,7 @@
   flex-shrink: 0;
 }
 
-.notif-channel-btn--active {
+.notif-channel-btn:has(input[type="checkbox"]:checked) {
   border-color: var(--color-primary);
   color: var(--color-primary);
 }

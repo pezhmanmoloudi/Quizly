@@ -42,7 +42,7 @@ RSpec.describe "Notifications#mark_all_read", type: :request do
             headers: { "Accept" => "text/vnd.turbo-stream.html" }
       expect(response.body).to include(I18n.t("notifications.title"))
       expect(response.body).to include('target="notification-list"')
-      expect(response.body).to include('target="notification-badge"')
+      expect(response.body).to include('target="notification-badge-inner"')
     end
   end
 

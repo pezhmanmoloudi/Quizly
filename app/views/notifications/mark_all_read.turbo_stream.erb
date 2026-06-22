@@ -1,5 +1,6 @@
 <%= turbo_stream.update "notification-list" do %>
   <%= render "dropdown_body", notifications: @notifications %>
 <% end %>
-<%= turbo_stream.update "notification-badge" do %>
+<%= turbo_stream.update "notification-badge-inner" do %>
+  <%= render "badge_count", unread_count: @unread_count %>
 <% end %>

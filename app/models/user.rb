@@ -15,6 +15,8 @@ class User < ApplicationRecord
   has_many :user_badges, dependent: :destroy
   has_many :badges, through: :user_badges
   has_many :notifications, foreign_key: :recipient_id, dependent: :destroy, inverse_of: :recipient
+  has_many :sent_notifications, class_name: "Notification", foreign_key: :actor_id,
+                                dependent: :nullify, inverse_of: :actor
   has_one :notification_preference, dependent: :destroy
   has_many :folders, dependent: :destroy
 

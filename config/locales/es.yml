@@ -162,9 +162,12 @@ es:
     upload_photo_title: Subir una foto personalizada
     toggle_password: Mostrar/ocultar contraseña
     notifications_section: Notificaciones
+    notif_email_section_title: Notificaciones
     notif_personalised_updates: Actualizaciones de estudio personalizadas
     notif_streaks_badges: Rachas e insignias
+    notif_streaks_badges_email: Rachas e insignias
     notif_study_reminders: Recordatorios de estudio
+    notif_study_reminders_email: Recordatorios de estudio
     notif_choose_reminder_time: Elige cuándo recibir recordatorios de estudio
     notif_time_zone: Zona horaria
     notif_email_label: Notificación por correo

@@ -32,7 +32,7 @@ RSpec.describe "Notifications#mark_read", type: :request do
       patch mark_read_notification_path(notification),
             headers: { "Accept" => "text/vnd.turbo-stream.html" }
       expect(response.body).to include("notification-#{notification.id}")
-      expect(response.body).to include('target="notification-badge"')
+      expect(response.body).to include('target="notification-badge-inner"')
     end
   end
 
