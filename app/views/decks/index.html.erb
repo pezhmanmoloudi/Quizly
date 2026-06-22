@@ -23,7 +23,7 @@
             description: t("decks.index.empty_description"),
             variant: :dashboard %>
     <% else %>
-      <div class="deck-grid">
+      <div class="deck-list">
         <% @decks.each do |deck| %>
           <%= render "decks/deck_card", deck: deck, due_counts: @due_counts, from_page: @pagy.page, last_studied_dates: @last_studied_dates %>
         <% end %>

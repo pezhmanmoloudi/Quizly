@@ -240,7 +240,7 @@
       <h2 class="featured-decks__title"><%= t("home.popular_decks") %></h2>
       <%= link_to t("home.see_all"), explore_path, class: "featured-decks__more" %>
     </div>
-    <div class="deck-grid">
+    <div class="deck-list">
       <%= render partial: "explore/deck_card", collection: @featured_decks, as: :deck %>
     </div>
   </section>

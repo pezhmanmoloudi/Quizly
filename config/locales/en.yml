@@ -302,6 +302,8 @@ en:
       studied_label: studied
       never_studied: Never studied
       studied_time: "%{time} ago"
+      more_tags: "+%{count}"
+      options_aria: "Deck options"
   folders:
     create_failed: Could not create folder.
     updated: Folder updated.

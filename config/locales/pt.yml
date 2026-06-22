@@ -307,6 +307,8 @@ pt:
       studied_label: estudado
       never_studied: Nunca estudado
       studied_time: "há %{time}"
+      more_tags: "+%{count}"
+      options_aria: "Opções do baralho"
   folders:
     create_failed: Não foi possível criar a pasta.
     updated: Pasta atualizada.

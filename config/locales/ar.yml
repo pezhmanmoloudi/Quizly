@@ -302,6 +302,8 @@ ar:
       studied_label: تمت الدراسة
       never_studied: لم تتم الدراسة
       studied_time: "منذ %{time}"
+      more_tags: "+%{count}"
+      options_aria: "خيارات المجموعة"
   folders:
     create_failed: تعذر إنشاء المجلد.
     updated: تم تحديث المجلد.

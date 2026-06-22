@@ -83,13 +83,13 @@ RSpec.describe "Explore#index", type: :request do
         it "shows a closed lock icon for password-protected decks" do
           create(:deck, :password_protected, user: other_user, name: "Locked Public Deck")
           get explore_path
-          expect(response.body).to include("deck-tile__lock-icon--closed")
+          expect(response.body).to include("deck-row__lock-icon--closed")
         end
 
         it "shows an open lock icon when the deck is owned by the current user" do
           create(:deck, :password_protected, user: user, name: "My Locked Deck")
           get explore_path
-          expect(response.body).to include("deck-tile__lock-icon--open")
+          expect(response.body).to include("deck-row__lock-icon--open")
         end
       end
     end
