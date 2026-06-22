@@ -4,7 +4,7 @@
 .deck-list { display: flex; flex-direction: column; gap: 0; }
 
 .deck-card {
-  background: var(--color-surface);
+  background: var(--color-card);
   border-radius: 12px;
   padding: 1rem 1.25rem;
   display: flex;
@@ -27,7 +27,7 @@
 
 /* ── Grid tile card ── */
 .deck-tile {
-  background: var(--color-surface);
+  background: var(--color-card);
   border: 1px solid var(--color-border-light);
   border-radius: 16px;
   box-shadow: var(--shadow-sm);
@@ -51,14 +51,14 @@
 
 /* Dark-mode: deeper navy card with glassmorphism touch */
 [data-theme="dark"] .deck-tile {
-  background: #141c2e;
+  background: var(--color-card);
   border-color: rgba(148, 163, 184, 0.08);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.04);
 }
 
 [data-theme="dark"] .deck-tile:hover {
   border-color: color-mix(in srgb, var(--color-primary) 45%, transparent);
-  box-shadow: 0 4px 20px rgba(99, 102, 241, 0.15), 0 1px 3px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 4px 20px rgba(107, 184, 255, 0.15), 0 1px 3px rgba(0, 0, 0, 0.4);
 }
 
 /* ── Top meta: avatar + author info ── */
@@ -377,7 +377,7 @@
 .deck-row {
   display: flex;
   align-items: center;
-  background: var(--color-surface);
+  background: var(--color-card);
   border: 1px solid var(--color-border-light);
   border-radius: 12px;
   position: relative;
@@ -389,13 +389,13 @@
   color: inherit;
 }
 
-.deck-row:hover { background: color-mix(in srgb, var(--color-primary) 2%, var(--color-surface)); }
+.deck-row:hover { background: color-mix(in srgb, var(--color-primary) 2%, var(--color-card)); }
 
 [data-theme="dark"] .deck-row {
-  background: #1E2433;
-  border-color: #2A3347;
+  background: var(--color-card);
+  border-color: var(--color-border);
 }
-[data-theme="dark"] .deck-row:hover { background: #232d42; }
+[data-theme="dark"] .deck-row:hover { background: #1D2C3E; }
 
 /* ── Identity (title + meta) ── */
 .deck-row__identity {
@@ -523,7 +523,7 @@
 .deck-row__col--studied { width: 8.75rem; }
 
 .deck-row__col-icon { width: 1.125rem; height: 1.125rem; flex-shrink: 0; }
-.deck-row__col-icon--cards   { color: #818cf8; }
+.deck-row__col-icon--cards   { color: #6BB8FF; }
 .deck-row__col-icon--due     { color: #fbbf24; }
 .deck-row__col-icon--studied { color: #34d399; }
 .deck-row__col-icon--lang    { color: var(--color-muted); }

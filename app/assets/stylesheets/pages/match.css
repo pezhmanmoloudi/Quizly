@@ -106,7 +106,7 @@
 
 .match-island__progress-fill {
   height: 100%;
-  background: linear-gradient(90deg, var(--color-primary), #818cf8);
+  background: linear-gradient(90deg, #2F8CFF, #6BB8FF);
   border-radius: 999px;
   transition: width 300ms ease;
   width: 0%;

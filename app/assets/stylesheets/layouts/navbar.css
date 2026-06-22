@@ -43,6 +43,7 @@
   object-fit: cover;
 }
 
+
 @media (max-width: 540px) {
   .app-nav { grid-template-columns: auto 1fr; }
   .app-nav__center { display: none; }

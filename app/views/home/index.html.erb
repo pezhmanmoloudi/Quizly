@@ -1,247 +1,114 @@
 <% content_for :title, t("home.page_title") %>
 
-<section class="hero-section"
-         data-controller="carousel"
-         data-action="mouseenter->carousel#pauseAutoPlay mouseleave->carousel#resumeAutoPlay">
+<div class="home-page">
 
-  <%# ── Hero text ── %>
-  <div class="hero">
-    <div class="hero__body">
-      <h1 class="hero__headline"><%= t("home.hero_heading") %></h1>
-      <p class="hero__sub"><%= t("home.hero_subtitle") %></p>
-      <div class="hero__ctas">
-        <%= link_to t("home.sign_up"), signup_path, class: "btn btn--primary btn--lg" %>
+  <%# ── Hero ── %>
+  <section class="home-hero">
+    <div class="home-hero__inner">
+      <span class="home-badge">
+        <svg width="13" height="13" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+          <path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd"/>
+        </svg>
+        <%= t("home.badge") %>
+      </span>
+
+      <h1 class="home-hero__headline"><%= t("home.hero_heading") %></h1>
+      <p class="home-hero__sub"><%= t("home.hero_subtitle") %></p>
+
+      <div class="home-hero__ctas">
+        <%= link_to t("home.sign_up"), signup_path, class: "home-btn-primary" %>
+        <%= link_to t("home.explore_link"), explore_path, class: "home-btn-outline" %>
       </div>
-    </div>
-  </div>
-
-  <%# ── Mode selector ── %>
-  <div class="mode-selector">
-    <button class="mode-selector__tab mode-selector__tab--active"
-            data-carousel-target="tab"
-            data-action="click->carousel#goTo"
-            data-index="0">
-      <svg class="mode-selector__icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.75">
-        <rect x="2" y="4" width="16" height="12" rx="2"/>
-        <line x1="10" y1="4" x2="10" y2="16"/>
-      </svg>
-      <%= t("home.modes.flashcards") %>
-    </button>
-    <button class="mode-selector__tab"
-            data-carousel-target="tab"
-            data-action="click->carousel#goTo"
-            data-index="1">
-      <svg class="mode-selector__icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.75">
-        <circle cx="10" cy="10" r="7"/>
-        <path d="M10 6v4l2.5 2.5"/>
-      </svg>
-      <%= t("home.modes.learn") %>
-    </button>
-    <button class="mode-selector__tab"
-            data-carousel-target="tab"
-            data-action="click->carousel#goTo"
-            data-index="2">
-      <svg class="mode-selector__icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.75">
-        <path d="M4 5h12M4 10h8M4 15h10"/>
-      </svg>
-      <%= t("home.modes.study") %>
-    </button>
-    <button class="mode-selector__tab"
-            data-carousel-target="tab"
-            data-action="click->carousel#goTo"
-            data-index="3">
-      <svg class="mode-selector__icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.75">
-        <rect x="3" y="3" width="14" height="14" rx="2"/>
-        <path d="M7 7h6M7 10h6M7 13h3"/>
-      </svg>
-      <%= t("home.modes.test") %>
-    </button>
-    <button class="mode-selector__tab"
-            data-carousel-target="tab"
-            data-action="click->carousel#goTo"
-            data-index="4">
-      <svg class="mode-selector__icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.75">
-        <rect x="2" y="2" width="7" height="7" rx="1.5"/>
-        <rect x="11" y="2" width="7" height="7" rx="1.5"/>
-        <rect x="2" y="11" width="7" height="7" rx="1.5"/>
-        <rect x="11" y="11" width="7" height="7" rx="1.5"/>
-      </svg>
-      <%= t("home.modes.match") %>
-    </button>
-  </div>
-
-  <%# ── Carousel ── %>
-  <div class="hero-carousel">
-    <button class="hero-carousel__nav hero-carousel__nav--prev"
-            data-action="click->carousel#prev"
-            aria-label="<%= t("home.carousel.previous_slide") %>">&#8249;</button>
-
-    <%# Slide 0 — Flashcards: Spanish Vocabulary (white, active) %>
-    <div class="hero-carousel__slide is-active" data-carousel-target="slide">
-      <div class="mode-card mode-card--flashcards">
-        <div class="mode-card__header">
-          <span class="mode-card__badge">
-            <svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="10" cy="10" r="8"/><path d="M2 10h16M10 2c-2.5 3-4 5-4 8s1.5 5 4 8M10 2c2.5 3 4 5 4 8s-1.5 5-4 8"/></svg>
-            Spanish Vocabulary
-          </span>
-          <div class="mode-card__header-actions">
-            <button class="mode-card__icon-btn" aria-label="<%= t("home.carousel.favourite") %>">
-              <svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M10 17l-1.4-1.3C4 11.6 1 9 1 5.9 1 3.7 2.7 2 4.9 2c1.2 0 2.4.6 3.2 1.5L10 5.1l1.9-1.6C12.7 2.6 13.9 2 15.1 2 17.3 2 19 3.7 19 5.9c0 3.1-3 5.7-7.6 9.8L10 17z"/></svg>
-            </button>
-            <button class="mode-card__icon-btn" aria-label="<%= t("home.carousel.audio") %>">
-              <svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M3 7.5h3l4-4v13l-4-4H3V7.5z"/><path d="M14 6.5c1.5 1 2.5 2.2 2.5 3.5s-1 2.5-2.5 3.5"/></svg>
-            </button>
-          </div>
-        </div>
-        <div class="mode-card__body">
-          <p class="mode-card__term">feliz</p>
-          <p class="mode-card__definition">happy</p>
-        </div>
-        <div class="mode-card__footer">
-          <button class="mode-card__icon-btn" aria-label="<%= t("home.carousel.shuffle") %>">
-            <svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M3 6h11M3 14h11M10 3l4 3-4 3M10 11l4 3-4 3"/></svg>
-          </button>
-          <div class="mode-card__nav">
-            <button class="mode-card__icon-btn" aria-label="<%= t("home.carousel.previous_card") %>">&#8249;</button>
-            <span>1 / 32</span>
-            <button class="mode-card__icon-btn" aria-label="<%= t("home.carousel.next_card") %>">&#8250;</button>
-          </div>
-          <button class="mode-card__icon-btn" aria-label="<%= t("home.carousel.fullscreen") %>">
-            <svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M3 8V3h5M12 3h5v5M17 12v5h-5M8 17H3v-5"/></svg>
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <%# Slide 1 — Learn: Biology / The Heart (violet) %>
-    <div class="hero-carousel__slide" data-carousel-target="slide">
-      <div class="mode-card mode-card--learn">
-        <div class="mode-card__header">
-          <span class="mode-card__badge">
-            <svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M4 4h12v12a2 2 0 01-2 2H6a2 2 0 01-2-2V4z"/><path d="M8 4V2M12 4V2"/></svg>
-            Biology
-          </span>
-        </div>
-        <p class="mode-card__title">The Heart</p>
-        <div class="mode-card__illustration">&#x1FAC0;</div>
-        <div class="mode-card__footer">
-          <div class="mode-card__footer-meta">
-            <span class="mode-card__count">28 terms</span>
-            <div class="mode-card__progress">
-              <div class="mode-card__progress-fill"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <%# Slide 2 — Study: Chemistry / Periodic Table (amber) %>
-    <div class="hero-carousel__slide" data-carousel-target="slide">
-      <div class="mode-card mode-card--study">
-        <div class="mode-card__header">
-          <span class="mode-card__badge">
-            <svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M7 2v6L3 16a1 1 0 00.9 1.5h12.2A1 1 0 0017 16l-4-8V2"/><line x1="7" y1="2" x2="13" y2="2"/></svg>
-            Chemistry
-          </span>
-        </div>
-        <p class="mode-card__title">Periodic Table</p>
-        <div class="mode-card__illustration">
-          <div class="element-tiles">
-            <div class="element-tile">
-              <span class="element-tile__symbol">H</span>
-              <span>Hydrogen</span>
-            </div>
-            <div class="element-tile">
-              <span class="element-tile__symbol">C</span>
-              <span>Carbon</span>
-            </div>
-            <div class="element-tile">
-              <span class="element-tile__symbol">O</span>
-              <span>Oxygen</span>
-            </div>
-          </div>
-        </div>
-        <div class="mode-card__footer">
-          <div class="mode-card__footer-meta">
-            <span class="mode-card__count">30 terms</span>
-            <div class="mode-card__progress">
-              <div class="mode-card__progress-fill"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <%# Slide 3 — Test: World History / Renaissance (teal) %>
-    <div class="hero-carousel__slide" data-carousel-target="slide">
-      <div class="mode-card mode-card--test">
-        <div class="mode-card__header">
-          <span class="mode-card__badge">
-            <svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="10" cy="10" r="8"/><path d="M2 10h16M10 2c-2.5 3-4 5-4 8s1.5 5 4 8M10 2c2.5 3 4 5 4 8s-1.5 5-4 8"/></svg>
-            World History
-          </span>
-        </div>
-        <p class="mode-card__title">Renaissance</p>
-        <div class="mode-card__illustration">&#127963;</div>
-        <div class="mode-card__footer">
-          <div class="mode-card__footer-meta">
-            <span class="mode-card__count">42 terms</span>
-            <div class="mode-card__progress">
-              <div class="mode-card__progress-fill"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <%# Slide 4 — Match: Psychology / Memory (green) %>
-    <div class="hero-carousel__slide" data-carousel-target="slide">
-      <div class="mode-card mode-card--match">
-        <div class="mode-card__header">
-          <span class="mode-card__badge">
-            <svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M10 3C6.7 3 4 5.7 4 9c0 2.4 1.4 4.5 3.4 5.5V17h5v-2.5C14.6 13.5 16 11.4 16 9c0-3.3-2.7-6-6-6z"/></svg>
-            Psychology
-          </span>
-        </div>
-        <p class="mode-card__title">Memory</p>
-        <div class="mode-card__illustration">&#x1F9E0;</div>
-        <div class="mode-card__footer">
-          <div class="mode-card__footer-meta">
-            <span class="mode-card__count">18 terms</span>
-            <div class="mode-card__progress">
-              <div class="mode-card__progress-fill"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <button class="hero-carousel__nav hero-carousel__nav--next"
-            data-action="click->carousel#next"
-            aria-label="<%= t("home.carousel.next_slide") %>">&#8250;</button>
-  </div>
-
-  <%# ── Dot indicators ── %>
-  <div class="carousel-dots">
-    <% 5.times do |i| %>
-      <button class="carousel-dot <%= i == 0 ? "is-active" : "" %>"
-              data-carousel-target="dot"
-              data-action="click->carousel#goTo"
-              data-index="<%= i %>"
-              aria-label="<%= t("home.carousel.go_to_slide", n: i + 1) %>"></button>
-    <% end %>
-  </div>
-
-</section>
-
-<% if @featured_decks.any? %>
-  <section class="featured-decks">
-    <div class="featured-decks__header">
-      <h2 class="featured-decks__title"><%= t("home.popular_decks") %></h2>
-      <%= link_to t("home.see_all"), explore_path, class: "featured-decks__more" %>
-    </div>
-    <div class="deck-list">
-      <%= render partial: "explore/deck_card", collection: @featured_decks, as: :deck %>
     </div>
   </section>
-<% end %>
+
+  <%# ── Stats strip ── %>
+  <div class="home-stats">
+    <div class="home-stats__item">
+      <span class="home-stats__number home-stats__number--blue">5</span>
+      <span class="home-stats__label"><%= t("home.stats.modes_label") %></span>
+    </div>
+    <div class="home-stats__sep" aria-hidden="true"></div>
+    <div class="home-stats__item">
+      <span class="home-stats__number home-stats__number--amber"><%= @featured_decks.size %></span>
+      <span class="home-stats__label"><%= t("home.stats.decks_label") %></span>
+    </div>
+    <div class="home-stats__sep" aria-hidden="true"></div>
+    <div class="home-stats__item">
+      <span class="home-stats__number home-stats__number--teal">10</span>
+      <span class="home-stats__label"><%= t("home.stats.languages_label") %></span>
+    </div>
+  </div>
+
+  <%# ── Two-column content ── %>
+  <div class="home-content">
+
+    <%# Left: Popular decks %>
+    <div class="home-panel">
+      <div class="home-panel__overline"><%= t("home.popular_section_label") %></div>
+      <h2 class="home-panel__title"><%= t("home.popular_section_title") %></h2>
+
+      <% if @featured_decks.any? %>
+        <div class="home-deck-list">
+          <% @featured_decks.each do |deck| %>
+            <%= link_to deck_path(deck), class: "home-deck-item", data: { turbo_frame: "_top" } do %>
+              <div class="home-deck-item__info">
+                <span class="home-deck-item__name"><%= deck.name %></span>
+                <span class="home-deck-item__meta">
+                  <%= deck.flashcards_count %> <%= t("home.stats.cards_label") %> · <%= deck.user.display_name %>
+                </span>
+              </div>
+              <span class="home-deck-item__badge"><%= t("decks.show.public_badge") %></span>
+            <% end %>
+          <% end %>
+        </div>
+      <% else %>
+        <p class="home-panel__empty"><%= t("home.no_decks") %></p>
+      <% end %>
+
+      <%= link_to t("home.see_all"), explore_path, class: "home-panel__see-all" %>
+    </div>
+
+    <%# Right: Study modes grid %>
+    <div class="home-panel">
+      <div class="home-panel__overline"><%= t("home.modes_section_label") %></div>
+      <h2 class="home-panel__title"><%= t("home.modes_section_title") %></h2>
+
+      <div class="home-modes-grid">
+        <a href="<%= signup_path %>" class="home-mode-card">
+          <svg class="home-mode-card__icon home-mode-card__icon--purple" width="28" height="28" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
+            <rect x="2" y="4" width="16" height="12" rx="2"/>
+            <line x1="10" y1="4" x2="10" y2="16"/>
+          </svg>
+          <span><%= t("home.modes.flashcards") %></span>
+        </a>
+
+        <a href="<%= signup_path %>" class="home-mode-card">
+          <svg class="home-mode-card__icon home-mode-card__icon--blue" width="28" height="28" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
+            <path d="M10 3C6.7 3 4 5.7 4 9c0 2.4 1.4 4.5 3.4 5.5V17h5v-2.5C14.6 13.5 16 11.4 16 9c0-3.3-2.7-6-6-6z"/>
+          </svg>
+          <span><%= t("home.modes.learn") %></span>
+        </a>
+
+        <a href="<%= signup_path %>" class="home-mode-card">
+          <svg class="home-mode-card__icon home-mode-card__icon--amber" width="28" height="28" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
+            <rect x="3" y="3" width="14" height="14" rx="2"/>
+            <path d="M7 7h6M7 10h6M7 13h3"/>
+          </svg>
+          <span><%= t("home.modes.test") %></span>
+        </a>
+
+        <a href="<%= signup_path %>" class="home-mode-card">
+          <svg class="home-mode-card__icon home-mode-card__icon--green" width="28" height="28" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
+            <rect x="2" y="2" width="7" height="7" rx="1.5"/>
+            <rect x="11" y="2" width="7" height="7" rx="1.5"/>
+            <rect x="2" y="11" width="7" height="7" rx="1.5"/>
+            <rect x="11" y="11" width="7" height="7" rx="1.5"/>
+          </svg>
+          <span><%= t("home.modes.match") %></span>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</div>

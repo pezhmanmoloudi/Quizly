@@ -585,9 +585,9 @@ fa:
     definition_label: تعریف
     cancel_import: لغو وارد کردن
   home:
-    hero_heading: چطور می‌خواهی مطالعه کنی؟
-    hero_subtitle: با فلش‌کارت‌های تعاملی Quizly، آزمون‌های تمرینی و فعالیت‌های مطالعه،
-      هر چیزی را که یاد می‌گیری تسلط پیدا کن.
+    hero_heading: "هوشمندانه‌تر بخوان، بیشتر به یاد بیاور"
+    hero_subtitle: "Quizly به تو کمک می‌کند حافظه واقعی بسازی — نه فقط حفظ کوتاه‌مدت."
+    badge: "تکرار فاصله‌دار داخلی"
     sign_up: ثبت‌نام رایگان
     popular_decks: دسته‌های محبوب
     see_all: مشاهده همه →
@@ -599,6 +599,18 @@ fa:
       match: تطبیق
     explore_link: کاوش
     log_in: ورود
+    no_decks: هنوز دکی ویژه‌ای وجود ندارد.
+    popular_section_label: دک‌های پرطرفدار
+    popular_section_title: فعالیت اخیر
+    modes_section_label: حالت‌های مطالعه
+    modes_section_title: شیوه مطالعه را انتخاب کن
+    stats:
+      modes_label: حالت مطالعه
+      decks_label: دک‌های ویژه
+      languages_label: زبان‌ها
+      cards_label: کارت
+    cta_strip_headline: "آماده‌ای هوشمندانه‌تر درس بخوانی؟"
+    cta_strip_sub: "به هزاران دانش‌آموز که از Quizly استفاده می‌کنند بپیوند."
     page_title: Quizly — با فلش‌کارت‌ها سریع‌تر یاد بگیر
     carousel:
       previous_slide: اسلاید قبلی

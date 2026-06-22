@@ -12,8 +12,8 @@
 
     <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
 
-    <link rel="icon" href="/icon.svg?v=2" type="image/svg+xml">
-    <link rel="apple-touch-icon" href="/icon.svg?v=2">
+    <link rel="icon" href="/icon.svg?v=3" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/icon.svg?v=3">
 
     <script nonce="<%= content_security_policy_nonce %>">
       (function() {
@@ -30,7 +30,7 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body data-controller="theme">
+  <body class="<%= content_for(:body_class) %>" data-controller="theme">
     <% if authenticated? %>
       <div class="drawer"
            data-controller="sidebar"

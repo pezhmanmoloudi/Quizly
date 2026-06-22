@@ -1,12 +1,32 @@
-/* ── Hero section wrapper (gradient host) ── */
+/* ── Hero section wrapper ── */
 
 .hero-section {
-  background:
-    radial-gradient(ellipse at 0% 0%,   rgba(199, 210, 254, 0.75) 0%, transparent 55%),
-    radial-gradient(ellipse at 100% 0%, rgba(253, 186, 116, 0.55) 0%, transparent 55%),
-    var(--color-surface);
-  padding-bottom: 3rem;
+  background: linear-gradient(135deg, #1e1b4b 0%, #312e81 40%, #4338ca 70%, #6d28d9 100%);
+  padding-bottom: 3.5rem;
 }
+
+/* ── Mode selector — dark-hero overrides ── */
+
+.hero-section .mode-selector__tab {
+  color: rgba(255, 255, 255, 0.65);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.hero-section .mode-selector__tab:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.hero-section .mode-selector__tab--active {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.5);
+  color: #fff;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2);
+}
+
+.hero-section .carousel-dot { background: rgba(255, 255, 255, 0.3); }
+.hero-section .carousel-dot.is-active { background: #fff; width: 24px; border-radius: 4px; }
 
 /* ── Mode selector tabs ── */
 

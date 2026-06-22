@@ -586,9 +586,9 @@ ckb:
     definition_label: پێناسە
     cancel_import: هاوردەکردن هەڵوەشێنەوە
   home:
-    hero_heading: چۆن دەتەوێت بیخوێنی؟
-    hero_subtitle: هەر شتێک فێردەبیت بە کارتی فێربوونی تەواوکار، تاقیکردنەوەی وەرزشی،
-      و چالاکییەکانی خوێندنی Quizly سەروانەبکە.
+    hero_heading: "زیرەکانەتر بخوێنە، درێژتر لەبیر بکە"
+    hero_subtitle: "Quizly یارمەتیت دەدات بیرکردنەوەی ڕاستەقینە بنیات بنێیت — نەک تەنها بیرکردنەوەی کورت‌ماوە."
+    badge: "دووبارەکردنەوەی فاسل‌دار دروستکراوە"
     sign_up: خۆتۆمارکردنی بەخۆڕایی
     popular_decks: دەستەی بناوبانگ
     see_all: بینینی هەمووان →
@@ -600,6 +600,18 @@ ckb:
       match: دۆشاندن
     explore_link: گەڕان
     log_in: چوونەژوورەوە
+    no_decks: هێشتا هیچ دەستەی تایبەتی نییە.
+    popular_section_label: دەستەی بەناوبانگ
+    popular_section_title: چالاکیی دواتر
+    modes_section_label: شێوازەکانی خوێندن
+    modes_section_title: ئەوەی باوەت هەڵبژێرە
+    stats:
+      modes_label: شێوازی خوێندن
+      decks_label: دەستەی تایبەت
+      languages_label: زمانەکان
+      cards_label: کارت
+    cta_strip_headline: "ئامادەی خوێندنی زیرەکانەتری؟"
+    cta_strip_sub: "بەشداری هەزاران قوتابی ببە کە پێش ئێستا Quizly بەکار دەهێنن."
     page_title: Quizly — بە خێرایی زیاتر فێربە بە کارتی فێربوون
     carousel:
       previous_slide: شارەڵەی پێشوو
