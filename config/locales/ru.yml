@@ -169,6 +169,13 @@ ru:
     notif_choose_reminder_time: Выберите время для получения напоминаний об обучении
     notif_time_zone: Часовой пояс
     notif_email_label: Уведомление по электронной почте
+    notif_in_app_heading: "In-App Notifications"
+    notif_email_heading: "Email Notifications"
+    notif_in_app_follows: "Someone follows me"
+    notif_email_follows: "Someone follows me"
+    notif_in_app_following_activity: "Activity from people I follow"
+    notif_email_following_activity: "Activity from people I follow"
+    notif_always_on: "Always on"
     theme_auto: Авто
     theme_light: Светлая
     theme_dark: Тёмная
@@ -647,11 +654,30 @@ ru:
     events:
       badge_earned: Вы получили новый значок
       followed: "%{actor} начал(а) подписываться на вас"
+      followed_user_published_deck: "%{actor} published a new deck"
       deck_commented: "%{actor} прокомментировал(а) вашу колоду"
       deck_reacted: "%{actor} отреагировал(а) на вашу колоду"
+  follows:
+    follow: "Follow"
+    unfollow: "Unfollow"
+    followers:
+      one: "%{count} follower"
+      other: "%{count} followers"
+    public_decks: "Public Decks"
+    no_public_decks: "No public decks yet."
   activerecord:
     errors:
       models:
+        follow:
+          attributes:
+            base:
+              cannot_follow_self: "You cannot follow yourself."
+            follower_id:
+              already_following: "You are already following this user."
+        user:
+          attributes:
+            username:
+              invalid_username: "may only contain letters, numbers, and underscores."
         deck:
           attributes:
             base:

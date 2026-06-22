@@ -1,0 +1,40 @@
+<% content_for :title, @user.display_name %>
+
+<div class="container">
+  <div class="profile-header">
+    <div class="profile-header__avatar">
+      <% if @user.show_avatar? %>
+        <%= image_tag @user.avatar, class: "profile-avatar-img", alt: "" %>
+      <% else %>
+        <div class="user-avatar"><%= @user.display_name.first.upcase %></div>
+      <% end %>
+    </div>
+
+    <div class="profile-header__info">
+      <h1 class="profile-header__name"><%= @user.display_name %></h1>
+      <p class="profile-header__username">@<%= @user.username %></p>
+      <div class="profile-header__stats">
+        <%= render "follows/follower_count", user: @user %>
+      </div>
+    </div>
+
+    <% if authenticated? && Current.user != @user %>
+      <%= render "follows/follow_button",
+            followed_user: @user,
+            following: Current.user.following?(@user) %>
+    <% end %>
+  </div>
+
+  <section class="profile__decks">
+    <h2 class="profile__decks-heading"><%= t("follows.public_decks") %></h2>
+    <% if @decks.any? %>
+      <div class="decks-grid">
+        <% @decks.each do |deck| %>
+          <%= render "decks/deck_card", deck: deck %>
+        <% end %>
+      </div>
+    <% else %>
+      <p class="empty-state__text"><%= t("follows.no_public_decks") %></p>
+    <% end %>
+  </section>
+</div>

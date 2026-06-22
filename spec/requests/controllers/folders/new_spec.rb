@@ -15,7 +15,7 @@ RSpec.describe "Folders#new", type: :request do
       it "renders the create folder modal inside a turbo frame" do
         get new_folder_path
         expect(response.body).to include('id="modal"')
-        expect(response.body).to include("folder-create-title")
+        expect(response.body).to include("Create Folder")
       end
     end
 

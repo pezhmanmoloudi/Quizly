@@ -1,0 +1,19 @@
+<div id="follow-button-<%= followed_user.id %>">
+  <% if Current.user == followed_user %>
+    <%# Own profile — no follow button %>
+  <% elsif following %>
+    <%= button_to user_follow_path(followed_user),
+          method:  :delete,
+          class:   "btn btn--secondary btn--sm",
+          data:    { turbo_stream: true } do %>
+      <%= t("follows.unfollow") %>
+    <% end %>
+  <% else %>
+    <%= button_to user_follow_path(followed_user),
+          method:  :post,
+          class:   "btn btn--primary btn--sm",
+          data:    { turbo_stream: true } do %>
+      <%= t("follows.follow") %>
+    <% end %>
+  <% end %>
+</div>

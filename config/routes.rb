@@ -56,6 +56,10 @@ Rails.application.routes.draw do
   end
   resources :folder_deck_assignments, only: [:create, :new]
 
+  resources :users, only: [ :show ], param: :username do
+    resource :follow, only: [ :create, :destroy ], controller: "follows"
+  end
+
   resources :notifications, only: [ :index ] do
     collection do
       patch :mark_all_read

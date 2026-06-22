@@ -168,6 +168,13 @@ tr:
     notif_choose_reminder_time: Çalışma hatırlatıcılarını ne zaman alacağınızı seçin
     notif_time_zone: Saat dilimi
     notif_email_label: E-posta bildirimi
+    notif_in_app_heading: "In-App Notifications"
+    notif_email_heading: "Email Notifications"
+    notif_in_app_follows: "Someone follows me"
+    notif_email_follows: "Someone follows me"
+    notif_in_app_following_activity: "Activity from people I follow"
+    notif_email_following_activity: "Activity from people I follow"
+    notif_always_on: "Always on"
     theme_auto: Otomatik
     theme_light: Açık
     theme_dark: Koyu
@@ -628,11 +635,30 @@ tr:
     events:
       badge_earned: Yeni bir rozet kazandınız
       followed: "%{actor} sizi takip etmeye başladı"
+      followed_user_published_deck: "%{actor} published a new deck"
       deck_commented: "%{actor} demetinizi yorumladı"
       deck_reacted: "%{actor} demetinize tepki verdi"
+  follows:
+    follow: "Follow"
+    unfollow: "Unfollow"
+    followers:
+      one: "%{count} follower"
+      other: "%{count} followers"
+    public_decks: "Public Decks"
+    no_public_decks: "No public decks yet."
   activerecord:
     errors:
       models:
+        follow:
+          attributes:
+            base:
+              cannot_follow_self: "You cannot follow yourself."
+            follower_id:
+              already_following: "You are already following this user."
+        user:
+          attributes:
+            username:
+              invalid_username: "may only contain letters, numbers, and underscores."
         deck:
           attributes:
             base:

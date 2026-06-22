@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_06_22_000001) do
+ActiveRecord::Schema[8.1].define(version: 2026_06_22_142851) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -131,6 +131,16 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_22_000001) do
     t.index ["user_id"], name: "index_folders_on_user_id"
   end
 
+  create_table "follows", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.bigint "followed_id", null: false
+    t.bigint "follower_id", null: false
+    t.datetime "updated_at", null: false
+    t.index ["followed_id"], name: "index_follows_on_followed_id"
+    t.index ["follower_id", "followed_id"], name: "index_follows_on_follower_id_and_followed_id", unique: true
+    t.check_constraint "follower_id <> followed_id", name: "follows_no_self_follow"
+  end
+
   create_table "learn_session_items", force: :cascade do |t|
     t.integer "attempts", default: 0, null: false
     t.integer "correct_streak", default: 0, null: false
@@ -164,8 +174,12 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_22_000001) do
 
   create_table "notification_preferences", force: :cascade do |t|
     t.datetime "created_at", null: false
+    t.boolean "email_following_activity", default: false, null: false
+    t.boolean "email_follows", default: false, null: false
     t.boolean "email_streaks_badges", default: true, null: false
     t.boolean "email_study_reminders", default: true, null: false
+    t.boolean "in_app_following_activity", default: true, null: false
+    t.boolean "in_app_follows", default: true, null: false
     t.string "reminder_time", default: "08:00", null: false
     t.string "time_zone", default: "UTC", null: false
     t.datetime "updated_at", null: false
@@ -367,6 +381,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_22_000001) do
     t.integer "current_streak", default: 0, null: false
     t.string "display_name"
     t.string "email_address", null: false
+    t.integer "followers_count", default: 0, null: false
     t.string "google_access_token"
     t.string "google_uid"
     t.date "last_studied_on"
@@ -375,8 +390,10 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_22_000001) do
     t.string "password_digest"
     t.boolean "show_avatar", default: true, null: false
     t.datetime "updated_at", null: false
+    t.string "username", null: false
     t.index ["email_address"], name: "index_users_on_email_address", unique: true
     t.index ["google_uid"], name: "index_users_on_google_uid", unique: true
+    t.index ["username"], name: "index_users_on_username", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
@@ -389,6 +406,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_22_000001) do
   add_foreign_key "decks", "users"
   add_foreign_key "flashcards", "decks"
   add_foreign_key "folders", "users"
+  add_foreign_key "follows", "users", column: "followed_id", on_delete: :cascade
+  add_foreign_key "follows", "users", column: "follower_id", on_delete: :cascade
   add_foreign_key "learn_session_items", "flashcards"
   add_foreign_key "learn_session_items", "learn_sessions"
   add_foreign_key "learn_sessions", "decks"
