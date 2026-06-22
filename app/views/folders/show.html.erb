@@ -60,7 +60,7 @@
     </div>
   <% end %>
 
-  <div id="folder-<%= @folder.id %>-decks" class="deck-grid">
+  <div id="folder-<%= @folder.id %>-decks" class="deck-list">
     <% @decks.each do |deck| %>
       <%= render "folders/deck_in_folder", deck: deck, folder: @folder %>
     <% end %>

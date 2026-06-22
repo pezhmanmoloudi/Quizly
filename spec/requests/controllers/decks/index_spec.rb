@@ -60,7 +60,7 @@ RSpec.describe "Decks#index", type: :request do
         deck = create(:deck, user: user, name: "Clickable Deck")
         get decks_path
         expect(response.body).to include(deck_path(deck))
-        expect(response.body).to include("deck-tile")
+        expect(response.body).to include("deck-row")
       end
 
       it "paginates decks at 12 per page" do
@@ -98,13 +98,13 @@ RSpec.describe "Decks#index", type: :request do
       it "shows an open lock icon for own password-protected decks" do
         create(:deck, :password_protected, user: user)
         get decks_path
-        expect(response.body).to include("deck-tile__lock-icon--open")
+        expect(response.body).to include("deck-row__lock-icon--open")
       end
 
       it "shows the draft badge for incomplete decks" do
         create(:deck, user: user)
         get decks_path
-        expect(response.body).to include("deck-tile__draft-badge")
+        expect(response.body).to include("deck-row__draft-badge")
         expect(response.body).to include(I18n.t("decks.deck_card.draft"))
       end
 

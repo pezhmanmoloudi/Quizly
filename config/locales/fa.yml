@@ -302,6 +302,8 @@ fa:
       studied_label: مطالعه شده
       never_studied: هرگز مطالعه نشده
       studied_time: "%{time} پیش"
+      more_tags: "+%{count}"
+      options_aria: "گزینه‌های دک"
   folders:
     create_failed: ایجاد پوشه ممکن نشد.
     updated: پوشه به‌روزرسانی شد.

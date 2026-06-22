@@ -305,6 +305,8 @@ de:
       studied_label: gelernt
       never_studied: Noch nicht gelernt
       studied_time: "vor %{time}"
+      more_tags: "+%{count}"
+      options_aria: "Kartenset-Optionen"
   folders:
     create_failed: Ordner konnte nicht erstellt werden.
     updated: Ordner aktualisiert.

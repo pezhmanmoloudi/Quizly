@@ -306,6 +306,8 @@ es:
       studied_label: estudiado
       never_studied: Nunca estudiado
       studied_time: "hace %{time}"
+      more_tags: "+%{count}"
+      options_aria: "Opciones del mazo"
   folders:
     create_failed: No se pudo crear la carpeta.
     updated: Carpeta actualizada.

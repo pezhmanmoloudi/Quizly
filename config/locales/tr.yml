@@ -303,6 +303,8 @@ tr:
       studied_label: çalışıldı
       never_studied: Hiç çalışılmadı
       studied_time: "%{time} önce"
+      more_tags: "+%{count}"
+      options_aria: "Deste seçenekleri"
   folders:
     create_failed: Klasör oluşturulamadı.
     updated: Klasör güncellendi.

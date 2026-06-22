@@ -1,78 +1,66 @@
 <% is_owner = Current.user&.id == deck.user_id %>
 <% deck_unlocked = is_owner || Decks::AccessService.unlocked?(deck: deck, session: session) %>
 
-<div id="<%= dom_id(deck) %>" class="explore-deck-card-wrap">
-  <a class="deck-tile"
-     href="<%= deck_path(deck) %>"
-     data-turbo-frame="_top">
-
-    <div class="deck-tile__top-meta">
-      <div class="deck-tile__author-info">
-        <div class="deck-tile__avatar">
-          <% if deck.user.show_avatar? %>
-            <%= image_tag deck.user.avatar.variant(resize_to_fill: [32, 32]), alt: "" %>
-          <% else %>
-            <span class="deck-tile__avatar-initials"><%= deck.user.display_name.first&.upcase %></span>
-          <% end %>
-        </div>
-        <span class="deck-tile__author-name"><%= deck.user.display_name %></span>
-      </div>
-
-      <div class="deck-tile__visibility-group">
-        <% if deck.password_protected? %>
-          <span class="deck-tile__lock-icon <%= deck_unlocked ? 'deck-tile__lock-icon--open' : 'deck-tile__lock-icon--closed' %>">
-            <% if deck_unlocked %>
-              <%= render "shared/icons/lock_open", css_class: "deck-tile__badge-icon" %>
-            <% else %>
-              <%= render "shared/icons/lock", css_class: "deck-tile__badge-icon" %>
-            <% end %>
-          </span>
+<div id="<%= dom_id(deck) %>" class="explore-deck-card-wrap deck-row">
+  <div class="deck-row__identity">
+    <h3 class="deck-row__title-link-wrap">
+      <a class="deck-row__title-link"
+         href="<%= deck_path(deck) %>"
+         data-turbo-frame="_top">
+        <%= deck.name %>
+      </a>
+    </h3>
+    <div class="deck-row__meta">
+      <div class="deck-row__avatar">
+        <% if deck.user.show_avatar? %>
+          <%= image_tag deck.user.avatar.variant(resize_to_fill: [22, 22]), alt: "" %>
+        <% else %>
+          <span class="deck-row__avatar-initials"><%= deck.user.display_name.first&.upcase %></span>
         <% end %>
-        <span class="deck-tile__visibility-badge deck-tile__visibility-badge--public">
-          <%= t("decks.show.public_badge") %>
-        </span>
       </div>
+      <span class="deck-row__author"><%= deck.user.display_name %></span>
+      <span class="deck-row__meta-sep" aria-hidden="true">·</span>
+      <span class="deck-row__time"><%= t("decks.deck_card.studied_time", time: time_ago_in_words(deck.created_at)) %></span>
     </div>
-
-    <div class="deck-tile__body">
-      <h3 class="deck-tile__name"><%= deck.name %></h3>
-      <% if deck.description.present? %>
-        <p class="deck-tile__description"><%= deck.description %></p>
-      <% end %>
-      <% if deck.tag_list.any? %>
-        <div class="deck-tile__tags">
-          <% deck.tag_list.first(3).each do |tag| %>
-            <span class="tag-badge">#<%= tag %></span>
-          <% end %>
-        </div>
-      <% end %>
-    </div>
-
-    <div class="deck-tile__footer">
-      <div class="deck-tile__stat">
-        <%= render "shared/icons/rectangle_stack", css_class: "deck-tile__stat-icon" %>
-        <div class="deck-tile__stat-content">
-          <span class="deck-tile__stat-value"><%= deck.flashcards_count %></span>
-          <span class="deck-tile__stat-label"><%= t("decks.deck_card.cards_label") %></span>
-        </div>
+    <% if deck.tag_list.any? %>
+      <div class="deck-row__tags">
+        <% deck.tag_list.first(3).each do |tag| %>
+          <span class="deck-row__tag">#<%= tag %></span>
+        <% end %>
+        <% if deck.tag_list.size > 3 %>
+          <span class="deck-row__tag"><%= t("decks.deck_card.more_tags", count: deck.tag_list.size - 3) %></span>
+        <% end %>
       </div>
-      <% if deck.language_code.present? %>
-        <div class="deck-tile__stat">
-          <%= render "shared/icons/globe", css_class: "deck-tile__stat-icon" %>
-          <div class="deck-tile__stat-content">
-            <span class="deck-tile__stat-value"><%= deck.language_code.upcase %></span>
-            <span class="deck-tile__stat-label"><%= t("explore.language_label") %></span>
-          </div>
-        </div>
-      <% end %>
-      <div class="deck-tile__stat">
-        <%= render "shared/icons/calendar_days", css_class: "deck-tile__stat-icon" %>
-        <div class="deck-tile__stat-content">
-          <span class="deck-tile__stat-value"><%= time_ago_in_words(deck.created_at) %></span>
-          <span class="deck-tile__stat-label"><%= t("explore.created_label") %></span>
-        </div>
-      </div>
-    </div>
+    <% end %>
+  </div>
 
-  </a>
+  <div class="deck-row__col deck-row__col--cards">
+    <%= render "shared/icons/rectangle_stack", css_class: "deck-row__col-icon deck-row__col-icon--cards" %>
+    <span class="deck-row__col-value"><%= deck.flashcards_count %></span>
+    <span class="deck-row__col-label"><%= t("decks.deck_card.cards_label") %></span>
+  </div>
+
+  <div class="deck-row__col deck-row__col--due">
+    <%= render "shared/icons/globe", css_class: "deck-row__col-icon deck-row__col-icon--lang" %>
+    <span class="deck-row__col-value"><%= deck.language_code.present? ? deck.language_code.upcase : "—" %></span>
+    <span class="deck-row__col-label"><%= t("explore.language_label") %></span>
+  </div>
+
+  <div class="deck-row__col deck-row__col--studied">
+    <%= render "shared/icons/calendar_days", css_class: "deck-row__col-icon deck-row__col-icon--created" %>
+    <span class="deck-row__col-value"><%= time_ago_in_words(deck.created_at) %></span>
+    <span class="deck-row__col-label"><%= t("explore.created_label") %></span>
+  </div>
+
+  <div class="deck-row__col deck-row__col--visibility">
+    <% if deck.password_protected? %>
+      <span class="deck-row__lock-icon deck-row__lock-icon--<%= deck_unlocked ? 'open' : 'closed' %>">
+        <%= render "shared/icons/#{deck_unlocked ? 'lock_open' : 'lock'}", css_class: "deck-row__badge-icon" %>
+      </span>
+    <% end %>
+    <span class="deck-row__visibility-badge deck-row__visibility-badge--public">
+      <%= render "shared/icons/globe", css_class: "deck-row__badge-icon" %>
+      <%= t("decks.show.public_badge") %>
+    </span>
+  </div>
 </div>

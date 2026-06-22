@@ -310,6 +310,8 @@ fr:
       studied_label: étudié
       never_studied: Jamais étudié
       studied_time: "il y a %{time}"
+      more_tags: "+%{count}"
+      options_aria: "Options du paquet"
   folders:
     create_failed: Impossible de créer le dossier.
     updated: Dossier mis à jour.

@@ -52,7 +52,7 @@
       <h2><%= t("dashboard.my_decks") %></h2>
       <%= link_to t("dashboard.see_all"), decks_path, class: "section-header__link" %>
     </div>
-    <div class="deck-grid">
+    <div class="deck-list">
       <%= render partial: "decks/deck_card", collection: @decks, as: :deck,
                  locals: { due_counts: @due_counts, last_studied_dates: @last_studied_dates } %>
     </div>

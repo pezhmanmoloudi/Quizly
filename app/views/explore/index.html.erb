@@ -17,7 +17,7 @@
 
   <%= turbo_frame_tag "explore-results" do %>
     <% if @decks.any? %>
-      <div class="deck-grid">
+      <div class="deck-list">
         <%= render partial: "explore/deck_card", collection: @decks, as: :deck %>
       </div>
     <% elsif @query.present? %>

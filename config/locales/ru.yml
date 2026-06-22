@@ -309,6 +309,8 @@ ru:
       studied_label: изучено
       never_studied: Не изучалось
       studied_time: "%{time} назад"
+      more_tags: "+%{count}"
+      options_aria: "Параметры колоды"
   folders:
     create_failed: Не удалось создать папку.
     updated: Папка обновлена.

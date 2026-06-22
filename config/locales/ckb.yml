@@ -303,6 +303,8 @@ ckb:
       studied_label: خوێندراوەتەوە
       never_studied: هەرگیز نەخوێندراوەتەوە
       studied_time: "%{time} پێش ئەمە"
+      more_tags: "+%{count}"
+      options_aria: "بژاردەکانی داڵکە"
   folders:
     create_failed: نەتوانرا پوشەکە دروست بکرێت.
     updated: پوشەکە نوێ کرایەوە.
