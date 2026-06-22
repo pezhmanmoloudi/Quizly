@@ -17,6 +17,8 @@ Rails.application.routes.draw do
     delete :avatar, on: :member, action: :destroy_avatar
   end
 
+  resource :notification_preferences, only: [ :show, :update ]
+
   get "dashboard", to: "dashboard#index", as: :dashboard
 
   get "up" => "rails/health#show", as: :rails_health_check

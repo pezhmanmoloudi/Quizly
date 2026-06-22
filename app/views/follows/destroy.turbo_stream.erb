@@ -4,3 +4,9 @@
 <%= turbo_stream.replace "follower-count-#{@followed_user.id}" do %>
   <%= render "follows/follower_count", user: @followed_user.reload %>
 <% end %>
+<%= turbo_stream.replace "nav-following-count" do %>
+  <div id="nav-following-count" class="avatar-dropdown__stat">
+    <span class="avatar-dropdown__stat-count"><%= Current.user.follows_as_follower.count %></span>
+    <span class="avatar-dropdown__stat-label"><%= t("menu.following") %></span>
+  </div>
+<% end %>
