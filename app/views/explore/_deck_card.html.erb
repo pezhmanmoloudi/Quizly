@@ -1,51 +1,78 @@
 <% is_owner = Current.user&.id == deck.user_id %>
+<% deck_unlocked = is_owner || Decks::AccessService.unlocked?(deck: deck, session: session) %>
 
 <div id="<%= dom_id(deck) %>" class="explore-deck-card-wrap">
-  <a class="deck-tile deck-tile--public"
+  <a class="deck-tile"
      href="<%= deck_path(deck) %>"
      data-turbo-frame="_top">
 
-    <div class="deck-tile__header">
-      <h3 class="deck-tile__name"><%= deck.name %></h3>
-      <% if is_owner %>
-        <span class="deck-tile__owner-badge"><%= t("explore.owner_badge") %></span>
-      <% end %>
+    <div class="deck-tile__top-meta">
+      <div class="deck-tile__author-info">
+        <div class="deck-tile__avatar">
+          <% if deck.user.show_avatar? %>
+            <%= image_tag deck.user.avatar.variant(resize_to_fill: [32, 32]), alt: "" %>
+          <% else %>
+            <span class="deck-tile__avatar-initials"><%= deck.user.display_name.first&.upcase %></span>
+          <% end %>
+        </div>
+        <span class="deck-tile__author-name"><%= deck.user.display_name %></span>
+      </div>
+
+      <div class="deck-tile__visibility-group">
+        <% if deck.password_protected? %>
+          <span class="deck-tile__lock-icon <%= deck_unlocked ? 'deck-tile__lock-icon--open' : 'deck-tile__lock-icon--closed' %>">
+            <% if deck_unlocked %>
+              <%= render "shared/icons/lock_open", css_class: "deck-tile__badge-icon" %>
+            <% else %>
+              <%= render "shared/icons/lock", css_class: "deck-tile__badge-icon" %>
+            <% end %>
+          </span>
+        <% end %>
+        <span class="deck-tile__visibility-badge deck-tile__visibility-badge--public">
+          <%= t("decks.show.public_badge") %>
+        </span>
+      </div>
     </div>
 
     <div class="deck-tile__body">
+      <h3 class="deck-tile__name"><%= deck.name %></h3>
       <% if deck.description.present? %>
         <p class="deck-tile__description"><%= deck.description %></p>
       <% end %>
-      <p class="deck-tile__meta">
-        <%= t("decks.deck_card.count", count: deck.flashcards.size) %>
-        <% if deck.language_code.present? %>
-          · <span class="deck-tile__lang"><%= deck.language_code.upcase %></span>
-        <% end %>
-      </p>
       <% if deck.tag_list.any? %>
         <div class="deck-tile__tags">
           <% deck.tag_list.first(3).each do |tag| %>
-            <span class="tag-badge"><%= tag %></span>
+            <span class="tag-badge">#<%= tag %></span>
           <% end %>
         </div>
       <% end %>
     </div>
 
-    <div class="deck-tile__footer deck-tile__footer--public">
-      <span class="deck-tile__author">
-        <% if is_owner %>
-          <%= t("explore.by_you") %>
-        <% else %>
-          <%= t("explore.by") %> <%= deck.user.display_name %>
-        <% end %>
-      </span>
-      <% if deck.password_protected? %>
-        <span class="deck-tile__locked-badge">
-          <%= render "shared/icons/lock", css_class: "icon--xs" %>
-          <%= t("explore.locked_badge") %>
-        </span>
+    <div class="deck-tile__footer">
+      <div class="deck-tile__stat">
+        <%= render "shared/icons/rectangle_stack", css_class: "deck-tile__stat-icon" %>
+        <div class="deck-tile__stat-content">
+          <span class="deck-tile__stat-value"><%= deck.flashcards_count %></span>
+          <span class="deck-tile__stat-label"><%= t("decks.deck_card.cards_label") %></span>
+        </div>
+      </div>
+      <% if deck.language_code.present? %>
+        <div class="deck-tile__stat">
+          <%= render "shared/icons/globe", css_class: "deck-tile__stat-icon" %>
+          <div class="deck-tile__stat-content">
+            <span class="deck-tile__stat-value"><%= deck.language_code.upcase %></span>
+            <span class="deck-tile__stat-label"><%= t("explore.language_label") %></span>
+          </div>
+        </div>
       <% end %>
+      <div class="deck-tile__stat">
+        <%= render "shared/icons/calendar_days", css_class: "deck-tile__stat-icon" %>
+        <div class="deck-tile__stat-content">
+          <span class="deck-tile__stat-value"><%= time_ago_in_words(deck.created_at) %></span>
+          <span class="deck-tile__stat-label"><%= t("explore.created_label") %></span>
+        </div>
+      </div>
     </div>
-  </a>
 
+  </a>
 </div>

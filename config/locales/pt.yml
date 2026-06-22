@@ -302,6 +302,11 @@ pt:
       count:
         one: "%{count} cartão"
         other: "%{count} cartões"
+      cards_label: cartões
+      due_label: pendentes
+      studied_label: estudado
+      never_studied: Nunca estudado
+      studied_time: "há %{time}"
   folders:
     create_failed: Não foi possível criar a pasta.
     updated: Pasta atualizada.
@@ -480,6 +485,8 @@ pt:
     locked_badge: Password Required
     owner_badge: Você
     by_you: por você
+    language_label: idioma
+    created_label: adicionado
   dashboard:
     total_decks: Total de baralhos
     total_cards: Total de cartões

@@ -16,13 +16,19 @@ class DecksController < ApplicationController
     order  = @sort == "az" ? { name: :asc } : { created_at: :desc }
 
     decks_scope = Current.user.decks.includes(:flashcards).order(order)
+    all_deck_ids = decks_scope.map(&:id)
 
     @due_counts = CardProgress.due
                               .unscope(:order)
                               .joins(:flashcard)
-                              .where(user: Current.user, flashcards: { deck_id: decks_scope.map(&:id) })
+                              .where(user: Current.user, flashcards: { deck_id: all_deck_ids })
                               .group("flashcards.deck_id")
                               .count
+
+    @last_studied_dates = StudySession
+                          .where(user: Current.user, deck_id: all_deck_ids)
+                          .group(:deck_id)
+                          .maximum(:started_at)
 
     if @sort == "most_due"
       sorted = decks_scope.sort_by { |d| -(@due_counts[d.id] || 0) }

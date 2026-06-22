@@ -25,7 +25,7 @@
     <% else %>
       <div class="deck-grid">
         <% @decks.each do |deck| %>
-          <%= render "decks/deck_card", deck: deck, due_counts: @due_counts, from_page: @pagy.page, show_draft_badge: true %>
+          <%= render "decks/deck_card", deck: deck, due_counts: @due_counts, from_page: @pagy.page, last_studied_dates: @last_studied_dates %>
         <% end %>
       </div>
       <%= render "shared/pagination", pagy: @pagy %>

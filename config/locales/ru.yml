@@ -304,6 +304,11 @@ ru:
         few: "%{count} карточки"
         many: "%{count} карточек"
         other: "%{count} карточки"
+      cards_label: карточки
+      due_label: к повторению
+      studied_label: изучено
+      never_studied: Не изучалось
+      studied_time: "%{time} назад"
   folders:
     create_failed: Не удалось создать папку.
     updated: Папка обновлена.
@@ -484,6 +489,8 @@ ru:
     locked_badge: Password Required
     owner_badge: Вы
     by_you: от вас
+    language_label: язык
+    created_label: добавлено
   dashboard:
     total_decks: Всего колод
     total_cards: Всего карточек

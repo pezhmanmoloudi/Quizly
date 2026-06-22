@@ -13,6 +13,11 @@ class DashboardController < ApplicationController
                               .count
     @total_due  = @due_counts.values.sum
 
+    @last_studied_dates = StudySession
+                          .where(user: Current.user, deck_id: deck_ids)
+                          .group(:deck_id)
+                          .maximum(:started_at)
+
     if @due_counts.any?
       deck_ids_with_due = @due_counts.keys
       recent_activity = CardProgress
