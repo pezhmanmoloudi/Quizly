@@ -281,6 +281,8 @@ de:
       back_label: Rückseite
       select_language: Sprache auswählen
       image: Bild
+      add_image: Bild hinzufügen
+      remove_image: Bild entfernen
       remove: Karte entfernen
       saving: Speichert…
       saved: "✓"

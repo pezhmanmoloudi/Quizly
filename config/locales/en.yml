@@ -278,6 +278,8 @@ en:
       back_label: back
       select_language: Select language
       image: Image
+      add_image: Add image
+      remove_image: Remove image
       remove: Remove card
       saving: Saving…
       saved: "✓"

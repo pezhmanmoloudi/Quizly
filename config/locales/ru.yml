@@ -281,6 +281,8 @@ ru:
       back_label: оборотная
       select_language: Выбрать язык
       image: Изображение
+      add_image: Добавить изображение
+      remove_image: Удалить изображение
       remove: Удалить карточку
       saving: Сохранение…
       saved: "✓"

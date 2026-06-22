@@ -1,6 +1,6 @@
 class FlashcardsController < ApplicationController
   before_action :set_deck,                   only: [ :create ]
-  before_action :set_flashcard,              only: [ :update, :destroy ]
+  before_action :set_flashcard,              only: [ :update, :destroy, :purge_image ]
   before_action :set_soft_deleted_flashcard, only: [ :restore ]
 
   def create
@@ -47,6 +47,13 @@ class FlashcardsController < ApplicationController
         safe_page    = [ current_page, last_page ].min
         redirect_to deck_path(@deck, page: safe_page, items: items), notice: t("flashcards.deleted")
       end
+    end
+  end
+
+  def purge_image
+    @flashcard.image.purge
+    respond_to do |format|
+      format.json { render json: { id: @flashcard.id }, status: :ok }
     end
   end
 

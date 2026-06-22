@@ -282,6 +282,8 @@ es:
       back_label: reverso
       select_language: Seleccionar idioma
       image: Imagen
+      add_image: Añadir imagen
+      remove_image: Eliminar imagen
       remove: Eliminar tarjeta
       saving: Guardando…
       saved: "✓"

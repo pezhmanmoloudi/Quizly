@@ -283,6 +283,8 @@ pt:
       back_label: verso
       select_language: Selecionar idioma
       image: Imagem
+      add_image: Adicionar imagem
+      remove_image: Remover imagem
       remove: Remover cartão
       saving: Salvando…
       saved: "✓"

@@ -278,6 +278,8 @@ ar:
       back_label: الظهر
       select_language: اختر لغة
       image: صورة
+      add_image: إضافة صورة
+      remove_image: إزالة الصورة
       remove: إزالة البطاقة
       saving: جارٍ الحفظ…
       saved: "✓"

@@ -286,6 +286,8 @@ fr:
       back_label: verso
       select_language: Choisir la langue
       image: Image
+      add_image: Ajouter une image
+      remove_image: Supprimer l'image
       remove: Supprimer la carte
       saving: Enregistrement…
       saved: "✓"

@@ -279,6 +279,8 @@ ckb:
       back_label: دواوە
       select_language: زمان هەڵبژێرە
       image: وێنە
+      add_image: وێنە زیاد بکە
+      remove_image: لابردنی وێنە
       remove: لابردنی کارت
       saving: پاشەکەوتدەکرێت…
       saved: "✓"

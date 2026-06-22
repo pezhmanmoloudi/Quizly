@@ -278,6 +278,8 @@ fa:
       back_label: پشت
       select_language: انتخاب زبان
       image: تصویر
+      add_image: افزودن تصویر
+      remove_image: حذف تصویر
       remove: حذف کارت
       saving: در حال ذخیره…
       saved: "✓"

@@ -279,6 +279,8 @@ tr:
       back_label: arka
       select_language: Dil seç
       image: Resim
+      add_image: Resim ekle
+      remove_image: Resmi kaldır
       remove: Kartı kaldır
       saving: Kaydediliyor…
       saved: "✓"
