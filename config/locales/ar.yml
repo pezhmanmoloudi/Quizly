@@ -581,9 +581,9 @@ ar:
     definition_label: التعريف
     cancel_import: إلغاء الاستيراد
   home:
-    hero_heading: كيف تريد أن تتعلم؟
-    hero_subtitle: أتقن ما تتعلمه مع بطاقات Quizly التفاعلية واختبارات التدريب وأنشطة
-      الدراسة.
+    hero_heading: "ادرس بذكاء، تذكّر أطول"
+    hero_subtitle: "يساعدك Quizly على بناء ذاكرة حقيقية، لا مجرد تذكر قصير المدى."
+    badge: "نظام التكرار المتباعد مدمج"
     sign_up: إنشاء حساب مجاني
     popular_decks: المجموعات الشائعة
     see_all: عرض الكل →
@@ -595,6 +595,18 @@ ar:
       match: مطابقة
     explore_link: استكشاف
     log_in: تسجيل الدخول
+    no_decks: لا توجد مجموعات مميزة بعد.
+    popular_section_label: المجموعات الشائعة
+    popular_section_title: النشاط الأخير
+    modes_section_label: أوضاع الدراسة
+    modes_section_title: اختر طريقة الدراسة
+    stats:
+      modes_label: أوضاع الدراسة
+      decks_label: مجموعات مميزة
+      languages_label: اللغات
+      cards_label: بطاقات
+    cta_strip_headline: "هل أنت مستعد للدراسة بذكاء أكبر؟"
+    cta_strip_sub: "انضم إلى آلاف الطلاب الذين يستخدمون Quizly بالفعل."
     page_title: Quizly — تعلّم بسرعة أكبر مع البطاقات التعليمية
     carousel:
       previous_slide: الشريحة السابقة

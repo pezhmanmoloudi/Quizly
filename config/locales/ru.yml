@@ -604,9 +604,9 @@ ru:
     definition_label: ОПРЕДЕЛЕНИЕ
     cancel_import: Отменить импорт
   home:
-    hero_heading: Как вы хотите учиться?
-    hero_subtitle: Освойте всё, что изучаете, с помощью интерактивных карточек, практических
-      тестов и учебных активностей Quizly.
+    hero_heading: "Учитесь умнее, запоминайте дольше"
+    hero_subtitle: "Quizly помогает вам формировать настоящую память, а не просто кратковременное запоминание."
+    badge: "Интервальное повторение встроено"
     sign_up: Зарегистрироваться бесплатно
     popular_decks: Популярные колоды
     see_all: Смотреть все →
@@ -618,6 +618,18 @@ ru:
       match: Совпадения
     explore_link: Обзор
     log_in: Войти
+    no_decks: Рекомендованных колод пока нет.
+    popular_section_label: Популярные колоды
+    popular_section_title: Последняя активность
+    modes_section_label: Режимы обучения
+    modes_section_title: Выберите способ обучения
+    stats:
+      modes_label: Режимы обучения
+      decks_label: Рекомендованные колоды
+      languages_label: Языки
+      cards_label: карточек
+    cta_strip_headline: Готовы учиться умнее?
+    cta_strip_sub: "Присоединяйтесь к тысячам студентов, уже использующих Quizly."
     page_title: Quizly — Учитесь быстрее с карточками
     carousel:
       previous_slide: Предыдущий слайд

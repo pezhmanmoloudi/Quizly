@@ -588,9 +588,9 @@ de:
     definition_label: DEFINITION
     cancel_import: Import abbrechen
   home:
-    hero_heading: Wie möchtest du lernen?
-    hero_subtitle: Meistere alles, was du lernst, mit Quizlys interaktiven Lernkarten,
-      Übungstests und Lernaktivitäten.
+    hero_heading: "Klüger lernen, länger erinnern"
+    hero_subtitle: "Quizly hilft dir, echtes Gedächtnis aufzubauen – nicht nur kurzfristiges Behalten."
+    badge: "Karteikartensystem integriert"
     sign_up: Kostenlos registrieren
     popular_decks: Beliebte Decks
     see_all: Alle anzeigen →
@@ -602,6 +602,18 @@ de:
       match: Zuordnen
     explore_link: Entdecken
     log_in: Anmelden
+    no_decks: Noch keine vorgestellten Decks.
+    popular_section_label: Beliebte Decks
+    popular_section_title: Letzte Aktivitäten
+    modes_section_label: Lernmodi
+    modes_section_title: Lernmodus wählen
+    stats:
+      modes_label: Lernmodi
+      decks_label: Vorgestellte Decks
+      languages_label: Sprachen
+      cards_label: Karten
+    cta_strip_headline: Bereit, intelligenter zu lernen?
+    cta_strip_sub: Schließe dich Tausenden von Studierenden an, die Quizly bereits nutzen.
     page_title: Quizly — Schneller lernen mit Lernkarten
     carousel:
       previous_slide: Vorherige Folie

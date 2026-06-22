@@ -584,12 +584,22 @@ en:
     definition_label: DEFINITION
     cancel_import: Cancel Import
   home:
-    hero_heading: How do you want to study?
-    hero_subtitle: Master whatever you're learning with Quizly's interactive flashcards,
-      practice tests and study activities.
+    hero_heading: "Study smarter, remember longer"
+    hero_subtitle: "Quizly helps you build real memory — not just short-term recall."
+    badge: "Spaced repetition built in"
     sign_up: Sign up for free
     popular_decks: Popular Decks
     see_all: See all →
+    no_decks: No featured decks yet.
+    popular_section_label: Popular Decks
+    popular_section_title: Recent activity
+    modes_section_label: Study Modes
+    modes_section_title: Choose how to study
+    stats:
+      modes_label: Study modes
+      decks_label: Featured decks
+      languages_label: Languages
+      cards_label: cards
     modes:
       flashcards: Flashcards
       learn: Learn
@@ -598,6 +608,8 @@ en:
       match: Match
     explore_link: Explore
     log_in: Log In
+    cta_strip_headline: Ready to study smarter?
+    cta_strip_sub: Join thousands of students already using Quizly.
     page_title: Quizly — Learn Faster with Flashcards
     carousel:
       previous_slide: Previous slide

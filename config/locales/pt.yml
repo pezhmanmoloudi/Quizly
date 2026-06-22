@@ -589,9 +589,9 @@ pt:
     definition_label: DEFINIÇÃO
     cancel_import: Cancelar importação
   home:
-    hero_heading: Como você quer estudar?
-    hero_subtitle: Domine o que está aprendendo com os flashcards interativos, testes
-      práticos e atividades de estudo do Quizly.
+    hero_heading: "Estude melhor, lembre por mais tempo"
+    hero_subtitle: "Quizly ajuda você a construir memória real — não apenas retenção de curto prazo."
+    badge: "Repetição espaçada integrada"
     sign_up: Cadastrar-se grátis
     popular_decks: Baralhos populares
     see_all: Ver tudo →
@@ -603,6 +603,18 @@ pt:
       match: Combinar
     explore_link: Explorar
     log_in: Entrar
+    no_decks: Nenhum deck em destaque ainda.
+    popular_section_label: Decks populares
+    popular_section_title: Atividade recente
+    modes_section_label: Modos de estudo
+    modes_section_title: Escolha como estudar
+    stats:
+      modes_label: Modos de estudo
+      decks_label: Decks em destaque
+      languages_label: Idiomas
+      cards_label: cartões
+    cta_strip_headline: "Pronto para estudar de forma mais inteligente?"
+    cta_strip_sub: "Junte-se a milhares de estudantes que já usam o Quizly."
     page_title: Quizly — Aprenda mais rápido com flashcards
     carousel:
       previous_slide: Slide anterior

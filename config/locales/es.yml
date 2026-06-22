@@ -589,7 +589,9 @@ es:
     definition_label: DEFINICIÓN
     cancel_import: Cancelar importación
   home:
-    hero_heading: "¿Cómo quieres estudiar?"
+    hero_heading: "Estudia mejor, recuerda más"
+    hero_subtitle: "Quizly te ayuda a construir memoria real, no solo a recordar a corto plazo."
+    badge: "Repetición espaciada integrada"
     hero_subtitle: Domina lo que estás aprendiendo con las tarjetas interactivas,
       pruebas de práctica y actividades de estudio de Quizly.
     sign_up: Regístrate gratis
@@ -603,6 +605,18 @@ es:
       match: Emparejar
     explore_link: Explorar
     log_in: Iniciar sesión
+    no_decks: Aún no hay mazos destacados.
+    popular_section_label: Mazos populares
+    popular_section_title: Actividad reciente
+    modes_section_label: Modos de estudio
+    modes_section_title: Elige cómo estudiar
+    stats:
+      modes_label: Modos de estudio
+      decks_label: Mazos destacados
+      languages_label: Idiomas
+      cards_label: tarjetas
+    cta_strip_headline: "¿Listo para estudiar de forma más inteligente?"
+    cta_strip_sub: Únete a miles de estudiantes que ya usan Quizly.
     page_title: Quizly — Aprende más rápido con tarjetas
     carousel:
       previous_slide: Diapositiva anterior

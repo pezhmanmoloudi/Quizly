@@ -585,9 +585,9 @@ tr:
     definition_label: TANIM
     cancel_import: İçe aktarmayı iptal et
   home:
-    hero_heading: Nasıl çalışmak istersin?
-    hero_subtitle: Quizly'nin etkileşimli flashcard'ları, pratik testleri ve çalışma
-      etkinlikleriyle öğrendiklerini pekiştir.
+    hero_heading: "Daha akıllı çalış, daha uzun hatırla"
+    hero_subtitle: "Quizly, gerçek hafıza oluşturmanıza yardımcı olur — sadece kısa süreli hatırlama değil."
+    badge: "Aralıklı tekrar yerleşik"
     sign_up: Ücretsiz kaydol
     popular_decks: Popüler Desteler
     see_all: Tümünü gör →
@@ -599,6 +599,18 @@ tr:
       match: Eşleştir
     explore_link: Keşfet
     log_in: Giriş Yap
+    no_decks: Henüz öne çıkan demet yok.
+    popular_section_label: Popüler Demetler
+    popular_section_title: Son etkinlik
+    modes_section_label: Çalışma Modları
+    modes_section_title: Nasıl çalışacağını seç
+    stats:
+      modes_label: Çalışma modları
+      decks_label: Öne çıkan demetler
+      languages_label: Diller
+      cards_label: kart
+    cta_strip_headline: "Daha akıllıca çalışmaya hazır mısın?"
+    cta_strip_sub: "Quizly'yi kullanan binlerce öğrenciye katıl."
     page_title: Quizly — Flashcard'larla Daha Hızlı Öğren
     carousel:
       previous_slide: Önceki slayt

@@ -30,7 +30,7 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body data-controller="theme">
+  <body class="<%= content_for(:body_class) %>" data-controller="theme">
     <% if authenticated? %>
       <div class="drawer"
            data-controller="sidebar"

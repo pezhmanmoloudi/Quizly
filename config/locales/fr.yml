@@ -592,9 +592,9 @@ fr:
     definition_label: DÉFINITION
     cancel_import: Annuler l'importation
   home:
-    hero_heading: Comment voulez-vous étudier ?
-    hero_subtitle: Maîtrisez ce que vous apprenez avec les flashcards interactives
-      de Quizly.
+    hero_heading: "Étudiez mieux, retenez plus longtemps"
+    hero_subtitle: "Quizly vous aide à construire une vraie mémoire — pas seulement à mémoriser à court terme."
+    badge: "Répétition espacée intégrée"
     sign_up: S'inscrire gratuitement
     popular_decks: Paquets populaires
     see_all: Voir tout →
@@ -606,6 +606,18 @@ fr:
       match: Associer
     explore_link: Explorer
     log_in: Se connecter
+    no_decks: Aucun deck en vedette pour le moment.
+    popular_section_label: Decks populaires
+    popular_section_title: Activité récente
+    modes_section_label: Modes d'étude
+    modes_section_title: Choisissez comment étudier
+    stats:
+      modes_label: Modes d'étude
+      decks_label: Decks en vedette
+      languages_label: Langues
+      cards_label: cartes
+    cta_strip_headline: "Prêt à étudier plus intelligemment ?"
+    cta_strip_sub: "Rejoignez des milliers d'étudiants qui utilisent déjà Quizly."
     page_title: Quizly — Apprenez plus vite avec des flashcards
     carousel:
       previous_slide: Diapositive précédente
