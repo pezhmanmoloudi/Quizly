@@ -1,0 +1,146 @@
+/* Profile page */
+
+.profile-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+  padding: 2rem 0 1.5rem;
+  border-bottom: 1px solid var(--color-border-light);
+  margin-bottom: 2rem;
+}
+
+.profile-header__avatar { flex-shrink: 0; }
+
+.profile-avatar-img {
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.profile-header .user-avatar {
+  width: 5rem;
+  height: 5rem;
+  font-size: 1.5rem;
+}
+
+.profile-header__info {
+  flex: 1;
+  min-width: 0;
+}
+
+.profile-header__name {
+  font-size: var(--text-xl);
+  font-weight: var(--font-bold);
+  color: var(--color-text);
+  margin: 0 0 0.125rem;
+}
+
+.profile-header__username {
+  font-size: var(--text-sm);
+  color: var(--color-muted);
+  margin: 0 0 0.75rem;
+}
+
+.profile-header__stats {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.profile__stat {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+}
+
+.profile__stat strong {
+  font-weight: var(--font-semibold);
+  color: var(--color-text);
+}
+
+.profile__decks { margin-top: 2rem; }
+
+.profile__decks-heading {
+  font-size: var(--text-lg);
+  font-weight: var(--font-semibold);
+  margin-bottom: 1rem;
+}
+
+.decks-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* Following page — user list */
+
+.user-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.user-list-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.875rem 0;
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.user-list-row__identity {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  color: inherit;
+  flex: 1;
+  min-width: 0;
+}
+
+.user-list-row__info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  min-width: 0;
+}
+
+.user-list-row__name {
+  font-size: var(--text-sm);
+  font-weight: var(--font-semibold);
+  color: var(--color-text);
+}
+
+.user-list-row__identity:hover .user-list-row__name { text-decoration: underline; }
+
+.user-list-row__username,
+.user-list-row__stat {
+  font-size: var(--text-xs);
+  color: var(--color-muted);
+}
+
+.user-list-row .deck-row__avatar {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+}
+
+.user-list-row .deck-row__avatar-initials { font-size: 0.75rem; }
+
+.page-heading {
+  font-size: var(--text-xl);
+  font-weight: var(--font-bold);
+  margin-bottom: 1.5rem;
+}
+
+.page-heading__link {
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.page-heading__link:hover { text-decoration: underline; }
+
+@media (max-width: 600px) {
+  .profile-header { flex-direction: column; }
+}

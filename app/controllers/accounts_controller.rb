@@ -115,7 +115,11 @@ class AccountsController < ApplicationController
       :email_streaks_badges,
       :email_study_reminders,
       :reminder_time,
-      :time_zone
+      :time_zone,
+      :in_app_follows,
+      :email_follows,
+      :in_app_following_activity,
+      :email_following_activity
     )
   end
 end

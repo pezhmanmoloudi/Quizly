@@ -11,14 +11,18 @@
       </a>
     </h3>
     <div class="deck-row__meta">
-      <div class="deck-row__avatar">
-        <% if deck.user.show_avatar? %>
-          <%= image_tag deck.user.avatar.variant(resize_to_fill: [22, 22]), alt: "" %>
-        <% else %>
-          <span class="deck-row__avatar-initials"><%= deck.user.display_name.first&.upcase %></span>
-        <% end %>
-      </div>
-      <span class="deck-row__author"><%= deck.user.display_name %></span>
+      <%= link_to user_path(deck.user),
+            class: "deck-row__author-link",
+            data: { turbo_frame: "_top" } do %>
+        <div class="deck-row__avatar">
+          <% if deck.user.show_avatar? %>
+            <%= image_tag deck.user.avatar.variant(resize_to_fill: [22, 22]), alt: "" %>
+          <% else %>
+            <span class="deck-row__avatar-initials"><%= deck.user.display_name.first&.upcase %></span>
+          <% end %>
+        </div>
+        <span class="deck-row__author"><%= deck.user.display_name %></span>
+      <% end %>
       <span class="deck-row__meta-sep" aria-hidden="true">·</span>
       <span class="deck-row__time"><%= t("decks.deck_card.studied_time", time: time_ago_in_words(deck.created_at)) %></span>
     </div>

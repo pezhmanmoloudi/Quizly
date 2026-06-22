@@ -2,6 +2,7 @@ class Notification < ApplicationRecord
   VALID_EVENT_TYPES = %w[
     badge_earned
     followed
+    followed_user_published_deck
     deck_commented
     deck_reacted
   ].freeze

@@ -18,12 +18,17 @@ fa:
       study_group: گروه مطالعاتی
     open_navigation: باز کردن منوی ناوبری
     close_navigation: بستن منوی ناوبری
+    account_menu: Account menu
   menu:
     settings: تنظیمات
     dark_mode: حالت تاریک
     light_mode: حالت روشن
     log_out: خروج
     language: زبان
+    view_profile: View Profile
+    notifications: Notifications
+    followers: Followers
+    following: Following
   shared:
     cancel: لغو
     close: بستن
@@ -167,6 +172,13 @@ fa:
     notif_choose_reminder_time: زمان دریافت یادآوری مطالعه را انتخاب کنید
     notif_time_zone: منطقه زمانی
     notif_email_label: اعلان ایمیل
+    notif_in_app_heading: "In-App Notifications"
+    notif_email_heading: "Email Notifications"
+    notif_in_app_follows: "Someone follows me"
+    notif_email_follows: "Someone follows me"
+    notif_in_app_following_activity: "Activity from people I follow"
+    notif_email_following_activity: "Activity from people I follow"
+    notif_always_on: "Always on"
     theme_auto: خودکار
     theme_light: روشن
     theme_dark: تاریک
@@ -628,11 +640,36 @@ fa:
     events:
       badge_earned: شما یک نشان جدید به دست آوردید
       followed: "%{actor} شما را دنبال کرد"
+      followed_user_published_deck: "%{actor} published a new deck"
       deck_commented: "%{actor} روی مجموعه‌تان نظر داد"
       deck_reacted: "%{actor} به مجموعه‌تان واکنش نشان داد"
+  follows:
+    follow: "Follow"
+    unfollow: "Unfollow"
+    followers:
+      one: "%{count} follower"
+      other: "%{count} followers"
+    follower_label:
+      one: "follower"
+      other: "followers"
+    public_decks: "Public Decks"
+    no_public_decks: "No public decks yet."
+    following_heading: "Following"
+    following_page_title: "%{name}'s Following"
+    no_following: "Not following anyone yet."
   activerecord:
     errors:
       models:
+        follow:
+          attributes:
+            base:
+              cannot_follow_self: "You cannot follow yourself."
+            follower_id:
+              already_following: "You are already following this user."
+        user:
+          attributes:
+            username:
+              invalid_username: "may only contain letters, numbers, and underscores."
         deck:
           attributes:
             base:
