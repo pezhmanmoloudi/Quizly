@@ -161,9 +161,12 @@ pt:
     upload_photo_title: Enviar uma foto personalizada
     toggle_password: Mostrar/ocultar senha
     notifications_section: Notificações
+    notif_email_section_title: Notificações
     notif_personalised_updates: Atualizações de estudo personalizadas
     notif_streaks_badges: Sequências e conquistas
+    notif_streaks_badges_email: Sequências e conquistas
     notif_study_reminders: Lembretes de estudo
+    notif_study_reminders_email: Lembretes de estudo
     notif_choose_reminder_time: Escolha quando receber lembretes de estudo
     notif_time_zone: Fuso horário
     notif_email_label: Notificação por e-mail

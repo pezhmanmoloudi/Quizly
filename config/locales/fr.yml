@@ -164,9 +164,12 @@ fr:
     upload_photo_title: Télécharger une photo personnalisée
     toggle_password: Afficher/masquer le mot de passe
     notifications_section: Notifications
+    notif_email_section_title: Notifications
     notif_personalised_updates: Mises à jour d'apprentissage personnalisées
     notif_streaks_badges: Séries et badges
+    notif_streaks_badges_email: Séries et badges
     notif_study_reminders: Rappels d'étude
+    notif_study_reminders_email: Rappels d'étude
     notif_choose_reminder_time: Choisissez quand recevoir vos rappels d'étude
     notif_time_zone: Fuseau horaire
     notif_email_label: Notification par e-mail

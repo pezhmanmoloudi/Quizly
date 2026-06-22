@@ -160,9 +160,12 @@ ru:
     upload_photo_title: Загрузить собственное фото
     toggle_password: Показать/скрыть пароль
     notifications_section: Уведомления
+    notif_email_section_title: Уведомления
     notif_personalised_updates: Персонализированные обновления обучения
     notif_streaks_badges: Серии и значки
+    notif_streaks_badges_email: Серии и значки
     notif_study_reminders: Напоминания об обучении
+    notif_study_reminders_email: Напоминания об обучении
     notif_choose_reminder_time: Выберите время для получения напоминаний об обучении
     notif_time_zone: Часовой пояс
     notif_email_label: Уведомление по электронной почте

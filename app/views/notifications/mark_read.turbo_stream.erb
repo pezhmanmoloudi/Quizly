@@ -1,8 +1,6 @@
 <%= turbo_stream.replace "notification-#{@notification.id}" do %>
   <%= render "notification", notification: @notification %>
 <% end %>
-<%= turbo_stream.update "notification-badge" do %>
-  <% if @unread_count > 0 %>
-    <span class="notif-badge"><%= @unread_count > 99 ? "99+" : @unread_count %></span>
-  <% end %>
+<%= turbo_stream.update "notification-badge-inner" do %>
+  <%= render "badge_count", unread_count: @unread_count %>
 <% end %>

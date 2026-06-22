@@ -161,9 +161,12 @@ de:
     upload_photo_title: Eigenes Foto hochladen
     toggle_password: Passwort anzeigen/verbergen
     notifications_section: Benachrichtigungen
+    notif_email_section_title: Benachrichtigungen
     notif_personalised_updates: Personalisierte Lernaktualisierungen
     notif_streaks_badges: Serien und Abzeichen
+    notif_streaks_badges_email: Serien und Abzeichen
     notif_study_reminders: Lernerinnerungen
+    notif_study_reminders_email: Lernerinnerungen
     notif_choose_reminder_time: Wählen Sie, wann Sie Lernerinnerungen erhalten möchten
     notif_time_zone: Zeitzone
     notif_email_label: E-Mail-Benachrichtigung

@@ -158,9 +158,12 @@ fa:
     upload_photo_title: بارگذاری عکس سفارشی
     toggle_password: نمایش/پنهان کردن رمز عبور
     notifications_section: اعلان‌ها
+    notif_email_section_title: اعلان‌ها
     notif_personalised_updates: به‌روزرسانی‌های مطالعه شخصی‌سازی‌شده
     notif_streaks_badges: رشته‌ها و نشان‌ها
+    notif_streaks_badges_email: رشته‌ها و نشان‌ها
     notif_study_reminders: یادآوری‌های مطالعه
+    notif_study_reminders_email: یادآوری‌های مطالعه
     notif_choose_reminder_time: زمان دریافت یادآوری مطالعه را انتخاب کنید
     notif_time_zone: منطقه زمانی
     notif_email_label: اعلان ایمیل

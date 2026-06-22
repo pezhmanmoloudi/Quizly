@@ -158,9 +158,12 @@ ar:
     upload_photo_title: رفع صورة مخصصة
     toggle_password: إظهار/إخفاء كلمة المرور
     notifications_section: الإشعارات
+    notif_email_section_title: الإشعارات
     notif_personalised_updates: تحديثات الدراسة المخصصة
     notif_streaks_badges: السلاسل والشارات
+    notif_streaks_badges_email: السلاسل والشارات
     notif_study_reminders: تذكيرات الدراسة
+    notif_study_reminders_email: تذكيرات الدراسة
     notif_choose_reminder_time: اختر وقت استلام تذكيرات الدراسة
     notif_time_zone: المنطقة الزمنية
     notif_email_label: إشعار البريد الإلكتروني

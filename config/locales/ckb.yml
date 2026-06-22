@@ -159,9 +159,12 @@ ckb:
     upload_photo_title: بارکردنی وێنەی تایبەت
     toggle_password: پیشاندان/شاردنەوەی وشەی نهێنی
     notifications_section: ئاگادارکردنەوەکان
+    notif_email_section_title: ئاگادارکردنەوەکان
     notif_personalised_updates: نوێکردنەوەی خوێندنی تایبەتی
     notif_streaks_badges: زنجیرەکان و نیشانەکان
+    notif_streaks_badges_email: زنجیرەکان و نیشانەکان
     notif_study_reminders: بیرخستنەوەی خوێندن
+    notif_study_reminders_email: بیرخستنەوەی خوێندن
     notif_choose_reminder_time: کاتی وەرگرتنی بیرخستنەوەی خوێندن دیاری بکە
     notif_time_zone: ناوچەی کاتی
     notif_email_label: ئاگادارکردنەوەی ئیمەیڵ

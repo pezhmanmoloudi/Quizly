@@ -58,7 +58,6 @@ Rails.application.routes.draw do
 
   resources :notifications, only: [ :index ] do
     collection do
-      get :badge
       patch :mark_all_read
     end
     member do
