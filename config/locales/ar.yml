@@ -171,6 +171,7 @@ ar:
     notif_study_reminders_email: تذكيرات الدراسة
     notif_choose_reminder_time: اختر وقت استلام تذكيرات الدراسة
     notif_time_zone: المنطقة الزمنية
+    notif_search_timezone: ابحث عن المنطقة الزمنية
     notif_email_label: إشعار البريد الإلكتروني
     notif_in_app_heading: "In-App Notifications"
     notif_email_heading: "Email Notifications"

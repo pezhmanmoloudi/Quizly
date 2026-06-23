@@ -145,29 +145,35 @@
             </div>
           </div>
 
-          <%# Reminder time %>
           <div class="settings-info-row">
             <div class="settings-info-row__label" style="font-weight: 400; color: var(--color-text-secondary);">
               <%= t("accounts.notif_choose_reminder_time") %>
             </div>
             <div class="settings-info-row__right">
-              <%= f.select "notification_preference[reminder_time]",
-                    (0..23).map { |h| v = format("%02d:00", h); [v, v] },
-                    { selected: @notification_preference.reminder_time },
-                    { class: "form-control form-control--sm" } %>
+              <%= render "shared/dropdown",
+                    options:    (0..23).map { |h| v = format("%02d:00", h); [v, v] },
+                    selected:   @notification_preference.reminder_time.presence || "08:00",
+                    input_name: "notification_preference[reminder_time]",
+                    placeholder: @notification_preference.reminder_time.presence || "08:00",
+                    searchable: false,
+                    size:       :sm %>
             </div>
           </div>
 
-          <%# Time zone %>
           <div class="settings-info-row">
             <div class="settings-info-row__label" style="font-weight: 400; color: var(--color-text-secondary);">
               <%= t("accounts.notif_time_zone") %>
             </div>
             <div class="settings-info-row__right">
-              <%= f.select "notification_preference[time_zone]",
-                    ActiveSupport::TimeZone.all.map { |tz| [tz.to_s, tz.name] },
-                    { selected: @notification_preference.time_zone },
-                    { class: "form-control form-control--sm" } %>
+              <%= render "shared/dropdown",
+                    options:            ActiveSupport::TimeZone.all.map { |tz| [tz.to_s, tz.name] },
+                    selected:           @notification_preference.time_zone.to_s,
+                    input_name:         "notification_preference[time_zone]",
+                    placeholder:        ActiveSupport::TimeZone[@notification_preference.time_zone]&.to_s || "(GMT+00:00) UTC",
+                    searchable:         true,
+                    search_placeholder: t("accounts.notif_search_timezone"),
+                    scrollable:         true,
+                    size:               :sm %>
             </div>
           </div>
 

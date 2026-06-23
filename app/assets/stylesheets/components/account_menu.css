@@ -1,4 +1,5 @@
-/* Avatar circle and dropdown menu */
+/* Account avatar circle, account flyout menu (.avatar-dropdown), and folder context menu (.folder-options).
+   For the reusable form-select/value-picker dropdown, see dropdown.css (.ui-dropdown). */
 
 /* ── User avatar circle ── */
 .user-avatar {

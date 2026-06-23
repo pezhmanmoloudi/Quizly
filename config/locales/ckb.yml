@@ -172,6 +172,7 @@ ckb:
     notif_study_reminders_email: بیرخستنەوەی خوێندن
     notif_choose_reminder_time: کاتی وەرگرتنی بیرخستنەوەی خوێندن دیاری بکە
     notif_time_zone: ناوچەی کاتی
+    notif_search_timezone: گەڕانی ناوچەی کاتی
     notif_email_label: ئاگادارکردنەوەی ئیمەیڵ
     notif_in_app_heading: "In-App Notifications"
     notif_email_heading: "Email Notifications"

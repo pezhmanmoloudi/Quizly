@@ -172,6 +172,7 @@ tr:
     notif_study_reminders_email: Çalışma hatırlatıcıları
     notif_choose_reminder_time: Çalışma hatırlatıcılarını ne zaman alacağınızı seçin
     notif_time_zone: Saat dilimi
+    notif_search_timezone: Saat dilimi ara
     notif_email_label: E-posta bildirimi
     notif_in_app_heading: "In-App Notifications"
     notif_email_heading: "Email Notifications"

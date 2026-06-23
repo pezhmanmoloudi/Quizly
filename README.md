@@ -1,5 +1,10 @@
 # Quizly
 
+[![Ruby](https://img.shields.io/badge/Ruby-3.3.5-CC342D?logo=ruby&logoColor=white)](https://www.ruby-lang.org)
+[![Rails](https://img.shields.io/badge/Rails-8.1-CC0000?logo=rubyonrails&logoColor=white)](https://rubyonrails.org)
+[![CI](https://github.com/pezhmanmoloudi/quizly/actions/workflows/ci.yml/badge.svg)](https://github.com/pezhmanmoloudi/quizly/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
 A flashcard learning platform built with Rails 8. Create decks, add cards, and study with five distinct modes — from simple card flipping to adaptive quizzes and spaced repetition.
 
 ---
@@ -182,15 +187,42 @@ bin/rubocop
 bin/brakeman --no-pager
 ```
 
-**CI pipeline** — GitHub Actions runs three checks automatically on every PR and push to `main`:
+**CI pipeline** — GitHub Actions runs four checks automatically on every PR and push to `main`:
 
 | Check | Command |
 |-------|---------|
 | Security scan | `bin/brakeman --no-pager` |
 | JS dependency audit | `bin/importmap audit` |
 | Style lint | `bin/rubocop -f github` |
+| Test suite | `bundle exec rspec` |
 
-RSpec is not run in CI. Run the test suite locally before opening a pull request.
+---
+
+## Screenshots
+
+_Coming soon — contributions welcome._
+
+---
+
+## Roadmap
+
+- AI-generated question types in Test mode (using the Claude API)
+- Cloud storage (S3 / R2) for production Active Storage uploads
+- Public REST API for deck import/export
+- Deck collaboration — multiple editors per deck
+- Mobile-responsive Match mode
+
+---
+
+## Contributing
+
+See [docs/CONTRIBUTING.md](docs/CONTRIBUTING.md) for the PR workflow, code conventions, and test patterns.
+
+---
+
+## License
+
+This project is licensed under the MIT License — see [LICENSE](LICENSE) for details.
 
 ---
 

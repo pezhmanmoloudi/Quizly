@@ -23,6 +23,7 @@
   font-size: 0.95rem;
   background: var(--color-surface);
   color: var(--color-text);
+  color-scheme: light;
 }
 
 .form-control::placeholder {
@@ -103,6 +104,7 @@
   color: var(--color-text);
   cursor: pointer;
   height: 2rem;
+  color-scheme: light;
 }
 
 .form-select:focus {
@@ -152,4 +154,11 @@
   outline: 2px solid var(--color-danger);
   border-color: var(--color-danger);
   box-shadow: 0 0 0 3px rgba(239, 68, 68, .12);
+}
+
+/* color-scheme does not inherit, so set it explicitly on form controls so
+   native select dropdowns render in the correct theme (not OS dark mode). */
+[data-theme="dark"] .form-control,
+[data-theme="dark"] .form-select {
+  color-scheme: dark;
 }
