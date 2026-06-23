@@ -10,7 +10,7 @@ RSpec.describe "Home#index", type: :request do
 
       it "renders the hero headline" do
         get root_path
-        expect(response.body).to include("How do you want to study?")
+        expect(response.body).to include("Study smarter, remember longer")
       end
 
       it "renders all five mode selector tabs" do
@@ -20,11 +20,10 @@ RSpec.describe "Home#index", type: :request do
         end
       end
 
-      it "renders the carousel structure" do
+      it "renders the mode selector grid" do
         get root_path
-        expect(response.body).to include("hero-carousel")
-        expect(response.body).to include("mode-card")
-        expect(response.body).to include("carousel-dots")
+        expect(response.body).to include("home-modes-grid")
+        expect(response.body).to include("home-mode-card")
       end
 
       it "shows Sign Up link" do
