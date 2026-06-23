@@ -9,14 +9,15 @@ RSpec.describe "Flashcards#update", type: :request do
     context "when authenticated as owner" do
       before { sign_in(user) }
 
-      it "updates front_language and back_language and redirects to deck" do
+      it "updates content and redirects to deck, language params are ignored" do
         patch flashcard_path(flashcard),
               params: { flashcard: { front_content: "Term", back_content: "Definition",
                                      front_language: "fr", back_language: "de" } }
         expect(response).to redirect_to(deck_path(deck))
         flashcard.reload
-        expect(flashcard.front_language).to eq("fr")
-        expect(flashcard.back_language).to eq("de")
+        expect(flashcard.front_content).to eq("Term")
+        expect(flashcard.front_language).to eq("en")
+        expect(flashcard.back_language).to eq("es")
       end
 
       it "redirects to editor with alert on invalid params" do

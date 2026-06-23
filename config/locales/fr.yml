@@ -253,6 +253,9 @@ fr:
       description_label: Description
       language_label: Langue (optionnel)
       language_placeholder: ex. en, es, fr, de
+      term_language_label: Langue du terme
+      definition_language_label: Langue de la définition
+      select_language: Sélectionner une langue...
       tags_label: Étiquettes (optionnel)
       tags_hint: Séparez les étiquettes par des virgules.
       tags_placeholder: ex. biologie, anatomie, examen2025

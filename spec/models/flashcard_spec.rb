@@ -47,6 +47,38 @@ RSpec.describe Flashcard, type: :model do
     end
   end
 
+  describe "#inherit_language_from_deck" do
+    it "sets front_language from deck.term_language on create" do
+      deck = create(:deck, term_language: "en", definition_language: "fa")
+      card = create(:flashcard, deck: deck)
+      expect(card.front_language).to eq("en")
+    end
+
+    it "sets back_language from deck.definition_language on create" do
+      deck = create(:deck, term_language: "en", definition_language: "fa")
+      card = create(:flashcard, deck: deck)
+      expect(card.back_language).to eq("fa")
+    end
+
+    it "leaves front_language nil when deck.term_language is nil" do
+      deck = create(:deck, term_language: nil, definition_language: nil)
+      card = create(:flashcard, deck: deck)
+      expect(card.front_language).to be_nil
+    end
+
+    it "does not override an explicitly set front_language" do
+      deck = create(:deck, term_language: "en", definition_language: "fa")
+      card = create(:flashcard, deck: deck, front_language: "de")
+      expect(card.front_language).to eq("de")
+    end
+
+    it "does not override an explicitly set back_language" do
+      deck = create(:deck, term_language: "en", definition_language: "fa")
+      card = create(:flashcard, deck: deck, back_language: "ar")
+      expect(card.back_language).to eq("ar")
+    end
+  end
+
   describe "dependent destruction" do
     it "destroys associated card_progresses when deleted" do
       user      = create(:user)

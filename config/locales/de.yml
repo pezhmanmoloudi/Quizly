@@ -249,6 +249,9 @@ de:
       description_label: Beschreibung
       language_label: Sprache (optional)
       language_placeholder: z. B. en, es, fr, de
+      term_language_label: Begriff-Sprache
+      definition_language_label: Definitions-Sprache
+      select_language: Sprache auswählen...
       tags_label: Tags (optional)
       tags_hint: Tags mit Kommas trennen.
       tags_placeholder: z. B. Biologie, Anatomie, Prüfung2025

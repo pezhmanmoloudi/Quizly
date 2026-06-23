@@ -4,7 +4,12 @@ RSpec.describe BadgeAwarder, type: :service do
   let(:user) { create(:user) }
 
   def seed_badge(key, category: "streak")
-    Badge.create!(key: key, name: key.humanize, description: "desc", icon: "🏅", category: category)
+    Badge.find_or_create_by!(key: key) do |b|
+      b.name        = key.humanize
+      b.description = "desc"
+      b.icon        = "🏅"
+      b.category    = category
+    end
   end
 
   describe ".call" do

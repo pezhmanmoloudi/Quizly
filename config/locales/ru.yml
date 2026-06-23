@@ -249,6 +249,9 @@ ru:
       description_label: Описание
       language_label: Язык (необязательно)
       language_placeholder: напр. en, ru, de
+      term_language_label: Язык термина
+      definition_language_label: Язык определения
+      select_language: Выбрать язык...
       tags_label: Теги (необязательно)
       tags_hint: Разделяйте теги запятыми.
       tags_placeholder: напр. биология, анатомия, экзамен2025

@@ -34,6 +34,7 @@ class TextImporter
 
     records = rows.each_with_index.map do |row, i|
       { deck_id: @deck.id, front_content: row[:front_content], back_content: row[:back_content],
+        front_language: @deck.term_language, back_language: @deck.definition_language,
         position: next_pos + i, created_at: now, updated_at: now }
     end
 

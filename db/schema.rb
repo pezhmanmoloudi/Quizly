@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_06_23_130301) do
+ActiveRecord::Schema[8.1].define(version: 2026_06_23_224001) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
@@ -82,6 +82,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_23_130301) do
   create_table "decks", force: :cascade do |t|
     t.string "access_mode", default: "open", null: false
     t.datetime "created_at", null: false
+    t.string "definition_language"
     t.text "description"
     t.integer "flashcards_count", default: 0, null: false
     t.string "language_code"
@@ -89,6 +90,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_23_130301) do
     t.string "password_digest"
     t.integer "source_deck_id"
     t.string "subject_tags"
+    t.string "term_language"
     t.datetime "updated_at", null: false
     t.integer "user_id", null: false
     t.string "visibility", default: "public", null: false

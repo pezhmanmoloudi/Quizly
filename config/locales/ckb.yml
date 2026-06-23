@@ -247,6 +247,9 @@ ckb:
       description_label: وەسف
       language_label: زمان (ئارەزووی)
       language_placeholder: 'بۆ نموونە: en, ckb, ar'
+      term_language_label: زمانی مەترادف
+      definition_language_label: زمانی پێناسە
+      select_language: زمان دیاری بکە...
       tags_label: تاگەکان (ئارەزووی)
       tags_hint: تاگەکان بە کۆمای جیابکەرەوە.
       tags_placeholder: 'بۆ نموونە: بایۆلۆجی، ئەناتۆمی، تاقیکردنەوە٢٠٢٥'

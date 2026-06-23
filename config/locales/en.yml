@@ -246,6 +246,9 @@ en:
       description_label: Description
       language_label: Language (optional)
       language_placeholder: e.g. en, es, fr, de
+      term_language_label: Term Language
+      definition_language_label: Definition Language
+      select_language: Select language...
       tags_label: Tags (optional)
       tags_hint: Separate tags with commas.
       tags_placeholder: e.g. biology, anatomy, exam2025

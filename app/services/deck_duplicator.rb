@@ -18,7 +18,9 @@ class DeckDuplicator
         name:          @name,
         description:   @source_deck.description,
         subject_tags:  @source_deck.subject_tags,
-        language_code: @source_deck.language_code,
+        language_code:       @source_deck.language_code,
+        term_language:       @source_deck.term_language,
+        definition_language: @source_deck.definition_language,
         access_mode:   @access_mode,
         visibility:    @visibility,
         source_deck:   @source_deck

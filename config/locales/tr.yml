@@ -247,6 +247,9 @@ tr:
       description_label: Açıklama
       language_label: Dil (isteğe bağlı)
       language_placeholder: örn. en, tr, de
+      term_language_label: Terim dili
+      definition_language_label: Tanım dili
+      select_language: Dil seçin...
       tags_label: Etiketler (isteğe bağlı)
       tags_hint: Etiketleri virgülle ayır.
       tags_placeholder: örn. biyoloji, anatomi, sınav2025
