@@ -9,6 +9,8 @@ class Flashcard < ApplicationRecord
 
   default_scope { where(deleted_at: nil).order(:position, :id) }
 
+  before_validation :inherit_language_from_deck, on: :create
+
   def soft_delete!
     ActiveRecord::Base.transaction do
       update_columns(deleted_at: Time.current)
@@ -21,5 +23,13 @@ class Flashcard < ApplicationRecord
       update_columns(deleted_at: nil)
       Deck.increment_counter(:flashcards_count, deck_id)
     end
+  end
+
+  private
+
+  def inherit_language_from_deck
+    return unless deck
+    self.front_language ||= deck.term_language
+    self.back_language  ||= deck.definition_language
   end
 end

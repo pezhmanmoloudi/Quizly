@@ -5,8 +5,7 @@ RSpec.describe "Flashcards#create", type: :request do
   let(:deck) { create(:deck, user: user) }
 
   let(:valid_params) do
-    { flashcard: { front_content: "Term", back_content: "Definition",
-                   front_language: "en", back_language: "es" } }
+    { flashcard: { front_content: "Term", back_content: "Definition" } }
   end
 
   describe "POST /decks/:deck_id/flashcards" do
@@ -20,11 +19,12 @@ RSpec.describe "Flashcards#create", type: :request do
         expect(response).to redirect_to(deck_path(deck))
       end
 
-      it "persists front_language and back_language" do
+      it "inherits front_language and back_language from the deck" do
+        deck.update_columns(term_language: "en", definition_language: "fa")
         post deck_flashcards_path(deck), params: valid_params
         card = Flashcard.last
         expect(card.front_language).to eq("en")
-        expect(card.back_language).to eq("es")
+        expect(card.back_language).to eq("fa")
       end
 
       it "redirects to editor with alert on invalid params" do

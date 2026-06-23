@@ -7,11 +7,9 @@ RSpec.describe "Flashcards#suggest", type: :request do
 
   # Public flashcard authored by another user, visible to everyone
   let!(:public_card) do
-    create(:flashcard, deck: create(:deck, user: other),
+    create(:flashcard, deck: create(:deck, user: other, term_language: "en", definition_language: "fa"),
                        front_content: "elephant",
                        back_content:  "fil",
-                       front_language: "en",
-                       back_language:  "fa",
                        public: true)
   end
 
@@ -19,7 +17,6 @@ RSpec.describe "Flashcards#suggest", type: :request do
   let!(:private_card) do
     create(:flashcard, deck: create(:deck, user: other),
                        front_content: "elephant",
-                       front_language: "en",
                        public: false)
   end
 
@@ -48,9 +45,8 @@ RSpec.describe "Flashcards#suggest", type: :request do
       end
 
       it "returns suggestions from all languages when lang param is blank" do
-        create(:flashcard, deck: create(:deck, user: other),
+        create(:flashcard, deck: create(:deck, user: other, term_language: "de"),
                            front_content: "elefant",
-                           front_language: "de",
                            public: true)
 
         get flashcard_suggest_path, params: { q: "ele", field: "front", lang: "" }
@@ -59,9 +55,8 @@ RSpec.describe "Flashcards#suggest", type: :request do
       end
 
       it "filters by language" do
-        create(:flashcard, deck: create(:deck, user: other),
+        create(:flashcard, deck: create(:deck, user: other, term_language: "de"),
                            front_content: "elefant",
-                           front_language: "de",
                            public: true)
 
         get flashcard_suggest_path, params: { q: "ele", field: "front", lang: "en" }
@@ -91,9 +86,8 @@ RSpec.describe "Flashcards#suggest", type: :request do
       end
 
       it "matches non-ASCII (Persian) content" do
-        create(:flashcard, deck: create(:deck, user: other),
+        create(:flashcard, deck: create(:deck, user: other, term_language: "fa"),
                            front_content: "فیل",
-                           front_language: "fa",
                            public: true)
         get flashcard_suggest_path, params: { q: "فی", field: "front", lang: "fa" }
         expect(response.body).to include("فیل")
@@ -102,10 +96,7 @@ RSpec.describe "Flashcards#suggest", type: :request do
 
       context "own cards" do
         let!(:own_private_card) do
-          create(:flashcard, deck: deck,
-                             front_content: "elephant",
-                             front_language: "en",
-                             public: false)
+          create(:flashcard, deck: deck, front_content: "elephant", public: false)
         end
 
         it "includes own private cards in suggestions" do
@@ -135,8 +126,8 @@ RSpec.describe "Flashcards#suggest", type: :request do
       context "result limit" do
         it "returns at most 3 suggestions" do
           %w[elaborate element elementary elbow elevated].each do |w|
-            create(:flashcard, deck: create(:deck, user: other),
-                               front_content: w, front_language: "en", public: true)
+            create(:flashcard, deck: create(:deck, user: other, term_language: "en"),
+                               front_content: w, public: true)
           end
 
           get flashcard_suggest_path, params: { q: "el", field: "front", lang: "en" }

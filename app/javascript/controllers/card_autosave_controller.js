@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["front", "back", "status", "frontLanguage", "backLanguage",
+  static targets = ["front", "back", "status",
                     "imagePanel", "imageInput", "imagePreview", "imageBtn", "imageRemoveBtn",
                     "imagePlaceholder"]
   static values  = {
@@ -36,10 +36,8 @@ export default class extends Controller {
         },
         body: JSON.stringify({
           flashcard: {
-            front_content:  front,
-            back_content:   this.backTarget.value.trim(),
-            front_language: this.hasFrontLanguageTarget ? this.frontLanguageTarget.value : "",
-            back_language:  this.hasBackLanguageTarget  ? this.backLanguageTarget.value  : ""
+            front_content: front,
+            back_content:  this.backTarget.value.trim()
           }
         })
       })

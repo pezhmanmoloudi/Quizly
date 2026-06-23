@@ -3,10 +3,8 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = ["cardsList", "template", "row", "saveButton"]
   static values  = {
-    errorTerm:        String,
-    errorDefinition:  String,
-    errorLanguage:    String,
-    requiresLanguage: Boolean
+    errorTerm:       String,
+    errorDefinition: String
   }
 
   connect() { this.#updateUI() }
@@ -97,8 +95,6 @@ export default class extends Controller {
     this.#visibleRows().forEach(row => {
       const termArea = row.querySelector("textarea[name*='front_content']")
       const defArea  = row.querySelector("textarea[name*='back_content']")
-      const frontSel = row.querySelector("input[name*='front_language']")
-      const backSel  = row.querySelector("input[name*='back_language']")
 
       if (termArea && !termArea.value.trim()) {
         this.#showFieldError(termArea, this.errorTermValue)
@@ -107,16 +103,6 @@ export default class extends Controller {
       if (defArea && !defArea.value.trim()) {
         this.#showFieldError(defArea, this.errorDefinitionValue)
         firstInvalid ||= defArea
-      }
-      if (this.requiresLanguageValue) {
-        if (frontSel && !frontSel.value) {
-          this.#showFieldError(frontSel, this.errorLanguageValue)
-          firstInvalid ||= frontSel
-        }
-        if (backSel && !backSel.value) {
-          this.#showFieldError(backSel, this.errorLanguageValue)
-          firstInvalid ||= backSel
-        }
       }
     })
 

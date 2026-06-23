@@ -1,6 +1,10 @@
 module ApplicationHelper
   include Pagy::Method
 
+  def text_direction_for(lang_code)
+    ScriptDetector.for_lang(lang_code) == :rtl ? "rtl" : "ltr"
+  end
+
   def pagy_series(pagy)
     pagy.send(:series)
   end

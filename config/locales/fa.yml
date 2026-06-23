@@ -246,6 +246,9 @@ fa:
       description_label: توضیحات
       language_label: زبان (اختیاری)
       language_placeholder: 'مثال: en, fa, de'
+      term_language_label: زبان اصطلاح
+      definition_language_label: زبان تعریف
+      select_language: انتخاب زبان...
       tags_label: برچسب‌ها (اختیاری)
       tags_hint: برچسب‌ها را با کاما جدا کن.
       tags_placeholder: 'مثال: زیست‌شناسی، تشریح، امتحان۱۴۰۴'

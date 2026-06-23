@@ -102,7 +102,6 @@ class FlashcardsController < ApplicationController
   end
 
   def flashcard_params
-    params.require(:flashcard).permit(:front_content, :back_content, :position,
-                                      :front_language, :back_language, :image)
+    params.require(:flashcard).permit(:front_content, :back_content, :position, :image)
   end
 end

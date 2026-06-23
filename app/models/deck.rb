@@ -10,6 +10,8 @@ class Deck < ApplicationRecord
   has_many :folders, through: :deck_folders
   after_update_commit :notify_followers_of_publish, if: :just_published?
   after_save :sync_flashcard_visibility, if: :saved_change_to_visibility?
+  after_update_commit :sync_flashcard_languages,
+    if: -> { saved_change_to_term_language? || saved_change_to_definition_language? }
   accepts_nested_attributes_for :flashcards,
     reject_if: :all_blank,
     allow_destroy: true
@@ -26,9 +28,11 @@ class Deck < ApplicationRecord
   scope :discoverable, -> { complete.where(visibility: "public") }
   scope :popular,      -> { order(created_at: :desc) }
 
-  validates :name,        presence: true, length: { maximum: 100 }
-  validates :visibility,  inclusion: { in: VISIBILITY_VALUES }
-  validates :access_mode, inclusion: { in: ACCESS_MODE_VALUES }
+  validates :name,               presence: true, length: { maximum: 100 }
+  validates :visibility,         inclusion: { in: VISIBILITY_VALUES }
+  validates :access_mode,        inclusion: { in: ACCESS_MODE_VALUES }
+  validates :term_language,       inclusion: { in: Language::ALL_LANGUAGES.keys, allow_blank: true }
+  validates :definition_language, inclusion: { in: Language::ALL_LANGUAGES.keys, allow_blank: true }
   validate  :access_mode_compatible_with_visibility
   validate  :password_requirements
   validate  :completeness_for_sharing, on: :update
@@ -60,6 +64,13 @@ class Deck < ApplicationRecord
 
   def sync_flashcard_visibility
     flashcards.update_all(public: visibility == "public")
+  end
+
+  def sync_flashcard_languages
+    flashcards.update_all(
+      front_language: term_language,
+      back_language:  definition_language
+    )
   end
 
   def just_published?

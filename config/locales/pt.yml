@@ -250,6 +250,9 @@ pt:
       description_label: Descrição
       language_label: Idioma (opcional)
       language_placeholder: 'ex.: en, es, fr, de'
+      term_language_label: Idioma do termo
+      definition_language_label: Idioma da definição
+      select_language: Selecionar idioma...
       tags_label: Tags (opcional)
       tags_hint: Separe as tags com vírgulas.
       tags_placeholder: 'ex.: biologia, anatomia, prova2025'

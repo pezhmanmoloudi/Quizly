@@ -51,17 +51,34 @@
     <%# Name + Description inside form_with %>
     <%= render "form", deck: @deck, skip_meta_fields: true %>
 
-    <%# Language + Tags on the same row, outside form_with %>
+    <%# Term Language + Definition Language + Tags on the same row, outside form_with %>
     <div class="deck-editor__meta-row">
       <div class="form-group">
-        <label for="deck_language_code"><%= t("decks.form.language_label") %></label>
-        <input type="text"
-               form="deck-settings-form"
-               id="deck_language_code"
-               name="deck[language_code]"
-               class="form-control"
-               value="<%= @deck.language_code %>"
-               placeholder="<%= t('decks.form.language_placeholder') %>">
+        <label><%= t("decks.form.term_language_label") %></label>
+        <%= render "shared/dropdown",
+              options:            Language::ALL_LANGUAGES.map { |code, name| [name, code] },
+              selected:           @deck.term_language.to_s,
+              input_name:         "deck[term_language]",
+              placeholder:        t("decks.form.select_language"),
+              searchable:         true,
+              search_placeholder: t("accounts.search_languages"),
+              compact:            false,
+              autosubmit:         false,
+              form_id:            "deck-settings-form" %>
+      </div>
+
+      <div class="form-group">
+        <label><%= t("decks.form.definition_language_label") %></label>
+        <%= render "shared/dropdown",
+              options:            Language::ALL_LANGUAGES.map { |code, name| [name, code] },
+              selected:           @deck.definition_language.to_s,
+              input_name:         "deck[definition_language]",
+              placeholder:        t("decks.form.select_language"),
+              searchable:         true,
+              search_placeholder: t("accounts.search_languages"),
+              compact:            false,
+              autosubmit:         false,
+              form_id:            "deck-settings-form" %>
       </div>
 
       <div class="form-group">

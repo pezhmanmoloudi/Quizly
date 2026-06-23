@@ -26,11 +26,12 @@
          data-controller="autocomplete"
          data-autocomplete-url-value="<%= flashcard_suggest_path %>"
          data-autocomplete-field-value="front"
-         data-autocomplete-lang-value="<%= card&.front_language.to_s %>"
+         data-autocomplete-lang-value="<%= deck.term_language.to_s %>"
          data-autocomplete-delay-value="300">
       <span class="card-editor-panel__label"><%= t("decks.card_row.term_label") %></span>
       <textarea class="card-editor-field"
                 placeholder="<%= t("decks.card_row.term_placeholder") %>"
+                dir="<%= text_direction_for(deck.term_language) %>"
                 data-card-autosave-target="front"
                 data-autocomplete-target="input"
                 data-action="input->card-autosave#schedule
@@ -43,19 +44,6 @@
       <%= turbo_frame_tag "suggestions_front_#{card_key}",
             data: { autocomplete_target: "frame" },
             class: "ac-frame" %>
-      <%= render "shared/dropdown",
-            options:            Language::ALL_LANGUAGES.map { |code, name| [name, code] },
-            selected:           card&.front_language.to_s,
-            input_name:         "front_language",
-            placeholder:        t("decks.card_row.select_language"),
-            searchable:         true,
-            search_placeholder: t("accounts.search_languages"),
-            compact:            true,
-            autosubmit:         false,
-            input_data:         {
-              "card-autosave-target": "frontLanguage",
-              action: "change->card-autosave#schedule change->autocomplete#updateLang"
-            } %>
     </div>
 
     <%# ── Back (Definition) panel ────────────────────────────────────── %>
@@ -63,11 +51,12 @@
          data-controller="autocomplete"
          data-autocomplete-url-value="<%= flashcard_suggest_path %>"
          data-autocomplete-field-value="back"
-         data-autocomplete-lang-value="<%= card&.back_language.to_s %>"
+         data-autocomplete-lang-value="<%= deck.definition_language.to_s %>"
          data-autocomplete-delay-value="300">
       <span class="card-editor-panel__label"><%= t("decks.card_row.definition_label") %></span>
       <textarea class="card-editor-field"
                 placeholder="<%= t("decks.card_row.definition_placeholder") %>"
+                dir="<%= text_direction_for(deck.definition_language) %>"
                 data-card-autosave-target="back"
                 data-autocomplete-target="input"
                 data-action="input->card-autosave#schedule
@@ -80,19 +69,6 @@
       <%= turbo_frame_tag "suggestions_back_#{card_key}",
             data: { autocomplete_target: "frame" },
             class: "ac-frame" %>
-      <%= render "shared/dropdown",
-            options:            Language::ALL_LANGUAGES.map { |code, name| [name, code] },
-            selected:           card&.back_language.to_s,
-            input_name:         "back_language",
-            placeholder:        t("decks.card_row.select_language"),
-            searchable:         true,
-            search_placeholder: t("accounts.search_languages"),
-            compact:            true,
-            autosubmit:         false,
-            input_data:         {
-              "card-autosave-target": "backLanguage",
-              action: "change->card-autosave#schedule change->autocomplete#updateLang"
-            } %>
     </div>
 
     <div class="card-row__image-panel" data-card-autosave-target="imagePanel">

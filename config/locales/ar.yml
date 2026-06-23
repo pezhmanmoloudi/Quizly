@@ -246,6 +246,9 @@ ar:
       description_label: الوصف
       language_label: اللغة (اختياري)
       language_placeholder: 'مثال: en, es, ar'
+      term_language_label: لغة المصطلح
+      definition_language_label: لغة التعريف
+      select_language: اختر لغة...
       tags_label: الوسوم (اختياري)
       tags_hint: افصل الوسوم بفواصل.
       tags_placeholder: 'مثال: أحياء، تشريح، امتحان2025'

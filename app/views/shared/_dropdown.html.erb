@@ -11,6 +11,7 @@
   _form_method        = local_assigns.fetch(:form_method, :patch)
   _form_extras        = local_assigns.fetch(:form_extras, {})
   _input_data         = local_assigns.fetch(:input_data, {})
+  _form_id            = local_assigns.fetch(:form_id, nil)
   _wrapper_class      = local_assigns.fetch(:wrapper_class, nil)
   _compact            = local_assigns.fetch(:compact, false)
   _size               = local_assigns.fetch(:size, :default)
@@ -44,6 +45,7 @@
   <% else %>
     <%= hidden_field_tag _input_name, _selected,
           id: nil,
+          form: _form_id,
           data: { dropdown_target: "input" }.merge(_input_data) %>
   <% end %>
 

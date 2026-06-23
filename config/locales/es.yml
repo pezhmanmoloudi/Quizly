@@ -250,6 +250,9 @@ es:
       description_label: Descripción
       language_label: Idioma (opcional)
       language_placeholder: p. ej. en, es, fr, de
+      term_language_label: Idioma del término
+      definition_language_label: Idioma de la definición
+      select_language: Seleccionar idioma...
       tags_label: Etiquetas (opcional)
       tags_hint: Separa las etiquetas con comas.
       tags_placeholder: p. ej. biología, anatomía, examen2025

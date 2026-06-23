@@ -11,19 +11,18 @@ RSpec.describe FlashcardSuggestionQuery, type: :service do
 
   describe ".call" do
     context "when q is blank" do
-      it "returns an empty array for empty string" do
+      it "returns [] for empty string" do
         expect(call(q: "")).to eq([])
       end
 
-      it "returns an empty array for whitespace" do
+      it "returns [] for whitespace" do
         expect(call(q: "   ")).to eq([])
       end
     end
 
     context "own primary field (score 100)" do
       before do
-        create(:flashcard, deck: deck, front_content: "elephant",
-               front_language: "en", public: false)
+        create(:flashcard, deck: deck, front_content: "elephant", public: false)
       end
 
       it "includes own private cards" do
@@ -37,8 +36,8 @@ RSpec.describe FlashcardSuggestionQuery, type: :service do
 
     context "public primary field (score 80)" do
       before do
-        create(:flashcard, deck: create(:deck, user: other),
-               front_content: "elephant", front_language: "en", public: true)
+        create(:flashcard, deck: create(:deck, user: other, term_language: "en"),
+               front_content: "elephant", public: true)
       end
 
       it "includes public cards from other users" do
@@ -47,7 +46,7 @@ RSpec.describe FlashcardSuggestionQuery, type: :service do
 
       it "excludes private cards from other users" do
         create(:flashcard, deck: create(:deck, user: other),
-               front_content: "elaborate", front_language: "en", public: false)
+               front_content: "elaborate", public: false)
 
         expect(call(q: "ela")).not_to include("elaborate")
       end
@@ -56,8 +55,7 @@ RSpec.describe FlashcardSuggestionQuery, type: :service do
     context "own opposite field (score 60)" do
       before do
         create(:flashcard, deck: deck,
-               front_content: "xyz_no_match", back_content: "elephant",
-               front_language: "en", back_language: "en", public: false)
+               front_content: "xyz_no_match", back_content: "elephant", public: false)
       end
 
       it "includes own cards matched on the opposite field" do
@@ -66,10 +64,8 @@ RSpec.describe FlashcardSuggestionQuery, type: :service do
 
       it "does not apply the language filter to the opposite-field bucket" do
         create(:flashcard, deck: deck,
-               front_content: "abc_no_match", back_content: "elaborate",
-               front_language: "de", back_language: "de", public: false)
+               front_content: "abc_no_match", back_content: "elaborate", public: false)
 
-        # lang: "en" — elaborate's back_language is "de", but cross-field ignores lang
         expect(call(q: "ela", field: "front", lang: "en")).to include("elaborate")
       end
     end
@@ -77,8 +73,7 @@ RSpec.describe FlashcardSuggestionQuery, type: :service do
     context "public opposite field (score 40)" do
       before do
         create(:flashcard, deck: create(:deck, user: other),
-               front_content: "xyz_no_match", back_content: "elephant",
-               front_language: "en", back_language: "en", public: true)
+               front_content: "xyz_no_match", back_content: "elephant", public: true)
       end
 
       it "includes public cross-field suggestions" do
@@ -86,25 +81,24 @@ RSpec.describe FlashcardSuggestionQuery, type: :service do
       end
     end
 
-    context "score ordering" do
-      it "places own-primary card ahead of public-primary card" do
+    context "source deduplication" do
+      it "keeps both when own-primary and public-primary have different words" do
         create(:flashcard, deck: deck, front_content: "apple", public: false)
         create(:flashcard, deck: create(:deck, user: other),
                front_content: "apricot", public: true)
 
         results = call(q: "ap")
-        expect(results.first).to eq("apple")
+        expect(results).to include("apple", "apricot")
       end
 
-      it "places primary-field match (100) ahead of own opposite-field match (60)" do
+      it "includes words matched on both primary and opposite fields" do
         create(:flashcard, deck: deck, front_content: "elephant",
                back_content: "xyz", public: false)
         create(:flashcard, deck: deck, front_content: "xyz_front",
                back_content: "element", public: false)
 
         results = call(q: "ele")
-        expect(results.first).to eq("elephant")
-        expect(results).to include("element")
+        expect(results).to include("elephant", "element")
       end
     end
 
@@ -132,10 +126,10 @@ RSpec.describe FlashcardSuggestionQuery, type: :service do
 
     context "language filtering" do
       it "includes cards matching the given language on the primary field" do
-        create(:flashcard, deck: create(:deck, user: other),
-               front_content: "elephant", front_language: "en", public: true)
-        create(:flashcard, deck: create(:deck, user: other),
-               front_content: "elefant", front_language: "de", public: true)
+        create(:flashcard, deck: create(:deck, user: other, term_language: "en"),
+               front_content: "elephant", public: true)
+        create(:flashcard, deck: create(:deck, user: other, term_language: "de"),
+               front_content: "elefant", public: true)
 
         results = call(q: "ele", lang: "en")
         expect(results).to include("elephant")
@@ -143,10 +137,10 @@ RSpec.describe FlashcardSuggestionQuery, type: :service do
       end
 
       it "returns all languages when lang is blank" do
-        create(:flashcard, deck: create(:deck, user: other),
-               front_content: "elephant", front_language: "en", public: true)
-        create(:flashcard, deck: create(:deck, user: other),
-               front_content: "elefant", front_language: "de", public: true)
+        create(:flashcard, deck: create(:deck, user: other, term_language: "en"),
+               front_content: "elephant", public: true)
+        create(:flashcard, deck: create(:deck, user: other, term_language: "de"),
+               front_content: "elefant", public: true)
 
         results = call(q: "ele", lang: "")
         expect(results).to include("elephant")
@@ -182,21 +176,19 @@ RSpec.describe FlashcardSuggestionQuery, type: :service do
 
     context "field: back" do
       it "uses back_content as primary and front_content as opposite" do
-        create(:flashcard, deck: deck,
-               back_content: "elephant", back_language: "en", public: false)
-        create(:flashcard, deck: deck,
-               front_content: "elbow", back_content: "xyz", public: false)
+        create(:flashcard, deck: deck, back_content: "elephant", public: false)
+        create(:flashcard, deck: deck, front_content: "elbow", back_content: "xyz", public: false)
 
         results = call(q: "el", field: "back", lang: "en")
         expect(results).to include("elephant")
         expect(results).to include("elbow")
       end
 
-      it "applies language filter to back_language for primary bucket" do
-        create(:flashcard, deck: create(:deck, user: other),
-               back_content: "elephant", back_language: "en", public: true)
-        create(:flashcard, deck: create(:deck, user: other),
-               back_content: "elefant", back_language: "de", public: true)
+      it "applies language filter to definition_language for primary bucket" do
+        create(:flashcard, deck: create(:deck, user: other, definition_language: "en"),
+               back_content: "elephant", public: true)
+        create(:flashcard, deck: create(:deck, user: other, definition_language: "de"),
+               back_content: "elefant", public: true)
 
         results = call(q: "ele", field: "back", lang: "en")
         expect(results).to include("elephant")

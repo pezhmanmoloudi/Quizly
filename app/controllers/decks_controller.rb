@@ -139,7 +139,8 @@ class DecksController < ApplicationController
 
   def deck_update_params
     params.require(:deck).permit(
-      :name, :description, :language_code, :visibility, :tag_list,
+      :name, :description, :language_code, :term_language, :definition_language,
+      :visibility, :tag_list,
       :access_mode, :password, :password_confirmation
     )
   end

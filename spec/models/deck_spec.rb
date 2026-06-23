@@ -366,6 +366,71 @@ RSpec.describe Deck, type: :model do
     end
   end
 
+  describe "term_language / definition_language validations" do
+    it "is valid with a recognised term_language code" do
+      deck = build(:deck, term_language: "en")
+      expect(deck).to be_valid
+    end
+
+    it "is valid with a recognised definition_language code" do
+      deck = build(:deck, definition_language: "fa")
+      expect(deck).to be_valid
+    end
+
+    it "is valid with blank term_language" do
+      deck = build(:deck, term_language: nil)
+      expect(deck).to be_valid
+    end
+
+    it "is valid with blank definition_language" do
+      deck = build(:deck, definition_language: nil)
+      expect(deck).to be_valid
+    end
+
+    it "is invalid with an unrecognised term_language code" do
+      deck = build(:deck, term_language: "xx_unknown")
+      expect(deck).not_to be_valid
+      expect(deck.errors[:term_language]).to be_present
+    end
+
+    it "is invalid with an unrecognised definition_language code" do
+      deck = build(:deck, definition_language: "xx_unknown")
+      expect(deck).not_to be_valid
+      expect(deck.errors[:definition_language]).to be_present
+    end
+  end
+
+  describe "#sync_flashcard_languages" do
+    it "updates front_language on all flashcards when term_language changes" do
+      deck = create(:deck, term_language: "en", definition_language: "fa")
+      card = create(:flashcard, deck: deck, front_language: "en", back_language: "fa")
+      deck.update!(term_language: "de")
+      expect(card.reload.front_language).to eq("de")
+    end
+
+    it "updates back_language on all flashcards when definition_language changes" do
+      deck = create(:deck, term_language: "en", definition_language: "fa")
+      card = create(:flashcard, deck: deck, front_language: "en", back_language: "fa")
+      deck.update!(definition_language: "ar")
+      expect(card.reload.back_language).to eq("ar")
+    end
+
+    it "does NOT trigger sync when neither language column changes" do
+      deck  = create(:deck, term_language: "en", definition_language: "fa")
+      card  = create(:flashcard, deck: deck, front_language: "en", back_language: "fa")
+      deck.update!(name: "New Name")
+      expect(card.reload.front_language).to eq("en")
+    end
+
+    it "excludes soft-deleted flashcards (already excluded by default_scope)" do
+      deck = create(:deck, term_language: "en", definition_language: "fa")
+      card = create(:flashcard, deck: deck, front_language: "en", back_language: "fa")
+      card.soft_delete!
+      deck.update!(term_language: "de")
+      expect(Flashcard.unscoped.find(card.id).front_language).to eq("en")
+    end
+  end
+
   describe "dependent destruction" do
     it "destroys associated flashcards when the deck is deleted" do
       deck = create(:deck)
