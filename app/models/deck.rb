@@ -9,6 +9,7 @@ class Deck < ApplicationRecord
   has_many :deck_folders, dependent: :destroy
   has_many :folders, through: :deck_folders
   after_update_commit :notify_followers_of_publish, if: :just_published?
+  after_save :sync_flashcard_visibility, if: :saved_change_to_visibility?
   accepts_nested_attributes_for :flashcards,
     reject_if: :all_blank,
     allow_destroy: true
@@ -56,6 +57,10 @@ class Deck < ApplicationRecord
   end
 
   private
+
+  def sync_flashcard_visibility
+    flashcards.update_all(public: visibility == "public")
+  end
 
   def just_published?
     saved_change_to_visibility? &&

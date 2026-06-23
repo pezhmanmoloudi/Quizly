@@ -1,4 +1,5 @@
 <% is_new = card.nil? || card.id.nil? %>
+<% card_key = is_new ? "new" : card.id.to_s %>
 <div id="<%= is_new ? "card-row-new" : dom_id(card) %>"
      class="card-row"
      data-controller="card-autosave"
@@ -20,13 +21,28 @@
   </div>
 
   <div class="card-row__panels">
-    <div class="card-row__panel">
+    <%# ── Front (Term) panel ─────────────────────────────────────────── %>
+    <div class="card-row__panel"
+         data-controller="autocomplete"
+         data-autocomplete-url-value="<%= flashcard_suggest_path %>"
+         data-autocomplete-field-value="front"
+         data-autocomplete-lang-value="<%= card&.front_language.to_s %>"
+         data-autocomplete-delay-value="300">
       <span class="card-editor-panel__label"><%= t("decks.card_row.term_label") %></span>
       <textarea class="card-editor-field"
                 placeholder="<%= t("decks.card_row.term_placeholder") %>"
                 data-card-autosave-target="front"
-                data-action="input->card-autosave#schedule"
+                data-autocomplete-target="input"
+                data-action="input->card-autosave#schedule
+                             input->autocomplete#search
+                             keydown->autocomplete#handleKeydown
+                             blur->autocomplete#handleBlur
+                             focus->autocomplete#handleFocus"
                 rows="3"><%= card&.front_content %></textarea>
+      <%# Unique frame id per card row prevents Turbo updating the wrong panel %>
+      <%= turbo_frame_tag "suggestions_front_#{card_key}",
+            data: { autocomplete_target: "frame" },
+            class: "ac-frame" %>
       <%= render "shared/dropdown",
             options:            Language::ALL_LANGUAGES.map { |code, name| [name, code] },
             selected:           card&.front_language.to_s,
@@ -38,17 +54,32 @@
             autosubmit:         false,
             input_data:         {
               "card-autosave-target": "frontLanguage",
-              action: "change->card-autosave#schedule"
+              action: "change->card-autosave#schedule change->autocomplete#updateLang"
             } %>
     </div>
 
-    <div class="card-row__panel">
+    <%# ── Back (Definition) panel ────────────────────────────────────── %>
+    <div class="card-row__panel"
+         data-controller="autocomplete"
+         data-autocomplete-url-value="<%= flashcard_suggest_path %>"
+         data-autocomplete-field-value="back"
+         data-autocomplete-lang-value="<%= card&.back_language.to_s %>"
+         data-autocomplete-delay-value="300">
       <span class="card-editor-panel__label"><%= t("decks.card_row.definition_label") %></span>
       <textarea class="card-editor-field"
                 placeholder="<%= t("decks.card_row.definition_placeholder") %>"
                 data-card-autosave-target="back"
-                data-action="input->card-autosave#schedule keydown->card-autosave#handleTab"
+                data-autocomplete-target="input"
+                data-action="input->card-autosave#schedule
+                             input->autocomplete#search
+                             keydown->autocomplete#handleKeydown
+                             blur->autocomplete#handleBlur
+                             focus->autocomplete#handleFocus
+                             keydown->card-autosave#handleTab"
                 rows="3"><%= card&.back_content %></textarea>
+      <%= turbo_frame_tag "suggestions_back_#{card_key}",
+            data: { autocomplete_target: "frame" },
+            class: "ac-frame" %>
       <%= render "shared/dropdown",
             options:            Language::ALL_LANGUAGES.map { |code, name| [name, code] },
             selected:           card&.back_language.to_s,
@@ -60,7 +91,7 @@
             autosubmit:         false,
             input_data:         {
               "card-autosave-target": "backLanguage",
-              action: "change->card-autosave#schedule"
+              action: "change->card-autosave#schedule change->autocomplete#updateLang"
             } %>
     </div>
 

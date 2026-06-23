@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_06_22_142851) do
+ActiveRecord::Schema[8.1].define(version: 2026_06_23_130301) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
@@ -107,10 +107,15 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_22_142851) do
     t.text "front_content", null: false
     t.string "front_language"
     t.integer "position", default: 0
+    t.boolean "public", default: false, null: false
     t.datetime "updated_at", null: false
+    t.index ["back_content"], name: "index_flashcards_on_back_content"
     t.index ["deck_id"], name: "index_flashcards_on_deck_id"
     t.index ["deleted_at"], name: "index_flashcards_on_deleted_at"
+    t.index ["front_content"], name: "index_flashcards_on_front_content"
     t.index ["position"], name: "index_flashcards_on_position"
+    t.index ["public", "back_language"], name: "index_flashcards_on_public_and_back_language"
+    t.index ["public", "front_language"], name: "index_flashcards_on_public_and_front_language"
   end
 
   create_table "folders", force: :cascade do |t|
