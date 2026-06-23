@@ -343,15 +343,17 @@
     <div class="settings-info-row" id="language">
       <div class="settings-info-row__label"><%= t("accounts.language_label") %></div>
       <div class="settings-info-row__right">
-        <%= render "shared/language_selector",
-              languages:   Language::LANGUAGES,
-              selected:    Current.user.locale,
-              input_name:  "locale",
-              placeholder: Language::LANGUAGES[Current.user.locale],
-              autosubmit:  true,
-              form_url:    account_path,
-              form_method: :patch,
-              form_extras: { section: "language" } %>
+        <%= render "shared/dropdown",
+              options:            Language::LANGUAGES.map { |code, name| [name, code] },
+              selected:           Current.user.locale,
+              input_name:         "locale",
+              placeholder:        Language::LANGUAGES[Current.user.locale],
+              searchable:         true,
+              search_placeholder: t("accounts.search_languages"),
+              autosubmit:         true,
+              form_url:           account_path,
+              form_method:        :patch,
+              form_extras:        { section: "language" } %>
       </div>
     </div>
 

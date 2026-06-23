@@ -27,14 +27,16 @@
                 data-card-autosave-target="front"
                 data-action="input->card-autosave#schedule"
                 rows="3"><%= card&.front_content %></textarea>
-      <%= render "shared/language_selector",
-            languages:     Language::ALL_LANGUAGES,
-            selected:      card&.front_language.to_s,
-            input_name:    "front_language",
-            placeholder:   t("decks.card_row.select_language"),
-            autosubmit:    false,
-            wrapper_class: "lang-dropdown--compact",
-            input_data:    {
+      <%= render "shared/dropdown",
+            options:            Language::ALL_LANGUAGES.map { |code, name| [name, code] },
+            selected:           card&.front_language.to_s,
+            input_name:         "front_language",
+            placeholder:        t("decks.card_row.select_language"),
+            searchable:         true,
+            search_placeholder: t("accounts.search_languages"),
+            compact:            true,
+            autosubmit:         false,
+            input_data:         {
               "card-autosave-target": "frontLanguage",
               action: "change->card-autosave#schedule"
             } %>
@@ -47,14 +49,16 @@
                 data-card-autosave-target="back"
                 data-action="input->card-autosave#schedule keydown->card-autosave#handleTab"
                 rows="3"><%= card&.back_content %></textarea>
-      <%= render "shared/language_selector",
-            languages:     Language::ALL_LANGUAGES,
-            selected:      card&.back_language.to_s,
-            input_name:    "back_language",
-            placeholder:   t("decks.card_row.select_language"),
-            autosubmit:    false,
-            wrapper_class: "lang-dropdown--compact",
-            input_data:    {
+      <%= render "shared/dropdown",
+            options:            Language::ALL_LANGUAGES.map { |code, name| [name, code] },
+            selected:           card&.back_language.to_s,
+            input_name:         "back_language",
+            placeholder:        t("decks.card_row.select_language"),
+            searchable:         true,
+            search_placeholder: t("accounts.search_languages"),
+            compact:            true,
+            autosubmit:         false,
+            input_data:         {
               "card-autosave-target": "backLanguage",
               action: "change->card-autosave#schedule"
             } %>

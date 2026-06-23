@@ -177,6 +177,7 @@ fr:
     notif_study_reminders_email: Rappels d'étude
     notif_choose_reminder_time: Choisissez quand recevoir vos rappels d'étude
     notif_time_zone: Fuseau horaire
+    notif_search_timezone: Rechercher un fuseau horaire
     notif_email_label: Notification par e-mail
     notif_in_app_heading: "In-App Notifications"
     notif_email_heading: "Email Notifications"

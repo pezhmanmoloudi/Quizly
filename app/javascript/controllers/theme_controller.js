@@ -41,19 +41,26 @@ export default class extends Controller {
 
   #save(value) {
     localStorage.setItem(this.STORAGE_KEY, value)
-    if (value === "auto") {
-      document.documentElement.dataset.theme = this.#mediaQuery.matches ? "dark" : "light"
-    } else {
-      document.documentElement.dataset.theme = value
-    }
+    const theme = value === "auto"
+      ? (this.#mediaQuery.matches ? "dark" : "light")
+      : value
+    document.documentElement.dataset.theme = theme
+    this.#setColorSchemeMeta(theme)
     this.#syncUI()
   }
 
   #onSystemChange = (e) => {
     if ((localStorage.getItem(this.STORAGE_KEY) || "auto") === "auto") {
-      document.documentElement.dataset.theme = e.matches ? "dark" : "light"
+      const theme = e.matches ? "dark" : "light"
+      document.documentElement.dataset.theme = theme
+      this.#setColorSchemeMeta(theme)
       this.#syncLabel()
     }
+  }
+
+  #setColorSchemeMeta(theme) {
+    const meta = document.querySelector('meta[name="color-scheme"]')
+    if (meta) meta.content = theme
   }
 
   #syncUI() {

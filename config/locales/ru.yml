@@ -173,6 +173,7 @@ ru:
     notif_study_reminders_email: Напоминания об обучении
     notif_choose_reminder_time: Выберите время для получения напоминаний об обучении
     notif_time_zone: Часовой пояс
+    notif_search_timezone: Поиск часового пояса
     notif_email_label: Уведомление по электронной почте
     notif_in_app_heading: "In-App Notifications"
     notif_email_heading: "Email Notifications"

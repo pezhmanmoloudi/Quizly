@@ -175,6 +175,7 @@ es:
     notif_study_reminders_email: Recordatorios de estudio
     notif_choose_reminder_time: Elige cuándo recibir recordatorios de estudio
     notif_time_zone: Zona horaria
+    notif_search_timezone: Buscar zona horaria
     notif_email_label: Notificación por correo
     notif_in_app_heading: "In-App Notifications"
     notif_email_heading: "Email Notifications"

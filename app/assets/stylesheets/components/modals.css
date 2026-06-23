@@ -794,6 +794,19 @@ body.modal-open {
   background: var(--color-bg);
 }
 
+/* Compact size variant — matches form-control height in settings rows */
+.select-dropdown__trigger--sm {
+  padding: 0.4rem 0.75rem;
+  font-size: var(--text-sm);
+  font-weight: var(--font-normal);
+}
+
+/* Scrollable variant — for long option lists such as timezones */
+.select-dropdown__menu--scrollable {
+  max-height: 15rem;
+  overflow-y: auto;
+}
+
 /* ── Share link + password are row-2 grid cells ── */
 .manage-access-modal__share,
 .manage-access-modal__password {

@@ -171,6 +171,7 @@ fa:
     notif_study_reminders_email: یادآوری‌های مطالعه
     notif_choose_reminder_time: زمان دریافت یادآوری مطالعه را انتخاب کنید
     notif_time_zone: منطقه زمانی
+    notif_search_timezone: جستجوی منطقه زمانی
     notif_email_label: اعلان ایمیل
     notif_in_app_heading: "In-App Notifications"
     notif_email_heading: "Email Notifications"

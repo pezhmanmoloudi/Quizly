@@ -171,6 +171,7 @@ en:
     notif_study_reminders_email: Study reminder emails
     notif_choose_reminder_time: Choose when to receive study reminders
     notif_time_zone: Time zone
+    notif_search_timezone: Search timezone
     notif_email_label: Email notification
     notif_in_app_heading: "In-App Notifications"
     notif_email_heading: "Email Notifications"
