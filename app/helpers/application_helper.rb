@@ -5,6 +5,17 @@ module ApplicationHelper
     pagy.send(:series)
   end
 
+  def highlight_match(word, query)
+    return h(word) if query.blank?
+    idx = word.downcase.index(query.downcase)
+    return h(word) unless idx
+    safe_join([
+      h(word[0...idx]),
+      content_tag(:mark, word[idx, query.length]),
+      h(word[(idx + query.length)..])
+    ])
+  end
+
   def format_study_time(seconds)
     return I18n.t("time.none") unless seconds.is_a?(Integer) && seconds > 0
     if seconds < 60

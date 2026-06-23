@@ -3,6 +3,22 @@ class FlashcardsController < ApplicationController
   before_action :set_flashcard,              only: [ :update, :destroy, :purge_image ]
   before_action :set_soft_deleted_flashcard, only: [ :restore ]
 
+  # Sidebar queries are irrelevant for this lightweight turbo-frame action
+  skip_before_action :load_sidebar_decks,   only: [ :suggest ]
+  skip_before_action :load_sidebar_folders, only: [ :suggest ]
+
+  def suggest
+    suggestions = FlashcardSuggestionQuery.call(
+      q:     params[:q].to_s.strip,
+      field: params[:field].to_s,
+      lang:  params[:lang].to_s,
+      user:  Current.user
+    )
+
+    render partial: "flashcards/suggestions",
+           locals: { suggestions: suggestions, query: params[:q].to_s.strip }
+  end
+
   def create
     @flashcard = @deck.flashcards.build(flashcard_params)
     if @flashcard.save

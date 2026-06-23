@@ -1,0 +1,14 @@
+<% if suggestions.any? %>
+  <div class="ac-panel" role="listbox" aria-label="Suggestions">
+    <ul class="ac-list">
+      <% suggestions.each do |word| %>
+        <li class="ac-item"
+            role="option"
+            data-action="click->autocomplete#select"
+            data-autocomplete-word-param="<%= word %>">
+          <%= highlight_match(word, query) %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

@@ -24,6 +24,9 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   get "/explore", to: "explore#index", as: :explore
+
+  get "flashcards/suggest", to: "flashcards#suggest", as: :flashcard_suggest
+
   resources :decks, except: [:new] do
     member do
       get   :unlock, to: "deck_access#show"
@@ -83,8 +86,6 @@ Rails.application.routes.draw do
   resources :card_progresses, only: [] do
     resource :starred_card, only: [ :create, :destroy ]
   end
-
-  get "suggestions", to: "suggestions#index"
 
   root "home#index"
 end
