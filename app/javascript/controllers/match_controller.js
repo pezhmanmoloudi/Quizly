@@ -11,7 +11,9 @@ export default class extends Controller {
     this.streak        = 0
     this.seconds       = 0
     this.isProcessing  = false
-    this.timerInterval = setInterval(() => this.#tickTimer(), 1000)
+    if (this.totalValue > 0) {
+      this.timerInterval = setInterval(() => this.#tickTimer(), 1000)
+    }
     this.#updateStats()
   }
 
