@@ -22,7 +22,7 @@ RSpec.describe "Flashcards#create", type: :request do
       it "inherits front_language and back_language from the deck" do
         deck.update_columns(term_language: "en", definition_language: "fa")
         post deck_flashcards_path(deck), params: valid_params
-        card = Flashcard.last
+        card = deck.flashcards.last
         expect(card.front_language).to eq("en")
         expect(card.back_language).to eq("fa")
       end

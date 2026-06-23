@@ -40,6 +40,7 @@ RSpec.describe "Explore#index", type: :request do
       end
 
       it "shows empty state when no public decks exist" do
+        Deck.discoverable.find_each(&:destroy)
         get explore_path
         expect(response.body).to include("No public decks yet")
       end

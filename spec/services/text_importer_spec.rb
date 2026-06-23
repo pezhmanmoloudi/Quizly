@@ -32,20 +32,20 @@ RSpec.describe TextImporter, type: :service do
     context "language inheritance from deck" do
       it "assigns front_language from deck.term_language" do
         described_class.call(deck: deck, text: "hello\tسلام")
-        card = Flashcard.last
+        card = deck.flashcards.last
         expect(card.front_language).to eq("en")
       end
 
       it "assigns back_language from deck.definition_language" do
         described_class.call(deck: deck, text: "hello\tسلام")
-        card = Flashcard.last
+        card = deck.flashcards.last
         expect(card.back_language).to eq("fa")
       end
 
       it "assigns nil languages when deck has no term_language" do
         null_lang_deck = create(:deck, user: user, term_language: nil, definition_language: nil)
         described_class.call(deck: null_lang_deck, text: "hello\tworld")
-        card = Flashcard.last
+        card = null_lang_deck.flashcards.last
         expect(card.front_language).to be_nil
         expect(card.back_language).to be_nil
       end

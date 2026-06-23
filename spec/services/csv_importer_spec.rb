@@ -48,14 +48,14 @@ RSpec.describe CsvImporter, type: :service do
       it "assigns front_language from deck.term_language" do
         csv = "front,back\nhello,سلام\n"
         described_class.call(deck: deck, file: upload(csv))
-        card = Flashcard.last
+        card = deck.flashcards.last
         expect(card.front_language).to eq("en")
       end
 
       it "assigns back_language from deck.definition_language" do
         csv = "front,back\nhello,سلام\n"
         described_class.call(deck: deck, file: upload(csv))
-        card = Flashcard.last
+        card = deck.flashcards.last
         expect(card.back_language).to eq("fa")
       end
 
@@ -63,7 +63,7 @@ RSpec.describe CsvImporter, type: :service do
         null_lang_deck = create(:deck, user: user, term_language: nil, definition_language: nil)
         csv = "front,back\nhello,world\n"
         described_class.call(deck: null_lang_deck, file: upload(csv))
-        card = Flashcard.last
+        card = null_lang_deck.flashcards.last
         expect(card.front_language).to be_nil
         expect(card.back_language).to be_nil
       end
