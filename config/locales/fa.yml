@@ -405,6 +405,26 @@ fa:
       starred_only_desc: فقط کارت‌های ستاره‌دارت را مطالعه کن.
       show_both_sides: نمایش هر دو طرف
       show_both_sides_desc: جلو و پشت را با هم ببین.
+      flip: Flip
+      play_audio: Play audio
+      audio_unavailable: Audio unavailable for this language
+      section_study: Study
+      section_display: Display
+      section_audio: Audio
+      section_playback: Playback
+      section_keyboard: Keyboard
+      shuffle_cards: Shuffle cards
+      shuffle_cards_desc: Randomize the order of cards.
+      start_side: Start with
+      start_front: Front
+      start_back: Back
+      auto_play_audio: Auto-play audio
+      auto_play_audio_desc: Play audio automatically when navigating to a new card.
+      auto_play_after_flip: Auto-play after flip
+      auto_play_after_flip_desc: Speak the visible side after flipping.
+      auto_advance: Auto-advance cards
+      auto_advance_desc: Automatically flip then move to the next card.
+      auto_advance_delay: Advance delay
       keyboard_shortcuts: میانبرهای صفحه‌کلید
       key_previous: قبلی
       key_next: بعدی
