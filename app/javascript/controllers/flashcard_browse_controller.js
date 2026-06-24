@@ -2,6 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 import FlashcardAudioService from "flashcard_audio_service"
 import FlashcardPlaybackService from "flashcard_playback_service"
 import FlashcardEngine from "flashcard_engine"
+import StudySRS from "study_srs"
 
 export default class extends Controller {
   static SETTINGS_KEY  = "quizly.flashcard.settings"
@@ -13,10 +14,16 @@ export default class extends Controller {
     "audioBtn",
     "flipBar",
     "shortcutsPanel", "shortcutsToggleBtn",
-    "trackProgressToggle"
+    "trackProgressToggle",
+    "ratingBar", "studyBar", "dueCount", "studyComplete",
+    "prevBtn", "nextBtn"
   ]
 
-  static values = { total: Number }
+  static values = {
+    total:    Number,
+    mode:     { type: String, default: "browse" },
+    progress: { type: Array,  default: [] }
+  }
 
   // ── Lifecycle ──────────────────────────────────────────────
 
@@ -40,12 +47,17 @@ export default class extends Controller {
       getDelay: () => this.settings.autoAdvanceDelay
     })
 
-    if (this.settings.shuffle) {
+    this.studySRS = null
+    if (this.modeValue === "study" && this.progressValue.length > 0) {
+      this.studySRS = new StudySRS(this.progressValue, "/card_progresses/:id/grade")
+      this.engine.setOrder(this.studySRS.getNextQueue(this.allSlides))
+    } else if (this.settings.shuffle) {
       const order = this.allSlides.map((_, i) => i)
       this.engine.setOrder(this.#buildShuffledIndices(order))
     }
 
     this.#initRender()
+    if (this.modeValue === "study") this.#initStudyUI()
     this.#syncSettingsUI()
     this.#updateFlipHint()
     this.element.focus()
@@ -59,6 +71,7 @@ export default class extends Controller {
   // ── Public actions ─────────────────────────────────────────
 
   next() {
+    if (this.modeValue === "study") return
     this.playback.stop()
     if (this.engine.currentIndex < this.engine.size - 1) {
       this.engine.resetFlip(this.settings.startWithBack)
@@ -68,6 +81,7 @@ export default class extends Controller {
   }
 
   previous() {
+    if (this.modeValue === "study") return
     this.playback.stop()
     if (this.engine.currentIndex > 0) {
       this.engine.resetFlip(this.settings.startWithBack)
@@ -81,6 +95,7 @@ export default class extends Controller {
     this.engine.flip()
     this.#incrementFlipHint()
     if (this.settings.autoPlayAfterFlip) this.#speakCurrentSide()
+    if (this.modeValue === "study" && this.engine.flipped) this.#showRatingButtons()
   }
 
   speak() {
@@ -90,6 +105,32 @@ export default class extends Controller {
   handleKey(event) {
     if (this.#isFormElementFocused()) return
     if (event.ctrlKey || event.metaKey || event.altKey) return
+
+    if (this.modeValue === "study") {
+      switch (event.key) {
+        case " ":
+          event.preventDefault()
+          this.flip()
+          break
+        case "1":
+          event.preventDefault()
+          this.gradeAgain()
+          break
+        case "2":
+          event.preventDefault()
+          this.gradeHard()
+          break
+        case "3":
+          event.preventDefault()
+          this.gradeGood()
+          break
+        case "4":
+          event.preventDefault()
+          this.gradeEasy()
+          break
+      }
+      return
+    }
 
     switch (event.key) {
       case " ":
@@ -215,6 +256,13 @@ export default class extends Controller {
       : (btn.dataset.hideLabel || "Hide")
   }
 
+  // ── Study mode: public grade actions ──────────────────────
+
+  async gradeAgain() { await this.#grade("again") }
+  async gradeHard()  { await this.#grade("hard")  }
+  async gradeGood()  { await this.#grade("good")  }
+  async gradeEasy()  { await this.#grade("easy")  }
+
   // ── Private: slide resolution ──────────────────────────────
 
   get #currentSlide() { return this.allSlides[this.engine.currentCardIndex] }
@@ -228,6 +276,7 @@ export default class extends Controller {
     slide.hidden = false
     this.#renderFlip(this.engine.flipped)
     this.#updateCounter()
+    if (this.modeValue === "study") this.#hideRatingButtons()
   }
 
   #renderFlip(flipped) {
@@ -264,6 +313,55 @@ export default class extends Controller {
     this.engine.next()
     if (this.settings.autoPlayAudio) this.#speakCurrentSide()
     return true
+  }
+
+  // ── Private: study mode ────────────────────────────────────
+
+  async #grade(rating) {
+    if (!this.studySRS) return
+    const slide = this.#currentSlide
+    if (!slide?.dataset.cardProgressId) return
+
+    await this.studySRS.gradeCard(slide.dataset.cardProgressId, rating)
+
+    const newOrder  = this.studySRS.getNextQueue(this.allSlides)
+    this.engine.setOrder(newOrder)
+    this.#updateDueCount()
+
+    if (this.studySRS.getDueCount(this.allSlides) === 0) {
+      this.#showStudyComplete()
+    } else {
+      this.engine.resetFlip(false)
+      this.engine.goTo(0)
+    }
+  }
+
+  #initStudyUI() {
+    if (this.hasPrevBtnTarget) this.prevBtnTarget.hidden = true
+    if (this.hasNextBtnTarget) this.nextBtnTarget.hidden = true
+    if (this.hasStudyBarTarget) this.studyBarTarget.hidden = false
+    this.#updateDueCount()
+  }
+
+  #showRatingButtons() {
+    if (this.hasRatingBarTarget) this.ratingBarTarget.hidden = false
+  }
+
+  #hideRatingButtons() {
+    if (this.hasRatingBarTarget) this.ratingBarTarget.hidden = true
+  }
+
+  #updateDueCount() {
+    if (!this.studySRS || !this.hasDueCountTarget) return
+    this.dueCountTarget.textContent = this.studySRS.getDueCount(this.allSlides)
+  }
+
+  #showStudyComplete() {
+    this.#hideRatingButtons()
+    const stage = this.element.querySelector(".fb__stage")
+    if (stage) stage.hidden = true
+    if (this.hasStudyCompleteTarget) this.studyCompleteTarget.hidden = false
+    if (this.hasDueCountTarget) this.dueCountTarget.textContent = "0"
   }
 
   // ── Private: shuffle ───────────────────────────────────────

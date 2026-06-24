@@ -3,6 +3,8 @@
 <div class="fb"
      data-controller="flashcard-browse"
      data-flashcard-browse-total-value="<%= @flashcards.size %>"
+     data-flashcard-browse-mode-value="<%= @study_mode ? 'study' : 'browse' %>"
+     data-flashcard-browse-progress-value="<%= @card_progresses_json || '[]' %>"
      data-action="keydown->flashcard-browse#handleKey"
      tabindex="-1"
      aria-label="Flashcard browse area">
@@ -24,6 +26,18 @@
     </div>
   </div>
 
+  <% if @study_mode && @card_progresses.present? %>
+    <div class="fb__study-bar" data-flashcard-browse-target="studyBar">
+      <span>
+        <span class="fb__study-due" data-flashcard-browse-target="dueCount">0</span>
+        <%= t("study_modes.flashcard.study_cards_due") %>
+      </span>
+      <%= link_to t("study_modes.flashcard.exit_study_mode"),
+            flashcard_deck_path(@deck),
+            class: "fb__study-exit" %>
+    </div>
+  <% end %>
+
   <% if @flashcards.empty? %>
     <%= render "shared/empty_state",
           icon: "rectangle_stack",
@@ -42,12 +56,14 @@
       <% @flashcards.each_with_index do |card, index| %>
         <div class="flashcard-browse__slide"
              data-index="<%= index %>"
+             data-flashcard-id="<%= card.id %>"
              data-front-lang="<%= card.front_language.presence || '' %>"
              data-back-lang="<%= card.back_language.presence || '' %>"
              data-flipped="false"
              <%= index > 0 ? "hidden" : "" %>
              <% if @card_progresses&.key?(card.id) %>
                data-starred="<%= @card_progresses[card.id].starred? %>"
+               data-card-progress-id="<%= @card_progresses[card.id].id %>"
              <% end %>>
 
           <% if @card_progresses&.key?(card.id) %>
@@ -87,8 +103,39 @@
       <% end %>
     </div>
 
+    <div class="fb__rating-bar" data-flashcard-browse-target="ratingBar" hidden>
+      <p class="fb__rating-prompt"><%= t("study_modes.flashcard.study_rate_prompt") %></p>
+      <div class="fb__rating-buttons">
+        <button class="fb__rating-btn fb__rating-btn--again"
+                data-action="click->flashcard-browse#gradeAgain">
+          <%= t("study_modes.study.again") %>
+        </button>
+        <button class="fb__rating-btn fb__rating-btn--hard"
+                data-action="click->flashcard-browse#gradeHard">
+          <%= t("study_modes.study.hard") %>
+        </button>
+        <button class="fb__rating-btn fb__rating-btn--good"
+                data-action="click->flashcard-browse#gradeGood">
+          <%= t("study_modes.study.good") %>
+        </button>
+        <button class="fb__rating-btn fb__rating-btn--easy"
+                data-action="click->flashcard-browse#gradeEasy">
+          <%= t("study_modes.study.easy") %>
+        </button>
+      </div>
+    </div>
+
+    <div class="fb__study-complete" data-flashcard-browse-target="studyComplete" hidden>
+      <p class="fb__study-complete-title"><%= t("study_modes.flashcard.study_session_complete") %></p>
+      <p class="fb__study-complete-desc"><%= t("study_modes.study.summary_sub") %></p>
+      <%= link_to t("study_modes.flashcard.restart"),
+            flashcard_deck_path(@deck, mode: "study"),
+            class: "btn btn--primary" %>
+    </div>
+
     <div class="fb__nav">
       <button class="fb__nav-btn fb__nav-btn--prev"
+              data-flashcard-browse-target="prevBtn"
               data-action="click->flashcard-browse#previous">
         <%= t("study_modes.flashcard.previous") %>
       </button>
@@ -106,12 +153,19 @@
         </button>
       </div>
       <button class="fb__nav-btn fb__nav-btn--next"
+              data-flashcard-browse-target="nextBtn"
               data-action="click->flashcard-browse#next">
         <%= t("study_modes.flashcard.next") %>
       </button>
     </div>
 
-    <p class="keyboard-hint" aria-hidden="true"><%= t("study_modes.flashcard.keyboard_hint") %></p>
+    <p class="keyboard-hint" aria-hidden="true">
+      <% if @study_mode %>
+        <%= t("study_modes.flashcard.study_keyboard_hint") %>
+      <% else %>
+        <%= t("study_modes.flashcard.keyboard_hint") %>
+      <% end %>
+    </p>
 
     <% unless authenticated? %>
       <div class="guest-cta-banner">
@@ -139,6 +193,14 @@
 
       <%# ── Study ── %>
       <p class="fb-options__section-label"><%= t("study_modes.flashcard.section_study") %></p>
+
+      <% if @card_progresses.present? && !@study_mode %>
+        <div class="fb-option-row" style="padding-bottom: 0.75rem;">
+          <%= link_to t("study_modes.flashcard.enter_study_mode"),
+                flashcard_deck_path(@deck, mode: "study"),
+                class: "btn btn--primary btn--sm" %>
+        </div>
+      <% end %>
 
       <label class="fb-option-row">
         <div class="fb-option-row__info">

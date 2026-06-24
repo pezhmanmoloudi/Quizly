@@ -434,6 +434,12 @@ tr:
       key_star: Yıldızla
       hide: Gizle
       restart: Flashcard'ları yeniden başlat
+      enter_study_mode: Çalışma modu
+      exit_study_mode: "← Kartlara geri dön"
+      study_rate_prompt: Bunu ne kadar iyi biliyordunuz?
+      study_cards_due: kart bekliyor
+      study_session_complete: Tüm bekleyen kartları gözden geçirdiniz!
+      study_keyboard_hint: "Boşluk çevirmek için · 1 Tekrar · 2 Zor · 3 İyi · 4 Kolay"
     study:
       subtitle: Kartları gözden geçir ve hatırlamanı puanla
       done_label: Tamamlandı

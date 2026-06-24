@@ -432,6 +432,12 @@ en:
       key_star: Star
       hide: Hide
       restart: Restart Flashcards
+      enter_study_mode: Study Mode
+      exit_study_mode: "← Back to Flashcards"
+      study_rate_prompt: How well did you know this?
+      study_cards_due: cards due
+      study_session_complete: You've reviewed all due cards!
+      study_keyboard_hint: "Space to flip · 1 Again · 2 Hard · 3 Good · 4 Easy"
     study:
       subtitle: Review cards and rate your recall
       done_label: Done

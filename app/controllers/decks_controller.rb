@@ -103,13 +103,24 @@ class DecksController < ApplicationController
   end
 
   def flashcard
-    @flashcards = @deck.flashcards
+    @flashcards   = @deck.flashcards
+    @study_mode   = params[:mode] == "study"
     if @access.owner?
       # TODO: CardProgress.initialize_for_deck is a future extraction candidate (e.g., a StudyContext concern)
       CardProgress.initialize_for_deck(@deck, Current.user)
-      @card_progresses = Current.user.card_progresses
-                                     .where(flashcard_id: @flashcards.map(&:id))
-                                     .index_by(&:flashcard_id)
+      progresses       = Current.user.card_progresses.where(flashcard_id: @flashcards.map(&:id))
+      @card_progresses = progresses.index_by(&:flashcard_id)
+      @card_progresses_json = progresses.map { |cp|
+        {
+          id:               cp.id,
+          flashcard_id:     cp.flashcard_id,
+          ease_factor:      cp.ease_factor,
+          interval:         cp.interval,
+          repetitions:      cp.repetitions,
+          next_review_at:   cp.next_review_at&.iso8601,
+          last_reviewed_at: cp.last_reviewed_at&.iso8601
+        }
+      }.to_json
     end
   end
 

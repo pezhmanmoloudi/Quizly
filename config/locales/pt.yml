@@ -437,6 +437,12 @@ pt:
       key_star: Favoritar
       hide: Ocultar
       restart: Reiniciar flashcards
+      enter_study_mode: Modo estudo
+      exit_study_mode: "← Voltar aos flashcards"
+      study_rate_prompt: O quanto você sabia disso?
+      study_cards_due: cartões pendentes
+      study_session_complete: Você revisou todos os cartões pendentes!
+      study_keyboard_hint: "Espaço para virar · 1 Errei · 2 Difícil · 3 Certo · 4 Fácil"
     study:
       subtitle: Revise os cartões e avalie sua memória
       done_label: Concluídos

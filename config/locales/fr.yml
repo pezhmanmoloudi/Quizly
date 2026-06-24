@@ -440,6 +440,12 @@ fr:
       key_star: Favori
       hide: Masquer
       restart: Recommencer les flashcards
+      enter_study_mode: Mode révision
+      exit_study_mode: "← Retour aux flashcards"
+      study_rate_prompt: À quel point le saviez-vous?
+      study_cards_due: cartes à revoir
+      study_session_complete: Vous avez révisé toutes les cartes dues!
+      study_keyboard_hint: "Espace pour retourner · 1 À revoir · 2 Difficile · 3 Bien · 4 Facile"
     study:
       subtitle: Révisez les cartes et évaluez votre rappel
       done_label: Terminées

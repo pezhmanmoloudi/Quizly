@@ -436,6 +436,12 @@ es:
       key_star: Destacar
       hide: Ocultar
       restart: Reiniciar tarjetas
+      enter_study_mode: Modo estudio
+      exit_study_mode: "← Volver a las tarjetas"
+      study_rate_prompt: ¿Qué tan bien lo sabías?
+      study_cards_due: tarjetas pendientes
+      study_session_complete: "¡Has repasado todas las tarjetas pendientes!"
+      study_keyboard_hint: "Espacio para voltear · 1 De nuevo · 2 Difícil · 3 Bien · 4 Fácil"
     study:
       subtitle: Revisa las tarjetas y valora tu memoria
       done_label: Hechas

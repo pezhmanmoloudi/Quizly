@@ -85,6 +85,9 @@ Rails.application.routes.draw do
 
   resources :card_progresses, only: [] do
     resource :starred_card, only: [ :create, :destroy ]
+    member do
+      post :grade
+    end
   end
 
   root "home#index"

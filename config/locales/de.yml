@@ -435,6 +435,12 @@ de:
       key_star: Markieren
       hide: Ausblenden
       restart: Lernkarten neu starten
+      enter_study_mode: Lernmodus
+      exit_study_mode: "← Zurück zu den Karten"
+      study_rate_prompt: Wie gut wusstest du das?
+      study_cards_due: Karten fällig
+      study_session_complete: Du hast alle fälligen Karten wiederholt!
+      study_keyboard_hint: "Leertaste zum Umdrehen · 1 Nochmal · 2 Schwer · 3 Gut · 4 Einfach"
     study:
       subtitle: Lerne Karten und bewerte deine Erinnerung
       done_label: Erledigt

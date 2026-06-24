@@ -433,6 +433,12 @@ ckb:
       key_star: ئەستێرە
       hide: شاردنەوە
       restart: دەستپێکردنەوەی کارتەکان
+      enter_study_mode: شێوازی خوێندن
+      exit_study_mode: "← گەڕانەوە بۆ فلاش‌کارتەکان"
+      study_rate_prompt: چەندە زانیت؟
+      study_cards_due: کارتی پێویست
+      study_session_complete: هەموو کارتە پێویستەکانت پێداچوونەوەیان کرد!
+      study_keyboard_hint: "Space بۆ ئامراژکردن · 1 دووبارە · 2 سەخت · 3 باش · 4 ئاسان"
     study:
       subtitle: کارتەکان بپشکنە و بیرهێنانەوەت بهاکردن
       done_label: تەواوبوو

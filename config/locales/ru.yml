@@ -441,6 +441,12 @@ ru:
       key_star: Отметить
       hide: Скрыть
       restart: Перезапустить карточки
+      enter_study_mode: Режим обучения
+      exit_study_mode: "← Назад к карточкам"
+      study_rate_prompt: Насколько хорошо вы это знали?
+      study_cards_due: карточек к повторению
+      study_session_complete: Вы повторили все запланированные карточки!
+      study_keyboard_hint: "Пробел — перевернуть · 1 Снова · 2 Сложно · 3 Хорошо · 4 Легко"
     study:
       subtitle: Просматривайте карточки и оценивайте своё запоминание
       done_label: Выполнено
