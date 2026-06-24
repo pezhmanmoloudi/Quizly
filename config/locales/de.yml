@@ -438,6 +438,7 @@ de:
     study:
       subtitle: Lerne Karten und bewerte deine Erinnerung
       done_label: Erledigt
+      remaining_label: Übrig
       empty_title: Alles erledigt!
       empty_description: Momentan sind keine Karten zur Wiederholung fällig.
       all_cards_tab: Alle Karten
@@ -452,6 +453,14 @@ de:
       hard: Schwer
       good: Gut
       easy: Einfach
+      settings_btn_label: "Lerneinstellungen"
+      new_cards_label: "Neue Karten"
+      new_cards_all: "Alle"
+      priority_label: "Priorität"
+      priority_due: "Fällige zuerst"
+      priority_hardest: "Schwierigste zuerst"
+      apply_settings: "Anwenden"
+      progress_remaining: "%{count} übrig"
       keyboard_hint: Leertaste zum Aufdecken · 1 Nochmal · 2 Schwer · 3 Gut · 4 Einfach
         · Esc zum Beenden
     learn:

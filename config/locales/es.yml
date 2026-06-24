@@ -439,6 +439,7 @@ es:
     study:
       subtitle: Revisa las tarjetas y valora tu memoria
       done_label: Hechas
+      remaining_label: Restante
       empty_title: "¡Al día!"
       empty_description: No hay tarjetas pendientes de revisión ahora mismo.
       all_cards_tab: Todas las tarjetas
@@ -453,6 +454,14 @@ es:
       hard: Difícil
       good: Bien
       easy: Fácil
+      settings_btn_label: "Ajustes de estudio"
+      new_cards_label: "Tarjetas nuevas"
+      new_cards_all: "Todas"
+      priority_label: "Prioridad"
+      priority_due: "Pendientes primero"
+      priority_hardest: "Más difíciles primero"
+      apply_settings: "Aplicar"
+      progress_remaining: "%{count} restantes"
       keyboard_hint: Espacio para revelar · 1 De nuevo · 2 Difícil · 3 Bien · 4 Fácil
         · Esc para salir
     learn:

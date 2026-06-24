@@ -435,6 +435,7 @@ en:
     study:
       subtitle: Review cards and rate your recall
       done_label: Done
+      remaining_label: Left
       empty_title: All caught up!
       empty_description: No cards are due for review right now.
       all_cards_tab: All cards
@@ -449,6 +450,14 @@ en:
       hard: Hard
       good: Good
       easy: Easy
+      settings_btn_label: "Study settings"
+      new_cards_label: "New cards"
+      new_cards_all: "All"
+      priority_label: "Priority"
+      priority_due: "Due first"
+      priority_hardest: "Hardest first"
+      apply_settings: "Apply"
+      progress_remaining: "%{count} left"
       keyboard_hint: Space to reveal · 1 Again · 2 Hard · 3 Good · 4 Easy · Esc to
         exit
     learn:

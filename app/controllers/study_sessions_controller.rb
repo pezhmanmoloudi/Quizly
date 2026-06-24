@@ -17,15 +17,26 @@ class StudySessionsController < ApplicationController
     CardProgress.initialize_for_deck(@deck, Current.user)
 
     @study_mode = params[:mode] == "starred" ? "starred" : "all"
+    @new_limit  = params.key?(:new_limit) ? params[:new_limit].to_i : 10
+    @priority   = params[:priority] == "hardest" ? "hardest" : "due"
 
-    due_scope = Current.user.card_progresses
-                            .due
-                            .joins(:flashcard)
-                            .where(flashcards: { deck_id: @deck.id })
-    due_scope = due_scope.starred if @study_mode == "starred"
+    base_scope = Current.user.card_progresses
+                             .joins(:flashcard)
+                             .where(flashcards: { deck_id: @deck.id })
+    base_scope = base_scope.starred if @study_mode == "starred"
 
-    @cards_remaining = due_scope.unscope(:order).count
-    @card_progress   = due_scope.includes(:flashcard).first
+    review_due = base_scope.due.where.not(repetitions: 0)
+    review_due = review_due.reorder(ease_factor: :asc) if @priority == "hardest"
+
+    new_due_all = base_scope.due.where(repetitions: 0)
+    new_due     = @new_limit.positive? ? new_due_all.limit(@new_limit) : new_due_all
+
+    review_count = review_due.unscope(:order).count
+    capped_new   = @new_limit.positive? ? [ new_due_all.count, @new_limit ].min : new_due_all.count
+    @cards_remaining = review_count + capped_new
+
+    @card_progress = review_due.includes(:flashcard).first ||
+                     new_due.includes(:flashcard).first
 
     if @card_progress.present?
       @study_session = Decks::StudySessionService.find_or_create(
@@ -36,7 +47,6 @@ class StudySessionsController < ApplicationController
       )
       session[:study_session_id] = @study_session.id
       @cards_total = @study_session.cards_total
-      @cards_done  = @cards_total - @cards_remaining
       @streak      = session[:study_streak].to_i
     else
       session.delete(:study_session_id)

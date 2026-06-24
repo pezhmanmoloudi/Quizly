@@ -1,19 +1,45 @@
 import { Controller } from "@hotwired/stimulus"
 
+const STORAGE_KEY = "quizly.study.settings"
+
 export default class extends Controller {
-  static targets = ["showButton", "againBtn", "hardBtn", "goodBtn", "easyBtn", "exitLink", "timer", "streak"]
+  static targets = [
+    "showButton", "againBtn", "hardBtn", "goodBtn", "easyBtn",
+    "exitLink", "streak",
+    "settingsDrawer", "settingsOverlay", "settingsBtn", "newLimitSelect", "prioritySelect"
+  ]
 
   #isSubmitting = false
 
   connect() {
     this.element.focus()
-    this.seconds = 0
-    this.timerInterval = setInterval(() => this.#tickTimer(), 1000)
+    this.#applyStoredSettings()
   }
 
   disconnect() {
     this.#isSubmitting = false
-    clearInterval(this.timerInterval)
+  }
+
+  openSettings() {
+    this.settingsDrawerTarget.classList.add("is-open")
+    this.settingsDrawerTarget.setAttribute("aria-hidden", "false")
+    this.settingsOverlayTarget.hidden = false
+    this.settingsBtnTarget.setAttribute("aria-expanded", "true")
+  }
+
+  closeSettings() {
+    this.settingsDrawerTarget.classList.remove("is-open")
+    this.settingsDrawerTarget.setAttribute("aria-hidden", "true")
+    this.settingsOverlayTarget.hidden = true
+    this.settingsBtnTarget.setAttribute("aria-expanded", "false")
+  }
+
+  saveSettings() {
+    const settings = {
+      new_limit: this.newLimitSelectTarget.value,
+      priority:  this.prioritySelectTarget.value
+    }
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(settings))
   }
 
   trackRating() {
@@ -42,8 +68,23 @@ export default class extends Controller {
         this.#submitRating("easyBtn")
         break
       case "Escape":
-        if (this.hasExitLinkTarget) this.exitLinkTarget.click()
+        if (this.hasSettingsDrawerTarget && this.settingsDrawerTarget.classList.contains("is-open")) {
+          this.closeSettings()
+        } else if (this.hasExitLinkTarget) {
+          this.exitLinkTarget.click()
+        }
         break
+    }
+  }
+
+  #applyStoredSettings() {
+    if (!this.hasNewLimitSelectTarget || !this.hasPrioritySelectTarget) return
+    try {
+      const stored = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}")
+      if (stored.new_limit != null) this.newLimitSelectTarget.value = stored.new_limit
+      if (stored.priority  != null) this.prioritySelectTarget.value = stored.priority
+    } catch {
+      // ignore malformed storage
     }
   }
 
@@ -82,13 +123,5 @@ export default class extends Controller {
   #isFormElementFocused() {
     const tag = document.activeElement?.tagName
     return ["INPUT", "BUTTON", "TEXTAREA", "SELECT", "A"].includes(tag)
-  }
-
-  #tickTimer() {
-    this.seconds++
-    if (!this.hasTimerTarget) return
-    const m = String(Math.floor(this.seconds / 60)).padStart(2, "0")
-    const s = String(this.seconds % 60).padStart(2, "0")
-    this.timerTarget.textContent = `${m}:${s}`
   }
 }

@@ -436,6 +436,7 @@ ckb:
     study:
       subtitle: کارتەکان بپشکنە و بیرهێنانەوەت بهاکردن
       done_label: تەواوبوو
+      remaining_label: ماوەتەوە
       empty_title: هەموو شتێک تەواوکرا!
       empty_description: هیچ کارتێک ئێستا بۆ پاڕاستنەوە سەرکەوتوو نییە.
       all_cards_tab: هەموو کارتەکان
@@ -450,6 +451,14 @@ ckb:
       hard: سەخت
       good: باش
       easy: ئاسان
+      settings_btn_label: "ڕێکخستنی خوێندنەوە"
+      new_cards_label: "کارتی نوێ"
+      new_cards_all: "هەموو"
+      priority_label: "پێشینە"
+      priority_due: "دواوەی پێشتر"
+      priority_hardest: "سەختترین"
+      apply_settings: "جێبەجێکردن"
+      progress_remaining: "%{count} ماوەتەوە"
       keyboard_hint: بۆشایی بۆ ئاشکراکردن · ١ دووبارە · ٢ سەخت · ٣ باش · ٤ ئاسان ·
         Esc بۆ دەرچوون
     learn:

@@ -437,6 +437,7 @@ tr:
     study:
       subtitle: Kartları gözden geçir ve hatırlamanı puanla
       done_label: Tamamlandı
+      remaining_label: Kalan
       empty_title: Her şey tamam!
       empty_description: Şu an bekleyen kart yok.
       all_cards_tab: Tüm kartlar
@@ -451,6 +452,14 @@ tr:
       hard: Zor
       good: İyi
       easy: Kolay
+      settings_btn_label: "Çalışma ayarları"
+      new_cards_label: "Yeni kartlar"
+      new_cards_all: "Tümü"
+      priority_label: "Öncelik"
+      priority_due: "Önce vadesi gelen"
+      priority_hardest: "Önce en zor"
+      apply_settings: "Uygula"
+      progress_remaining: "%{count} kaldı"
       keyboard_hint: Boşluk göstermek için · 1 Tekrar · 2 Zor · 3 İyi · 4 Kolay ·
         Esc çıkmak için
     learn:

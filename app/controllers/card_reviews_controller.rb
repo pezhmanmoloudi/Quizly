@@ -21,6 +21,9 @@ class CardReviewsController < ApplicationController
       study_session.reload
     end
 
+    new_limit  = params[:new_limit].presence
+    priority   = params[:priority].presence
+
     more_due = Current.user.card_progresses
                            .due
                            .unscope(:order)
@@ -30,7 +33,12 @@ class CardReviewsController < ApplicationController
                            .exists?
 
     if more_due
-      redirect_to study_deck_path(deck, mode: (study_mode == "starred" ? "starred" : nil).presence)
+      redirect_to study_deck_path(
+        deck,
+        mode:      (study_mode == "starred" ? "starred" : nil).presence,
+        new_limit: new_limit,
+        priority:  (priority if priority != "due")
+      )
     else
       if study_session && !study_session.finished?
         study_session.update!(finished_at: Time.current)
@@ -39,7 +47,7 @@ class CardReviewsController < ApplicationController
       end
       session.delete(:study_session_id)
       session.delete(:study_streak)
-      redirect_to study_deck_path(deck),
+      redirect_to study_deck_path(deck, mode: (study_mode == "starred" ? "starred" : nil).presence),
         flash: { study_summary: {
           reviewed: study_session&.cards_reviewed || 1,
           correct:  study_session&.cards_correct  || 0,

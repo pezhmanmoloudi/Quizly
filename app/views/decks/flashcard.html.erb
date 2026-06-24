@@ -14,7 +14,14 @@
       <span data-flashcard-browse-target="totalDisplay"><%= @flashcards.size %></span>
     </div>
     <h1 class="fb__deck-name"><%= @deck.name %></h1>
-    <%= link_to t("study_modes.exit"), @deck, class: "fb__exit" %>
+    <div class="fb__top-end">
+      <button class="fb__icon-btn"
+              data-action="click->flashcard-browse#openOptions"
+              aria-label="<%= t("study_modes.flashcard.options") %>">
+        <%= render "shared/icons/cog" %>
+      </button>
+      <%= link_to t("study_modes.exit"), @deck, class: "fb__exit" %>
+    </div>
   </div>
 
   <% if @flashcards.empty? %>
@@ -43,16 +50,11 @@
                data-starred="<%= @card_progresses[card.id].starred? %>"
              <% end %>>
 
-          <div class="fb__card-bar">
-            <button class="fb__icon-btn"
-                    data-action="click->flashcard-browse#openOptions"
-                    aria-label="<%= t("study_modes.flashcard.options") %>">
-              <%= render "shared/icons/cog" %>
-            </button>
-            <% if @card_progresses&.key?(card.id) %>
+          <% if @card_progresses&.key?(card.id) %>
+            <div class="fb__card-bar">
               <%= render "starred_cards/toggle", card_progress: @card_progresses[card.id] %>
-            <% end %>
-          </div>
+            </div>
+          <% end %>
 
           <div class="fb__card-wrap">
             <div class="flashcard-card"

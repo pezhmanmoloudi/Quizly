@@ -435,6 +435,7 @@ ar:
     study:
       subtitle: راجع البطاقات وقيّم استرجاعك
       done_label: تمّ
+      remaining_label: متبقٍ
       empty_title: أنجزت كل شيء!
       empty_description: لا توجد بطاقات مستحقة للمراجعة الآن.
       all_cards_tab: جميع البطاقات
@@ -449,6 +450,14 @@ ar:
       hard: صعب
       good: جيد
       easy: سهل
+      settings_btn_label: "إعدادات الدراسة"
+      new_cards_label: "بطاقات جديدة"
+      new_cards_all: "الكل"
+      priority_label: "الأولوية"
+      priority_due: "الأقدم أولاً"
+      priority_hardest: "الأصعب أولاً"
+      apply_settings: "تطبيق"
+      progress_remaining: "متبقي %{count}"
       keyboard_hint: مسافة للكشف · 1 مجدداً · 2 صعب · 3 جيد · 4 سهل · Esc للخروج
     learn:
       subtitle: اكتب الإجابة لإتقان كل بطاقة

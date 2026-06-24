@@ -444,6 +444,7 @@ ru:
     study:
       subtitle: Просматривайте карточки и оценивайте своё запоминание
       done_label: Выполнено
+      remaining_label: Осталось
       empty_title: Всё сделано!
       empty_description: Сейчас нет карточек для повторения.
       all_cards_tab: Все карточки
@@ -458,6 +459,14 @@ ru:
       hard: Сложно
       good: Хорошо
       easy: Легко
+      settings_btn_label: "Настройки занятия"
+      new_cards_label: "Новые карточки"
+      new_cards_all: "Все"
+      priority_label: "Приоритет"
+      priority_due: "Сначала просроченные"
+      priority_hardest: "Сначала сложные"
+      apply_settings: "Применить"
+      progress_remaining: "осталось %{count}"
       keyboard_hint: Пробел для показа · 1 Ещё раз · 2 Сложно · 3 Хорошо · 4 Легко
         · Esc для выхода
     learn:
