@@ -35,6 +35,9 @@
       <% @flashcards.each_with_index do |card, index| %>
         <div class="flashcard-browse__slide"
              data-index="<%= index %>"
+             data-front-lang="<%= card.front_language.presence || '' %>"
+             data-back-lang="<%= card.back_language.presence || '' %>"
+             data-flipped="false"
              <%= index > 0 ? "hidden" : "" %>
              <% if @card_progresses&.key?(card.id) %>
                data-starred="<%= @card_progresses[card.id].starred? %>"
@@ -46,21 +49,14 @@
                     aria-label="<%= t("study_modes.flashcard.options") %>">
               <%= render "shared/icons/cog" %>
             </button>
-            <div class="fb__card-bar-right">
-              <button class="fb__icon-btn"
-                      data-action="click->flashcard-browse#speak"
-                      aria-label="Play audio">
-                <%= render "shared/icons/speaker_wave" %>
-              </button>
-              <% if @card_progresses&.key?(card.id) %>
-                <%= render "starred_cards/toggle", card_progress: @card_progresses[card.id] %>
-              <% end %>
-            </div>
+            <% if @card_progresses&.key?(card.id) %>
+              <%= render "starred_cards/toggle", card_progress: @card_progresses[card.id] %>
+            <% end %>
           </div>
 
           <div class="fb__card-wrap">
             <div class="flashcard-card"
-                 data-action="click->flashcard#reveal">
+                 data-action="click->flashcard-browse#flip">
               <div class="flashcard-card__inner">
                 <div class="flashcard-card__face flashcard-card__face--front <%= 'flashcard-card__face--has-image' if card.image.attached? %>">
                   <% if card.image.attached? %>
@@ -79,8 +75,9 @@
               </div>
             </div>
             <button class="fb__flip-bar"
-                    data-action="click->flashcard#reveal">
-              <%= t("study_modes.flashcard.click_to_flip") %>
+                    data-action="click->flashcard-browse#flip"
+                    data-flashcard-browse-target="flipBar">
+              <span class="fb__flip-hint-text"><%= t("study_modes.flashcard.click_to_flip") %></span>
             </button>
           </div>
 
@@ -94,21 +91,16 @@
         <%= t("study_modes.flashcard.previous") %>
       </button>
       <div class="fb__nav-center">
-        <button class="fb__icon-btn fb__icon-btn--circle"
-                data-action="click->flashcard-browse#togglePlay"
-                data-flashcard-browse-target="playBtn"
-                aria-label="Play / Pause auto-advance">
-          <span data-flashcard-browse-target="playIcon">
-            <%= render "shared/icons/play" %>
-          </span>
-          <span data-flashcard-browse-target="pauseIcon" hidden>
-            <%= render "shared/icons/pause" %>
-          </span>
+        <button class="fb__icon-btn fb__icon-btn--circle fb__audio-btn"
+                data-action="click->flashcard-browse#speak"
+                data-flashcard-browse-target="audioBtn"
+                aria-label="<%= t("study_modes.flashcard.play_audio") %>">
+          <%= render "shared/icons/speaker_wave" %>
         </button>
-        <button class="fb__icon-btn fb__icon-btn--circle"
-                data-action="click->flashcard-browse#shuffle"
-                aria-label="Shuffle cards">
-          <%= render "shared/icons/arrows_right_left" %>
+        <button class="fb__flip-btn"
+                data-action="click->flashcard-browse#flip"
+                aria-label="<%= t("study_modes.flashcard.flip") %>">
+          <%= t("study_modes.flashcard.flip") %>
         </button>
       </div>
       <button class="fb__nav-btn fb__nav-btn--next"
@@ -142,7 +134,9 @@
       </button>
     </div>
     <div class="fb-options__body">
-      <p class="fb-options__section-label">Study</p>
+
+      <%# ── Study ── %>
+      <p class="fb-options__section-label"><%= t("study_modes.flashcard.section_study") %></p>
 
       <label class="fb-option-row">
         <div class="fb-option-row__info">
@@ -153,6 +147,7 @@
                class="fb-toggle"
                data-action="change->flashcard-browse#toggleTrackProgress"
                data-flashcard-browse-target="trackProgressToggle"
+               data-setting="trackProgress"
                checked>
       </label>
 
@@ -164,9 +159,45 @@
           </div>
           <input type="checkbox"
                  class="fb-toggle"
-                 data-action="change->flashcard-browse#toggleStarredOnly">
+                 data-action="change->flashcard-browse#toggleStarredOnly"
+                 data-setting="starredOnly">
         </label>
       <% end %>
+
+      <hr class="fb-options__divider">
+
+      <%# ── Display ── %>
+      <p class="fb-options__section-label"><%= t("study_modes.flashcard.section_display") %></p>
+
+      <label class="fb-option-row">
+        <div class="fb-option-row__info">
+          <span class="fb-option-row__label"><%= t("study_modes.flashcard.shuffle_cards") %></span>
+          <span class="fb-option-row__desc"><%= t("study_modes.flashcard.shuffle_cards_desc") %></span>
+        </div>
+        <input type="checkbox"
+               class="fb-toggle"
+               data-action="change->flashcard-browse#toggleShuffle"
+               data-setting="shuffle">
+      </label>
+
+      <div class="fb-option-row fb-option-row--block">
+        <div class="fb-option-row__info">
+          <span class="fb-option-row__label"><%= t("study_modes.flashcard.start_side") %></span>
+        </div>
+        <div class="fb-radio-group">
+          <label class="fb-radio-label">
+            <input type="radio" name="start_side" value="front"
+                   data-action="change->flashcard-browse#toggleStartSide"
+                   checked>
+            <span><%= t("study_modes.flashcard.start_front") %></span>
+          </label>
+          <label class="fb-radio-label">
+            <input type="radio" name="start_side" value="back"
+                   data-action="change->flashcard-browse#toggleStartSide">
+            <span><%= t("study_modes.flashcard.start_back") %></span>
+          </label>
+        </div>
+      </div>
 
       <label class="fb-option-row">
         <div class="fb-option-row__info">
@@ -175,13 +206,72 @@
         </div>
         <input type="checkbox"
                class="fb-toggle"
-               data-action="change->flashcard-browse#toggleBothSides">
+               data-action="change->flashcard-browse#toggleBothSides"
+               data-setting="showBothSides">
       </label>
 
       <hr class="fb-options__divider">
 
+      <%# ── Audio ── %>
+      <p class="fb-options__section-label"><%= t("study_modes.flashcard.section_audio") %></p>
+
+      <label class="fb-option-row">
+        <div class="fb-option-row__info">
+          <span class="fb-option-row__label"><%= t("study_modes.flashcard.auto_play_audio") %></span>
+          <span class="fb-option-row__desc"><%= t("study_modes.flashcard.auto_play_audio_desc") %></span>
+        </div>
+        <input type="checkbox"
+               class="fb-toggle"
+               data-action="change->flashcard-browse#toggleAutoPlayAudio"
+               data-setting="autoPlayAudio">
+      </label>
+
+      <label class="fb-option-row">
+        <div class="fb-option-row__info">
+          <span class="fb-option-row__label"><%= t("study_modes.flashcard.auto_play_after_flip") %></span>
+          <span class="fb-option-row__desc"><%= t("study_modes.flashcard.auto_play_after_flip_desc") %></span>
+        </div>
+        <input type="checkbox"
+               class="fb-toggle"
+               data-action="change->flashcard-browse#toggleAutoPlayAfterFlip"
+               data-setting="autoPlayAfterFlip">
+      </label>
+
+      <hr class="fb-options__divider">
+
+      <%# ── Playback ── %>
+      <p class="fb-options__section-label"><%= t("study_modes.flashcard.section_playback") %></p>
+
+      <label class="fb-option-row">
+        <div class="fb-option-row__info">
+          <span class="fb-option-row__label"><%= t("study_modes.flashcard.auto_advance") %></span>
+          <span class="fb-option-row__desc"><%= t("study_modes.flashcard.auto_advance_desc") %></span>
+        </div>
+        <input type="checkbox"
+               class="fb-toggle"
+               data-action="change->flashcard-browse#toggleAutoAdvance"
+               data-setting="autoAdvance">
+      </label>
+
+      <div class="fb-option-row fb-option-row--block">
+        <div class="fb-option-row__info">
+          <span class="fb-option-row__label"><%= t("study_modes.flashcard.auto_advance_delay") %></span>
+        </div>
+        <select class="fb-select"
+                data-action="change->flashcard-browse#setAutoAdvanceDelay"
+                data-setting="autoAdvanceDelay">
+          <option value="2000">2s</option>
+          <option value="3000" selected>3s</option>
+          <option value="5000">5s</option>
+          <option value="8000">8s</option>
+        </select>
+      </div>
+
+      <hr class="fb-options__divider">
+
+      <%# ── Keyboard ── %>
       <div class="fb-shortcut-section-header">
-        <p class="fb-options__section-label"><%= t("study_modes.flashcard.keyboard_shortcuts") %></p>
+        <p class="fb-options__section-label"><%= t("study_modes.flashcard.section_keyboard") %></p>
         <button class="fb-options__toggle-link"
                 data-action="click->flashcard-browse#toggleShortcuts"
                 data-flashcard-browse-target="shortcutsToggleBtn">

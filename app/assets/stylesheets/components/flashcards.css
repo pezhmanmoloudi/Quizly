@@ -24,8 +24,8 @@
   -webkit-backface-visibility: hidden;
   background: var(--color-card);
   border-radius: 14px;
-  padding: 2.5rem 2rem;
-  min-height: 220px;
+  padding: 3rem 2.5rem;
+  min-height: 320px;
   box-shadow: var(--shadow-lg);
   display: flex;
   align-items: center;
@@ -39,7 +39,7 @@
 }
 
 .flashcard-card__face--front {
-  font-size: 1.5rem;
+  font-size: 1.875rem;
   font-weight: 600;
 }
 
