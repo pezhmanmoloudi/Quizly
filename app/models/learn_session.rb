@@ -26,8 +26,12 @@ class LearnSession < ApplicationRecord
       .first
   end
 
-  def self.build_for(deck:, user:)
-    cards = deck.flashcards.to_a.shuffle
+  def self.build_for(deck:, user:, flashcard_ids: nil)
+    cards = if flashcard_ids.present?
+      deck.flashcards.where(id: flashcard_ids).to_a.shuffle
+    else
+      deck.flashcards.to_a.shuffle
+    end
     session = new(user: user, deck: deck, cards_total: cards.size, started_at: Time.current)
     cards.each_with_index do |card, i|
       session.learn_session_items.build(flashcard: card, position: i)

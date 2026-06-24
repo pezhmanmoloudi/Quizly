@@ -483,16 +483,15 @@ fr:
       time_spent: Temps passé
       summary_sub: Excellent travail — toutes les cartes sont maîtrisées.
       study_again: Étudier à nouveau
-    learn_card:
-      prompt: Définissez ce terme
-      your_answer: Votre réponse
-      correct: Correct !
-      incorrect: Incorrect
-      correct_answer: 'Réponse correcte :'
-      type_answer: Tapez votre réponse…
-      submit: Soumettre
-      keyboard_hint: Entrée pour soumettre
-      continue: Continuer →
+      progress_header: Space to flip · G Got it · C Confused · D Don't know
+      reveal: Click to reveal
+      dont_know: Don't know
+      confused: Confused
+      got_it: Got it
+      mastery_pct: Mastery
+      weak_cards: Weak
+      new_cards: New
+      complete_subtitle: Every card is now above the mastery threshold.
     test:
       subtitle: Testez vos connaissances
       question_label: Question
@@ -527,6 +526,38 @@ fr:
       streak: Série
       progress_label: "%{pct}% de progression"
       matched_counter: 'Associé : %{matched} / %{total}'
+learn:
+  settings:
+    title: Learn Settings
+    new_cards_limit: New Cards Per Session
+    mastery_threshold: Mastery Threshold
+    hints: Show Hints
+    hints_on: "On"
+    hints_off: "Off"
+    weak_priority: Weak Card Priority
+    priority_low: Low
+    priority_normal: Normal
+    priority_high: High
+    apply: Apply
+    saved: Settings saved.
+    invalid: Invalid settings.
+    limit_5: "5 cards"
+    limit_10: "10 cards"
+    limit_15: "15 cards"
+    limit_20: "20 cards"
+    limit_all: All cards
+    threshold_60: "60% (Easy)"
+    threshold_70: "70%"
+    threshold_80: "80% (Default)"
+    threshold_90: "90% (Hard)"
+  hint: Hint
+  hint_prefix: "First word:"
+  complete:
+    cards_learned: Cards learned
+    weak_improved: Weak cards improved
+    practice_again: Practice Again
+    switch_to_study: Switch to Study Mode
+    retry_weak: Réviser les cartes difficiles
   errors:
     not_found:
       flash: This deck is no longer available.

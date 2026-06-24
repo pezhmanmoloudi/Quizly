@@ -3,6 +3,7 @@ import FlashcardAudioService from "flashcard_audio_service"
 import FlashcardPlaybackService from "flashcard_playback_service"
 import FlashcardEngine from "flashcard_engine"
 import StudySRS from "study_srs"
+import LearnEngine from "learn_engine"
 
 export default class extends Controller {
   static SETTINGS_KEY  = "quizly.flashcard.settings"
@@ -16,13 +17,18 @@ export default class extends Controller {
     "shortcutsPanel", "shortcutsToggleBtn",
     "trackProgressToggle",
     "ratingBar", "studyBar", "dueCount", "studyComplete",
-    "prevBtn", "nextBtn"
+    "prevBtn", "nextBtn",
+    "learnFeedbackBar", "learnComplete", "learnHintZone",
+    "learnNewCount", "learnWeakCount", "learnMasteryPct",
+    "learnCompleteCount", "learnCompleteWeakImproved", "learnCompleteMastery"
   ]
 
   static values = {
-    total:    Number,
-    mode:     { type: String, default: "browse" },
-    progress: { type: Array,  default: [] }
+    total:         Number,
+    mode:          { type: String,  default: "browse" },
+    progress:      { type: Array,   default: [] },
+    learnItems:    { type: Array,   default: [] },
+    learnSettings: { type: Object,  default: {} }
   }
 
   // ── Lifecycle ──────────────────────────────────────────────
@@ -56,8 +62,15 @@ export default class extends Controller {
       this.engine.setOrder(this.#buildShuffledIndices(order))
     }
 
+    this.learnEngine = null
+    if (this.modeValue === "learn" && this.learnItemsValue.length > 0) {
+      this.learnEngine = new LearnEngine(this.learnItemsValue, this.allSlides, this.learnSettingsValue)
+      this.engine.setOrder(this.learnEngine.getLearnQueue())
+    }
+
     this.#initRender()
     if (this.modeValue === "study") this.#initStudyUI()
+    if (this.modeValue === "learn") this.#initLearnUI()
     this.#syncSettingsUI()
     this.#updateFlipHint()
     this.element.focus()
@@ -71,7 +84,7 @@ export default class extends Controller {
   // ── Public actions ─────────────────────────────────────────
 
   next() {
-    if (this.modeValue === "study") return
+    if (this.modeValue === "study" || this.modeValue === "learn") return
     this.playback.stop()
     if (this.engine.currentIndex < this.engine.size - 1) {
       this.engine.resetFlip(this.settings.startWithBack)
@@ -81,7 +94,7 @@ export default class extends Controller {
   }
 
   previous() {
-    if (this.modeValue === "study") return
+    if (this.modeValue === "study" || this.modeValue === "learn") return
     this.playback.stop()
     if (this.engine.currentIndex > 0) {
       this.engine.resetFlip(this.settings.startWithBack)
@@ -96,6 +109,15 @@ export default class extends Controller {
     this.#incrementFlipHint()
     if (this.settings.autoPlayAfterFlip) this.#speakCurrentSide()
     if (this.modeValue === "study" && this.engine.flipped) this.#showRatingButtons()
+    if (this.modeValue === "learn") {
+      if (this.engine.flipped) {
+        this.#showLearnFeedbackBar()
+        this.#hideLearnHintZone()
+      } else {
+        this.#hideLearnFeedbackBar()
+        this.#showLearnHintZone()
+      }
+    }
   }
 
   speak() {
@@ -132,6 +154,34 @@ export default class extends Controller {
       return
     }
 
+    if (this.modeValue === "learn") {
+      switch (event.key) {
+        case " ":
+          event.preventDefault()
+          this.flip()
+          break
+        case "g":
+        case "G":
+          event.preventDefault()
+          this.gotIt()
+          break
+        case "c":
+        case "C":
+          event.preventDefault()
+          this.confused()
+          break
+        case "d":
+        case "D":
+          event.preventDefault()
+          this.dontKnow()
+          break
+        case "Escape":
+          this.closeLearnSettings()
+          break
+      }
+      return
+    }
+
     switch (event.key) {
       case " ":
         event.preventDefault()
@@ -151,6 +201,28 @@ export default class extends Controller {
         this.#starCurrent()
         break
     }
+  }
+
+  // ── Learn mode: settings drawer ────────────────────────────
+
+  openLearnSettings() {
+    if (this.hasOptionsPanelTarget) {
+      this.optionsPanelTarget.classList.add("is-open")
+      this.optionsPanelTarget.setAttribute("aria-hidden", "false")
+    }
+    if (this.hasOptionsOverlayTarget) this.optionsOverlayTarget.hidden = false
+  }
+
+  closeLearnSettings() {
+    if (this.hasOptionsPanelTarget) {
+      this.optionsPanelTarget.classList.remove("is-open")
+      this.optionsPanelTarget.setAttribute("aria-hidden", "true")
+    }
+    if (this.hasOptionsOverlayTarget) this.optionsOverlayTarget.hidden = true
+  }
+
+  showHint() {
+    this.#currentSlide?.querySelector(".learn-hint")?.classList.add("learn-hint--visible")
   }
 
   // ── Options panel ──────────────────────────────────────────
@@ -263,6 +335,12 @@ export default class extends Controller {
   async gradeGood()  { await this.#grade("good")  }
   async gradeEasy()  { await this.#grade("easy")  }
 
+  // ── Learn mode: public feedback actions ───────────────────
+
+  gotIt()    { this.#recordLearnFeedback("got_it")    }
+  confused() { this.#recordLearnFeedback("confused")  }
+  dontKnow() { this.#recordLearnFeedback("dont_know") }
+
   // ── Private: slide resolution ──────────────────────────────
 
   get #currentSlide() { return this.allSlides[this.engine.currentCardIndex] }
@@ -277,6 +355,11 @@ export default class extends Controller {
     this.#renderFlip(this.engine.flipped)
     this.#updateCounter()
     if (this.modeValue === "study") this.#hideRatingButtons()
+    if (this.modeValue === "learn") {
+      this.#hideLearnFeedbackBar()
+      this.#showLearnHintZone()
+      slide.querySelector(".learn-hint")?.classList.remove("learn-hint--visible")
+    }
   }
 
   #renderFlip(flipped) {
@@ -364,6 +447,85 @@ export default class extends Controller {
     if (this.hasDueCountTarget) this.dueCountTarget.textContent = "0"
   }
 
+  // ── Private: learn mode ────────────────────────────────────
+
+  #initLearnUI() {
+    if (this.hasPrevBtnTarget) this.prevBtnTarget.hidden = true
+    if (this.hasNextBtnTarget) this.nextBtnTarget.hidden = true
+    this.#updateLearnStats()
+  }
+
+  #showLearnFeedbackBar() {
+    if (this.hasLearnFeedbackBarTarget) this.learnFeedbackBarTarget.hidden = false
+  }
+
+  #hideLearnFeedbackBar() {
+    if (this.hasLearnFeedbackBarTarget) this.learnFeedbackBarTarget.hidden = true
+  }
+
+  #showLearnHintZone() {
+    if (this.hasLearnHintZoneTarget) this.learnHintZoneTarget.hidden = false
+  }
+
+  #hideLearnHintZone() {
+    if (this.hasLearnHintZoneTarget) this.learnHintZoneTarget.hidden = true
+  }
+
+  #updateLearnStats() {
+    if (!this.learnEngine) return
+    const { newCount, weakCount, masteryPct } = this.learnEngine.getStats()
+    if (this.hasLearnNewCountTarget)   this.learnNewCountTarget.textContent   = newCount
+    if (this.hasLearnWeakCountTarget)  this.learnWeakCountTarget.textContent  = weakCount
+    if (this.hasLearnMasteryPctTarget) this.learnMasteryPctTarget.textContent = `${masteryPct}%`
+    if (this.hasProgressFillTarget)    this.progressFillTarget.style.width    = `${masteryPct}%`
+  }
+
+  #recordLearnFeedback(feedback) {
+    if (!this.learnEngine) return
+    const slide = this.#currentSlide
+    if (!slide) return
+    const flashcardId = parseInt(slide.dataset.flashcardId, 10)
+    const itemId      = this.learnEngine.getItemId(flashcardId)
+
+    this.learnEngine.recordFeedback(flashcardId, feedback)
+    this.#updateLearnStats()
+    this.#postLearnFeedback(itemId, feedback)
+
+    if (this.learnEngine.isComplete()) { this.#showLearnComplete(); return }
+
+    this.engine.setOrder(this.learnEngine.getLearnQueue())
+    this.engine.resetFlip(false)
+    this.#hideLearnFeedbackBar()
+    this.engine.goTo(0)
+  }
+
+  async #postLearnFeedback(itemId, feedback) {
+    if (!itemId) return
+    const token = document.querySelector('meta[name="csrf-token"]')?.content || ""
+    try {
+      await fetch("/learn_feedbacks", {
+        method:  "POST",
+        headers: { "Content-Type": "application/json", "X-CSRF-Token": token },
+        body:    JSON.stringify({ learn_session_item_id: itemId, feedback })
+      })
+    } catch { /* non-blocking */ }
+  }
+
+  #showLearnComplete() {
+    this.#hideLearnFeedbackBar()
+    if (this.hasLearnHintZoneTarget) this.learnHintZoneTarget.hidden = true
+    const stage = this.element.querySelector(".fb__stage")
+    if (stage) stage.hidden = true
+    if (this.hasLearnCompleteTarget) this.learnCompleteTarget.hidden = false
+
+    if (this.learnEngine) {
+      const { learnedCount, weakImprovedCount, masteryPct } = this.learnEngine.getCompletionStats()
+      if (this.hasLearnCompleteCountTarget)          this.learnCompleteCountTarget.textContent          = learnedCount
+      if (this.hasLearnCompleteWeakImprovedTarget)   this.learnCompleteWeakImprovedTarget.textContent   = weakImprovedCount
+      if (this.hasLearnCompleteMasteryTarget)        this.learnCompleteMasteryTarget.textContent        = `${masteryPct}%`
+    }
+  }
+
   // ── Private: shuffle ───────────────────────────────────────
 
   #buildShuffledIndices(arr) {
@@ -393,6 +555,7 @@ export default class extends Controller {
 
   #updateAudioBtnState() {
     if (!this.hasAudioBtnTarget) return
+    if (!this.audio) return
     const slide = this.#currentSlide
     if (!slide) return
     const isFlipped = this.engine.flipped

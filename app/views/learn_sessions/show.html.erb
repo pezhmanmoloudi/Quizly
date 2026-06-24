@@ -1,102 +1,305 @@
 <% content_for :title, "Learn: #{@deck.name}" %>
 
-<div class="study-island"
-     data-controller="learn-mode"
-     data-action="keydown->learn-mode#handleKey"
-     tabindex="-1"
-     aria-label="Learn session">
+<% if @learn_session.nil? || @flashcards.empty? %>
+  <div class="study-island">
+    <%= render "shared/empty_state",
+          icon: "academic_cap",
+          title: t("study_modes.no_cards_title"),
+          description: t("study_modes.learn.empty_description"),
+          variant: :default %>
+  </div>
 
-  <div class="study-island__header">
-    <%= link_to t("study_modes.exit"), @deck, class: "study-island__exit",
-          data: { learn_mode_target: "exitLink" } %>
-
-    <div class="study-island__title-block">
-      <h2 class="study-island__title"><%= @deck.name %></h2>
-      <p class="study-island__subtitle"><%= t("study_modes.learn.subtitle") %></p>
-    </div>
-
-    <div class="study-island__stats">
-      <% if @learn_session.present? %>
-        <div class="match-stat match-stat--timer">
-          <div class="match-stat__badge">
-            <svg class="match-stat__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" width="14" height="14" aria-hidden="true">
-              <path fill-rule="evenodd" d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm.75-13a.75.75 0 0 0-1.5 0v5c0 .414.336.75.75.75h4a.75.75 0 0 0 0-1.5h-3.25V5Z" clip-rule="evenodd"/>
-            </svg>
-            <span class="match-stat__value" data-learn-mode-target="timer">00:00</span>
-          </div>
-          <span class="match-stat__label"><%= t("study_modes.time") %></span>
+<% elsif @learn_session.finished? %>
+  <div class="study-island" aria-label="Learn session complete">
+    <div class="learn-complete">
+      <div class="session-summary__icon">🎓</div>
+      <h3 class="session-summary__title"><%= t("study_modes.learn.summary_title") %></h3>
+      <p class="session-summary__sub"><%= t("study_modes.learn.summary_sub") %></p>
+      <div class="session-summary__stats">
+        <div class="session-summary__stat">
+          <span class="session-summary__value"><%= @learn_session.cards_total %></span>
+          <span class="session-summary__label"><%= t("study_modes.learn.studied") %></span>
         </div>
-      <% end %>
-
-      <% if @learn_session.present? %>
-        <div class="match-stat match-stat--pairs">
-          <div class="match-stat__badge">
-            <svg class="match-stat__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" width="14" height="14" aria-hidden="true">
-              <path fill-rule="evenodd" d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm0-2a6 6 0 1 0 0-12 6 6 0 0 0 0 12Zm0-3a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" clip-rule="evenodd"/>
-            </svg>
-            <span id="learn_counter" class="match-stat__value">
-              <%= @learn_session.cards_mastered %> / <%= @learn_session.cards_total %>
-            </span>
-          </div>
-          <span class="match-stat__label"><%= t("study_modes.learn.mastered_label") %></span>
+        <div class="session-summary__stat">
+          <span class="session-summary__value"><%= format_study_time(@learn_session.elapsed_seconds) %></span>
+          <span class="session-summary__label"><%= t("study_modes.learn.time_spent") %></span>
         </div>
-      <% end %>
-
-      <div class="match-stat match-stat--streak">
-        <div class="match-stat__badge">
-          <svg class="match-stat__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" width="14" height="14" aria-hidden="true">
-            <path d="M12.395 2.553a1 1 0 0 0-1.45-.385c-.345.23-.614.558-.822.88-.214.33-.403.713-.57 1.116-.334.804-.614 1.768-.84 2.734a31.365 31.365 0 0 0-.613 3.58 2.64 2.64 0 0 1-.945-1.067c-.328-.68-.398-1.534-.398-2.654A1 1 0 0 0 5.05 6.05 6.981 6.981 0 0 0 3 11a7 7 0 1 0 11.95-4.95c-.592-.591-.98-.985-1.348-1.467-.363-.476-.724-1.063-1.207-2.03ZM12.12 15.12A3 3 0 0 1 7 13s.879.5 2.5.5c0-1 .5-4 1.25-4.5.5 1 .786 1.293 1.371 1.879A2.99 2.99 0 0 1 13 13a2.99 2.99 0 0 1-.879 2.121Z"/>
-          </svg>
-          <span class="match-stat__value" data-learn-mode-target="streak">0</span>
-        </div>
-        <span class="match-stat__label"><%= t("study_modes.streak") %></span>
+      </div>
+      <div class="learn-complete__actions">
+        <%= link_to t("study_modes.learn.restart"),
+              learn_deck_path(@deck, restart: true),
+              class: "btn btn--primary btn--sm" %>
+        <%= link_to t("study_modes.back_to_deck"), @deck, class: "btn btn--secondary btn--sm" %>
       </div>
     </div>
   </div>
 
-  <% if @learn_session.present? && @learn_session.cards_total > 0 %>
-    <div id="learn_progress" class="study-island__progress-wrap">
+<% else %>
+  <div class="study-island"
+       data-controller="flashcard-browse"
+       data-flashcard-browse-mode-value="learn"
+       data-flashcard-browse-total-value="<%= @flashcards.size %>"
+       data-flashcard-browse-learn-items-value="<%= @learn_items_json %>"
+       data-flashcard-browse-learn-settings-value="<%= @learn_settings_json %>"
+       data-flashcard-browse-progress-value="[]"
+       data-action="keydown->flashcard-browse#handleKey"
+       tabindex="-1"
+       aria-label="<%= t("study_modes.learn.subtitle") %>">
+
+    <%# ── Header ── %>
+    <div class="study-island__header learn-island__header">
+      <div class="study-hdr__left">
+        <%= link_to t("study_modes.exit"), @deck, class: "study-island__exit" %>
+      </div>
+
+      <div class="study-hdr__center">
+        <div class="study-island__title-block">
+          <h2 class="study-island__title"><%= @deck.name %></h2>
+          <p class="study-island__subtitle"><%= t("study_modes.learn.subtitle") %></p>
+        </div>
+      </div>
+
+      <div class="study-hdr__right">
+        <div class="study-island__stats">
+          <div class="learn-hdr__stat learn-hdr__stat--new">
+            <span class="learn-hdr__stat-value"
+                  data-flashcard-browse-target="learnNewCount">
+              <%= @learn_session.learn_session_items.where(status: "unseen").count %>
+            </span>
+            <span class="learn-hdr__stat-label"><%= t("study_modes.learn.new_cards") %></span>
+          </div>
+          <div class="learn-hdr__stat learn-hdr__stat--weak">
+            <span class="learn-hdr__stat-value"
+                  data-flashcard-browse-target="learnWeakCount">0</span>
+            <span class="learn-hdr__stat-label"><%= t("study_modes.learn.weak_cards") %></span>
+          </div>
+          <div class="learn-hdr__stat learn-hdr__stat--mastery">
+            <span class="learn-hdr__stat-value"
+                  data-flashcard-browse-target="learnMasteryPct">0%</span>
+            <span class="learn-hdr__stat-label"><%= t("study_modes.learn.mastery_pct") %></span>
+          </div>
+        </div>
+        <button class="study-hdr__btn" type="button"
+                aria-label="<%= t("learn.settings.title") %>"
+                data-action="click->flashcard-browse#openLearnSettings">
+          <%= render "shared/icons/cog" %>
+        </button>
+      </div>
+    </div>
+
+    <%# ── Progress bar ── %>
+    <div class="study-island__progress-wrap">
       <div class="study-island__progress">
         <div class="study-island__progress-fill"
-             style="width: <%= @learn_session.completion_pct %>%"></div>
+             data-flashcard-browse-target="progressFill"
+             style="width: 0%"></div>
       </div>
-      <span class="study-island__progress-label"><%= @learn_session.completion_pct %>%</span>
     </div>
-  <% end %>
 
-  <%= turbo_frame_tag "learn_card" do %>
-    <% if @learn_session.nil? || @deck.flashcards.empty? %>
-      <%= render "shared/empty_state",
-            icon: "academic_cap",
-            title: t("study_modes.no_cards_title"),
-            description: t("study_modes.learn.empty_description"),
-            variant: :default %>
+    <%# ── Card stage ── %>
+    <div class="fb__stage" data-controller="flashcard">
+      <% @flashcards.each_with_index do |card, index| %>
+        <div class="flashcard-browse__slide"
+             data-index="<%= index %>"
+             data-flashcard-id="<%= card.id %>"
+             data-front-lang="<%= card.front_language.presence || '' %>"
+             data-back-lang="<%= card.back_language.presence || '' %>"
+             data-flipped="false"
+             <%= index > 0 ? "hidden" : "" %>>
 
-    <% elsif @current_item.nil? %>
-      <div class="learn-summary">
-        <div class="session-summary__icon">🎓</div>
-        <h3 class="session-summary__title"><%= t("study_modes.learn.summary_title") %></h3>
-        <div class="session-summary__stats">
-          <div class="session-summary__stat">
-            <span class="session-summary__value"><%= @learn_session.cards_total %></span>
-            <span class="session-summary__label"><%= t("study_modes.learn.studied") %></span>
-          </div>
-          <div class="session-summary__stat">
-            <span class="session-summary__value">
-              <%= format_study_time(@learn_session.elapsed_seconds) %>
-            </span>
-            <span class="session-summary__label"><%= t("study_modes.learn.time_spent") %></span>
+          <div class="fb__card-wrap">
+            <div class="flashcard-card"
+                 data-action="click->flashcard-browse#flip">
+              <div class="flashcard-card__inner">
+                <div class="flashcard-card__face flashcard-card__face--front <%= 'flashcard-card__face--has-image' if card.image.attached? %>">
+                  <% if card.image.attached? %>
+                    <div class="flashcard-card__img-wrap">
+                      <%= image_tag rails_blob_path(card.image, disposition: "inline"),
+                            class: "flashcard-card__img", alt: "" %>
+                    </div>
+                    <div class="flashcard-card__text"><%= card.front_content %></div>
+                  <% else %>
+                    <%= card.front_content %>
+                  <% end %>
+                </div>
+                <div class="flashcard-card__face flashcard-card__face--back">
+                  <%= card.back_content %>
+                </div>
+              </div>
+            </div>
+
+            <button class="fb__flip-bar"
+                    data-action="click->flashcard-browse#flip"
+                    data-flashcard-browse-target="flipBar">
+              <span class="fb__flip-hint-text"><%= t("study_modes.learn.reveal") %></span>
+            </button>
+            <% if @deck.learn_hints_enabled %>
+              <div class="learn-hint">
+                <%= t("learn.hint_prefix") %>
+                <strong><%= card.back_content.to_s.split.first %></strong>
+              </div>
+            <% end %>
           </div>
         </div>
-        <p class="session-summary__sub"><%= t("study_modes.learn.summary_sub") %></p>
-        <div class="learn-summary__actions">
-          <%= link_to t("study_modes.learn.study_again"), learn_deck_path(@deck), class: "btn btn--primary btn--sm",
-                data: { turbo_action: "replace" } %>
+      <% end %>
+    </div>
+
+    <%# ── Pre-flip zone (shown before flip; hidden after) ── %>
+    <div class="learn-preflip-bar"
+         data-flashcard-browse-target="learnHintZone">
+      <% if @deck.learn_hints_enabled %>
+        <button class="learn-preflip-hint-btn" type="button"
+                data-action="click->flashcard-browse#showHint">
+          <%= t("learn.hint") %>
+        </button>
+      <% end %>
+    </div>
+
+    <%# ── Feedback bar (shown after flip) ── %>
+    <div class="learn-feedback-bar"
+         data-flashcard-browse-target="learnFeedbackBar"
+         hidden>
+      <button class="learn-feedback-btn learn-feedback-btn--dont-know"
+              data-action="click->flashcard-browse#dontKnow"
+              aria-keyshortcuts="d">
+        <span class="learn-feedback-btn__label"><%= t("study_modes.learn.dont_know") %></span>
+        <kbd class="learn-feedback-btn__kbd">D</kbd>
+      </button>
+      <button class="learn-feedback-btn learn-feedback-btn--confused"
+              data-action="click->flashcard-browse#confused"
+              aria-keyshortcuts="c">
+        <span class="learn-feedback-btn__label"><%= t("study_modes.learn.confused") %></span>
+        <kbd class="learn-feedback-btn__kbd">C</kbd>
+      </button>
+      <button class="learn-feedback-btn learn-feedback-btn--got-it"
+              data-action="click->flashcard-browse#gotIt"
+              aria-keyshortcuts="g">
+        <span class="learn-feedback-btn__label"><%= t("study_modes.learn.got_it") %></span>
+        <kbd class="learn-feedback-btn__kbd">G</kbd>
+      </button>
+    </div>
+
+    <%# ── Keyboard hint ── %>
+    <p class="keyboard-hint" aria-hidden="true"><%= t("study_modes.learn.progress_header") %></p>
+
+    <%# ── Completion screen (shown when isComplete()) ── %>
+    <div class="learn-complete"
+         data-flashcard-browse-target="learnComplete"
+         hidden>
+      <div class="session-summary__icon">🎓</div>
+      <h3 class="session-summary__title"><%= t("study_modes.learn.summary_title") %></h3>
+      <div class="session-summary__stats">
+        <div class="session-summary__stat">
+          <span class="session-summary__value"
+                data-flashcard-browse-target="learnCompleteCount">0</span>
+          <span class="session-summary__label"><%= t("learn.complete.cards_learned") %></span>
+        </div>
+        <div class="session-summary__stat">
+          <span class="session-summary__value"
+                data-flashcard-browse-target="learnCompleteWeakImproved">0</span>
+          <span class="session-summary__label"><%= t("learn.complete.weak_improved") %></span>
+        </div>
+        <div class="session-summary__stat">
+          <span class="session-summary__value"
+                data-flashcard-browse-target="learnCompleteMastery">0%</span>
+          <span class="session-summary__label"><%= t("study_modes.learn.mastery_pct") %></span>
         </div>
       </div>
+      <div class="learn-complete__actions">
+        <%= link_to t("learn.complete.retry_weak"),
+              learn_deck_path(@deck, weak_only: true),
+              class: "btn btn--primary btn--sm" %>
+        <%= link_to t("learn.complete.practice_again"),
+              learn_deck_path(@deck, restart: true),
+              class: "btn btn--secondary btn--sm" %>
+        <%= link_to t("learn.complete.switch_to_study"),
+              study_deck_path(@deck),
+              class: "btn btn--ghost btn--sm" %>
+      </div>
+    </div>
 
-    <% else %>
-      <%= render "decks/learn_card", item: @current_item, learn_session: @learn_session %>
-    <% end %>
-  <% end %>
-</div>
+    <%# ── Stub targets required by controller guards ── %>
+    <button data-flashcard-browse-target="prevBtn" hidden aria-hidden="true"></button>
+    <button data-flashcard-browse-target="nextBtn" hidden aria-hidden="true"></button>
+
+    <%# ── Learn settings drawer ── %>
+    <div class="learn-options"
+         data-flashcard-browse-target="optionsPanel"
+         aria-hidden="true">
+      <div class="learn-options__header">
+        <h3 class="learn-options__title"><%= t("learn.settings.title") %></h3>
+        <button class="learn-options__close" type="button"
+                data-action="click->flashcard-browse#closeLearnSettings"
+                aria-label="<%= t("shared.close") %>">
+          <%= render "shared/icons/x_mark" %>
+        </button>
+      </div>
+      <div class="learn-options__body">
+        <%= form_with url: learn_settings_deck_path(@deck), method: :patch,
+                      class: "learn-options__form" do |f| %>
+
+          <div class="learn-options__row">
+            <%= label_tag "deck_learn_new_cards_limit", t("learn.settings.new_cards_limit"),
+                          class: "learn-options__label" %>
+            <%= select_tag "deck[learn_new_cards_limit]",
+                  options_for_select([
+                    [t("learn.settings.limit_5"),    5],
+                    [t("learn.settings.limit_10"),  10],
+                    [t("learn.settings.limit_15"),  15],
+                    [t("learn.settings.limit_20"),  20],
+                    [t("learn.settings.limit_all"),  0]
+                  ], @deck.learn_new_cards_limit),
+                  id: "deck_learn_new_cards_limit",
+                  class: "learn-options__select" %>
+          </div>
+
+          <div class="learn-options__row">
+            <%= label_tag "deck_learn_mastery_threshold", t("learn.settings.mastery_threshold"),
+                          class: "learn-options__label" %>
+            <%= select_tag "deck[learn_mastery_threshold]",
+                  options_for_select([
+                    [t("learn.settings.threshold_60"), 60],
+                    [t("learn.settings.threshold_70"), 70],
+                    [t("learn.settings.threshold_80"), 80],
+                    [t("learn.settings.threshold_90"), 90]
+                  ], @deck.learn_mastery_threshold),
+                  id: "deck_learn_mastery_threshold",
+                  class: "learn-options__select" %>
+          </div>
+
+          <div class="learn-options__row">
+            <%= label_tag "deck_learn_hints_enabled", t("learn.settings.hints"),
+                          class: "learn-options__label" %>
+            <%= select_tag "deck[learn_hints_enabled]",
+                  options_for_select([
+                    [t("learn.settings.hints_on"),  "true"],
+                    [t("learn.settings.hints_off"), "false"]
+                  ], @deck.learn_hints_enabled.to_s),
+                  id: "deck_learn_hints_enabled",
+                  class: "learn-options__select" %>
+          </div>
+
+          <div class="learn-options__row">
+            <%= label_tag "deck_learn_weak_cards_priority", t("learn.settings.weak_priority"),
+                          class: "learn-options__label" %>
+            <%= select_tag "deck[learn_weak_cards_priority]",
+                  options_for_select([
+                    [t("learn.settings.priority_low"),    "low"],
+                    [t("learn.settings.priority_normal"), "normal"],
+                    [t("learn.settings.priority_high"),   "high"]
+                  ], @deck.learn_weak_cards_priority),
+                  id: "deck_learn_weak_cards_priority",
+                  class: "learn-options__select" %>
+          </div>
+
+          <%= submit_tag t("learn.settings.apply"), class: "learn-options__apply-btn" %>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="learn-options__overlay"
+         data-flashcard-browse-target="optionsOverlay"
+         data-action="click->flashcard-browse#closeLearnSettings"
+         hidden></div>
+  </div>
+<% end %>

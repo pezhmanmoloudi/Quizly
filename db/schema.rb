@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_06_23_224001) do
+ActiveRecord::Schema[8.1].define(version: 2026_06_24_133525) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
@@ -86,6 +86,10 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_23_224001) do
     t.text "description"
     t.integer "flashcards_count", default: 0, null: false
     t.string "language_code"
+    t.boolean "learn_hints_enabled", default: true, null: false
+    t.integer "learn_mastery_threshold", default: 80, null: false
+    t.integer "learn_new_cards_limit", default: 10, null: false
+    t.string "learn_weak_cards_priority", default: "normal", null: false
     t.string "name", null: false
     t.string "password_digest"
     t.integer "source_deck_id"
@@ -143,10 +147,13 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_23_224001) do
 
   create_table "learn_session_items", force: :cascade do |t|
     t.integer "attempts", default: 0, null: false
+    t.integer "confusion_count", default: 0, null: false
     t.integer "correct_streak", default: 0, null: false
     t.datetime "created_at", null: false
     t.integer "flashcard_id", null: false
+    t.datetime "last_seen_at"
     t.integer "learn_session_id", null: false
+    t.integer "mastery_score", default: 0, null: false
     t.integer "position", null: false
     t.string "status", default: "unseen", null: false
     t.datetime "updated_at", null: false

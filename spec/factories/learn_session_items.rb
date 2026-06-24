@@ -6,5 +6,8 @@ FactoryBot.define do
     attempts       { 0 }
     correct_streak { 0 }
     sequence(:position) { |n| n }
+    mastery_score   { 0 }
+    confusion_count { 0 }
+    last_seen_at    { nil }
   end
 end

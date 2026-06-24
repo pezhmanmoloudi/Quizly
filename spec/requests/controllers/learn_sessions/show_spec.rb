@@ -62,11 +62,57 @@ RSpec.describe "LearnSessions#show", type: :request do
         expect(response).to have_http_status(:ok)
       end
 
-      it "renders the stats header with timer and mastered badges" do
+      it "renders the learn mode stats header" do
         create(:flashcard, deck: deck)
         get learn_deck_path(deck)
         expect(response.body).to include("study-island__stats")
-        expect(response.body).to include("learn_counter")
+        expect(response.body).to include("learnNewCount")
+        expect(response.body).to include("learnMasteryPct")
+      end
+
+      it "renders flashcard slides for the engine" do
+        create(:flashcard, deck: deck)
+        get learn_deck_path(deck)
+        expect(response.body).to include("flashcard-browse__slide")
+        expect(response.body).to include("flashcard-browse#flip")
+      end
+
+      it "renders the feedback bar" do
+        create(:flashcard, deck: deck)
+        get learn_deck_path(deck)
+        expect(response.body).to include("learn-feedback-bar")
+        expect(response.body).to include("flashcard-browse#gotIt")
+      end
+    end
+
+    context "with weak_only param" do
+      before { sign_in(user) }
+
+      let!(:flashcard1) { create(:flashcard, deck: deck) }
+      let!(:flashcard2) { create(:flashcard, deck: deck) }
+      let!(:prev_session) do
+        s = create(:learn_session, user: user, deck: deck,
+                   cards_total: 2, finished_at: 1.hour.ago)
+        create(:learn_session_item, learn_session: s, flashcard: flashcard1,
+               mastery_score: 20, position: 0)
+        create(:learn_session_item, learn_session: s, flashcard: flashcard2,
+               mastery_score: 90, position: 1)
+        s
+      end
+
+      it "creates a new session containing only weak cards from the previous session" do
+        expect {
+          get learn_deck_path(deck, weak_only: true)
+        }.to change(LearnSession, :count).by(1)
+        new_session = LearnSession.last
+        expect(new_session.learn_session_items.pluck(:flashcard_id)).to eq [flashcard1.id]
+      end
+
+      it "returns 200 when no previous session exists for the deck" do
+        empty_deck = create(:deck, user: user)
+        create(:flashcard, deck: empty_deck)
+        get learn_deck_path(empty_deck, weak_only: true)
+        expect(response).to have_http_status(:ok)
       end
     end
 

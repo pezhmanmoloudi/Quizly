@@ -75,14 +75,34 @@ RSpec.describe LearnSession, type: :model do
   end
 
   describe ".build_for" do
+    let(:user) { create(:user) }
+    let(:deck) { create(:deck, user: user) }
+
     it "builds a session with items for every deck card" do
-      user = create(:user)
-      deck = create(:deck, user: user)
       3.times { create(:flashcard, deck: deck) }
       ls = LearnSession.build_for(deck: deck, user: user)
       ls.save!
       expect(ls.learn_session_items.count).to eq 3
       expect(ls.cards_total).to eq 3
+    end
+
+    context "with flashcard_ids filter" do
+      it "creates items only for the specified flashcards" do
+        fc1 = create(:flashcard, deck: deck)
+        fc2 = create(:flashcard, deck: deck)
+        ls  = LearnSession.build_for(deck: deck, user: user, flashcard_ids: [fc1.id])
+        ls.save!
+        expect(ls.learn_session_items.pluck(:flashcard_id)).to eq [fc1.id]
+        expect(ls.cards_total).to eq 1
+      end
+
+      it "ignores IDs not belonging to the deck" do
+        fc1   = create(:flashcard, deck: deck)
+        other = create(:flashcard, deck: create(:deck, user: user))
+        ls    = LearnSession.build_for(deck: deck, user: user, flashcard_ids: [fc1.id, other.id])
+        ls.save!
+        expect(ls.learn_session_items.pluck(:flashcard_id)).to eq [fc1.id]
+      end
     end
   end
 end

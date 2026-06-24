@@ -475,16 +475,15 @@ fa:
       time_spent: زمان صرف‌شده
       summary_sub: عالی بود — همه کارت‌ها تسلط یافتند.
       study_again: دوباره مطالعه کن
-    learn_card:
-      prompt: این اصطلاح را تعریف کن
-      your_answer: پاسخ تو
-      correct: درست!
-      incorrect: نادرست
-      correct_answer: 'پاسخ درست:'
-      type_answer: پاسخت را بنویس…
-      submit: ارسال
-      keyboard_hint: Enter برای ارسال
-      continue: ادامه →
+      progress_header: Space to flip · G Got it · C Confused · D Don't know
+      reveal: Click to reveal
+      dont_know: Don't know
+      confused: Confused
+      got_it: Got it
+      mastery_pct: Mastery
+      weak_cards: Weak
+      new_cards: New
+      complete_subtitle: Every card is now above the mastery threshold.
     test:
       subtitle: دانش خود را بسنج
       question_label: سوال
@@ -519,6 +518,38 @@ fa:
       streak: رشته
       progress_label: "%{pct}% پیشرفت"
       matched_counter: 'تطبیق‌یافته: %{matched} / %{total}'
+learn:
+  settings:
+    title: Learn Settings
+    new_cards_limit: New Cards Per Session
+    mastery_threshold: Mastery Threshold
+    hints: Show Hints
+    hints_on: "On"
+    hints_off: "Off"
+    weak_priority: Weak Card Priority
+    priority_low: Low
+    priority_normal: Normal
+    priority_high: High
+    apply: Apply
+    saved: Settings saved.
+    invalid: Invalid settings.
+    limit_5: "5 cards"
+    limit_10: "10 cards"
+    limit_15: "15 cards"
+    limit_20: "20 cards"
+    limit_all: All cards
+    threshold_60: "60% (Easy)"
+    threshold_70: "70%"
+    threshold_80: "80% (Default)"
+    threshold_90: "90% (Hard)"
+  hint: Hint
+  hint_prefix: "First word:"
+  complete:
+    cards_learned: Cards learned
+    weak_improved: Weak cards improved
+    practice_again: Practice Again
+    switch_to_study: Switch to Study Mode
+    retry_weak: تکرار کارت‌های ضعیف
   errors:
     not_found:
       flash: This deck is no longer available.

@@ -38,6 +38,7 @@ Rails.application.routes.draw do
       get   :test, to: "test_sessions#show"
       post  :copy, to: "deck_copy#create"
       patch :update_visibility
+      patch :learn_settings, to: "decks/learn_settings#update"
     end
     resources :flashcards, shallow: true, only: [:create, :update, :destroy] do
       member do
@@ -80,7 +81,7 @@ Rails.application.routes.draw do
 
   resources :card_reviews, only: [ :create ]
   resources :study_sessions, only: [ :index ]
-  resources :learn_answers, only: [ :create ]
+  resources :learn_feedbacks, only: [ :create ]
   resources :test_answers, only: [ :create ]
 
   resources :card_progresses, only: [] do

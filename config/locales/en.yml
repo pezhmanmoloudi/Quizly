@@ -467,24 +467,24 @@ en:
       keyboard_hint: Space to reveal · 1 Again · 2 Hard · 3 Good · 4 Easy · Esc to
         exit
     learn:
-      subtitle: Type your answer to master each card
+      subtitle: Learn through guided practice
       mastered_label: Mastered
       empty_description: Add some flashcards to this deck before studying.
       summary_title: All cards mastered!
+      complete_subtitle: Every card is now above the mastery threshold.
       studied: Cards studied
       time_spent: Time spent
       summary_sub: Great work — every card is mastered.
       study_again: Study Again
-    learn_card:
-      prompt: Define this term
-      your_answer: Your answer
-      correct: Correct!
-      incorrect: Incorrect
-      correct_answer: 'Correct answer:'
-      type_answer: Type your answer…
-      submit: Submit
-      keyboard_hint: Enter to submit
-      continue: Continue →
+      restart: Study Again
+      new_cards: New
+      weak_cards: Weak
+      mastery_pct: Mastery
+      got_it: Got it
+      confused: Confused
+      dont_know: Don't know
+      reveal: Click to reveal
+      progress_header: "Space to flip · G Got it · C Confused · D Don't know"
     test:
       subtitle: Test your knowledge
       question_label: Question
@@ -519,6 +519,38 @@ en:
       streak: Streak
       progress_label: "%{pct}% Progress"
       matched_counter: 'Matched: %{matched} / %{total}'
+  learn:
+    settings:
+      title: Learn Settings
+      new_cards_limit: New Cards Per Session
+      mastery_threshold: Mastery Threshold
+      hints: Show Hints
+      hints_on: "On"
+      hints_off: "Off"
+      weak_priority: Weak Card Priority
+      priority_low: Low
+      priority_normal: Normal
+      priority_high: High
+      apply: Apply
+      saved: Settings saved.
+      invalid: Invalid settings.
+      limit_5: "5 cards"
+      limit_10: "10 cards"
+      limit_15: "15 cards"
+      limit_20: "20 cards"
+      limit_all: All cards
+      threshold_60: "60% (Easy)"
+      threshold_70: "70%"
+      threshold_80: "80% (Default)"
+      threshold_90: "90% (Hard)"
+    hint: Hint
+    hint_prefix: "First word:"
+    complete:
+      cards_learned: Cards learned
+      weak_improved: Weak cards improved
+      practice_again: Practice Again
+      switch_to_study: Switch to Study Mode
+      retry_weak: Retry Weak Cards
   errors:
     not_found:
       flash: This deck is no longer available.

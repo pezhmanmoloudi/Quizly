@@ -24,6 +24,10 @@ class Deck < ApplicationRecord
   VISIBILITY_VALUES  = %w[public unlisted private].freeze
   ACCESS_MODE_VALUES = %w[open password].freeze
 
+  LEARN_NEW_CARDS_LIMIT_VALUES   = [5, 10, 15, 20, 0].freeze
+  LEARN_MASTERY_THRESHOLD_VALUES = [60, 70, 80, 90].freeze
+  LEARN_WEAK_PRIORITY_VALUES     = %w[low normal high].freeze
+
   scope :complete,     -> { where(flashcards_count: 1..) }
   scope :discoverable, -> { complete.where(visibility: "public") }
   scope :popular,      -> { order(created_at: :desc) }
@@ -31,6 +35,10 @@ class Deck < ApplicationRecord
   validates :name,               presence: true, length: { maximum: 100 }
   validates :visibility,         inclusion: { in: VISIBILITY_VALUES }
   validates :access_mode,        inclusion: { in: ACCESS_MODE_VALUES }
+  validates :learn_new_cards_limit,    inclusion: { in: LEARN_NEW_CARDS_LIMIT_VALUES }
+  validates :learn_mastery_threshold,  inclusion: { in: LEARN_MASTERY_THRESHOLD_VALUES }
+  validates :learn_hints_enabled,      inclusion: { in: [ true, false ] }
+  validates :learn_weak_cards_priority, inclusion: { in: LEARN_WEAK_PRIORITY_VALUES }
   validates :term_language,       inclusion: { in: Language::ALL_LANGUAGES.keys, allow_blank: true }
   validates :definition_language, inclusion: { in: Language::ALL_LANGUAGES.keys, allow_blank: true }
   validate  :access_mode_compatible_with_visibility
