@@ -433,9 +433,16 @@ ckb:
       key_star: ئەستێرە
       hide: شاردنەوە
       restart: دەستپێکردنەوەی کارتەکان
+      enter_study_mode: شێوازی خوێندن
+      exit_study_mode: "← گەڕانەوە بۆ فلاش‌کارتەکان"
+      study_rate_prompt: چەندە زانیت؟
+      study_cards_due: کارتی پێویست
+      study_session_complete: هەموو کارتە پێویستەکانت پێداچوونەوەیان کرد!
+      study_keyboard_hint: "Space بۆ ئامراژکردن · 1 دووبارە · 2 سەخت · 3 باش · 4 ئاسان"
     study:
       subtitle: کارتەکان بپشکنە و بیرهێنانەوەت بهاکردن
       done_label: تەواوبوو
+      remaining_label: ماوەتەوە
       empty_title: هەموو شتێک تەواوکرا!
       empty_description: هیچ کارتێک ئێستا بۆ پاڕاستنەوە سەرکەوتوو نییە.
       all_cards_tab: هەموو کارتەکان
@@ -450,6 +457,14 @@ ckb:
       hard: سەخت
       good: باش
       easy: ئاسان
+      settings_btn_label: "ڕێکخستنی خوێندنەوە"
+      new_cards_label: "کارتی نوێ"
+      new_cards_all: "هەموو"
+      priority_label: "پێشینە"
+      priority_due: "دواوەی پێشتر"
+      priority_hardest: "سەختترین"
+      apply_settings: "جێبەجێکردن"
+      progress_remaining: "%{count} ماوەتەوە"
       keyboard_hint: بۆشایی بۆ ئاشکراکردن · ١ دووبارە · ٢ سەخت · ٣ باش · ٤ ئاسان ·
         Esc بۆ دەرچوون
     learn:

@@ -1,6 +1,8 @@
 import { Controller } from "@hotwired/stimulus"
 import FlashcardAudioService from "flashcard_audio_service"
 import FlashcardPlaybackService from "flashcard_playback_service"
+import FlashcardEngine from "flashcard_engine"
+import StudySRS from "study_srs"
 
 export default class extends Controller {
   static SETTINGS_KEY  = "quizly.flashcard.settings"
@@ -12,19 +14,26 @@ export default class extends Controller {
     "audioBtn",
     "flipBar",
     "shortcutsPanel", "shortcutsToggleBtn",
-    "trackProgressToggle"
+    "trackProgressToggle",
+    "ratingBar", "studyBar", "dueCount", "studyComplete",
+    "prevBtn", "nextBtn"
   ]
 
-  static values = { total: Number }
+  static values = {
+    total:    Number,
+    mode:     { type: String, default: "browse" },
+    progress: { type: Array,  default: [] }
+  }
 
   // ── Lifecycle ──────────────────────────────────────────────
 
   connect() {
-    // Stable slide references — never reordered
+    // Stable slide references — never reordered, used for DOM rendering only
     this.allSlides = Array.from(this.element.querySelectorAll(".flashcard-browse__slide"))
-    // Navigation order — only this array is mutated on shuffle
-    this.cardOrder = this.allSlides.map((_, i) => i)
-    this.index = 0
+
+    this.engine = new FlashcardEngine(this.allSlides.length)
+    this.engine.on('onCardChange', ({ index, cardIndex }) => this.#renderCard(index, cardIndex))
+    this.engine.on('onFlip',       ({ flipped })          => this.#renderFlip(flipped))
 
     this.#loadSettings()
     this.flipHintCount = parseInt(
@@ -38,8 +47,17 @@ export default class extends Controller {
       getDelay: () => this.settings.autoAdvanceDelay
     })
 
-    if (this.settings.shuffle) this.#buildShuffledOrder()
-    this.#showOnly(0)
+    this.studySRS = null
+    if (this.modeValue === "study" && this.progressValue.length > 0) {
+      this.studySRS = new StudySRS(this.progressValue, "/card_progresses/:id/grade")
+      this.engine.setOrder(this.studySRS.getNextQueue(this.allSlides))
+    } else if (this.settings.shuffle) {
+      const order = this.allSlides.map((_, i) => i)
+      this.engine.setOrder(this.#buildShuffledIndices(order))
+    }
+
+    this.#initRender()
+    if (this.modeValue === "study") this.#initStudyUI()
     this.#syncSettingsUI()
     this.#updateFlipHint()
     this.element.focus()
@@ -53,21 +71,31 @@ export default class extends Controller {
   // ── Public actions ─────────────────────────────────────────
 
   next() {
+    if (this.modeValue === "study") return
     this.playback.stop()
-    if (this.index < this.#slideCount - 1) this.#goTo(this.index + 1)
+    if (this.engine.currentIndex < this.engine.size - 1) {
+      this.engine.resetFlip(this.settings.startWithBack)
+      this.engine.next()
+      if (this.settings.autoPlayAudio) this.#speakCurrentSide()
+    }
   }
 
   previous() {
+    if (this.modeValue === "study") return
     this.playback.stop()
-    if (this.index > 0) this.#goTo(this.index - 1)
+    if (this.engine.currentIndex > 0) {
+      this.engine.resetFlip(this.settings.startWithBack)
+      this.engine.previous()
+      if (this.settings.autoPlayAudio) this.#speakCurrentSide()
+    }
   }
 
   flip() {
     this.playback.stop()
-    this.#toggleFlipState(this.#currentSlide)
+    this.engine.flip()
     this.#incrementFlipHint()
-    this.#updateAudioBtnState()
     if (this.settings.autoPlayAfterFlip) this.#speakCurrentSide()
+    if (this.modeValue === "study" && this.engine.flipped) this.#showRatingButtons()
   }
 
   speak() {
@@ -77,6 +105,32 @@ export default class extends Controller {
   handleKey(event) {
     if (this.#isFormElementFocused()) return
     if (event.ctrlKey || event.metaKey || event.altKey) return
+
+    if (this.modeValue === "study") {
+      switch (event.key) {
+        case " ":
+          event.preventDefault()
+          this.flip()
+          break
+        case "1":
+          event.preventDefault()
+          this.gradeAgain()
+          break
+        case "2":
+          event.preventDefault()
+          this.gradeHard()
+          break
+        case "3":
+          event.preventDefault()
+          this.gradeGood()
+          break
+        case "4":
+          event.preventDefault()
+          this.gradeEasy()
+          break
+      }
+      return
+    }
 
     switch (event.key) {
       case " ":
@@ -123,14 +177,12 @@ export default class extends Controller {
 
   toggleStarredOnly(event) {
     const allIndices = this.allSlides.map((_, i) => i)
-    if (event.target.checked) {
-      this.cardOrder = allIndices.filter(i => this.allSlides[i].dataset.starred === "true")
-      if (this.settings.shuffle) this.#buildShuffledOrder()
-    } else {
-      this.cardOrder = allIndices
-      if (this.settings.shuffle) this.#buildShuffledOrder()
-    }
-    this.#showOnly(0)
+    let order = event.target.checked
+      ? allIndices.filter(i => this.allSlides[i].dataset.starred === "true")
+      : allIndices
+    if (this.settings.shuffle) order = this.#buildShuffledIndices(order)
+    this.engine.setOrder(order)
+    this.#initRender()
   }
 
   // ── Display section toggles ────────────────────────────────
@@ -139,21 +191,20 @@ export default class extends Controller {
     this.settings.shuffle = event.target.checked
     this.#persistSettings()
     const starredOnly = this.element.querySelector("[data-setting='starredOnly']")?.checked
-    const baseIndices  = this.allSlides.map((_, i) => i)
-    this.cardOrder = starredOnly
+    const baseIndices = this.allSlides.map((_, i) => i)
+    let order = starredOnly
       ? baseIndices.filter(i => this.allSlides[i].dataset.starred === "true")
       : baseIndices
-    if (this.settings.shuffle) this.#buildShuffledOrder()
-    this.#showOnly(0)
+    if (this.settings.shuffle) order = this.#buildShuffledIndices(order)
+    this.engine.setOrder(order)
+    this.#initRender()
   }
 
   toggleStartSide(event) {
     this.settings.startWithBack = event.target.value === "back"
     this.#persistSettings()
-    const slide = this.#currentSlide
-    slide.dataset.flipped = this.settings.startWithBack ? "true" : "false"
-    this.#applyFlipState(slide)
-    this.#updateAudioBtnState()
+    this.engine.resetFlip(this.settings.startWithBack)
+    this.#renderFlip(this.engine.flipped)
   }
 
   toggleBothSides(event) {
@@ -205,73 +256,123 @@ export default class extends Controller {
       : (btn.dataset.hideLabel || "Hide")
   }
 
+  // ── Study mode: public grade actions ──────────────────────
+
+  async gradeAgain() { await this.#grade("again") }
+  async gradeHard()  { await this.#grade("hard")  }
+  async gradeGood()  { await this.#grade("good")  }
+  async gradeEasy()  { await this.#grade("easy")  }
+
   // ── Private: slide resolution ──────────────────────────────
 
-  get #currentSlide() { return this.allSlides[this.cardOrder[this.index]] }
-  get #slideCount()   { return this.cardOrder.length }
+  get #currentSlide() { return this.allSlides[this.engine.currentCardIndex] }
 
-  #goTo(index) {
-    this.#currentSlide.hidden = true
-    this.index = index
-    const slide = this.#currentSlide
-    slide.hidden = false
-    // startWithBack applies to manual navigation only; auto-advance ignores it
-    slide.dataset.flipped = this.settings.startWithBack ? "true" : "false"
-    this.#applyFlipState(slide)
-    this.#updateCounter()
-    this.#updateAudioBtnState()
-    if (this.settings.autoPlayAudio) this.#speakCurrentSide()
-  }
+  // ── Private: render handlers ───────────────────────────────
 
-  #showOnly(index) {
+  #renderCard(index, cardIndex) {
     this.allSlides.forEach(s => { s.hidden = true })
-    this.index = index
-    if (!this.#currentSlide) return
-    this.#currentSlide.hidden = false
-    this.#currentSlide.dataset.flipped = this.settings.startWithBack ? "true" : "false"
-    this.#applyFlipState(this.#currentSlide)
+    const slide = this.allSlides[cardIndex]
+    if (!slide) return
+    slide.hidden = false
+    this.#renderFlip(this.engine.flipped)
     this.#updateCounter()
+    if (this.modeValue === "study") this.#hideRatingButtons()
+  }
+
+  #renderFlip(flipped) {
+    const slide = this.#currentSlide
+    if (!slide) return
+    slide.dataset.flipped = flipped ? "true" : "false"
+    slide.querySelector(".flashcard-card__inner")?.classList.toggle("is-flipped", flipped)
     this.#updateAudioBtnState()
   }
 
-  // ── Private: flip state ────────────────────────────────────
-
-  #toggleFlipState(slide) {
-    slide.dataset.flipped = slide.dataset.flipped === "true" ? "false" : "true"
-    this.#applyFlipState(slide)
+  #initRender() {
+    this.allSlides.forEach(s => { s.hidden = true })
+    const slide = this.allSlides[this.engine.currentCardIndex]
+    if (!slide) return
+    slide.hidden = false
+    this.engine.resetFlip(this.settings.startWithBack)
+    this.#renderFlip(this.engine.flipped)
+    this.#updateCounter()
   }
 
-  #applyFlipState(slide) {
-    const flipped = slide.dataset.flipped === "true"
-    slide.querySelector(".flashcard-card__inner")?.classList.toggle("is-flipped", flipped)
-  }
+  // ── Private: playback callbacks ────────────────────────────
 
   // Called by playback service — always flips to back, never toggles
   #flipToBack() {
-    const slide = this.#currentSlide
-    if (!slide) return
-    slide.dataset.flipped = "true"
-    this.#applyFlipState(slide)
-    this.#updateAudioBtnState()
+    if (!this.#currentSlide) return
+    this.engine.setFlipped(true)
     if (this.settings.autoPlayAfterFlip) this.#speakCurrentSide()
   }
 
   // Called by playback service — returns false when at last card
   #advanceToNext() {
-    if (this.index >= this.#slideCount - 1) return false
-    this.#goTo(this.index + 1)
+    if (this.engine.currentIndex >= this.engine.size - 1) return false
+    this.engine.resetFlip(this.settings.startWithBack)
+    this.engine.next()
+    if (this.settings.autoPlayAudio) this.#speakCurrentSide()
     return true
+  }
+
+  // ── Private: study mode ────────────────────────────────────
+
+  async #grade(rating) {
+    if (!this.studySRS) return
+    const slide = this.#currentSlide
+    if (!slide?.dataset.cardProgressId) return
+
+    await this.studySRS.gradeCard(slide.dataset.cardProgressId, rating)
+
+    const newOrder  = this.studySRS.getNextQueue(this.allSlides)
+    this.engine.setOrder(newOrder)
+    this.#updateDueCount()
+
+    if (this.studySRS.getDueCount(this.allSlides) === 0) {
+      this.#showStudyComplete()
+    } else {
+      this.engine.resetFlip(false)
+      this.engine.goTo(0)
+    }
+  }
+
+  #initStudyUI() {
+    if (this.hasPrevBtnTarget) this.prevBtnTarget.hidden = true
+    if (this.hasNextBtnTarget) this.nextBtnTarget.hidden = true
+    if (this.hasStudyBarTarget) this.studyBarTarget.hidden = false
+    this.#updateDueCount()
+  }
+
+  #showRatingButtons() {
+    if (this.hasRatingBarTarget) this.ratingBarTarget.hidden = false
+  }
+
+  #hideRatingButtons() {
+    if (this.hasRatingBarTarget) this.ratingBarTarget.hidden = true
+  }
+
+  #updateDueCount() {
+    if (!this.studySRS || !this.hasDueCountTarget) return
+    this.dueCountTarget.textContent = this.studySRS.getDueCount(this.allSlides)
+  }
+
+  #showStudyComplete() {
+    this.#hideRatingButtons()
+    const stage = this.element.querySelector(".fb__stage")
+    if (stage) stage.hidden = true
+    if (this.hasStudyCompleteTarget) this.studyCompleteTarget.hidden = false
+    if (this.hasDueCountTarget) this.dueCountTarget.textContent = "0"
   }
 
   // ── Private: shuffle ───────────────────────────────────────
 
-  #buildShuffledOrder() {
-    const arr = [...this.cardOrder]
-    for (let i = arr.length - 1; i > 0; i--) {
+  #buildShuffledIndices(arr) {
+    const result = [...arr]
+    for (let i = result.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1))
-      ;[arr[i], arr[j]] = [arr[j], arr[i]]
+      ;[result[i], result[j]] = [result[j], result[i]]
     }
-    this.cardOrder = arr
+    return result
   }
 
   // ── Private: audio ─────────────────────────────────────────
@@ -279,7 +380,7 @@ export default class extends Controller {
   #speakCurrentSide() {
     const slide = this.#currentSlide
     if (!slide) return
-    const isFlipped = slide.dataset.flipped === "true"
+    const isFlipped = this.engine.flipped
     const selector  = isFlipped
       ? ".flashcard-card__face--back"
       : ".flashcard-card__face--front"
@@ -294,7 +395,7 @@ export default class extends Controller {
     if (!this.hasAudioBtnTarget) return
     const slide = this.#currentSlide
     if (!slide) return
-    const isFlipped = slide.dataset.flipped === "true"
+    const isFlipped = this.engine.flipped
     const lang = isFlipped ? slide.dataset.backLang : slide.dataset.frontLang
     const ok   = this.audio.isLangSupported(lang)
     this.audioBtnTarget.disabled = !ok
@@ -326,14 +427,16 @@ export default class extends Controller {
   // ── Private: counter ───────────────────────────────────────
 
   #updateCounter() {
+    const pos   = this.engine.currentIndex + 1
+    const total = this.engine.size
     if (this.hasCurrentDisplayTarget) {
-      this.currentDisplayTarget.textContent = this.index + 1
+      this.currentDisplayTarget.textContent = pos
     }
     if (this.hasTotalDisplayTarget) {
-      this.totalDisplayTarget.textContent = this.#slideCount
+      this.totalDisplayTarget.textContent = total
     }
-    if (this.hasProgressFillTarget && this.#slideCount) {
-      const pct = Math.round((this.index + 1) / this.#slideCount * 100)
+    if (this.hasProgressFillTarget && total) {
+      const pct = Math.round(pos / total * 100)
       this.progressFillTarget.style.width = `${pct}%`
     }
   }

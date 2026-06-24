@@ -441,9 +441,16 @@ ru:
       key_star: Отметить
       hide: Скрыть
       restart: Перезапустить карточки
+      enter_study_mode: Режим обучения
+      exit_study_mode: "← Назад к карточкам"
+      study_rate_prompt: Насколько хорошо вы это знали?
+      study_cards_due: карточек к повторению
+      study_session_complete: Вы повторили все запланированные карточки!
+      study_keyboard_hint: "Пробел — перевернуть · 1 Снова · 2 Сложно · 3 Хорошо · 4 Легко"
     study:
       subtitle: Просматривайте карточки и оценивайте своё запоминание
       done_label: Выполнено
+      remaining_label: Осталось
       empty_title: Всё сделано!
       empty_description: Сейчас нет карточек для повторения.
       all_cards_tab: Все карточки
@@ -458,6 +465,14 @@ ru:
       hard: Сложно
       good: Хорошо
       easy: Легко
+      settings_btn_label: "Настройки занятия"
+      new_cards_label: "Новые карточки"
+      new_cards_all: "Все"
+      priority_label: "Приоритет"
+      priority_due: "Сначала просроченные"
+      priority_hardest: "Сначала сложные"
+      apply_settings: "Применить"
+      progress_remaining: "осталось %{count}"
       keyboard_hint: Пробел для показа · 1 Ещё раз · 2 Сложно · 3 Хорошо · 4 Легко
         · Esc для выхода
     learn:

@@ -432,9 +432,16 @@ fa:
       key_star: ستاره
       hide: پنهان کردن
       restart: شروع مجدد فلش‌کارت‌ها
+      enter_study_mode: حالت مطالعه
+      exit_study_mode: "← بازگشت به فلش‌کارت‌ها"
+      study_rate_prompt: چقدر می‌دانستید؟
+      study_cards_due: کارت‌های معوق
+      study_session_complete: همه کارت‌های معوق را مرور کردید!
+      study_keyboard_hint: "فاصله برای برگرداندن · 1 دوباره · 2 سخت · 3 خوب · 4 آسان"
     study:
       subtitle: کارت‌ها را مرور کن و به حافظه‌ات امتیاز بده
       done_label: انجام‌شده
+      remaining_label: باقی‌مانده
       empty_title: همه چیز تمام شد!
       empty_description: الان هیچ کارتی برای مرور سررسیده نشده.
       all_cards_tab: همه کارت‌ها
@@ -449,6 +456,14 @@ fa:
       hard: سخت
       good: خوب
       easy: آسان
+      settings_btn_label: "تنظیمات مطالعه"
+      new_cards_label: "کارت‌های جدید"
+      new_cards_all: "همه"
+      priority_label: "اولویت"
+      priority_due: "سررسیده اول"
+      priority_hardest: "سخت‌ترین اول"
+      apply_settings: "اعمال"
+      progress_remaining: "%{count} باقی‌مانده"
       keyboard_hint: فاصله برای نمایش · ۱ دوباره · ۲ سخت · ۳ خوب · ۴ آسان · Esc برای
         خروج
     learn:

@@ -440,9 +440,16 @@ fr:
       key_star: Favori
       hide: Masquer
       restart: Recommencer les flashcards
+      enter_study_mode: Mode révision
+      exit_study_mode: "← Retour aux flashcards"
+      study_rate_prompt: À quel point le saviez-vous?
+      study_cards_due: cartes à revoir
+      study_session_complete: Vous avez révisé toutes les cartes dues!
+      study_keyboard_hint: "Espace pour retourner · 1 À revoir · 2 Difficile · 3 Bien · 4 Facile"
     study:
       subtitle: Révisez les cartes et évaluez votre rappel
       done_label: Terminées
+      remaining_label: Restant
       empty_title: À jour !
       empty_description: Aucune carte n'est due pour révision pour l'instant.
       all_cards_tab: Toutes les cartes
@@ -457,6 +464,14 @@ fr:
       hard: Difficile
       good: Bien
       easy: Facile
+      settings_btn_label: "Paramètres d'étude"
+      new_cards_label: "Nouvelles cartes"
+      new_cards_all: "Tout"
+      priority_label: "Priorité"
+      priority_due: "Échues d'abord"
+      priority_hardest: "Plus difficiles d'abord"
+      apply_settings: "Appliquer"
+      progress_remaining: "%{count} restantes"
       keyboard_hint: Espace pour révéler · 1 À nouveau · 2 Difficile · 3 Bien · 4
         Facile · Échap pour quitter
     learn:

@@ -79,11 +79,60 @@ RSpec.describe "StudySessions#show", type: :request do
         expect(response).to have_http_status(:ok)
       end
 
-      it "renders the stats header with subtitle and streak badge" do
+      it "renders the streak chip in the header" do
         create(:card_progress, :due, user: user, flashcard: create(:flashcard, deck: deck))
         get study_deck_path(deck)
-        expect(response.body).to include("study-island__stats")
-        expect(response.body).to include("study-island__subtitle")
+        expect(response.body).to include("study-hdr__chip--streak")
+      end
+
+      it "shows remaining cards count when cards are due" do
+        create(:card_progress, :due, user: user, flashcard: create(:flashcard, deck: deck))
+        get study_deck_path(deck)
+        expect(response.body).to include("study-hdr__chip--remaining")
+      end
+
+      it "does not render a timer" do
+        create(:card_progress, :due, user: user, flashcard: create(:flashcard, deck: deck))
+        get study_deck_path(deck)
+        expect(response.body).not_to include("study-mode-target=\"timer\"")
+      end
+
+      it "renders the settings drawer and gear button" do
+        create(:card_progress, :due, user: user, flashcard: create(:flashcard, deck: deck))
+        get study_deck_path(deck)
+        expect(response.body).to include("study-hdr__btn")
+        expect(response.body).to include("study-options")
+      end
+    end
+
+    context "with new_limit param" do
+      before { sign_in(user) }
+
+      it "shows only new cards up to the specified limit" do
+        create_list(:flashcard, 5, deck: deck).each do |card|
+          create(:card_progress, :due, user: user, flashcard: card, repetitions: 0)
+        end
+        get study_deck_path(deck, new_limit: 2)
+        expect(response).to have_http_status(:ok)
+        expect(response.body).to include("study-card")
+      end
+
+      it "shows review cards before new cards by default" do
+        review_card = create(:flashcard, deck: deck)
+        new_card    = create(:flashcard, deck: deck)
+        create(:card_progress, :due, user: user, flashcard: review_card, repetitions: 3)
+        create(:card_progress, :due, user: user, flashcard: new_card, repetitions: 0)
+        get study_deck_path(deck)
+        expect(response.body).to include(review_card.front_content)
+      end
+
+      it "applies hardest priority by ordering review cards by ease_factor ascending" do
+        easy_card = create(:flashcard, deck: deck)
+        hard_card = create(:flashcard, deck: deck)
+        create(:card_progress, :due, user: user, flashcard: easy_card, repetitions: 2, ease_factor: 2.5)
+        create(:card_progress, :due, user: user, flashcard: hard_card, repetitions: 2, ease_factor: 1.4)
+        get study_deck_path(deck, priority: "hardest")
+        expect(response.body).to include(hard_card.front_content)
       end
     end
 

@@ -34,8 +34,14 @@
   text-align: center;
 }
 
+.fb__top-end {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  justify-content: flex-end;
+}
+
 .fb__exit {
-  text-align: end;
   color: var(--color-muted);
   text-decoration: none;
   font-size: 0.85rem;
@@ -59,10 +65,10 @@
   transition: width 300ms ease;
 }
 
-/* ── Per-slide action bar (gear left, audio+star right) ── */
+/* ── Per-slide action bar (star right) ── */
 .fb__card-bar {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
 }
 
@@ -446,6 +452,112 @@
 }
 
 .fb-select:focus { outline: 2px solid var(--color-primary); outline-offset: 1px; }
+
+/* ── Study mode ── */
+.fb__study-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  background: var(--color-primary-light, #eff6ff);
+  border: 1px solid var(--color-primary-border, #bfdbfe);
+  border-radius: var(--radius-md);
+  padding: 0.5rem 1rem;
+  font-size: 0.85rem;
+  color: var(--color-primary-text, #1d4ed8);
+}
+
+.fb__study-due {
+  font-weight: 700;
+}
+
+.fb__study-exit {
+  color: var(--color-primary-text, #1d4ed8);
+  font-size: 0.8rem;
+  text-decoration: underline;
+}
+
+.fb__rating-bar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.fb__rating-prompt {
+  font-size: 0.875rem;
+  color: var(--color-muted);
+  margin: 0;
+  font-weight: 500;
+}
+
+.fb__rating-buttons {
+  display: flex;
+  gap: 0.5rem;
+  width: 100%;
+  justify-content: center;
+}
+
+.fb__rating-btn {
+  flex: 1;
+  max-width: 120px;
+  padding: 0.625rem 0.5rem;
+  border-radius: var(--radius-md);
+  border: none;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: filter var(--transition-base);
+}
+
+.fb__rating-btn--again {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.fb__rating-btn--again:hover { filter: brightness(0.95); }
+
+.fb__rating-btn--hard {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.fb__rating-btn--hard:hover { filter: brightness(0.95); }
+
+.fb__rating-btn--good {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.fb__rating-btn--good:hover { filter: brightness(0.95); }
+
+.fb__rating-btn--easy {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+.fb__rating-btn--easy:hover { filter: brightness(0.95); }
+
+.fb__study-complete {
+  text-align: center;
+  padding: 3rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.fb__study-complete-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.fb__study-complete-desc {
+  color: var(--color-muted);
+  font-size: 0.95rem;
+  margin: 0;
+}
 
 /* ── Mobile ── */
 @media (max-width: 540px) {

@@ -13,6 +13,19 @@ RSpec.describe "Decks#flashcard", type: :request do
         expect(response).to have_http_status(:ok)
       end
 
+      it "embeds card progress JSON in study mode" do
+        card = create(:flashcard, deck: deck)
+        create(:card_progress, :due, user: user, flashcard: card)
+        get flashcard_deck_path(deck, mode: "study")
+        expect(response.body).to include("data-flashcard-browse-progress-value")
+        expect(response.body).to include("data-flashcard-browse-mode-value=\"study\"")
+      end
+
+      it "does not embed progress JSON in browse mode" do
+        get flashcard_deck_path(deck)
+        expect(response.body).to include("data-flashcard-browse-mode-value=\"browse\"")
+      end
+
       it "shows all cards" do
         create(:flashcard, deck: deck, front_content: "Front A")
         create(:flashcard, deck: deck, front_content: "Front B")
