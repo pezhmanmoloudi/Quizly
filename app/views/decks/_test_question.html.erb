@@ -57,13 +57,16 @@
 
   <% elsif question['type'] == 'multiple_choice' %>
     <%= form_with url: test_answers_path,
-                  data: { turbo_frame: "test_question" } do |f| %>
+                  data: { turbo_frame: "test_question",
+                          controller: "test-mode-question",
+                          action: "submit->test-mode-question#select" } do |f| %>
       <div class="test-question__options">
         <% question['options'].each_with_index do |option, i| %>
           <button type="submit"
                   name="answer"
                   value="<%= option %>"
-                  class="test-option">
+                  class="test-option"
+                  data-test-mode-question-target="option">
             <span class="test-option__letter"><%= ('A'.ord + i).chr %></span>
             <span class="test-option__text"><%= option %></span>
           </button>
@@ -73,14 +76,18 @@
 
   <% elsif question['type'] == 'true_false' %>
     <%= form_with url: test_answers_path,
-                  data: { turbo_frame: "test_question" } do |f| %>
+                  data: { turbo_frame: "test_question",
+                          controller: "test-mode-question",
+                          action: "submit->test-mode-question#select" } do |f| %>
       <div class="test-question__tf-options">
         <button type="submit" name="answer" value="true"
-                class="test-tf-btn test-tf-btn--true">
+                class="test-tf-btn test-tf-btn--true"
+                data-test-mode-question-target="option">
           <%= t("study_modes.test_question.true_btn") %>
         </button>
         <button type="submit" name="answer" value="false"
-                class="test-tf-btn test-tf-btn--false">
+                class="test-tf-btn test-tf-btn--false"
+                data-test-mode-question-target="option">
           <%= t("study_modes.test_question.false_btn") %>
         </button>
       </div>
@@ -101,6 +108,7 @@
                 spellcheck: "false",
                 class: "test-question__written-input",
                 autofocus: true,
+                required: true,
                 aria: { label: t("study_modes.test_question.your_answer") } %>
           <%= f.submit t("study_modes.test_question.submit"),
                 class: "btn btn--primary test-question__submit-btn" %>

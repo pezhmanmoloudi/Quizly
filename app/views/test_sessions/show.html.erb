@@ -7,47 +7,53 @@
      aria-label="Test session">
 
   <div class="study-island__header">
-    <%= link_to t("study_modes.exit"), @deck, class: "study-island__exit" %>
-
-    <div class="study-island__title-block">
-      <h2 class="study-island__title"><%= @deck.name %></h2>
-      <p class="study-island__subtitle"><%= t("study_modes.test.subtitle") %></p>
+    <div class="study-hdr__left">
+      <%= link_to t("study_modes.exit"), @deck,
+            class: "study-island__exit",
+            data: { "test-mode-target": "exitLink" } %>
     </div>
 
-    <div class="study-island__stats">
-      <% if @test_session.present? %>
-        <div class="match-stat match-stat--timer">
-          <div class="match-stat__badge">
-            <svg class="match-stat__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" width="14" height="14" aria-hidden="true">
-              <path fill-rule="evenodd" d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm.75-13a.75.75 0 0 0-1.5 0v5c0 .414.336.75.75.75h4a.75.75 0 0 0 0-1.5h-3.25V5Z" clip-rule="evenodd"/>
-            </svg>
-            <span class="match-stat__value" data-test-mode-target="timer">00:00</span>
-          </div>
-          <span class="match-stat__label"><%= t("study_modes.time") %></span>
-        </div>
-      <% end %>
+    <div class="study-hdr__center">
+      <div class="study-island__title-block">
+        <h2 class="study-island__title"><%= @deck.name %></h2>
+        <p class="study-island__subtitle"><%= t("study_modes.test.subtitle") %></p>
+      </div>
+    </div>
 
+    <div class="study-hdr__right">
       <% if @test_session.present? %>
-        <div class="match-stat match-stat--pairs">
-          <div class="match-stat__badge">
-            <svg class="match-stat__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" width="14" height="14" aria-hidden="true">
-              <path fill-rule="evenodd" d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm0-2a6 6 0 1 0 0-12 6 6 0 0 0 0 12Zm0-3a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" clip-rule="evenodd"/>
-            </svg>
-            <span id="test_score" class="match-stat__value"><%= @test_session.score %></span>
+        <div class="study-island__stats">
+          <div class="match-stat match-stat--timer">
+            <div class="match-stat__badge">
+              <svg class="match-stat__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" width="14" height="14" aria-hidden="true">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm.75-13a.75.75 0 0 0-1.5 0v5c0 .414.336.75.75.75h4a.75.75 0 0 0 0-1.5h-3.25V5Z" clip-rule="evenodd"/>
+              </svg>
+              <span class="match-stat__value" data-test-mode-target="timer">00:00</span>
+            </div>
+            <span class="match-stat__label"><%= t("study_modes.time") %></span>
           </div>
-          <span class="match-stat__label"><%= t("study_modes.test.score") %></span>
-        </div>
 
-        <div class="match-stat match-stat--streak">
-          <div class="match-stat__badge">
-            <svg class="match-stat__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" width="14" height="14" aria-hidden="true">
-              <path fill-rule="evenodd" d="M2 4.75A.75.75 0 0 1 2.75 4h14.5a.75.75 0 0 1 0 1.5H2.75A.75.75 0 0 1 2 4.75Zm0 10.5a.75.75 0 0 1 .75-.75h7.5a.75.75 0 0 1 0 1.5h-7.5a.75.75 0 0 1-.75-.75ZM2 10a.75.75 0 0 1 .75-.75h14.5a.75.75 0 0 1 0 1.5H2.75A.75.75 0 0 1 2 10Z" clip-rule="evenodd"/>
-            </svg>
-            <span id="test_counter" class="match-stat__value">
-              <%= @test_session.current_index + 1 %> / <%= @test_session.questions_total %>
-            </span>
+          <div class="match-stat match-stat--pairs">
+            <div class="match-stat__badge">
+              <svg class="match-stat__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" width="14" height="14" aria-hidden="true">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm0-2a6 6 0 1 0 0-12 6 6 0 0 0 0 12Zm0-3a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" clip-rule="evenodd"/>
+              </svg>
+              <span id="test_score" class="match-stat__value"><%= @test_session.score %></span>
+            </div>
+            <span class="match-stat__label"><%= t("study_modes.test.score") %></span>
           </div>
-          <span class="match-stat__label"><%= t("study_modes.test.question_label") %></span>
+
+          <div class="match-stat match-stat--streak">
+            <div class="match-stat__badge">
+              <svg class="match-stat__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" width="14" height="14" aria-hidden="true">
+                <path fill-rule="evenodd" d="M2 4.75A.75.75 0 0 1 2.75 4h14.5a.75.75 0 0 1 0 1.5H2.75A.75.75 0 0 1 2 4.75Zm0 10.5a.75.75 0 0 1 .75-.75h7.5a.75.75 0 0 1 0 1.5h-7.5a.75.75 0 0 1-.75-.75ZM2 10a.75.75 0 0 1 .75-.75h14.5a.75.75 0 0 1 0 1.5H2.75A.75.75 0 0 1 2 10Z" clip-rule="evenodd"/>
+              </svg>
+              <span id="test_counter" class="match-stat__value">
+                <%= @test_session.current_index + 1 %> / <%= @test_session.questions_total %>
+              </span>
+            </div>
+            <span class="match-stat__label"><%= t("study_modes.test.question_label") %></span>
+          </div>
         </div>
       <% end %>
     </div>
