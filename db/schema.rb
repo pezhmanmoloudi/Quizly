@@ -10,7 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_06_27_000001) do
+ActiveRecord::Schema[8.1].define(version: 2026_06_28_000001) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "pg_catalog.plpgsql"
+
   create_table "active_storage_attachments", force: :cascade do |t|
     t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
@@ -389,6 +392,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_27_000001) do
     t.string "display_name"
     t.string "email_address", null: false
     t.integer "followers_count", default: 0, null: false
+    t.string "github_access_token"
+    t.string "github_uid"
     t.string "google_access_token"
     t.string "google_uid"
     t.date "last_studied_on"
@@ -399,6 +404,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_27_000001) do
     t.datetime "updated_at", null: false
     t.string "username", null: false
     t.index ["email_address"], name: "index_users_on_email_address", unique: true
+    t.index ["github_uid"], name: "index_users_on_github_uid", unique: true
     t.index ["google_uid"], name: "index_users_on_google_uid", unique: true
     t.index ["username"], name: "index_users_on_username", unique: true
   end

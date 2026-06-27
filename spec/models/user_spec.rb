@@ -116,4 +116,30 @@ RSpec.describe User, type: :model do
       expect(existing.reload.google_uid).to eq("linked-uid")
     end
   end
+
+  describe ".find_or_create_from_github" do
+    def github_auth(uid: "uid-123", email: "person@example.com", name: "Person")
+      OmniAuth::AuthHash.new(provider: "github", uid: uid, info: { email: email, name: name })
+    end
+
+    it "creates a new persisted user when none matches" do
+      user = nil
+      expect { user = described_class.find_or_create_from_github(github_auth(uid: "brand-new")) }
+        .to change(described_class, :count).by(1)
+      expect(user).to be_persisted
+      expect(user.github_uid).to eq("brand-new")
+    end
+
+    it "returns the existing user matched by github_uid" do
+      existing = create(:user, github_uid: "known-uid")
+      expect(described_class.find_or_create_from_github(github_auth(uid: "known-uid"))).to eq(existing)
+    end
+
+    it "links github_uid to an existing user matched by email" do
+      existing = create(:user, email_address: "linkme@example.com", github_uid: nil)
+      result = described_class.find_or_create_from_github(github_auth(uid: "linked-uid", email: "linkme@example.com"))
+      expect(result).to eq(existing)
+      expect(existing.reload.github_uid).to eq("linked-uid")
+    end
+  end
 end

@@ -1,7 +1,7 @@
 OmniAuth.config.logger = Rails.logger
 
-if ENV["GOOGLE_CLIENT_ID"].present? && ENV["GOOGLE_CLIENT_SECRET"].present?
-  Rails.application.config.middleware.use OmniAuth::Builder do
+Rails.application.config.middleware.use OmniAuth::Builder do
+  if ENV["GOOGLE_CLIENT_ID"].present? && ENV["GOOGLE_CLIENT_SECRET"].present?
     options = {
       scope: "email profile",
       prompt: "select_account"
@@ -12,5 +12,12 @@ if ENV["GOOGLE_CLIENT_ID"].present? && ENV["GOOGLE_CLIENT_SECRET"].present?
       ENV["GOOGLE_CLIENT_ID"],
       ENV["GOOGLE_CLIENT_SECRET"],
       **options
+  end
+
+  if ENV["GITHUB_CLIENT_ID"].present? && ENV["GITHUB_CLIENT_SECRET"].present?
+    provider :github,
+      ENV["GITHUB_CLIENT_ID"],
+      ENV["GITHUB_CLIENT_SECRET"],
+      scope: "user:email"
   end
 end

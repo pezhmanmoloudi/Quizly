@@ -1,6 +1,6 @@
 class OmniauthCallbacksController < ApplicationController
   layout "auth"
-  allow_unauthenticated_access only: %i[google_oauth2 failure]
+  allow_unauthenticated_access only: %i[google_oauth2 github failure]
 
   def google_oauth2
     auth = request.env["omniauth.auth"]
@@ -18,6 +18,25 @@ class OmniauthCallbacksController < ApplicationController
     else
       Rails.logger.warn "[OmniAuth] User not persisted. Errors: #{user.errors.full_messages.join(', ')}"
       redirect_to login_path, alert: t("sessions.google.failure")
+    end
+  end
+
+  def github
+    auth = request.env["omniauth.auth"]
+
+    unless valid_oauth_auth?(auth)
+      Rails.logger.warn "[OmniAuth] Invalid or missing auth hash from GitHub"
+      redirect_to login_path, alert: t("sessions.github.failure") and return
+    end
+
+    user = User.find_or_create_from_github(auth)
+
+    if user.persisted?
+      start_new_session_for user
+      redirect_to after_authentication_url, notice: t("sessions.github.success")
+    else
+      Rails.logger.warn "[OmniAuth] User not persisted. Errors: #{user.errors.full_messages.join(', ')}"
+      redirect_to login_path, alert: t("sessions.github.failure")
     end
   end
 
