@@ -71,6 +71,10 @@ ru:
     google:
       success: "Signed in with Google."
       failure: "Google sign-in failed. Please try again."
+    sign_in_with_github: "Continue with GitHub"
+    github:
+      success: "Signed in with GitHub."
+      failure: "GitHub sign-in failed. Please try again."
     errors:
       rate_limited: Попробуйте позже.
       invalid: Попробуйте другой email или пароль.

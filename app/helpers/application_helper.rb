@@ -24,6 +24,14 @@ module ApplicationHelper
     ENV["GOOGLE_CLIENT_ID"].present? && ENV["GOOGLE_CLIENT_SECRET"].present?
   end
 
+  def github_oauth_available?
+    ENV["GITHUB_CLIENT_ID"].present? && ENV["GITHUB_CLIENT_SECRET"].present?
+  end
+
+  def oauth_available?
+    google_oauth_available? || github_oauth_available?
+  end
+
   def format_study_time(seconds)
     return I18n.t("time.none") unless seconds.is_a?(Integer) && seconds > 0
     if seconds < 60

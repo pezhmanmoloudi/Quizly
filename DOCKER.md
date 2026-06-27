@@ -73,6 +73,25 @@ The container entrypoint (`bin/docker-entrypoint`) runs `bundle check || bundle 
 
 ---
 
+## OAuth Login (Google / GitHub)
+
+OAuth providers are enabled per-environment via env vars in `.env` (see `.env.example`):
+
+- **Google** — `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET` (callback `http://localhost:3001/auth/google_oauth2/callback`)
+- **GitHub** — `GITHUB_CLIENT_ID`, `GITHUB_CLIENT_SECRET` (callback `http://localhost:3001/auth/github/callback`)
+
+The provider buttons render only when both of a provider's variables are present, so the app boots fine with neither set.
+
+The initializer reads these values at boot, so **after editing `.env` you must restart the web container** for the change to take effect:
+
+```bash
+docker compose restart web
+```
+
+If you also added the `omniauth-github` gem, rebuild instead: `docker compose build && docker compose up`.
+
+---
+
 ## Architecture Notes
 
 ### DATABASE_URL and SQLite
