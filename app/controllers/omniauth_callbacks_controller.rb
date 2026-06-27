@@ -6,6 +6,7 @@ class OmniauthCallbacksController < ApplicationController
     auth = request.env["omniauth.auth"]
 
     unless valid_oauth_auth?(auth)
+      Rails.logger.warn "[OmniAuth] Invalid or missing auth hash from Google"
       redirect_to login_path, alert: t("sessions.google.failure") and return
     end
 
@@ -15,6 +16,7 @@ class OmniauthCallbacksController < ApplicationController
       start_new_session_for user
       redirect_to after_authentication_url, notice: t("sessions.google.success")
     else
+      Rails.logger.warn "[OmniAuth] User not persisted. Errors: #{user.errors.full_messages.join(', ')}"
       redirect_to login_path, alert: t("sessions.google.failure")
     end
   end
