@@ -90,4 +90,30 @@ RSpec.describe User, type: :model do
       expect(user.display_name).to eq("Bob")
     end
   end
+
+  describe ".find_or_create_from_google" do
+    def google_auth(uid: "uid-123", email: "person@example.com", name: "Person")
+      OmniAuth::AuthHash.new(provider: "google_oauth2", uid: uid, info: { email: email, name: name })
+    end
+
+    it "creates a new persisted user when none matches" do
+      user = nil
+      expect { user = described_class.find_or_create_from_google(google_auth(uid: "brand-new")) }
+        .to change(described_class, :count).by(1)
+      expect(user).to be_persisted
+      expect(user.google_uid).to eq("brand-new")
+    end
+
+    it "returns the existing user matched by google_uid" do
+      existing = create(:user, google_uid: "known-uid")
+      expect(described_class.find_or_create_from_google(google_auth(uid: "known-uid"))).to eq(existing)
+    end
+
+    it "links google_uid to an existing user matched by email" do
+      existing = create(:user, email_address: "linkme@example.com", google_uid: nil)
+      result = described_class.find_or_create_from_google(google_auth(uid: "linked-uid", email: "linkme@example.com"))
+      expect(result).to eq(existing)
+      expect(existing.reload.google_uid).to eq("linked-uid")
+    end
+  end
 end

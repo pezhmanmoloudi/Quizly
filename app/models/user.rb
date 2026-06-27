@@ -44,6 +44,7 @@ class User < ApplicationRecord
                             uniqueness: { case_sensitive: false },
                             format: { with: /\A[a-z0-9_]+\z/, message: :invalid_username },
                             length: { minimum: 3, maximum: 30 }
+  validates :google_uid,    uniqueness: true, allow_nil: true
   validate  :avatar_is_valid_image, if: -> { avatar.attached? && avatar.changed? }
 
   def to_param = username
@@ -58,6 +59,17 @@ class User < ApplicationRecord
 
   def following?(other_user)
     follows_as_follower.exists?(followed_id: other_user.id)
+  end
+
+  def self.find_or_create_from_google(auth)
+    find_by(google_uid: auth.uid) ||
+      find_by(email_address: auth.info.email)&.tap { |u| u.update(google_uid: auth.uid) } ||
+      create(
+        email_address: auth.info.email,
+        google_uid:    auth.uid,
+        display_name:  auth.info.name,
+        password:      SecureRandom.base64(24)
+      )
   end
 
   private

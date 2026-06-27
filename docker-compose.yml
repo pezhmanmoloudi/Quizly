@@ -30,6 +30,8 @@ services:
     volumes:
       - .:/rails
       - bundle_cache:/usr/local/bundle
+    env_file:
+      - .env
     environment:
       DATABASE_URL: postgresql://${POSTGRES_USER:-quizly}:${POSTGRES_PASSWORD:-quizly_dev_password}@db:5432/${POSTGRES_DB:-quizly_development}
       RAILS_ENV: development

@@ -8,7 +8,7 @@ Rails.application.configure do
     policy.style_src       :self
     policy.frame_ancestors :self
     policy.base_uri        :self
-    policy.form_action     :self
+    policy.form_action     :self, "https://accounts.google.com"
   end
 
   config.content_security_policy_nonce_generator = ->(_request) { SecureRandom.base64(16) }

@@ -66,6 +66,11 @@ en:
     submit: Sign In
     no_account: Don't have an account?
     sign_up: Sign Up
+    or: "or"
+    sign_in_with_google: "Continue with Google"
+    google:
+      success: "Signed in with Google."
+      failure: "Google sign-in failed. Please try again."
     errors:
       rate_limited: Try again later.
       invalid: Try another email address or password.

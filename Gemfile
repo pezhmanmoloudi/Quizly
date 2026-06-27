@@ -20,6 +20,9 @@ gem "jbuilder"
 
 # Use Active Model has_secure_password
 gem "bcrypt", "~> 3.1.7"
+gem "omniauth"
+gem "omniauth-google-oauth2"
+gem "omniauth-rails_csrf_protection"
 gem "pundit", "~> 2.4"
 
 gem "pagy", "~> 43.5"
@@ -45,6 +48,8 @@ gem "thruster", require: false
 gem "image_processing", "~> 2.0"
 
 group :development, :test do
+  gem "dotenv-rails"
+
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
 
