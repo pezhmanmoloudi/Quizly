@@ -13,6 +13,9 @@ Rails.application.routes.draw do
   patch  "/reset-password/:token", to: "passwords#update"
   put    "/reset-password/:token", to: "passwords#update"
 
+  get "/auth/google_oauth2/callback", to: "omniauth_callbacks#google_oauth2"
+  get "/auth/failure",                to: "omniauth_callbacks#failure"
+
   resource :account, only: [ :show, :update, :destroy ] do
     delete :avatar, on: :member, action: :destroy_avatar
   end

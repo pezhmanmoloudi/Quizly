@@ -66,6 +66,11 @@ fa:
     submit: ورود
     no_account: حساب کاربری نداری؟
     sign_up: ثبت‌نام
+    or: "or"
+    sign_in_with_google: "Continue with Google"
+    google:
+      success: "Signed in with Google."
+      failure: "Google sign-in failed. Please try again."
     errors:
       rate_limited: بعداً دوباره امتحان کن.
       invalid: ایمیل یا رمز عبور دیگری امتحان کن.

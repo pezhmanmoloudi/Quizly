@@ -60,6 +60,17 @@ class User < ApplicationRecord
     follows_as_follower.exists?(followed_id: other_user.id)
   end
 
+  def self.find_or_create_from_google(auth)
+    find_by(google_uid: auth.uid) ||
+      find_by(email_address: auth.info.email)&.tap { |u| u.update(google_uid: auth.uid) } ||
+      create(
+        email_address: auth.info.email,
+        google_uid:    auth.uid,
+        display_name:  auth.info.name,
+        password:      SecureRandom.base64(24)
+      )
+  end
+
   private
 
   def assign_username_from_email

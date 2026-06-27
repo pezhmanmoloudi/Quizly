@@ -66,6 +66,11 @@ es:
     submit: Iniciar sesión
     no_account: "¿No tienes cuenta?"
     sign_up: Regístrate
+    or: "or"
+    sign_in_with_google: "Continue with Google"
+    google:
+      success: "Signed in with Google."
+      failure: "Google sign-in failed. Please try again."
     errors:
       rate_limited: Inténtalo más tarde.
       invalid: Prueba con otro correo o contraseña.
