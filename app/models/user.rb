@@ -44,6 +44,7 @@ class User < ApplicationRecord
                             uniqueness: { case_sensitive: false },
                             format: { with: /\A[a-z0-9_]+\z/, message: :invalid_username },
                             length: { minimum: 3, maximum: 30 }
+  validates :google_uid,    uniqueness: true, allow_nil: true
   validate  :avatar_is_valid_image, if: -> { avatar.attached? && avatar.changed? }
 
   def to_param = username

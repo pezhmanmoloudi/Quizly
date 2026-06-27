@@ -4,6 +4,11 @@ class OmniauthCallbacksController < ApplicationController
 
   def google_oauth2
     auth = request.env["omniauth.auth"]
+
+    unless valid_oauth_auth?(auth)
+      redirect_to login_path, alert: t("sessions.google.failure") and return
+    end
+
     user = User.find_or_create_from_google(auth)
 
     if user.persisted?
@@ -16,5 +21,13 @@ class OmniauthCallbacksController < ApplicationController
 
   def failure
     redirect_to login_path, alert: t("sessions.google.failure")
+  end
+
+  private
+
+  def valid_oauth_auth?(auth)
+    auth.present? &&
+      auth.uid.present? &&
+      auth.info&.email.present?
   end
 end
