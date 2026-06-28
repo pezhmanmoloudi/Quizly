@@ -1,7 +1,8 @@
 /* Import modal */
 
 .modal-dialog--wide {
-  max-width: 680px;
+  width: 56rem;
+  max-width: 92vw;
   max-height: 90vh;
   overflow-y: auto;
 }
