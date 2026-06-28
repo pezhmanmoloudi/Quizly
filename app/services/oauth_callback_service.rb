@@ -1,4 +1,4 @@
-class OAuthCallbackService
+class OauthCallbackService
   Result = Data.define(:ok, :user, :reason, :error)
 
   def self.call(provider, auth)

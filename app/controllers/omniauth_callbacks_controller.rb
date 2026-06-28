@@ -21,7 +21,7 @@ class OmniauthCallbacksController < ApplicationController
     Rails.logger.info "[Auth][OAuth] #{provider} — handle_callback entered"
 
     auth   = request.env["omniauth.auth"]
-    result = OAuthCallbackService.call(provider, auth)
+    result = OauthCallbackService.call(provider, auth)
 
     if result.ok
       start_new_session_for result.user
