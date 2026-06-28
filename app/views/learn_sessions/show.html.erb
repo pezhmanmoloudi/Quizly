@@ -1,5 +1,9 @@
 <% content_for :title, "Learn: #{@deck.name}" %>
 
+<% content_for :head do %>
+  <meta name="turbo-cache-control" content="no-cache">
+<% end %>
+
 <% if @learn_session.nil? || @flashcards.empty? %>
   <div class="study-island">
     <%= render "shared/empty_state",

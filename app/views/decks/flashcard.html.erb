@@ -1,5 +1,9 @@
 <% content_for :title, "Flashcard: #{@deck.name}" %>
 
+<% content_for :head do %>
+  <meta name="turbo-cache-control" content="no-cache">
+<% end %>
+
 <div class="fb"
      data-controller="flashcard-browse"
      data-flashcard-browse-total-value="<%= @flashcards.size %>"
