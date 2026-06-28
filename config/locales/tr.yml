@@ -78,6 +78,7 @@ tr:
     errors:
       rate_limited: Daha sonra tekrar dene.
       invalid: Başka bir e-posta adresi veya şifre dene.
+      oauth_failure: OAuth ile giriş başarısız oldu. Lütfen tekrar deneyin.
   registrations:
     title: Kaydol
     heading: Hesap oluştur
@@ -117,11 +118,16 @@ tr:
       back: "← Girişe geri dön"
     sent: Sıfırlama talimatları gönderildi (bu e-posta adresine sahip bir kullanıcı
       varsa).
+    sent_if_exists: "Bu e-posta için bir hesap mevcutsa, sıfırlama talimatlarını gönderdik."
     reset: Şifre sıfırlandı.
     mismatch: Şifreler eşleşmedi.
     invalid: Şifre sıfırlama bağlantısı geçersiz veya süresi dolmuş.
     errors:
       rate_limited: Daha sonra tekrar dene.
+      generic: Bir şeyler yanlış gitti. Lütfen tekrar deneyin.
+      blank_email: "Lütfen e-posta adresinizi girin."
+      invalid_email: "Lütfen geçerli bir e-posta adresi girin."
+      email_not_found: "Bu e-posta adresiyle eşleşen bir hesap bulunamadı."
   accounts:
     title: Ayarlar
     personal_info: Kişisel bilgiler
@@ -714,6 +720,8 @@ learn:
     reset_link_text: bu şifre sıfırlama sayfası
     reset_text_body: 'Şifreni sonraki 15 dakika içinde bu şifre sıfırlama sayfasında
       sıfırlayabilirsin:'
+    expires_note: Bu bağlantı 15 dakika içinde sona erer. Şifre sıfırlama talebinde bulunmadıysan bu e-postayı güvenle yoksayabilirsin.
+    fallback_note: "Yukarıdaki düğme çalışmazsa bu bağlantıyı kopyalayıp tarayıcına yapıştır:"
   question_engine:
     match_prompt: Her terimi tanımıyla eşleştir
   time:

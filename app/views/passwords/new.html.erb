@@ -10,6 +10,10 @@
       Quizly
     <% end %>
 
+    <% if flash[:alert] %>
+      <div class="form-errors"><%= flash[:alert] %></div>
+    <% end %>
+
     <h1 class="auth-split__heading"><%= t("passwords.new.heading") %></h1>
     <p class="auth-split__sub"><%= t("passwords.new.subheading") %></p>
 

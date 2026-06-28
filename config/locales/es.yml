@@ -78,6 +78,7 @@ es:
     errors:
       rate_limited: Inténtalo más tarde.
       invalid: Prueba con otro correo o contraseña.
+      oauth_failure: Error al iniciar sesión con OAuth. Por favor, inténtalo de nuevo.
   registrations:
     title: Registrarse
     heading: Crea tu cuenta
@@ -117,11 +118,16 @@ es:
       back: "← Volver al inicio de sesión"
     sent: Instrucciones de restablecimiento enviadas (si existe un usuario con ese
       correo).
+    sent_if_exists: "Si existe una cuenta para este correo, le hemos enviado las instrucciones de restablecimiento."
     reset: La contraseña ha sido restablecida.
     mismatch: Las contraseñas no coinciden.
     invalid: El enlace de restablecimiento no es válido o ha expirado.
     errors:
       rate_limited: Inténtalo más tarde.
+      generic: Algo salió mal. Por favor, inténtalo de nuevo.
+      blank_email: "Por favor, introduce tu dirección de correo electrónico."
+      invalid_email: "Por favor, introduce una dirección de correo electrónico válida."
+      email_not_found: "No se encontró ninguna cuenta con ese correo electrónico."
   accounts:
     title: Configuración
     personal_info: Información personal
@@ -720,6 +726,8 @@ learn:
     reset_link_text: esta página de restablecimiento de contraseña
     reset_text_body: 'Puedes restablecer tu contraseña en los próximos 15 minutos
       en esta página:'
+    expires_note: Este enlace caduca en 15 minutos. Si no solicitaste un restablecimiento de contraseña, puedes ignorar este correo.
+    fallback_note: "Si el botón de arriba no funciona, copia y pega este enlace en tu navegador:"
   question_engine:
     match_prompt: Relaciona cada término con su definición
   time:
