@@ -10,6 +10,7 @@ class DeckPolicy < ApplicationPolicy
   def save?              = user.present?
   def manage_access?     = owner?
   def manage_flashcards? = owner?
+  def export?            = owner?
 
   class Scope < ApplicationPolicy::Scope
     def resolve

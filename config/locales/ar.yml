@@ -211,6 +211,7 @@ ar:
       empty_description: أنشئ مجموعتك الأولى لتبدأ الدراسة.
     show:
       edit: تعديل المجموعة
+      export: تصدير المجموعة
       delete: حذف المجموعة
       delete_confirm: هل أنت متأكد من رغبتك في إزالة هذه المجموعة؟
       delete_modal_title: حذف هذه المجموعة؟

@@ -218,6 +218,7 @@ fr:
       empty_description: Créez votre premier paquet pour commencer à étudier.
     show:
       edit: Modifier le paquet
+      export: Exporter le paquet
       delete: Supprimer le paquet
       delete_confirm: Êtes-vous sûr de vouloir supprimer ce paquet ?
       delete_modal_title: Supprimer ce paquet ?

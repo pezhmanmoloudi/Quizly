@@ -41,6 +41,7 @@ Rails.application.routes.draw do
       get   :learn, to: "learn_sessions#show"
       get   :test, to: "test_sessions#show"
       post  :copy, to: "deck_copy#create"
+      get   :export, to: "deck_exports#show"
       patch :update_visibility
       patch :learn_settings, to: "decks/learn_settings#update"
     end

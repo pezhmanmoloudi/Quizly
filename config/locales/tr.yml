@@ -212,6 +212,7 @@ tr:
       empty_description: Çalışmaya başlamak için ilk desteni oluştur.
     show:
       edit: Desteyi düzenle
+      export: Desteyi dışa aktar
       delete: Desteyi sil
       delete_confirm: Bu desteyi kaldırmak istediğinden emin misin?
       delete_modal_title: Bu desteyi sil?

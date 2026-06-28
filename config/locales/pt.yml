@@ -215,6 +215,7 @@ pt:
       empty_description: Crie seu primeiro baralho para começar a estudar.
     show:
       edit: Editar baralho
+      export: Exportar baralho
       delete: Excluir baralho
       delete_confirm: Tem certeza de que deseja remover este baralho?
       delete_modal_title: Excluir este baralho?

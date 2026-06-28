@@ -211,6 +211,7 @@ fa:
       empty_description: اولین دسته‌ات را بساز تا مطالعه را شروع کنی.
     show:
       edit: ویرایش دسته
+      export: صادر کردن دسته
       delete: حذف دسته
       delete_confirm: آیا مطمئنی که می‌خواهی این دسته را حذف کنی؟
       delete_modal_title: این دسته حذف شود؟
