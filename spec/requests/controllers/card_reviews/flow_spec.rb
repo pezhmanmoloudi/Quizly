@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "Card Reviews", type: :request do
+RSpec.describe "CardReviews#create — redirect flow and data updates", type: :request do
   let(:user)          { create(:user) }
   let(:deck)          { create(:deck, user: user) }
   let(:flashcard)     { create(:flashcard, deck: deck) }
@@ -27,7 +27,7 @@ RSpec.describe "Card Reviews", type: :request do
         expect(card_progress.reload.next_review_at).to be > original_next
       end
 
-      it "redirects with study_summary flash when it is the last due card" do
+      it "includes session-complete text in the flash when it is the last due card" do
         post card_reviews_path, params: {
           card_progress_id: card_progress.id,
           rating: "easy"
@@ -36,7 +36,7 @@ RSpec.describe "Card Reviews", type: :request do
         expect(response.body).to include("Session complete")
       end
 
-      it "redirects without summary flash when more cards remain" do
+      it "redirects without a summary flash when more due cards remain" do
         card2 = create(:flashcard, deck: deck)
         create(:card_progress, :due, user: user, flashcard: card2)
         post card_reviews_path, params: {
@@ -46,8 +46,8 @@ RSpec.describe "Card Reviews", type: :request do
         expect(response).to redirect_to(study_deck_path(deck))
       end
 
-      it "includes elapsed time in study_summary flash when session is complete" do
-        card_progress  # force creation before GET so the study page sees a due card
+      it "includes elapsed time in the flash when a study session was started" do
+        card_progress
         get study_deck_path(deck)
         post card_reviews_path, params: {
           card_progress_id: card_progress.id,
@@ -57,7 +57,7 @@ RSpec.describe "Card Reviews", type: :request do
         expect(response.body).to include("Time spent")
       end
 
-      it "does not show time spent when start time is missing" do
+      it "does not include time spent when no study session was started" do
         post card_reviews_path, params: {
           card_progress_id: card_progress.id,
           rating: "easy"
@@ -67,7 +67,7 @@ RSpec.describe "Card Reviews", type: :request do
         expect(response.body).not_to include("Time spent")
       end
 
-      it "redirects when accessing another user's card_progress" do
+      it "redirects to decks page when accessing another user's card_progress" do
         other_user      = create(:user)
         other_flashcard = create(:flashcard, deck: create(:deck, user: other_user))
         other_cp        = create(:card_progress, user: other_user, flashcard: other_flashcard)
