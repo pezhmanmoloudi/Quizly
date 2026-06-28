@@ -78,6 +78,7 @@ de:
     errors:
       rate_limited: Bitte später erneut versuchen.
       invalid: E-Mail-Adresse oder Passwort ist falsch.
+      oauth_failure: OAuth-Anmeldung fehlgeschlagen. Bitte erneut versuchen.
   registrations:
     title: Registrieren
     heading: Konto erstellen
@@ -118,11 +119,16 @@ de:
       back: "← Zurück zur Anmeldung"
     sent: Anweisungen zum Zurücksetzen wurden gesendet (falls ein Konto mit dieser
       E-Mail existiert).
+    sent_if_exists: "Wenn ein Konto für diese E-Mail existiert, haben wir die Anweisungen zum Zurücksetzen gesendet."
     reset: Das Passwort wurde zurückgesetzt.
     mismatch: Die Passwörter stimmen nicht überein.
     invalid: Der Link zum Zurücksetzen ist ungültig oder abgelaufen.
     errors:
       rate_limited: Bitte später erneut versuchen.
+      generic: Etwas ist schiefgelaufen. Bitte erneut versuchen.
+      blank_email: "Bitte gib deine E-Mail-Adresse ein."
+      invalid_email: "Bitte gib eine gültige E-Mail-Adresse ein."
+      email_not_found: "Es wurde kein Konto mit dieser E-Mail-Adresse gefunden."
   accounts:
     title: Einstellungen
     personal_info: Persönliche Informationen
@@ -717,6 +723,8 @@ learn:
     reset_link_text: dieser Seite zum Zurücksetzen
     reset_text_body: 'Du kannst dein Passwort in den nächsten 15 Minuten auf dieser
       Seite zurücksetzen:'
+    expires_note: Dieser Link läuft in 15 Minuten ab. Falls du keine Passwort-Zurücksetzung angefordert hast, kannst du diese E-Mail ignorieren.
+    fallback_note: "Falls der Button oben nicht funktioniert, kopiere diesen Link in deinen Browser:"
   question_engine:
     match_prompt: Ordne jeden Begriff seiner Definition zu
   time:

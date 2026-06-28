@@ -3,52 +3,33 @@ class OmniauthCallbacksController < ApplicationController
   allow_unauthenticated_access only: %i[google_oauth2 github failure]
 
   def google_oauth2
-    auth = request.env["omniauth.auth"]
-
-    unless valid_oauth_auth?(auth)
-      Rails.logger.warn "[OmniAuth] Invalid or missing auth hash from Google"
-      redirect_to login_path, alert: t("sessions.google.failure") and return
-    end
-
-    user = User.find_or_create_from_google(auth)
-
-    if user.persisted?
-      start_new_session_for user
-      redirect_to after_authentication_url, notice: t("sessions.google.success")
-    else
-      Rails.logger.warn "[OmniAuth] User not persisted. Errors: #{user.errors.full_messages.join(', ')}"
-      redirect_to login_path, alert: t("sessions.google.failure")
-    end
+    handle_callback(:google_oauth2, t("sessions.google.success"), t("sessions.google.failure"))
   end
 
   def github
-    auth = request.env["omniauth.auth"]
-
-    unless valid_oauth_auth?(auth)
-      Rails.logger.warn "[OmniAuth] Invalid or missing auth hash from GitHub"
-      redirect_to login_path, alert: t("sessions.github.failure") and return
-    end
-
-    user = User.find_or_create_from_github(auth)
-
-    if user.persisted?
-      start_new_session_for user
-      redirect_to after_authentication_url, notice: t("sessions.github.success")
-    else
-      Rails.logger.warn "[OmniAuth] User not persisted. Errors: #{user.errors.full_messages.join(', ')}"
-      redirect_to login_path, alert: t("sessions.github.failure")
-    end
+    handle_callback(:github, t("sessions.github.success"), t("sessions.github.failure"))
   end
 
   def failure
-    redirect_to login_path, alert: t("sessions.google.failure")
+    Rails.logger.warn "[Auth][OAuth] failure endpoint hit — strategy=#{params[:strategy]} message=#{params[:message]}"
+    redirect_to login_path, alert: t("sessions.errors.oauth_failure")
   end
 
   private
 
-  def valid_oauth_auth?(auth)
-    auth.present? &&
-      auth.uid.present? &&
-      auth.info&.email.present?
+  def handle_callback(provider, success_msg, failure_msg)
+    Rails.logger.info "[Auth][OAuth] #{provider} — handle_callback entered"
+
+    auth   = request.env["omniauth.auth"]
+    result = OauthCallbackService.call(provider, auth)
+
+    if result.ok
+      start_new_session_for result.user
+      Rails.logger.info "[Auth][OAuth] #{provider} — session created for user id=#{result.user.id}"
+      redirect_to after_authentication_url, notice: success_msg
+    else
+      Rails.logger.warn "[Auth][OAuth] #{provider} — failed: reason=#{result.reason} error=#{result.error}"
+      redirect_to login_path, alert: failure_msg
+    end
   end
 end

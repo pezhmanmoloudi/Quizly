@@ -78,6 +78,7 @@ fr:
     errors:
       rate_limited: Réessayez plus tard.
       invalid: Essayez une autre adresse e-mail ou un autre mot de passe.
+      oauth_failure: La connexion OAuth a échoué. Veuillez réessayer.
   registrations:
     title: Inscription
     heading: Créez votre compte
@@ -117,11 +118,16 @@ fr:
       back: "← Retour à la connexion"
     sent: Instructions de réinitialisation envoyées (si un utilisateur avec cet e-mail
       existe).
+    sent_if_exists: "Si un compte existe pour cet e-mail, nous avons envoyé les instructions de réinitialisation."
     reset: Le mot de passe a été réinitialisé.
     mismatch: Les mots de passe ne correspondent pas.
     invalid: Le lien de réinitialisation est invalide ou a expiré.
     errors:
       rate_limited: Réessayez plus tard.
+      generic: Une erreur s'est produite. Veuillez réessayer.
+      blank_email: "Veuillez saisir votre adresse e-mail."
+      invalid_email: "Veuillez saisir une adresse e-mail valide."
+      email_not_found: "Aucun compte n'a été trouvé avec cette adresse e-mail."
   accounts:
     title: Paramètres
     personal_info: Informations personnelles
@@ -722,6 +728,8 @@ learn:
     reset_link_text: cette page de réinitialisation
     reset_text_body: 'Vous pouvez réinitialiser votre mot de passe dans les 15 prochaines
       minutes sur cette page de réinitialisation :'
+    expires_note: Ce lien expire dans 15 minutes. Si vous n'avez pas demandé de réinitialisation, vous pouvez ignorer cet e-mail.
+    fallback_note: "Si le bouton ci-dessus ne fonctionne pas, copiez ce lien dans votre navigateur :"
   question_engine:
     match_prompt: Associez chaque terme à sa définition
   time:

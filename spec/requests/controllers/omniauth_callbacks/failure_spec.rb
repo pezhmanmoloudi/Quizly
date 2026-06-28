@@ -5,7 +5,7 @@ RSpec.describe "OmniauthCallbacks#failure", type: :request do
     it "redirects to login with the failure alert" do
       get "/auth/failure"
       expect(response).to redirect_to(login_path)
-      expect(flash[:alert]).to eq(I18n.t("sessions.google.failure"))
+      expect(flash[:alert]).to eq(I18n.t("sessions.errors.oauth_failure"))
     end
   end
 end

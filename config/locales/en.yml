@@ -78,6 +78,7 @@ en:
     errors:
       rate_limited: Try again later.
       invalid: Try another email address or password.
+      oauth_failure: OAuth sign-in failed. Please try again.
   registrations:
     title: Sign Up
     heading: Create your account
@@ -116,11 +117,16 @@ en:
       submit: Save new password
       back: "← Back to sign in"
     sent: Password reset instructions sent (if user with that email address exists).
+    sent_if_exists: "If an account exists for this email, we've sent reset instructions."
     reset: Password has been reset.
     mismatch: Passwords did not match.
     invalid: Password reset link is invalid or has expired.
     errors:
       rate_limited: Try again later.
+      generic: Something went wrong. Please try again.
+      blank_email: "Please enter your email address."
+      invalid_email: "Please enter a valid email address."
+      email_not_found: "No account was found with that email address."
   accounts:
     title: Settings
     personal_info: Personal information
@@ -714,6 +720,8 @@ en:
     reset_link_text: this password reset page
     reset_text_body: 'You can reset your password within the next 15 minutes on this
       password reset page:'
+    expires_note: This link expires in 15 minutes. If you did not request a password reset, you can safely ignore this email.
+    fallback_note: "If the button above doesn't work, copy and paste this link into your browser:"
   question_engine:
     match_prompt: Match each term to its definition
   time:

@@ -1,18 +1,42 @@
 class PasswordsController < ApplicationController
   layout "auth"
   allow_unauthenticated_access
-  before_action :set_user_by_token, only: %i[ edit update ]
-  rate_limit to: 5, within: 10.minutes, only: :create, with: -> { redirect_to forgot_password_url, alert: I18n.t("passwords.errors.rate_limited") }
+  before_action :set_user_by_token, only: %i[edit update]
+
+  cattr_accessor :test_rate_limiting, default: false
+
+  rate_limit to: 5, within: 10.minutes, only: :create,
+             with: -> { redirect_to forgot_password_url, alert: I18n.t("passwords.errors.rate_limited") },
+             if: -> { !Rails.env.local? || PasswordsController.test_rate_limiting }
 
   def new
   end
 
   def create
-    if user = User.find_by(email_address: params[:email_address])
-      PasswordsMailer.reset(user).deliver_later
+    email = params[:email_address].to_s.strip
+
+    if email.blank?
+      flash.now[:alert] = t("passwords.errors.blank_email")
+      return render :new, status: :unprocessable_entity
     end
 
-    redirect_to login_path, notice: t("passwords.sent")
+    unless email.match?(URI::MailTo::EMAIL_REGEXP)
+      flash.now[:alert] = t("passwords.errors.invalid_email")
+      return render :new, status: :unprocessable_entity
+    end
+
+    result = PasswordResetService.call(email)
+
+    case result.reason
+    when :email_sent
+      redirect_to login_path, notice: t("passwords.sent")
+    when :user_not_found
+      flash.now[:alert] = t("passwords.errors.email_not_found")
+      render :new, status: :unprocessable_entity
+    else
+      flash.now[:alert] = t("passwords.errors.generic")
+      render :new, status: :unprocessable_entity
+    end
   end
 
   def edit
@@ -28,9 +52,11 @@ class PasswordsController < ApplicationController
   end
 
   private
-    def set_user_by_token
-      @user = User.find_by_password_reset_token!(params[:token])
-    rescue ActiveSupport::MessageVerifier::InvalidSignature
-      redirect_to forgot_password_path, alert: t("passwords.invalid")
-    end
+
+  def set_user_by_token
+    @user = User.find_by_password_reset_token!(params[:token])
+  rescue ActiveSupport::MessageVerifier::InvalidSignature
+    Rails.logger.warn "[Auth][PasswordReset] Invalid or expired token attempted"
+    redirect_to forgot_password_path, alert: t("passwords.invalid")
+  end
 end

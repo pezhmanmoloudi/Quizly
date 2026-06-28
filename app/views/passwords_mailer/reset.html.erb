@@ -1,4 +1,25 @@
-<p>
+<h2 style="margin: 0 0 8px 0; font-size: 22px; font-weight: 700; color: #111827; letter-spacing: -0.3px;">
+  Reset your password
+</h2>
+
+<p style="margin: 0 0 24px 0; font-size: 15px; color: #6b7280; line-height: 1.6;">
   <%= t("passwords_mailer.reset_body") %>
-  <%= link_to t("passwords_mailer.reset_link_text"), reset_password_url(@user.password_reset_token) %>.
+</p>
+
+<%= render "mailers/components/button",
+      url: reset_password_url(@user.password_reset_token),
+      text: t("passwords_mailer.reset_link_text") %>
+
+<p style="margin: 24px 0 0 0; font-size: 13px; color: #9ca3af; line-height: 1.5;">
+  &#x26A0;&#xFE0F; <%= t("passwords_mailer.expires_note") %>
+</p>
+
+<hr style="margin: 28px 0; border: none; border-top: 1px solid #e5e7eb;">
+
+<p style="margin: 0; font-size: 13px; color: #9ca3af; line-height: 1.6;">
+  <%= t("passwords_mailer.fallback_note") %><br>
+  <a href="<%= reset_password_url(@user.password_reset_token) %>"
+     style="color: #00418F; word-break: break-all;">
+    <%= reset_password_url(@user.password_reset_token) %>
+  </a>
 </p>

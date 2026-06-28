@@ -78,6 +78,7 @@ pt:
     errors:
       rate_limited: Tente novamente mais tarde.
       invalid: E-mail ou senha incorretos.
+      oauth_failure: Falha no login OAuth. Tente novamente.
   registrations:
     title: Cadastrar-se
     heading: Crie sua conta
@@ -116,11 +117,16 @@ pt:
       submit: Salvar nova senha
       back: "← Voltar para o login"
     sent: Instruções de redefinição enviadas (se existir um usuário com esse e-mail).
+    sent_if_exists: "Se existir uma conta para este e-mail, enviamos as instruções de redefinição."
     reset: Senha redefinida com sucesso.
     mismatch: As senhas não coincidem.
     invalid: O link de redefinição é inválido ou expirou.
     errors:
       rate_limited: Tente novamente mais tarde.
+      generic: Algo deu errado. Por favor, tente novamente.
+      blank_email: "Por favor, insira seu endereço de e-mail."
+      invalid_email: "Por favor, insira um endereço de e-mail válido."
+      email_not_found: "Nenhuma conta foi encontrada com esse endereço de e-mail."
   accounts:
     title: Configurações
     personal_info: Informações pessoais
@@ -718,6 +724,8 @@ learn:
     reset_link_text: esta página de redefinição de senha
     reset_text_body: 'Você pode redefinir sua senha nos próximos 15 minutos nesta
       página de redefinição de senha:'
+    expires_note: Este link expira em 15 minutos. Se você não solicitou uma redefinição de senha, pode ignorar este e-mail.
+    fallback_note: "Se o botão acima não funcionar, copie e cole este link no seu navegador:"
   question_engine:
     match_prompt: Combine cada termo com sua definição
   time:
