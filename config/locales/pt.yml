@@ -525,6 +525,7 @@ pt:
       submit: Enviar
       submit_hint: Pressione Enter para enviar
       submit_matches: Enviar combinações
+      matching_feedback_subtitle: Aqui estão as respostas corretas
       true_btn: "✓ Verdadeiro"
       false_btn: "✗ Falso"
     match:

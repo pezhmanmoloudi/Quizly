@@ -12,12 +12,13 @@
   <% if local_assigns[:feedback] %>
     <div class="test-question__feedback test-question__feedback--<%= correct ? 'correct' : 'incorrect' %>">
       <% if correct %>
-        <span class="test-question__feedback-icon">✓</span>
+        <span class="test-question__feedback-icon-wrap">✓</span>
         <span class="test-question__feedback-label"><%= t("study_modes.test_question.correct") %></span>
       <% else %>
-        <span class="test-question__feedback-icon">✗</span>
+        <span class="test-question__feedback-icon-wrap">✗</span>
         <span class="test-question__feedback-label"><%= t("study_modes.test_question.incorrect") %></span>
         <% if question['type'] == 'matching' %>
+          <p class="test-question__feedback-subtitle"><%= t("study_modes.test_question.matching_feedback_subtitle") %></p>
           <div class="test-question__matching-answer">
             <% JSON.parse(question['correct_answer']).each do |id, definition| %>
               <% term = question['options']['terms'].find { |t| t['id'] == id } %>

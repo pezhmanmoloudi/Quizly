@@ -107,19 +107,19 @@
 
 /* ── Flashcard list rows (deck show page) ── */
 
-.flashcard-list { display: flex; flex-direction: column; gap: 0.5rem; }
+.flashcard-list { display: flex; flex-direction: column; gap: 0.75rem; }
 
 .flashcard-row {
   background: var(--color-surface);
   border-radius: 8px;
-  padding: 0.75rem 1rem;
+  padding: 1rem 1.25rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
   box-shadow: var(--shadow-xs);
 }
 
-.flashcard-row__content { display: flex; gap: 0.75rem; flex: 1; min-width: 0; }
+.flashcard-row__content { display: flex; gap: 1rem; flex: 1; min-width: 0; }
 .flashcard-row__front   { font-weight: 600; }
 .flashcard-row__sep     { color: var(--color-separator); }
 .flashcard-row__back    { color: var(--color-text-secondary); }

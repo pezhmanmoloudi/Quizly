@@ -524,6 +524,7 @@ es:
       submit: Enviar
       submit_hint: Pulsa Enter para enviar
       submit_matches: Enviar coincidencias
+      matching_feedback_subtitle: Aquí están las respuestas correctas
       true_btn: "✓ Verdadero"
       false_btn: "✗ Falso"
     match:

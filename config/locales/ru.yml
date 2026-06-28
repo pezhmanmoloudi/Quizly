@@ -529,6 +529,7 @@ ru:
       submit: Отправить
       submit_hint: Нажмите Enter для отправки
       submit_matches: Отправить совпадения
+      matching_feedback_subtitle: Вот правильные ответы
       true_btn: "✓ Верно"
       false_btn: "✗ Неверно"
     match:

@@ -519,6 +519,7 @@ ar:
       submit: إرسال
       submit_hint: اضغط Enter للإرسال
       submit_matches: إرسال المطابقات
+      matching_feedback_subtitle: إليك الإجابات الصحيحة
       true_btn: "✓ صحيح"
       false_btn: "✗ خطأ"
     match:
