@@ -136,6 +136,34 @@ RSpec.describe "StudySessions#show", type: :request do
       end
     end
 
+    context "new_limit session enforcement" do
+      before { sign_in(user) }
+
+      it "shows no new cards and only review cards when the session new-card budget is exhausted" do
+        review_card = create(:flashcard, deck: deck)
+        new_card1   = create(:flashcard, deck: deck)
+        new_card2   = create(:flashcard, deck: deck)
+        create(:card_progress, :due, user: user, flashcard: review_card, repetitions: 2)
+        cp_new1 = create(:card_progress, :due, user: user, flashcard: new_card1, repetitions: 0)
+        create(:card_progress, :due, user: user, flashcard: new_card2, repetitions: 0)
+
+        get study_deck_path(deck, new_limit: 1)
+        post card_reviews_path, params: { card_progress_id: cp_new1.id, rating: "good", new_limit: "1" }
+        follow_redirect!
+
+        expect(response.body).to include(review_card.front_content)
+        expect(response.body).not_to include(new_card2.front_content)
+      end
+
+      it "shows all new cards when limit is 0 (unlimited)" do
+        cards = create_list(:flashcard, 5, deck: deck)
+        cards.each { |c| create(:card_progress, :due, user: user, flashcard: c, repetitions: 0) }
+        get study_deck_path(deck, new_limit: 0)
+        expect(response).to have_http_status(:ok)
+        expect(response.body).to include("study-card")
+      end
+    end
+
     context "when not authenticated" do
       it "redirects to login" do
         get study_deck_path(deck)

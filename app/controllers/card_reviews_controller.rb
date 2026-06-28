@@ -1,6 +1,7 @@
 class CardReviewsController < ApplicationController
   def create
     @card_progress = Current.user.card_progresses.find(params[:card_progress_id])
+    was_new_card = @card_progress.repetitions == 0
     quality = quality_from_button(params[:rating])
     Sm2Scheduler.grade_card(@card_progress, quality)
 
@@ -8,6 +9,8 @@ class CardReviewsController < ApplicationController
     when "again" then session[:study_streak] = 0
     when "good", "easy" then session[:study_streak] = session[:study_streak].to_i + 1
     end
+
+    session[:new_cards_reviewed] = session[:new_cards_reviewed].to_i + 1 if was_new_card
 
     deck = @card_progress.flashcard.deck
     correct = quality >= 4
@@ -21,8 +24,11 @@ class CardReviewsController < ApplicationController
       study_session.reload
     end
 
-    new_limit  = params[:new_limit].presence
-    priority   = params[:priority].presence
+    new_limit_param    = params[:new_limit].presence
+    new_limit          = new_limit_param&.to_i || 10
+    priority           = params[:priority].presence
+    new_cards_reviewed = session[:new_cards_reviewed].to_i
+    new_limit_reached  = new_limit.positive? && new_cards_reviewed >= new_limit
 
     more_due = Current.user.card_progresses
                            .due
@@ -30,13 +36,14 @@ class CardReviewsController < ApplicationController
                            .joins(:flashcard)
                            .where(flashcards: { deck_id: deck.id })
                            .then { |s| study_mode == "starred" ? s.starred : s }
+                           .then { |s| new_limit_reached ? s.where.not(repetitions: 0) : s }
                            .exists?
 
     if more_due
       redirect_to study_deck_path(
         deck,
         mode:      (study_mode == "starred" ? "starred" : nil).presence,
-        new_limit: new_limit,
+        new_limit: new_limit_param,
         priority:  (priority if priority != "due")
       )
     else
@@ -47,8 +54,11 @@ class CardReviewsController < ApplicationController
       end
       session.delete(:study_session_id)
       session.delete(:study_streak)
-      redirect_to study_deck_path(deck, mode: (study_mode == "starred" ? "starred" : nil).presence),
-        flash: { study_summary: {
+      redirect_to study_deck_path(
+        deck,
+        mode:      (study_mode == "starred" ? "starred" : nil).presence,
+        new_limit: new_limit_param
+      ), flash: { study_summary: {
           reviewed: study_session&.cards_reviewed || 1,
           correct:  study_session&.cards_correct  || 0,
           elapsed:  study_session&.elapsed_seconds

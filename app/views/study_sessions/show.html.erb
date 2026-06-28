@@ -65,7 +65,8 @@
     </div>
   <% end %>
 
-  <%= turbo_frame_tag "study_card" do %>
+  <%= turbo_frame_tag "study_card",
+        data: { action: "turbo:frame-load->study-mode#resetSubmitLock" } do %>
     <% if @card_progress.nil? %>
       <% if flash[:study_summary].present? %>
         <% summary = flash[:study_summary] %>
