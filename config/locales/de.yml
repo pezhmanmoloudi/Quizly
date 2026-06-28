@@ -524,6 +524,7 @@ de:
       submit: Absenden
       submit_hint: Eingabe zum Absenden
       submit_matches: Zuordnungen abgeben
+      matching_feedback_subtitle: Hier sind die richtigen Antworten
       true_btn: "✓ Wahr"
       false_btn: "✗ Falsch"
     match:

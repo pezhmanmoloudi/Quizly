@@ -521,6 +521,7 @@ en:
       submit: Submit
       submit_hint: Press Enter to submit
       submit_matches: Submit Matches
+      matching_feedback_subtitle: Here are the correct answers
       true_btn: "✓ True"
       false_btn: "✗ False"
     match:

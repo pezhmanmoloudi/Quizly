@@ -520,6 +520,7 @@ fa:
       submit: ارسال
       submit_hint: Enter را بفشار تا ارسال شود
       submit_matches: ارسال تطبیق‌ها
+      matching_feedback_subtitle: پاسخ‌های درست اینجا هستند
       true_btn: "✓ درست"
       false_btn: "✗ نادرست"
     match:

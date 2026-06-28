@@ -528,6 +528,7 @@ fr:
       submit: Soumettre
       submit_hint: Appuyez sur Entrée pour soumettre
       submit_matches: Soumettre les associations
+      matching_feedback_subtitle: Voici les bonnes réponses
       true_btn: "✓ Vrai"
       false_btn: "✗ Faux"
     match:

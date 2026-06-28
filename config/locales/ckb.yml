@@ -521,6 +521,7 @@ ckb:
       submit: ناردن
       submit_hint: Enter داگرتن بۆ ناردن
       submit_matches: ناردنی دۆشاندنەکان
+      matching_feedback_subtitle: ئەمانە وەڵامە درووستەکانن
       true_btn: "✓ درووستە"
       false_btn: "✗ هەڵەیە"
     match:

@@ -522,6 +522,7 @@ tr:
       submit: Gönder
       submit_hint: Göndermek için Enter'a bas
       submit_matches: Eşleştirmeleri Gönder
+      matching_feedback_subtitle: İşte doğru cevaplar
       true_btn: "✓ Doğru"
       false_btn: "✗ Yanlış"
     match:
