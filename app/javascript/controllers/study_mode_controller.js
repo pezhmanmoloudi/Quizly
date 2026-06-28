@@ -42,6 +42,10 @@ export default class extends Controller {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(settings))
   }
 
+  resetSubmitLock() {
+    this.#isSubmitting = false
+  }
+
   trackRating() {
     // streak is server-managed via session; page reloads after rating with updated value
   }
@@ -79,6 +83,8 @@ export default class extends Controller {
 
   #applyStoredSettings() {
     if (!this.hasNewLimitSelectTarget || !this.hasPrioritySelectTarget) return
+    const params = new URLSearchParams(window.location.search)
+    if (params.has("new_limit") || params.has("priority")) return
     try {
       const stored = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}")
       if (stored.new_limit != null) this.newLimitSelectTarget.value = stored.new_limit

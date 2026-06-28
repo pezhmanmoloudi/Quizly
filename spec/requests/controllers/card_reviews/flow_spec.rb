@@ -89,5 +89,47 @@ RSpec.describe "CardReviews#create — redirect flow and data updates", type: :r
         expect(response).to redirect_to(login_path)
       end
     end
+
+    context "new_limit session enforcement" do
+      before { sign_in(user) }
+
+      it "increments new_cards_reviewed in session when reviewing a new card" do
+        extra = create(:flashcard, deck: deck)
+        create(:card_progress, :due, user: user, flashcard: extra, repetitions: 0)
+        cp = create(:card_progress, :due, user: user, flashcard: flashcard, repetitions: 0)
+        get study_deck_path(deck, new_limit: 5)
+        post card_reviews_path, params: { card_progress_id: cp.id, rating: "good", new_limit: "5" }
+        expect(session[:new_cards_reviewed]).to eq(1)
+      end
+
+      it "does not increment new_cards_reviewed when reviewing a review card" do
+        extra = create(:flashcard, deck: deck)
+        create(:card_progress, :due, user: user, flashcard: extra, repetitions: 0)
+        cp = create(:card_progress, :due, user: user, flashcard: flashcard, repetitions: 3)
+        get study_deck_path(deck, new_limit: 5)
+        post card_reviews_path, params: { card_progress_id: cp.id, rating: "good", new_limit: "5" }
+        expect(session[:new_cards_reviewed]).to eq(0)
+      end
+
+      it "ends the session after reviewing new_limit new cards even when more new cards remain" do
+        cards = create_list(:flashcard, 3, deck: deck)
+        cp1, cp2, _cp3 = cards.map { |c| create(:card_progress, :due, user: user, flashcard: c, repetitions: 0) }
+
+        get study_deck_path(deck, new_limit: 2)
+        post card_reviews_path, params: { card_progress_id: cp1.id, rating: "good", new_limit: "2" }
+        expect(response).to redirect_to(study_deck_path(deck, new_limit: "2"))
+
+        post card_reviews_path, params: { card_progress_id: cp2.id, rating: "good", new_limit: "2" }
+        expect(response).to redirect_to(study_deck_path(deck, new_limit: "2"))
+        expect(flash[:study_summary]).to be_present
+      end
+
+      it "preserves new_cards_reviewed in session on completion so the final frame redirect shows remaining=0" do
+        cp = create(:card_progress, :due, user: user, flashcard: flashcard, repetitions: 0)
+        get study_deck_path(deck, new_limit: 1)
+        post card_reviews_path, params: { card_progress_id: cp.id, rating: "good", new_limit: "1" }
+        expect(session[:new_cards_reviewed]).to eq(1)
+      end
+    end
   end
 end

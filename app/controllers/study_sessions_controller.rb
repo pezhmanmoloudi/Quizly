@@ -20,6 +20,11 @@ class StudySessionsController < ApplicationController
     @new_limit  = params.key?(:new_limit) ? params[:new_limit].to_i : 10
     @priority   = params[:priority] == "hardest" ? "hardest" : "due"
 
+    if request.headers["Turbo-Frame"].blank?
+      session[:new_cards_reviewed] = 0
+    end
+    new_cards_reviewed = session[:new_cards_reviewed].to_i
+
     base_scope = Current.user.card_progresses
                              .joins(:flashcard)
                              .where(flashcards: { deck_id: @deck.id })
@@ -29,10 +34,20 @@ class StudySessionsController < ApplicationController
     review_due = review_due.reorder(ease_factor: :asc) if @priority == "hardest"
 
     new_due_all = base_scope.due.where(repetitions: 0)
-    new_due     = @new_limit.positive? ? new_due_all.limit(@new_limit) : new_due_all
+    new_due = if @new_limit.positive?
+      remaining = [ @new_limit - new_cards_reviewed, 0 ].max
+      remaining > 0 ? new_due_all.limit(remaining) : new_due_all.none
+    else
+      new_due_all
+    end
 
     review_count = review_due.unscope(:order).count
-    capped_new   = @new_limit.positive? ? [ new_due_all.count, @new_limit ].min : new_due_all.count
+    capped_new = if @new_limit.positive?
+      remaining = [ @new_limit - new_cards_reviewed, 0 ].max
+      [ new_due_all.count, remaining ].min
+    else
+      new_due_all.count
+    end
     @cards_remaining = review_count + capped_new
 
     @card_progress = review_due.includes(:flashcard).first ||
