@@ -33,6 +33,15 @@
                 <%= render "shared/icons/pencil", css_class: "icon--sm" %>
                 <%= t("decks.show.edit") %>
               <% end %>
+              <% if policy(@deck).export? %>
+                <%= link_to export_deck_path(@deck),
+                      class: "deck-options__item",
+                      role: "menuitem",
+                      data: { action: "click->create-menu#close" } do %>
+                  <%= render "shared/icons/arrow_down_tray", css_class: "icon--sm" %>
+                  <%= t("decks.show.export") %>
+                <% end %>
+              <% end %>
               <button class="deck-options__item deck-options__item--danger"
                       role="menuitem"
                       data-action="click->modal#open click->create-menu#close">

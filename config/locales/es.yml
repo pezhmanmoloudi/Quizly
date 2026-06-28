@@ -215,6 +215,7 @@ es:
       empty_description: Crea tu primer mazo para empezar a estudiar.
     show:
       edit: Editar mazo
+      export: Exportar mazo
       delete: Eliminar mazo
       delete_confirm: "¿Estás seguro de que quieres eliminar este mazo?"
       delete_modal_title: "¿Eliminar este mazo?"

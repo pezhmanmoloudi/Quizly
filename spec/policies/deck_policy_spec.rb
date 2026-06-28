@@ -90,6 +90,11 @@ RSpec.describe DeckPolicy, type: :policy do
     include_examples "owner-only action", :manage_flashcards
   end
 
+  describe "#export?" do
+    let(:deck) { create(:deck, :public, user: owner) }
+    include_examples "owner-only action", :export
+  end
+
   describe "#learn?" do
     context "public deck" do
       let(:deck) { create(:deck, :public, user: owner) }

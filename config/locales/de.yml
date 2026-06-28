@@ -214,6 +214,7 @@ de:
       empty_description: Erstelle dein erstes Deck, um mit dem Lernen zu beginnen.
     show:
       edit: Deck bearbeiten
+      export: Deck exportieren
       delete: Deck löschen
       delete_confirm: Möchtest du dieses Deck wirklich löschen?
       delete_modal_title: Dieses Deck löschen?

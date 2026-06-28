@@ -211,6 +211,7 @@ en:
       empty_description: Create your first deck to start studying.
     show:
       edit: Edit Deck
+      export: Export Deck
       delete: Delete Deck
       delete_confirm: Are you sure you want to remove this deck?
       delete_modal_title: Delete this deck?
