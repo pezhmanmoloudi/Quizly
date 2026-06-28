@@ -116,6 +116,59 @@ RSpec.describe "LearnSessions#show", type: :request do
       end
     end
 
+    context "stale session — all items mastered but not finished (blank-stage bug)" do
+      before { sign_in(user) }
+
+      let!(:flashcard) { create(:flashcard, deck: deck) }
+
+      # Drive the session into the inconsistent state through the real flow:
+      # first visit creates the session (+ cookie + unseen items), then we
+      # mark every item mastered while leaving finished_at nil — the exact
+      # condition that produced an empty learn queue and a blank card stage.
+      def enter_all_mastered_state
+        get learn_deck_path(deck)
+        session_record = LearnSession.last
+        session_record.update!(finished_at: nil)
+        session_record.learn_session_items.update_all(status: "mastered", mastery_score: 90)
+        session_record
+      end
+
+      it "marks an unfinished all-mastered session as finished on visit" do
+        session_record = enter_all_mastered_state
+        get learn_deck_path(deck)
+        expect(session_record.reload.finished_at).to be_present
+      end
+
+      it "renders the completion branch, not an interactive card stage, when the queue is empty" do
+        enter_all_mastered_state
+        get learn_deck_path(deck)
+        expect(response).to have_http_status(:ok)
+        # finished branch renders the summary but NOT the flashcard-browse card stage
+        expect(response.body).to include("session-summary__title")
+        expect(response.body).not_to include('data-controller="flashcard-browse"')
+        expect(response.body).not_to include("flashcard-browse__slide")
+      end
+
+      it "does not create a duplicate session for the all-mastered visit" do
+        enter_all_mastered_state
+        expect { get learn_deck_path(deck) }.not_to change(LearnSession, :count)
+      end
+
+      it "recovers on reload — a later visit starts a fresh session showing cards (no blank loop)" do
+        enter_all_mastered_state
+
+        # First visit finalizes the stale session and renders completion.
+        get learn_deck_path(deck)
+        expect(response.body).not_to include('data-controller="flashcard-browse"')
+
+        # Reload: cookie was cleared, so a brand-new session is started and the
+        # card stage renders again — the user is not trapped in a blank screen.
+        expect { get learn_deck_path(deck) }.to change(LearnSession, :count).by(1)
+        expect(response.body).to include('data-controller="flashcard-browse"')
+        expect(response.body).to include("flashcard-browse__slide")
+      end
+    end
+
     context "when not authenticated" do
       it "redirects to login" do
         get learn_deck_path(deck)

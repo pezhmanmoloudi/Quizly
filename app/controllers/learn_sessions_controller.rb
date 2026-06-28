@@ -27,6 +27,17 @@ class LearnSessionsController < ApplicationController
       session_id:    session[:learn_session_id],
       flashcard_ids: weak_ids
     )
+
+    # Guard against a stale session whose items are all mastered but was never
+    # marked finished (e.g. a silently-failed final feedback POST). Left as-is,
+    # the JS learn queue resolves empty and hides every card. Finalize it so the
+    # completion branch renders and the next visit starts fresh.
+    if !@learn_session.finished? &&
+        @learn_session.learn_session_items.where.not(status: "mastered").none?
+      @learn_session.update!(finished_at: Time.current)
+      session.delete(:learn_session_id)
+    end
+
     session[:learn_session_id] = @learn_session.id
 
     @learn_items_json = @learn_session.learn_session_items.map { |i|

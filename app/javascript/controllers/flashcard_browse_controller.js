@@ -452,7 +452,13 @@ export default class extends Controller {
   #initLearnUI() {
     if (this.hasPrevBtnTarget) this.prevBtnTarget.hidden = true
     if (this.hasNextBtnTarget) this.nextBtnTarget.hidden = true
-    this.#updateLearnStats()
+    // Never leave a blank stage: if the queue is empty (no current card) or the
+    // session is already mastered, show the completion screen instead.
+    if (this.engine.size === 0 || this.learnEngine?.isComplete()) {
+      this.#showLearnComplete()
+    } else {
+      this.#updateLearnStats()
+    }
   }
 
   #showLearnFeedbackBar() {
