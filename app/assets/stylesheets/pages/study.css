@@ -312,11 +312,11 @@
 
 /* ── Footer: Show Answer / rating buttons ── */
 .study-card__footer {
-  padding: 0.875rem 1.75rem 1.5rem;
+  padding: 1.25rem 1.75rem 1.75rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.875rem;
+  gap: 1rem;
 }
 
 /* ── "Show Answer" button ── */
@@ -365,6 +365,7 @@
 
 /* Fade in the form when it transitions from display:none */
 form[data-flashcard-target="ratingForm"] {
+  width: 100%;
   transition: opacity 200ms ease 80ms;
 }
 
@@ -377,16 +378,15 @@ form[data-flashcard-target="ratingForm"] {
 .rating-buttons {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 0.75rem;
+  gap: 0.5rem;
   width: 100%;
 }
 
 .rating-btn {
-  padding: 0.875rem 1rem;
-  min-height: 3.25rem;
+  padding: 1rem 0.75rem;
   border: 1.5px solid color-mix(in srgb, currentColor 20%, transparent);
-  border-radius: 12px;
-  font-size: 0.9rem;
+  border-radius: 14px;
+  font-size: 1rem;
   font-weight: 700;
   cursor: pointer;
   box-shadow: 0 1px 4px rgba(0,0,0,.06);
