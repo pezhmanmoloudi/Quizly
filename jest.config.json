@@ -1,0 +1,5 @@
+{
+  "testEnvironment": "jest-environment-jsdom",
+  "testMatch": ["**/spec/javascript/**/*.spec.js"],
+  "transform": {}
+}
