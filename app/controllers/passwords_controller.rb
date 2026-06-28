@@ -2,10 +2,12 @@ class PasswordsController < ApplicationController
   layout "auth"
   allow_unauthenticated_access
   before_action :set_user_by_token, only: %i[edit update]
-  unless Rails.env.development? || Rails.env.test?
-    rate_limit to: 5, within: 10.minutes, only: :create,
-               with: -> { redirect_to forgot_password_url, alert: I18n.t("passwords.errors.rate_limited") }
-  end
+
+  cattr_accessor :test_rate_limiting, default: false
+
+  rate_limit to: 5, within: 10.minutes, only: :create,
+             with: -> { redirect_to forgot_password_url, alert: I18n.t("passwords.errors.rate_limited") },
+             if: -> { !Rails.env.local? || PasswordsController.test_rate_limiting }
 
   def new
   end
