@@ -1,108 +1,16 @@
-user = User.find_or_create_by!(email_address: "demo@quizly.test") do |u|
-  u.password = "password123"
-  u.password_confirmation = "password123"
+puts "== Seeding Quizly demo data =="
+
+Dir[File.join(__dir__, "seeds", "*.rb")].sort.each do |file|
+  puts "-> #{File.basename(file)}"
+  load file
 end
 
-# ── Deck 1: Ruby Basics ──────────────────────────────────────────────
-deck = user.decks.find_or_create_by!(name: "Ruby Basics") do |d|
-  d.description = "Fundamental Ruby concepts"
-  d.visibility  = "public"
-end
-deck.update_columns(visibility: "public") if deck.visibility != "public"
-
-flashcards_data = [
-  { front_content: "What is a symbol in Ruby?",
-    back_content: "An immutable, reusable identifier, e.g. :name. Stored once in memory." },
-  { front_content: "What does `freeze` do to an object?",
-    back_content: "Makes the object immutable — any mutation attempt raises FrozenError." },
-  { front_content: "What is the difference between `nil?` and `empty?`?",
-    back_content: "`nil?` checks if the object is nil. `empty?` checks if a string/array/hash has no elements." },
-  { front_content: "What does `attr_accessor` generate?",
-    back_content: "Both a getter and setter method for an instance variable." },
-  { front_content: "What is a block in Ruby?",
-    back_content: "An anonymous chunk of code passed to a method using `do...end` or `{ }`." }
-]
-
-flashcards_data.each.with_index(1) do |attrs, i|
-  deck.flashcards.find_or_create_by!(front_content: attrs[:front_content]) do |fc|
-    fc.back_content = attrs[:back_content]
-    fc.position = i
-  end
-end
-
-# ── Deck 2: JavaScript Basics ────────────────────────────────────────
-js_deck = user.decks.find_or_create_by!(name: "JavaScript Basics") do |d|
-  d.description = "Core JavaScript concepts every developer should know."
-  d.visibility  = "public"
-end
-js_deck.update_columns(visibility: "public") if js_deck.visibility != "public"
-
-js_cards = [
-  { front_content: "What is `typeof null` in JavaScript?",
-    back_content: '"object" — a historical bug in the language that was never fixed.' },
-  { front_content: "What does `===` check vs `==`?",
-    back_content: '`===` checks value AND type (strict equality). `==` allows type coercion.' },
-  { front_content: "What is a closure?",
-    back_content: "A function that retains access to variables from its enclosing scope even after that scope has returned." },
-  { front_content: "What does `Array.prototype.map` return?",
-    back_content: "A new array with each element transformed by the provided callback." },
-  { front_content: "What is `undefined` vs `null`?",
-    back_content: "`undefined` means a variable has been declared but not assigned. `null` is an intentional absence of value." }
-]
-
-js_cards.each.with_index(1) do |attrs, i|
-  js_deck.flashcards.find_or_create_by!(front_content: attrs[:front_content]) do |fc|
-    fc.back_content = attrs[:back_content]
-    fc.position = i
-  end
-end
-
-# ── Deck 3: French Vocabulary ────────────────────────────────────────
-fr_deck = user.decks.find_or_create_by!(name: "French Vocabulary") do |d|
-  d.description = "Everyday French words and phrases for beginners."
-  d.visibility  = "public"
-  d.language_code = "fr"
-end
-fr_deck.update_columns(visibility: "public") if fr_deck.visibility != "public"
-
-fr_cards = [
-  { front_content: "Bonjour",         back_content: "Hello / Good morning" },
-  { front_content: "Merci",           back_content: "Thank you" },
-  { front_content: "S'il vous plaît", back_content: "Please" },
-  { front_content: "Où est...?",      back_content: "Where is...?" },
-  { front_content: "Je m'appelle",    back_content: "My name is" }
-]
-
-fr_cards.each.with_index(1) do |attrs, i|
-  fr_deck.flashcards.find_or_create_by!(front_content: attrs[:front_content]) do |fc|
-    fc.back_content = attrs[:back_content]
-    fc.position = i
-  end
-end
-
-# ── Badges ───────────────────────────────────────────────────────────
-badge_defs = [
-  { key: "first_session", name: "First Session",    description: "Complete your first study session",        icon: "🎯", category: "streak"   },
-  { key: "streak_3",      name: "On a Roll",        description: "Study 3 days in a row",                   icon: "🔥", category: "streak"   },
-  { key: "streak_7",      name: "Weekly Warrior",   description: "Study 7 days in a row",                   icon: "⚡", category: "streak"   },
-  { key: "streak_30",     name: "Monthly Master",   description: "Study 30 days in a row",                  icon: "🏆", category: "streak"   },
-  { key: "streak_100",    name: "Centurion",        description: "Study 100 days in a row",                 icon: "💎", category: "streak"   },
-  { key: "cards_10",      name: "Getting Started",  description: "Review 10 cards",                         icon: "📚", category: "cards"    },
-  { key: "cards_100",     name: "Dedicated",        description: "Review 100 cards",                        icon: "🎓", category: "cards"    },
-  { key: "cards_500",     name: "Powerhouse",       description: "Review 500 cards",                        icon: "🚀", category: "cards"    },
-  { key: "cards_1000",    name: "Legend",           description: "Review 1000 cards",                       icon: "🌟", category: "cards"    },
-  { key: "perfect_test",  name: "Sharpshooter",     description: "Score 100% on a test session",            icon: "🎯", category: "accuracy" }
-]
-
-badge_defs.each do |attrs|
-  Badge.find_or_create_by!(key: attrs[:key]) do |b|
-    b.name        = attrs[:name]
-    b.description = attrs[:description]
-    b.icon        = attrs[:icon]
-    b.category    = attrs[:category]
-  end
-end
-
-puts "Seeded: #{user.email_address} / password123"
-puts "  #{Deck.where(visibility: 'public').count} public deck(s) total"
-puts "  #{Badge.count} badge(s) total"
+puts ""
+puts "== Done =="
+puts "  Users:          #{User.count}"
+puts "  Decks:          #{Deck.count}"
+puts "  Flashcards:     #{Flashcard.count}"
+puts "  Study sessions: #{StudySession.count}"
+puts "  Badges:         #{Badge.count}"
+puts ""
+puts "  Demo login:  demo@quizly.test / password123"
