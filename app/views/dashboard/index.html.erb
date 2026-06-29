@@ -29,6 +29,24 @@
   </div>
 
   <div class="section-header" style="margin-top: 2.5rem;">
+    <h2><%= t("dashboard.achievements_title") %></h2>
+    <%= link_to t("dashboard.achievements_view_all"), achievements_path, class: "section-header__link" %>
+  </div>
+  <% if @badges_preview.any? %>
+    <div class="badges-grid-preview">
+      <% @badges_preview.each do |badge| %>
+        <div class="badge-card badge-card--earned">
+          <div class="badge-card__icon"><%= badge.icon %></div>
+          <div class="badge-card__name"><%= badge.name %></div>
+        </div>
+      <% end %>
+    </div>
+    <p class="achievements-preview-count"><%= t("dashboard.achievements_earned_count", earned: @badges_earned, total: @badges_total) %></p>
+  <% else %>
+    <p class="achievements-preview-empty"><%= t("dashboard.achievements_none_yet") %></p>
+  <% end %>
+
+  <div class="section-header" style="margin-top: 2.5rem;">
     <h2><%= t("dashboard.study_history") %></h2>
     <%= link_to t("dashboard.see_all"), study_sessions_path, class: "section-header__link" %>
   </div>

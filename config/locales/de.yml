@@ -26,6 +26,7 @@ de:
     log_out: Abmelden
     language: Sprache
     view_profile: View Profile
+    achievements: Achievements
     notifications: Notifications
     followers: Followers
     following: Following
@@ -204,6 +205,11 @@ de:
     password_incorrect: ist falsch
     avatar_format_error: Ungültiges Dateiformat. Bitte JPG, PNG oder WEBP hochladen.
     avatar_size_error: Das Profilbild muss kleiner als 5 MB sein.
+  achievements:
+    title: Achievements
+    earned_count: "%{earned} of %{total} badges earned"
+    no_badges: No badges yet. Keep studying to unlock achievements!
+
   decks:
     index:
       title: Meine Decks
@@ -598,6 +604,10 @@ learn:
     cards_due: Fällige Karten
     current_streak: Tages-Serie
     longest_streak: Beste Serie
+    achievements_title: Achievements
+    achievements_view_all: View all achievements
+    achievements_earned_count: "%{earned} of %{total} earned"
+    achievements_none_yet: Keep studying to earn your first badge!
     study_history: Lernverlauf
     see_all: Alle anzeigen
     empty_history: Schließe eine Lernsitzung ab, um deinen Verlauf hier zu sehen.

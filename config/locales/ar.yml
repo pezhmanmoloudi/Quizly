@@ -26,6 +26,7 @@ ar:
     log_out: تسجيل الخروج
     language: اللغة
     view_profile: View Profile
+    achievements: Achievements
     notifications: Notifications
     followers: Followers
     following: Following
@@ -201,6 +202,11 @@ ar:
     password_incorrect: غير صحيحة
     avatar_format_error: صيغة الملف غير صالحة. يرجى رفع ملف JPG أو PNG أو WEBP.
     avatar_size_error: يجب أن تكون صورة الملف الشخصي أقل من 5 ميغابايت.
+  achievements:
+    title: Achievements
+    earned_count: "%{earned} of %{total} badges earned"
+    no_badges: No badges yet. Keep studying to unlock achievements!
+
   decks:
     index:
       title: مجموعاتي
@@ -592,6 +598,10 @@ learn:
     cards_due: البطاقات المستحقة
     current_streak: سلسلة الأيام
     longest_streak: أفضل سلسلة
+    achievements_title: Achievements
+    achievements_view_all: View all achievements
+    achievements_earned_count: "%{earned} of %{total} earned"
+    achievements_none_yet: Keep studying to earn your first badge!
     study_history: سجلّ الدراسة
     see_all: عرض الكل
     empty_history: أكمل جلسة دراسة لترى سجلّك هنا.

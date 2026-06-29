@@ -26,6 +26,7 @@ tr:
     log_out: Çıkış yap
     language: Dil
     view_profile: View Profile
+    achievements: Achievements
     notifications: Notifications
     followers: Followers
     following: Following
@@ -202,6 +203,11 @@ tr:
     password_incorrect: hatalı
     avatar_format_error: Geçersiz dosya biçimi. Lütfen JPG, PNG veya WEBP yükle.
     avatar_size_error: Profil fotoğrafı 5 MB'tan küçük olmalı.
+  achievements:
+    title: Achievements
+    earned_count: "%{earned} of %{total} badges earned"
+    no_badges: No badges yet. Keep studying to unlock achievements!
+
   decks:
     index:
       title: Destelerim
@@ -596,6 +602,10 @@ learn:
     cards_due: Bekleyen Kartlar
     current_streak: Günlük Seri
     longest_streak: En İyi Seri
+    achievements_title: Achievements
+    achievements_view_all: View all achievements
+    achievements_earned_count: "%{earned} of %{total} earned"
+    achievements_none_yet: Keep studying to earn your first badge!
     study_history: Çalışma Geçmişi
     see_all: Tümünü gör
     empty_history: Geçmişini burada görmek için bir çalışma oturumu tamamla.

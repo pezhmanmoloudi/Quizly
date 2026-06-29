@@ -26,6 +26,7 @@ fr:
     log_out: Se déconnecter
     language: Langue
     view_profile: View Profile
+    achievements: Achievements
     notifications: Notifications
     followers: Followers
     following: Following
@@ -208,6 +209,11 @@ fr:
     avatar_format_error: Format de fichier invalide. Veuillez télécharger un fichier
       JPG, PNG ou WEBP.
     avatar_size_error: La photo de profil doit être inférieure à 5 Mo.
+  achievements:
+    title: Achievements
+    earned_count: "%{earned} of %{total} badges earned"
+    no_badges: No badges yet. Keep studying to unlock achievements!
+
   decks:
     index:
       title: Mes paquets
@@ -602,6 +608,10 @@ learn:
     cards_due: Cartes dues
     current_streak: Jours consécutifs
     longest_streak: Meilleure série
+    achievements_title: Achievements
+    achievements_view_all: View all achievements
+    achievements_earned_count: "%{earned} of %{total} earned"
+    achievements_none_yet: Keep studying to earn your first badge!
     study_history: Historique d'étude
     see_all: Voir tout
     empty_history: Terminez une session d'étude pour voir votre historique ici.

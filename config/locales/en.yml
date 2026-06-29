@@ -26,6 +26,7 @@ en:
     log_out: Log out
     language: Language
     view_profile: View Profile
+    achievements: Achievements
     notifications: Notifications
     followers: Followers
     following: Following
@@ -154,7 +155,6 @@ en:
     search_languages: Search languages
     your_languages: Your Languages
     achievements_section: Achievements
-    no_badges: No badges yet. Keep studying to unlock achievements!
     badge_earned_on: Earned %{date}
     delete_title: Delete Account
     delete_description: Permanently delete your account and all associated data. This
@@ -201,6 +201,12 @@ en:
     password_incorrect: is incorrect
     avatar_format_error: Invalid file format. Please upload JPG, PNG, or WEBP.
     avatar_size_error: Profile picture must be smaller than 5 MB.
+
+  achievements:
+    title: Achievements
+    earned_count: "%{earned} of %{total} badges earned"
+    no_badges: No badges yet. Keep studying to unlock achievements!
+
   decks:
     index:
       title: My Decks
@@ -594,6 +600,10 @@ en:
     cards_due: Cards Due
     current_streak: Day Streak
     longest_streak: Best Streak
+    achievements_title: Achievements
+    achievements_view_all: View all achievements
+    achievements_earned_count: "%{earned} of %{total} earned"
+    achievements_none_yet: Keep studying to earn your first badge!
     study_history: Study History
     see_all: See all
     empty_history: Complete a study session to see your history here.

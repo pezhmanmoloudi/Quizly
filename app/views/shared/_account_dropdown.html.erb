@@ -66,6 +66,12 @@
         <span><%= t("menu.view_profile") %></span>
       <% end %>
 
+      <%= link_to achievements_path,
+            class: "avatar-dropdown__item", role: "menuitem" do %>
+        <%= render "shared/icons/academic_cap", css_class: "avatar-dropdown__item-icon" %>
+        <span><%= t("menu.achievements") %></span>
+      <% end %>
+
       <%= link_to account_path,
             class: "avatar-dropdown__item", role: "menuitem" do %>
         <%= render "shared/icons/cog", css_class: "avatar-dropdown__item-icon" %>

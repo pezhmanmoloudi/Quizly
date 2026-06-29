@@ -10,3 +10,77 @@
   font-weight: 700;
   letter-spacing: 0.05em;
 }
+
+/* ── Badges / achievements grid ── */
+.badges-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: var(--space-4);
+}
+
+.badges-grid-preview {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: var(--space-3);
+  margin-bottom: var(--space-3);
+}
+
+.badge-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  transition: border-color var(--transition-base);
+}
+
+.badge-card--earned {
+  border-color: var(--color-primary);
+}
+
+.badge-card--locked {
+  opacity: 0.45;
+  filter: grayscale(1);
+}
+
+.badge-card__icon {
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.badge-card__name {
+  font-size: var(--text-sm);
+  font-weight: var(--font-semibold);
+  color: var(--color-text);
+}
+
+.badge-card__desc {
+  font-size: var(--text-xs);
+  color: var(--color-muted);
+  line-height: 1.4;
+}
+
+.badge-card__earned {
+  font-size: var(--text-xs);
+  color: var(--color-primary);
+  font-weight: var(--font-medium);
+}
+
+.badges-empty {
+  font-size: var(--text-sm);
+  color: var(--color-muted);
+}
+
+.achievements-preview-count {
+  font-size: var(--text-sm);
+  color: var(--color-muted);
+  margin-top: var(--space-3);
+}
+
+.achievements-preview-empty {
+  font-size: var(--text-sm);
+  color: var(--color-muted);
+}
