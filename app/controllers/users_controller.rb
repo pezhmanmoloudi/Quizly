@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 
   def show
     @user  = User.find_by!(username: params[:username])
-    @decks = policy_scope(@user.decks.discoverable.order(created_at: :desc))
+    @decks = policy_scope(@user.decks.discoverable.includes(:flashcards).order(created_at: :desc))
     authorize @user
   end
 
