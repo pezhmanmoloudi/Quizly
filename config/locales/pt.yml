@@ -660,7 +660,6 @@ pt:
     stat_study_now: Estudar agora
     stat_keep_going: Continue assim!
     stat_view_progress: Ver progresso
-    achievements_scroll_next: Rolar conquistas
     achievement_earned: Conquistado
     achievement_progress: "%{current} / %{target}"
     history_cards:

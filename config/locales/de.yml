@@ -660,7 +660,6 @@ de:
     stat_study_now: Jetzt lernen
     stat_keep_going: Weiter so!
     stat_view_progress: Fortschritt ansehen
-    achievements_scroll_next: Erfolge scrollen
     achievement_earned: Erhalten
     achievement_progress: "%{current} / %{target}"
     history_cards:

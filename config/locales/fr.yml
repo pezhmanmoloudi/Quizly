@@ -663,7 +663,6 @@ fr:
     stat_study_now: Étudier maintenant
     stat_keep_going: Continuez comme ça !
     stat_view_progress: Voir la progression
-    achievements_scroll_next: Faire défiler les réalisations
     achievement_earned: Obtenu
     achievement_progress: "%{current} / %{target}"
     history_cards:

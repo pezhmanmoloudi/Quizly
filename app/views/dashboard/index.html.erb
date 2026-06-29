@@ -54,21 +54,14 @@
     </div>
   </section>
 
-  <section class="dashboard-card achievements-panel" data-controller="scroller">
+  <section class="dashboard-card achievements-panel">
     <div class="section-header">
       <h2><%= t("dashboard.achievements_title") %></h2>
-      <div class="achievements-panel__header-actions">
-        <%= link_to t("dashboard.achievements_view_all"), achievements_path, class: "section-header__link" %>
-        <button type="button" class="achievements-panel__scroll-btn"
-                data-action="scroller#scrollNext"
-                aria-label="<%= t("dashboard.achievements_scroll_next") %>">
-          <%= render "shared/icons/chevron_down", css_class: "achievements-panel__scroll-icon" %>
-        </button>
-      </div>
+      <%= link_to t("dashboard.achievements_view_all"), achievements_path, class: "section-header__link" %>
     </div>
 
     <% if @badges_preview.any? %>
-      <div class="achievements-track" data-scroller-target="track">
+      <div class="achievements-grid">
         <% @badges_preview.each do |entry| %>
           <div class="achievement-tile <%= entry.earned? ? "achievement-tile--earned" : "achievement-tile--locked" %>">
             <div class="achievement-tile__icon"><%= entry.badge.icon %></div>

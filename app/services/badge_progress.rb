@@ -21,19 +21,20 @@ class BadgeProgress
     "perfect_test"  => { metric: ->(u) { BadgeAwarder.perfect_test?(u) ? 1 : 0 },           target: 1 }
   }.freeze
 
-  PREVIEW_LIMIT = 6
+  # Fixed set of badges surfaced on the dashboard, in display order.
+  # The full set lives on the achievements page (achievements_path).
+  DASHBOARD_KEYS = %w[perfect_test cards_10 cards_100 streak_7].freeze
 
-  # Returns up to PREVIEW_LIMIT entries: earned badges first (most recently earned),
-  # then unearned badges ordered by closest to completion.
+  # Returns one entry per DASHBOARD_KEY (in order), skipping any key without a
+  # seeded badge. Used for the static dashboard achievements grid.
   def self.preview_for(user)
     earned_at_by_id = user.user_badges.pluck(:badge_id, :earned_at).to_h
-    entries         = Badge.all.map { |badge| build_entry(badge, user, earned_at_by_id) }
+    badges_by_key   = Badge.where(key: DASHBOARD_KEYS).index_by(&:key)
 
-    earned, in_progress = entries.partition(&:earned?)
-    earned.sort_by!     { |e| -earned_at_by_id[e.badge.id].to_i }
-    in_progress.sort_by! { |e| -e.percent }
-
-    (earned + in_progress).first(PREVIEW_LIMIT)
+    DASHBOARD_KEYS.filter_map do |key|
+      badge = badges_by_key[key]
+      build_entry(badge, user, earned_at_by_id) if badge
+    end
   end
 
   def self.build_entry(badge, user, earned_at_by_id)

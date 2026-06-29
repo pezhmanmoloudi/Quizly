@@ -656,7 +656,6 @@ ckb:
     stat_study_now: ئێستا بیخوێنە
     stat_keep_going: بەردەوام بە!
     stat_view_progress: بینینی پێشکەوتن
-    achievements_scroll_next: خلیسکاندنی دەستکەوتەکان
     achievement_earned: بەدەستهاتوو
     achievement_progress: "%{current} / %{target}"
     history_cards:

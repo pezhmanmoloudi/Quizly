@@ -653,7 +653,6 @@ ar:
     stat_study_now: ادرس الآن
     stat_keep_going: واصل التقدم!
     stat_view_progress: عرض التقدم
-    achievements_scroll_next: تمرير الإنجازات
     achievement_earned: مكتسب
     achievement_progress: "%{current} / %{target}"
     history_cards:

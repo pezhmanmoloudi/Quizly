@@ -655,7 +655,6 @@ en:
     stat_study_now: Study now
     stat_keep_going: Keep it up!
     stat_view_progress: View progress
-    achievements_scroll_next: Scroll achievements
     achievement_earned: Earned
     achievement_progress: "%{current} / %{target}"
     history_cards:

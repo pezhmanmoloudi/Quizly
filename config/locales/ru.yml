@@ -665,7 +665,6 @@ ru:
     stat_study_now: Учиться сейчас
     stat_keep_going: Так держать!
     stat_view_progress: Посмотреть прогресс
-    achievements_scroll_next: Прокрутить достижения
     achievement_earned: Получено
     achievement_progress: "%{current} / %{target}"
     history_cards:

@@ -656,7 +656,6 @@ fa:
     stat_study_now: الان مطالعه کن
     stat_keep_going: همین‌طور ادامه بده!
     stat_view_progress: مشاهده پیشرفت
-    achievements_scroll_next: پیمایش دستاوردها
     achievement_earned: کسب‌شده
     achievement_progress: "%{current} / %{target}"
     history_cards:
