@@ -18,18 +18,18 @@ tr:
       study_group: Çalışma grubu
     open_navigation: Gezintiyi aç
     close_navigation: Gezintiyi kapat
-    account_menu: Account menu
+    account_menu: Hesap menüsü
   menu:
     settings: Ayarlar
     dark_mode: Karanlık mod
     light_mode: Açık mod
     log_out: Çıkış yap
     language: Dil
-    view_profile: View Profile
-    achievements: Achievements
-    notifications: Notifications
-    followers: Followers
-    following: Following
+    view_profile: Profili görüntüle
+    achievements: Başarılar
+    notifications: Bildirimler
+    followers: Takipçiler
+    following: Takip edilenler
   shared:
     cancel: İptal
     close: Kapat
@@ -45,6 +45,8 @@ tr:
     previous_page: Önceki sayfa
     next_page: Sonraki sayfa
     not_available: Yok
+    pagination_aria: Sayfalandırma
+    main_nav_aria: Ana gezinme
   auth:
     back_to_home: Ana sayfaya dön
     panel:
@@ -67,15 +69,15 @@ tr:
     submit: Giriş Yap
     no_account: Hesabın yok mu?
     sign_up: Kaydol
-    or: "or"
-    sign_in_with_google: "Continue with Google"
+    or: or
+    sign_in_with_google: Continue with Google
     google:
-      success: "Signed in with Google."
-      failure: "Google sign-in failed. Please try again."
-    sign_in_with_github: "Continue with GitHub"
+      success: Signed in with Google.
+      failure: Google sign-in failed. Please try again.
+    sign_in_with_github: Continue with GitHub
     github:
-      success: "Signed in with GitHub."
-      failure: "GitHub sign-in failed. Please try again."
+      success: Signed in with GitHub.
+      failure: GitHub sign-in failed. Please try again.
     errors:
       rate_limited: Daha sonra tekrar dene.
       invalid: Başka bir e-posta adresi veya şifre dene.
@@ -119,16 +121,16 @@ tr:
       back: "← Girişe geri dön"
     sent: Sıfırlama talimatları gönderildi (bu e-posta adresine sahip bir kullanıcı
       varsa).
-    sent_if_exists: "Bu e-posta için bir hesap mevcutsa, sıfırlama talimatlarını gönderdik."
+    sent_if_exists: Bu e-posta için bir hesap mevcutsa, sıfırlama talimatlarını gönderdik.
     reset: Şifre sıfırlandı.
     mismatch: Şifreler eşleşmedi.
     invalid: Şifre sıfırlama bağlantısı geçersiz veya süresi dolmuş.
     errors:
       rate_limited: Daha sonra tekrar dene.
       generic: Bir şeyler yanlış gitti. Lütfen tekrar deneyin.
-      blank_email: "Lütfen e-posta adresinizi girin."
-      invalid_email: "Lütfen geçerli bir e-posta adresi girin."
-      email_not_found: "Bu e-posta adresiyle eşleşen bir hesap bulunamadı."
+      blank_email: Lütfen e-posta adresinizi girin.
+      invalid_email: Lütfen geçerli bir e-posta adresi girin.
+      email_not_found: Bu e-posta adresiyle eşleşen bir hesap bulunamadı.
   accounts:
     title: Ayarlar
     personal_info: Kişisel bilgiler
@@ -156,7 +158,6 @@ tr:
     search_languages: Dil ara
     your_languages: Dillerim
     achievements_section: Başarılar
-    no_badges: Henüz rozet yok. Başarıları açmak için çalışmaya devam edin!
     badge_earned_on: "%{date} tarihinde kazanıldı"
     delete_title: Hesabı Sil
     delete_description: Hesabını ve ilgili tüm verileri kalıcı olarak sil. Bu işlem
@@ -190,13 +191,13 @@ tr:
     notif_time_zone: Saat dilimi
     notif_search_timezone: Saat dilimi ara
     notif_email_label: E-posta bildirimi
-    notif_in_app_heading: "In-App Notifications"
-    notif_email_heading: "Email Notifications"
-    notif_in_app_follows: "Someone follows me"
-    notif_email_follows: "Someone follows me"
-    notif_in_app_following_activity: "Activity from people I follow"
-    notif_email_following_activity: "Activity from people I follow"
-    notif_always_on: "Always on"
+    notif_in_app_heading: In-App Notifications
+    notif_email_heading: Email Notifications
+    notif_in_app_follows: Someone follows me
+    notif_email_follows: Someone follows me
+    notif_in_app_following_activity: Activity from people I follow
+    notif_email_following_activity: Activity from people I follow
+    notif_always_on: Always on
     theme_auto: Otomatik
     theme_light: Açık
     theme_dark: Koyu
@@ -207,7 +208,37 @@ tr:
     title: Achievements
     earned_count: "%{earned} of %{total} badges earned"
     no_badges: No badges yet. Keep studying to unlock achievements!
-
+    badges:
+      first_session:
+        name: İlk Oturum
+        description: İlk çalışma oturumunu tamamla
+      streak_3:
+        name: Üst Üste
+        description: 3 gün üst üste çalış
+      streak_7:
+        name: Haftalık Savaşçı
+        description: 7 gün üst üste çalış
+      streak_30:
+        name: Aylık Usta
+        description: 30 gün üst üste çalış
+      streak_100:
+        name: Yüzbaşı
+        description: 100 gün üst üste çalış
+      cards_10:
+        name: Başlangıç
+        description: 10 kartı gözden geçir
+      cards_100:
+        name: Kararlı
+        description: 100 kartı gözden geçir
+      cards_500:
+        name: Güç Merkezi
+        description: 500 kartı gözden geçir
+      cards_1000:
+        name: Efsane
+        description: 1000 kartı gözden geçir
+      perfect_test:
+        name: Keskin Nişancı
+        description: Bir test oturumunda %100 al
   decks:
     index:
       title: Destelerim
@@ -225,8 +256,8 @@ tr:
       delete_modal_warning: Tüm flashcardlar kalıcı olarak silinecek. Bu işlem geri
         alınamaz.
       delete_modal_confirm: Desteyi sil
-      unlisted_badge: Listelenmemiş
       public_badge: Herkese açık
+      unlisted_badge: Listelenmemiş
       private_badge: Özel
       created: Oluşturulma
       cards_section: Kartlar
@@ -277,13 +308,13 @@ tr:
       tags_placeholder: örn. biyoloji, anatomi, sınav2025
       visibility_label: Görünürlük
       visibility_section_label: Bu desteyi kim görebilir?
+      visibility_public: Herkese açık
       visibility_unlisted: Listelenmemiş
+      visibility_private: Sadece ben
+      visibility_hint: Herkese açık desteler herkes tarafından keşfedilebilir ve kopyalanabilir.
       section_about: Hakkında
       access_mode_open: Open
       access_mode_password: Password protected
-      visibility_private: Sadece ben
-      visibility_public: Herkese açık
-      visibility_hint: Herkese açık desteler herkes tarafından keşfedilebilir ve kopyalanabilir.
       password_label: Deste şifresi
       password_placeholder: En az 8 karakter
       password_hint: Required to view this deck
@@ -347,7 +378,7 @@ tr:
       never_studied: Hiç çalışılmadı
       studied_time: "%{time} önce"
       more_tags: "+%{count}"
-      options_aria: "Deste seçenekleri"
+      options_aria: Deste seçenekleri
   folders:
     create_failed: Klasör oluşturulamadı.
     updated: Klasör güncellendi.
@@ -367,10 +398,12 @@ tr:
       title: Klasörlerim
       empty: Henüz klasör yok.
       deck_count:
-        one: "1 deste"
+        one: 1 deste
         other: "%{count} deste"
     show:
       empty: Bu klasörde henüz deste yok.
+      start_building: Klasörünüzü oluşturmaya başlayalım
+      add_study_materials: Çalışma materyali ekle
       options_aria: Klasör seçenekleri
       rename: Yeniden adlandır
       rename_save: Kaydet
@@ -383,8 +416,6 @@ tr:
       all_filter: Tümü
       add_tag: Etiket ekle
       empty_description: Çalışma koleksiyonlarınızı düzenlemek için desteler kaydedin.
-      start_building: Klasörünüzü oluşturmaya başlayalım
-      add_study_materials: Çalışma materyali ekle
     add_decks_modal:
       title: Çalışma materyali ekle
       done: Tamam
@@ -408,6 +439,7 @@ tr:
     updated: Kart güncellendi.
     deleted: Flashcard kaldırıldı.
     restored: Flashcard geri yüklendi.
+    suggestions_aria: Öneriler
   study_modes:
     exit: "← Çık"
     no_cards_title: Henüz kart yok
@@ -461,7 +493,9 @@ tr:
       study_rate_prompt: Bunu ne kadar iyi biliyordunuz?
       study_cards_due: kart bekliyor
       study_session_complete: Tüm bekleyen kartları gözden geçirdiniz!
-      study_keyboard_hint: "Boşluk çevirmek için · 1 Tekrar · 2 Zor · 3 İyi · 4 Kolay"
+      study_keyboard_hint: Boşluk çevirmek için · 1 Tekrar · 2 Zor · 3 İyi · 4 Kolay
+      page_title: 'Kart: %{deck}'
+      browse_aria: Kart gezinme alanı
     study:
       subtitle: Kartları gözden geçir ve hatırlamanı puanla
       done_label: Tamamlandı
@@ -480,13 +514,13 @@ tr:
       hard: Zor
       good: İyi
       easy: Kolay
-      settings_btn_label: "Çalışma ayarları"
-      new_cards_label: "Yeni kartlar"
-      new_cards_all: "Tümü"
-      priority_label: "Öncelik"
-      priority_due: "Önce vadesi gelen"
-      priority_hardest: "Önce en zor"
-      apply_settings: "Uygula"
+      settings_btn_label: Çalışma ayarları
+      new_cards_label: Yeni kartlar
+      new_cards_all: Tümü
+      priority_label: Öncelik
+      priority_due: Önce vadesi gelen
+      priority_hardest: Önce en zor
+      apply_settings: Uygula
       progress_remaining: "%{count} kaldı"
       keyboard_hint: Boşluk göstermek için · 1 Tekrar · 2 Zor · 3 İyi · 4 Kolay ·
         Esc çıkmak için
@@ -495,19 +529,22 @@ tr:
       mastered_label: Öğrenildi
       empty_description: Çalışmadan önce bu desteye flashcard ekle.
       summary_title: Tüm kartlar öğrenildi!
+      complete_subtitle: Every card is now above the mastery threshold.
       studied: Çalışılan kartlar
       time_spent: Harcanan süre
       summary_sub: Harika iş — tüm kartlar öğrenildi.
       study_again: Tekrar Çalış
-      progress_header: Space to flip · G Got it · C Confused · D Don't know
-      reveal: Click to reveal
-      dont_know: Don't know
-      confused: Confused
-      got_it: Got it
-      mastery_pct: Mastery
-      weak_cards: Weak
+      restart: Tekrar çalış
       new_cards: New
-      complete_subtitle: Every card is now above the mastery threshold.
+      weak_cards: Weak
+      mastery_pct: Mastery
+      got_it: Got it
+      confused: Confused
+      dont_know: Don't know
+      reveal: Click to reveal
+      progress_header: Space to flip · G Got it · C Confused · D Don't know
+      page_title: 'Öğren: %{deck}'
+      complete_aria: Öğrenme oturumu tamamlandı
     test:
       subtitle: Bilgini test et
       question_label: Soru
@@ -517,6 +554,8 @@ tr:
       score: Puan
       time: Süre
       retake: Testi Tekrarla
+      page_title: 'Test: %{deck}'
+      session_aria: Test oturumu
     test_question:
       correct: Doğru!
       incorrect: Yanlış
@@ -543,43 +582,44 @@ tr:
       streak: Seri
       progress_label: "%{pct}% ilerleme"
       matched_counter: 'Eşleşti: %{matched} / %{total}'
-learn:
-  settings:
-    title: Learn Settings
-    new_cards_limit: New Cards Per Session
-    mastery_threshold: Mastery Threshold
-    hints: Show Hints
-    hints_on: "On"
-    hints_off: "Off"
-    weak_priority: Weak Card Priority
-    priority_low: Low
-    priority_normal: Normal
-    priority_high: High
-    apply: Apply
-    saved: Settings saved.
-    invalid: Invalid settings.
-    limit_5: "5 cards"
-    limit_10: "10 cards"
-    limit_15: "15 cards"
-    limit_20: "20 cards"
-    limit_all: All cards
-    threshold_60: "60% (Easy)"
-    threshold_70: "70%"
-    threshold_80: "80% (Default)"
-    threshold_90: "90% (Hard)"
-  hint: Hint
-  hint_prefix: "First word:"
-  complete:
-    cards_learned: Cards learned
-    weak_improved: Weak cards improved
-    practice_again: Practice Again
-    switch_to_study: Switch to Study Mode
-    retry_weak: Zayıf kartları tekrar et
+      page_title: 'Eşleştir: %{deck}'
+  learn:
+    settings:
+      title: Öğren ayarları
+      new_cards_limit: Oturum başına yeni kart
+      mastery_threshold: Ustalık eşiği
+      hints: İpuçlarını göster
+      hints_on: Açık
+      hints_off: Kapalı
+      weak_priority: Zayıf kart önceliği
+      priority_low: Düşük
+      priority_normal: Normal
+      priority_high: Yüksek
+      apply: Uygula
+      saved: Ayarlar kaydedildi.
+      invalid: Geçersiz ayarlar.
+      limit_5: 5 kart
+      limit_10: 10 kart
+      limit_15: 15 kart
+      limit_20: 20 kart
+      limit_all: Tüm kartlar
+      threshold_60: "%60 (Kolay)"
+      threshold_70: "%70"
+      threshold_80: "%80 (Varsayılan)"
+      threshold_90: "%90 (Zor)"
+    hint: İpucu
+    hint_prefix: 'İlk kelime:'
+    complete:
+      cards_learned: Öğrenilen kartlar
+      weak_improved: İyileşen zayıf kartlar
+      practice_again: Tekrar pratik yap
+      switch_to_study: Çalışma moduna geç
+      retry_weak: Zayıf kartları tekrar et
   errors:
     not_found:
-      flash: This deck is no longer available.
+      flash: Bu deste artık mevcut değil.
     not_authorized:
-      flash: You are not authorized to perform this action.
+      flash: Bu işlemi gerçekleştirme yetkiniz yok.
   explore:
     title: Keşfet
     subtitle: Topluluk tarafından paylaşılan herkese açık desteleri keşfet ve kopyala.
@@ -591,7 +631,7 @@ learn:
     empty_title: Henüz herkese açık deste yok
     empty_description: Toplulukla ilk desteyi paylaşan sen ol.
     by: tarafından
-    locked_badge: Password Required
+    locked_badge: Parola Gerekli
     owner_badge: Sen
     by_you: senin tarafından
     language_label: dil
@@ -602,10 +642,10 @@ learn:
     cards_due: Bekleyen Kartlar
     current_streak: Günlük Seri
     longest_streak: En İyi Seri
-    achievements_title: Achievements
-    achievements_view_all: View all achievements
-    achievements_earned_count: "%{earned} of %{total} earned"
-    achievements_none_yet: Keep studying to earn your first badge!
+    achievements_title: Başarılar
+    achievements_view_all: Tüm başarıları gör
+    achievements_earned_count: "%{total} rozetin %{earned} tanesi kazanıldı"
+    achievements_none_yet: İlk rozetini kazanmak için çalışmaya devam et!
     study_history: Çalışma Geçmişi
     see_all: Tümünü gör
     empty_history: Geçmişini burada görmek için bir çalışma oturumu tamamla.
@@ -632,6 +672,8 @@ learn:
     reviewed_header: İncelenen
     accuracy_header: Doğruluk
     time_header: Süre
+    page_title: 'Çalış: %{deck}'
+    session_aria: Çalışma oturumu
   imports:
     title: Kartları İçe Aktar — %{name}
     back: "← %{name}"
@@ -683,21 +725,15 @@ learn:
     term_label: TERİM
     definition_label: TANIM
     cancel_import: İçe aktarmayı iptal et
+    text_placeholder: "Merhaba\tHello\nGüle güle\tGoodbye"
   home:
-    hero_heading: "Daha akıllı çalış, daha uzun hatırla"
-    hero_subtitle: "Quizly, gerçek hafıza oluşturmanıza yardımcı olur — sadece kısa süreli hatırlama değil."
-    badge: "Aralıklı tekrar yerleşik"
+    hero_heading: Daha akıllı çalış, daha uzun hatırla
+    hero_subtitle: Quizly, gerçek hafıza oluşturmanıza yardımcı olur — sadece kısa
+      süreli hatırlama değil.
+    badge: Aralıklı tekrar yerleşik
     sign_up: Ücretsiz kaydol
     popular_decks: Popüler Desteler
     see_all: Tümünü gör →
-    modes:
-      flashcards: Flashcard'lar
-      learn: Öğren
-      study: Çalış
-      test: Test
-      match: Eşleştir
-    explore_link: Keşfet
-    log_in: Giriş Yap
     no_decks: Henüz öne çıkan demet yok.
     popular_section_label: Popüler Demetler
     popular_section_title: Son etkinlik
@@ -708,8 +744,16 @@ learn:
       decks_label: Öne çıkan demetler
       languages_label: Diller
       cards_label: kart
-    cta_strip_headline: "Daha akıllıca çalışmaya hazır mısın?"
-    cta_strip_sub: "Quizly'yi kullanan binlerce öğrenciye katıl."
+    modes:
+      flashcards: Flashcard'lar
+      learn: Öğren
+      study: Çalış
+      test: Test
+      match: Eşleştir
+    explore_link: Keşfet
+    log_in: Giriş Yap
+    cta_strip_headline: Daha akıllıca çalışmaya hazır mısın?
+    cta_strip_sub: Quizly'yi kullanan binlerce öğrenciye katıl.
     page_title: Quizly — Flashcard'larla Daha Hızlı Öğren
     carousel:
       previous_slide: Önceki slayt
@@ -732,8 +776,11 @@ learn:
     reset_link_text: bu şifre sıfırlama sayfası
     reset_text_body: 'Şifreni sonraki 15 dakika içinde bu şifre sıfırlama sayfasında
       sıfırlayabilirsin:'
-    expires_note: Bu bağlantı 15 dakika içinde sona erer. Şifre sıfırlama talebinde bulunmadıysan bu e-postayı güvenle yoksayabilirsin.
-    fallback_note: "Yukarıdaki düğme çalışmazsa bu bağlantıyı kopyalayıp tarayıcına yapıştır:"
+    expires_note: Bu bağlantı 15 dakika içinde sona erer. Şifre sıfırlama talebinde
+      bulunmadıysan bu e-postayı güvenle yoksayabilirsin.
+    fallback_note: 'Yukarıdaki düğme çalışmazsa bu bağlantıyı kopyalayıp tarayıcına
+      yapıştır:'
+    reset_heading: Parolanızı sıfırlayın
   question_engine:
     match_prompt: Her terimi tanımıyla eşleştir
   time:
@@ -753,40 +800,40 @@ learn:
     events:
       badge_earned: Yeni bir rozet kazandınız
       followed: "%{actor} sizi takip etmeye başladı"
-      followed_user_published_deck: "%{actor} published a new deck"
+      followed_user_published_deck: "%{actor} yeni bir deste yayımladı"
       deck_commented: "%{actor} demetinizi yorumladı"
       deck_reacted: "%{actor} demetinize tepki verdi"
   follows:
-    follow: "Follow"
-    unfollow: "Unfollow"
+    follow: Takip et
+    unfollow: Takibi bırak
     followers:
-      one: "%{count} follower"
-      other: "%{count} followers"
+      :one: "%{count} takipçi"
+      :other: "%{count} takipçi"
     follower_label:
-      one: "follower"
-      other: "followers"
-    public_decks: "Public Decks"
-    no_public_decks: "No public decks yet."
-    following_heading: "Following"
-    following_page_title: "%{name}'s Following"
-    no_following: "Not following anyone yet."
+      :one: takipçi
+      :other: takipçi
+    public_decks: Herkese Açık Desteler
+    no_public_decks: Henüz herkese açık deste yok.
+    following_heading: Takip Edilenler
+    following_page_title: "%{name} kullanıcısının takip ettikleri"
+    no_following: Henüz kimseyi takip etmiyor.
   activerecord:
     errors:
       models:
         follow:
           attributes:
             base:
-              cannot_follow_self: "You cannot follow yourself."
+              cannot_follow_self: Kendinizi takip edemezsiniz.
             follower_id:
-              already_following: "You are already following this user."
+              already_following: Bu kullanıcıyı zaten takip ediyorsunuz.
         user:
           attributes:
             username:
-              invalid_username: "may only contain letters, numbers, and underscores."
+              invalid_username: yalnızca harf, rakam ve alt çizgi içerebilir.
         deck:
           attributes:
             base:
               not_ready_to_share: Bu desteyi paylaşmadan önce en az bir kart ekleyin.
             access_mode:
-              invalid_for_private_deck: Private decks cannot be password-protected
-                — only you can see them anyway.
+              invalid_for_private_deck: Özel desteler parolayla korunamaz — zaten
+                yalnızca siz görebilirsiniz.

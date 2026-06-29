@@ -45,6 +45,8 @@ en:
     previous_page: Previous page
     next_page: Next page
     not_available: N/A
+    pagination_aria: Pagination
+    main_nav_aria: Main navigation
   auth:
     back_to_home: Back to home
     panel:
@@ -206,6 +208,37 @@ en:
     title: Achievements
     earned_count: "%{earned} of %{total} badges earned"
     no_badges: No badges yet. Keep studying to unlock achievements!
+    badges:
+      first_session:
+        name: First Session
+        description: Complete your first study session
+      streak_3:
+        name: On a Roll
+        description: Study 3 days in a row
+      streak_7:
+        name: Weekly Warrior
+        description: Study 7 days in a row
+      streak_30:
+        name: Monthly Master
+        description: Study 30 days in a row
+      streak_100:
+        name: Centurion
+        description: Study 100 days in a row
+      cards_10:
+        name: Getting Started
+        description: Review 10 cards
+      cards_100:
+        name: Dedicated
+        description: Review 100 cards
+      cards_500:
+        name: Powerhouse
+        description: Review 500 cards
+      cards_1000:
+        name: Legend
+        description: Review 1000 cards
+      perfect_test:
+        name: Sharpshooter
+        description: Score 100% on a test session
 
   decks:
     index:
@@ -407,6 +440,7 @@ en:
     updated: Card updated.
     deleted: Flashcard removed.
     restored: Flashcard restored.
+    suggestions_aria: Suggestions
   study_modes:
     exit: "← Exit"
     no_cards_title: No cards yet
@@ -460,6 +494,8 @@ en:
       study_cards_due: cards due
       study_session_complete: You've reviewed all due cards!
       study_keyboard_hint: "Space to flip · 1 Again · 2 Hard · 3 Good · 4 Easy"
+      page_title: 'Flashcard: %{deck}'
+      browse_aria: Flashcard browse area
     study:
       subtitle: Review cards and rate your recall
       done_label: Done
@@ -507,6 +543,8 @@ en:
       dont_know: Don't know
       reveal: Click to reveal
       progress_header: "Space to flip · G Got it · C Confused · D Don't know"
+      page_title: 'Learn: %{deck}'
+      complete_aria: Learn session complete
     test:
       subtitle: Test your knowledge
       question_label: Question
@@ -516,6 +554,8 @@ en:
       score: Score
       time: Time
       retake: Retake Test
+      page_title: 'Test: %{deck}'
+      session_aria: Test session
     test_question:
       correct: Correct!
       incorrect: Incorrect
@@ -542,6 +582,7 @@ en:
       streak: Streak
       progress_label: "%{pct}% Progress"
       matched_counter: 'Matched: %{matched} / %{total}'
+      page_title: 'Match: %{deck}'
   learn:
     settings:
       title: Learn Settings
@@ -630,6 +671,8 @@ en:
     reviewed_header: Reviewed
     accuracy_header: Accuracy
     time_header: Time
+    page_title: 'Study: %{deck}'
+    session_aria: Study session
   imports:
     title: Import Cards — %{name}
     back: "← %{name}"
@@ -683,6 +726,7 @@ en:
     term_label: TERM
     definition_label: DEFINITION
     cancel_import: Cancel Import
+    text_placeholder: "Hello\tHola\nGoodbye\tAdiós"
   home:
     hero_heading: "Study smarter, remember longer"
     hero_subtitle: "Quizly helps you build real memory — not just short-term recall."
@@ -734,6 +778,7 @@ en:
       password reset page:'
     expires_note: This link expires in 15 minutes. If you did not request a password reset, you can safely ignore this email.
     fallback_note: "If the button above doesn't work, copy and paste this link into your browser:"
+    reset_heading: Reset your password
   question_engine:
     match_prompt: Match each term to its definition
   time:

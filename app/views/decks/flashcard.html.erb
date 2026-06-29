@@ -1,4 +1,4 @@
-<% content_for :title, "Flashcard: #{@deck.name}" %>
+<% content_for :title, t("study_modes.flashcard.page_title", deck: @deck.name) %>
 
 <% content_for :head do %>
   <meta name="turbo-cache-control" content="no-cache">
@@ -10,7 +10,7 @@
      data-flashcard-browse-mode-value="<%= @study_mode ? 'study' : 'browse' %>"
      data-flashcard-browse-progress-value="<%= @card_progresses_json || '[]' %>"
      tabindex="-1"
-     aria-label="Flashcard browse area">
+     aria-label="<%= t("study_modes.flashcard.browse_aria") %>">
 
   <div class="fb__top">
     <div class="fb__counter">
@@ -188,7 +188,7 @@
       <h3 class="fb-options__title"><%= t("study_modes.flashcard.options") %></h3>
       <button class="fb-options__close"
               data-action="click->flashcard-browse#closeOptions"
-              aria-label="Close">
+              aria-label="<%= t("shared.close") %>">
         <%= render "shared/icons/x_mark" %>
       </button>
     </div>

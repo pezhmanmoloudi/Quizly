@@ -7,23 +7,23 @@
 <div class="container">
   <div class="stats-grid">
     <div class="stat-card">
-      <div id="total-decks-count" class="stat-card__value"><%= @total_decks %></div>
+      <div id="total-decks-count" class="stat-card__value"><%= localized_number(@total_decks) %></div>
       <div class="stat-card__label"><%= t("dashboard.total_decks") %></div>
     </div>
     <div class="stat-card">
-      <div id="total-cards-count" class="stat-card__value"><%= @total_cards %></div>
+      <div id="total-cards-count" class="stat-card__value"><%= localized_number(@total_cards) %></div>
       <div class="stat-card__label"><%= t("dashboard.total_cards") %></div>
     </div>
     <div class="stat-card">
-      <div id="cards-due-count" class="stat-card__value stat-card__value--due"><%= @total_due %></div>
+      <div id="cards-due-count" class="stat-card__value stat-card__value--due"><%= localized_number(@total_due) %></div>
       <div class="stat-card__label"><%= t("dashboard.cards_due") %></div>
     </div>
     <div class="stat-card">
-      <div class="stat-card__value stat-card__value--streak">🔥 <%= Current.user.current_streak %></div>
+      <div class="stat-card__value stat-card__value--streak">🔥 <%= localized_number(Current.user.current_streak) %></div>
       <div class="stat-card__label"><%= t("dashboard.current_streak") %></div>
     </div>
     <div class="stat-card">
-      <div class="stat-card__value stat-card__value--streak"><%= Current.user.longest_streak %></div>
+      <div class="stat-card__value stat-card__value--streak"><%= localized_number(Current.user.longest_streak) %></div>
       <div class="stat-card__label"><%= t("dashboard.longest_streak") %></div>
     </div>
   </div>
@@ -41,7 +41,7 @@
         </div>
       <% end %>
     </div>
-    <p class="achievements-preview-count"><%= t("dashboard.achievements_earned_count", earned: @badges_earned, total: @badges_total) %></p>
+    <p class="achievements-preview-count"><%= t("dashboard.achievements_earned_count", earned: localized_number(@badges_earned), total: localized_number(@badges_total)) %></p>
   <% else %>
     <p class="achievements-preview-empty"><%= t("dashboard.achievements_none_yet") %></p>
   <% end %>
@@ -56,7 +56,7 @@
       <% recent_sessions.each do |s| %>
         <div class="study-history-mini__item">
           <span class="study-history-mini__deck"><%= s.deck.name %></span>
-          <span class="study-history-mini__stats"><%= t("dashboard.history_stats", cards: s.cards_reviewed, accuracy: s.accuracy) %></span>
+          <span class="study-history-mini__stats"><%= t("dashboard.history_stats", cards: localized_number(s.cards_reviewed), accuracy: localized_number(s.accuracy)) %></span>
           <span class="study-history-mini__date"><%= s.started_at.strftime("%-d %b") %></span>
         </div>
       <% end %>

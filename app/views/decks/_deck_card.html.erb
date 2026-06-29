@@ -18,7 +18,7 @@
       </div>
       <span class="deck-row__author"><%= Current.user.display_name %></span>
       <span class="deck-row__meta-sep" aria-hidden="true">·</span>
-      <span class="deck-row__time"><%= t("decks.deck_card.studied_time", time: time_ago_in_words(deck.updated_at)) %></span>
+      <span class="deck-row__time"><%= t("decks.deck_card.studied_time", time: localized_time_ago(deck.updated_at)) %></span>
     </div>
     <% if deck.tag_list.any? %>
       <div class="deck-row__tags">
@@ -34,20 +34,20 @@
 
   <div class="deck-row__col deck-row__col--cards">
     <%= render "shared/icons/rectangle_stack", css_class: "deck-row__col-icon deck-row__col-icon--cards" %>
-    <span class="deck-row__col-value"><%= deck.flashcards_count %></span>
+    <span class="deck-row__col-value"><%= localized_number(deck.flashcards_count) %></span>
     <span class="deck-row__col-label"><%= t("decks.deck_card.cards_label") %></span>
   </div>
 
   <div class="deck-row__col deck-row__col--due">
     <%= render "shared/icons/clock", css_class: "deck-row__col-icon deck-row__col-icon--due" %>
-    <span class="deck-row__col-value"><%= due %></span>
+    <span class="deck-row__col-value"><%= localized_number(due) %></span>
     <span class="deck-row__col-label"><%= t("decks.deck_card.due_label") %></span>
   </div>
 
   <div class="deck-row__col deck-row__col--studied">
     <%= render "shared/icons/calendar_days", css_class: "deck-row__col-icon deck-row__col-icon--studied" %>
     <% if last_studied %>
-      <span class="deck-row__col-value"><%= time_ago_in_words(last_studied) %></span>
+      <span class="deck-row__col-value"><%= localized_time_ago(last_studied) %></span>
     <% else %>
       <span class="deck-row__col-value deck-row__col-value--none">&mdash;</span>
     <% end %>

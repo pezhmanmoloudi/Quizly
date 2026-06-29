@@ -1,5 +1,5 @@
 <% if suggestions.any? %>
-  <div class="ac-panel" role="listbox" aria-label="Suggestions">
+  <div class="ac-panel" role="listbox" aria-label="<%= t("flashcards.suggestions_aria") %>">
     <ul class="ac-list">
       <% suggestions.each do |word| %>
         <li class="ac-item"

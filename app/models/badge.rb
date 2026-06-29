@@ -11,4 +11,12 @@ class Badge < ApplicationRecord
   def self.preview_for(user)
     user.badges.order("user_badges.earned_at DESC").limit(3)
   end
+
+  def name
+    I18n.t("achievements.badges.#{key}.name", default: self[:name])
+  end
+
+  def description
+    I18n.t("achievements.badges.#{key}.description", default: self[:description])
+  end
 end

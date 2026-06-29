@@ -18,18 +18,18 @@ ckb:
       study_group: گروپی خوێندن
     open_navigation: کردنەوەی ناڤیگەیشن
     close_navigation: داخستنی ناڤیگەیشن
-    account_menu: Account menu
+    account_menu: پێڕستی هەژمار
   menu:
     settings: ڕێکخستنەکان
     dark_mode: دۆخی تاریک
     light_mode: دۆخی ڕووناک
     log_out: چوونەدەرەوە
     language: زمان
-    view_profile: View Profile
-    achievements: Achievements
-    notifications: Notifications
-    followers: Followers
-    following: Following
+    view_profile: بینینی پرۆفایل
+    achievements: دەستکەوتەکان
+    notifications: ئاگادارکردنەوەکان
+    followers: شوێنکەوتووان
+    following: بەدواداچووان
   shared:
     cancel: پاشگەزبوونەوە
     close: داخستن
@@ -45,6 +45,8 @@ ckb:
     previous_page: پەڕەی پێشوو
     next_page: پەڕەی داهاتوو
     not_available: بەردەست نییە
+    pagination_aria: ژمارەی پەڕەکان
+    main_nav_aria: ڕێنیشاندەری سەرەکی
   auth:
     back_to_home: گەڕانەوە بۆ ماڵپەڕ
     panel:
@@ -67,15 +69,15 @@ ckb:
     submit: چوونەژوورەوە
     no_account: هەژمارت نییە؟
     sign_up: خۆتۆمارکردن
-    or: "or"
-    sign_in_with_google: "Continue with Google"
+    or: or
+    sign_in_with_google: Continue with Google
     google:
-      success: "Signed in with Google."
-      failure: "Google sign-in failed. Please try again."
-    sign_in_with_github: "Continue with GitHub"
+      success: Signed in with Google.
+      failure: Google sign-in failed. Please try again.
+    sign_in_with_github: Continue with GitHub
     github:
-      success: "Signed in with GitHub."
-      failure: "GitHub sign-in failed. Please try again."
+      success: Signed in with GitHub.
+      failure: GitHub sign-in failed. Please try again.
     errors:
       rate_limited: دواتر دووبارە هەوڵبدەوە.
       invalid: ئیمەیل یان وشەی نهێنیەکی تر تاقیبکەرەوە.
@@ -118,16 +120,17 @@ ckb:
       submit: پاشەکەوتکردنی وشەی نهێنیی نوێ
       back: "→ گەڕانەوە بۆ چوونەژوورەوە"
     sent: ڕێنماییەکانی نوێکردنەوە نێردران (ئەگەر بەکارهێنەرێک بەم ئیمەیلە هەبێت).
-    sent_if_exists: "ئەگەر ئەژمارێک بۆ ئەم ئیمەیڵە هەبوو، ڕێنماییەکانی دووبارەکردنەوەمان نێردووە."
+    sent_if_exists: ئەگەر ئەژمارێک بۆ ئەم ئیمەیڵە هەبوو، ڕێنماییەکانی دووبارەکردنەوەمان
+      نێردووە.
     reset: وشەی نهێنی نوێکرایەوە.
     mismatch: وشەی نهێنیەکان یەکسان نین.
     invalid: بەستەری نوێکردنەوە نادروست یان کاتی بەسەرچووە.
     errors:
       rate_limited: دواتر دووبارە هەوڵبدەوە.
       generic: هەڵەیەک ڕوویدا. دواتر دووبارە هەوڵبدەرەوە.
-      blank_email: "تکایە ئادرەسی ئیمەیڵەکەت بنووسە."
-      invalid_email: "تکایە ئادرەسی ئیمەیڵێکی دروست بنووسە."
-      email_not_found: "هیچ ئەژمارێک بەم ئیمەیڵە نەدۆزرایەوە."
+      blank_email: تکایە ئادرەسی ئیمەیڵەکەت بنووسە.
+      invalid_email: تکایە ئادرەسی ئیمەیڵێکی دروست بنووسە.
+      email_not_found: هیچ ئەژمارێک بەم ئیمەیڵە نەدۆزرایەوە.
   accounts:
     title: ڕێکخستنەکان
     personal_info: زانیاری کەسی
@@ -156,7 +159,6 @@ ckb:
     search_languages: گەڕان بەدوای زمانەکاندا
     your_languages: زمانەکانت
     achievements_section: دەستکەوتەکان
-    no_badges: هیچ نیشانێک نییە. بەردەوام بە لە خوێندنەوە بۆ کردنەوەی دەستکەوتەکان!
     badge_earned_on: "%{date} بەدەستهێنراوە"
     delete_title: سڕینەوەی هەژمار
     delete_description: هەژمارەکەت و هەموو داتاکانی پەیوەندیدار بە بەردەوامی بسڕەرەوە.
@@ -190,13 +192,13 @@ ckb:
     notif_time_zone: ناوچەی کاتی
     notif_search_timezone: گەڕانی ناوچەی کاتی
     notif_email_label: ئاگادارکردنەوەی ئیمەیڵ
-    notif_in_app_heading: "In-App Notifications"
-    notif_email_heading: "Email Notifications"
-    notif_in_app_follows: "Someone follows me"
-    notif_email_follows: "Someone follows me"
-    notif_in_app_following_activity: "Activity from people I follow"
-    notif_email_following_activity: "Activity from people I follow"
-    notif_always_on: "Always on"
+    notif_in_app_heading: In-App Notifications
+    notif_email_heading: Email Notifications
+    notif_in_app_follows: Someone follows me
+    notif_email_follows: Someone follows me
+    notif_in_app_following_activity: Activity from people I follow
+    notif_email_following_activity: Activity from people I follow
+    notif_always_on: Always on
     theme_auto: خۆکار
     theme_light: ڕووناک
     theme_dark: تاریک
@@ -207,7 +209,37 @@ ckb:
     title: Achievements
     earned_count: "%{earned} of %{total} badges earned"
     no_badges: No badges yet. Keep studying to unlock achievements!
-
+    badges:
+      first_session:
+        name: یەکەم خول
+        description: یەکەم خولی خوێندنت تەواو بکە
+      streak_3:
+        name: لەسەر ڕێڕەو
+        description: ٣ ڕۆژ بەردەوام بخوێنە
+      streak_7:
+        name: جەنگاوەری هەفتانە
+        description: ٧ ڕۆژ بەردەوام بخوێنە
+      streak_30:
+        name: مامۆستای مانگانە
+        description: ٣٠ ڕۆژ بەردەوام بخوێنە
+      streak_100:
+        name: سەدوەر
+        description: ١٠٠ ڕۆژ بەردەوام بخوێنە
+      cards_10:
+        name: دەستپێک
+        description: ١٠ کارت پێداچوونەوە بکە
+      cards_100:
+        name: تەرخانکراو
+        description: ١٠٠ کارت پێداچوونەوە بکە
+      cards_500:
+        name: هێزی گەورە
+        description: ٥٠٠ کارت پێداچوونەوە بکە
+      cards_1000:
+        name: ئەفسانە
+        description: ١٠٠٠ کارت پێداچوونەوە بکە
+      perfect_test:
+        name: تەقەکەری وردبین
+        description: لە خولێکی تاقیکردنەوەدا ١٠٠٪ بەدەستبهێنە
   decks:
     index:
       title: دەستەکانم
@@ -225,8 +257,8 @@ ckb:
       delete_modal_warning: هەموو فلاشکارتەکان بە تەواوی دەسڕێنەوە. ئەم کارە ناتوانرێت
         گەڕاندرێتەوە.
       delete_modal_confirm: دەستە بسڕەوە
-      unlisted_badge: نه‌سیاوکراو
       public_badge: گشتی
+      unlisted_badge: نه‌سیاوکراو
       private_badge: تایبەت
       created: دروستکرا
       cards_section: کارتەکان
@@ -277,13 +309,13 @@ ckb:
       tags_placeholder: 'بۆ نموونە: بایۆلۆجی، ئەناتۆمی، تاقیکردنەوە٢٠٢٥'
       visibility_label: بینراوی
       visibility_section_label: کێ دەتوانێت ئەم دەستەیە ببینێت؟
+      visibility_public: گشتی
       visibility_unlisted: نه‌سیاوکراو
+      visibility_private: تەنها من
+      visibility_hint: دەستەی گشتی دەکرێت لە لایەن هەر کەسێکەوە دۆزراوەوە و کۆپیبکرێت.
       section_about: دەربارە
       access_mode_open: Open
       access_mode_password: Password protected
-      visibility_private: تەنها من
-      visibility_public: گشتی
-      visibility_hint: دەستەی گشتی دەکرێت لە لایەن هەر کەسێکەوە دۆزراوەوە و کۆپیبکرێت.
       password_label: پاسۆردی دەستە
       password_placeholder: لانیکەم ٨ پیت
       password_hint: Required to view this deck
@@ -347,7 +379,7 @@ ckb:
       never_studied: هەرگیز نەخوێندراوەتەوە
       studied_time: "%{time} پێش ئەمە"
       more_tags: "+%{count}"
-      options_aria: "بژاردەکانی داڵکە"
+      options_aria: بژاردەکانی داڵکە
   folders:
     create_failed: نەتوانرا پوشەکە دروست بکرێت.
     updated: پوشەکە نوێ کرایەوە.
@@ -367,10 +399,12 @@ ckb:
       title: پوشەکانم
       empty: تا ئێستا هیچ پوشەیەک نییە.
       deck_count:
-        one: "یەک دەستە"
+        one: یەک دەستە
         other: "%{count} دەستە"
     show:
       empty: هیچ دەستەیەک لەم پوشەیەدا نییە.
+      start_building: با دەست بە دروستکردنی بوخچەکەت بکەین
+      add_study_materials: زیادکردنی مەوادی خوێندن
       options_aria: هەڵبژاردنەکانی پوشە
       rename: دووبارە ناونانی
       rename_save: پاشەکەوتکردن
@@ -383,8 +417,6 @@ ckb:
       all_filter: هەموو
       add_tag: تاگ زیادبکە
       empty_description: دیکەکان پاشەکەوت بکە بۆ رێکخستنی کۆمەڵەکانت.
-      start_building: با دەست بە دروستکردنی بوخچەکەت بکەین
-      add_study_materials: زیادکردنی مەوادی خوێندن
     add_decks_modal:
       title: زیادکردنی مەوادی خوێندن
       done: تەواوە
@@ -408,6 +440,7 @@ ckb:
     updated: کارت نوێکرایەوە.
     deleted: فلاشکارت سڕایەوە.
     restored: فلاشکارت گەڕاندرایەوە.
+    suggestions_aria: پێشنیارەکان
   study_modes:
     exit: "→ دەرچوون"
     no_cards_title: هێشتا کارتێک نییە
@@ -460,7 +493,9 @@ ckb:
       study_rate_prompt: چەندە زانیت؟
       study_cards_due: کارتی پێویست
       study_session_complete: هەموو کارتە پێویستەکانت پێداچوونەوەیان کرد!
-      study_keyboard_hint: "Space بۆ ئامراژکردن · 1 دووبارە · 2 سەخت · 3 باش · 4 ئاسان"
+      study_keyboard_hint: Space بۆ ئامراژکردن · 1 دووبارە · 2 سەخت · 3 باش · 4 ئاسان
+      page_title: 'کارت: %{deck}'
+      browse_aria: ناوچەی گەڕانی کارتەکان
     study:
       subtitle: کارتەکان بپشکنە و بیرهێنانەوەت بهاکردن
       done_label: تەواوبوو
@@ -479,13 +514,13 @@ ckb:
       hard: سەخت
       good: باش
       easy: ئاسان
-      settings_btn_label: "ڕێکخستنی خوێندنەوە"
-      new_cards_label: "کارتی نوێ"
-      new_cards_all: "هەموو"
-      priority_label: "پێشینە"
-      priority_due: "دواوەی پێشتر"
-      priority_hardest: "سەختترین"
-      apply_settings: "جێبەجێکردن"
+      settings_btn_label: ڕێکخستنی خوێندنەوە
+      new_cards_label: کارتی نوێ
+      new_cards_all: هەموو
+      priority_label: پێشینە
+      priority_due: دواوەی پێشتر
+      priority_hardest: سەختترین
+      apply_settings: جێبەجێکردن
       progress_remaining: "%{count} ماوەتەوە"
       keyboard_hint: بۆشایی بۆ ئاشکراکردن · ١ دووبارە · ٢ سەخت · ٣ باش · ٤ ئاسان ·
         Esc بۆ دەرچوون
@@ -494,19 +529,22 @@ ckb:
       mastered_label: ماستەرکراو
       empty_description: کارتی فێربوون زیادبکە بۆ ئەم دەستەیە پێش خوێندن.
       summary_title: هەموو کارتەکان سەروانە بوون!
+      complete_subtitle: Every card is now above the mastery threshold.
       studied: کارتە خوێندراوەکان
       time_spent: کاتی خەرجکراو
       summary_sub: کاری باش — هەموو کارتەکان سەروانە بوون.
       study_again: دووبارە بیخوێنەوە
-      progress_header: Space to flip · G Got it · C Confused · D Don't know
-      reveal: Click to reveal
-      dont_know: Don't know
-      confused: Confused
-      got_it: Got it
-      mastery_pct: Mastery
-      weak_cards: Weak
+      restart: دووبارە بخوێنە
       new_cards: New
-      complete_subtitle: Every card is now above the mastery threshold.
+      weak_cards: Weak
+      mastery_pct: Mastery
+      got_it: Got it
+      confused: Confused
+      dont_know: Don't know
+      reveal: Click to reveal
+      progress_header: Space to flip · G Got it · C Confused · D Don't know
+      page_title: 'فێربوون: %{deck}'
+      complete_aria: خولی فێربوون تەواوبوو
     test:
       subtitle: زانستت بيازمێنە
       question_label: پرسیار
@@ -516,6 +554,8 @@ ckb:
       score: نمرە
       time: کات
       retake: دووبارە تاقیکردنەوە
+      page_title: 'تاقیکردنەوە: %{deck}'
+      session_aria: خولی تاقیکردنەوە
     test_question:
       correct: درووستە!
       incorrect: هەڵەیە
@@ -542,43 +582,44 @@ ckb:
       streak: زنجیرە
       progress_label: "%{pct}% پێشکەوتن"
       matched_counter: 'دۆشراو: %{matched} / %{total}'
-learn:
-  settings:
-    title: Learn Settings
-    new_cards_limit: New Cards Per Session
-    mastery_threshold: Mastery Threshold
-    hints: Show Hints
-    hints_on: "On"
-    hints_off: "Off"
-    weak_priority: Weak Card Priority
-    priority_low: Low
-    priority_normal: Normal
-    priority_high: High
-    apply: Apply
-    saved: Settings saved.
-    invalid: Invalid settings.
-    limit_5: "5 cards"
-    limit_10: "10 cards"
-    limit_15: "15 cards"
-    limit_20: "20 cards"
-    limit_all: All cards
-    threshold_60: "60% (Easy)"
-    threshold_70: "70%"
-    threshold_80: "80% (Default)"
-    threshold_90: "90% (Hard)"
-  hint: Hint
-  hint_prefix: "First word:"
-  complete:
-    cards_learned: Cards learned
-    weak_improved: Weak cards improved
-    practice_again: Practice Again
-    switch_to_study: Switch to Study Mode
-    retry_weak: دووبارەکردنەوەی کارتە لاوازەکان
+      page_title: 'هاوتاکردن: %{deck}'
+  learn:
+    settings:
+      title: ڕێکخستنەکانی فێربوون
+      new_cards_limit: کارتە نوێیەکان بۆ هەر خولێک
+      mastery_threshold: سنووری شارەزایی
+      hints: پیشاندانی ئاماژەکان
+      hints_on: داگیرساو
+      hints_off: کوژاوە
+      weak_priority: ئەولەویەتی کارتە لاوازەکان
+      priority_low: نزم
+      priority_normal: ئاسایی
+      priority_high: بەرز
+      apply: جێبەجێکردن
+      saved: ڕێکخستنەکان پاشەکەوتکران.
+      invalid: ڕێکخستنە نادروستەکان.
+      limit_5: ٥ کارت
+      limit_10: ١٠ کارت
+      limit_15: ١٥ کارت
+      limit_20: ٢٠ کارت
+      limit_all: هەموو کارتەکان
+      threshold_60: ٦٠٪ (ئاسان)
+      threshold_70: ٧٠٪
+      threshold_80: ٨٠٪ (بنەڕەت)
+      threshold_90: ٩٠٪ (سەخت)
+    hint: ئاماژە
+    hint_prefix: 'یەکەم وشە:'
+    complete:
+      cards_learned: کارتە فێربووەکان
+      weak_improved: کارتە لاوازە باشبووەکان
+      practice_again: دووبارە ڕاهێنان
+      switch_to_study: گۆڕین بۆ دۆخی خوێندن
+      retry_weak: دووبارەکردنەوەی کارتە لاوازەکان
   errors:
     not_found:
-      flash: This deck is no longer available.
+      flash: ئەم دەستەیە چیتر بەردەست نییە.
     not_authorized:
-      flash: You are not authorized to perform this action.
+      flash: تۆ ڕێگەپێدراو نیت بۆ ئەنجامدانی ئەم کردارە.
   explore:
     title: گەڕان
     subtitle: دەستەی گشتیی بەشکراوی کۆمەڵگا دۆزەرەوە و کۆپیبکە.
@@ -590,7 +631,7 @@ learn:
     empty_title: هێشتا هیچ دەستەی گشتییەک نییە
     empty_description: یەکەمین ببە بۆ بەشکردنی دەستەیەک لەگەڵ کۆمەڵگا.
     by: لەلایەن
-    locked_badge: Password Required
+    locked_badge: تێپەڕەووشە پێویستە
     owner_badge: تۆ
     by_you: لەلایەن تۆ
     language_label: زمان
@@ -601,10 +642,10 @@ learn:
     cards_due: کارتە سەرکەوتووەکان
     current_streak: زنجیری ڕۆژ
     longest_streak: باشترین زنجیر
-    achievements_title: Achievements
-    achievements_view_all: View all achievements
-    achievements_earned_count: "%{earned} of %{total} earned"
-    achievements_none_yet: Keep studying to earn your first badge!
+    achievements_title: دەستکەوتەکان
+    achievements_view_all: بینینی هەموو دەستکەوتەکان
+    achievements_earned_count: "%{earned} لە %{total} بەدەستهاتوو"
+    achievements_none_yet: بەردەوام بە لە خوێندن بۆ بەدەستهێنانی یەکەم نیشانەت!
     study_history: مێژووی خوێندن
     see_all: بینینی هەمووان
     empty_history: دانیشتنێکی خوێندن تەواوبکە بۆ بینینی مێژووکەت ئێرەدا.
@@ -631,6 +672,8 @@ learn:
     reviewed_header: پاڕاستنەوەکراو
     accuracy_header: تەواوی
     time_header: کات
+    page_title: 'خوێندن: %{deck}'
+    session_aria: خولی خوێندن
   imports:
     title: هاوردەکردنی کارت — %{name}
     back: "→ %{name}"
@@ -684,21 +727,15 @@ learn:
     term_label: تەرم
     definition_label: پێناسە
     cancel_import: هاوردەکردن هەڵوەشێنەوە
+    text_placeholder: "سڵاو\tHello\nخواحافیز\tGoodbye"
   home:
-    hero_heading: "زیرەکانەتر بخوێنە، درێژتر لەبیر بکە"
-    hero_subtitle: "Quizly یارمەتیت دەدات بیرکردنەوەی ڕاستەقینە بنیات بنێیت — نەک تەنها بیرکردنەوەی کورت‌ماوە."
-    badge: "دووبارەکردنەوەی فاسل‌دار دروستکراوە"
+    hero_heading: زیرەکانەتر بخوێنە، درێژتر لەبیر بکە
+    hero_subtitle: Quizly یارمەتیت دەدات بیرکردنەوەی ڕاستەقینە بنیات بنێیت — نەک تەنها
+      بیرکردنەوەی کورت‌ماوە.
+    badge: دووبارەکردنەوەی فاسل‌دار دروستکراوە
     sign_up: خۆتۆمارکردنی بەخۆڕایی
     popular_decks: دەستەی بناوبانگ
     see_all: بینینی هەمووان →
-    modes:
-      flashcards: کارتی فێربوون
-      learn: فێربوون
-      study: خوێندن
-      test: تاقیکردنەوە
-      match: دۆشاندن
-    explore_link: گەڕان
-    log_in: چوونەژوورەوە
     no_decks: هێشتا هیچ دەستەی تایبەتی نییە.
     popular_section_label: دەستەی بەناوبانگ
     popular_section_title: چالاکیی دواتر
@@ -709,8 +746,16 @@ learn:
       decks_label: دەستەی تایبەت
       languages_label: زمانەکان
       cards_label: کارت
-    cta_strip_headline: "ئامادەی خوێندنی زیرەکانەتری؟"
-    cta_strip_sub: "بەشداری هەزاران قوتابی ببە کە پێش ئێستا Quizly بەکار دەهێنن."
+    modes:
+      flashcards: کارتی فێربوون
+      learn: فێربوون
+      study: خوێندن
+      test: تاقیکردنەوە
+      match: دۆشاندن
+    explore_link: گەڕان
+    log_in: چوونەژوورەوە
+    cta_strip_headline: ئامادەی خوێندنی زیرەکانەتری؟
+    cta_strip_sub: بەشداری هەزاران قوتابی ببە کە پێش ئێستا Quizly بەکار دەهێنن.
     page_title: Quizly — بە خێرایی زیاتر فێربە بە کارتی فێربوون
     carousel:
       previous_slide: شارەڵەی پێشوو
@@ -733,8 +778,11 @@ learn:
     reset_link_text: ئەم پەڕەی نوێکردنەوەیە
     reset_text_body: 'دەتوانیت وشەی نهێنیەکەت لە ١٥ خولەکی داهاتوودا لەسەر ئەم پەڕەی
       نوێکردنەوەیە نوێبکەیتەوە:'
-    expires_note: ئەم بەستەرە لە ١٥ خولەکدا بەسەردەچێت. ئەگەر داوای نوێکردنەوەی وشەی نهێنی نەکردووی، دەتوانیت ئەم ئیمەیلە پشتگوێ بخەیت.
-    fallback_note: "ئەگەر دوگمەی سەرەوە کارنەکرد، ئەم بەستەرە کۆپی بکە و لە وێبگەڕەکەت پەستبکە:"
+    expires_note: ئەم بەستەرە لە ١٥ خولەکدا بەسەردەچێت. ئەگەر داوای نوێکردنەوەی وشەی
+      نهێنی نەکردووی، دەتوانیت ئەم ئیمەیلە پشتگوێ بخەیت.
+    fallback_note: 'ئەگەر دوگمەی سەرەوە کارنەکرد، ئەم بەستەرە کۆپی بکە و لە وێبگەڕەکەت
+      پەستبکە:'
+    reset_heading: تێپەڕەووشەکەت ڕێکبخەرەوە
   question_engine:
     match_prompt: هەر تەرمینۆلۆجیایەک بە پێناسەکەیەوە دۆشان بکە
   time:
@@ -754,41 +802,41 @@ learn:
     events:
       badge_earned: نیشانەیەکی نوێت بەدەست هێنا
       followed: "%{actor} دووکەوتەی تۆ بوو"
-      followed_user_published_deck: "%{actor} published a new deck"
+      followed_user_published_deck: "%{actor} دەستەیەکی نوێی بڵاوکردەوە"
       deck_commented: "%{actor} لەسەر دەستەکەت راپۆرتی نووسی"
       deck_reacted: "%{actor} بەرپەرشتی دەستەکەت دا"
   follows:
-    follow: "Follow"
-    unfollow: "Unfollow"
+    follow: بەدواداچوون
+    unfollow: وازهێنان لە بەدواداچوون
     followers:
-      one: "%{count} follower"
-      other: "%{count} followers"
+      :one: "%{count} شوێنکەوتوو"
+      :other: "%{count} شوێنکەوتوو"
     follower_label:
-      one: "follower"
-      other: "followers"
-    public_decks: "Public Decks"
-    no_public_decks: "No public decks yet."
-    following_heading: "Following"
-    following_page_title: "%{name}'s Following"
-    no_following: "Not following anyone yet."
+      :one: شوێنکەوتوو
+      :other: شوێنکەوتوو
+    public_decks: دەستە گشتییەکان
+    no_public_decks: هێشتا هیچ دەستەیەکی گشتی نییە.
+    following_heading: بەدواداچووەکان
+    following_page_title: بەدواداچووەکانی %{name}
+    no_following: هێشتا کەس بەدوادا ناچێت.
   activerecord:
     errors:
       models:
         follow:
           attributes:
             base:
-              cannot_follow_self: "You cannot follow yourself."
+              cannot_follow_self: ناتوانیت خۆت بەدوادابچیت.
             follower_id:
-              already_following: "You are already following this user."
+              already_following: تۆ پێشتر ئەم بەکارهێنەرەت بەدواداچووە.
         user:
           attributes:
             username:
-              invalid_username: "may only contain letters, numbers, and underscores."
+              invalid_username: تەنها دەتوانێت پیت، ژمارە و هێڵی ژێرەوە لەخۆبگرێت.
         deck:
           attributes:
             base:
               not_ready_to_share: پێش هاوبەشکردنی ئەم دەستەیە، لانیکەم یەک بطاقە زیاد
                 بکە.
             access_mode:
-              invalid_for_private_deck: Private decks cannot be password-protected
-                — only you can see them anyway.
+              invalid_for_private_deck: دەستەی تایبەت ناتوانرێت بە تێپەڕەووشە بپارێزرێت
+                — بەهەرحاڵ تەنها تۆ دەتوانیت بیانبینیت.

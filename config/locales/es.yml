@@ -18,18 +18,18 @@ es:
       study_group: Grupo de estudio
     open_navigation: Abrir navegación
     close_navigation: Cerrar navegación
-    account_menu: Account menu
+    account_menu: Menú de cuenta
   menu:
     settings: Configuración
     dark_mode: Modo oscuro
     light_mode: Modo claro
     log_out: Cerrar sesión
     language: Idioma
-    view_profile: View Profile
-    achievements: Achievements
-    notifications: Notifications
-    followers: Followers
-    following: Following
+    view_profile: Ver perfil
+    achievements: Logros
+    notifications: Notificaciones
+    followers: Seguidores
+    following: Siguiendo
   shared:
     cancel: Cancelar
     close: Cerrar
@@ -45,6 +45,8 @@ es:
     previous_page: Página anterior
     next_page: Página siguiente
     not_available: N/D
+    pagination_aria: Paginación
+    main_nav_aria: Navegación principal
   auth:
     back_to_home: Volver al inicio
     panel:
@@ -67,15 +69,15 @@ es:
     submit: Iniciar sesión
     no_account: "¿No tienes cuenta?"
     sign_up: Regístrate
-    or: "or"
-    sign_in_with_google: "Continue with Google"
+    or: or
+    sign_in_with_google: Continue with Google
     google:
-      success: "Signed in with Google."
-      failure: "Google sign-in failed. Please try again."
-    sign_in_with_github: "Continue with GitHub"
+      success: Signed in with Google.
+      failure: Google sign-in failed. Please try again.
+    sign_in_with_github: Continue with GitHub
     github:
-      success: "Signed in with GitHub."
-      failure: "GitHub sign-in failed. Please try again."
+      success: Signed in with GitHub.
+      failure: GitHub sign-in failed. Please try again.
     errors:
       rate_limited: Inténtalo más tarde.
       invalid: Prueba con otro correo o contraseña.
@@ -119,16 +121,17 @@ es:
       back: "← Volver al inicio de sesión"
     sent: Instrucciones de restablecimiento enviadas (si existe un usuario con ese
       correo).
-    sent_if_exists: "Si existe una cuenta para este correo, le hemos enviado las instrucciones de restablecimiento."
+    sent_if_exists: Si existe una cuenta para este correo, le hemos enviado las instrucciones
+      de restablecimiento.
     reset: La contraseña ha sido restablecida.
     mismatch: Las contraseñas no coinciden.
     invalid: El enlace de restablecimiento no es válido o ha expirado.
     errors:
       rate_limited: Inténtalo más tarde.
       generic: Algo salió mal. Por favor, inténtalo de nuevo.
-      blank_email: "Por favor, introduce tu dirección de correo electrónico."
-      invalid_email: "Por favor, introduce una dirección de correo electrónico válida."
-      email_not_found: "No se encontró ninguna cuenta con ese correo electrónico."
+      blank_email: Por favor, introduce tu dirección de correo electrónico.
+      invalid_email: Por favor, introduce una dirección de correo electrónico válida.
+      email_not_found: No se encontró ninguna cuenta con ese correo electrónico.
   accounts:
     title: Configuración
     personal_info: Información personal
@@ -157,7 +160,6 @@ es:
     search_languages: Buscar idiomas
     your_languages: Tus idiomas
     achievements_section: Logros
-    no_badges: Aún no hay insignias. ¡Sigue estudiando para desbloquear logros!
     badge_earned_on: Ganado el %{date}
     delete_title: Eliminar cuenta
     delete_description: Elimina permanentemente tu cuenta y todos los datos asociados.
@@ -193,13 +195,13 @@ es:
     notif_time_zone: Zona horaria
     notif_search_timezone: Buscar zona horaria
     notif_email_label: Notificación por correo
-    notif_in_app_heading: "In-App Notifications"
-    notif_email_heading: "Email Notifications"
-    notif_in_app_follows: "Someone follows me"
-    notif_email_follows: "Someone follows me"
-    notif_in_app_following_activity: "Activity from people I follow"
-    notif_email_following_activity: "Activity from people I follow"
-    notif_always_on: "Always on"
+    notif_in_app_heading: In-App Notifications
+    notif_email_heading: Email Notifications
+    notif_in_app_follows: Someone follows me
+    notif_email_follows: Someone follows me
+    notif_in_app_following_activity: Activity from people I follow
+    notif_email_following_activity: Activity from people I follow
+    notif_always_on: Always on
     theme_auto: Auto
     theme_light: Claro
     theme_dark: Oscuro
@@ -210,7 +212,37 @@ es:
     title: Achievements
     earned_count: "%{earned} of %{total} badges earned"
     no_badges: No badges yet. Keep studying to unlock achievements!
-
+    badges:
+      first_session:
+        name: Primera sesión
+        description: Completa tu primera sesión de estudio
+      streak_3:
+        name: En racha
+        description: Estudia 3 días seguidos
+      streak_7:
+        name: Guerrero semanal
+        description: Estudia 7 días seguidos
+      streak_30:
+        name: Maestro mensual
+        description: Estudia 30 días seguidos
+      streak_100:
+        name: Centurión
+        description: Estudia 100 días seguidos
+      cards_10:
+        name: Primeros pasos
+        description: Repasa 10 tarjetas
+      cards_100:
+        name: Dedicado
+        description: Repasa 100 tarjetas
+      cards_500:
+        name: Potencia
+        description: Repasa 500 tarjetas
+      cards_1000:
+        name: Leyenda
+        description: Repasa 1000 tarjetas
+      perfect_test:
+        name: Tirador certero
+        description: Consigue el 100 % en una sesión de examen
   decks:
     index:
       title: Mis mazos
@@ -228,13 +260,18 @@ es:
       delete_modal_warning: Todas las tarjetas flash se eliminarán permanentemente.
         Esta acción no se puede deshacer.
       delete_modal_confirm: Eliminar mazo
-      unlisted_badge: No listado
       public_badge: Público
+      unlisted_badge: No listado
       private_badge: Privado
       created: Creado
       cards_section: Tarjetas
       add_card: Añadir tarjeta
       import: Importar
+      mode_flashcard: Tarjeta
+      mode_study: Estudiar
+      mode_learn: Aprender
+      mode_test: Examen
+      mode_match: Emparejar
       cards_per_page: Tarjetas por página
       locked_title: This deck is password protected
       locked_description: Enter the password to access all flashcards and study modes.
@@ -244,11 +281,6 @@ es:
       locked_cards_counter:
         one: 1 card locked
         other: "%{count} cards locked"
-      mode_flashcard: Tarjeta
-      mode_study: Estudiar
-      mode_learn: Aprender
-      mode_test: Examen
-      mode_match: Emparejar
     edit:
       title: Editar mazo
       back: "← Atrás"
@@ -280,13 +312,13 @@ es:
       tags_placeholder: p. ej. biología, anatomía, examen2025
       visibility_label: Visibilidad
       visibility_section_label: "¿Quién puede ver este mazo?"
+      visibility_public: Público
       visibility_unlisted: No listado
+      visibility_private: Solo yo
+      visibility_hint: Los mazos públicos pueden ser descubiertos y copiados por cualquiera.
       section_about: Acerca de
       access_mode_open: Open
       access_mode_password: Password protected
-      visibility_private: Solo yo
-      visibility_public: Público
-      visibility_hint: Los mazos públicos pueden ser descubiertos y copiados por cualquiera.
       password_label: Contraseña del mazo
       password_placeholder: Mín. 8 caracteres
       password_hint: Required to view this deck
@@ -348,9 +380,9 @@ es:
       due_label: pendientes
       studied_label: estudiado
       never_studied: Nunca estudiado
-      studied_time: "hace %{time}"
+      studied_time: hace %{time}
       more_tags: "+%{count}"
-      options_aria: "Opciones del mazo"
+      options_aria: Opciones del mazo
   folders:
     create_failed: No se pudo crear la carpeta.
     updated: Carpeta actualizada.
@@ -370,10 +402,12 @@ es:
       title: Mis carpetas
       empty: No hay carpetas aún.
       deck_count:
-        one: "1 mazo"
+        one: 1 mazo
         other: "%{count} mazos"
     show:
       empty: No hay mazos en esta carpeta aún.
+      start_building: Empecemos a construir tu carpeta
+      add_study_materials: Añadir materiales de estudio
       options_aria: Opciones de carpeta
       rename: Renombrar
       rename_save: Guardar
@@ -386,8 +420,6 @@ es:
       all_filter: Todo
       add_tag: Añadir etiqueta
       empty_description: Guarda mazos para organizar tus colecciones de estudio.
-      start_building: Empecemos a construir tu carpeta
-      add_study_materials: Añadir materiales de estudio
     add_decks_modal:
       title: Añadir materiales de estudio
       done: Listo
@@ -411,6 +443,7 @@ es:
     updated: Tarjeta actualizada.
     deleted: Tarjeta flash eliminada.
     restored: Tarjeta flash restaurada.
+    suggestions_aria: Sugerencias
   study_modes:
     exit: "← Salir"
     no_cards_title: Sin tarjetas aún
@@ -460,10 +493,13 @@ es:
       restart: Reiniciar tarjetas
       enter_study_mode: Modo estudio
       exit_study_mode: "← Volver a las tarjetas"
-      study_rate_prompt: ¿Qué tan bien lo sabías?
+      study_rate_prompt: "¿Qué tan bien lo sabías?"
       study_cards_due: tarjetas pendientes
       study_session_complete: "¡Has repasado todas las tarjetas pendientes!"
-      study_keyboard_hint: "Espacio para voltear · 1 De nuevo · 2 Difícil · 3 Bien · 4 Fácil"
+      study_keyboard_hint: Espacio para voltear · 1 De nuevo · 2 Difícil · 3 Bien
+        · 4 Fácil
+      page_title: 'Tarjeta: %{deck}'
+      browse_aria: Área de exploración de tarjetas
     study:
       subtitle: Revisa las tarjetas y valora tu memoria
       done_label: Hechas
@@ -482,13 +518,13 @@ es:
       hard: Difícil
       good: Bien
       easy: Fácil
-      settings_btn_label: "Ajustes de estudio"
-      new_cards_label: "Tarjetas nuevas"
-      new_cards_all: "Todas"
-      priority_label: "Prioridad"
-      priority_due: "Pendientes primero"
-      priority_hardest: "Más difíciles primero"
-      apply_settings: "Aplicar"
+      settings_btn_label: Ajustes de estudio
+      new_cards_label: Tarjetas nuevas
+      new_cards_all: Todas
+      priority_label: Prioridad
+      priority_due: Pendientes primero
+      priority_hardest: Más difíciles primero
+      apply_settings: Aplicar
       progress_remaining: "%{count} restantes"
       keyboard_hint: Espacio para revelar · 1 De nuevo · 2 Difícil · 3 Bien · 4 Fácil
         · Esc para salir
@@ -497,19 +533,22 @@ es:
       mastered_label: Dominadas
       empty_description: Añade tarjetas a este mazo antes de estudiar.
       summary_title: "¡Todas las tarjetas dominadas!"
+      complete_subtitle: Every card is now above the mastery threshold.
       studied: Tarjetas estudiadas
       time_spent: Tiempo empleado
       summary_sub: "¡Buen trabajo — todas las tarjetas están dominadas!"
       study_again: Estudiar de nuevo
-      progress_header: Space to flip · G Got it · C Confused · D Don't know
-      reveal: Click to reveal
-      dont_know: Don't know
-      confused: Confused
-      got_it: Got it
-      mastery_pct: Mastery
-      weak_cards: Weak
+      restart: Estudiar de nuevo
       new_cards: New
-      complete_subtitle: Every card is now above the mastery threshold.
+      weak_cards: Weak
+      mastery_pct: Mastery
+      got_it: Got it
+      confused: Confused
+      dont_know: Don't know
+      reveal: Click to reveal
+      progress_header: Space to flip · G Got it · C Confused · D Don't know
+      page_title: 'Aprender: %{deck}'
+      complete_aria: Sesión de aprendizaje completada
     test:
       subtitle: Pon a prueba tus conocimientos
       question_label: Pregunta
@@ -519,6 +558,8 @@ es:
       score: Puntuación
       time: Tiempo
       retake: Repetir examen
+      page_title: 'Examen: %{deck}'
+      session_aria: Sesión de examen
     test_question:
       correct: "¡Correcto!"
       incorrect: Incorrecto
@@ -545,43 +586,44 @@ es:
       streak: Racha
       progress_label: "%{pct}% de progreso"
       matched_counter: 'Emparejado: %{matched} / %{total}'
-learn:
-  settings:
-    title: Learn Settings
-    new_cards_limit: New Cards Per Session
-    mastery_threshold: Mastery Threshold
-    hints: Show Hints
-    hints_on: "On"
-    hints_off: "Off"
-    weak_priority: Weak Card Priority
-    priority_low: Low
-    priority_normal: Normal
-    priority_high: High
-    apply: Apply
-    saved: Settings saved.
-    invalid: Invalid settings.
-    limit_5: "5 cards"
-    limit_10: "10 cards"
-    limit_15: "15 cards"
-    limit_20: "20 cards"
-    limit_all: All cards
-    threshold_60: "60% (Easy)"
-    threshold_70: "70%"
-    threshold_80: "80% (Default)"
-    threshold_90: "90% (Hard)"
-  hint: Hint
-  hint_prefix: "First word:"
-  complete:
-    cards_learned: Cards learned
-    weak_improved: Weak cards improved
-    practice_again: Practice Again
-    switch_to_study: Switch to Study Mode
-    retry_weak: Repasar tarjetas difíciles
+      page_title: 'Emparejar: %{deck}'
+  learn:
+    settings:
+      title: Configuración de Aprender
+      new_cards_limit: Tarjetas nuevas por sesión
+      mastery_threshold: Umbral de dominio
+      hints: Mostrar pistas
+      hints_on: Activado
+      hints_off: Desactivado
+      weak_priority: Prioridad de tarjetas difíciles
+      priority_low: Baja
+      priority_normal: Normal
+      priority_high: Alta
+      apply: Aplicar
+      saved: Configuración guardada.
+      invalid: Configuración no válida.
+      limit_5: 5 tarjetas
+      limit_10: 10 tarjetas
+      limit_15: 15 tarjetas
+      limit_20: 20 tarjetas
+      limit_all: Todas las tarjetas
+      threshold_60: 60 % (fácil)
+      threshold_70: 70 %
+      threshold_80: 80 % (predeterminado)
+      threshold_90: 90 % (difícil)
+    hint: Pista
+    hint_prefix: 'Primera palabra:'
+    complete:
+      cards_learned: Tarjetas aprendidas
+      weak_improved: Tarjetas difíciles mejoradas
+      practice_again: Practicar de nuevo
+      switch_to_study: Cambiar a modo Estudiar
+      retry_weak: Repasar tarjetas difíciles
   errors:
     not_found:
-      flash: This deck is no longer available.
+      flash: Este mazo ya no está disponible.
     not_authorized:
-      flash: You are not authorized to perform this action.
+      flash: No tienes autorización para realizar esta acción.
   explore:
     title: Explorar
     subtitle: Descubre y copia mazos públicos compartidos por la comunidad.
@@ -593,7 +635,7 @@ learn:
     empty_title: Todavía no hay mazos públicos
     empty_description: Sé el primero en compartir un mazo con la comunidad.
     by: por
-    locked_badge: Password Required
+    locked_badge: Requiere contraseña
     owner_badge: Tú
     by_you: por ti
     language_label: idioma
@@ -604,17 +646,17 @@ learn:
     cards_due: Tarjetas pendientes
     current_streak: Racha diaria
     longest_streak: Mejor racha
-    achievements_title: Achievements
-    achievements_view_all: View all achievements
-    achievements_earned_count: "%{earned} of %{total} earned"
-    achievements_none_yet: Keep studying to earn your first badge!
+    achievements_title: Logros
+    achievements_view_all: Ver todos los logros
+    achievements_earned_count: "%{earned} de %{total} obtenidos"
+    achievements_none_yet: "¡Sigue estudiando para ganar tu primera insignia!"
     study_history: Historial de estudio
     see_all: Ver todo
     empty_history: Completa una sesión de estudio para ver tu historial aquí.
-    history_stats: "%{cards} tarjetas · %{accuracy}% precisión"
     my_decks: Mis mazos
     no_decks_title: Todavía no hay mazos
     no_decks_description: Crea tu primer mazo para empezar a estudiar.
+    history_stats: "%{cards} tarjetas · %{accuracy}% precisión"
     continue_studying:
       title: Continuar estudiando
       study_now: Estudiar ahora →
@@ -634,6 +676,8 @@ learn:
     reviewed_header: Revisadas
     accuracy_header: Precisión
     time_header: Tiempo
+    page_title: 'Estudiar: %{deck}'
+    session_aria: Sesión de estudio
   imports:
     title: Importar tarjetas — %{name}
     back: "← %{name}"
@@ -687,23 +731,15 @@ learn:
     term_label: TÉRMINO
     definition_label: DEFINICIÓN
     cancel_import: Cancelar importación
+    text_placeholder: "Hola\tHello\nAdiós\tGoodbye"
   home:
-    hero_heading: "Estudia mejor, recuerda más"
-    hero_subtitle: "Quizly te ayuda a construir memoria real, no solo a recordar a corto plazo."
-    badge: "Repetición espaciada integrada"
+    hero_heading: Estudia mejor, recuerda más
     hero_subtitle: Domina lo que estás aprendiendo con las tarjetas interactivas,
       pruebas de práctica y actividades de estudio de Quizly.
+    badge: Repetición espaciada integrada
     sign_up: Regístrate gratis
     popular_decks: Mazos populares
     see_all: Ver todos →
-    modes:
-      flashcards: Tarjetas
-      learn: Aprender
-      study: Estudiar
-      test: Examen
-      match: Emparejar
-    explore_link: Explorar
-    log_in: Iniciar sesión
     no_decks: Aún no hay mazos destacados.
     popular_section_label: Mazos populares
     popular_section_title: Actividad reciente
@@ -714,6 +750,14 @@ learn:
       decks_label: Mazos destacados
       languages_label: Idiomas
       cards_label: tarjetas
+    modes:
+      flashcards: Tarjetas
+      learn: Aprender
+      study: Estudiar
+      test: Examen
+      match: Emparejar
+    explore_link: Explorar
+    log_in: Iniciar sesión
     cta_strip_headline: "¿Listo para estudiar de forma más inteligente?"
     cta_strip_sub: Únete a miles de estudiantes que ya usan Quizly.
     page_title: Quizly — Aprende más rápido con tarjetas
@@ -738,17 +782,20 @@ learn:
     reset_link_text: esta página de restablecimiento de contraseña
     reset_text_body: 'Puedes restablecer tu contraseña en los próximos 15 minutos
       en esta página:'
-    expires_note: Este enlace caduca en 15 minutos. Si no solicitaste un restablecimiento de contraseña, puedes ignorar este correo.
-    fallback_note: "Si el botón de arriba no funciona, copia y pega este enlace en tu navegador:"
+    expires_note: Este enlace caduca en 15 minutos. Si no solicitaste un restablecimiento
+      de contraseña, puedes ignorar este correo.
+    fallback_note: 'Si el botón de arriba no funciona, copia y pega este enlace en
+      tu navegador:'
+    reset_heading: Restablece tu contraseña
   question_engine:
     match_prompt: Relaciona cada término con su definición
   time:
     none: "—"
-    seconds: "%{n}s"
-    minutes: "%{m}m"
-    minutes_seconds: "%{m}m %{s}s"
-    hours: "%{h}h"
-    hours_minutes: "%{h}h %{m}m"
+    seconds: "%{n} s"
+    minutes: "%{m} min"
+    minutes_seconds: "%{m} min %{s} s"
+    hours: "%{h} h"
+    hours_minutes: "%{h} h %{m} min"
   notifications:
     bell_aria: Notificaciones
     title: Notificaciones
@@ -759,41 +806,41 @@ learn:
     events:
       badge_earned: Has ganado una nueva insignia
       followed: "%{actor} empezó a seguirte"
-      followed_user_published_deck: "%{actor} published a new deck"
+      followed_user_published_deck: "%{actor} publicó un nuevo mazo"
       deck_commented: "%{actor} comentó en tu mazo"
       deck_reacted: "%{actor} reaccionó a tu mazo"
   follows:
-    follow: "Follow"
-    unfollow: "Unfollow"
+    follow: Seguir
+    unfollow: Dejar de seguir
     followers:
-      one: "%{count} follower"
-      other: "%{count} followers"
+      :one: "%{count} seguidor"
+      :other: "%{count} seguidores"
     follower_label:
-      one: "follower"
-      other: "followers"
-    public_decks: "Public Decks"
-    no_public_decks: "No public decks yet."
-    following_heading: "Following"
-    following_page_title: "%{name}'s Following"
-    no_following: "Not following anyone yet."
+      :one: seguidor
+      :other: seguidores
+    public_decks: Mazos públicos
+    no_public_decks: Aún no hay mazos públicos.
+    following_heading: Siguiendo
+    following_page_title: Seguidos por %{name}
+    no_following: Aún no sigue a nadie.
   activerecord:
     errors:
       models:
         follow:
           attributes:
             base:
-              cannot_follow_self: "You cannot follow yourself."
+              cannot_follow_self: No puedes seguirte a ti mismo.
             follower_id:
-              already_following: "You are already following this user."
+              already_following: Ya sigues a este usuario.
         user:
           attributes:
             username:
-              invalid_username: "may only contain letters, numbers, and underscores."
+              invalid_username: solo puede contener letras, números y guiones bajos.
         deck:
           attributes:
             base:
               not_ready_to_share: Añade al menos una tarjeta antes de compartir este
                 mazo.
             access_mode:
-              invalid_for_private_deck: Private decks cannot be password-protected
-                — only you can see them anyway.
+              invalid_for_private_deck: 'Los mazos privados no pueden protegerse con
+                contraseña: de todos modos solo tú puedes verlos.'

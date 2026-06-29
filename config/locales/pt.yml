@@ -18,18 +18,18 @@ pt:
       study_group: Grupo de estudo
     open_navigation: Abrir navegação
     close_navigation: Fechar navegação
-    account_menu: Account menu
+    account_menu: Menu da conta
   menu:
     settings: Configurações
     dark_mode: Modo escuro
     light_mode: Modo claro
     log_out: Sair
     language: Idioma
-    view_profile: View Profile
-    achievements: Achievements
-    notifications: Notifications
-    followers: Followers
-    following: Following
+    view_profile: Ver perfil
+    achievements: Conquistas
+    notifications: Notificações
+    followers: Seguidores
+    following: Seguindo
   shared:
     cancel: Cancelar
     close: Fechar
@@ -45,6 +45,8 @@ pt:
     previous_page: Página anterior
     next_page: Próxima página
     not_available: N/D
+    pagination_aria: Paginação
+    main_nav_aria: Navegação principal
   auth:
     back_to_home: Voltar ao início
     panel:
@@ -67,15 +69,15 @@ pt:
     submit: Entrar
     no_account: Não tem uma conta?
     sign_up: Cadastrar-se
-    or: "or"
-    sign_in_with_google: "Continue with Google"
+    or: or
+    sign_in_with_google: Continue with Google
     google:
-      success: "Signed in with Google."
-      failure: "Google sign-in failed. Please try again."
-    sign_in_with_github: "Continue with GitHub"
+      success: Signed in with Google.
+      failure: Google sign-in failed. Please try again.
+    sign_in_with_github: Continue with GitHub
     github:
-      success: "Signed in with GitHub."
-      failure: "GitHub sign-in failed. Please try again."
+      success: Signed in with GitHub.
+      failure: GitHub sign-in failed. Please try again.
     errors:
       rate_limited: Tente novamente mais tarde.
       invalid: E-mail ou senha incorretos.
@@ -118,16 +120,17 @@ pt:
       submit: Salvar nova senha
       back: "← Voltar para o login"
     sent: Instruções de redefinição enviadas (se existir um usuário com esse e-mail).
-    sent_if_exists: "Se existir uma conta para este e-mail, enviamos as instruções de redefinição."
+    sent_if_exists: Se existir uma conta para este e-mail, enviamos as instruções
+      de redefinição.
     reset: Senha redefinida com sucesso.
     mismatch: As senhas não coincidem.
     invalid: O link de redefinição é inválido ou expirou.
     errors:
       rate_limited: Tente novamente mais tarde.
       generic: Algo deu errado. Por favor, tente novamente.
-      blank_email: "Por favor, insira seu endereço de e-mail."
-      invalid_email: "Por favor, insira um endereço de e-mail válido."
-      email_not_found: "Nenhuma conta foi encontrada com esse endereço de e-mail."
+      blank_email: Por favor, insira seu endereço de e-mail.
+      invalid_email: Por favor, insira um endereço de e-mail válido.
+      email_not_found: Nenhuma conta foi encontrada com esse endereço de e-mail.
   accounts:
     title: Configurações
     personal_info: Informações pessoais
@@ -156,7 +159,6 @@ pt:
     search_languages: Pesquisar idiomas
     your_languages: Seus idiomas
     achievements_section: Conquistas
-    no_badges: Nenhum badge ainda. Continue estudando para desbloquear conquistas!
     badge_earned_on: Conquistado em %{date}
     delete_title: Excluir conta
     delete_description: Exclua permanentemente sua conta e todos os dados associados.
@@ -192,13 +194,13 @@ pt:
     notif_time_zone: Fuso horário
     notif_search_timezone: Pesquisar fuso horário
     notif_email_label: Notificação por e-mail
-    notif_in_app_heading: "In-App Notifications"
-    notif_email_heading: "Email Notifications"
-    notif_in_app_follows: "Someone follows me"
-    notif_email_follows: "Someone follows me"
-    notif_in_app_following_activity: "Activity from people I follow"
-    notif_email_following_activity: "Activity from people I follow"
-    notif_always_on: "Always on"
+    notif_in_app_heading: In-App Notifications
+    notif_email_heading: Email Notifications
+    notif_in_app_follows: Someone follows me
+    notif_email_follows: Someone follows me
+    notif_in_app_following_activity: Activity from people I follow
+    notif_email_following_activity: Activity from people I follow
+    notif_always_on: Always on
     theme_auto: Automático
     theme_light: Claro
     theme_dark: Escuro
@@ -210,7 +212,37 @@ pt:
     title: Achievements
     earned_count: "%{earned} of %{total} badges earned"
     no_badges: No badges yet. Keep studying to unlock achievements!
-
+    badges:
+      first_session:
+        name: Primeira sessão
+        description: Conclua sua primeira sessão de estudo
+      streak_3:
+        name: Embalado
+        description: Estude 3 dias seguidos
+      streak_7:
+        name: Guerreiro semanal
+        description: Estude 7 dias seguidos
+      streak_30:
+        name: Mestre mensal
+        description: Estude 30 dias seguidos
+      streak_100:
+        name: Centurião
+        description: Estude 100 dias seguidos
+      cards_10:
+        name: Primeiros passos
+        description: Revise 10 cartões
+      cards_100:
+        name: Dedicado
+        description: Revise 100 cartões
+      cards_500:
+        name: Potência
+        description: Revise 500 cartões
+      cards_1000:
+        name: Lenda
+        description: Revise 1000 cartões
+      perfect_test:
+        name: Atirador certeiro
+        description: Acerte 100% em uma sessão de teste
   decks:
     index:
       title: Meus baralhos
@@ -228,8 +260,8 @@ pt:
       delete_modal_warning: Todos os flashcards serão excluídos permanentemente. Esta
         ação não pode ser desfeita.
       delete_modal_confirm: Excluir baralho
-      unlisted_badge: Não listado
       public_badge: Público
+      unlisted_badge: Não listado
       private_badge: Privado
       created: Criado
       cards_section: Cartões
@@ -280,14 +312,14 @@ pt:
       tags_placeholder: 'ex.: biologia, anatomia, prova2025'
       visibility_label: Visibilidade
       visibility_section_label: Quem pode ver este baralho?
+      visibility_public: Público
       visibility_unlisted: Não listado
+      visibility_private: Somente eu
+      visibility_hint: Baralhos públicos podem ser descobertos e copiados por qualquer
+        pessoa.
       section_about: Sobre
       access_mode_open: Open
       access_mode_password: Password protected
-      visibility_private: Somente eu
-      visibility_public: Público
-      visibility_hint: Baralhos públicos podem ser descobertos e copiados por qualquer
-        pessoa.
       password_label: Senha do baralho
       password_placeholder: Mín. 8 caracteres
       password_hint: Required to view this deck
@@ -349,9 +381,9 @@ pt:
       due_label: pendentes
       studied_label: estudado
       never_studied: Nunca estudado
-      studied_time: "há %{time}"
+      studied_time: há %{time}
       more_tags: "+%{count}"
-      options_aria: "Opções do baralho"
+      options_aria: Opções do baralho
   folders:
     create_failed: Não foi possível criar a pasta.
     updated: Pasta atualizada.
@@ -371,10 +403,12 @@ pt:
       title: Minhas pastas
       empty: Nenhuma pasta ainda.
       deck_count:
-        one: "1 baralho"
+        one: 1 baralho
         other: "%{count} baralhos"
     show:
       empty: Nenhum baralho nesta pasta ainda.
+      start_building: Vamos começar a construir sua pasta
+      add_study_materials: Adicionar materiais de estudo
       options_aria: Opções da pasta
       rename: Renomear
       rename_save: Salvar
@@ -387,8 +421,6 @@ pt:
       all_filter: Tudo
       add_tag: Adicionar etiqueta
       empty_description: Salve baralhos para organizar suas coleções de estudo.
-      start_building: Vamos começar a construir sua pasta
-      add_study_materials: Adicionar materiais de estudo
     add_decks_modal:
       title: Adicionar materiais de estudo
       done: Concluído
@@ -412,6 +444,7 @@ pt:
     updated: Cartão atualizado.
     deleted: Flashcard removido.
     restored: Flashcard restaurado.
+    suggestions_aria: Sugestões
   study_modes:
     exit: "← Sair"
     no_cards_title: Nenhum cartão ainda
@@ -464,7 +497,9 @@ pt:
       study_rate_prompt: O quanto você sabia disso?
       study_cards_due: cartões pendentes
       study_session_complete: Você revisou todos os cartões pendentes!
-      study_keyboard_hint: "Espaço para virar · 1 Errei · 2 Difícil · 3 Certo · 4 Fácil"
+      study_keyboard_hint: Espaço para virar · 1 Errei · 2 Difícil · 3 Certo · 4 Fácil
+      page_title: 'Cartão: %{deck}'
+      browse_aria: Área de navegação de cartões
     study:
       subtitle: Revise os cartões e avalie sua memória
       done_label: Concluídos
@@ -483,13 +518,13 @@ pt:
       hard: Difícil
       good: Bom
       easy: Fácil
-      settings_btn_label: "Configurações de estudo"
-      new_cards_label: "Novos cartões"
-      new_cards_all: "Todos"
-      priority_label: "Prioridade"
-      priority_due: "Devidos primeiro"
-      priority_hardest: "Mais difíceis primeiro"
-      apply_settings: "Aplicar"
+      settings_btn_label: Configurações de estudo
+      new_cards_label: Novos cartões
+      new_cards_all: Todos
+      priority_label: Prioridade
+      priority_due: Devidos primeiro
+      priority_hardest: Mais difíceis primeiro
+      apply_settings: Aplicar
       progress_remaining: "%{count} restantes"
       keyboard_hint: Espaço para revelar · 1 De novo · 2 Difícil · 3 Bom · 4 Fácil
         · Esc para sair
@@ -498,19 +533,22 @@ pt:
       mastered_label: Dominados
       empty_description: Adicione flashcards a este baralho antes de estudar.
       summary_title: Todos os cartões dominados!
+      complete_subtitle: Every card is now above the mastery threshold.
       studied: Cartões estudados
       time_spent: Tempo gasto
       summary_sub: Ótimo trabalho — todos os cartões foram dominados.
       study_again: Estudar novamente
-      progress_header: Space to flip · G Got it · C Confused · D Don't know
-      reveal: Click to reveal
-      dont_know: Don't know
-      confused: Confused
-      got_it: Got it
-      mastery_pct: Mastery
-      weak_cards: Weak
+      restart: Estudar novamente
       new_cards: New
-      complete_subtitle: Every card is now above the mastery threshold.
+      weak_cards: Weak
+      mastery_pct: Mastery
+      got_it: Got it
+      confused: Confused
+      dont_know: Don't know
+      reveal: Click to reveal
+      progress_header: Space to flip · G Got it · C Confused · D Don't know
+      page_title: 'Aprender: %{deck}'
+      complete_aria: Sessão de aprendizado concluída
     test:
       subtitle: Teste seu conhecimento
       question_label: Questão
@@ -520,6 +558,8 @@ pt:
       score: Pontuação
       time: Tempo
       retake: Refazer teste
+      page_title: 'Teste: %{deck}'
+      session_aria: Sessão de teste
     test_question:
       correct: Correto!
       incorrect: Incorreto
@@ -546,43 +586,44 @@ pt:
       streak: Sequência
       progress_label: "%{pct}% de progresso"
       matched_counter: 'Combinado: %{matched} / %{total}'
-learn:
-  settings:
-    title: Learn Settings
-    new_cards_limit: New Cards Per Session
-    mastery_threshold: Mastery Threshold
-    hints: Show Hints
-    hints_on: "On"
-    hints_off: "Off"
-    weak_priority: Weak Card Priority
-    priority_low: Low
-    priority_normal: Normal
-    priority_high: High
-    apply: Apply
-    saved: Settings saved.
-    invalid: Invalid settings.
-    limit_5: "5 cards"
-    limit_10: "10 cards"
-    limit_15: "15 cards"
-    limit_20: "20 cards"
-    limit_all: All cards
-    threshold_60: "60% (Easy)"
-    threshold_70: "70%"
-    threshold_80: "80% (Default)"
-    threshold_90: "90% (Hard)"
-  hint: Hint
-  hint_prefix: "First word:"
-  complete:
-    cards_learned: Cards learned
-    weak_improved: Weak cards improved
-    practice_again: Practice Again
-    switch_to_study: Switch to Study Mode
-    retry_weak: Revisar cartões difíceis
+      page_title: 'Combinar: %{deck}'
+  learn:
+    settings:
+      title: Configurações de Aprender
+      new_cards_limit: Cartões novos por sessão
+      mastery_threshold: Limite de domínio
+      hints: Mostrar dicas
+      hints_on: Ligado
+      hints_off: Desligado
+      weak_priority: Prioridade de cartões fracos
+      priority_low: Baixa
+      priority_normal: Normal
+      priority_high: Alta
+      apply: Aplicar
+      saved: Configurações salvas.
+      invalid: Configurações inválidas.
+      limit_5: 5 cartões
+      limit_10: 10 cartões
+      limit_15: 15 cartões
+      limit_20: 20 cartões
+      limit_all: Todos os cartões
+      threshold_60: 60% (fácil)
+      threshold_70: 70%
+      threshold_80: 80% (padrão)
+      threshold_90: 90% (difícil)
+    hint: Dica
+    hint_prefix: 'Primeira palavra:'
+    complete:
+      cards_learned: Cartões aprendidos
+      weak_improved: Cartões fracos melhorados
+      practice_again: Praticar novamente
+      switch_to_study: Mudar para o modo Estudar
+      retry_weak: Revisar cartões difíceis
   errors:
     not_found:
-      flash: This deck is no longer available.
+      flash: Este baralho não está mais disponível.
     not_authorized:
-      flash: You are not authorized to perform this action.
+      flash: Você não tem autorização para realizar esta ação.
   explore:
     title: Explorar
     subtitle: Descubra e copie baralhos públicos compartilhados pela comunidade.
@@ -594,7 +635,7 @@ learn:
     empty_title: Nenhum baralho público ainda
     empty_description: Seja o primeiro a compartilhar um baralho com a comunidade.
     by: por
-    locked_badge: Password Required
+    locked_badge: Requer senha
     owner_badge: Você
     by_you: por você
     language_label: idioma
@@ -605,10 +646,10 @@ learn:
     cards_due: Cartões pendentes
     current_streak: Sequência de dias
     longest_streak: Melhor sequência
-    achievements_title: Achievements
-    achievements_view_all: View all achievements
-    achievements_earned_count: "%{earned} of %{total} earned"
-    achievements_none_yet: Keep studying to earn your first badge!
+    achievements_title: Conquistas
+    achievements_view_all: Ver todas as conquistas
+    achievements_earned_count: "%{earned} de %{total} conquistados"
+    achievements_none_yet: Continue estudando para ganhar seu primeiro emblema!
     study_history: Histórico de estudo
     see_all: Ver tudo
     empty_history: Conclua uma sessão de estudo para ver seu histórico aqui.
@@ -635,6 +676,8 @@ learn:
     reviewed_header: Revisados
     accuracy_header: Precisão
     time_header: Tempo
+    page_title: 'Estudar: %{deck}'
+    session_aria: Sessão de estudo
   imports:
     title: Importar cartões — %{name}
     back: "← %{name}"
@@ -649,7 +692,7 @@ learn:
     tab_separator: Tabulação (padrão)
     comma_separator: Vírgula
     semicolon_separator: Ponto e vírgula
-    pipe_separator: Pipe |
+    pipe_separator: Barra vertical |
     submit: Importar cartões
     csv_hint_html: Envie um arquivo <code>.csv</code> com duas colunas (frente/verso).
     csv_label: Arquivo CSV
@@ -687,21 +730,15 @@ learn:
     term_label: TERMO
     definition_label: DEFINIÇÃO
     cancel_import: Cancelar importação
+    text_placeholder: "Olá\tHello\nAdeus\tGoodbye"
   home:
-    hero_heading: "Estude melhor, lembre por mais tempo"
-    hero_subtitle: "Quizly ajuda você a construir memória real — não apenas retenção de curto prazo."
-    badge: "Repetição espaçada integrada"
+    hero_heading: Estude melhor, lembre por mais tempo
+    hero_subtitle: Quizly ajuda você a construir memória real — não apenas retenção
+      de curto prazo.
+    badge: Repetição espaçada integrada
     sign_up: Cadastrar-se grátis
     popular_decks: Baralhos populares
     see_all: Ver tudo →
-    modes:
-      flashcards: Flashcards
-      learn: Aprender
-      study: Estudar
-      test: Teste
-      match: Combinar
-    explore_link: Explorar
-    log_in: Entrar
     no_decks: Nenhum deck em destaque ainda.
     popular_section_label: Decks populares
     popular_section_title: Atividade recente
@@ -712,8 +749,16 @@ learn:
       decks_label: Decks em destaque
       languages_label: Idiomas
       cards_label: cartões
-    cta_strip_headline: "Pronto para estudar de forma mais inteligente?"
-    cta_strip_sub: "Junte-se a milhares de estudantes que já usam o Quizly."
+    modes:
+      flashcards: Cartões
+      learn: Aprender
+      study: Estudar
+      test: Teste
+      match: Combinar
+    explore_link: Explorar
+    log_in: Entrar
+    cta_strip_headline: Pronto para estudar de forma mais inteligente?
+    cta_strip_sub: Junte-se a milhares de estudantes que já usam o Quizly.
     page_title: Quizly — Aprenda mais rápido com flashcards
     carousel:
       previous_slide: Slide anterior
@@ -736,16 +781,19 @@ learn:
     reset_link_text: esta página de redefinição de senha
     reset_text_body: 'Você pode redefinir sua senha nos próximos 15 minutos nesta
       página de redefinição de senha:'
-    expires_note: Este link expira em 15 minutos. Se você não solicitou uma redefinição de senha, pode ignorar este e-mail.
-    fallback_note: "Se o botão acima não funcionar, copie e cole este link no seu navegador:"
+    expires_note: Este link expira em 15 minutos. Se você não solicitou uma redefinição
+      de senha, pode ignorar este e-mail.
+    fallback_note: 'Se o botão acima não funcionar, copie e cole este link no seu
+      navegador:'
+    reset_heading: Redefina sua senha
   question_engine:
     match_prompt: Combine cada termo com sua definição
   time:
     none: "—"
-    seconds: "%{n}s"
+    seconds: "%{n} s"
     minutes: "%{m}min"
     minutes_seconds: "%{m}min %{s}s"
-    hours: "%{h}h"
+    hours: "%{h} h"
     hours_minutes: "%{h}h %{m}min"
   notifications:
     bell_aria: Notificações
@@ -757,41 +805,41 @@ learn:
     events:
       badge_earned: Você ganhou um novo emblema
       followed: "%{actor} começou a te seguir"
-      followed_user_published_deck: "%{actor} published a new deck"
+      followed_user_published_deck: "%{actor} publicou um novo baralho"
       deck_commented: "%{actor} comentou no seu baralho"
       deck_reacted: "%{actor} reagiu ao seu baralho"
   follows:
-    follow: "Follow"
-    unfollow: "Unfollow"
+    follow: Seguir
+    unfollow: Deixar de seguir
     followers:
-      one: "%{count} follower"
-      other: "%{count} followers"
+      :one: "%{count} seguidor"
+      :other: "%{count} seguidores"
     follower_label:
-      one: "follower"
-      other: "followers"
-    public_decks: "Public Decks"
-    no_public_decks: "No public decks yet."
-    following_heading: "Following"
-    following_page_title: "%{name}'s Following"
-    no_following: "Not following anyone yet."
+      :one: seguidor
+      :other: seguidores
+    public_decks: Baralhos públicos
+    no_public_decks: Ainda não há baralhos públicos.
+    following_heading: Seguindo
+    following_page_title: Seguindo de %{name}
+    no_following: Ainda não segue ninguém.
   activerecord:
     errors:
       models:
         follow:
           attributes:
             base:
-              cannot_follow_self: "You cannot follow yourself."
+              cannot_follow_self: Você não pode seguir a si mesmo.
             follower_id:
-              already_following: "You are already following this user."
+              already_following: Você já segue este usuário.
         user:
           attributes:
             username:
-              invalid_username: "may only contain letters, numbers, and underscores."
+              invalid_username: só pode conter letras, números e sublinhados.
         deck:
           attributes:
             base:
               not_ready_to_share: Adicione pelo menos uma carta antes de compartilhar
                 este baralho.
             access_mode:
-              invalid_for_private_deck: Private decks cannot be password-protected
-                — only you can see them anyway.
+              invalid_for_private_deck: Baralhos privados não podem ser protegidos
+                por senha — afinal, só você pode vê-los.

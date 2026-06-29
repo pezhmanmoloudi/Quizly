@@ -25,17 +25,17 @@
   <%# ── Stats strip ── %>
   <div class="home-stats">
     <div class="home-stats__item">
-      <span class="home-stats__number home-stats__number--blue">5</span>
+      <span class="home-stats__number home-stats__number--blue"><%= localized_number(5) %></span>
       <span class="home-stats__label"><%= t("home.stats.modes_label") %></span>
     </div>
     <div class="home-stats__sep" aria-hidden="true"></div>
     <div class="home-stats__item">
-      <span class="home-stats__number home-stats__number--amber"><%= @featured_decks.size %></span>
+      <span class="home-stats__number home-stats__number--amber"><%= localized_number(@featured_decks.size) %></span>
       <span class="home-stats__label"><%= t("home.stats.decks_label") %></span>
     </div>
     <div class="home-stats__sep" aria-hidden="true"></div>
     <div class="home-stats__item">
-      <span class="home-stats__number home-stats__number--teal">10</span>
+      <span class="home-stats__number home-stats__number--teal"><%= localized_number(10) %></span>
       <span class="home-stats__label"><%= t("home.stats.languages_label") %></span>
     </div>
   </div>

@@ -1,0 +1,45 @@
+# Supplemental rails-i18n-style data for Central Kurdish (ckb), which is not
+# covered by the rails-i18n gem. Kept separate from ckb.yml so the locale
+# parity spec (which compares against en.yml) stays focused on app strings.
+ckb:
+  number:
+    format:
+      delimiter: "٬"
+      separator: "٫"
+      precision: 3
+  datetime:
+    distance_in_words:
+      half_a_minute: "نیو خولەک"
+      less_than_x_seconds:
+        one: "کەمتر لە چرکەیەک"
+        other: "کەمتر لە %{count} چرکە"
+      x_seconds:
+        one: "چرکەیەک"
+        other: "%{count} چرکە"
+      less_than_x_minutes:
+        one: "کەمتر لە خولەکێک"
+        other: "کەمتر لە %{count} خولەک"
+      x_minutes:
+        one: "خولەکێک"
+        other: "%{count} خولەک"
+      about_x_hours:
+        one: "نزیکەی کاتژمێرێک"
+        other: "نزیکەی %{count} کاتژمێر"
+      x_days:
+        one: "ڕۆژێک"
+        other: "%{count} ڕۆژ"
+      about_x_months:
+        one: "نزیکەی مانگێک"
+        other: "نزیکەی %{count} مانگ"
+      x_months:
+        one: "مانگێک"
+        other: "%{count} مانگ"
+      about_x_years:
+        one: "نزیکەی ساڵێک"
+        other: "نزیکەی %{count} ساڵ"
+      over_x_years:
+        one: "زیاتر لە ساڵێک"
+        other: "زیاتر لە %{count} ساڵ"
+      almost_x_years:
+        one: "نزیکەی ساڵێک"
+        other: "نزیکەی %{count} ساڵ"

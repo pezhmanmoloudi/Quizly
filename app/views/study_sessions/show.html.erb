@@ -1,9 +1,9 @@
-<% content_for :title, "Study: #{@deck.name}" %>
+<% content_for :title, t("study_sessions.page_title", deck: @deck.name) %>
 
 <div class="study-island"
      data-controller="study-mode"
      tabindex="-1"
-     aria-label="Study session">
+     aria-label="<%= t("study_sessions.session_aria") %>">
 
   <div class="study-island__header">
     <div class="study-hdr__left">

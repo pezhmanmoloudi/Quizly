@@ -18,18 +18,18 @@ ru:
       study_group: Учебная группа
     open_navigation: Открыть навигацию
     close_navigation: Закрыть навигацию
-    account_menu: Account menu
+    account_menu: Меню аккаунта
   menu:
     settings: Настройки
     dark_mode: Тёмный режим
     light_mode: Светлый режим
     log_out: Выйти
     language: Язык
-    view_profile: View Profile
-    achievements: Achievements
-    notifications: Notifications
-    followers: Followers
-    following: Following
+    view_profile: Профиль
+    achievements: Достижения
+    notifications: Уведомления
+    followers: Подписчики
+    following: Подписки
   shared:
     cancel: Отмена
     close: Закрыть
@@ -45,6 +45,8 @@ ru:
     previous_page: Предыдущая страница
     next_page: Следующая страница
     not_available: Н/Д
+    pagination_aria: Постраничная навигация
+    main_nav_aria: Основная навигация
   auth:
     back_to_home: На главную
     panel:
@@ -67,15 +69,15 @@ ru:
     submit: Войти
     no_account: Нет аккаунта?
     sign_up: Зарегистрироваться
-    or: "or"
-    sign_in_with_google: "Continue with Google"
+    or: or
+    sign_in_with_google: Continue with Google
     google:
-      success: "Signed in with Google."
-      failure: "Google sign-in failed. Please try again."
-    sign_in_with_github: "Continue with GitHub"
+      success: Signed in with Google.
+      failure: Google sign-in failed. Please try again.
+    sign_in_with_github: Continue with GitHub
     github:
-      success: "Signed in with GitHub."
-      failure: "GitHub sign-in failed. Please try again."
+      success: Signed in with GitHub.
+      failure: GitHub sign-in failed. Please try again.
     errors:
       rate_limited: Попробуйте позже.
       invalid: Попробуйте другой email или пароль.
@@ -118,16 +120,17 @@ ru:
       submit: Сохранить новый пароль
       back: "← Вернуться к входу"
     sent: Инструкции по сбросу отправлены (если пользователь с таким email существует).
-    sent_if_exists: "Если аккаунт с таким email существует, мы отправили инструкции по сбросу пароля."
+    sent_if_exists: Если аккаунт с таким email существует, мы отправили инструкции
+      по сбросу пароля.
     reset: Пароль успешно изменён.
     mismatch: Пароли не совпадают.
     invalid: Ссылка для сброса пароля недействительна или устарела.
     errors:
       rate_limited: Попробуйте позже.
       generic: Что-то пошло не так. Пожалуйста, попробуйте снова.
-      blank_email: "Пожалуйста, введите адрес электронной почты."
-      invalid_email: "Пожалуйста, введите корректный адрес электронной почты."
-      email_not_found: "Аккаунт с таким адресом электронной почты не найден."
+      blank_email: Пожалуйста, введите адрес электронной почты.
+      invalid_email: Пожалуйста, введите корректный адрес электронной почты.
+      email_not_found: Аккаунт с таким адресом электронной почты не найден.
   accounts:
     title: Настройки
     personal_info: Личная информация
@@ -156,7 +159,6 @@ ru:
     search_languages: Поиск языков
     your_languages: Ваши языки
     achievements_section: Достижения
-    no_badges: Пока нет значков. Продолжайте учиться, чтобы открыть достижения!
     badge_earned_on: Получено %{date}
     delete_title: Удалить аккаунт
     delete_description: Навсегда удалите аккаунт и все связанные данные. Это действие
@@ -191,13 +193,13 @@ ru:
     notif_time_zone: Часовой пояс
     notif_search_timezone: Поиск часового пояса
     notif_email_label: Уведомление по электронной почте
-    notif_in_app_heading: "In-App Notifications"
-    notif_email_heading: "Email Notifications"
-    notif_in_app_follows: "Someone follows me"
-    notif_email_follows: "Someone follows me"
-    notif_in_app_following_activity: "Activity from people I follow"
-    notif_email_following_activity: "Activity from people I follow"
-    notif_always_on: "Always on"
+    notif_in_app_heading: In-App Notifications
+    notif_email_heading: Email Notifications
+    notif_in_app_follows: Someone follows me
+    notif_email_follows: Someone follows me
+    notif_in_app_following_activity: Activity from people I follow
+    notif_email_following_activity: Activity from people I follow
+    notif_always_on: Always on
     theme_auto: Авто
     theme_light: Светлая
     theme_dark: Тёмная
@@ -209,7 +211,37 @@ ru:
     title: Achievements
     earned_count: "%{earned} of %{total} badges earned"
     no_badges: No badges yet. Keep studying to unlock achievements!
-
+    badges:
+      first_session:
+        name: Первая сессия
+        description: Завершите первую учебную сессию
+      streak_3:
+        name: В ударе
+        description: Занимайтесь 3 дня подряд
+      streak_7:
+        name: Воин недели
+        description: Занимайтесь 7 дней подряд
+      streak_30:
+        name: Мастер месяца
+        description: Занимайтесь 30 дней подряд
+      streak_100:
+        name: Центурион
+        description: Занимайтесь 100 дней подряд
+      cards_10:
+        name: Начало
+        description: Повторите 10 карточек
+      cards_100:
+        name: Преданный
+        description: Повторите 100 карточек
+      cards_500:
+        name: Силач
+        description: Повторите 500 карточек
+      cards_1000:
+        name: Легенда
+        description: Повторите 1000 карточек
+      perfect_test:
+        name: Меткий стрелок
+        description: Наберите 100% в тестовой сессии
   decks:
     index:
       title: Мои колоды
@@ -227,8 +259,8 @@ ru:
       delete_modal_warning: Все карточки будут удалены безвозвратно. Это действие
         нельзя отменить.
       delete_modal_confirm: Удалить колоду
-      unlisted_badge: Скрытая
       public_badge: Публичная
+      unlisted_badge: Скрытая
       private_badge: Приватная
       created: Создана
       cards_section: Карточки
@@ -279,13 +311,13 @@ ru:
       tags_placeholder: напр. биология, анатомия, экзамен2025
       visibility_label: Видимость
       visibility_section_label: Кто может видеть эту колоду?
+      visibility_public: Публичная
       visibility_unlisted: Скрытая
+      visibility_private: Только я
+      visibility_hint: Публичные колоды могут найти и скопировать все желающие.
       section_about: Информация
       access_mode_open: Open
       access_mode_password: Password protected
-      visibility_private: Только я
-      visibility_public: Публичная
-      visibility_hint: Публичные колоды могут найти и скопировать все желающие.
       password_label: Пароль колоды
       password_placeholder: Мин. 8 символов
       password_hint: Required to view this deck
@@ -353,7 +385,7 @@ ru:
       never_studied: Не изучалось
       studied_time: "%{time} назад"
       more_tags: "+%{count}"
-      options_aria: "Параметры колоды"
+      options_aria: Параметры колоды
   folders:
     create_failed: Не удалось создать папку.
     updated: Папка обновлена.
@@ -379,6 +411,8 @@ ru:
         other: "%{count} колоды"
     show:
       empty: В этой папке пока нет колод.
+      start_building: Давайте начнём создавать вашу папку
+      add_study_materials: Добавить учебные материалы
       options_aria: Параметры папки
       rename: Переименовать
       rename_save: Сохранить
@@ -391,8 +425,6 @@ ru:
       all_filter: Все
       add_tag: Добавить тег
       empty_description: Сохраняйте колоды, чтобы организовать ваши учебные коллекции.
-      start_building: Давайте начнём создавать вашу папку
-      add_study_materials: Добавить учебные материалы
     add_decks_modal:
       title: Добавить учебные материалы
       done: Готово
@@ -416,6 +448,7 @@ ru:
     updated: Карточка обновлена.
     deleted: Флэш-карточка удалена.
     restored: Флэш-карточка восстановлена.
+    suggestions_aria: Предложения
   study_modes:
     exit: "← Выйти"
     no_cards_title: Карточек пока нет
@@ -468,7 +501,10 @@ ru:
       study_rate_prompt: Насколько хорошо вы это знали?
       study_cards_due: карточек к повторению
       study_session_complete: Вы повторили все запланированные карточки!
-      study_keyboard_hint: "Пробел — перевернуть · 1 Снова · 2 Сложно · 3 Хорошо · 4 Легко"
+      study_keyboard_hint: Пробел — перевернуть · 1 Снова · 2 Сложно · 3 Хорошо ·
+        4 Легко
+      page_title: 'Карточка: %{deck}'
+      browse_aria: Область просмотра карточек
     study:
       subtitle: Просматривайте карточки и оценивайте своё запоминание
       done_label: Выполнено
@@ -487,14 +523,14 @@ ru:
       hard: Сложно
       good: Хорошо
       easy: Легко
-      settings_btn_label: "Настройки занятия"
-      new_cards_label: "Новые карточки"
-      new_cards_all: "Все"
-      priority_label: "Приоритет"
-      priority_due: "Сначала просроченные"
-      priority_hardest: "Сначала сложные"
-      apply_settings: "Применить"
-      progress_remaining: "осталось %{count}"
+      settings_btn_label: Настройки занятия
+      new_cards_label: Новые карточки
+      new_cards_all: Все
+      priority_label: Приоритет
+      priority_due: Сначала просроченные
+      priority_hardest: Сначала сложные
+      apply_settings: Применить
+      progress_remaining: осталось %{count}
       keyboard_hint: Пробел для показа · 1 Ещё раз · 2 Сложно · 3 Хорошо · 4 Легко
         · Esc для выхода
     learn:
@@ -502,19 +538,22 @@ ru:
       mastered_label: Освоено
       empty_description: Добавьте карточки в эту колоду перед изучением.
       summary_title: Все карточки освоены!
+      complete_subtitle: Every card is now above the mastery threshold.
       studied: Изучено карточек
       time_spent: Затраченное время
       summary_sub: Отличная работа — все карточки освоены.
       study_again: Учить снова
-      progress_header: Space to flip · G Got it · C Confused · D Don't know
-      reveal: Click to reveal
-      dont_know: Don't know
-      confused: Confused
-      got_it: Got it
-      mastery_pct: Mastery
-      weak_cards: Weak
+      restart: Заниматься снова
       new_cards: New
-      complete_subtitle: Every card is now above the mastery threshold.
+      weak_cards: Weak
+      mastery_pct: Mastery
+      got_it: Got it
+      confused: Confused
+      dont_know: Don't know
+      reveal: Click to reveal
+      progress_header: Space to flip · G Got it · C Confused · D Don't know
+      page_title: 'Учить: %{deck}'
+      complete_aria: Сессия обучения завершена
     test:
       subtitle: Проверьте свои знания
       question_label: Вопрос
@@ -524,6 +563,8 @@ ru:
       score: Результат
       time: Время
       retake: Пройти тест снова
+      page_title: 'Тест: %{deck}'
+      session_aria: Тестовая сессия
     test_question:
       correct: Верно!
       incorrect: Неверно
@@ -550,43 +591,44 @@ ru:
       streak: Серия
       progress_label: "%{pct}% прогресса"
       matched_counter: 'Совпало: %{matched} / %{total}'
-learn:
-  settings:
-    title: Learn Settings
-    new_cards_limit: New Cards Per Session
-    mastery_threshold: Mastery Threshold
-    hints: Show Hints
-    hints_on: "On"
-    hints_off: "Off"
-    weak_priority: Weak Card Priority
-    priority_low: Low
-    priority_normal: Normal
-    priority_high: High
-    apply: Apply
-    saved: Settings saved.
-    invalid: Invalid settings.
-    limit_5: "5 cards"
-    limit_10: "10 cards"
-    limit_15: "15 cards"
-    limit_20: "20 cards"
-    limit_all: All cards
-    threshold_60: "60% (Easy)"
-    threshold_70: "70%"
-    threshold_80: "80% (Default)"
-    threshold_90: "90% (Hard)"
-  hint: Hint
-  hint_prefix: "First word:"
-  complete:
-    cards_learned: Cards learned
-    weak_improved: Weak cards improved
-    practice_again: Practice Again
-    switch_to_study: Switch to Study Mode
-    retry_weak: Повторить слабые карточки
+      page_title: 'Сопоставление: %{deck}'
+  learn:
+    settings:
+      title: Настройки режима «Учить»
+      new_cards_limit: Новых карточек за сессию
+      mastery_threshold: Порог освоения
+      hints: Показывать подсказки
+      hints_on: Вкл.
+      hints_off: Выкл.
+      weak_priority: Приоритет слабых карточек
+      priority_low: Низкий
+      priority_normal: Обычный
+      priority_high: Высокий
+      apply: Применить
+      saved: Настройки сохранены.
+      invalid: Недопустимые настройки.
+      limit_5: 5 карточек
+      limit_10: 10 карточек
+      limit_15: 15 карточек
+      limit_20: 20 карточек
+      limit_all: Все карточки
+      threshold_60: 60% (легко)
+      threshold_70: 70%
+      threshold_80: 80% (по умолчанию)
+      threshold_90: 90% (сложно)
+    hint: Подсказка
+    hint_prefix: 'Первое слово:'
+    complete:
+      cards_learned: Изучено карточек
+      weak_improved: Улучшено слабых карточек
+      practice_again: Повторить упражнение
+      switch_to_study: Перейти в режим занятий
+      retry_weak: Повторить слабые карточки
   errors:
     not_found:
-      flash: This deck is no longer available.
+      flash: Эта колода больше недоступна.
     not_authorized:
-      flash: You are not authorized to perform this action.
+      flash: У вас нет прав для выполнения этого действия.
   explore:
     title: Обзор
     subtitle: Находите и копируйте публичные колоды, которыми делится сообщество.
@@ -598,7 +640,7 @@ learn:
     empty_title: Публичных колод пока нет
     empty_description: Будьте первым, кто поделится колодой с сообществом.
     by: от
-    locked_badge: Password Required
+    locked_badge: Требуется пароль
     owner_badge: Вы
     by_you: от вас
     language_label: язык
@@ -609,10 +651,10 @@ learn:
     cards_due: К повторению
     current_streak: Серия дней
     longest_streak: Лучшая серия
-    achievements_title: Achievements
-    achievements_view_all: View all achievements
-    achievements_earned_count: "%{earned} of %{total} earned"
-    achievements_none_yet: Keep studying to earn your first badge!
+    achievements_title: Достижения
+    achievements_view_all: Все достижения
+    achievements_earned_count: Получено %{earned} из %{total}
+    achievements_none_yet: Продолжайте учиться, чтобы получить первый значок!
     study_history: История занятий
     see_all: Все
     empty_history: Завершите сессию, чтобы увидеть историю здесь.
@@ -641,6 +683,8 @@ learn:
     reviewed_header: Повторено
     accuracy_header: Точность
     time_header: Время
+    page_title: 'Заниматься: %{deck}'
+    session_aria: Учебная сессия
   imports:
     title: Импорт карточек — %{name}
     back: "← %{name}"
@@ -702,21 +746,15 @@ learn:
     term_label: ТЕРМИН
     definition_label: ОПРЕДЕЛЕНИЕ
     cancel_import: Отменить импорт
+    text_placeholder: "Привет\tHello\nПока\tGoodbye"
   home:
-    hero_heading: "Учитесь умнее, запоминайте дольше"
-    hero_subtitle: "Quizly помогает вам формировать настоящую память, а не просто кратковременное запоминание."
-    badge: "Интервальное повторение встроено"
+    hero_heading: Учитесь умнее, запоминайте дольше
+    hero_subtitle: Quizly помогает вам формировать настоящую память, а не просто кратковременное
+      запоминание.
+    badge: Интервальное повторение встроено
     sign_up: Зарегистрироваться бесплатно
     popular_decks: Популярные колоды
     see_all: Смотреть все →
-    modes:
-      flashcards: Карточки
-      learn: Тренировка
-      study: Изучение
-      test: Тест
-      match: Совпадения
-    explore_link: Обзор
-    log_in: Войти
     no_decks: Рекомендованных колод пока нет.
     popular_section_label: Популярные колоды
     popular_section_title: Последняя активность
@@ -727,8 +765,16 @@ learn:
       decks_label: Рекомендованные колоды
       languages_label: Языки
       cards_label: карточек
+    modes:
+      flashcards: Карточки
+      learn: Тренировка
+      study: Изучение
+      test: Тест
+      match: Совпадения
+    explore_link: Обзор
+    log_in: Войти
     cta_strip_headline: Готовы учиться умнее?
-    cta_strip_sub: "Присоединяйтесь к тысячам студентов, уже использующих Quizly."
+    cta_strip_sub: Присоединяйтесь к тысячам студентов, уже использующих Quizly.
     page_title: Quizly — Учитесь быстрее с карточками
     carousel:
       previous_slide: Предыдущий слайд
@@ -751,8 +797,10 @@ learn:
     reset_link_text: этой странице сброса пароля
     reset_text_body: 'Вы можете сбросить пароль в течение следующих 15 минут на этой
       странице сброса пароля:'
-    expires_note: Срок действия ссылки истекает через 15 минут. Если вы не запрашивали сброс пароля, просто проигнорируйте это письмо.
-    fallback_note: "Если кнопка выше не работает, скопируйте эту ссылку в браузер:"
+    expires_note: Срок действия ссылки истекает через 15 минут. Если вы не запрашивали
+      сброс пароля, просто проигнорируйте это письмо.
+    fallback_note: 'Если кнопка выше не работает, скопируйте эту ссылку в браузер:'
+    reset_heading: Сброс пароля
   question_engine:
     match_prompt: Сопоставьте каждый термин с его определением
   time:
@@ -772,41 +820,45 @@ learn:
     events:
       badge_earned: Вы получили новый значок
       followed: "%{actor} начал(а) подписываться на вас"
-      followed_user_published_deck: "%{actor} published a new deck"
+      followed_user_published_deck: "%{actor} опубликовал новую колоду"
       deck_commented: "%{actor} прокомментировал(а) вашу колоду"
       deck_reacted: "%{actor} отреагировал(а) на вашу колоду"
   follows:
-    follow: "Follow"
-    unfollow: "Unfollow"
+    follow: Подписаться
+    unfollow: Отписаться
     followers:
-      one: "%{count} follower"
-      other: "%{count} followers"
+      :one: "%{count} подписчик"
+      :few: "%{count} подписчика"
+      :many: "%{count} подписчиков"
+      :other: "%{count} подписчиков"
     follower_label:
-      one: "follower"
-      other: "followers"
-    public_decks: "Public Decks"
-    no_public_decks: "No public decks yet."
-    following_heading: "Following"
-    following_page_title: "%{name}'s Following"
-    no_following: "Not following anyone yet."
+      :one: подписчик
+      :few: подписчика
+      :many: подписчиков
+      :other: подписчиков
+    public_decks: Публичные колоды
+    no_public_decks: Пока нет публичных колод.
+    following_heading: Подписки
+    following_page_title: Подписки %{name}
+    no_following: Пока ни на кого не подписан.
   activerecord:
     errors:
       models:
         follow:
           attributes:
             base:
-              cannot_follow_self: "You cannot follow yourself."
+              cannot_follow_self: Вы не можете подписаться на самого себя.
             follower_id:
-              already_following: "You are already following this user."
+              already_following: Вы уже подписаны на этого пользователя.
         user:
           attributes:
             username:
-              invalid_username: "may only contain letters, numbers, and underscores."
+              invalid_username: может содержать только буквы, цифры и подчёркивания.
         deck:
           attributes:
             base:
               not_ready_to_share: Добавьте хотя бы одну карточку, прежде чем делиться
                 колодой.
             access_mode:
-              invalid_for_private_deck: Private decks cannot be password-protected
-                — only you can see them anyway.
+              invalid_for_private_deck: Приватные колоды нельзя защитить паролем —
+                их и так видите только вы.
