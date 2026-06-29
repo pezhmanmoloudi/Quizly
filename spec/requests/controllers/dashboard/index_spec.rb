@@ -67,6 +67,34 @@ RSpec.describe "Dashboard#index", type: :request do
         get dashboard_path
         expect(controller.instance_variable_get(:@last_studied_dates)).to be_a(Hash)
       end
+
+      it "assigns recent completed study sessions" do
+        deck = create(:deck, user: user)
+        create(:study_session, :completed, user: user, deck: deck)
+        get dashboard_path
+        sessions = controller.instance_variable_get(:@recent_sessions)
+        expect(sessions.size).to eq(1)
+      end
+
+      it "assigns badge preview entries that report earned state" do
+        get dashboard_path
+        preview = controller.instance_variable_get(:@badges_preview)
+        expect(preview).to respond_to(:each)
+        expect(preview).to all(respond_to(:earned?))
+      end
+
+      it "renders the achievements section" do
+        get dashboard_path
+        expect(response.body).to include("Achievements")
+      end
+
+      it "renders recent study history rows" do
+        deck = create(:deck, user: user, name: "Recent Sesh")
+        create(:study_session, :completed, user: user, deck: deck)
+        get dashboard_path
+        expect(response.body).to include("Recent Sesh")
+        expect(response.body).to include("accuracy")
+      end
     end
 
     context "when not authenticated" do
@@ -104,6 +132,11 @@ RSpec.describe "Dashboard#index", type: :request do
       it "links to the study path for that deck" do
         get dashboard_path
         expect(response.body).to include(study_deck_path(deck))
+      end
+
+      it "assigns a continue progress percentage" do
+        get dashboard_path
+        expect(controller.instance_variable_get(:@continue_progress)).to be_a(Integer)
       end
     end
 

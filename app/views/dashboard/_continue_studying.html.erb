@@ -1,11 +1,21 @@
 <div class="continue-card" aria-label="<%= t("dashboard.continue_studying.card_aria", name: deck.name) %>">
-  <div class="continue-card__icon" aria-hidden="true">
-    <%= render "shared/icons/play" %>
+  <div class="continue-card__cover">
+    <%= render "decks/deck_cover", deck: deck, size: :lg %>
   </div>
   <div class="continue-card__body">
     <p class="continue-card__eyebrow"><%= t("dashboard.continue_studying.title") %></p>
     <h2 class="continue-card__title"><%= deck.name %></h2>
-    <p class="continue-card__meta"><%= t("dashboard.continue_studying.cards_due", count: due) %></p>
+    <div class="continue-progress" role="img"
+         aria-label="<%= t("dashboard.continue_studying.percent_complete", percent: localized_number(progress)) %>">
+      <div class="continue-progress__bar">
+        <div class="continue-progress__fill" style="inline-size: <%= progress %>%;"></div>
+      </div>
+    </div>
+    <p class="continue-card__meta">
+      <%= t("dashboard.continue_studying.cards_due", count: due) %>
+      <span class="continue-card__sep" aria-hidden="true">·</span>
+      <%= t("dashboard.continue_studying.percent_complete", percent: localized_number(progress)) %>
+    </p>
   </div>
   <div class="continue-card__action">
     <%= link_to t("dashboard.continue_studying.study_now"), study_deck_path(deck),

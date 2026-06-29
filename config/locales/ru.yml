@@ -661,10 +661,23 @@ ru:
     my_decks: Мои колоды
     no_decks_title: Колод пока нет
     no_decks_description: Создайте первую колоду, чтобы начать учиться.
-    history_stats: "%{cards} карточек · точность %{accuracy}%"
+    stat_view_all: Все
+    stat_study_now: Учиться сейчас
+    stat_keep_going: Так держать!
+    stat_view_progress: Посмотреть прогресс
+    achievements_scroll_next: Прокрутить достижения
+    achievement_earned: Получено
+    achievement_progress: "%{current} / %{target}"
+    history_cards:
+      one: "%{count} карточка"
+      few: "%{count} карточки"
+      many: "%{count} карточек"
+      other: "%{count} карточки"
+    history_accuracy: "точность %{accuracy}%"
     continue_studying:
       title: Продолжить обучение
       study_now: Учиться сейчас →
+      percent_complete: "%{percent}% завершено"
       card_aria: Продолжить изучение %{name}
       study_aria: Изучать %{name}
       cards_due:

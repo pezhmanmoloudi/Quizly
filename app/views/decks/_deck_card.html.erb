@@ -1,7 +1,13 @@
 <% due = local_assigns[:due_counts]&.fetch(deck.id, 0) || 0 %>
 <% last_studied = local_assigns[:last_studied_dates]&.fetch(deck.id, nil) %>
+<% show_cover = local_assigns.fetch(:cover, false) %>
 
-<div id="<%= dom_id(deck) %>" class="deck-row">
+<div id="<%= dom_id(deck) %>" class="deck-row<%= " deck-row--with-cover" if show_cover %>">
+  <% if show_cover %>
+    <div class="deck-row__cover">
+      <%= render "decks/deck_cover", deck: deck, size: :md %>
+    </div>
+  <% end %>
   <div class="deck-row__identity">
     <h3 class="deck-row__title-link-wrap">
       <a class="deck-row__title-link" href="<%= deck_path(deck, from_page: local_assigns[:from_page] || 1) %>">

@@ -8,10 +8,6 @@ class Badge < ApplicationRecord
   validates :icon,        presence: true
   validates :category,    presence: true, inclusion: { in: %w[streak cards accuracy] }
 
-  def self.preview_for(user)
-    user.badges.order("user_badges.earned_at DESC").limit(3)
-  end
-
   def name
     I18n.t("achievements.badges.#{key}.name", default: self[:name])
   end

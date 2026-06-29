@@ -1,63 +1,123 @@
-<% if @continue_deck %>
-  <div class="container" style="padding-top: 1.5rem; padding-bottom: 0;">
-    <%= render "continue_studying", deck: @continue_deck, due: @continue_due %>
-  </div>
-<% end %>
-
-<div class="container">
-  <div class="stats-grid">
-    <div class="stat-card">
-      <div id="total-decks-count" class="stat-card__value"><%= localized_number(@total_decks) %></div>
-      <div class="stat-card__label"><%= t("dashboard.total_decks") %></div>
-    </div>
-    <div class="stat-card">
-      <div id="total-cards-count" class="stat-card__value"><%= localized_number(@total_cards) %></div>
-      <div class="stat-card__label"><%= t("dashboard.total_cards") %></div>
-    </div>
-    <div class="stat-card">
-      <div id="cards-due-count" class="stat-card__value stat-card__value--due"><%= localized_number(@total_due) %></div>
-      <div class="stat-card__label"><%= t("dashboard.cards_due") %></div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-card__value stat-card__value--streak">🔥 <%= localized_number(Current.user.current_streak) %></div>
-      <div class="stat-card__label"><%= t("dashboard.current_streak") %></div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-card__value stat-card__value--streak"><%= localized_number(Current.user.longest_streak) %></div>
-      <div class="stat-card__label"><%= t("dashboard.longest_streak") %></div>
-    </div>
-  </div>
-
-  <div class="section-header" style="margin-top: 2.5rem;">
-    <h2><%= t("dashboard.achievements_title") %></h2>
-    <%= link_to t("dashboard.achievements_view_all"), achievements_path, class: "section-header__link" %>
-  </div>
-  <% if @badges_preview.any? %>
-    <div class="badges-grid-preview">
-      <% @badges_preview.each do |badge| %>
-        <div class="badge-card badge-card--earned">
-          <div class="badge-card__icon"><%= badge.icon %></div>
-          <div class="badge-card__name"><%= badge.name %></div>
-        </div>
-      <% end %>
-    </div>
-    <p class="achievements-preview-count"><%= t("dashboard.achievements_earned_count", earned: localized_number(@badges_earned), total: localized_number(@badges_total)) %></p>
-  <% else %>
-    <p class="achievements-preview-empty"><%= t("dashboard.achievements_none_yet") %></p>
+<div class="container dashboard">
+  <% if @continue_deck %>
+    <%= render "continue_studying", deck: @continue_deck, due: @continue_due, progress: @continue_progress %>
   <% end %>
 
-  <div class="section-header" style="margin-top: 2.5rem;">
+  <section class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-card__icon stat-card__icon--decks"><%= render "shared/icons/folder" %></div>
+      <div class="stat-card__main">
+        <div id="total-decks-count" class="stat-card__value"><%= localized_number(@total_decks) %></div>
+        <div class="stat-card__label"><%= t("dashboard.total_decks") %></div>
+      </div>
+      <%= link_to t("dashboard.stat_view_all"), decks_path, class: "stat-card__link" %>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-card__icon stat-card__icon--cards"><%= render "shared/icons/rectangle_stack" %></div>
+      <div class="stat-card__main">
+        <div id="total-cards-count" class="stat-card__value"><%= localized_number(@total_cards) %></div>
+        <div class="stat-card__label"><%= t("dashboard.total_cards") %></div>
+      </div>
+      <%= link_to t("dashboard.stat_view_all"), decks_path, class: "stat-card__link" %>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-card__icon stat-card__icon--due"><%= render "shared/icons/clock" %></div>
+      <div class="stat-card__main">
+        <div id="cards-due-count" class="stat-card__value stat-card__value--due"><%= localized_number(@total_due) %></div>
+        <div class="stat-card__label"><%= t("dashboard.cards_due") %></div>
+      </div>
+      <% if @continue_deck %>
+        <%= link_to t("dashboard.stat_study_now"), study_deck_path(@continue_deck), class: "stat-card__link" %>
+      <% else %>
+        <%= link_to t("dashboard.stat_view_all"), decks_path, class: "stat-card__link" %>
+      <% end %>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-card__icon stat-card__icon--streak" aria-hidden="true">🔥</div>
+      <div class="stat-card__main">
+        <div class="stat-card__value stat-card__value--streak"><%= localized_number(Current.user.current_streak) %></div>
+        <div class="stat-card__label"><%= t("dashboard.current_streak") %></div>
+      </div>
+      <span class="stat-card__link stat-card__link--static"><%= t("dashboard.stat_keep_going") %> 🔥</span>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-card__icon stat-card__icon--best" aria-hidden="true">🏆</div>
+      <div class="stat-card__main">
+        <div class="stat-card__value stat-card__value--streak"><%= localized_number(Current.user.longest_streak) %></div>
+        <div class="stat-card__label"><%= t("dashboard.longest_streak") %></div>
+      </div>
+      <%= link_to t("dashboard.stat_view_progress"), achievements_path, class: "stat-card__link" %>
+    </div>
+  </section>
+
+  <section class="dashboard-card achievements-panel" data-controller="scroller">
+    <div class="section-header">
+      <h2><%= t("dashboard.achievements_title") %></h2>
+      <div class="achievements-panel__header-actions">
+        <%= link_to t("dashboard.achievements_view_all"), achievements_path, class: "section-header__link" %>
+        <button type="button" class="achievements-panel__scroll-btn"
+                data-action="scroller#scrollNext"
+                aria-label="<%= t("dashboard.achievements_scroll_next") %>">
+          <%= render "shared/icons/chevron_down", css_class: "achievements-panel__scroll-icon" %>
+        </button>
+      </div>
+    </div>
+
+    <% if @badges_preview.any? %>
+      <div class="achievements-track" data-scroller-target="track">
+        <% @badges_preview.each do |entry| %>
+          <div class="achievement-tile <%= entry.earned? ? "achievement-tile--earned" : "achievement-tile--locked" %>">
+            <div class="achievement-tile__icon"><%= entry.badge.icon %></div>
+            <div class="achievement-tile__name"><%= entry.badge.name %></div>
+            <div class="achievement-tile__desc"><%= entry.badge.description %></div>
+            <% if entry.earned? %>
+              <span class="achievement-tile__earned">
+                <%= render "shared/icons/check", css_class: "achievement-tile__earned-icon" %>
+                <%= t("dashboard.achievement_earned") %>
+              </span>
+            <% else %>
+              <div class="achievement-progress">
+                <div class="achievement-progress__bar">
+                  <div class="achievement-progress__fill" style="inline-size: <%= entry.percent %>%;"></div>
+                </div>
+                <span class="achievement-progress__label">
+                  <%= t("dashboard.achievement_progress",
+                        current: localized_number(entry.current), target: localized_number(entry.target)) %>
+                </span>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+      <p class="achievements-preview-count"><%= t("dashboard.achievements_earned_count", earned: localized_number(@badges_earned), total: localized_number(@badges_total)) %></p>
+    <% else %>
+      <p class="achievements-preview-empty"><%= t("dashboard.achievements_none_yet") %></p>
+    <% end %>
+  </section>
+
+  <div class="section-header dashboard-section">
     <h2><%= t("dashboard.study_history") %></h2>
     <%= link_to t("dashboard.see_all"), study_sessions_path, class: "section-header__link" %>
   </div>
-  <% recent_sessions = Current.user.study_sessions.completed.includes(:deck).recent.limit(3) %>
-  <% if recent_sessions.any? %>
+  <% if @recent_sessions.any? %>
     <div class="study-history-mini">
-      <% recent_sessions.each do |s| %>
+      <% @recent_sessions.each do |s| %>
         <div class="study-history-mini__item">
-          <span class="study-history-mini__deck"><%= s.deck.name %></span>
-          <span class="study-history-mini__stats"><%= t("dashboard.history_stats", cards: localized_number(s.cards_reviewed), accuracy: localized_number(s.accuracy)) %></span>
-          <span class="study-history-mini__date"><%= s.started_at.strftime("%-d %b") %></span>
+          <div class="study-history-mini__cover">
+            <%= render "decks/deck_cover", deck: s.deck, size: :sm, shape: :circle %>
+          </div>
+          <div class="study-history-mini__info">
+            <span class="study-history-mini__deck"><%= s.deck.name %></span>
+            <span class="study-history-mini__cards"><%= t("dashboard.history_cards", count: s.cards_reviewed) %></span>
+          </div>
+          <div class="study-history-mini__result">
+            <span class="study-history-mini__accuracy"><%= t("dashboard.history_accuracy", accuracy: localized_number(s.accuracy)) %></span>
+            <span class="study-history-mini__date"><%= s.started_at.strftime("%-d %b") %></span>
+          </div>
         </div>
       <% end %>
     </div>
@@ -66,16 +126,16 @@
   <% end %>
 
   <% if @decks.any? %>
-    <div class="section-header" style="margin-top: 2.5rem;">
+    <div class="section-header dashboard-section">
       <h2><%= t("dashboard.my_decks") %></h2>
       <%= link_to t("dashboard.see_all"), decks_path, class: "section-header__link" %>
     </div>
     <div class="deck-list">
       <%= render partial: "decks/deck_card", collection: @decks, as: :deck,
-                 locals: { due_counts: @due_counts, last_studied_dates: @last_studied_dates } %>
+                 locals: { due_counts: @due_counts, last_studied_dates: @last_studied_dates, cover: true } %>
     </div>
   <% else %>
-    <div style="margin-top: 2.5rem;">
+    <div class="dashboard-section">
       <%= render "shared/empty_state",
             icon: "rectangle_stack",
             title: t("dashboard.no_decks_title"),

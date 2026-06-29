@@ -652,10 +652,21 @@ tr:
     my_decks: Destelerim
     no_decks_title: Henüz deste yok
     no_decks_description: Çalışmaya başlamak için ilk desteni oluştur.
-    history_stats: "%{cards} kart · %{accuracy}% doğruluk"
+    stat_view_all: Tümünü gör
+    stat_study_now: Şimdi çalış
+    stat_keep_going: Böyle devam et!
+    stat_view_progress: İlerlemeyi gör
+    achievements_scroll_next: Başarıları kaydır
+    achievement_earned: Kazanıldı
+    achievement_progress: "%{current} / %{target}"
+    history_cards:
+      one: "%{count} kart"
+      other: "%{count} kart"
+    history_accuracy: "%{accuracy}% doğruluk"
     continue_studying:
       title: Çalışmaya Devam Et
       study_now: Şimdi Çalış →
+      percent_complete: "%{percent}% tamamlandı"
       card_aria: "%{name} çalışmaya devam et"
       study_aria: "%{name} çalış"
       cards_due:

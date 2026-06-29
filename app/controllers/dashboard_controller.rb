@@ -31,12 +31,23 @@ class DashboardController < ApplicationController
       else
         @due_counts.max_by { |_, v| v }.first
       end
-      @continue_deck = @decks.find { |d| d.id == best_id }
-      @continue_due  = @due_counts[best_id]
+      @continue_deck     = @decks.find { |d| d.id == best_id }
+      @continue_due      = @due_counts[best_id]
+      @continue_progress = progress_percent(@continue_deck.flashcards_count, @continue_due)
     end
 
-    @badges_preview  = Badge.preview_for(Current.user)
-    @badges_earned   = Current.user.user_badges.count
-    @badges_total    = Badge.count
+    @recent_sessions = Current.user.study_sessions.completed.includes(:deck).recent.limit(3)
+
+    @badges_preview = BadgeProgress.preview_for(Current.user)
+    @badges_earned  = Current.user.user_badges.count
+    @badges_total   = Badge.count
+  end
+
+  private
+
+  # Proxy for study progress: share of a deck's cards that are not currently due.
+  def progress_percent(total, due)
+    return 0 if total.to_i <= 0
+    ((total - due).clamp(0, total) * 100.0 / total).round
   end
 end
