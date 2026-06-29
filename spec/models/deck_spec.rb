@@ -446,5 +446,18 @@ RSpec.describe Deck, type: :model do
       expect(Deck.exists?(deck.id)).to be false
       expect(Flashcard.unscoped.where(deck_id: deck.id).count).to eq(0)
     end
+
+    it "destroys a deck whose soft-deleted flashcards still have learn_session_items" do
+      deck    = create(:deck)
+      card    = create(:flashcard, deck: deck)
+      session = create(:learn_session, deck: deck, user: deck.user)
+      create(:learn_session_item, learn_session: session, flashcard: card)
+      card.soft_delete!
+
+      expect { deck.destroy }.not_to raise_error
+      expect(Deck.exists?(deck.id)).to be false
+      expect(Flashcard.unscoped.where(deck_id: deck.id).count).to eq(0)
+      expect(LearnSessionItem.where(flashcard_id: card.id).count).to eq(0)
+    end
   end
 end

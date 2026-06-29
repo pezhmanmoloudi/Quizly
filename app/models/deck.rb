@@ -92,7 +92,14 @@ class Deck < ApplicationRecord
   end
 
   def purge_soft_deleted_flashcards
-    Flashcard.unscoped.where(deck_id: id).where.not(deleted_at: nil).delete_all
+    soft_deleted_ids = Flashcard.unscoped.where(deck_id: id).where.not(deleted_at: nil).pluck(:id)
+    return if soft_deleted_ids.empty?
+
+    # delete_all skips the flashcards' `dependent: :destroy`, so clear child rows
+    # explicitly to avoid orphaned references / FK violations.
+    LearnSessionItem.where(flashcard_id: soft_deleted_ids).delete_all
+    CardProgress.where(flashcard_id: soft_deleted_ids).delete_all
+    Flashcard.unscoped.where(id: soft_deleted_ids).delete_all
   end
 
   def completeness_for_sharing
