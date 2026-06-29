@@ -85,6 +85,42 @@ RSpec.describe "LearnSessions#show", type: :request do
       end
     end
 
+    context "session size is bounded by learn_new_cards_limit (backend-owned membership)" do
+      before { sign_in(user) }
+
+      it "creates exactly learn_new_cards_limit items when the deck has more cards" do
+        8.times { create(:flashcard, deck: deck) }
+        deck.update!(learn_new_cards_limit: 5)
+        get learn_deck_path(deck)
+        expect(LearnSession.last.learn_session_items.count).to eq 5
+      end
+
+      it "renders exactly that many flashcard slides (DB items == rendered slides)" do
+        8.times { create(:flashcard, deck: deck) }
+        deck.update!(learn_new_cards_limit: 5)
+        get learn_deck_path(deck)
+        expect(response.body.scan(/flashcard-browse__slide/).size).to eq 5
+      end
+
+      it "includes all cards when the limit is 0 (unlimited)" do
+        6.times { create(:flashcard, deck: deck) }
+        deck.update!(learn_new_cards_limit: 0)
+        get learn_deck_path(deck)
+        expect(LearnSession.last.learn_session_items.count).to eq 6
+      end
+
+      it "uses the updated limit for the next (fresh) session" do
+        12.times { create(:flashcard, deck: deck) }
+        deck.update!(learn_new_cards_limit: 5)
+        get learn_deck_path(deck, restart: true)
+        expect(LearnSession.last.learn_session_items.count).to eq 5
+
+        deck.update!(learn_new_cards_limit: 10)
+        get learn_deck_path(deck, restart: true)
+        expect(LearnSession.last.learn_session_items.count).to eq 10
+      end
+    end
+
     context "with weak_only param" do
       before { sign_in(user) }
 

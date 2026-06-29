@@ -104,5 +104,41 @@ RSpec.describe LearnSession, type: :model do
         expect(ls.learn_session_items.pluck(:flashcard_id)).to eq [fc1.id]
       end
     end
+
+    context "with a session-size limit (backend owns membership)" do
+      before { 6.times { create(:flashcard, deck: deck) } }
+
+      it "caps session items to the limit when the deck has more cards" do
+        ls = LearnSession.build_for(deck: deck, user: user, limit: 4)
+        ls.save!
+        expect(ls.learn_session_items.count).to eq 4
+        expect(ls.cards_total).to eq 4
+      end
+
+      it "keeps all cards when the limit exceeds the deck size" do
+        ls = LearnSession.build_for(deck: deck, user: user, limit: 20)
+        ls.save!
+        expect(ls.learn_session_items.count).to eq 6
+      end
+
+      it "treats limit 0 as unlimited (all cards)" do
+        ls = LearnSession.build_for(deck: deck, user: user, limit: 0)
+        ls.save!
+        expect(ls.learn_session_items.count).to eq 6
+      end
+
+      it "treats nil limit as unlimited (all cards)" do
+        ls = LearnSession.build_for(deck: deck, user: user, limit: nil)
+        ls.save!
+        expect(ls.learn_session_items.count).to eq 6
+      end
+
+      it "does not apply the limit on the weak-only retry path" do
+        ids = deck.flashcards.limit(5).pluck(:id)
+        ls  = LearnSession.build_for(deck: deck, user: user, flashcard_ids: ids, limit: 2)
+        ls.save!
+        expect(ls.learn_session_items.count).to eq 5
+      end
+    end
   end
 end

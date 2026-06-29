@@ -18,8 +18,7 @@ class LearnSessionsController < ApplicationController
       session.delete(:learn_session_id)
     end
 
-    weak_ids    = resolve_weak_only_ids
-    @flashcards = @deck.flashcards.where(id: weak_ids).to_a if weak_ids
+    weak_ids = resolve_weak_only_ids
 
     @learn_session = Decks::LearnSessionService.find_or_create(
       deck:          @deck,
@@ -40,10 +39,23 @@ class LearnSessionsController < ApplicationController
 
     session[:learn_session_id] = @learn_session.id
 
-    @learn_items_json = @learn_session.learn_session_items.map { |i|
-      { id: i.id, flashcard_id: i.flashcard_id,
-        mastery_score: i.mastery_score, status: i.status }
-    }.to_json
+    # Render exactly the session's cards. Membership is owned by the backend
+    # (build_for caps to learn_new_cards_limit), so the DOM slides always match
+    # the persisted LearnSessionItems and the frontend LearnEngine's queue.
+    @flashcards = @deck.flashcards.where(
+      id: @learn_session.learn_session_items.select(:flashcard_id)
+    ).to_a
+
+    # Hydrate the engine from exactly the items that have a rendered slide, so the
+    # client item map and the DOM slides stay one-to-one (drops any item whose card
+    # was soft-deleted after the session was built).
+    rendered_ids = @flashcards.map(&:id).to_set
+    @learn_items_json = @learn_session.learn_session_items
+      .select { |i| rendered_ids.include?(i.flashcard_id) }
+      .map { |i|
+        { id: i.id, flashcard_id: i.flashcard_id,
+          mastery_score: i.mastery_score, status: i.status }
+      }.to_json
 
     @learn_settings_json = {
       masteryThreshold:  @deck.learn_mastery_threshold,
