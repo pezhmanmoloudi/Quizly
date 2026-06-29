@@ -14,7 +14,7 @@
   </div>
 
   <%# Primary nav %>
-  <nav class="sidebar__nav" aria-label="Main navigation">
+  <nav class="sidebar__nav" aria-label="<%= t("shared.main_nav_aria") %>">
 
     <%= link_to dashboard_path,
           class: "sidebar__item #{"is-active" if request.path == dashboard_path}",

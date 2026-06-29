@@ -18,18 +18,18 @@ ar:
       study_group: مجموعة دراسية
     open_navigation: فتح قائمة التنقل
     close_navigation: إغلاق قائمة التنقل
-    account_menu: Account menu
+    account_menu: قائمة الحساب
   menu:
     settings: الإعدادات
     dark_mode: الوضع الداكن
     light_mode: الوضع الفاتح
     log_out: تسجيل الخروج
     language: اللغة
-    view_profile: View Profile
-    achievements: Achievements
-    notifications: Notifications
-    followers: Followers
-    following: Following
+    view_profile: عرض الملف الشخصي
+    achievements: الإنجازات
+    notifications: الإشعارات
+    followers: المتابِعون
+    following: المتابَعون
   shared:
     cancel: إلغاء
     close: إغلاق
@@ -45,6 +45,8 @@ ar:
     previous_page: الصفحة السابقة
     next_page: الصفحة التالية
     not_available: غ/م
+    pagination_aria: ترقيم الصفحات
+    main_nav_aria: التنقل الرئيسي
   auth:
     back_to_home: العودة إلى الرئيسية
     panel:
@@ -67,15 +69,15 @@ ar:
     submit: تسجيل الدخول
     no_account: ليس لديك حساب؟
     sign_up: إنشاء حساب
-    or: "or"
-    sign_in_with_google: "Continue with Google"
+    or: or
+    sign_in_with_google: Continue with Google
     google:
-      success: "Signed in with Google."
-      failure: "Google sign-in failed. Please try again."
-    sign_in_with_github: "Continue with GitHub"
+      success: Signed in with Google.
+      failure: Google sign-in failed. Please try again.
+    sign_in_with_github: Continue with GitHub
     github:
-      success: "Signed in with GitHub."
-      failure: "GitHub sign-in failed. Please try again."
+      success: Signed in with GitHub.
+      failure: GitHub sign-in failed. Please try again.
     errors:
       rate_limited: حاول مجدداً لاحقاً.
       invalid: جرّب بريداً إلكترونياً أو كلمة مرور أخرى.
@@ -118,16 +120,17 @@ ar:
       submit: حفظ كلمة المرور الجديدة
       back: "→ العودة لتسجيل الدخول"
     sent: تم إرسال تعليمات الاستعادة (إذا كان حساب بهذا البريد موجوداً).
-    sent_if_exists: "إذا كان هناك حساب لهذا البريد الإلكتروني، فقد أرسلنا تعليمات إعادة التعيين."
+    sent_if_exists: إذا كان هناك حساب لهذا البريد الإلكتروني، فقد أرسلنا تعليمات إعادة
+      التعيين.
     reset: تمّت إعادة تعيين كلمة المرور.
     mismatch: كلمتا المرور غير متطابقتين.
     invalid: رابط إعادة التعيين غير صالح أو منتهي الصلاحية.
     errors:
       rate_limited: حاول مجدداً لاحقاً.
       generic: حدث خطأ ما. يرجى المحاولة مجدداً.
-      blank_email: "يرجى إدخال عنوان بريدك الإلكتروني."
-      invalid_email: "يرجى إدخال عنوان بريد إلكتروني صالح."
-      email_not_found: "لم يتم العثور على حساب بهذا البريد الإلكتروني."
+      blank_email: يرجى إدخال عنوان بريدك الإلكتروني.
+      invalid_email: يرجى إدخال عنوان بريد إلكتروني صالح.
+      email_not_found: لم يتم العثور على حساب بهذا البريد الإلكتروني.
   accounts:
     title: الإعدادات
     personal_info: المعلومات الشخصية
@@ -155,7 +158,6 @@ ar:
     search_languages: ابحث عن اللغات
     your_languages: لغاتك
     achievements_section: الإنجازات
-    no_badges: لا توجد شارات بعد. استمر في الدراسة لفتح الإنجازات!
     badge_earned_on: مكتسبة %{date}
     delete_title: حذف الحساب
     delete_description: احذف حسابك وجميع بياناتك المرتبطة به بشكل دائم. لا يمكن التراجع
@@ -189,13 +191,13 @@ ar:
     notif_time_zone: المنطقة الزمنية
     notif_search_timezone: ابحث عن المنطقة الزمنية
     notif_email_label: إشعار البريد الإلكتروني
-    notif_in_app_heading: "In-App Notifications"
-    notif_email_heading: "Email Notifications"
-    notif_in_app_follows: "Someone follows me"
-    notif_email_follows: "Someone follows me"
-    notif_in_app_following_activity: "Activity from people I follow"
-    notif_email_following_activity: "Activity from people I follow"
-    notif_always_on: "Always on"
+    notif_in_app_heading: In-App Notifications
+    notif_email_heading: Email Notifications
+    notif_in_app_follows: Someone follows me
+    notif_email_follows: Someone follows me
+    notif_in_app_following_activity: Activity from people I follow
+    notif_email_following_activity: Activity from people I follow
+    notif_always_on: Always on
     theme_auto: تلقائي
     theme_light: فاتح
     theme_dark: داكن
@@ -206,7 +208,37 @@ ar:
     title: Achievements
     earned_count: "%{earned} of %{total} badges earned"
     no_badges: No badges yet. Keep studying to unlock achievements!
-
+    badges:
+      first_session:
+        name: الجلسة الأولى
+        description: أكمل أول جلسة دراسة لك
+      streak_3:
+        name: في الطريق الصحيح
+        description: ادرس 3 أيام متتالية
+      streak_7:
+        name: محارب الأسبوع
+        description: ادرس 7 أيام متتالية
+      streak_30:
+        name: سيّد الشهر
+        description: ادرس 30 يومًا متتاليًا
+      streak_100:
+        name: القائد المئوي
+        description: ادرس 100 يوم متتالٍ
+      cards_10:
+        name: البداية
+        description: راجع 10 بطاقات
+      cards_100:
+        name: مُثابر
+        description: راجع 100 بطاقة
+      cards_500:
+        name: قوة جبّارة
+        description: راجع 500 بطاقة
+      cards_1000:
+        name: أسطورة
+        description: راجع 1000 بطاقة
+      perfect_test:
+        name: قنّاص
+        description: احصل على 100% في جلسة اختبار
   decks:
     index:
       title: مجموعاتي
@@ -224,8 +256,8 @@ ar:
       delete_modal_warning: ستُحذف جميع البطاقات التعليمية نهائياً. لا يمكن التراجع
         عن هذا الإجراء.
       delete_modal_confirm: حذف المجموعة
-      unlisted_badge: غير مدرج
       public_badge: عامة
+      unlisted_badge: غير مدرج
       private_badge: خاصة
       created: تاريخ الإنشاء
       cards_section: البطاقات
@@ -276,13 +308,13 @@ ar:
       tags_placeholder: 'مثال: أحياء، تشريح، امتحان2025'
       visibility_label: الظهور
       visibility_section_label: من يستطيع مشاهدة هذه المجموعة؟
+      visibility_public: عامة
       visibility_unlisted: غير مدرج
+      visibility_private: أنا فقط
+      visibility_hint: يمكن لأي شخص اكتشاف المجموعات العامة ونسخها.
       section_about: حول
       access_mode_open: Open
       access_mode_password: Password protected
-      visibility_private: أنا فقط
-      visibility_public: عامة
-      visibility_hint: يمكن لأي شخص اكتشاف المجموعات العامة ونسخها.
       password_label: كلمة مرور المجموعة
       password_placeholder: ٨ أحرف على الأقل
       password_hint: Required to view this deck
@@ -344,9 +376,9 @@ ar:
       due_label: مستحقة
       studied_label: تمت الدراسة
       never_studied: لم تتم الدراسة
-      studied_time: "منذ %{time}"
+      studied_time: منذ %{time}
       more_tags: "+%{count}"
-      options_aria: "خيارات المجموعة"
+      options_aria: خيارات المجموعة
   folders:
     create_failed: تعذر إنشاء المجلد.
     updated: تم تحديث المجلد.
@@ -366,10 +398,12 @@ ar:
       title: مجلداتي
       empty: لا توجد مجلدات بعد.
       deck_count:
-        one: "مجموعة واحدة"
+        one: مجموعة واحدة
         other: "%{count} مجموعة"
     show:
       empty: لا توجد مجموعات في هذا المجلد بعد.
+      start_building: لنبدأ في بناء مجلدك
+      add_study_materials: إضافة مواد الدراسة
       options_aria: خيارات المجلد
       rename: إعادة التسمية
       rename_save: حفظ
@@ -382,8 +416,6 @@ ar:
       all_filter: الكل
       add_tag: إضافة وسم
       empty_description: احفظ المجموعات لتنظيم مجموعات دراستك.
-      start_building: لنبدأ في بناء مجلدك
-      add_study_materials: إضافة مواد الدراسة
     add_decks_modal:
       title: إضافة مواد الدراسة
       done: تم
@@ -407,6 +439,7 @@ ar:
     updated: تم تحديث البطاقة.
     deleted: تمت إزالة البطاقة التعليمية.
     restored: تمت استعادة البطاقة التعليمية.
+    suggestions_aria: اقتراحات
   study_modes:
     exit: "→ خروج"
     no_cards_title: لا توجد بطاقات بعد
@@ -459,7 +492,9 @@ ar:
       study_rate_prompt: كم كنت تعرف هذا؟
       study_cards_due: بطاقات مستحقة
       study_session_complete: لقد راجعت جميع البطاقات المستحقة!
-      study_keyboard_hint: "مسافة للقلب · 1 مجدداً · 2 صعب · 3 جيد · 4 سهل"
+      study_keyboard_hint: مسافة للقلب · 1 مجدداً · 2 صعب · 3 جيد · 4 سهل
+      page_title: 'بطاقة: %{deck}'
+      browse_aria: منطقة تصفّح البطاقات
     study:
       subtitle: راجع البطاقات وقيّم استرجاعك
       done_label: تمّ
@@ -478,33 +513,36 @@ ar:
       hard: صعب
       good: جيد
       easy: سهل
-      settings_btn_label: "إعدادات الدراسة"
-      new_cards_label: "بطاقات جديدة"
-      new_cards_all: "الكل"
-      priority_label: "الأولوية"
-      priority_due: "الأقدم أولاً"
-      priority_hardest: "الأصعب أولاً"
-      apply_settings: "تطبيق"
-      progress_remaining: "متبقي %{count}"
+      settings_btn_label: إعدادات الدراسة
+      new_cards_label: بطاقات جديدة
+      new_cards_all: الكل
+      priority_label: الأولوية
+      priority_due: الأقدم أولاً
+      priority_hardest: الأصعب أولاً
+      apply_settings: تطبيق
+      progress_remaining: متبقي %{count}
       keyboard_hint: مسافة للكشف · 1 مجدداً · 2 صعب · 3 جيد · 4 سهل · Esc للخروج
     learn:
       subtitle: اكتب الإجابة لإتقان كل بطاقة
       mastered_label: متقن
       empty_description: أضف بطاقات تعليمية إلى هذه المجموعة قبل الدراسة.
       summary_title: أتقنت جميع البطاقات!
+      complete_subtitle: Every card is now above the mastery threshold.
       studied: البطاقات المدروسة
       time_spent: الوقت المستغرق
       summary_sub: عمل رائع — أتقنت جميع البطاقات.
       study_again: الدراسة مجدداً
-      progress_header: Space to flip · G Got it · C Confused · D Don't know
-      reveal: Click to reveal
-      dont_know: Don't know
-      confused: Confused
-      got_it: Got it
-      mastery_pct: Mastery
-      weak_cards: Weak
+      restart: ادرس مجددًا
       new_cards: New
-      complete_subtitle: Every card is now above the mastery threshold.
+      weak_cards: Weak
+      mastery_pct: Mastery
+      got_it: Got it
+      confused: Confused
+      dont_know: Don't know
+      reveal: Click to reveal
+      progress_header: Space to flip · G Got it · C Confused · D Don't know
+      page_title: 'تعلّم: %{deck}'
+      complete_aria: اكتملت جلسة التعلّم
     test:
       subtitle: اختبر معرفتك
       question_label: سؤال
@@ -514,6 +552,8 @@ ar:
       score: النتيجة
       time: الوقت
       retake: إعادة الاختبار
+      page_title: 'اختبار: %{deck}'
+      session_aria: جلسة اختبار
     test_question:
       correct: صحيح!
       incorrect: خطأ
@@ -540,43 +580,44 @@ ar:
       streak: التسلسل
       progress_label: "%{pct}% تقدّم"
       matched_counter: 'مطابَق: %{matched} / %{total}'
-learn:
-  settings:
-    title: Learn Settings
-    new_cards_limit: New Cards Per Session
-    mastery_threshold: Mastery Threshold
-    hints: Show Hints
-    hints_on: "On"
-    hints_off: "Off"
-    weak_priority: Weak Card Priority
-    priority_low: Low
-    priority_normal: Normal
-    priority_high: High
-    apply: Apply
-    saved: Settings saved.
-    invalid: Invalid settings.
-    limit_5: "5 cards"
-    limit_10: "10 cards"
-    limit_15: "15 cards"
-    limit_20: "20 cards"
-    limit_all: All cards
-    threshold_60: "60% (Easy)"
-    threshold_70: "70%"
-    threshold_80: "80% (Default)"
-    threshold_90: "90% (Hard)"
-  hint: Hint
-  hint_prefix: "First word:"
-  complete:
-    cards_learned: Cards learned
-    weak_improved: Weak cards improved
-    practice_again: Practice Again
-    switch_to_study: Switch to Study Mode
-    retry_weak: إعادة البطاقات الضعيفة
+      page_title: 'مطابقة: %{deck}'
+  learn:
+    settings:
+      title: إعدادات التعلّم
+      new_cards_limit: البطاقات الجديدة لكل جلسة
+      mastery_threshold: حدّ الإتقان
+      hints: إظهار التلميحات
+      hints_on: تشغيل
+      hints_off: إيقاف
+      weak_priority: أولوية البطاقات الضعيفة
+      priority_low: منخفضة
+      priority_normal: عادية
+      priority_high: عالية
+      apply: تطبيق
+      saved: تم حفظ الإعدادات.
+      invalid: إعدادات غير صالحة.
+      limit_5: 5 بطاقات
+      limit_10: 10 بطاقات
+      limit_15: 15 بطاقة
+      limit_20: 20 بطاقة
+      limit_all: كل البطاقات
+      threshold_60: 60% (سهل)
+      threshold_70: 70%
+      threshold_80: 80% (افتراضي)
+      threshold_90: 90% (صعب)
+    hint: تلميح
+    hint_prefix: 'الكلمة الأولى:'
+    complete:
+      cards_learned: البطاقات المتعلَّمة
+      weak_improved: البطاقات الضعيفة المُحسَّنة
+      practice_again: تدرّب مجددًا
+      switch_to_study: التبديل إلى وضع الدراسة
+      retry_weak: إعادة البطاقات الضعيفة
   errors:
     not_found:
-      flash: This deck is no longer available.
+      flash: هذه المجموعة لم تعد متاحة.
     not_authorized:
-      flash: You are not authorized to perform this action.
+      flash: غير مصرّح لك بتنفيذ هذا الإجراء.
   explore:
     title: استكشاف
     subtitle: اكتشف المجموعات العامة المشتركة من المجتمع وانسخها.
@@ -587,7 +628,7 @@ learn:
     empty_title: لا توجد مجموعات عامة بعد
     empty_description: كن أول من يشارك مجموعة مع المجتمع.
     by: بواسطة
-    locked_badge: Password Required
+    locked_badge: كلمة المرور مطلوبة
     owner_badge: أنت
     by_you: بواسطتك
     language_label: لغة
@@ -598,10 +639,10 @@ learn:
     cards_due: البطاقات المستحقة
     current_streak: سلسلة الأيام
     longest_streak: أفضل سلسلة
-    achievements_title: Achievements
-    achievements_view_all: View all achievements
-    achievements_earned_count: "%{earned} of %{total} earned"
-    achievements_none_yet: Keep studying to earn your first badge!
+    achievements_title: الإنجازات
+    achievements_view_all: عرض كل الإنجازات
+    achievements_earned_count: "%{earned} من %{total} مكتسبة"
+    achievements_none_yet: تابع الدراسة لتكسب أول وسام لك!
     study_history: سجلّ الدراسة
     see_all: عرض الكل
     empty_history: أكمل جلسة دراسة لترى سجلّك هنا.
@@ -628,6 +669,8 @@ learn:
     reviewed_header: المراجَع
     accuracy_header: الدقة
     time_header: الوقت
+    page_title: 'دراسة: %{deck}'
+    session_aria: جلسة دراسة
   imports:
     title: استيراد البطاقات — %{name}
     back: "→ %{name}"
@@ -679,21 +722,14 @@ learn:
     term_label: المصطلح
     definition_label: التعريف
     cancel_import: إلغاء الاستيراد
+    text_placeholder: "مرحبا\tHello\nوداعا\tGoodbye"
   home:
-    hero_heading: "ادرس بذكاء، تذكّر أطول"
-    hero_subtitle: "يساعدك Quizly على بناء ذاكرة حقيقية، لا مجرد تذكر قصير المدى."
-    badge: "نظام التكرار المتباعد مدمج"
+    hero_heading: ادرس بذكاء، تذكّر أطول
+    hero_subtitle: يساعدك Quizly على بناء ذاكرة حقيقية، لا مجرد تذكر قصير المدى.
+    badge: نظام التكرار المتباعد مدمج
     sign_up: إنشاء حساب مجاني
     popular_decks: المجموعات الشائعة
     see_all: عرض الكل →
-    modes:
-      flashcards: بطاقات تعليمية
-      learn: التعلّم
-      study: المراجعة
-      test: اختبار
-      match: مطابقة
-    explore_link: استكشاف
-    log_in: تسجيل الدخول
     no_decks: لا توجد مجموعات مميزة بعد.
     popular_section_label: المجموعات الشائعة
     popular_section_title: النشاط الأخير
@@ -704,8 +740,16 @@ learn:
       decks_label: مجموعات مميزة
       languages_label: اللغات
       cards_label: بطاقات
-    cta_strip_headline: "هل أنت مستعد للدراسة بذكاء أكبر؟"
-    cta_strip_sub: "انضم إلى آلاف الطلاب الذين يستخدمون Quizly بالفعل."
+    modes:
+      flashcards: بطاقات تعليمية
+      learn: التعلّم
+      study: المراجعة
+      test: اختبار
+      match: مطابقة
+    explore_link: استكشاف
+    log_in: تسجيل الدخول
+    cta_strip_headline: هل أنت مستعد للدراسة بذكاء أكبر؟
+    cta_strip_sub: انضم إلى آلاف الطلاب الذين يستخدمون Quizly بالفعل.
     page_title: Quizly — تعلّم بسرعة أكبر مع البطاقات التعليمية
     carousel:
       previous_slide: الشريحة السابقة
@@ -728,8 +772,10 @@ learn:
     reset_link_text: صفحة إعادة تعيين كلمة المرور
     reset_text_body: 'يمكنك إعادة تعيين كلمة مرورك خلال الـ 15 دقيقة القادمة على صفحة
       إعادة تعيين كلمة المرور:'
-    expires_note: تنتهي صلاحية هذا الرابط خلال 15 دقيقة. إذا لم تطلب إعادة تعيين كلمة المرور، يمكنك تجاهل هذا البريد.
-    fallback_note: "إذا لم يعمل الزر أعلاه، انسخ هذا الرابط والصقه في متصفحك:"
+    expires_note: تنتهي صلاحية هذا الرابط خلال 15 دقيقة. إذا لم تطلب إعادة تعيين كلمة
+      المرور، يمكنك تجاهل هذا البريد.
+    fallback_note: 'إذا لم يعمل الزر أعلاه، انسخ هذا الرابط والصقه في متصفحك:'
+    reset_heading: أعد تعيين كلمة مرورك
   question_engine:
     match_prompt: طابق كل مصطلح مع تعريفه
   time:
@@ -749,40 +795,48 @@ learn:
     events:
       badge_earned: لقد حصلت على شارة جديدة
       followed: بدأ %{actor} في متابعتك
-      followed_user_published_deck: "%{actor} published a new deck"
+      followed_user_published_deck: نشر %{actor} مجموعة جديدة
       deck_commented: علّق %{actor} على مجموعتك
       deck_reacted: تفاعل %{actor} مع مجموعتك
   follows:
-    follow: "Follow"
-    unfollow: "Unfollow"
+    follow: متابعة
+    unfollow: إلغاء المتابعة
     followers:
-      one: "%{count} follower"
-      other: "%{count} followers"
+      :zero: لا متابعين
+      :one: متابع واحد
+      :two: متابعان
+      :few: "%{count} متابعين"
+      :many: "%{count} متابعًا"
+      :other: "%{count} متابع"
     follower_label:
-      one: "follower"
-      other: "followers"
-    public_decks: "Public Decks"
-    no_public_decks: "No public decks yet."
-    following_heading: "Following"
-    following_page_title: "%{name}'s Following"
-    no_following: "Not following anyone yet."
+      :zero: متابع
+      :one: متابع
+      :two: متابعان
+      :few: متابعون
+      :many: متابعًا
+      :other: متابع
+    public_decks: المجموعات العامة
+    no_public_decks: لا توجد مجموعات عامة بعد.
+    following_heading: المتابَعون
+    following_page_title: متابَعو %{name}
+    no_following: لا يتابع أحدًا بعد.
   activerecord:
     errors:
       models:
         follow:
           attributes:
             base:
-              cannot_follow_self: "You cannot follow yourself."
+              cannot_follow_self: لا يمكنك متابعة نفسك.
             follower_id:
-              already_following: "You are already following this user."
+              already_following: أنت تتابع هذا المستخدم بالفعل.
         user:
           attributes:
             username:
-              invalid_username: "may only contain letters, numbers, and underscores."
+              invalid_username: يمكن أن يحتوي فقط على أحرف وأرقام وشُرَط سفلية.
         deck:
           attributes:
             base:
               not_ready_to_share: أضف بطاقة واحدة على الأقل قبل مشاركة هذه المجموعة.
             access_mode:
-              invalid_for_private_deck: Private decks cannot be password-protected
-                — only you can see them anyway.
+              invalid_for_private_deck: لا يمكن حماية المجموعات الخاصة بكلمة مرور
+                — فأنت الوحيد القادر على رؤيتها على أي حال.

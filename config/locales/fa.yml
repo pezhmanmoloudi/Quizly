@@ -18,18 +18,18 @@ fa:
       study_group: گروه مطالعاتی
     open_navigation: باز کردن منوی ناوبری
     close_navigation: بستن منوی ناوبری
-    account_menu: Account menu
+    account_menu: منوی حساب
   menu:
     settings: تنظیمات
     dark_mode: حالت تاریک
     light_mode: حالت روشن
     log_out: خروج
     language: زبان
-    view_profile: View Profile
-    achievements: Achievements
-    notifications: Notifications
-    followers: Followers
-    following: Following
+    view_profile: مشاهده نمایه
+    achievements: دستاوردها
+    notifications: اعلان‌ها
+    followers: دنبال‌کننده‌ها
+    following: دنبال‌شده‌ها
   shared:
     cancel: لغو
     close: بستن
@@ -45,6 +45,8 @@ fa:
     previous_page: صفحه قبلی
     next_page: صفحه بعدی
     not_available: ن/م
+    pagination_aria: صفحه‌بندی
+    main_nav_aria: ناوبری اصلی
   auth:
     back_to_home: بازگشت به صفحه اصلی
     panel:
@@ -67,15 +69,15 @@ fa:
     submit: ورود
     no_account: حساب کاربری نداری؟
     sign_up: ثبت‌نام
-    or: "or"
-    sign_in_with_google: "Continue with Google"
+    or: or
+    sign_in_with_google: Continue with Google
     google:
-      success: "Signed in with Google."
-      failure: "Google sign-in failed. Please try again."
-    sign_in_with_github: "Continue with GitHub"
+      success: Signed in with Google.
+      failure: Google sign-in failed. Please try again.
+    sign_in_with_github: Continue with GitHub
     github:
-      success: "Signed in with GitHub."
-      failure: "GitHub sign-in failed. Please try again."
+      success: Signed in with GitHub.
+      failure: GitHub sign-in failed. Please try again.
     errors:
       rate_limited: بعداً دوباره امتحان کن.
       invalid: ایمیل یا رمز عبور دیگری امتحان کن.
@@ -118,16 +120,17 @@ fa:
       submit: ذخیره رمز عبور جدید
       back: "→ بازگشت به ورود"
     sent: دستورالعمل بازنشانی ارسال شد (اگر کاربری با این ایمیل وجود داشته باشد).
-    sent_if_exists: "اگر حسابی برای این ایمیل وجود داشته باشد، دستورالعمل‌های بازنشانی را ارسال کردیم."
+    sent_if_exists: اگر حسابی برای این ایمیل وجود داشته باشد، دستورالعمل‌های بازنشانی
+      را ارسال کردیم.
     reset: رمز عبور بازنشانی شد.
     mismatch: رمزهای عبور مطابقت ندارند.
     invalid: لینک بازنشانی نامعتبر یا منقضی شده است.
     errors:
       rate_limited: بعداً دوباره امتحان کن.
       generic: مشکلی پیش آمد. لطفاً دوباره تلاش کنید.
-      blank_email: "لطفاً آدرس ایمیل خود را وارد کنید."
-      invalid_email: "لطفاً یک آدرس ایمیل معتبر وارد کنید."
-      email_not_found: "هیچ حسابی با این آدرس ایمیل یافت نشد."
+      blank_email: لطفاً آدرس ایمیل خود را وارد کنید.
+      invalid_email: لطفاً یک آدرس ایمیل معتبر وارد کنید.
+      email_not_found: هیچ حسابی با این آدرس ایمیل یافت نشد.
   accounts:
     title: تنظیمات
     personal_info: اطلاعات شخصی
@@ -155,7 +158,6 @@ fa:
     search_languages: جستجوی زبان‌ها
     your_languages: زبان‌های تو
     achievements_section: دستاوردها
-    no_badges: هنوز نشانی ندارید. به مطالعه ادامه دهید تا دستاوردها را باز کنید!
     badge_earned_on: "%{date} کسب شده"
     delete_title: حذف حساب
     delete_description: حساب و تمام داده‌های مرتبط با آن را برای همیشه حذف کن. این
@@ -189,13 +191,13 @@ fa:
     notif_time_zone: منطقه زمانی
     notif_search_timezone: جستجوی منطقه زمانی
     notif_email_label: اعلان ایمیل
-    notif_in_app_heading: "In-App Notifications"
-    notif_email_heading: "Email Notifications"
-    notif_in_app_follows: "Someone follows me"
-    notif_email_follows: "Someone follows me"
-    notif_in_app_following_activity: "Activity from people I follow"
-    notif_email_following_activity: "Activity from people I follow"
-    notif_always_on: "Always on"
+    notif_in_app_heading: In-App Notifications
+    notif_email_heading: Email Notifications
+    notif_in_app_follows: Someone follows me
+    notif_email_follows: Someone follows me
+    notif_in_app_following_activity: Activity from people I follow
+    notif_email_following_activity: Activity from people I follow
+    notif_always_on: Always on
     theme_auto: خودکار
     theme_light: روشن
     theme_dark: تاریک
@@ -206,7 +208,37 @@ fa:
     title: Achievements
     earned_count: "%{earned} of %{total} badges earned"
     no_badges: No badges yet. Keep studying to unlock achievements!
-
+    badges:
+      first_session:
+        name: اولین جلسه
+        description: اولین جلسه مطالعه‌ات را کامل کن
+      streak_3:
+        name: روی غلتک
+        description: ۳ روز پیاپی مطالعه کن
+      streak_7:
+        name: جنگجوی هفتگی
+        description: ۷ روز پیاپی مطالعه کن
+      streak_30:
+        name: استاد ماهانه
+        description: ۳۰ روز پیاپی مطالعه کن
+      streak_100:
+        name: سِنچوریون
+        description: ۱۰۰ روز پیاپی مطالعه کن
+      cards_10:
+        name: شروع کار
+        description: ۱۰ کارت مرور کن
+      cards_100:
+        name: متعهد
+        description: ۱۰۰ کارت مرور کن
+      cards_500:
+        name: قدرت
+        description: ۵۰۰ کارت مرور کن
+      cards_1000:
+        name: اسطوره
+        description: ۱۰۰۰ کارت مرور کن
+      perfect_test:
+        name: تیرانداز ماهر
+        description: در یک جلسه آزمون ۱۰۰٪ بگیر
   decks:
     index:
       title: دسته‌های من
@@ -224,8 +256,8 @@ fa:
       delete_modal_warning: تمام فلش‌کارت‌ها برای همیشه حذف خواهند شد. این عمل قابل
         برگشت نیست.
       delete_modal_confirm: حذف دسته
-      unlisted_badge: فهرست‌نشده
       public_badge: عمومی
+      unlisted_badge: فهرست‌نشده
       private_badge: خصوصی
       created: ایجاد شده
       cards_section: کارت‌ها
@@ -276,13 +308,13 @@ fa:
       tags_placeholder: 'مثال: زیست‌شناسی، تشریح، امتحان۱۴۰۴'
       visibility_label: دسترسی
       visibility_section_label: چه کسی می‌تواند این دسته را ببیند؟
+      visibility_public: عمومی
       visibility_unlisted: فهرست‌نشده
+      visibility_private: فقط من
+      visibility_hint: دسته‌های عمومی توسط همه قابل کشف و کپی هستند.
       section_about: درباره
       access_mode_open: Open
       access_mode_password: Password protected
-      visibility_private: فقط من
-      visibility_public: عمومی
-      visibility_hint: دسته‌های عمومی توسط همه قابل کشف و کپی هستند.
       password_label: رمز دسته
       password_placeholder: حداقل ۸ کاراکتر
       password_hint: Required to view this deck
@@ -346,7 +378,7 @@ fa:
       never_studied: هرگز مطالعه نشده
       studied_time: "%{time} پیش"
       more_tags: "+%{count}"
-      options_aria: "گزینه‌های دک"
+      options_aria: گزینه‌های دک
   folders:
     create_failed: ایجاد پوشه ممکن نشد.
     updated: پوشه به‌روزرسانی شد.
@@ -366,10 +398,12 @@ fa:
       title: پوشه‌های من
       empty: هنوز هیچ پوشه‌ای وجود ندارد.
       deck_count:
-        one: "۱ دسته"
+        one: ۱ دسته
         other: "%{count} دسته"
     show:
       empty: هنوز هیچ دسته‌ای در این پوشه وجود ندارد.
+      start_building: بیایید پوشه‌تان را بسازیم
+      add_study_materials: افزودن مواد مطالعاتی
       options_aria: گزینه‌های پوشه
       rename: تغییر نام
       rename_save: ذخیره
@@ -381,9 +415,8 @@ fa:
       remove_from_folder: حذف از پوشه
       all_filter: همه
       add_tag: افزودن برچسب
-      empty_description: دک‌ها را ذخیره کنید تا مجموعه‌های مطالعه‌تان را سازماندهی کنید.
-      start_building: بیایید پوشه‌تان را بسازیم
-      add_study_materials: افزودن مواد مطالعاتی
+      empty_description: دک‌ها را ذخیره کنید تا مجموعه‌های مطالعه‌تان را سازماندهی
+        کنید.
     add_decks_modal:
       title: افزودن مواد مطالعاتی
       done: تمام
@@ -407,6 +440,7 @@ fa:
     updated: کارت به‌روزرسانی شد.
     deleted: فلش‌کارت حذف شد.
     restored: فلش‌کارت بازیابی شد.
+    suggestions_aria: پیشنهادها
   study_modes:
     exit: "→ خروج"
     no_cards_title: هنوز کارتی نداری
@@ -459,7 +493,9 @@ fa:
       study_rate_prompt: چقدر می‌دانستید؟
       study_cards_due: کارت‌های معوق
       study_session_complete: همه کارت‌های معوق را مرور کردید!
-      study_keyboard_hint: "فاصله برای برگرداندن · 1 دوباره · 2 سخت · 3 خوب · 4 آسان"
+      study_keyboard_hint: فاصله برای برگرداندن · 1 دوباره · 2 سخت · 3 خوب · 4 آسان
+      page_title: 'کارت: %{deck}'
+      browse_aria: ناحیه مرور کارت‌ها
     study:
       subtitle: کارت‌ها را مرور کن و به حافظه‌ات امتیاز بده
       done_label: انجام‌شده
@@ -478,13 +514,13 @@ fa:
       hard: سخت
       good: خوب
       easy: آسان
-      settings_btn_label: "تنظیمات مطالعه"
-      new_cards_label: "کارت‌های جدید"
-      new_cards_all: "همه"
-      priority_label: "اولویت"
-      priority_due: "سررسیده اول"
-      priority_hardest: "سخت‌ترین اول"
-      apply_settings: "اعمال"
+      settings_btn_label: تنظیمات مطالعه
+      new_cards_label: کارت‌های جدید
+      new_cards_all: همه
+      priority_label: اولویت
+      priority_due: سررسیده اول
+      priority_hardest: سخت‌ترین اول
+      apply_settings: اعمال
       progress_remaining: "%{count} باقی‌مانده"
       keyboard_hint: فاصله برای نمایش · ۱ دوباره · ۲ سخت · ۳ خوب · ۴ آسان · Esc برای
         خروج
@@ -493,19 +529,22 @@ fa:
       mastered_label: تسلط‌یافته
       empty_description: قبل از مطالعه، فلش‌کارت‌هایی به این دسته اضافه کن.
       summary_title: همه کارت‌ها تسلط یافتند!
+      complete_subtitle: Every card is now above the mastery threshold.
       studied: کارت‌های مطالعه‌شده
       time_spent: زمان صرف‌شده
       summary_sub: عالی بود — همه کارت‌ها تسلط یافتند.
       study_again: دوباره مطالعه کن
-      progress_header: Space to flip · G Got it · C Confused · D Don't know
-      reveal: Click to reveal
-      dont_know: Don't know
-      confused: Confused
-      got_it: Got it
-      mastery_pct: Mastery
-      weak_cards: Weak
+      restart: دوباره مطالعه کن
       new_cards: New
-      complete_subtitle: Every card is now above the mastery threshold.
+      weak_cards: Weak
+      mastery_pct: Mastery
+      got_it: Got it
+      confused: Confused
+      dont_know: Don't know
+      reveal: Click to reveal
+      progress_header: Space to flip · G Got it · C Confused · D Don't know
+      page_title: 'یادگیری: %{deck}'
+      complete_aria: جلسه یادگیری کامل شد
     test:
       subtitle: دانش خود را بسنج
       question_label: سوال
@@ -515,6 +554,8 @@ fa:
       score: نمره
       time: زمان
       retake: دوباره آزمون بده
+      page_title: 'آزمون: %{deck}'
+      session_aria: جلسه آزمون
     test_question:
       correct: درست!
       incorrect: نادرست
@@ -541,43 +582,44 @@ fa:
       streak: رشته
       progress_label: "%{pct}% پیشرفت"
       matched_counter: 'تطبیق‌یافته: %{matched} / %{total}'
-learn:
-  settings:
-    title: Learn Settings
-    new_cards_limit: New Cards Per Session
-    mastery_threshold: Mastery Threshold
-    hints: Show Hints
-    hints_on: "On"
-    hints_off: "Off"
-    weak_priority: Weak Card Priority
-    priority_low: Low
-    priority_normal: Normal
-    priority_high: High
-    apply: Apply
-    saved: Settings saved.
-    invalid: Invalid settings.
-    limit_5: "5 cards"
-    limit_10: "10 cards"
-    limit_15: "15 cards"
-    limit_20: "20 cards"
-    limit_all: All cards
-    threshold_60: "60% (Easy)"
-    threshold_70: "70%"
-    threshold_80: "80% (Default)"
-    threshold_90: "90% (Hard)"
-  hint: Hint
-  hint_prefix: "First word:"
-  complete:
-    cards_learned: Cards learned
-    weak_improved: Weak cards improved
-    practice_again: Practice Again
-    switch_to_study: Switch to Study Mode
-    retry_weak: تکرار کارت‌های ضعیف
+      page_title: 'تطبیق: %{deck}'
+  learn:
+    settings:
+      title: تنظیمات یادگیری
+      new_cards_limit: کارت‌های جدید در هر جلسه
+      mastery_threshold: آستانه تسلط
+      hints: نمایش راهنمایی‌ها
+      hints_on: روشن
+      hints_off: خاموش
+      weak_priority: اولویت کارت‌های ضعیف
+      priority_low: کم
+      priority_normal: عادی
+      priority_high: زیاد
+      apply: اعمال
+      saved: تنظیمات ذخیره شد.
+      invalid: تنظیمات نامعتبر است.
+      limit_5: ۵ کارت
+      limit_10: ۱۰ کارت
+      limit_15: ۱۵ کارت
+      limit_20: ۲۰ کارت
+      limit_all: همه کارت‌ها
+      threshold_60: ۶۰٪ (آسان)
+      threshold_70: ۷۰٪
+      threshold_80: ۸۰٪ (پیش‌فرض)
+      threshold_90: ۹۰٪ (سخت)
+    hint: راهنمایی
+    hint_prefix: 'اولین واژه:'
+    complete:
+      cards_learned: کارت‌های یادگرفته‌شده
+      weak_improved: کارت‌های ضعیف بهبودیافته
+      practice_again: دوباره تمرین کن
+      switch_to_study: تغییر به حالت مطالعه
+      retry_weak: تکرار کارت‌های ضعیف
   errors:
     not_found:
-      flash: This deck is no longer available.
+      flash: این دسته دیگر در دسترس نیست.
     not_authorized:
-      flash: You are not authorized to perform this action.
+      flash: شما مجاز به انجام این عمل نیستید.
   explore:
     title: کاوش
     subtitle: دسته‌های عمومی به اشتراک‌گذاشته‌شده توسط جامعه را کشف کن و کپی کن.
@@ -589,7 +631,7 @@ learn:
     empty_title: هنوز هیچ دسته عمومی وجود ندارد
     empty_description: اولین نفری باش که دسته‌ای را با جامعه به اشتراک می‌گذارد.
     by: توسط
-    locked_badge: Password Required
+    locked_badge: گذرواژه لازم است
     owner_badge: شما
     by_you: توسط شما
     language_label: زبان
@@ -600,10 +642,10 @@ learn:
     cards_due: کارت‌های سررسیده
     current_streak: روزهای متوالی
     longest_streak: بهترین رکورد
-    achievements_title: Achievements
-    achievements_view_all: View all achievements
-    achievements_earned_count: "%{earned} of %{total} earned"
-    achievements_none_yet: Keep studying to earn your first badge!
+    achievements_title: دستاوردها
+    achievements_view_all: مشاهده همه دستاوردها
+    achievements_earned_count: "%{earned} از %{total} کسب‌شده"
+    achievements_none_yet: به یادگیری ادامه بده تا اولین نشانت را به دست بیاوری!
     study_history: تاریخچه مطالعه
     see_all: مشاهده همه
     empty_history: یک جلسه مطالعه را کامل کن تا تاریخچه‌ات اینجا نشان داده شود.
@@ -630,6 +672,8 @@ learn:
     reviewed_header: مرورشده
     accuracy_header: دقت
     time_header: زمان
+    page_title: 'مطالعه: %{deck}'
+    session_aria: جلسه مطالعه
   imports:
     title: وارد کردن کارت — %{name}
     back: "→ %{name}"
@@ -683,21 +727,14 @@ learn:
     term_label: اصطلاح
     definition_label: تعریف
     cancel_import: لغو وارد کردن
+    text_placeholder: "سلام\tHello\nخداحافظ\tGoodbye"
   home:
-    hero_heading: "هوشمندانه‌تر بخوان، بیشتر به یاد بیاور"
-    hero_subtitle: "Quizly به تو کمک می‌کند حافظه واقعی بسازی — نه فقط حفظ کوتاه‌مدت."
-    badge: "تکرار فاصله‌دار داخلی"
+    hero_heading: هوشمندانه‌تر بخوان، بیشتر به یاد بیاور
+    hero_subtitle: Quizly به تو کمک می‌کند حافظه واقعی بسازی — نه فقط حفظ کوتاه‌مدت.
+    badge: تکرار فاصله‌دار داخلی
     sign_up: ثبت‌نام رایگان
     popular_decks: دسته‌های محبوب
     see_all: مشاهده همه →
-    modes:
-      flashcards: فلش‌کارت‌ها
-      learn: یادگیری
-      study: مطالعه
-      test: آزمون
-      match: تطبیق
-    explore_link: کاوش
-    log_in: ورود
     no_decks: هنوز دکی ویژه‌ای وجود ندارد.
     popular_section_label: دک‌های پرطرفدار
     popular_section_title: فعالیت اخیر
@@ -708,8 +745,16 @@ learn:
       decks_label: دک‌های ویژه
       languages_label: زبان‌ها
       cards_label: کارت
-    cta_strip_headline: "آماده‌ای هوشمندانه‌تر درس بخوانی؟"
-    cta_strip_sub: "به هزاران دانش‌آموز که از Quizly استفاده می‌کنند بپیوند."
+    modes:
+      flashcards: فلش‌کارت‌ها
+      learn: یادگیری
+      study: مطالعه
+      test: آزمون
+      match: تطبیق
+    explore_link: کاوش
+    log_in: ورود
+    cta_strip_headline: آماده‌ای هوشمندانه‌تر درس بخوانی؟
+    cta_strip_sub: به هزاران دانش‌آموز که از Quizly استفاده می‌کنند بپیوند.
     page_title: Quizly — با فلش‌کارت‌ها سریع‌تر یاد بگیر
     carousel:
       previous_slide: اسلاید قبلی
@@ -732,8 +777,11 @@ learn:
     reset_link_text: این صفحه بازنشانی رمز عبور
     reset_text_body: 'می‌توانی رمز عبورت را در ۱۵ دقیقه آینده از این صفحه بازنشانی
       کنی:'
-    expires_note: این لینک در ۱۵ دقیقه منقضی می‌شود. اگر درخواست بازنشانی رمز عبور نداده‌ای، می‌توانی این ایمیل را نادیده بگیری.
-    fallback_note: "اگر دکمه بالا کار نکرد، این لینک را کپی کرده و در مرورگر خود وارد کن:"
+    expires_note: این لینک در ۱۵ دقیقه منقضی می‌شود. اگر درخواست بازنشانی رمز عبور
+      نداده‌ای، می‌توانی این ایمیل را نادیده بگیری.
+    fallback_note: 'اگر دکمه بالا کار نکرد، این لینک را کپی کرده و در مرورگر خود وارد
+      کن:'
+    reset_heading: گذرواژه‌ات را بازنشانی کن
   question_engine:
     match_prompt: هر اصطلاح را با تعریف مناسبش تطبیق بده
   time:
@@ -753,41 +801,41 @@ learn:
     events:
       badge_earned: شما یک نشان جدید به دست آوردید
       followed: "%{actor} شما را دنبال کرد"
-      followed_user_published_deck: "%{actor} published a new deck"
-      deck_commented: "%{actor} روی مجموعه‌تان نظر داد"
-      deck_reacted: "%{actor} به مجموعه‌تان واکنش نشان داد"
+      followed_user_published_deck: "%{actor} دسته جدیدی منتشر کرد"
+      deck_commented: "%{actor} روی دسته‌تان نظر داد"
+      deck_reacted: "%{actor} به دسته‌تان واکنش نشان داد"
   follows:
-    follow: "Follow"
-    unfollow: "Unfollow"
+    follow: دنبال کردن
+    unfollow: لغو دنبال کردن
     followers:
-      one: "%{count} follower"
-      other: "%{count} followers"
+      :one: "%{count} دنبال‌کننده"
+      :other: "%{count} دنبال‌کننده"
     follower_label:
-      one: "follower"
-      other: "followers"
-    public_decks: "Public Decks"
-    no_public_decks: "No public decks yet."
-    following_heading: "Following"
-    following_page_title: "%{name}'s Following"
-    no_following: "Not following anyone yet."
+      :one: دنبال‌کننده
+      :other: دنبال‌کننده
+    public_decks: دسته‌های عمومی
+    no_public_decks: هنوز دسته عمومی‌ای نیست.
+    following_heading: دنبال‌شده‌ها
+    following_page_title: دنبال‌شده‌های %{name}
+    no_following: هنوز کسی را دنبال نمی‌کند.
   activerecord:
     errors:
       models:
         follow:
           attributes:
             base:
-              cannot_follow_self: "You cannot follow yourself."
+              cannot_follow_self: نمی‌توانید خودتان را دنبال کنید.
             follower_id:
-              already_following: "You are already following this user."
+              already_following: شما هم‌اکنون این کاربر را دنبال می‌کنید.
         user:
           attributes:
             username:
-              invalid_username: "may only contain letters, numbers, and underscores."
+              invalid_username: فقط می‌تواند شامل حروف، اعداد و خط زیر باشد.
         deck:
           attributes:
             base:
               not_ready_to_share: قبل از اشتراک‌گذاری این دسته، حداقل یک کارت اضافه
                 کنید.
             access_mode:
-              invalid_for_private_deck: Private decks cannot be password-protected
-                — only you can see them anyway.
+              invalid_for_private_deck: دسته‌های خصوصی را نمی‌توان با گذرواژه محافظت
+                کرد — در هر صورت فقط شما می‌توانید آن‌ها را ببینید.

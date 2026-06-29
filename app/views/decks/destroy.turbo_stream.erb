@@ -1,8 +1,8 @@
 <% remaining_decks = Current.user.decks.count %>
 <% remaining_cards = Flashcard.joins(:deck).where(decks: { user_id: Current.user.id }).count %>
 
-<%= turbo_stream.update "total-decks-count", remaining_decks %>
-<%= turbo_stream.update "total-cards-count", remaining_cards %>
+<%= turbo_stream.update "total-decks-count", localized_number(remaining_decks) %>
+<%= turbo_stream.update "total-cards-count", localized_number(remaining_cards) %>
 
 <% if remaining_decks == 0 %>
   <%= turbo_stream.update "decks-index-section" do %>

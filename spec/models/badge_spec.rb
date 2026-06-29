@@ -56,6 +56,24 @@ RSpec.describe Badge, type: :model do
     end
   end
 
+  describe "#name and #description" do
+    it "translate via the badge key for the current locale" do
+      badge = build(:badge, key: "streak_7", name: "Weekly Warrior", description: "Study 7 days in a row")
+
+      I18n.with_locale(:es) do
+        expect(badge.name).to eq("Guerrero semanal")
+        expect(badge.description).to eq("Estudia 7 días seguidos")
+      end
+    end
+
+    it "fall back to the stored column when no translation exists for the key" do
+      badge = build(:badge, key: "no_such_badge_key", name: "Custom Name", description: "Custom desc")
+
+      expect(badge.name).to eq("Custom Name")
+      expect(badge.description).to eq("Custom desc")
+    end
+  end
+
   describe "associations" do
     it "has many user_badges" do
       association = described_class.reflect_on_association(:user_badges)

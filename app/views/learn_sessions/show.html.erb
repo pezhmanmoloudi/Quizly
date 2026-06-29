@@ -1,4 +1,4 @@
-<% content_for :title, "Learn: #{@deck.name}" %>
+<% content_for :title, t("study_modes.learn.page_title", deck: @deck.name) %>
 
 <% content_for :head do %>
   <meta name="turbo-cache-control" content="no-cache">
@@ -14,14 +14,14 @@
   </div>
 
 <% elsif @learn_session.finished? %>
-  <div class="study-island" aria-label="Learn session complete">
+  <div class="study-island" aria-label="<%= t("study_modes.learn.complete_aria") %>">
     <div class="learn-complete">
       <div class="session-summary__icon">🎓</div>
       <h3 class="session-summary__title"><%= t("study_modes.learn.summary_title") %></h3>
       <p class="session-summary__sub"><%= t("study_modes.learn.summary_sub") %></p>
       <div class="session-summary__stats">
         <div class="session-summary__stat">
-          <span class="session-summary__value"><%= @learn_session.cards_total %></span>
+          <span class="session-summary__value"><%= localized_number(@learn_session.cards_total) %></span>
           <span class="session-summary__label"><%= t("study_modes.learn.studied") %></span>
         </div>
         <div class="session-summary__stat">

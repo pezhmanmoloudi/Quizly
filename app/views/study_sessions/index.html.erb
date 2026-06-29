@@ -38,7 +38,7 @@
               <td><%= session.cards_reviewed %></td>
               <td>
                 <span class="study-history-table__accuracy" data-accuracy="<%= session.accuracy %>">
-                  <%= session.accuracy %>%
+                  <%= localized_number(session.accuracy) %>%
                 </span>
               </td>
               <td><%= format_study_time(session.elapsed_seconds) %></td>

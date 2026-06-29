@@ -25,7 +25,7 @@
             default: notification.event_type.humanize) %>
     </p>
     <span class="notif-item__time">
-      <%= time_ago_in_words(notification.created_at) %> <%= t("notifications.time_ago") %>
+      <%= localized_time_ago(notification.created_at) %> <%= t("notifications.time_ago") %>
     </span>
   </div>
 

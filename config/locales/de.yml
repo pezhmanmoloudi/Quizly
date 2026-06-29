@@ -18,18 +18,18 @@ de:
       study_group: Lerngruppe
     open_navigation: Navigation öffnen
     close_navigation: Navigation schließen
-    account_menu: Account menu
+    account_menu: Kontomenü
   menu:
     settings: Einstellungen
     dark_mode: Dunkler Modus
     light_mode: Heller Modus
     log_out: Abmelden
     language: Sprache
-    view_profile: View Profile
-    achievements: Achievements
-    notifications: Notifications
-    followers: Followers
-    following: Following
+    view_profile: Profil ansehen
+    achievements: Erfolge
+    notifications: Benachrichtigungen
+    followers: Follower
+    following: Folge ich
   shared:
     cancel: Abbrechen
     close: Schließen
@@ -45,6 +45,8 @@ de:
     previous_page: Vorherige Seite
     next_page: Nächste Seite
     not_available: K. A.
+    pagination_aria: Seitennummerierung
+    main_nav_aria: Hauptnavigation
   auth:
     back_to_home: Zurück zur Startseite
     panel:
@@ -67,15 +69,15 @@ de:
     submit: Anmelden
     no_account: Noch kein Konto?
     sign_up: Registrieren
-    or: "or"
-    sign_in_with_google: "Continue with Google"
+    or: or
+    sign_in_with_google: Continue with Google
     google:
-      success: "Signed in with Google."
-      failure: "Google sign-in failed. Please try again."
-    sign_in_with_github: "Continue with GitHub"
+      success: Signed in with Google.
+      failure: Google sign-in failed. Please try again.
+    sign_in_with_github: Continue with GitHub
     github:
-      success: "Signed in with GitHub."
-      failure: "GitHub sign-in failed. Please try again."
+      success: Signed in with GitHub.
+      failure: GitHub sign-in failed. Please try again.
     errors:
       rate_limited: Bitte später erneut versuchen.
       invalid: E-Mail-Adresse oder Passwort ist falsch.
@@ -120,16 +122,17 @@ de:
       back: "← Zurück zur Anmeldung"
     sent: Anweisungen zum Zurücksetzen wurden gesendet (falls ein Konto mit dieser
       E-Mail existiert).
-    sent_if_exists: "Wenn ein Konto für diese E-Mail existiert, haben wir die Anweisungen zum Zurücksetzen gesendet."
+    sent_if_exists: Wenn ein Konto für diese E-Mail existiert, haben wir die Anweisungen
+      zum Zurücksetzen gesendet.
     reset: Das Passwort wurde zurückgesetzt.
     mismatch: Die Passwörter stimmen nicht überein.
     invalid: Der Link zum Zurücksetzen ist ungültig oder abgelaufen.
     errors:
       rate_limited: Bitte später erneut versuchen.
       generic: Etwas ist schiefgelaufen. Bitte erneut versuchen.
-      blank_email: "Bitte gib deine E-Mail-Adresse ein."
-      invalid_email: "Bitte gib eine gültige E-Mail-Adresse ein."
-      email_not_found: "Es wurde kein Konto mit dieser E-Mail-Adresse gefunden."
+      blank_email: Bitte gib deine E-Mail-Adresse ein.
+      invalid_email: Bitte gib eine gültige E-Mail-Adresse ein.
+      email_not_found: Es wurde kein Konto mit dieser E-Mail-Adresse gefunden.
   accounts:
     title: Einstellungen
     personal_info: Persönliche Informationen
@@ -157,7 +160,6 @@ de:
     search_languages: Sprachen suchen
     your_languages: Deine Sprachen
     achievements_section: Errungenschaften
-    no_badges: Noch keine Abzeichen. Weiter lernen, um Errungenschaften freizuschalten!
     badge_earned_on: Verdient am %{date}
     delete_title: Konto löschen
     delete_description: Lösche dein Konto und alle zugehörigen Daten dauerhaft. Diese
@@ -192,13 +194,13 @@ de:
     notif_time_zone: Zeitzone
     notif_search_timezone: Zeitzone suchen
     notif_email_label: E-Mail-Benachrichtigung
-    notif_in_app_heading: "In-App Notifications"
-    notif_email_heading: "Email Notifications"
-    notif_in_app_follows: "Someone follows me"
-    notif_email_follows: "Someone follows me"
-    notif_in_app_following_activity: "Activity from people I follow"
-    notif_email_following_activity: "Activity from people I follow"
-    notif_always_on: "Always on"
+    notif_in_app_heading: In-App Notifications
+    notif_email_heading: Email Notifications
+    notif_in_app_follows: Someone follows me
+    notif_email_follows: Someone follows me
+    notif_in_app_following_activity: Activity from people I follow
+    notif_email_following_activity: Activity from people I follow
+    notif_always_on: Always on
     theme_auto: Automatisch
     theme_light: Hell
     theme_dark: Dunkel
@@ -209,7 +211,37 @@ de:
     title: Achievements
     earned_count: "%{earned} of %{total} badges earned"
     no_badges: No badges yet. Keep studying to unlock achievements!
-
+    badges:
+      first_session:
+        name: Erste Sitzung
+        description: Schließe deine erste Lernsitzung ab
+      streak_3:
+        name: Im Lauf
+        description: Lerne 3 Tage in Folge
+      streak_7:
+        name: Wochenkrieger
+        description: Lerne 7 Tage in Folge
+      streak_30:
+        name: Monatsmeister
+        description: Lerne 30 Tage in Folge
+      streak_100:
+        name: Zenturio
+        description: Lerne 100 Tage in Folge
+      cards_10:
+        name: Erste Schritte
+        description: Wiederhole 10 Karten
+      cards_100:
+        name: Engagiert
+        description: Wiederhole 100 Karten
+      cards_500:
+        name: Kraftpaket
+        description: Wiederhole 500 Karten
+      cards_1000:
+        name: Legende
+        description: Wiederhole 1000 Karten
+      perfect_test:
+        name: Scharfschütze
+        description: Erreiche 100 % in einer Testsitzung
   decks:
     index:
       title: Meine Decks
@@ -227,8 +259,8 @@ de:
       delete_modal_warning: Alle Lernkarten werden dauerhaft gelöscht. Diese Aktion
         kann nicht rückgängig gemacht werden.
       delete_modal_confirm: Deck löschen
-      unlisted_badge: Ungelistet
       public_badge: Öffentlich
+      unlisted_badge: Ungelistet
       private_badge: Privat
       created: Erstellt
       cards_section: Karten
@@ -279,13 +311,13 @@ de:
       tags_placeholder: z. B. Biologie, Anatomie, Prüfung2025
       visibility_label: Sichtbarkeit
       visibility_section_label: Wer kann dieses Deck sehen?
+      visibility_public: Öffentlich
       visibility_unlisted: Ungelistet
+      visibility_private: Nur ich
+      visibility_hint: Öffentliche Decks können von allen entdeckt und kopiert werden.
       section_about: Über
       access_mode_open: Open
       access_mode_password: Password protected
-      visibility_private: Nur ich
-      visibility_public: Öffentlich
-      visibility_hint: Öffentliche Decks können von allen entdeckt und kopiert werden.
       password_label: Deck-Passwort
       password_placeholder: Mind. 8 Zeichen
       password_hint: Required to view this deck
@@ -347,9 +379,9 @@ de:
       due_label: fällig
       studied_label: gelernt
       never_studied: Noch nicht gelernt
-      studied_time: "vor %{time}"
+      studied_time: vor %{time}
       more_tags: "+%{count}"
-      options_aria: "Kartenset-Optionen"
+      options_aria: Kartenset-Optionen
   folders:
     create_failed: Ordner konnte nicht erstellt werden.
     updated: Ordner aktualisiert.
@@ -369,10 +401,12 @@ de:
       title: Meine Ordner
       empty: Noch keine Ordner.
       deck_count:
-        one: "1 Deck"
+        one: 1 Deck
         other: "%{count} Decks"
     show:
       empty: Noch keine Decks in diesem Ordner.
+      start_building: Lass uns deinen Ordner aufbauen
+      add_study_materials: Lernmaterialien hinzufügen
       options_aria: Ordneroptionen
       rename: Umbenennen
       rename_save: Speichern
@@ -385,8 +419,6 @@ de:
       all_filter: Alle
       add_tag: Tag hinzufügen
       empty_description: Speichere Decks, um deine Lernsammlungen zu organisieren.
-      start_building: Lass uns deinen Ordner aufbauen
-      add_study_materials: Lernmaterialien hinzufügen
     add_decks_modal:
       title: Lernmaterialien hinzufügen
       done: Fertig
@@ -410,6 +442,7 @@ de:
     updated: Karte aktualisiert.
     deleted: Lernkarte entfernt.
     restored: Lernkarte wiederhergestellt.
+    suggestions_aria: Vorschläge
   study_modes:
     exit: "← Beenden"
     no_cards_title: Noch keine Karten
@@ -462,7 +495,10 @@ de:
       study_rate_prompt: Wie gut wusstest du das?
       study_cards_due: Karten fällig
       study_session_complete: Du hast alle fälligen Karten wiederholt!
-      study_keyboard_hint: "Leertaste zum Umdrehen · 1 Nochmal · 2 Schwer · 3 Gut · 4 Einfach"
+      study_keyboard_hint: Leertaste zum Umdrehen · 1 Nochmal · 2 Schwer · 3 Gut ·
+        4 Einfach
+      page_title: 'Karteikarte: %{deck}'
+      browse_aria: Karteikarten-Bereich
     study:
       subtitle: Lerne Karten und bewerte deine Erinnerung
       done_label: Erledigt
@@ -481,13 +517,13 @@ de:
       hard: Schwer
       good: Gut
       easy: Einfach
-      settings_btn_label: "Lerneinstellungen"
-      new_cards_label: "Neue Karten"
-      new_cards_all: "Alle"
-      priority_label: "Priorität"
-      priority_due: "Fällige zuerst"
-      priority_hardest: "Schwierigste zuerst"
-      apply_settings: "Anwenden"
+      settings_btn_label: Lerneinstellungen
+      new_cards_label: Neue Karten
+      new_cards_all: Alle
+      priority_label: Priorität
+      priority_due: Fällige zuerst
+      priority_hardest: Schwierigste zuerst
+      apply_settings: Anwenden
       progress_remaining: "%{count} übrig"
       keyboard_hint: Leertaste zum Aufdecken · 1 Nochmal · 2 Schwer · 3 Gut · 4 Einfach
         · Esc zum Beenden
@@ -496,19 +532,22 @@ de:
       mastered_label: Gemeistert
       empty_description: Füge Lernkarten zu diesem Deck hinzu, bevor du übst.
       summary_title: Alle Karten gemeistert!
+      complete_subtitle: Every card is now above the mastery threshold.
       studied: Gelernte Karten
       time_spent: Aufgewendete Zeit
       summary_sub: Tolle Arbeit — alle Karten sind gemeistert.
       study_again: Erneut lernen
-      progress_header: Space to flip · G Got it · C Confused · D Don't know
-      reveal: Click to reveal
-      dont_know: Don't know
-      confused: Confused
-      got_it: Got it
-      mastery_pct: Mastery
-      weak_cards: Weak
+      restart: Erneut lernen
       new_cards: New
-      complete_subtitle: Every card is now above the mastery threshold.
+      weak_cards: Weak
+      mastery_pct: Mastery
+      got_it: Got it
+      confused: Confused
+      dont_know: Don't know
+      reveal: Click to reveal
+      progress_header: Space to flip · G Got it · C Confused · D Don't know
+      page_title: 'Lernen: %{deck}'
+      complete_aria: Lernsitzung abgeschlossen
     test:
       subtitle: Teste dein Wissen
       question_label: Frage
@@ -519,6 +558,8 @@ de:
       score: Ergebnis
       time: Zeit
       retake: Test wiederholen
+      page_title: 'Test: %{deck}'
+      session_aria: Test-Sitzung
     test_question:
       correct: Richtig!
       incorrect: Falsch
@@ -545,43 +586,44 @@ de:
       streak: Serie
       progress_label: "%{pct}% Fortschritt"
       matched_counter: 'Zugeordnet: %{matched} / %{total}'
-learn:
-  settings:
-    title: Learn Settings
-    new_cards_limit: New Cards Per Session
-    mastery_threshold: Mastery Threshold
-    hints: Show Hints
-    hints_on: "On"
-    hints_off: "Off"
-    weak_priority: Weak Card Priority
-    priority_low: Low
-    priority_normal: Normal
-    priority_high: High
-    apply: Apply
-    saved: Settings saved.
-    invalid: Invalid settings.
-    limit_5: "5 cards"
-    limit_10: "10 cards"
-    limit_15: "15 cards"
-    limit_20: "20 cards"
-    limit_all: All cards
-    threshold_60: "60% (Easy)"
-    threshold_70: "70%"
-    threshold_80: "80% (Default)"
-    threshold_90: "90% (Hard)"
-  hint: Hint
-  hint_prefix: "First word:"
-  complete:
-    cards_learned: Cards learned
-    weak_improved: Weak cards improved
-    practice_again: Practice Again
-    switch_to_study: Switch to Study Mode
-    retry_weak: Schwache Karten wiederholen
+      page_title: 'Zuordnen: %{deck}'
+  learn:
+    settings:
+      title: Lern-Einstellungen
+      new_cards_limit: Neue Karten pro Sitzung
+      mastery_threshold: Beherrschungsschwelle
+      hints: Hinweise anzeigen
+      hints_on: Ein
+      hints_off: Aus
+      weak_priority: Priorität schwacher Karten
+      priority_low: Niedrig
+      priority_normal: Normal
+      priority_high: Hoch
+      apply: Anwenden
+      saved: Einstellungen gespeichert.
+      invalid: Ungültige Einstellungen.
+      limit_5: 5 Karten
+      limit_10: 10 Karten
+      limit_15: 15 Karten
+      limit_20: 20 Karten
+      limit_all: Alle Karten
+      threshold_60: 60 % (leicht)
+      threshold_70: 70 %
+      threshold_80: 80 % (Standard)
+      threshold_90: 90 % (schwer)
+    hint: Hinweis
+    hint_prefix: 'Erstes Wort:'
+    complete:
+      cards_learned: Gelernte Karten
+      weak_improved: Schwache Karten verbessert
+      practice_again: Erneut üben
+      switch_to_study: Zum Lernmodus wechseln
+      retry_weak: Schwache Karten wiederholen
   errors:
     not_found:
-      flash: This deck is no longer available.
+      flash: Dieses Deck ist nicht mehr verfügbar.
     not_authorized:
-      flash: You are not authorized to perform this action.
+      flash: Du bist nicht berechtigt, diese Aktion auszuführen.
   explore:
     title: Entdecken
     subtitle: Entdecke und kopiere öffentliche Decks aus der Community.
@@ -593,7 +635,7 @@ learn:
     empty_title: Noch keine öffentlichen Decks
     empty_description: Sei der Erste, der ein Deck mit der Community teilt.
     by: von
-    locked_badge: Password Required
+    locked_badge: Passwort erforderlich
     owner_badge: Du
     by_you: von dir
     language_label: Sprache
@@ -604,10 +646,10 @@ learn:
     cards_due: Fällige Karten
     current_streak: Tages-Serie
     longest_streak: Beste Serie
-    achievements_title: Achievements
-    achievements_view_all: View all achievements
-    achievements_earned_count: "%{earned} of %{total} earned"
-    achievements_none_yet: Keep studying to earn your first badge!
+    achievements_title: Erfolge
+    achievements_view_all: Alle Erfolge ansehen
+    achievements_earned_count: "%{earned} von %{total} erhalten"
+    achievements_none_yet: Lerne weiter, um dein erstes Abzeichen zu verdienen!
     study_history: Lernverlauf
     see_all: Alle anzeigen
     empty_history: Schließe eine Lernsitzung ab, um deinen Verlauf hier zu sehen.
@@ -625,7 +667,7 @@ learn:
         other: "%{count} Karten fällig"
   study_sessions:
     title: Lernverlauf
-    back: "← Dashboard"
+    back: "← Übersicht"
     empty_title: Noch keine Sitzungen
     empty_description: Schließe eine Lernsitzung ab und sie erscheint hier.
     go_to_decks: Zu den Decks
@@ -634,6 +676,8 @@ learn:
     reviewed_header: Wiederholt
     accuracy_header: Genauigkeit
     time_header: Zeit
+    page_title: 'Lernen: %{deck}'
+    session_aria: Lernsitzung
   imports:
     title: Karten importieren — %{name}
     back: "← %{name}"
@@ -648,7 +692,7 @@ learn:
     tab_separator: Tabulator (Standard)
     comma_separator: Komma
     semicolon_separator: Semikolon
-    pipe_separator: Pipe |
+    pipe_separator: Senkrechter Strich |
     submit: Karten importieren
     csv_hint_html: Lade eine <code>.csv</code>-Datei mit zwei Spalten hoch (Vorder-/Rückseite).
     csv_label: CSV-Datei
@@ -683,24 +727,18 @@ learn:
     preview_count:
       one: 1 Karte
       other: "%{count} Karten"
-    term_label: TERM
+    term_label: BEGRIFF
     definition_label: DEFINITION
     cancel_import: Import abbrechen
+    text_placeholder: "Hallo\tHello\nTschüss\tGoodbye"
   home:
-    hero_heading: "Klüger lernen, länger erinnern"
-    hero_subtitle: "Quizly hilft dir, echtes Gedächtnis aufzubauen – nicht nur kurzfristiges Behalten."
-    badge: "Karteikartensystem integriert"
+    hero_heading: Klüger lernen, länger erinnern
+    hero_subtitle: Quizly hilft dir, echtes Gedächtnis aufzubauen – nicht nur kurzfristiges
+      Behalten.
+    badge: Karteikartensystem integriert
     sign_up: Kostenlos registrieren
     popular_decks: Beliebte Decks
     see_all: Alle anzeigen →
-    modes:
-      flashcards: Lernkarten
-      learn: Üben
-      study: Lernen
-      test: Test
-      match: Zuordnen
-    explore_link: Entdecken
-    log_in: Anmelden
     no_decks: Noch keine vorgestellten Decks.
     popular_section_label: Beliebte Decks
     popular_section_title: Letzte Aktivitäten
@@ -711,8 +749,17 @@ learn:
       decks_label: Vorgestellte Decks
       languages_label: Sprachen
       cards_label: Karten
+    modes:
+      flashcards: Lernkarten
+      learn: Üben
+      study: Lernen
+      test: Test
+      match: Zuordnen
+    explore_link: Entdecken
+    log_in: Anmelden
     cta_strip_headline: Bereit, intelligenter zu lernen?
-    cta_strip_sub: Schließe dich Tausenden von Studierenden an, die Quizly bereits nutzen.
+    cta_strip_sub: Schließe dich Tausenden von Studierenden an, die Quizly bereits
+      nutzen.
     page_title: Quizly — Schneller lernen mit Lernkarten
     carousel:
       previous_slide: Vorherige Folie
@@ -735,16 +782,19 @@ learn:
     reset_link_text: dieser Seite zum Zurücksetzen
     reset_text_body: 'Du kannst dein Passwort in den nächsten 15 Minuten auf dieser
       Seite zurücksetzen:'
-    expires_note: Dieser Link läuft in 15 Minuten ab. Falls du keine Passwort-Zurücksetzung angefordert hast, kannst du diese E-Mail ignorieren.
-    fallback_note: "Falls der Button oben nicht funktioniert, kopiere diesen Link in deinen Browser:"
+    expires_note: Dieser Link läuft in 15 Minuten ab. Falls du keine Passwort-Zurücksetzung
+      angefordert hast, kannst du diese E-Mail ignorieren.
+    fallback_note: 'Falls der Button oben nicht funktioniert, kopiere diesen Link
+      in deinen Browser:'
+    reset_heading: Setze dein Passwort zurück
   question_engine:
     match_prompt: Ordne jeden Begriff seiner Definition zu
   time:
     none: "—"
-    seconds: "%{n}s"
+    seconds: "%{n} Sek."
     minutes: "%{m}min"
     minutes_seconds: "%{m}min %{s}s"
-    hours: "%{h}h"
+    hours: "%{h} Std."
     hours_minutes: "%{h}h %{m}min"
   notifications:
     bell_aria: Benachrichtigungen
@@ -756,41 +806,41 @@ learn:
     events:
       badge_earned: Du hast ein neues Abzeichen verdient
       followed: "%{actor} folgt dir jetzt"
-      followed_user_published_deck: "%{actor} published a new deck"
+      followed_user_published_deck: "%{actor} hat ein neues Deck veröffentlicht"
       deck_commented: "%{actor} hat dein Deck kommentiert"
       deck_reacted: "%{actor} hat auf dein Deck reagiert"
   follows:
-    follow: "Follow"
-    unfollow: "Unfollow"
+    follow: Folgen
+    unfollow: Entfolgen
     followers:
-      one: "%{count} follower"
-      other: "%{count} followers"
+      :one: "%{count} Follower"
+      :other: "%{count} Follower"
     follower_label:
-      one: "follower"
-      other: "followers"
-    public_decks: "Public Decks"
-    no_public_decks: "No public decks yet."
-    following_heading: "Following"
-    following_page_title: "%{name}'s Following"
-    no_following: "Not following anyone yet."
+      :one: Follower
+      :other: Follower
+    public_decks: Öffentliche Decks
+    no_public_decks: Noch keine öffentlichen Decks.
+    following_heading: Folge ich
+    following_page_title: Wem %{name} folgt
+    no_following: Folgt noch niemandem.
   activerecord:
     errors:
       models:
         follow:
           attributes:
             base:
-              cannot_follow_self: "You cannot follow yourself."
+              cannot_follow_self: Du kannst dir nicht selbst folgen.
             follower_id:
-              already_following: "You are already following this user."
+              already_following: Du folgst diesem Benutzer bereits.
         user:
           attributes:
             username:
-              invalid_username: "may only contain letters, numbers, and underscores."
+              invalid_username: darf nur Buchstaben, Zahlen und Unterstriche enthalten.
         deck:
           attributes:
             base:
               not_ready_to_share: Füge mindestens eine Karte hinzu, bevor du dieses
                 Deck teilst.
             access_mode:
-              invalid_for_private_deck: Private decks cannot be password-protected
-                — only you can see them anyway.
+              invalid_for_private_deck: Private Decks können nicht mit einem Passwort
+                geschützt werden – nur du kannst sie ohnehin sehen.

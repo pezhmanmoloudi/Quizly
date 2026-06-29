@@ -3,7 +3,7 @@
 <div class="container">
   <div class="page-header">
     <h1><%= t("achievements.title") %></h1>
-    <p class="page-subtext"><%= t("achievements.earned_count", earned: @earned_count, total: @all_badges.size) %></p>
+    <p class="page-subtext"><%= t("achievements.earned_count", earned: localized_number(@earned_count), total: localized_number(@all_badges.size)) %></p>
   </div>
 
   <%= render "badge_grid",
