@@ -26,6 +26,7 @@ ru:
     log_out: Выйти
     language: Язык
     view_profile: View Profile
+    achievements: Achievements
     notifications: Notifications
     followers: Followers
     following: Following
@@ -204,6 +205,11 @@ ru:
     avatar_format_error: Неверный формат файла. Пожалуйста, загрузите JPG, PNG или
       WEBP.
     avatar_size_error: Фото профиля должно быть меньше 5 МБ.
+  achievements:
+    title: Achievements
+    earned_count: "%{earned} of %{total} badges earned"
+    no_badges: No badges yet. Keep studying to unlock achievements!
+
   decks:
     index:
       title: Мои колоды
@@ -603,6 +609,10 @@ learn:
     cards_due: К повторению
     current_streak: Серия дней
     longest_streak: Лучшая серия
+    achievements_title: Achievements
+    achievements_view_all: View all achievements
+    achievements_earned_count: "%{earned} of %{total} earned"
+    achievements_none_yet: Keep studying to earn your first badge!
     study_history: История занятий
     see_all: Все
     empty_history: Завершите сессию, чтобы увидеть историю здесь.

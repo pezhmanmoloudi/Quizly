@@ -1,0 +1,13 @@
+<% content_for :title, t("achievements.title") %>
+
+<div class="container">
+  <div class="page-header">
+    <h1><%= t("achievements.title") %></h1>
+    <p class="page-subtext"><%= t("achievements.earned_count", earned: @earned_count, total: @all_badges.size) %></p>
+  </div>
+
+  <%= render "badge_grid",
+        all_badges: @all_badges,
+        earned_badge_ids: @earned_badge_ids,
+        user_badges_by_badge_id: @user_badges_by_badge_id %>
+</div>

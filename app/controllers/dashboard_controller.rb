@@ -34,5 +34,9 @@ class DashboardController < ApplicationController
       @continue_deck = @decks.find { |d| d.id == best_id }
       @continue_due  = @due_counts[best_id]
     end
+
+    @badges_preview  = Badge.preview_for(Current.user)
+    @badges_earned   = Current.user.user_badges.count
+    @badges_total    = Badge.count
   end
 end

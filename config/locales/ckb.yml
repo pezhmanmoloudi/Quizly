@@ -26,6 +26,7 @@ ckb:
     log_out: چوونەدەرەوە
     language: زمان
     view_profile: View Profile
+    achievements: Achievements
     notifications: Notifications
     followers: Followers
     following: Following
@@ -202,6 +203,11 @@ ckb:
     password_incorrect: هەڵەیە
     avatar_format_error: فۆرماتی فایل نادروستە. تکایە JPG، PNG یان WEBP بارکە.
     avatar_size_error: وێنەی پرۆفایل دەبێت کەمتر لە ٥ میگابایت بێت.
+  achievements:
+    title: Achievements
+    earned_count: "%{earned} of %{total} badges earned"
+    no_badges: No badges yet. Keep studying to unlock achievements!
+
   decks:
     index:
       title: دەستەکانم
@@ -595,6 +601,10 @@ learn:
     cards_due: کارتە سەرکەوتووەکان
     current_streak: زنجیری ڕۆژ
     longest_streak: باشترین زنجیر
+    achievements_title: Achievements
+    achievements_view_all: View all achievements
+    achievements_earned_count: "%{earned} of %{total} earned"
+    achievements_none_yet: Keep studying to earn your first badge!
     study_history: مێژووی خوێندن
     see_all: بینینی هەمووان
     empty_history: دانیشتنێکی خوێندن تەواوبکە بۆ بینینی مێژووکەت ئێرەدا.

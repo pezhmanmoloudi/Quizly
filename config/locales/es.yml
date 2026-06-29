@@ -26,6 +26,7 @@ es:
     log_out: Cerrar sesión
     language: Idioma
     view_profile: View Profile
+    achievements: Achievements
     notifications: Notifications
     followers: Followers
     following: Following
@@ -205,6 +206,11 @@ es:
     password_incorrect: es incorrecta
     avatar_format_error: Formato de archivo no válido. Sube JPG, PNG o WEBP.
     avatar_size_error: La foto de perfil debe ser menor de 5 MB.
+  achievements:
+    title: Achievements
+    earned_count: "%{earned} of %{total} badges earned"
+    no_badges: No badges yet. Keep studying to unlock achievements!
+
   decks:
     index:
       title: Mis mazos
@@ -598,6 +604,10 @@ learn:
     cards_due: Tarjetas pendientes
     current_streak: Racha diaria
     longest_streak: Mejor racha
+    achievements_title: Achievements
+    achievements_view_all: View all achievements
+    achievements_earned_count: "%{earned} of %{total} earned"
+    achievements_none_yet: Keep studying to earn your first badge!
     study_history: Historial de estudio
     see_all: Ver todo
     empty_history: Completa una sesión de estudio para ver tu historial aquí.

@@ -26,6 +26,7 @@ pt:
     log_out: Sair
     language: Idioma
     view_profile: View Profile
+    achievements: Achievements
     notifications: Notifications
     followers: Followers
     following: Following
@@ -205,6 +206,11 @@ pt:
     avatar_format_error: Formato de arquivo inválido. Por favor, envie JPG, PNG ou
       WEBP.
     avatar_size_error: A foto de perfil deve ter menos de 5 MB.
+  achievements:
+    title: Achievements
+    earned_count: "%{earned} of %{total} badges earned"
+    no_badges: No badges yet. Keep studying to unlock achievements!
+
   decks:
     index:
       title: Meus baralhos
@@ -599,6 +605,10 @@ learn:
     cards_due: Cartões pendentes
     current_streak: Sequência de dias
     longest_streak: Melhor sequência
+    achievements_title: Achievements
+    achievements_view_all: View all achievements
+    achievements_earned_count: "%{earned} of %{total} earned"
+    achievements_none_yet: Keep studying to earn your first badge!
     study_history: Histórico de estudo
     see_all: Ver tudo
     empty_history: Conclua uma sessão de estudo para ver seu histórico aqui.

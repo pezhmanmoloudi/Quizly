@@ -26,6 +26,7 @@ fa:
     log_out: خروج
     language: زبان
     view_profile: View Profile
+    achievements: Achievements
     notifications: Notifications
     followers: Followers
     following: Following
@@ -201,6 +202,11 @@ fa:
     password_incorrect: اشتباه است
     avatar_format_error: فرمت فایل نامعتبر است. لطفاً JPG، PNG یا WEBP بارگذاری کنید.
     avatar_size_error: تصویر پروفایل باید کمتر از ۵ مگابایت باشد.
+  achievements:
+    title: Achievements
+    earned_count: "%{earned} of %{total} badges earned"
+    no_badges: No badges yet. Keep studying to unlock achievements!
+
   decks:
     index:
       title: دسته‌های من
@@ -594,6 +600,10 @@ learn:
     cards_due: کارت‌های سررسیده
     current_streak: روزهای متوالی
     longest_streak: بهترین رکورد
+    achievements_title: Achievements
+    achievements_view_all: View all achievements
+    achievements_earned_count: "%{earned} of %{total} earned"
+    achievements_none_yet: Keep studying to earn your first badge!
     study_history: تاریخچه مطالعه
     see_all: مشاهده همه
     empty_history: یک جلسه مطالعه را کامل کن تا تاریخچه‌ات اینجا نشان داده شود.

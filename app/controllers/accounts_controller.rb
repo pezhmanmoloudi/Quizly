@@ -1,6 +1,4 @@
 class AccountsController < ApplicationController
-  before_action :load_badges, only: %i[show update]
-
   def show
     @active_section = flash[:section] || "profile"
   end
@@ -77,13 +75,6 @@ class AccountsController < ApplicationController
   end
 
   private
-
-  def load_badges
-    @all_badges              = Badge.order(:category, :id)
-    user_badges              = Current.user.user_badges.load
-    @earned_badge_ids        = user_badges.map(&:badge_id).to_set
-    @user_badges_by_badge_id = user_badges.index_by(&:badge_id)
-  end
 
   def profile_params
     p = params.permit(:display_name, :avatar)

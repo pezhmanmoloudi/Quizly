@@ -23,6 +23,8 @@ Rails.application.routes.draw do
 
   resource :notification_preferences, only: [ :show, :update ]
 
+  resources :achievements, only: [:index]
+
   get "dashboard", to: "dashboard#index", as: :dashboard
 
   get "up" => "rails/health#show", as: :rails_health_check
