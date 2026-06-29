@@ -26,12 +26,16 @@ class LearnSession < ApplicationRecord
       .first
   end
 
-  def self.build_for(deck:, user:, flashcard_ids: nil)
+  def self.build_for(deck:, user:, flashcard_ids: nil, limit: nil)
     cards = if flashcard_ids.present?
       deck.flashcards.where(id: flashcard_ids).to_a.shuffle
     else
       deck.flashcards.to_a.shuffle
     end
+    # Session membership is fixed at creation: a fresh (non weak-only) session holds at most
+    # `limit` cards. The frontend LearnEngine only paces/reorders within these items — it never
+    # decides which cards belong to the session. limit 0/nil means unlimited (all cards).
+    cards = cards.first(limit) if limit&.positive? && flashcard_ids.blank?
     session = new(user: user, deck: deck, cards_total: cards.size, started_at: Time.current)
     cards.each_with_index do |card, i|
       session.learn_session_items.build(flashcard: card, position: i)

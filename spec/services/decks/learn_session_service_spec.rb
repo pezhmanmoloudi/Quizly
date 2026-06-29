@@ -64,5 +64,32 @@ RSpec.describe Decks::LearnSessionService do
         expect(result.deck).to eq(deck)
       end
     end
+
+    context "session size honours the deck's learn_new_cards_limit" do
+      let(:session_id) { nil }
+
+      before { 8.times { create(:flashcard, deck: deck) } }
+
+      it "caps a new session to learn_new_cards_limit when the deck is larger" do
+        deck.update!(learn_new_cards_limit: 5)
+        expect(result.learn_session_items.count).to eq 5
+      end
+
+      it "includes every card when the limit is 0 (unlimited)" do
+        deck.update!(learn_new_cards_limit: 0)
+        expect(result.learn_session_items.count).to eq deck.flashcards.count
+      end
+
+      it "applies the new limit only to the next session, not an existing one" do
+        deck.update!(learn_new_cards_limit: 5)
+        first = described_class.find_or_create(deck: deck, user: user, session_id: nil)
+        expect(first.learn_session_items.count).to eq 5
+
+        deck.update!(learn_new_cards_limit: 10)
+        reused = described_class.find_or_create(deck: deck, user: user, session_id: first.id)
+        expect(reused.id).to eq(first.id)
+        expect(reused.learn_session_items.count).to eq 5
+      end
+    end
   end
 end

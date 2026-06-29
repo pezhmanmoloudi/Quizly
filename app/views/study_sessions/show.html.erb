@@ -2,7 +2,6 @@
 
 <div class="study-island"
      data-controller="study-mode"
-     data-action="keydown->study-mode#handleKey"
      tabindex="-1"
      aria-label="Study session">
 
@@ -52,21 +51,22 @@
           class: "study-mode-tab #{"study-mode-tab--active" if @study_mode == "starred"}" %>
   </div>
 
-  <% if @card_progress.present? && @cards_total.to_i > 0 %>
-    <% cards_done = (@cards_total - @cards_remaining).clamp(0, @cards_total) %>
-    <% progress_pct = (cards_done.to_f / @cards_total * 100).round %>
-    <div class="study-island__progress-wrap">
-      <div class="study-island__progress">
-        <div class="study-island__progress-fill" style="width: <%= progress_pct %>%"></div>
-      </div>
-      <span class="study-island__progress-label">
-        <%= progress_pct %>% · <%= t("study_modes.study.progress_remaining", count: @cards_remaining) %>
-      </span>
-    </div>
-  <% end %>
-
   <%= turbo_frame_tag "study_card",
         data: { action: "turbo:frame-load->study-mode#resetSubmitLock" } do %>
+    <%# Progress lives inside the frame so it re-renders with each rating (frame-scoped swap). %>
+    <% if @card_progress.present? && @cards_total.to_i > 0 %>
+      <% cards_done = (@cards_total - @cards_remaining).clamp(0, @cards_total) %>
+      <% progress_pct = (cards_done.to_f / @cards_total * 100).round %>
+      <div class="study-island__progress-wrap">
+        <div class="study-island__progress">
+          <div class="study-island__progress-fill" style="width: <%= progress_pct %>%"></div>
+        </div>
+        <span class="study-island__progress-label">
+          <%= progress_pct %>% · <%= t("study_modes.study.progress_remaining", count: @cards_remaining) %>
+        </span>
+      </div>
+    <% end %>
+
     <% if @card_progress.nil? %>
       <% if flash[:study_summary].present? %>
         <% summary = flash[:study_summary] %>

@@ -16,7 +16,12 @@ module Decks
         existing = @user.learn_sessions.find_by(id: @session_id, finished_at: nil, deck: @deck)
         return existing if existing
       end
-      ls = LearnSession.build_for(deck: @deck, user: @user, flashcard_ids: @flashcard_ids)
+      ls = LearnSession.build_for(
+        deck:          @deck,
+        user:          @user,
+        flashcard_ids: @flashcard_ids,
+        limit:         @deck.learn_new_cards_limit
+      )
       ls.save!
       ls
     end
