@@ -4,6 +4,7 @@ import FlashcardPlaybackService from "flashcard_playback_service"
 import FlashcardEngine from "flashcard_engine"
 import StudySRS from "study_srs"
 import LearnEngine from "learn_engine"
+import KeyboardManager from "keyboard_manager"
 
 export default class extends Controller {
   static SETTINGS_KEY  = "quizly.flashcard.settings"
@@ -74,11 +75,18 @@ export default class extends Controller {
     this.#syncSettingsUI()
     this.#updateFlipHint()
     this.element.focus()
+
+    // Keyboard routing is owned by the global KeyboardManager. Map this controller's three
+    // modeValues onto manager modes; the in-flashcard "study" sub-mode reveals via flip (not a
+    // showButton) so it uses its own keymap. State (flip = revealed) is pulled at keydown time.
+    const kbMode = { browse: "flashcard", learn: "learn", study: "flashcard_study" }[this.modeValue]
+    KeyboardManager.register(this, kbMode, () => ({ revealed: !!this.engine?.flipped }))
   }
 
   disconnect() {
     this.playback.stop()
     if (window.speechSynthesis) window.speechSynthesis.cancel()
+    KeyboardManager.unregister(this)
   }
 
   // ── Public actions ─────────────────────────────────────────
@@ -124,83 +132,9 @@ export default class extends Controller {
     this.#speakCurrentSide()
   }
 
-  handleKey(event) {
-    if (this.#isFormElementFocused()) return
-    if (event.ctrlKey || event.metaKey || event.altKey) return
-
-    if (this.modeValue === "study") {
-      switch (event.key) {
-        case " ":
-          event.preventDefault()
-          this.flip()
-          break
-        case "1":
-          event.preventDefault()
-          this.gradeAgain()
-          break
-        case "2":
-          event.preventDefault()
-          this.gradeHard()
-          break
-        case "3":
-          event.preventDefault()
-          this.gradeGood()
-          break
-        case "4":
-          event.preventDefault()
-          this.gradeEasy()
-          break
-      }
-      return
-    }
-
-    if (this.modeValue === "learn") {
-      switch (event.key) {
-        case " ":
-          event.preventDefault()
-          this.flip()
-          break
-        case "g":
-        case "G":
-          event.preventDefault()
-          this.gotIt()
-          break
-        case "c":
-        case "C":
-          event.preventDefault()
-          this.confused()
-          break
-        case "d":
-        case "D":
-          event.preventDefault()
-          this.dontKnow()
-          break
-        case "Escape":
-          this.closeLearnSettings()
-          break
-      }
-      return
-    }
-
-    switch (event.key) {
-      case " ":
-        event.preventDefault()
-        this.flip()
-        break
-      case "ArrowLeft":
-        event.preventDefault()
-        this.previous()
-        break
-      case "ArrowRight":
-        event.preventDefault()
-        this.next()
-        break
-      case "s":
-      case "S":
-        event.preventDefault()
-        this.#starCurrent()
-        break
-    }
+  // Keyboard action (routed by KeyboardManager in browse mode)
+  star() {
+    this.#starCurrent()
   }
 
   // ── Learn mode: settings drawer ────────────────────────────
@@ -604,7 +538,9 @@ export default class extends Controller {
     if (this.hasTotalDisplayTarget) {
       this.totalDisplayTarget.textContent = total
     }
-    if (this.hasProgressFillTarget && total) {
+    // In learn mode the progress bar reflects mastery (#updateLearnStats owns it); the queue
+    // resets to index 0 each feedback, so a position-based width here would look stuck.
+    if (this.modeValue !== "learn" && this.hasProgressFillTarget && total) {
       const pct = Math.round(pos / total * 100)
       this.progressFillTarget.style.width = `${pct}%`
     }
@@ -667,13 +603,17 @@ export default class extends Controller {
     const delaySelect = panel.querySelector("[data-setting='autoAdvanceDelay']")
     if (delaySelect) delaySelect.value = this.settings.autoAdvanceDelay
 
-    // Apply side effects of restored settings
-    if (this.settings.showBothSides) {
-      this.element.querySelectorAll(".flashcard-card").forEach(c =>
-        c.classList.add("fb--both-sides")
-      )
+    // Apply side effects of restored settings — browse-only.
+    // showBothSides and autoAdvance are flashcard-browse features stored in the shared
+    // settings localStorage; never let them bleed into study/learn modes.
+    if (this.modeValue === "browse") {
+      if (this.settings.showBothSides) {
+        this.element.querySelectorAll(".flashcard-card").forEach(c =>
+          c.classList.add("fb--both-sides")
+        )
+      }
+      if (this.settings.autoAdvance) this.playback.start()
     }
-    if (this.settings.autoAdvance) this.playback.start()
   }
 
   // ── Private: helpers ───────────────────────────────────────
@@ -682,8 +622,4 @@ export default class extends Controller {
     this.#currentSlide?.querySelector(".star-btn")?.click()
   }
 
-  #isFormElementFocused() {
-    const tag = document.activeElement?.tagName
-    return ["INPUT", "BUTTON", "TEXTAREA", "SELECT", "A"].includes(tag)
-  }
 }

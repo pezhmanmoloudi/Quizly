@@ -1,4 +1,5 @@
 import { Controller } from "@hotwired/stimulus"
+import KeyboardManager from "keyboard_manager"
 
 export default class extends Controller {
   static targets = ["continueBtn", "exitLink", "timer"]
@@ -7,10 +8,13 @@ export default class extends Controller {
     this.element.focus()
     this.seconds = 0
     this.timerInterval = setInterval(() => this.#tickTimer(), 1000)
+    // "submitted" == feedback shown == the continue button is present in the DOM.
+    KeyboardManager.register(this, "test", () => ({ submitted: this.hasContinueBtnTarget }))
   }
 
   disconnect() {
     clearInterval(this.timerInterval)
+    KeyboardManager.unregister(this)
   }
 
   // Auto-focus the continue button the moment feedback is rendered
@@ -18,33 +22,10 @@ export default class extends Controller {
     target.focus()
   }
 
-  handleKey(event) {
-    if (event.ctrlKey || event.metaKey || event.altKey) return
-
-    switch (event.key) {
-      case "Escape":
-        if (this.hasExitLinkTarget) this.exitLinkTarget.click()
-        break
-      case "Enter":
-        if (this.hasContinueBtnTarget) {
-          event.preventDefault()
-          this.continueBtnTarget.click()
-        }
-        break
-      case " ":
-        if (this.hasContinueBtnTarget) {
-          event.preventDefault()
-          this.continueBtnTarget.click()
-        }
-        break
-      case "1":
-      case "2":
-      case "3":
-      case "4":
-        this.#selectOptionByIndex(parseInt(event.key, 10) - 1)
-        break
-    }
-  }
+  // ── Keyboard actions (routed by KeyboardManager) ───────────
+  selectOption(index) { this.#selectOptionByIndex(index) }
+  continue()          { if (this.hasContinueBtnTarget) this.continueBtnTarget.click() }
+  onEscape()          { if (this.hasExitLinkTarget) this.exitLinkTarget.click() }
 
   #selectOptionByIndex(index) {
     const options = this.element.querySelectorAll(".test-option:not([disabled])")
