@@ -247,6 +247,8 @@ fa:
       sort_most_due: بیشترین کارت سررسیده
       empty_title: هنوز دسته‌ای نداری
       empty_description: اولین دسته‌ات را بساز تا مطالعه را شروع کنی.
+      empty_search_title: هیچ دسته‌ای برای "%{query}" یافت نشد
+      empty_search_description: عبارت جستجوی دیگری امتحان کن.
     show:
       edit: ویرایش دسته
       export: صادر کردن دسته

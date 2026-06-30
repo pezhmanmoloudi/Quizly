@@ -248,6 +248,8 @@ en:
       sort_most_due: Most Due
       empty_title: No decks yet
       empty_description: Create your first deck to start studying.
+      empty_search_title: No decks found for "%{query}"
+      empty_search_description: Try a different search term.
     show:
       edit: Edit Deck
       export: Export Deck

@@ -61,6 +61,57 @@ RSpec.describe Deck, type: :model do
     end
   end
 
+  describe ".search" do
+    it "matches on name case-insensitively" do
+      deck = create(:deck, name: "Spanish Basics")
+      expect(Deck.search("spanish")).to include(deck)
+      expect(Deck.search("SPANISH")).to include(deck)
+    end
+
+    it "matches on description" do
+      deck = create(:deck, name: "Untitled", description: "Common French verbs")
+      expect(Deck.search("french verbs")).to include(deck)
+    end
+
+    it "excludes decks that do not match" do
+      match    = create(:deck, name: "Biology 101")
+      no_match = create(:deck, name: "Chemistry 101")
+      result = Deck.search("biology")
+      expect(result).to include(match)
+      expect(result).not_to include(no_match)
+    end
+
+    it "normalizes whitespace and case in the query (strip + downcase)" do
+      deck = create(:deck, name: "History")
+      expect(Deck.search("  HISTORY  ")).to include(deck)
+    end
+
+    it "returns all decks for a blank query" do
+      create(:deck, name: "A")
+      create(:deck, name: "B")
+      expect(Deck.search("")).to match_array(Deck.all)
+      expect(Deck.search("   ")).to match_array(Deck.all)
+      expect(Deck.search(nil)).to match_array(Deck.all)
+    end
+
+    it "treats LIKE wildcards in the query as literal characters" do
+      literal  = create(:deck, name: "100% effort")
+      unrelated = create(:deck, name: "no special chars")
+      result = Deck.search("100%")
+      expect(result).to include(literal)
+      expect(result).not_to include(unrelated)
+    end
+
+    it "is chainable on other relations" do
+      owner = create(:user)
+      mine  = create(:deck, user: owner, name: "My Spanish Deck")
+      theirs = create(:deck, user: create(:user), name: "Their Spanish Deck")
+      result = owner.decks.search("spanish")
+      expect(result).to include(mine)
+      expect(result).not_to include(theirs)
+    end
+  end
+
 
   describe "associations" do
     it "belongs to a user" do

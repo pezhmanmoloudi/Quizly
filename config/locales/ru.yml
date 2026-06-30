@@ -250,6 +250,8 @@ ru:
       sort_most_due: Больше всего к повторению
       empty_title: Колод пока нет
       empty_description: Создайте первую колоду, чтобы начать учиться.
+      empty_search_title: Колоды по запросу "%{query}" не найдены
+      empty_search_description: Попробуйте другой поисковый запрос.
     show:
       edit: Редактировать колоду
       export: Экспортировать колоду

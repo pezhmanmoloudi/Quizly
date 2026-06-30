@@ -17,11 +17,19 @@
 
   <div id="decks-index-section">
     <% if @pagy.count == 0 %>
-      <%= render "shared/empty_state",
-            icon: "rectangle_stack",
-            title: t("decks.index.empty_title"),
-            description: t("decks.index.empty_description"),
-            variant: :dashboard %>
+      <% if @query.present? %>
+        <%= render "shared/empty_state",
+              icon: "magnifying_glass",
+              title: t("decks.index.empty_search_title", query: @query),
+              description: t("decks.index.empty_search_description"),
+              variant: :dashboard %>
+      <% else %>
+        <%= render "shared/empty_state",
+              icon: "rectangle_stack",
+              title: t("decks.index.empty_title"),
+              description: t("decks.index.empty_description"),
+              variant: :dashboard %>
+      <% end %>
     <% else %>
       <div class="deck-list">
         <% @decks.each do |deck| %>

@@ -253,6 +253,8 @@ fr:
       sort_most_due: Plus de cartes dues
       empty_title: Pas encore de paquets
       empty_description: Créez votre premier paquet pour commencer à étudier.
+      empty_search_title: Aucun paquet trouvé pour "%{query}"
+      empty_search_description: Essayez un autre terme de recherche.
     show:
       edit: Modifier le paquet
       export: Exporter le paquet

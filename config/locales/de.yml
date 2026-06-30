@@ -250,6 +250,8 @@ de:
       sort_most_due: Meiste fällige Karten
       empty_title: Noch keine Decks
       empty_description: Erstelle dein erstes Deck, um mit dem Lernen zu beginnen.
+      empty_search_title: Keine Decks für "%{query}" gefunden
+      empty_search_description: Versuche einen anderen Suchbegriff.
     show:
       edit: Deck bearbeiten
       export: Deck exportieren

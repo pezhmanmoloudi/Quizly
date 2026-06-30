@@ -247,6 +247,8 @@ tr:
       sort_most_due: En çok bekleyen
       empty_title: Henüz deste yok
       empty_description: Çalışmaya başlamak için ilk desteni oluştur.
+      empty_search_title: '"%{query}" için deste bulunamadı'
+      empty_search_description: Farklı bir arama terimi dene.
     show:
       edit: Desteyi düzenle
       export: Desteyi dışa aktar

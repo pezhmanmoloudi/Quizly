@@ -251,6 +251,8 @@ es:
       sort_most_due: Más pendientes
       empty_title: Todavía no hay mazos
       empty_description: Crea tu primer mazo para empezar a estudiar.
+      empty_search_title: No se encontraron mazos para "%{query}"
+      empty_search_description: Prueba con otro término de búsqueda.
     show:
       edit: Editar mazo
       export: Exportar mazo

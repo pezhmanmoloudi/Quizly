@@ -248,6 +248,8 @@ ckb:
       sort_most_due: زۆرترین کارتی سەرکەوتوو
       empty_title: هێشتا دەستەیەک نییە
       empty_description: یەکەم دەستەکەت دروستبکە بۆ دەستپێکردن بە خوێندن.
+      empty_search_title: هیچ دەستەیەک نەدۆزرایەوە بۆ "%{query}"
+      empty_search_description: تەرمێکی گەڕانی جیاواز تاقیبکەرەوە.
     show:
       edit: دەستکاریی دەستە
       export: دەرهێنانی دەستە

@@ -251,6 +251,8 @@ pt:
       sort_most_due: Mais cartões pendentes
       empty_title: Nenhum baralho ainda
       empty_description: Crie seu primeiro baralho para começar a estudar.
+      empty_search_title: Nenhum baralho encontrado para "%{query}"
+      empty_search_description: Tente outro termo de pesquisa.
     show:
       edit: Editar baralho
       export: Exportar baralho

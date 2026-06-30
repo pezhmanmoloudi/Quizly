@@ -50,6 +50,22 @@ RSpec.describe "Explore#index", type: :request do
         expect(response.body).to include("No decks found for")
       end
 
+      it "no longer renders a duplicate in-page search form" do
+        get explore_path
+        expect(response.body).not_to include("explore-search")
+      end
+
+      it "points the navbar search at the Explore index (context-aware)" do
+        get explore_path
+        expect(response.body).to match(/<form[^>]*class="topbar__search"[^>]*action="#{Regexp.escape(explore_path)}"/)
+      end
+
+      it "matches deck names case-insensitively" do
+        create(:deck, :public, user: other_user, name: "Spanish Basics")
+        get explore_path, params: { q: "spanish" }
+        expect(response.body).to include("Spanish Basics")
+      end
+
       context "author name" do
         it "shows the deck creator's display name" do
           create(:deck, :public, user: other_user, name: "Their Deck")

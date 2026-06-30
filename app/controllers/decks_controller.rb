@@ -15,7 +15,9 @@ class DecksController < ApplicationController
     @sort  = params[:sort].in?(%w[az most_due]) ? params[:sort] : "recent"
     order  = @sort == "az" ? { name: :asc } : { created_at: :desc }
 
+    @query = params[:q].presence
     decks_scope = Current.user.decks.includes(:flashcards).order(order)
+    decks_scope = decks_scope.search(@query) if @query
     all_deck_ids = decks_scope.map(&:id)
 
     @due_counts = CardProgress.due

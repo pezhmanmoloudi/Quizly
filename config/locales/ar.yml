@@ -247,6 +247,8 @@ ar:
       sort_most_due: الأكثر استحقاقاً
       empty_title: لا توجد مجموعات بعد
       empty_description: أنشئ مجموعتك الأولى لتبدأ الدراسة.
+      empty_search_title: لم يُعثر على مجموعات لـ "%{query}"
+      empty_search_description: جرّب مصطلح بحث مختلفاً.
     show:
       edit: تعديل المجموعة
       export: تصدير المجموعة

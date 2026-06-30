@@ -32,6 +32,15 @@ class Deck < ApplicationRecord
   scope :discoverable, -> { complete.where(visibility: "public") }
   scope :popular,      -> { order(created_at: :desc) }
 
+  # Case-insensitive, Unicode-safe name/description search. Chainable on any
+  # relation (e.g. `discoverable.search(q)`, `user.decks.search(q)`).
+  scope :search, ->(query) {
+    normalized = query.to_s.unicode_normalize(:nfkc).downcase.strip
+    next all if normalized.blank?
+    pattern = "%#{sanitize_sql_like(normalized)}%"
+    where("LOWER(name) LIKE :q ESCAPE '\\' OR LOWER(description) LIKE :q ESCAPE '\\'", q: pattern)
+  }
+
   validates :name,               presence: true, length: { maximum: 100 }
   validates :visibility,         inclusion: { in: VISIBILITY_VALUES }
   validates :access_mode,        inclusion: { in: ACCESS_MODE_VALUES }
