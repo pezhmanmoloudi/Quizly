@@ -1,0 +1,19 @@
+<%#
+  Colored deck cover tile.
+  Locals:
+    deck  - the deck to render a cover for
+    size  - :lg | :md | :sm   (default :md)
+    shape - :square | :circle (default :square)
+%>
+<% size  = local_assigns.fetch(:size, :md) %>
+<% shape = local_assigns.fetch(:shape, :square) %>
+<div class="deck-cover deck-cover--<%= size %> deck-cover--<%= shape %> <%= deck_cover_class(deck) %>" aria-hidden="true">
+  <% if shape == :circle %>
+    <%= render "shared/icons/rectangle_stack", css_class: "deck-cover__icon" %>
+  <% else %>
+    <span class="deck-cover__text"><%= deck_cover_text(deck) %></span>
+    <% if (flag = deck_flag(deck)) %>
+      <span class="deck-cover__flag"><%= flag %></span>
+    <% end %>
+  <% end %>
+</div>

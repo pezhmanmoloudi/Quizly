@@ -248,6 +248,8 @@ ckb:
       sort_most_due: زۆرترین کارتی سەرکەوتوو
       empty_title: هێشتا دەستەیەک نییە
       empty_description: یەکەم دەستەکەت دروستبکە بۆ دەستپێکردن بە خوێندن.
+      empty_search_title: هیچ دەستەیەک نەدۆزرایەوە بۆ "%{query}"
+      empty_search_description: تەرمێکی گەڕانی جیاواز تاقیبکەرەوە.
     show:
       edit: دەستکاریی دەستە
       export: دەرهێنانی دەستە
@@ -652,10 +654,20 @@ ckb:
     my_decks: دەستەکانم
     no_decks_title: هێشتا دەستەیەک نییە
     no_decks_description: یەکەم دەستەکەت دروستبکە بۆ دەستپێکردن بە خوێندن.
-    history_stats: "%{cards} کارت · %{accuracy}% تەواوی"
+    stat_view_all: بینینی هەمووان
+    stat_study_now: ئێستا بیخوێنە
+    stat_keep_going: بەردەوام بە!
+    stat_view_progress: بینینی پێشکەوتن
+    achievement_earned: بەدەستهاتوو
+    achievement_progress: "%{current} / %{target}"
+    history_cards:
+      one: "%{count} کارت"
+      other: "%{count} کارت"
+    history_accuracy: "%{accuracy}% تەواوی"
     continue_studying:
       title: بەردەوامبوون لە خوێندن
       study_now: ئێستا بیخوێنە →
+      percent_complete: "%{percent}% تەواو"
       card_aria: بەردەوامبوون لە خوێندنی %{name}
       study_aria: خوێندنی %{name}
       cards_due:

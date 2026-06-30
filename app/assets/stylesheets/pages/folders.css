@@ -111,7 +111,7 @@
 /* ── Add study materials modal ── */
 
 .modal-dialog--add-decks {
-  width: 34rem;
+  width: 55rem;
   max-height: 80vh;
   display: flex;
   flex-direction: column;

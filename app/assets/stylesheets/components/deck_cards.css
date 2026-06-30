@@ -1,7 +1,6 @@
 /* Deck card components — list variant and grid tile variant */
 
 /* ── Horizontal list card (used in decks index) ── */
-.deck-list { display: flex; flex-direction: column; gap: 0; }
 
 .deck-card {
   background: var(--color-card);

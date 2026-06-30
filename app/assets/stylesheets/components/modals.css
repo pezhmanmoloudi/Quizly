@@ -643,7 +643,8 @@ body.modal-open {
 
 /* ── Manage Access Modal ── */
 .manage-access-modal {
-  max-width: 46rem;
+  width: 90%;
+  max-width: 50rem;
 }
 
 .manage-access-modal__title {

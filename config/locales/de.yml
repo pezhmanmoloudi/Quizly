@@ -250,6 +250,8 @@ de:
       sort_most_due: Meiste fällige Karten
       empty_title: Noch keine Decks
       empty_description: Erstelle dein erstes Deck, um mit dem Lernen zu beginnen.
+      empty_search_title: Keine Decks für "%{query}" gefunden
+      empty_search_description: Versuche einen anderen Suchbegriff.
     show:
       edit: Deck bearbeiten
       export: Deck exportieren
@@ -656,10 +658,20 @@ de:
     my_decks: Meine Decks
     no_decks_title: Noch keine Decks
     no_decks_description: Erstelle dein erstes Deck, um mit dem Lernen zu beginnen.
-    history_stats: "%{cards} Karten · %{accuracy}% Genauigkeit"
+    stat_view_all: Alle anzeigen
+    stat_study_now: Jetzt lernen
+    stat_keep_going: Weiter so!
+    stat_view_progress: Fortschritt ansehen
+    achievement_earned: Erhalten
+    achievement_progress: "%{current} / %{target}"
+    history_cards:
+      one: "%{count} Karte"
+      other: "%{count} Karten"
+    history_accuracy: "%{accuracy}% Genauigkeit"
     continue_studying:
       title: Weiterlernen
       study_now: Jetzt lernen →
+      percent_complete: "%{percent}% abgeschlossen"
       card_aria: "%{name} weiterlernen"
       study_aria: "%{name} lernen"
       cards_due:

@@ -1,4 +1,5 @@
 class BadgeAwarder
+  # Thresholds below are mirrored as targets in BadgeProgress::DEFINITIONS — keep both in sync.
   CRITERIA = {
     "first_session" => ->(u) { total_sessions(u) >= 1 },
     "streak_3"      => ->(u) { u.current_streak >= 3 },

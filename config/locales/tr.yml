@@ -247,6 +247,8 @@ tr:
       sort_most_due: En çok bekleyen
       empty_title: Henüz deste yok
       empty_description: Çalışmaya başlamak için ilk desteni oluştur.
+      empty_search_title: '"%{query}" için deste bulunamadı'
+      empty_search_description: Farklı bir arama terimi dene.
     show:
       edit: Desteyi düzenle
       export: Desteyi dışa aktar
@@ -652,10 +654,20 @@ tr:
     my_decks: Destelerim
     no_decks_title: Henüz deste yok
     no_decks_description: Çalışmaya başlamak için ilk desteni oluştur.
-    history_stats: "%{cards} kart · %{accuracy}% doğruluk"
+    stat_view_all: Tümünü gör
+    stat_study_now: Şimdi çalış
+    stat_keep_going: Böyle devam et!
+    stat_view_progress: İlerlemeyi gör
+    achievement_earned: Kazanıldı
+    achievement_progress: "%{current} / %{target}"
+    history_cards:
+      one: "%{count} kart"
+      other: "%{count} kart"
+    history_accuracy: "%{accuracy}% doğruluk"
     continue_studying:
       title: Çalışmaya Devam Et
       study_now: Şimdi Çalış →
+      percent_complete: "%{percent}% tamamlandı"
       card_aria: "%{name} çalışmaya devam et"
       study_aria: "%{name} çalış"
       cards_due:

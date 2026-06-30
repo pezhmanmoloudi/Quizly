@@ -251,6 +251,8 @@ pt:
       sort_most_due: Mais cartões pendentes
       empty_title: Nenhum baralho ainda
       empty_description: Crie seu primeiro baralho para começar a estudar.
+      empty_search_title: Nenhum baralho encontrado para "%{query}"
+      empty_search_description: Tente outro termo de pesquisa.
     show:
       edit: Editar baralho
       export: Exportar baralho
@@ -656,10 +658,20 @@ pt:
     my_decks: Meus baralhos
     no_decks_title: Nenhum baralho ainda
     no_decks_description: Crie seu primeiro baralho para começar a estudar.
-    history_stats: "%{cards} cartões · %{accuracy}% de precisão"
+    stat_view_all: Ver tudo
+    stat_study_now: Estudar agora
+    stat_keep_going: Continue assim!
+    stat_view_progress: Ver progresso
+    achievement_earned: Conquistado
+    achievement_progress: "%{current} / %{target}"
+    history_cards:
+      one: "%{count} cartão"
+      other: "%{count} cartões"
+    history_accuracy: "%{accuracy}% de precisão"
     continue_studying:
       title: Continuar estudando
       study_now: Estudar agora →
+      percent_complete: "%{percent}% concluído"
       card_aria: Continuar estudando %{name}
       study_aria: Estudar %{name}
       cards_due:

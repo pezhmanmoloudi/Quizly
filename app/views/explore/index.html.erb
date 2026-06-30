@@ -6,15 +6,6 @@
     <p class="page-subtitle"><%= t("explore.subtitle") %></p>
   </div>
 
-  <%= form_with url: explore_path, method: :get,
-        data: { turbo_frame: "explore-results" },
-        class: "explore-search" do |f| %>
-    <%= f.search_field :q, value: @query,
-          placeholder: t("explore.search_placeholder"),
-          class: "form-control explore-search__input",
-          aria: { label: t("explore.search_aria") } %>
-  <% end %>
-
   <%= turbo_frame_tag "explore-results" do %>
     <% if @decks.any? %>
       <div class="deck-list">

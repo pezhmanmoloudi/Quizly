@@ -1,6 +1,17 @@
 module ApplicationHelper
   include Pagy::Method
 
+  # Context-aware target for the global navbar search: it searches within the
+  # current page's collection. Defaults to Explore on pages without their own
+  # deck index (Dashboard redirects to My Decks).
+  def navbar_search_path
+    case "#{controller_name}##{action_name}"
+    when "decks#index"     then decks_path
+    when "dashboard#index" then decks_path
+    else explore_path
+    end
+  end
+
   def text_direction_for(lang_code)
     ScriptDetector.for_lang(lang_code) == :rtl ? "rtl" : "ltr"
   end

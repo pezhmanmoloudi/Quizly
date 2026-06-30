@@ -32,6 +32,15 @@ class Deck < ApplicationRecord
   scope :discoverable, -> { complete.where(visibility: "public") }
   scope :popular,      -> { order(created_at: :desc) }
 
+  # Case-insensitive, Unicode-safe name/description search. Chainable on any
+  # relation (e.g. `discoverable.search(q)`, `user.decks.search(q)`).
+  scope :search, ->(query) {
+    normalized = query.to_s.unicode_normalize(:nfkc).downcase.strip
+    next all if normalized.blank?
+    pattern = "%#{sanitize_sql_like(normalized)}%"
+    where("LOWER(name) LIKE :q ESCAPE '\\' OR LOWER(description) LIKE :q ESCAPE '\\'", q: pattern)
+  }
+
   validates :name,               presence: true, length: { maximum: 100 }
   validates :visibility,         inclusion: { in: VISIBILITY_VALUES }
   validates :access_mode,        inclusion: { in: ACCESS_MODE_VALUES }
@@ -92,7 +101,14 @@ class Deck < ApplicationRecord
   end
 
   def purge_soft_deleted_flashcards
-    Flashcard.unscoped.where(deck_id: id).where.not(deleted_at: nil).delete_all
+    soft_deleted_ids = Flashcard.unscoped.where(deck_id: id).where.not(deleted_at: nil).pluck(:id)
+    return if soft_deleted_ids.empty?
+
+    # delete_all skips the flashcards' `dependent: :destroy`, so clear child rows
+    # explicitly to avoid orphaned references / FK violations.
+    LearnSessionItem.where(flashcard_id: soft_deleted_ids).delete_all
+    CardProgress.where(flashcard_id: soft_deleted_ids).delete_all
+    Flashcard.unscoped.where(id: soft_deleted_ids).delete_all
   end
 
   def completeness_for_sharing

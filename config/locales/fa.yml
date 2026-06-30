@@ -247,6 +247,8 @@ fa:
       sort_most_due: بیشترین کارت سررسیده
       empty_title: هنوز دسته‌ای نداری
       empty_description: اولین دسته‌ات را بساز تا مطالعه را شروع کنی.
+      empty_search_title: هیچ دسته‌ای برای "%{query}" یافت نشد
+      empty_search_description: عبارت جستجوی دیگری امتحان کن.
     show:
       edit: ویرایش دسته
       export: صادر کردن دسته
@@ -652,10 +654,20 @@ fa:
     my_decks: دسته‌های من
     no_decks_title: هنوز دسته‌ای نداری
     no_decks_description: اولین دسته‌ات را بساز تا مطالعه را شروع کنی.
-    history_stats: "%{cards} کارت · %{accuracy}% دقت"
+    stat_view_all: مشاهده همه
+    stat_study_now: الان مطالعه کن
+    stat_keep_going: همین‌طور ادامه بده!
+    stat_view_progress: مشاهده پیشرفت
+    achievement_earned: کسب‌شده
+    achievement_progress: "%{current} / %{target}"
+    history_cards:
+      one: "%{count} کارت"
+      other: "%{count} کارت"
+    history_accuracy: "%{accuracy}% دقت"
     continue_studying:
       title: ادامه مطالعه
       study_now: الان مطالعه کن →
+      percent_complete: "%{percent}% کامل"
       card_aria: ادامه مطالعه %{name}
       study_aria: مطالعه %{name}
       cards_due:

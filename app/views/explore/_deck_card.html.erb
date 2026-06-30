@@ -1,7 +1,10 @@
 <% is_owner = Current.user&.id == deck.user_id %>
 <% deck_unlocked = is_owner || Decks::AccessService.unlocked?(deck: deck, session: session) %>
 
-<div id="<%= dom_id(deck) %>" class="explore-deck-card-wrap deck-row">
+<div id="<%= dom_id(deck) %>" class="explore-deck-card-wrap deck-row deck-row--with-cover">
+  <div class="deck-row__cover">
+    <%= render "decks/deck_cover", deck: deck, size: :md %>
+  </div>
   <div class="deck-row__identity">
     <h3 class="deck-row__title-link-wrap">
       <a class="deck-row__title-link"

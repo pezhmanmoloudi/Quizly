@@ -53,10 +53,11 @@
 
             <%# Center: global search (hidden on mobile) %>
             <div class="topbar__center">
-              <%= form_with url: explore_path, method: :get, class: "topbar__search" do |f| %>
+              <%= form_with url: navbar_search_path, method: :get, class: "topbar__search" do |f| %>
                 <div class="topbar__search-wrap">
                   <%= render "shared/icons/magnifying_glass", css_class: "topbar__search-icon" %>
                   <%= f.search_field :q,
+                        value: params[:q],
                         placeholder: t("topbar.search_placeholder"),
                         class: "topbar__search-input",
                         data: { sidebar_target: "searchInput" },

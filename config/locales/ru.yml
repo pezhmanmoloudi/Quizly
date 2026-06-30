@@ -250,6 +250,8 @@ ru:
       sort_most_due: Больше всего к повторению
       empty_title: Колод пока нет
       empty_description: Создайте первую колоду, чтобы начать учиться.
+      empty_search_title: Колоды по запросу "%{query}" не найдены
+      empty_search_description: Попробуйте другой поисковый запрос.
     show:
       edit: Редактировать колоду
       export: Экспортировать колоду
@@ -661,10 +663,22 @@ ru:
     my_decks: Мои колоды
     no_decks_title: Колод пока нет
     no_decks_description: Создайте первую колоду, чтобы начать учиться.
-    history_stats: "%{cards} карточек · точность %{accuracy}%"
+    stat_view_all: Все
+    stat_study_now: Учиться сейчас
+    stat_keep_going: Так держать!
+    stat_view_progress: Посмотреть прогресс
+    achievement_earned: Получено
+    achievement_progress: "%{current} / %{target}"
+    history_cards:
+      one: "%{count} карточка"
+      few: "%{count} карточки"
+      many: "%{count} карточек"
+      other: "%{count} карточки"
+    history_accuracy: "точность %{accuracy}%"
     continue_studying:
       title: Продолжить обучение
       study_now: Учиться сейчас →
+      percent_complete: "%{percent}% завершено"
       card_aria: Продолжить изучение %{name}
       study_aria: Изучать %{name}
       cards_due:

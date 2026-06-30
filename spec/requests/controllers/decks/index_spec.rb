@@ -25,9 +25,48 @@ RSpec.describe "Decks#index", type: :request do
         expect(response.body).to include("No decks yet")
       end
 
+      # The results region only; the sidebar nav (#sidebar-decks) lists all the
+      # user's decks regardless of the query, so assert against the index section.
+      def index_section
+        Nokogiri::HTML(response.body).at_css("#decks-index-section")&.text.to_s
+      end
+
+      it "filters the user's decks by the search query" do
+        create(:deck, user: user, name: "Spanish Basics")
+        create(:deck, user: user, name: "French Vocab")
+        get decks_path, params: { q: "Spanish" }
+        expect(index_section).to include("Spanish Basics")
+        expect(index_section).not_to include("French Vocab")
+      end
+
+      it "only searches within the current user's decks" do
+        create(:deck, user: user, name: "My Biology Deck")
+        create(:deck, user: create(:user), name: "Their Biology Deck")
+        get decks_path, params: { q: "Biology" }
+        expect(index_section).to include("My Biology Deck")
+        expect(index_section).not_to include("Their Biology Deck")
+      end
+
+      it "shows the search empty state when nothing matches the query" do
+        create(:deck, user: user, name: "Spanish Basics")
+        get decks_path, params: { q: "nonexistent xyz" }
+        expect(response.body).to include("No decks found for")
+      end
+
       it "renders sort dropdown" do
         get decks_path
         expect(response.body).to include("auto-submit")
+      end
+
+      it "points the navbar search at the My Decks index (context-aware)" do
+        get decks_path
+        expect(response.body).to match(/<form[^>]*class="topbar__search"[^>]*action="#{Regexp.escape(decks_path)}"/)
+      end
+
+      it "keeps the navbar search input populated with the current query" do
+        create(:deck, user: user, name: "Spanish Basics")
+        get decks_path, params: { q: "Spanish" }
+        expect(response.body).to include('value="Spanish"')
       end
 
       it "sorts decks alphabetically with sort=az" do

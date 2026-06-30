@@ -247,6 +247,8 @@ ar:
       sort_most_due: الأكثر استحقاقاً
       empty_title: لا توجد مجموعات بعد
       empty_description: أنشئ مجموعتك الأولى لتبدأ الدراسة.
+      empty_search_title: لم يُعثر على مجموعات لـ "%{query}"
+      empty_search_description: جرّب مصطلح بحث مختلفاً.
     show:
       edit: تعديل المجموعة
       export: تصدير المجموعة
@@ -649,10 +651,20 @@ ar:
     my_decks: مجموعاتي
     no_decks_title: لا توجد مجموعات بعد
     no_decks_description: أنشئ مجموعتك الأولى لتبدأ الدراسة.
-    history_stats: "%{cards} بطاقات · %{accuracy}% دقة"
+    stat_view_all: عرض الكل
+    stat_study_now: ادرس الآن
+    stat_keep_going: واصل التقدم!
+    stat_view_progress: عرض التقدم
+    achievement_earned: مكتسب
+    achievement_progress: "%{current} / %{target}"
+    history_cards:
+      one: بطاقة واحدة
+      other: "%{count} بطاقات"
+    history_accuracy: "%{accuracy}% دقة"
     continue_studying:
       title: مواصلة الدراسة
       study_now: ادرس الآن →
+      percent_complete: "%{percent}% مكتمل"
       card_aria: مواصلة دراسة %{name}
       study_aria: دراسة %{name}
       cards_due:

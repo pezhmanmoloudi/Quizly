@@ -253,6 +253,8 @@ fr:
       sort_most_due: Plus de cartes dues
       empty_title: Pas encore de paquets
       empty_description: Créez votre premier paquet pour commencer à étudier.
+      empty_search_title: Aucun paquet trouvé pour "%{query}"
+      empty_search_description: Essayez un autre terme de recherche.
     show:
       edit: Modifier le paquet
       export: Exporter le paquet
@@ -659,10 +661,20 @@ fr:
     my_decks: Mes paquets
     no_decks_title: Pas encore de paquets
     no_decks_description: Créez votre premier paquet pour commencer à étudier.
-    history_stats: "%{cards} cartes · %{accuracy}% de précision"
+    stat_view_all: Voir tout
+    stat_study_now: Étudier maintenant
+    stat_keep_going: Continuez comme ça !
+    stat_view_progress: Voir la progression
+    achievement_earned: Obtenu
+    achievement_progress: "%{current} / %{target}"
+    history_cards:
+      one: "%{count} carte"
+      other: "%{count} cartes"
+    history_accuracy: "%{accuracy}% de précision"
     continue_studying:
       title: Continuer l'étude
       study_now: Étudier maintenant →
+      percent_complete: "%{percent}% terminé"
       card_aria: Continuer l'étude de %{name}
       study_aria: Étudier %{name}
       cards_due:
