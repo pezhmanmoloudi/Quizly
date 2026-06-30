@@ -422,7 +422,47 @@ pt:
       remove_from_folder: Remover da pasta
       all_filter: Tudo
       add_tag: Adicionar etiqueta
+      manage_tags: Gerir etiquetas
+      deck_tags: Etiquetas
+      empty_for_tag: Ainda não há baralhos com esta etiqueta.
       empty_description: Salve baralhos para organizar suas coleções de estudo.
+    tags_modal:
+      title: Gerir etiquetas
+      add_title: Nova etiqueta
+      add_label: Adicionar nova etiqueta
+      name_label: Nome da etiqueta
+      name_placeholder: Nome da etiqueta
+      add_button: Adicionar
+      current_tags: "Etiquetas atuais (%{count})"
+      current_label: Etiquetas atuais
+      recommended_label: Recomendadas
+      edit: Editar
+      delete: Eliminar
+      edit_title: Editar etiqueta
+      rename_save: Guardar
+      delete_title: Eliminar etiqueta
+      delete_body_html: "Tem a certeza de que quer eliminar a etiqueta %{name}? Isto não eliminará nenhum baralho."
+      deck_count:
+        one: "%{count} baralho"
+        other: "%{count} baralhos"
+      no_tags: Ainda não há etiquetas.
+      close: Concluído
+      recommended:
+        - Exame 1
+        - Exame 2
+        - Teste intercalar
+        - Exame final
+        - Questionário 1
+        - Unidade 1
+    tags:
+      created: Etiqueta adicionada.
+      renamed: Etiqueta renomeada.
+      deleted: Etiqueta eliminada.
+      deck_updated: Etiquetas atualizadas.
+    deck_tags_modal:
+      title: "Etiquetas para %{name}"
+      no_tags: Ainda não há etiquetas. Crie uma com “Adicionar etiqueta”.
+      save: Guardar
     add_decks_modal:
       title: Adicionar materiais de estudo
       done: Concluído

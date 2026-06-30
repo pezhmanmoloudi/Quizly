@@ -1,0 +1,22 @@
+<div id="folder-<%= folder.id %>-filter-chips" class="folder-show-filters">
+  <%= link_to t("folders.show.all_filter"),
+        folder_path(folder),
+        class: "filter-chip#{' filter-chip--active' if active_tag.nil?}",
+        data: { turbo_frame: "folder-#{folder.id}-region" } %>
+
+  <% folder_tags.each do |tag| %>
+    <%= link_to folder_path(folder, tag_id: tag.id),
+          class: "filter-chip#{' filter-chip--active' if active_tag&.id == tag.id}",
+          data: { turbo_frame: "folder-#{folder.id}-region" } do %>
+      <span class="tag-dot" style="background-color: <%= tag.color %>"></span>
+      <%= tag.name %>
+    <% end %>
+  <% end %>
+
+  <%= link_to new_tag_modal_folder_path(folder),
+        class: "filter-chip filter-chip--add",
+        data: { turbo_frame: "modal" } do %>
+    <%= render "shared/icons/plus", css_class: "icon--xs" %>
+    <%= t("folders.show.add_tag") %>
+  <% end %>
+</div>

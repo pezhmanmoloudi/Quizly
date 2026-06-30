@@ -418,7 +418,47 @@ en:
       remove_from_folder: Remove from folder
       all_filter: All
       add_tag: Add tag
+      manage_tags: Manage tags
+      deck_tags: Tags
+      empty_for_tag: No decks with this tag yet.
       empty_description: Save decks to organize your study collections.
+    tags_modal:
+      title: Manage tags
+      add_title: New tag
+      add_label: Add new tag
+      name_label: Tag name
+      name_placeholder: Tag name
+      add_button: Add
+      current_tags: "Current tags (%{count})"
+      current_label: Current tags
+      recommended_label: Recommended
+      edit: Edit
+      delete: Delete
+      edit_title: Edit tag
+      rename_save: Save
+      delete_title: Delete tag
+      delete_body_html: "Are you sure you want to delete the tag %{name}? This will not delete any decks."
+      deck_count:
+        one: "%{count} deck"
+        other: "%{count} decks"
+      no_tags: No tags yet.
+      close: Done
+      recommended:
+        - Exam 1
+        - Exam 2
+        - Midterm
+        - Final exam
+        - Quiz 1
+        - Unit 1
+    tags:
+      created: Tag added.
+      renamed: Tag renamed.
+      deleted: Tag deleted.
+      deck_updated: Tags updated.
+    deck_tags_modal:
+      title: "Tags for %{name}"
+      no_tags: No tags yet. Create one with “Add tag”.
+      save: Save
     add_decks_modal:
       title: Add study materials
       done: Done

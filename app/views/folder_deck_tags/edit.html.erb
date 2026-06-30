@@ -1,0 +1,47 @@
+<%= turbo_frame_tag "modal" do %>
+  <div data-modal-target="dialog"
+       class="modal-wrapper"
+       role="dialog"
+       aria-modal="true"
+       aria-labelledby="deck-tags-title"
+       hidden>
+    <div class="modal-overlay" data-action="click->modal#closeOnBackdrop">
+      <div class="modal-dialog modal-dialog--narrow">
+        <h2 id="deck-tags-title" class="modal-title">
+          <%= t("folders.deck_tags_modal.title", name: @deck.name) %>
+        </h2>
+
+        <% if @folder_tags.empty? %>
+          <p class="modal-body folder-deck-tags__empty"><%= t("folders.deck_tags_modal.no_tags") %></p>
+          <div class="modal-actions modal-actions--end">
+            <button type="button" class="btn btn--secondary"
+                    data-action="click->modal#close">
+              <%= t("shared.cancel") %>
+            </button>
+          </div>
+        <% else %>
+          <%= form_with url: folder_deck_tag_path(@folder, @deck), method: :patch,
+                data: { action: "turbo:submit-end->modal#closeOnSuccess" } do %>
+            <fieldset class="folder-deck-tags">
+              <% @folder_tags.each do |tag| %>
+                <label class="folder-deck-tags__option">
+                  <%= check_box_tag "tag_ids[]", tag.id, @tagged_ids.include?(tag.id) %>
+                  <span><%= tag.name %></span>
+                </label>
+              <% end %>
+            </fieldset>
+            <div class="modal-actions modal-actions--end">
+              <button type="button" class="btn btn--secondary"
+                      data-action="click->modal#close">
+                <%= t("shared.cancel") %>
+              </button>
+              <button type="submit" class="btn btn--primary">
+                <%= t("folders.deck_tags_modal.save") %>
+              </button>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>

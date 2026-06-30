@@ -10,10 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_06_28_000001) do
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "pg_catalog.plpgsql"
-
+ActiveRecord::Schema[8.1].define(version: 2026_06_30_000002) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
@@ -72,6 +69,16 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_28_000001) do
     t.index ["user_id"], name: "index_card_progresses_on_user_id"
   end
 
+  create_table "deck_folder_tags", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.integer "deck_id", null: false
+    t.integer "folder_tag_id", null: false
+    t.datetime "updated_at", null: false
+    t.index ["deck_id"], name: "index_deck_folder_tags_on_deck_id"
+    t.index ["folder_tag_id", "deck_id"], name: "index_deck_folder_tags_on_folder_tag_id_and_deck_id", unique: true
+    t.index ["folder_tag_id"], name: "index_deck_folder_tags_on_folder_tag_id"
+  end
+
   create_table "deck_folders", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.integer "deck_id", null: false
@@ -125,6 +132,16 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_28_000001) do
     t.index ["position"], name: "index_flashcards_on_position"
     t.index ["public", "back_language"], name: "index_flashcards_on_public_and_back_language"
     t.index ["public", "front_language"], name: "index_flashcards_on_public_and_front_language"
+  end
+
+  create_table "folder_tags", force: :cascade do |t|
+    t.string "color"
+    t.datetime "created_at", null: false
+    t.integer "folder_id", null: false
+    t.string "name", null: false
+    t.datetime "updated_at", null: false
+    t.index ["folder_id", "name"], name: "index_folder_tags_on_folder_id_and_name", unique: true
+    t.index ["folder_id"], name: "index_folder_tags_on_folder_id"
   end
 
   create_table "folders", force: :cascade do |t|
@@ -409,11 +426,14 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_28_000001) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
+  add_foreign_key "deck_folder_tags", "decks", on_delete: :cascade
+  add_foreign_key "deck_folder_tags", "folder_tags", on_delete: :cascade
   add_foreign_key "deck_folders", "decks", on_delete: :cascade
   add_foreign_key "deck_folders", "folders", on_delete: :cascade
   add_foreign_key "decks", "decks", column: "source_deck_id", on_delete: :nullify
   add_foreign_key "decks", "users"
   add_foreign_key "flashcards", "decks"
+  add_foreign_key "folder_tags", "folders", on_delete: :cascade
   add_foreign_key "folders", "users"
   add_foreign_key "follows", "users", column: "followed_id", on_delete: :cascade
   add_foreign_key "follows", "users", column: "follower_id", on_delete: :cascade

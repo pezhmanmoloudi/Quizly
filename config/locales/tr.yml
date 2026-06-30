@@ -417,7 +417,47 @@ tr:
       remove_from_folder: Klasörden kaldır
       all_filter: Tümü
       add_tag: Etiket ekle
+      manage_tags: Etiketleri yönet
+      deck_tags: Etiketler
+      empty_for_tag: Bu etikete sahip deste yok.
       empty_description: Çalışma koleksiyonlarınızı düzenlemek için desteler kaydedin.
+    tags_modal:
+      title: Etiketleri yönet
+      add_title: Yeni etiket
+      add_label: Yeni etiket ekle
+      name_label: Etiket adı
+      name_placeholder: Etiket adı
+      add_button: Ekle
+      current_tags: "Mevcut etiketler (%{count})"
+      current_label: Mevcut etiketler
+      recommended_label: Önerilen
+      edit: Düzenle
+      delete: Sil
+      edit_title: Etiketi düzenle
+      rename_save: Kaydet
+      delete_title: Etiketi sil
+      delete_body_html: "%{name} etiketini silmek istediğine emin misin? Bu, hiçbir desteyi silmez."
+      deck_count:
+        one: "%{count} deste"
+        other: "%{count} deste"
+      no_tags: Henüz etiket yok.
+      close: Tamam
+      recommended:
+        - Sınav 1
+        - Sınav 2
+        - Ara sınav
+        - Final sınavı
+        - Quiz 1
+        - Ünite 1
+    tags:
+      created: Etiket eklendi.
+      renamed: Etiket yeniden adlandırıldı.
+      deleted: Etiket silindi.
+      deck_updated: Etiketler güncellendi.
+    deck_tags_modal:
+      title: "%{name} için etiketler"
+      no_tags: Henüz etiket yok. “Etiket ekle” ile bir tane oluştur.
+      save: Kaydet
     add_decks_modal:
       title: Çalışma materyali ekle
       done: Tamam

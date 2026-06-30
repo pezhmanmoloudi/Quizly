@@ -1,0 +1,9 @@
+<%= turbo_stream.replace "folder-#{@folder.id}-region",
+      partial: "folders/tagged_decks",
+      locals: { folder: @folder, decks: @decks, folder_tags: @folder_tags, active_tag: nil } %>
+
+<%= turbo_stream.replace "modal" do %>
+  <%= turbo_frame_tag "modal",
+        src: (params[:tag_form_context] == "new" ? new_tag_modal_folder_path(@folder) : tags_modal_folder_path(@folder)),
+        data: { action: "turbo:frame-load->modal#openFromFrame" } %>
+<% end %>

@@ -1,0 +1,55 @@
+<%= turbo_frame_tag "modal" do %>
+  <div data-modal-target="dialog"
+       class="modal-wrapper"
+       role="dialog"
+       aria-modal="true"
+       aria-labelledby="new-tag-title"
+       hidden>
+    <div class="modal-overlay" data-action="click->modal#closeOnBackdrop">
+      <div class="modal-dialog modal-dialog--narrow new-tag-modal"
+           data-controller="tag-picker">
+        <div class="modal-dialog__header">
+          <h2 id="new-tag-title" class="modal-title">
+            <%= t("folders.tags_modal.add_title") %>
+          </h2>
+          <button type="button" class="modal-icon-close"
+                  data-action="click->modal#close"
+                  aria-label="<%= t("shared.close") %>">
+            <%= render "shared/icons/x_mark" %>
+          </button>
+        </div>
+
+        <% if @tag_error.present? %>
+          <p class="form-error"><%= @tag_error %></p>
+        <% end %>
+
+        <%= form_with url: folder_tags_path(@folder), method: :post, class: "new-tag-modal__form" do %>
+          <%= hidden_field_tag :tag_form_context, "new" %>
+
+          <div class="new-tag-modal__field">
+            <label class="new-tag-modal__label" for="new-tag-name">
+              <%= t("folders.tags_modal.name_label") %>
+            </label>
+            <%= text_field_tag "folder_tag[name]", nil,
+                  id: "new-tag-name",
+                  class: "form-control",
+                  maxlength: 60,
+                  placeholder: t("folders.tags_modal.name_placeholder"),
+                  autocomplete: "off",
+                  data: { tag_picker_target: "input", action: "input->modal#enableIfNotBlank input->tag-picker#refresh" } %>
+          </div>
+
+          <%= render "folders/current_tag_chips", folder: @folder, folder_tags: @folder_tags %>
+          <%= render "folders/recommended_tags", recommended: @recommended %>
+
+          <div class="modal-actions modal-actions--end">
+            <button type="submit" class="btn btn--primary"
+                    disabled data-modal-target="submitButton">
+              <%= t("folders.tags_modal.add_button") %>
+            </button>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>

@@ -417,8 +417,48 @@ fa:
       remove_from_folder: حذف از پوشه
       all_filter: همه
       add_tag: افزودن برچسب
+      manage_tags: مدیریت برچسب‌ها
+      deck_tags: برچسب‌ها
+      empty_for_tag: هنوز دسته‌ای با این برچسب وجود ندارد.
       empty_description: دک‌ها را ذخیره کنید تا مجموعه‌های مطالعه‌تان را سازماندهی
         کنید.
+    tags_modal:
+      title: مدیریت برچسب‌ها
+      add_title: برچسب جدید
+      add_label: افزودن برچسب جدید
+      name_label: نام برچسب
+      name_placeholder: نام برچسب
+      add_button: افزودن
+      current_tags: "برچسب‌های فعلی (%{count})"
+      current_label: برچسب‌های فعلی
+      recommended_label: پیشنهادی
+      edit: ویرایش
+      delete: حذف
+      edit_title: ویرایش برچسب
+      rename_save: ذخیره
+      delete_title: حذف برچسب
+      delete_body_html: "آیا مطمئنی می‌خواهی برچسب %{name} را حذف کنی؟ این کار هیچ دسته‌ای را حذف نمی‌کند."
+      deck_count:
+        one: "%{count} دسته"
+        other: "%{count} دسته"
+      no_tags: هنوز برچسبی وجود ندارد.
+      close: انجام شد
+      recommended:
+        - آزمون ۱
+        - آزمون ۲
+        - میان‌ترم
+        - آزمون پایانی
+        - کوییز ۱
+        - واحد ۱
+    tags:
+      created: برچسب اضافه شد.
+      renamed: نام برچسب تغییر کرد.
+      deleted: برچسب حذف شد.
+      deck_updated: برچسب‌ها به‌روزرسانی شد.
+    deck_tags_modal:
+      title: "برچسب‌های %{name}"
+      no_tags: هنوز برچسبی وجود ندارد. یکی با «افزودن برچسب» بساز.
+      save: ذخیره
     add_decks_modal:
       title: افزودن مواد مطالعاتی
       done: تمام

@@ -1,0 +1,3 @@
+<%= turbo_stream.replace "folder-#{@folder.id}-region",
+      partial: "folders/tagged_decks",
+      locals: { folder: @folder, decks: @decks, folder_tags: @folder_tags, active_tag: nil } %>

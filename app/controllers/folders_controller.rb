@@ -1,12 +1,16 @@
 class FoldersController < ApplicationController
-  before_action :set_folder, only: [:show, :update, :destroy, :rename_modal, :delete_modal, :add_decks_modal, :update_deck_assignments]
+  before_action :set_folder, only: [:show, :update, :destroy, :rename_modal, :delete_modal, :add_decks_modal, :update_deck_assignments, :tags_modal, :new_tag_modal]
 
   def index
     @folders = Current.user.folders.includes(:deck_folders).order(created_at: :desc)
   end
 
   def show
-    @decks = @folder.decks.includes(:flashcards)
+    @folder_tags = @folder.folder_tags.order(:name)
+    @active_tag  = @folder_tags.detect { |tag| tag.id == params[:tag_id].to_i } if params[:tag_id].present?
+    decks = @folder.decks.includes(:flashcards)
+    decks = decks.joins(:deck_folder_tags).where(deck_folder_tags: { folder_tag_id: @active_tag.id }) if @active_tag
+    @decks = decks
   end
 
   def new
@@ -59,6 +63,16 @@ class FoldersController < ApplicationController
     redirect_to @folder
   end
 
+  def tags_modal
+    authorize @folder, :update?
+    load_tags_data
+  end
+
+  def new_tag_modal
+    authorize @folder, :update?
+    load_tags_data
+  end
+
   def rename_modal
     authorize @folder, :update?
   end
@@ -94,6 +108,12 @@ class FoldersController < ApplicationController
 
   def set_folder
     @folder = Current.user.folders.find(params[:id])
+  end
+
+  def load_tags_data
+    @folder_tags = @folder.folder_tags.order(:name)
+    @deck_counts = DeckFolderTag.where(folder_tag: @folder_tags).group(:folder_tag_id).count
+    @recommended = Folders::RecommendedTags.for(@folder)
   end
 
   def folder_params

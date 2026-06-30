@@ -1,0 +1,15 @@
+<% if recommended.any? %>
+  <div class="tag-chips-group">
+    <h4 class="tag-chips-group__label"><%= t("folders.tags_modal.recommended_label") %></h4>
+    <div class="tag-chips">
+      <% recommended.each do |name| %>
+        <button type="button" class="tag-chip"
+                data-tag-picker-target="chip"
+                data-tag-picker-name-param="<%= name %>"
+                data-action="tag-picker#fill">
+          <%= name %>
+        </button>
+      <% end %>
+    </div>
+  </div>
+<% end %>

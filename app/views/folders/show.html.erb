@@ -34,6 +34,14 @@
           <%= t("folders.show.rename") %>
         <% end %>
 
+        <%= link_to tags_modal_folder_path(@folder),
+              class: "folder-options__item",
+              role: "menuitem",
+              data: { turbo_frame: "modal", action: "click->create-menu#close" } do %>
+          <%= render "shared/icons/tag", css_class: "icon--sm" %>
+          <%= t("folders.show.manage_tags") %>
+        <% end %>
+
         <%= link_to delete_modal_folder_path(@folder),
               class: "folder-options__item folder-options__item--danger",
               role: "menuitem",
@@ -46,25 +54,9 @@
     </div>
   </div>
 
-  <div class="folder-show-filters">
-    <span class="filter-chip filter-chip--active"><%= t("folders.show.all_filter") %></span>
-    <button class="filter-chip filter-chip--ghost" type="button" disabled>
-      <%= render "shared/icons/plus", css_class: "icon--xs" %>
-      <%= t("folders.show.add_tag") %>
-    </button>
-  </div>
-
-  <% if @decks.empty? %>
-    <div id="folder-<%= @folder.id %>-empty-state" class="empty-state empty-state--dashboard">
-      <h3 class="empty-state__title"><%= t("folders.show.start_building") %></h3>
-    </div>
-  <% end %>
-
-  <div id="folder-<%= @folder.id %>-decks" class="deck-list">
-    <% @decks.each do |deck| %>
-      <%= render "folders/deck_in_folder", deck: deck, folder: @folder %>
-    <% end %>
-  </div>
+  <%= render "folders/tagged_decks",
+        folder: @folder, decks: @decks,
+        folder_tags: @folder_tags, active_tag: @active_tag %>
 </div>
 
 <div class="folder-show-fixed-bar">
