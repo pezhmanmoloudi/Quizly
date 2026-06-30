@@ -7,6 +7,12 @@
 
 A flashcard learning platform built with Rails 8. Create decks, add cards, and study with five distinct modes — from simple card flipping to adaptive quizzes and spaced repetition.
 
+<p align="center">
+  <img src="docs/screenshots/dashboard.png" alt="Quizly dashboard" width="860">
+</p>
+
+<p align="center"><em>A personalized dashboard tracks streaks, due cards, achievements, and study history at a glance.</em></p>
+
 ---
 
 ## Study Modes
@@ -18,6 +24,54 @@ A flashcard learning platform built with Rails 8. Create decks, add cards, and s
 | **Learn** | Progressive mastery — incorrectly answered cards are re-queued until you get them right |
 | **Test** | Adaptive quiz with multiple choice, written answer, and true/false question types |
 | **Match** | Pair-matching game using 8 randomly selected cards from the deck |
+
+---
+
+## Screenshots
+
+A quick tour of Quizly — a polished, dark-first interface that scales cleanly from desktop to mobile.
+
+### Highlights
+
+<table>
+  <tr>
+    <td width="50%"><img src="docs/screenshots/homepage.png" alt="Landing page"><br><sub><b>Landing page</b> — study-mode overview and a clear path to sign up.</sub></td>
+    <td width="50%"><img src="docs/screenshots/deck-show.png" alt="Deck page"><br><sub><b>Deck page</b> — launch any of the five study modes over a paginated card list.</sub></td>
+  </tr>
+  <tr>
+    <td><img src="docs/screenshots/dashboard-saidebar.png" alt="Navigation sidebar"><br><sub><b>Navigation</b> — slide-out sidebar for Home, Explore, My Decks, and Folders.</sub></td>
+    <td align="center"><img src="docs/screenshots/mobile.png" alt="Mobile layout" width="280"><br><sub><b>Responsive</b> — the same experience, fully adapted for mobile.</sub></td>
+  </tr>
+</table>
+
+### Study modes
+
+| | |
+|---|---|
+| ![Flashcard mode](docs/screenshots/flashcard.png) | ![Study mode](docs/screenshots/study.png) |
+| **Flashcard** — flip cards with keyboard navigation, audio, and starring. | **Study** — SM-2 spaced repetition with Again / Hard / Good / Easy grading. |
+| ![Learn mode](docs/screenshots/learn.png) | ![Test mode](docs/screenshots/test.png) |
+| **Learn** — guided mastery loop that re-queues cards you haven't nailed. | **Test** — timed quizzes mixing written, multiple-choice, and true/false. |
+| ![Match mode](docs/screenshots/match.png) | |
+| **Match** — fast-paced pairing game with a live timer and streak counter. | |
+
+### Organize &amp; manage
+
+| | |
+|---|---|
+| ![My Decks](docs/screenshots/my-decks.png) | ![Folders](docs/screenshots/folder-show.png) |
+| **My Decks** — every deck with card counts, due totals, and visibility. | **Folders** — group decks and filter them with colored, deck-scoped tags. |
+| ![Add to folder](docs/screenshots/Add-study%20-materials.png) | ![Import](docs/screenshots/import.png) |
+| **Add study materials** — drop existing decks into a folder in one step. | **Import** — bulk-create cards by pasting text with custom separators. |
+
+### Account &amp; personalization
+
+| | |
+|---|---|
+| ![Sign in](docs/screenshots/login.png) | ![Settings](docs/screenshots/setting.png) |
+| **Sign in** — email & password alongside Google and GitHub OAuth. | **Settings** — avatar, account details, theme, language, and account deletion. |
+| ![Light theme](docs/screenshots/theme.png) | ![Profile menu](docs/screenshots/profile-avatar.png) |
+| **Light theme** — full light/dark theming across the app. | **Profile menu** — quick access to profile, achievements, and preferences. |
 
 ---
 
@@ -47,7 +101,8 @@ A flashcard learning platform built with Rails 8. Create decks, add cards, and s
 
 ## Features
 
-- User registration, login, logout, and password reset via email token
+- Email & password authentication plus OAuth sign-in with Google and GitHub
+- User registration, logout, and password reset via email token
 - User profile with display name and avatar upload (JPG/PNG/WEBP, 5 MB max)
 - Deck creation, editing, and deletion with public/private visibility
 - Flashcard management with position ordering
@@ -55,9 +110,12 @@ A flashcard learning platform built with Rails 8. Create decks, add cards, and s
 - Spaced repetition tracking per user per card (SM-2 algorithm)
 - Starred cards and starred-only study filter
 - Study session history with accuracy metrics
+- Folders to organize decks, with colored deck-scoped tags and filtering
 - Explore page to discover public decks, searchable and sortable by popularity
-- Fork any public deck into your own library
+- Shared decks — copy any public deck into your own library
 - Bulk card import via CSV (auto-detect columns) or tab-delimited text
+- In-app notifications and a configurable profile menu
+- Multi-language interface and light/dark themes
 - Rate-limited login (10 attempts per 3 minutes)
 
 ---
@@ -195,12 +253,6 @@ bin/brakeman --no-pager
 | JS dependency audit | `bin/importmap audit` |
 | Style lint | `bin/rubocop -f github` |
 | Test suite | `bundle exec rspec` |
-
----
-
-## Screenshots
-
-_Coming soon — contributions welcome._
 
 ---
 
