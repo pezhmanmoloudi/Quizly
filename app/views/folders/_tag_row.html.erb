@@ -1,0 +1,19 @@
+<div class="folder-tag-row">
+  <span class="tag-dot" style="background-color: <%= tag.color %>"></span>
+  <span class="folder-tag-row__name"><%= tag.name %></span>
+  <span class="folder-tag-row__count">
+    <%= t("folders.tags_modal.deck_count", count: count) %>
+  </span>
+  <%= link_to edit_folder_tag_path(folder, tag),
+        class: "folder-tag-row__action",
+        aria: { label: t("folders.tags_modal.edit") },
+        data: { turbo_frame: "modal" } do %>
+    <%= render "shared/icons/pencil", css_class: "icon--sm" %>
+  <% end %>
+  <%= link_to delete_modal_folder_tag_path(folder, tag),
+        class: "folder-tag-row__action folder-tag-row__action--danger",
+        aria: { label: t("folders.tags_modal.delete") },
+        data: { turbo_frame: "modal" } do %>
+    <%= render "shared/icons/trash", css_class: "icon--sm" %>
+  <% end %>
+</div>

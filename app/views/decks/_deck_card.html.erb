@@ -98,6 +98,11 @@
            data-open="false"
            class="deck-row__col-menu"
            role="menu">
+        <%= link_to t("folders.show.deck_tags"),
+              edit_folder_deck_tag_path(local_assigns[:folder], deck),
+              class: "deck-row__col-menu-item",
+              role: "menuitem",
+              data: { turbo_frame: "modal", action: "click->create-menu#close" } %>
         <%= button_to t("folders.show.remove_from_folder"),
               folder_deck_path(local_assigns[:folder]),
               method: :delete,

@@ -55,6 +55,53 @@ RSpec.describe "Folders#show", type: :request do
         get folder_path(folder)
         expect(response.body).to include(I18n.t("folders.show.add_study_materials"))
       end
+
+      it "renders a chip for each folder tag" do
+        create(:folder_tag, folder: folder, name: "Grammar")
+        get folder_path(folder)
+        expect(response.body).to include("Grammar")
+      end
+
+      context "when filtering by a tag" do
+        let(:tag)     { create(:folder_tag, folder: folder, name: "Grammar") }
+        let(:tagged)  { create(:deck, user: user, name: "TaggedDeck") }
+        let(:other)   { create(:deck, user: user, name: "OtherDeck") }
+
+        before do
+          create(:deck_folder, deck: tagged, folder: folder)
+          create(:deck_folder, deck: other, folder: folder)
+          create(:deck_folder_tag, folder_tag: tag, deck: tagged)
+        end
+
+        # The folder's deck list region only — the sidebar lists every deck.
+        def deck_region(body)
+          start  = body.index("folder-#{folder.id}-decks")
+          finish = body.index("folder-show-fixed-bar")
+          body[start...finish]
+        end
+
+        it "shows only decks assigned to that tag" do
+          get folder_path(folder, tag_id: tag.id)
+          region = deck_region(response.body)
+          expect(region).to include("TaggedDeck")
+          expect(region).not_to include("OtherDeck")
+        end
+
+        it "shows all decks when no tag is selected" do
+          get folder_path(folder)
+          region = deck_region(response.body)
+          expect(region).to include("TaggedDeck")
+          expect(region).to include("OtherDeck")
+        end
+
+        it "ignores a tag_id from another folder" do
+          foreign_tag = create(:folder_tag, folder: create(:folder, user: user))
+          get folder_path(folder, tag_id: foreign_tag.id)
+          region = deck_region(response.body)
+          expect(region).to include("TaggedDeck")
+          expect(region).to include("OtherDeck")
+        end
+      end
     end
 
     context "when authenticated as another user" do

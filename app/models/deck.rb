@@ -8,6 +8,7 @@ class Deck < ApplicationRecord
   has_many :test_sessions, dependent: :destroy
   has_many :deck_folders, dependent: :destroy
   has_many :folders, through: :deck_folders
+  has_many :deck_folder_tags, dependent: :destroy
   after_update_commit :notify_followers_of_publish, if: :just_published?
   after_save :sync_flashcard_visibility, if: :saved_change_to_visibility?
   after_update_commit :sync_flashcard_languages,

@@ -424,7 +424,47 @@ fr:
       remove_from_folder: Retirer du dossier
       all_filter: Tout
       add_tag: Ajouter un tag
+      manage_tags: Gérer les tags
+      deck_tags: Tags
+      empty_for_tag: Aucun paquet avec ce tag pour l'instant.
       empty_description: Enregistrez des paquets pour organiser vos collections d'étude.
+    tags_modal:
+      title: Gérer les tags
+      add_title: Nouveau tag
+      add_label: Ajouter un nouveau tag
+      name_label: Nom du tag
+      name_placeholder: Nom du tag
+      add_button: Ajouter
+      current_tags: "Tags actuels (%{count})"
+      current_label: Tags actuels
+      recommended_label: Recommandés
+      edit: Modifier
+      delete: Supprimer
+      edit_title: Modifier le tag
+      rename_save: Enregistrer
+      delete_title: Supprimer le tag
+      delete_body_html: "Voulez-vous vraiment supprimer le tag %{name} ? Cela ne supprimera aucun paquet."
+      deck_count:
+        one: "%{count} paquet"
+        other: "%{count} paquets"
+      no_tags: Aucun tag pour l'instant.
+      close: Terminé
+      recommended:
+        - Examen 1
+        - Examen 2
+        - Partiel
+        - Examen final
+        - Quiz 1
+        - Unité 1
+    tags:
+      created: Tag ajouté.
+      renamed: Tag renommé.
+      deleted: Tag supprimé.
+      deck_updated: Tags mis à jour.
+    deck_tags_modal:
+      title: "Tags pour %{name}"
+      no_tags: Aucun tag pour l'instant. Créez-en un avec « Ajouter un tag ».
+      save: Enregistrer
     add_decks_modal:
       title: Ajouter des supports d'étude
       done: Terminer

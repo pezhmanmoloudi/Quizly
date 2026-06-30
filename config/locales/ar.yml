@@ -417,7 +417,47 @@ ar:
       remove_from_folder: إزالة من المجلد
       all_filter: الكل
       add_tag: إضافة وسم
+      manage_tags: إدارة الوسوم
+      deck_tags: الوسوم
+      empty_for_tag: لا توجد مجموعات بهذا الوسم بعد.
       empty_description: احفظ المجموعات لتنظيم مجموعات دراستك.
+    tags_modal:
+      title: إدارة الوسوم
+      add_title: وسم جديد
+      add_label: إضافة وسم جديد
+      name_label: اسم الوسم
+      name_placeholder: اسم الوسم
+      add_button: إضافة
+      current_tags: "الوسوم الحالية (%{count})"
+      current_label: الوسوم الحالية
+      recommended_label: مقترحة
+      edit: تعديل
+      delete: حذف
+      edit_title: تعديل الوسم
+      rename_save: حفظ
+      delete_title: حذف الوسم
+      delete_body_html: "هل أنت متأكد أنك تريد حذف الوسم %{name}؟ لن يؤدي ذلك إلى حذف أي مجموعات."
+      deck_count:
+        one: مجموعة واحدة
+        other: "%{count} مجموعة"
+      no_tags: لا توجد وسوم بعد.
+      close: تم
+      recommended:
+        - اختبار 1
+        - اختبار 2
+        - اختبار نصفي
+        - اختبار نهائي
+        - كويز 1
+        - وحدة 1
+    tags:
+      created: تمت إضافة الوسم.
+      renamed: تمت إعادة تسمية الوسم.
+      deleted: تم حذف الوسم.
+      deck_updated: تم تحديث الوسوم.
+    deck_tags_modal:
+      title: "وسوم %{name}"
+      no_tags: لا توجد وسوم بعد. أنشئ واحدًا عبر «إضافة وسم».
+      save: حفظ
     add_decks_modal:
       title: إضافة مواد الدراسة
       done: تم

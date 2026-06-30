@@ -421,7 +421,47 @@ es:
       remove_from_folder: Quitar de la carpeta
       all_filter: Todo
       add_tag: Añadir etiqueta
+      manage_tags: Gestionar etiquetas
+      deck_tags: Etiquetas
+      empty_for_tag: Aún no hay mazos con esta etiqueta.
       empty_description: Guarda mazos para organizar tus colecciones de estudio.
+    tags_modal:
+      title: Gestionar etiquetas
+      add_title: Nueva etiqueta
+      add_label: Añadir nueva etiqueta
+      name_label: Nombre de la etiqueta
+      name_placeholder: Nombre de la etiqueta
+      add_button: Añadir
+      current_tags: "Etiquetas actuales (%{count})"
+      current_label: Etiquetas actuales
+      recommended_label: Recomendadas
+      edit: Editar
+      delete: Eliminar
+      edit_title: Editar etiqueta
+      rename_save: Guardar
+      delete_title: Eliminar etiqueta
+      delete_body_html: "¿Seguro que quieres eliminar la etiqueta %{name}? Esto no eliminará ningún mazo."
+      deck_count:
+        one: "%{count} mazo"
+        other: "%{count} mazos"
+      no_tags: Aún no hay etiquetas.
+      close: Hecho
+      recommended:
+        - Examen 1
+        - Examen 2
+        - Parcial
+        - Examen final
+        - Cuestionario 1
+        - Unidad 1
+    tags:
+      created: Etiqueta añadida.
+      renamed: Etiqueta renombrada.
+      deleted: Etiqueta eliminada.
+      deck_updated: Etiquetas actualizadas.
+    deck_tags_modal:
+      title: "Etiquetas para %{name}"
+      no_tags: Aún no hay etiquetas. Crea una con «Añadir etiqueta».
+      save: Guardar
     add_decks_modal:
       title: Añadir materiales de estudio
       done: Listo

@@ -418,7 +418,47 @@ ckb:
       remove_from_folder: لابردن لە پوشەکەوە
       all_filter: هەموو
       add_tag: تاگ زیادبکە
+      manage_tags: بەڕێوەبردنی تاگەکان
+      deck_tags: تاگەکان
+      empty_for_tag: هێشتا هیچ دەستەیەک بەم تاگەوە نییە.
       empty_description: دیکەکان پاشەکەوت بکە بۆ رێکخستنی کۆمەڵەکانت.
+    tags_modal:
+      title: بەڕێوەبردنی تاگەکان
+      add_title: تاگی نوێ
+      add_label: زیادکردنی تاگی نوێ
+      name_label: ناوی تاگ
+      name_placeholder: ناوی تاگ
+      add_button: زیادکردن
+      current_tags: "تاگە ئێستاکان (%{count})"
+      current_label: تاگە ئێستاکان
+      recommended_label: پێشنیارکراو
+      edit: دەستکاری
+      delete: سڕینەوە
+      edit_title: دەستکاریکردنی تاگ
+      rename_save: پاشەکەوتکردن
+      delete_title: سڕینەوەی تاگ
+      delete_body_html: "دڵنیایت دەتەوێت تاگی %{name} بسڕیتەوە؟ ئەمە هیچ دەستەیەک ناسڕێتەوە."
+      deck_count:
+        one: یەک دەستە
+        other: "%{count} دەستە"
+      no_tags: هێشتا هیچ تاگێک نییە.
+      close: تەواو
+      recommended:
+        - تاقیکردنەوە ١
+        - تاقیکردنەوە ٢
+        - نیوەخول
+        - تاقیکردنەوەی کۆتایی
+        - کویز ١
+        - یەکە ١
+    tags:
+      created: تاگ زیادکرا.
+      renamed: ناوی تاگ گۆڕدرا.
+      deleted: تاگ سڕایەوە.
+      deck_updated: تاگەکان نوێکرانەوە.
+    deck_tags_modal:
+      title: "تاگەکانی %{name}"
+      no_tags: هێشتا هیچ تاگێک نییە. یەکێک بە «تاگ زیادبکە» دروستبکە.
+      save: پاشەکەوتکردن
     add_decks_modal:
       title: زیادکردنی مەوادی خوێندن
       done: تەواوە

@@ -65,7 +65,13 @@ Rails.application.routes.draw do
       get   :delete_modal
       get   :add_decks_modal
       patch :update_deck_assignments
+      get   :tags_modal
+      get   :new_tag_modal
     end
+    resources :tags, only: [:create, :edit, :update, :destroy], controller: "folder_tags" do
+      member { get :delete_modal }
+    end
+    resources :deck_tags, only: [:edit, :update], controller: "folder_deck_tags"
     resource :deck, only: [:destroy], controller: "folder_decks"
   end
   resources :folder_deck_assignments, only: [:create, :new]

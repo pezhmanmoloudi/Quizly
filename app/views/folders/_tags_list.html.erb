@@ -1,0 +1,9 @@
+<div id="folder-<%= folder.id %>-tags-list" class="folder-tags-list">
+  <% if folder_tags.empty? %>
+    <p class="folder-tags-list__empty"><%= t("folders.tags_modal.no_tags") %></p>
+  <% else %>
+    <% folder_tags.each do |tag| %>
+      <%= render "folders/tag_row", folder: folder, tag: tag, count: deck_counts.fetch(tag.id, 0) %>
+    <% end %>
+  <% end %>
+</div>

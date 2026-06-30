@@ -1,0 +1,18 @@
+<%= turbo_frame_tag "folder-#{folder.id}-region" do %>
+  <%= render "folders/filter_chips",
+        folder: folder, folder_tags: folder_tags, active_tag: active_tag %>
+
+  <% if decks.empty? %>
+    <div id="folder-<%= folder.id %>-empty-state" class="empty-state empty-state--dashboard">
+      <h3 class="empty-state__title">
+        <%= active_tag ? t("folders.show.empty_for_tag") : t("folders.show.start_building") %>
+      </h3>
+    </div>
+  <% end %>
+
+  <div id="folder-<%= folder.id %>-decks" class="deck-list">
+    <% decks.each do |deck| %>
+      <%= render "folders/deck_in_folder", deck: deck, folder: folder %>
+    <% end %>
+  </div>
+<% end %>

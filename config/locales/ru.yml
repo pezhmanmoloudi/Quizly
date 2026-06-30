@@ -426,7 +426,49 @@ ru:
       remove_from_folder: Убрать из папки
       all_filter: Все
       add_tag: Добавить тег
+      manage_tags: Управление тегами
+      deck_tags: Теги
+      empty_for_tag: Пока нет колод с этим тегом.
       empty_description: Сохраняйте колоды, чтобы организовать ваши учебные коллекции.
+    tags_modal:
+      title: Управление тегами
+      add_title: Новый тег
+      add_label: Добавить новый тег
+      name_label: Название тега
+      name_placeholder: Название тега
+      add_button: Добавить
+      current_tags: "Текущие теги (%{count})"
+      current_label: Текущие теги
+      recommended_label: Рекомендуемые
+      edit: Изменить
+      delete: Удалить
+      edit_title: Изменить тег
+      rename_save: Сохранить
+      delete_title: Удалить тег
+      delete_body_html: "Вы уверены, что хотите удалить тег %{name}? Это не удалит ни одной колоды."
+      deck_count:
+        one: "%{count} колода"
+        few: "%{count} колоды"
+        many: "%{count} колод"
+        other: "%{count} колоды"
+      no_tags: Пока нет тегов.
+      close: Готово
+      recommended:
+        - Экзамен 1
+        - Экзамен 2
+        - Промежуточный
+        - Итоговый экзамен
+        - Тест 1
+        - Раздел 1
+    tags:
+      created: Тег добавлен.
+      renamed: Тег переименован.
+      deleted: Тег удалён.
+      deck_updated: Теги обновлены.
+    deck_tags_modal:
+      title: "Теги для %{name}"
+      no_tags: Пока нет тегов. Создайте его через «Добавить тег».
+      save: Сохранить
     add_decks_modal:
       title: Добавить учебные материалы
       done: Готово

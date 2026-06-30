@@ -420,7 +420,47 @@ de:
       remove_from_folder: Aus Ordner entfernen
       all_filter: Alle
       add_tag: Tag hinzufügen
+      manage_tags: Tags verwalten
+      deck_tags: Tags
+      empty_for_tag: Noch keine Decks mit diesem Tag.
       empty_description: Speichere Decks, um deine Lernsammlungen zu organisieren.
+    tags_modal:
+      title: Tags verwalten
+      add_title: Neuer Tag
+      add_label: Neuen Tag hinzufügen
+      name_label: Tag-Name
+      name_placeholder: Tag-Name
+      add_button: Hinzufügen
+      current_tags: "Aktuelle Tags (%{count})"
+      current_label: Aktuelle Tags
+      recommended_label: Empfohlen
+      edit: Bearbeiten
+      delete: Löschen
+      edit_title: Tag bearbeiten
+      rename_save: Speichern
+      delete_title: Tag löschen
+      delete_body_html: "Möchtest du den Tag %{name} wirklich löschen? Dadurch werden keine Decks gelöscht."
+      deck_count:
+        one: "%{count} Deck"
+        other: "%{count} Decks"
+      no_tags: Noch keine Tags.
+      close: Fertig
+      recommended:
+        - Prüfung 1
+        - Prüfung 2
+        - Zwischenprüfung
+        - Abschlussprüfung
+        - Quiz 1
+        - Einheit 1
+    tags:
+      created: Tag hinzugefügt.
+      renamed: Tag umbenannt.
+      deleted: Tag gelöscht.
+      deck_updated: Tags aktualisiert.
+    deck_tags_modal:
+      title: "Tags für %{name}"
+      no_tags: Noch keine Tags. Erstelle einen mit „Tag hinzufügen“.
+      save: Speichern
     add_decks_modal:
       title: Lernmaterialien hinzufügen
       done: Fertig

@@ -1,0 +1,16 @@
+<div id="folder-<%= folder.id %>-tag-chips" class="tag-chips-group">
+  <% if folder_tags.any? %>
+    <h4 class="tag-chips-group__label"><%= t("folders.tags_modal.current_label") %></h4>
+    <div class="tag-chips">
+      <% folder_tags.each do |tag| %>
+        <button type="button" class="tag-chip tag-chip--current"
+                data-tag-picker-target="chip"
+                data-tag-picker-name-param="<%= tag.name %>"
+                data-action="tag-picker#fill">
+          <span class="tag-chip__check"><%= render "shared/icons/check", css_class: "icon--xs" %></span>
+          <%= tag.name %>
+        </button>
+      <% end %>
+    </div>
+  <% end %>
+</div>
