@@ -29,7 +29,7 @@ gem "omniauth-google-oauth2"
 gem "omniauth-rails_csrf_protection"
 gem "pundit", "~> 2.4"
 
-gem "pagy", "~> 43.5"
+gem "pagy", "~> 43.6"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[ windows jruby ]
